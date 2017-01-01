@@ -29,57 +29,66 @@ import java.net.URI;
 
 /**
  * A set of information related to a {@link ThemeFactory}.
+ *
  * @author Benjamin Sigg
  */
 public interface ThemeMeta {
-	/**
-	 * Gets the factory which created this {@link ThemeMeta}.
-	 * @return the source of this meta
-	 */
-	public ThemeFactory getFactory();
-	
-	/**
-	 * Changes the result of {@link #getFactory()} to <code>factory</code>. This method
-	 * is intended to be used by {@link ThemeFactory}s that wrap around other factories.
-	 * @param factory the new factory
-	 */
-	public void setFactory( ThemeFactory factory );
-	
-	/**
-	 * Adds a listener to this meta information, the listener will be 
-	 * informed if this meta information changes.
-	 * @param listener the new listener
-	 */
-	public void addListener( ThemeMetaListener listener );
-	
-	/**
-	 * Removes a listener from this
-	 * @param listener the listener to remove
-	 */
-	public void removeListener( ThemeMetaListener listener );
-	
-    /**
-     * Gets a human readable description of the theme.
-     * @return the description, might be <code>null</code>
-     */
-    public String getDescription();
-    
-    /**
-     * Gets the name of the theme.
-     * @return the name, might be <code>null</code>
-     */
-    public String getName();
-    
-    /**
-     * Gets a list of strings, containing the names of the authors.
-     * @return the authors, might be <code>null</code>
-     */
-    public String[] getAuthors();
-    
-    /**
-     * Gets a set of links to any webpage the authors might want to
-     * show the user.
-     * @return the pages, might be <code>null</code>
-     */
-    public URI[] getWebpages();
+  /**
+   * Gets the factory which created this {@link ThemeMeta}.
+   *
+   * @return the source of this meta
+   */
+  public ThemeFactory getFactory();
+
+  /**
+   * Changes the result of {@link #getFactory()} to <code>factory</code>. This method
+   * is intended to be used by {@link ThemeFactory}s that wrap around other factories.
+   *
+   * @param factory the new factory
+   */
+  public void setFactory(ThemeFactory factory);
+
+  /**
+   * Adds a listener to this meta information, the listener will be
+   * informed if this meta information changes.
+   *
+   * @param listener the new listener
+   */
+  public void addListener(ThemeMetaListener listener);
+
+  /**
+   * Removes a listener from this
+   *
+   * @param listener the listener to remove
+   */
+  public void removeListener(ThemeMetaListener listener);
+
+  /**
+   * Gets a human readable description of the theme.
+   *
+   * @return the description, might be <code>null</code>
+   */
+  public String getDescription();
+
+  /**
+   * Gets the name of the theme.
+   *
+   * @return the name, might be <code>null</code>
+   */
+  public String getName();
+
+  /**
+   * Gets a list of strings, containing the names of the authors.
+   *
+   * @return the authors, might be <code>null</code>
+   */
+  public String[] getAuthors();
+
+  /**
+   * Gets a set of links to any webpage the authors might want to
+   * show the user.
+   *
+   * @return the pages, might be <code>null</code>
+   */
+  public URI[] getWebpages();
 }

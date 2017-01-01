@@ -27,31 +27,35 @@ package bibliothek.extension.gui.dock.preference.preferences.choice;
 
 /**
  * A listener that is added to a {@link Choice}.
+ *
  * @author Benjamin Sigg
  */
 public interface ChoiceListener {
-	/**
-	 * This method is called if some new entries have been added to <code>choice</code>
-	 * @param choice the source of the event
-	 * @param indexStart the index of the first affected entry
-	 * @param indexEnd the index of the last affected entry
-	 */
-	public void inserted( Choice choice, int indexStart, int indexEnd );
-	
-	/**
-	 * This method is called if some new entries have been removed from <code>choice</code>
-	 * @param choice the source of the event
-	 * @param indexStart the index of the first affected entry
-	 * @param indexEnd the index of the last affected entry
-	 */
-	public void removed( Choice choice, int indexStart, int indexEnd );
+  /**
+   * This method is called if some new entries have been added to <code>choice</code>
+   *
+   * @param choice     the source of the event
+   * @param indexStart the index of the first affected entry
+   * @param indexEnd   the index of the last affected entry
+   */
+  public void inserted(Choice choice, int indexStart, int indexEnd);
 
-	/**
-	 * This method is called if some entries have been updated, e.g. if the
-	 * text of some entries changed
-	 * @param choice the source of the event
-	 * @param indexStart the index of the first affected entry
-	 * @param indexEnd the index of the last affected entry
-	 */
-	public void updated( Choice choice, int indexStart, int indexEnd );
+  /**
+   * This method is called if some new entries have been removed from <code>choice</code>
+   *
+   * @param choice     the source of the event
+   * @param indexStart the index of the first affected entry
+   * @param indexEnd   the index of the last affected entry
+   */
+  public void removed(Choice choice, int indexStart, int indexEnd);
+
+  /**
+   * This method is called if some entries have been updated, e.g. if the
+   * text of some entries changed
+   *
+   * @param choice     the source of the event
+   * @param indexStart the index of the first affected entry
+   * @param indexEnd   the index of the last affected entry
+   */
+  public void updated(Choice choice, int indexStart, int indexEnd);
 }

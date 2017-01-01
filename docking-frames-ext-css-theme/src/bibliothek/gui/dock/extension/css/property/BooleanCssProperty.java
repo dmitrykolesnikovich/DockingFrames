@@ -32,16 +32,17 @@ import bibliothek.gui.dock.extension.css.CssType;
 
 /**
  * A property for reading {@link Boolean}s.
+ *
  * @author Benjamin Sigg
  */
-public abstract class BooleanCssProperty extends SimpleCssPropertyContainer implements CssProperty<Boolean>{
-	@Override
-	public CssType<Boolean> getType( CssScheme scheme ){
-		return scheme.getConverter( Boolean.class );
-	}
-	
-	@Override
-	public void setScheme( CssScheme scheme, CssPropertyKey key ){
-		// ignore	
-	}
+public abstract class BooleanCssProperty extends SimpleCssPropertyContainer implements CssProperty<Boolean> {
+  @Override
+  public CssType<Boolean> getType(CssScheme scheme) {
+    return scheme.getConverter(Boolean.class);
+  }
+
+  @Override
+  public void setScheme(CssScheme scheme, CssPropertyKey key) {
+    // ignore
+  }
 }

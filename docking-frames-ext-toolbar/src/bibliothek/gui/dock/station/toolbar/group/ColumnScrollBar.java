@@ -30,53 +30,60 @@
 
 package bibliothek.gui.dock.station.toolbar.group;
 
-import java.awt.Component;
-import java.awt.event.AdjustmentListener;
-
 import bibliothek.gui.Orientation;
 import bibliothek.gui.dock.ToolbarGroupDockStation;
 
+import java.awt.*;
+import java.awt.event.AdjustmentListener;
+
 /**
  * A scrollbar used by the {@link ToolbarGroupDockStation} to slide around entire columns of buttons.
+ *
  * @author Benjamin Sigg
  */
 public interface ColumnScrollBar {
-	/**
-	 * Tells this scrollbar how much space is required, and how much space is available.
-	 * @param required the required pixels to show a column
-	 * @param available the pixels actually available
-	 */
-	public void setValues( int required, int available );
-	
-	/**
-	 * Gets the offset of the scrollbar. This value is between <code>0</code> and
-	 * <code>available - required</code>.
-	 * @return the offset
-	 */
-	public int getValue();
-	
-	/**
-	 * Gets a {@link Component} which is the graphical representation of this scrollbar
-	 * @return the graphical representation, not <code>null</code>
-	 */
-	public Component getComponent();
-	
-	/**
-	 * Sets the orientation of the scrollbar
-	 * @param orientation the orientation, not <code>null</code>
-	 */
-	public void setOrientation( Orientation orientation );
-	
-	/**
-	 * Adds a listener to this scrollbar, the listener is to be called whenever the {@link #getValue() value}
-	 * changes.
-	 * @param listener the new listener, not <code>null</code>
-	 */
-	public void addAdjustmentListener( AdjustmentListener listener );
-	
-	/**
-	 * Removes <code>listener</code> from this scrollbar.
-	 * @param listener the listener to remove
-	 */
-	public void removeAdjustmentListener( AdjustmentListener listener );
+  /**
+   * Tells this scrollbar how much space is required, and how much space is available.
+   *
+   * @param required  the required pixels to show a column
+   * @param available the pixels actually available
+   */
+  public void setValues(int required, int available);
+
+  /**
+   * Gets the offset of the scrollbar. This value is between <code>0</code> and
+   * <code>available - required</code>.
+   *
+   * @return the offset
+   */
+  public int getValue();
+
+  /**
+   * Gets a {@link Component} which is the graphical representation of this scrollbar
+   *
+   * @return the graphical representation, not <code>null</code>
+   */
+  public Component getComponent();
+
+  /**
+   * Sets the orientation of the scrollbar
+   *
+   * @param orientation the orientation, not <code>null</code>
+   */
+  public void setOrientation(Orientation orientation);
+
+  /**
+   * Adds a listener to this scrollbar, the listener is to be called whenever the {@link #getValue() value}
+   * changes.
+   *
+   * @param listener the new listener, not <code>null</code>
+   */
+  public void addAdjustmentListener(AdjustmentListener listener);
+
+  /**
+   * Removes <code>listener</code> from this scrollbar.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeAdjustmentListener(AdjustmentListener listener);
 }

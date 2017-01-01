@@ -31,19 +31,22 @@ import bibliothek.gui.dock.station.LayoutLocked;
 /**
  * A listener that is added to a {@link bibliothek.gui.Dockable#addDockHierarchyListener(DockHierarchyListener) Dockable}
  * and is informed whenever the path of the element changes.
+ *
  * @author Benjamin Sigg
  */
 @LayoutLocked
 public interface DockHierarchyListener {
-	/**
-	 * Called when the path of the observed {@link bibliothek.gui.Dockable} has been changed.
-	 * @param event the new path
-	 */
-	public void hierarchyChanged( DockHierarchyEvent event );
-	
-	/**
-	 * Invoked whenever the controller of <code>dockable</code> has changed
-	 * @param event the current path and controller
-	 */
-	public void controllerChanged( DockHierarchyEvent event );
+  /**
+   * Called when the path of the observed {@link bibliothek.gui.Dockable} has been changed.
+   *
+   * @param event the new path
+   */
+  public void hierarchyChanged(DockHierarchyEvent event);
+
+  /**
+   * Invoked whenever the controller of <code>dockable</code> has changed
+   *
+   * @param event the current path and controller
+   */
+  public void controllerChanged(DockHierarchyEvent event);
 }

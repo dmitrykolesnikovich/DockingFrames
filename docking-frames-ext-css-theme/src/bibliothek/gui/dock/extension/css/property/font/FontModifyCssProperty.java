@@ -35,17 +35,18 @@ import bibliothek.gui.dock.util.font.GenericFontModifier.Modify;
 
 /**
  * Used to read a {@link String} as a {@link GenericFontModifier.Modify}
- * @author Benjamin Sigg
+ *
  * @param <T> the kind of enum read by this property
+ * @author Benjamin Sigg
  */
-public abstract class FontModifyCssProperty extends SimpleCssPropertyContainer implements CssProperty<GenericFontModifier.Modify>{
-	@Override
-	public CssType<Modify> getType( CssScheme scheme ){
-		return scheme.getConverter( Modify.class );
-	}
+public abstract class FontModifyCssProperty extends SimpleCssPropertyContainer implements CssProperty<GenericFontModifier.Modify> {
+  @Override
+  public CssType<Modify> getType(CssScheme scheme) {
+    return scheme.getConverter(Modify.class);
+  }
 
-	@Override
-	public void setScheme( CssScheme scheme, CssPropertyKey key ){
-		// ignore
-	}
+  @Override
+  public void setScheme(CssScheme scheme, CssPropertyKey key) {
+    // ignore
+  }
 }

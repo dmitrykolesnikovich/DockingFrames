@@ -25,17 +25,18 @@
  */
 package bibliothek.gui.dock.common.event;
 
-import java.awt.event.KeyEvent;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.common.intern.CDockable;
+
+import java.awt.event.KeyEvent;
 
 /**
  * A {@link CKeyboardListener} gets informed about {@link KeyEvent}s which
  * happen on certain {@link CDockable}s. The events can fall through several
  * {@link Dockable}s until they are processed. Once they are processed, no
- * other listener is informed about them. 
+ * other listener is informed about them.
+ *
  * @author Benjamin Sigg
  * @see CDockable#addKeyboardListener(CKeyboardListener)
  * @see CDockable#removeKeyboardListener(CKeyboardListener)
@@ -43,33 +44,36 @@ import bibliothek.gui.dock.common.intern.CDockable;
  * @see CControl#removeKeyboardListener(CKeyboardListener)
  */
 public interface CKeyboardListener {
-    /**
-     * Called when a key was pressed on a child or on <code>source</code>.
-     * @param source the source of the event
-     * @param event the event
-     * @return <code>true</code> if this method processed the event and the
-     * event must not be forwarded to other listeners, <code>false</code>
-     * if this listener did not process the event
-     */
-    public boolean keyPressed( CDockable source, KeyEvent event );
-    
-    /**
-     * Called when a key was released on a child or on <code>source</code>.
-     * @param source the source of the event
-     * @param event the event
-     * @return <code>true</code> if this method processed the event and the
-     * event must not be forwarded to other listeners, <code>false</code>
-     * if this listener did not process the event
-     */
-    public boolean keyReleased( CDockable source, KeyEvent event );
-    
-    /**
-     * Called when a key was typed on a child or on <code>source</code>.
-     * @param source the source of the event
-     * @param event the event
-     * @return <code>true</code> if this method processed the event and the
-     * event must not be forwarded to other listeners, <code>false</code>
-     * if this listener did not process the event
-     */
-    public boolean keyTyped( CDockable source, KeyEvent event );
+  /**
+   * Called when a key was pressed on a child or on <code>source</code>.
+   *
+   * @param source the source of the event
+   * @param event  the event
+   * @return <code>true</code> if this method processed the event and the
+   * event must not be forwarded to other listeners, <code>false</code>
+   * if this listener did not process the event
+   */
+  public boolean keyPressed(CDockable source, KeyEvent event);
+
+  /**
+   * Called when a key was released on a child or on <code>source</code>.
+   *
+   * @param source the source of the event
+   * @param event  the event
+   * @return <code>true</code> if this method processed the event and the
+   * event must not be forwarded to other listeners, <code>false</code>
+   * if this listener did not process the event
+   */
+  public boolean keyReleased(CDockable source, KeyEvent event);
+
+  /**
+   * Called when a key was typed on a child or on <code>source</code>.
+   *
+   * @param source the source of the event
+   * @param event  the event
+   * @return <code>true</code> if this method processed the event and the
+   * event must not be forwarded to other listeners, <code>false</code>
+   * if this listener did not process the event
+   */
+  public boolean keyTyped(CDockable source, KeyEvent event);
 }

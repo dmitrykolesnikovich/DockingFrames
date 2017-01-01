@@ -30,16 +30,20 @@ import bibliothek.gui.dock.util.UIValue;
 import bibliothek.util.Path;
 
 /**
- * A {@link DockBorder} that is used by a {@link StackDockComponent}. 
+ * A {@link DockBorder} that is used by a {@link StackDockComponent}.
+ *
  * @author Benjamin Sigg
  */
-public interface StackDockComponentBorder extends DockBorder{
-	/** The kind of {@link UIValue} this is */
-	public static final Path KIND = DockBorder.KIND.append( "stackComponent" );
-	
-	/**
-	 * Gets the {@link StackDockComponent} which is represented by this {@link UIValue}.
-	 * @return the component, not <code>null</code>
-	 */
-	public StackDockComponent getStackComponent();
+public interface StackDockComponentBorder extends DockBorder {
+  /**
+   * The kind of {@link UIValue} this is
+   */
+  public static final Path KIND = DockBorder.KIND.append("stackComponent");
+
+  /**
+   * Gets the {@link StackDockComponent} which is represented by this {@link UIValue}.
+   *
+   * @return the component, not <code>null</code>
+   */
+  public StackDockComponent getStackComponent();
 }

@@ -31,55 +31,57 @@ package bibliothek.util.container;
 
 /**
  * An object containing two generic fields.
- * @author Benjamin Sigg
+ *
  * @param <A> type of the first field
  * @param <B> type of the second field
+ * @author Benjamin Sigg
  */
-public class Tuple<A, B> extends Single<A>{
-	public static <A, B> Tuple<A, B> of( A a, B b ){
-		return new Tuple<A,B>( a, b );
-	}
-	
-	private B b;
-	
-	public Tuple(){
-		// nothing to do
-	}
-	public Tuple( A a, B b ){
-		super( a );
-		this.b = b;
-	}
-	
-	public void setB( B b ){
-		this.b = b;
-	}
-	
-	public B getB(){
-		return b;
-	}
-	
-    @SuppressWarnings("unchecked")
-    @Override
-	public Tuple<A, B> clone(){
-        return (Tuple<A,B>)super.clone();
-	}
-	
-	@Override
-	public boolean equals( Object o ){
-    	if( o.getClass() == getClass() ){
-			Tuple<?, ?> s = (Tuple<?, ?>)o;
-			return super.equals( o ) && ( (s.b == null && b == null) || (s.b != null && s.b.equals( b )));
-		}
-		return false;
-	}
-	
-    @Override
-	public int hashCode(){
-		return super.hashCode() ^ (b == null ? 0 : b.hashCode());
-	}
-	
-    @Override
-	public String toString(){
-		return getClass().getName() + "[a=" + getA() + ", b=" + b + "]";
-	}
+public class Tuple<A, B> extends Single<A> {
+  private B b;
+
+  public Tuple() {
+    // nothing to do
+  }
+
+  public Tuple(A a, B b) {
+    super(a);
+    this.b = b;
+  }
+
+  public static <A, B> Tuple<A, B> of(A a, B b) {
+    return new Tuple<A, B>(a, b);
+  }
+
+  public B getB() {
+    return b;
+  }
+
+  public void setB(B b) {
+    this.b = b;
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public Tuple<A, B> clone() {
+    return (Tuple<A, B>)super.clone();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o.getClass() == getClass()) {
+      Tuple<?, ?> s = (Tuple<?, ?>)o;
+      return super.equals(o) && ((s.b == null && b == null) || (s.b != null && s.b.equals(b)));
+    }
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode() ^ (b == null ? 0 : b.hashCode());
+  }
+
+  @Override
+  public String toString() {
+    return getClass().getName() + "[a=" + getA() + ", b=" + b + "]";
+  }
 }

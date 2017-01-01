@@ -30,14 +30,16 @@ import bibliothek.gui.Dockable;
 /**
  * An item in a {@link PlaceholderList}.<br>
  * Clients should notice that there are no restrictions on what <code>D</code> actually is. While the default implementation
- * assumes that <code>D</code> is some kind of {@link Dockable}, it could as well be something else, e.g. a list of dockables. 
- * @author Benjamin Sigg
+ * assumes that <code>D</code> is some kind of {@link Dockable}, it could as well be something else, e.g. a list of dockables.
+ *
  * @param <D> the representation of a {@link Dockable}, may or may not be a subinterface of {@link Dockable}
+ * @author Benjamin Sigg
  */
 public interface PlaceholderListItem<D> {
-	/**
-	 * Gets the {@link Dockable} that is associated with this item.
-	 * @return the dockable, not <code>null</code>
-	 */
-	public D asDockable();
+  /**
+   * Gets the {@link Dockable} that is associated with this item.
+   *
+   * @return the dockable, not <code>null</code>
+   */
+  public D asDockable();
 }

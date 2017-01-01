@@ -25,30 +25,35 @@
  */
 package bibliothek.gui.dock.control.focus;
 
-import java.awt.Component;
-
 import bibliothek.gui.Dockable;
+
+import java.awt.*;
 
 /**
  * A question that is asked to a {@link FocusStrategy}.
+ *
  * @author Benjamin Sigg
  */
 public interface FocusStrategyRequest {
-	/**
-	 * Gets the item which is about to gain the focus
-	 * @return the item that gains the focus, not <code>null</code>
-	 */
-	public Dockable getDockable();
-	/**
-	 * Gets the {@link Component} which was touched by the mouse.
-	 * @return the clicked component, can be <code>null</code>
-	 */
-	public Component getMouseClicked();
-	
-	/**
-	 * Tells whether <code>component</code> should be excluded from receiving the focus.
-	 * @param component some {@link Component} which may receive the focus
-	 * @return <code>true</code> if <code>component</code> should not gain the focus
-	 */
-	public boolean excluded( Component component );
+  /**
+   * Gets the item which is about to gain the focus
+   *
+   * @return the item that gains the focus, not <code>null</code>
+   */
+  public Dockable getDockable();
+
+  /**
+   * Gets the {@link Component} which was touched by the mouse.
+   *
+   * @return the clicked component, can be <code>null</code>
+   */
+  public Component getMouseClicked();
+
+  /**
+   * Tells whether <code>component</code> should be excluded from receiving the focus.
+   *
+   * @param component some {@link Component} which may receive the focus
+   * @return <code>true</code> if <code>component</code> should not gain the focus
+   */
+  public boolean excluded(Component component);
 }

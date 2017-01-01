@@ -39,46 +39,50 @@ import bibliothek.gui.dock.util.DockUtilities;
 
 /**
  * Interface between {@link FlapDockStation} and {@link CModeArea}.
+ *
  * @author Benjamin Sigg
  */
-public class CFlapDockStationHandle extends FlapDockStationHandle implements CMinimizedModeArea{
-	/** base location */
-	private CLocation location;
-	
-	/**
-	 * Creates a new handle
-	 * @param station the station which is handled by this handle
-	 */
-	public CFlapDockStationHandle( CStation<CFlapDockStation> station ){
-		this( station.getUniqueId(), station.getStation(), station.getStationLocation() );
-	}
-	
-	/**
-	 * Creates a new handle
-	 * @param id the unique identifier of this station
-	 * @param station the station to handle
-	 * @param location the location which represents <code>station</code>
-	 */
-	public CFlapDockStationHandle( String id, CFlapDockStation station, CLocation location ){
-		super( id, station );
-		if( location == null ){
-			throw new IllegalArgumentException( "location must not be null" );
-		}
-		
-		this.location = location;
-	}
-	
+public class CFlapDockStationHandle extends FlapDockStationHandle implements CMinimizedModeArea {
+  /**
+   * base location
+   */
+  private CLocation location;
 
-	public CLocation getCLocation( Dockable dockable ){
-		DockableProperty property = DockUtilities.getPropertyChain( getStation(), dockable );
-		return location.expandProperty( getStation().getController(), property );
-	}
-	
-	public CLocation getCLocation( Dockable dockable, Location location ){
-		DockableProperty property = location.getLocation();
-		if( property == null )
-			return this.location;
-		
-		return this.location.expandProperty( getStation().getController(), property );
-	}
+  /**
+   * Creates a new handle
+   *
+   * @param station the station which is handled by this handle
+   */
+  public CFlapDockStationHandle(CStation<CFlapDockStation> station) {
+    this(station.getUniqueId(), station.getStation(), station.getStationLocation());
+  }
+
+  /**
+   * Creates a new handle
+   *
+   * @param id       the unique identifier of this station
+   * @param station  the station to handle
+   * @param location the location which represents <code>station</code>
+   */
+  public CFlapDockStationHandle(String id, CFlapDockStation station, CLocation location) {
+    super(id, station);
+    if (location == null) {
+      throw new IllegalArgumentException("location must not be null");
+    }
+
+    this.location = location;
+  }
+
+
+  public CLocation getCLocation(Dockable dockable) {
+    DockableProperty property = DockUtilities.getPropertyChain(getStation(), dockable);
+    return location.expandProperty(getStation().getController(), property);
+  }
+
+  public CLocation getCLocation(Dockable dockable, Location location) {
+    DockableProperty property = location.getLocation();
+    if (property == null) return this.location;
+
+    return this.location.expandProperty(getStation().getController(), property);
+  }
 }

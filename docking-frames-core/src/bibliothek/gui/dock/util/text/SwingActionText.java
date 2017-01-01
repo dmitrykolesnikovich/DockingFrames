@@ -25,59 +25,69 @@
  */
 package bibliothek.gui.dock.util.text;
 
-import javax.swing.Action;
-
 import bibliothek.gui.dock.action.DockActionIcon;
 import bibliothek.gui.dock.util.UIValue;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+
 /**
  * A text that is used by an {@link Action}.
+ *
  * @author Benjamin Sigg
  */
-public class SwingActionText extends TextValue{
-	/** the kind of value this {@link UIValue} is */
-	public static final Path KIND_SWING_ACTION = KIND_TEXT.append( "swing_action" );
+public class SwingActionText extends TextValue {
+  /**
+   * the kind of value this {@link UIValue} is
+   */
+  public static final Path KIND_SWING_ACTION = KIND_TEXT.append("swing_action");
 
-	/** the action using this icon */
-	private Action action;
-	
-	/** The key to be used for {@link Action#putValue(String, Object)} */
-	private String key;
-	
-	/**
-	 * Creates a new {@link DockActionIcon}.
-	 * @param id the unique identifier of the icon
-	 * @param key the key to be used for {@link Action#putValue(String, Object)}
-	 * @param action the action using the icon
-	 */
-	public SwingActionText( String id, String key, Action action ){
-		this( id, key, action, KIND_SWING_ACTION );
-	}
-	
-	/**
-	 * Creates a new {@link DockActionIcon}.
-	 * @param id the unique identifier of the icon
-	 * @param action the action using the icon
-	 * @param key the key to be used for {@link Action#putValue(String, Object)}
-	 * @param kind what kind of {@link UIValue} this is
-	 */
-	public SwingActionText( String id, String key, Action action, Path kind ){
-		super( id, kind );
-		this.key = key;
-		this.action = action;
-	}
-	
-	/**
-	 * Gets the action which is using the icon.
-	 * @return the action
-	 */
-	public Action getAction(){
-		return action;
-	}
-	
-	@Override
-	protected void changed( String oldValue, String newValue ){
-		action.putValue( key, newValue );
-	}
+  /**
+   * the action using this icon
+   */
+  private Action action;
+
+  /**
+   * The key to be used for {@link Action#putValue(String, Object)}
+   */
+  private String key;
+
+  /**
+   * Creates a new {@link DockActionIcon}.
+   *
+   * @param id     the unique identifier of the icon
+   * @param key    the key to be used for {@link Action#putValue(String, Object)}
+   * @param action the action using the icon
+   */
+  public SwingActionText(String id, String key, Action action) {
+    this(id, key, action, KIND_SWING_ACTION);
+  }
+
+  /**
+   * Creates a new {@link DockActionIcon}.
+   *
+   * @param id     the unique identifier of the icon
+   * @param action the action using the icon
+   * @param key    the key to be used for {@link Action#putValue(String, Object)}
+   * @param kind   what kind of {@link UIValue} this is
+   */
+  public SwingActionText(String id, String key, Action action, Path kind) {
+    super(id, kind);
+    this.key = key;
+    this.action = action;
+  }
+
+  /**
+   * Gets the action which is using the icon.
+   *
+   * @return the action
+   */
+  public Action getAction() {
+    return action;
+  }
+
+  @Override
+  protected void changed(String oldValue, String newValue) {
+    action.putValue(key, newValue);
+  }
 }

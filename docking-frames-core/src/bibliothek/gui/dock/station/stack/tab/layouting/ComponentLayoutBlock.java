@@ -25,55 +25,57 @@
  */
 package bibliothek.gui.dock.station.stack.tab.layouting;
 
-import java.awt.Rectangle;
-
 import bibliothek.gui.dock.station.stack.tab.TabPaneComponent;
+
+import java.awt.*;
 
 /**
  * This {@link LayoutBlock} handles exactly one {@link TabPaneComponent}.
+ *
  * @author Benjamin Sigg
  */
-public class ComponentLayoutBlock<C extends TabPaneComponent> implements LayoutBlock{
-	/** the component managed by this block */
-	private C component;
-	
-	/**
-	 * Sets the component which should be managed by this block.
-	 * @param component the new component, may be <code>null</code>
-	 */
-	public void setComponent( C component ){
-		this.component = component;
-	}
-	
-	/**
-	 * Gets the component which is managed by this block.
-	 * @return the component, may be <code>null</code>
-	 */
-	public C getComponent(){
-		return component;
-	}
+public class ComponentLayoutBlock<C extends TabPaneComponent> implements LayoutBlock {
+  /**
+   * the component managed by this block
+   */
+  private C component;
 
-	public void setBounds( int x, int y, int width, int height ){
-		if( component != null ){
-			component.setBounds( new Rectangle( x, y, width, height ));
-		}
-	}
+  /**
+   * Gets the component which is managed by this block.
+   *
+   * @return the component, may be <code>null</code>
+   */
+  public C getComponent() {
+    return component;
+  }
 
-	public Size[] getSizes(){
-		if( component == null )
-			return null;
-		
-		return new Size[]{
-				new Size( Size.Type.MINIMUM, component.getMinimumSize(), 0.0 ),
-				new Size( Size.Type.PREFERRED, component.getPreferredSize(), 1.0 )
-		};
-	}
-	
-	public void setLayout( Size size ){
-		// nothing to do	
-	}
-	
-	public void setOrientation( TabPlacement placement ){
-		// ignore	
-	}
+  /**
+   * Sets the component which should be managed by this block.
+   *
+   * @param component the new component, may be <code>null</code>
+   */
+  public void setComponent(C component) {
+    this.component = component;
+  }
+
+  public void setBounds(int x, int y, int width, int height) {
+    if (component != null) {
+      component.setBounds(new Rectangle(x, y, width, height));
+    }
+  }
+
+  public Size[] getSizes() {
+    if (component == null) return null;
+
+    return new Size[]{new Size(Size.Type.MINIMUM, component.getMinimumSize(), 0.0),
+      new Size(Size.Type.PREFERRED, component.getPreferredSize(), 1.0)};
+  }
+
+  public void setLayout(Size size) {
+    // nothing to do
+  }
+
+  public void setOrientation(TabPlacement placement) {
+    // ignore
+  }
 }

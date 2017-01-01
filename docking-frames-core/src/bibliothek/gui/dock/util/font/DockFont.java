@@ -32,36 +32,57 @@ import bibliothek.util.Path;
 
 /**
  * A wrapper around a {@link FontModifier} object.
+ *
  * @author Benjamin Sigg
  */
 public interface DockFont extends UIValue<FontModifier> {
-    /** the default kind of fonts */
-    public static final Path KIND_DOCK_FONT = new Path( "DockFont" );
-    
-    /** default id for the title active font */
-    public static final String ID_TITLE_ACTIVE = "title.active";
-    
-    /** default id for the title inactive font */
-    public static final String ID_TITLE_INACTIVE = "title.inactive";
-    
-    /** default id for an active button of a {@link FlapDockStation} */
-    public static final String ID_FLAP_BUTTON_ACTIVE = "title.flap.active";
-    
-    /** default id for an selected button of a {@link FlapDockStation} */
-    public static final String ID_FLAP_BUTTON_SELECTED = "title.flap.selected";
-    
-    /** default id for an inactive button of a {@link FlapDockStation} */
-    public static final String ID_FLAP_BUTTON_INACTIVE = "title.flap.inactive";
-    
-    /** default id for an active button of a {@link FlapDockStation} */
-    public static final String ID_TAB_FOCUSED = "tab.focused";
-    
-    /** default id for an selected button of a {@link FlapDockStation} */
-    public static final String ID_TAB_SELECTED = "tab.selected";
-    
-    /** default id for an inactive button of a {@link FlapDockStation} */
-    public static final String ID_TAB_UNSELECTED = "tab.unselected";
-    
-    /** default id for a button that shows a {@link DockAction} */
-    public static final String ID_BUTTON = "button";
+  /**
+   * the default kind of fonts
+   */
+  public static final Path KIND_DOCK_FONT = new Path("DockFont");
+
+  /**
+   * default id for the title active font
+   */
+  public static final String ID_TITLE_ACTIVE = "title.active";
+
+  /**
+   * default id for the title inactive font
+   */
+  public static final String ID_TITLE_INACTIVE = "title.inactive";
+
+  /**
+   * default id for an active button of a {@link FlapDockStation}
+   */
+  public static final String ID_FLAP_BUTTON_ACTIVE = "title.flap.active";
+
+  /**
+   * default id for an selected button of a {@link FlapDockStation}
+   */
+  public static final String ID_FLAP_BUTTON_SELECTED = "title.flap.selected";
+
+  /**
+   * default id for an inactive button of a {@link FlapDockStation}
+   */
+  public static final String ID_FLAP_BUTTON_INACTIVE = "title.flap.inactive";
+
+  /**
+   * default id for an active button of a {@link FlapDockStation}
+   */
+  public static final String ID_TAB_FOCUSED = "tab.focused";
+
+  /**
+   * default id for an selected button of a {@link FlapDockStation}
+   */
+  public static final String ID_TAB_SELECTED = "tab.selected";
+
+  /**
+   * default id for an inactive button of a {@link FlapDockStation}
+   */
+  public static final String ID_TAB_UNSELECTED = "tab.unselected";
+
+  /**
+   * default id for a button that shows a {@link DockAction}
+   */
+  public static final String ID_BUTTON = "button";
 }

@@ -33,27 +33,28 @@ import bibliothek.gui.dock.extension.css.transition.TransitionalCssProperty;
 
 /**
  * This specialized {@link CssTransition} instantly finishes the transition.
+ *
+ * @param <T> the type of item this  handles
  * @author Benjamin Sigg
- * @param <T> the type of item this  handles 
  */
-public class InstantCssTransition<T> extends AbstractCssTransition<T>{
-	@Override
-	public void step( int delay ){
-		endAnimation();
-	}
+public class InstantCssTransition<T> extends AbstractCssTransition<T> {
+  @Override
+  public void step(int delay) {
+    endAnimation();
+  }
 
-	@Override
-	protected TransitionalCssProperty<T> createProperty( CssType<T> type, CssPropertyKey key ){
-		return type.createTransition();
-	}
+  @Override
+  protected TransitionalCssProperty<T> createProperty(CssType<T> type, CssPropertyKey key) {
+    return type.createTransition();
+  }
 
-	@Override
-	protected void bind(){
-		// ignore
-	}
+  @Override
+  protected void bind() {
+    // ignore
+  }
 
-	@Override
-	protected void unbind(){
-		// ignore
-	}
+  @Override
+  protected void unbind() {
+    // ignore
+  }
 }

@@ -25,49 +25,48 @@
  */
 package bibliothek.extension.gui.dock.theme.eclipse.stack.tab;
 
-import java.awt.Component;
-import java.awt.Container;
-
-import javax.swing.SwingUtilities;
-
 import bibliothek.gui.dock.focus.SimplifiedFocusTraversalPolicy;
 import bibliothek.gui.dock.themes.basic.action.buttons.ButtonPanel;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Focus traversal policy used by a {@link BaseTabComponent} to go through its child {@link Component}
  * which shows the buttons (if there are any).
+ *
  * @author Benjamin Sigg
  */
-public class BaseTabFocusTraversalPolicy implements SimplifiedFocusTraversalPolicy{
-	private ButtonPanel buttons;
-	
-	public BaseTabFocusTraversalPolicy( ButtonPanel buttons ){
-		this.buttons = buttons;
-	}
-	
-	public Component getAfter( Container container, Component component ){
-		if( component == buttons || SwingUtilities.isDescendingFrom( component, buttons )){
-			return null;
-		}
-		return buttons;
-	}
+public class BaseTabFocusTraversalPolicy implements SimplifiedFocusTraversalPolicy {
+  private ButtonPanel buttons;
 
-	public Component getBefore( Container container, Component component ){
-		if( component == buttons || SwingUtilities.isDescendingFrom( component, buttons )){
-			return null;
-		}
-		return buttons;
-	}
+  public BaseTabFocusTraversalPolicy(ButtonPanel buttons) {
+    this.buttons = buttons;
+  }
 
-	public Component getFirst( Container container ){
-		return buttons;
-	}
+  public Component getAfter(Container container, Component component) {
+    if (component == buttons || SwingUtilities.isDescendingFrom(component, buttons)) {
+      return null;
+    }
+    return buttons;
+  }
 
-	public Component getLast( Container container ){
-		return buttons;
-	}
+  public Component getBefore(Container container, Component component) {
+    if (component == buttons || SwingUtilities.isDescendingFrom(component, buttons)) {
+      return null;
+    }
+    return buttons;
+  }
 
-	public Component getDefault( Container container ){
-		return getFirst( container );
-	}
+  public Component getFirst(Container container) {
+    return buttons;
+  }
+
+  public Component getLast(Container container) {
+    return buttons;
+  }
+
+  public Component getDefault(Container container) {
+    return getFirst(container);
+  }
 }

@@ -25,134 +25,134 @@
  */
 package bibliothek.gui.dock.util.extension;
 
+import bibliothek.util.Path;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import bibliothek.util.Path;
-
 /**
  * The name of some extension that can be loaded through {@link Extension}. There is no clear
- * definition of which class uses extension at which time. At the moment the best way to find 
+ * definition of which class uses extension at which time. At the moment the best way to find
  * out is to search all occurences of this class in the code.<br>
- * New extensions will be added to the framework when needed or upon request. 
- * @author Benjamin Sigg
+ * New extensions will be added to the framework when needed or upon request.
+ *
  * @param <E> the type of this extension
+ * @author Benjamin Sigg
  */
 public class ExtensionName<E> {
-	private Map<String, Object> parameters;
-	private Path name;
-	private Class<E> type;
-	
-	/**
-	 * Creates a new name.
-	 * @param name the unique identifier of this extension
-	 * @param type the type of this extension
-	 */
-	public ExtensionName( Path name, Class<E> type ){
-		this( name, type, null );
-	}
-	
-	/**
-	 * Creates a new name.
-	 * @param name the unique identifier of this extension
-	 * @param type the type of this extension
-	 * @param parameters all the parameters for this extension, can be <code>null</code>
-	 */
-	public ExtensionName( Path name, Class<E> type, Map<String, Object> parameters ){
-		if( name == null ){
-			throw new IllegalArgumentException( "name must not be null" );
-		}
-		if( type == null ){
-			throw new IllegalArgumentException( "type must not be null" );
-		}
-		this.name = name;
-		this.type = type;
-		this.parameters = parameters;
-	}
-	
-	/**
-	 * Creates a new name.
-	 * @param name the unique identifier of this extension
-	 * @param type the type of this extension
-	 * @param parameterKey the key of the only parameter of this {@link ExtensionName}
-	 * @param parameterValue the value of the only parameter of this {@link ExtensionName}
-	 */
-	public ExtensionName( Path name, Class<E> type, String parameterKey, Object parameterValue ){
-		this( name, type, null );
-		
-		parameters = new HashMap<String, Object>();
-		parameters.put( parameterKey, parameterValue );
-	}
-		
-	/**
-	 * Gets the unique name of this extension.
-	 * @return the name, not <code>null</code>
-	 */
-	public Path getName(){
-		return name;
-	}
-	
-	/**
-	 * Gets the type of this extension.
-	 * @return the type, not <code>null</code>
-	 */
-	public Class<E> getType(){
-		return type;
-	}
-	
-	/**
-	 * Gets an additional parameter of this extension. The name, type and meaning of the
-	 * parameter depends on the extensions name.
-	 * @param parameter the name of the parameter
-	 * @return the value, can be <code>null</code>
-	 */
-	public Object get( String parameter ){
-		return parameter == null ? null : parameters.get( parameter );
-	}
+  private Map<String, Object> parameters;
+  private Path name;
+  private Class<E> type;
 
-	@Override
-	public String toString(){
-		return "ExtensionName[name=" + name + ", type=" + type + ", parameters=" + parameters + "]";
-	}
-	
-	@Override
-	public int hashCode(){
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((parameters == null) ? 0 : parameters.hashCode());
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		return result;
-	}
+  /**
+   * Creates a new name.
+   *
+   * @param name the unique identifier of this extension
+   * @param type the type of this extension
+   */
+  public ExtensionName(Path name, Class<E> type) {
+    this(name, type, null);
+  }
 
-	@SuppressWarnings("rawtypes")
-	@Override
-	public boolean equals( Object obj ){
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ExtensionName other = (ExtensionName) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals( other.name ))
-			return false;
-		if (parameters == null) {
-			if (other.parameters != null)
-				return false;
-		} else if (!parameters.equals( other.parameters ))
-			return false;
-		if (type == null) {
-			if (other.type != null)
-				return false;
-		} else if (!type.equals( other.type ))
-			return false;
-		return true;
-	}
-	
-	
+  /**
+   * Creates a new name.
+   *
+   * @param name       the unique identifier of this extension
+   * @param type       the type of this extension
+   * @param parameters all the parameters for this extension, can be <code>null</code>
+   */
+  public ExtensionName(Path name, Class<E> type, Map<String, Object> parameters) {
+    if (name == null) {
+      throw new IllegalArgumentException("name must not be null");
+    }
+    if (type == null) {
+      throw new IllegalArgumentException("type must not be null");
+    }
+    this.name = name;
+    this.type = type;
+    this.parameters = parameters;
+  }
+
+  /**
+   * Creates a new name.
+   *
+   * @param name           the unique identifier of this extension
+   * @param type           the type of this extension
+   * @param parameterKey   the key of the only parameter of this {@link ExtensionName}
+   * @param parameterValue the value of the only parameter of this {@link ExtensionName}
+   */
+  public ExtensionName(Path name, Class<E> type, String parameterKey, Object parameterValue) {
+    this(name, type, null);
+
+    parameters = new HashMap<String, Object>();
+    parameters.put(parameterKey, parameterValue);
+  }
+
+  /**
+   * Gets the unique name of this extension.
+   *
+   * @return the name, not <code>null</code>
+   */
+  public Path getName() {
+    return name;
+  }
+
+  /**
+   * Gets the type of this extension.
+   *
+   * @return the type, not <code>null</code>
+   */
+  public Class<E> getType() {
+    return type;
+  }
+
+  /**
+   * Gets an additional parameter of this extension. The name, type and meaning of the
+   * parameter depends on the extensions name.
+   *
+   * @param parameter the name of the parameter
+   * @return the value, can be <code>null</code>
+   */
+  public Object get(String parameter) {
+    return parameter == null ? null : parameters.get(parameter);
+  }
+
+  @Override
+  public String toString() {
+    return "ExtensionName[name=" + name + ", type=" + type + ", parameters=" + parameters + "]";
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((name == null) ? 0 : name.hashCode());
+    result = prime * result + ((parameters == null) ? 0 : parameters.hashCode());
+    result = prime * result + ((type == null) ? 0 : type.hashCode());
+    return result;
+  }
+
+  @SuppressWarnings("rawtypes")
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    ExtensionName other = (ExtensionName)obj;
+    if (name == null) {
+      if (other.name != null) return false;
+    }
+    else if (!name.equals(other.name)) return false;
+    if (parameters == null) {
+      if (other.parameters != null) return false;
+    }
+    else if (!parameters.equals(other.parameters)) return false;
+    if (type == null) {
+      if (other.type != null) return false;
+    }
+    else if (!type.equals(other.type)) return false;
+    return true;
+  }
+
+
 }

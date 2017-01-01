@@ -40,56 +40,65 @@ import bibliothek.gui.dock.util.PropertyKey;
  * whether it should heed the hint. All the default items of the framework do however heed the hint.<br>
  * This interface was added due to popular request. Developers should be aware that many use cases involving disabling
  * items are rather dubious. Used in the wrong way, the {@link DisablingStrategy} can break a lot functionality of
- * the framework. E.g. it can prevent the user from closing a {@link Dockable} he just does not need right now.  
+ * the framework. E.g. it can prevent the user from closing a {@link Dockable} he just does not need right now.
+ *
  * @author Benjamin Sigg
  */
 public interface DisablingStrategy {
-	/** The unique identifier for the {@link DockProperties}, need to get or set the current {@link DisablingStrategy}. */
-	public static final PropertyKey<DisablingStrategy> STRATEGY = new PropertyKey<DisablingStrategy>( "disabling strategy" );
-	
-	/**
-	 * Adds <code>listener</code> to this object, the listener will be informed when the state of this
-	 * {@link DisablingStrategy} changes.
-	 * @param listener the listener to add, not <code>null</code>
-	 */
-	public void addDisablingStrategyListener( DisablingStrategyListener listener );
-	
-	/**
-	 * Removes <code>listener</code> from this object.
-	 * @param listener the listener to remove
-	 */
-	public void removeDisablingStrategyListener( DisablingStrategyListener listener );
-	
-	/**
-	 * Tells whether the item <code>DockElement</code> is disabled in general. The exact effects of being disabled are
-	 * not defined, but when using the default implementation developers can expect that <code>item</code> will not
-	 * participate in any kind of drag and drop operation.
-	 * @param item the item which may be disabled
-	 * @return whether <code>item</code> is disabled
-	 */
-	public boolean isDisabled( DockElement item );
-	
-	/**
-	 * Tells whether the action <code>item</code>, which is shown together with <code>dockable</code>, is disabled.
-	 * @param dockable the dockable which shows <code>item</code>
-	 * @param item the action that might be disabled
-	 * @return whether <code>item</code> is disabled
-	 */
-	public boolean isDisabled( Dockable dockable, DockAction item );
-	
-	/**
-	 * Tells whether the title <code>item</code>, which is shown together with <code>dockable</code>, is disabled.
-	 * @param dockable the dockable which shows <code>item</code>
-	 * @param item the title that might be disabled
-	 * @return whether <code>item</code> is disabled
-	 */
-	public boolean isDisabled( Dockable dockable, DockTitle item );
-	
-	/**
-	 * Assuming <code>dockable</code> is shown with some tabs (e.g. some {@link EclipseTab}s), this method decides
-	 * whether the tabs are disabled.
-	 * @param dockable the dockable which is shown together with some tab
-	 * @return whether the tab is disabled
-	 */
-	public boolean isTabDisabled( Dockable dockable );
+  /**
+   * The unique identifier for the {@link DockProperties}, need to get or set the current {@link DisablingStrategy}.
+   */
+  public static final PropertyKey<DisablingStrategy> STRATEGY = new PropertyKey<DisablingStrategy>("disabling strategy");
+
+  /**
+   * Adds <code>listener</code> to this object, the listener will be informed when the state of this
+   * {@link DisablingStrategy} changes.
+   *
+   * @param listener the listener to add, not <code>null</code>
+   */
+  public void addDisablingStrategyListener(DisablingStrategyListener listener);
+
+  /**
+   * Removes <code>listener</code> from this object.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeDisablingStrategyListener(DisablingStrategyListener listener);
+
+  /**
+   * Tells whether the item <code>DockElement</code> is disabled in general. The exact effects of being disabled are
+   * not defined, but when using the default implementation developers can expect that <code>item</code> will not
+   * participate in any kind of drag and drop operation.
+   *
+   * @param item the item which may be disabled
+   * @return whether <code>item</code> is disabled
+   */
+  public boolean isDisabled(DockElement item);
+
+  /**
+   * Tells whether the action <code>item</code>, which is shown together with <code>dockable</code>, is disabled.
+   *
+   * @param dockable the dockable which shows <code>item</code>
+   * @param item     the action that might be disabled
+   * @return whether <code>item</code> is disabled
+   */
+  public boolean isDisabled(Dockable dockable, DockAction item);
+
+  /**
+   * Tells whether the title <code>item</code>, which is shown together with <code>dockable</code>, is disabled.
+   *
+   * @param dockable the dockable which shows <code>item</code>
+   * @param item     the title that might be disabled
+   * @return whether <code>item</code> is disabled
+   */
+  public boolean isDisabled(Dockable dockable, DockTitle item);
+
+  /**
+   * Assuming <code>dockable</code> is shown with some tabs (e.g. some {@link EclipseTab}s), this method decides
+   * whether the tabs are disabled.
+   *
+   * @param dockable the dockable which is shown together with some tab
+   * @return whether the tab is disabled
+   */
+  public boolean isTabDisabled(Dockable dockable);
 }

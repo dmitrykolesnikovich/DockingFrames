@@ -25,52 +25,51 @@
  */
 package bibliothek.gui.dock.themes.basic;
 
-import java.awt.Component;
-import java.awt.Insets;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.DockElementRepresentative;
 import bibliothek.gui.dock.action.DockActionSource;
 
+import java.awt.*;
+
 /**
  * Minimalistic implementation of a {@link BasicDockableDisplayerDecorator}. Just shows the
  * element which represents the selected {@link Dockable}.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
-public class MinimalDecorator implements BasicDockableDisplayerDecorator{
-	private Component content;
-	
-	public Component getComponent(){
-		return content;
-	}
+public class MinimalDecorator implements BasicDockableDisplayerDecorator {
+  private Component content;
 
-	public void setController( DockController controller ){
-		// ignore
-	}
+  public Component getComponent() {
+    return content;
+  }
 
-	public void setDockable( Component content, Dockable dockable ){
-		this.content = content;
-	}
-	
-	public DockActionSource getActionSuggestion(){
-		return null;
-	}
-	
-	public Insets getDockableInsets(){
-		return new Insets( 0, 0, 0, 0 );
-	}
-	
-	public DockElementRepresentative getMoveableElement(){
-		return null;
-	}
-	
-	public void addDecoratorListener( BasicDockableDisplayerDecoratorListener listener ){
-		// ignored
-	}
-	
-	public void removeDecoratorListener( BasicDockableDisplayerDecoratorListener listener ){
-		// ignored	
-	}
+  public void setController(DockController controller) {
+    // ignore
+  }
+
+  public void setDockable(Component content, Dockable dockable) {
+    this.content = content;
+  }
+
+  public DockActionSource getActionSuggestion() {
+    return null;
+  }
+
+  public Insets getDockableInsets() {
+    return new Insets(0, 0, 0, 0);
+  }
+
+  public DockElementRepresentative getMoveableElement() {
+    return null;
+  }
+
+  public void addDecoratorListener(BasicDockableDisplayerDecoratorListener listener) {
+    // ignored
+  }
+
+  public void removeDecoratorListener(BasicDockableDisplayerDecoratorListener listener) {
+    // ignored
+  }
 }

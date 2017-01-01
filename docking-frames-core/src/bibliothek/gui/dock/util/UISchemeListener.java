@@ -26,14 +26,16 @@
 package bibliothek.gui.dock.util;
 
 /**
- * A listener that is added to an {@link UIScheme} and that receives 
+ * A listener that is added to an {@link UIScheme} and that receives
  * events when the contents of the scheme change.
+ *
  * @author Benjamin Sigg
  */
 public interface UISchemeListener<V, U extends UIValue<V>, B extends UIBridge<V, U>> {
-	/**
-	 * Called if the contents of an {@link UIScheme} changed.
-	 * @param event description of the change
-	 */
-	public void changed( UISchemeEvent<V,U,B> event );
+  /**
+   * Called if the contents of an {@link UIScheme} changed.
+   *
+   * @param event description of the change
+   */
+  public void changed(UISchemeEvent<V, U, B> event);
 }

@@ -25,75 +25,81 @@
  */
 package bibliothek.paint.view.action;
 
-import java.awt.*;
-
-import javax.swing.Icon;
-
 import bibliothek.gui.dock.common.action.CRadioButton;
 import bibliothek.paint.model.Shape;
 import bibliothek.paint.model.ShapeFactory;
 import bibliothek.paint.view.Page;
 
+import javax.swing.*;
+
 /**
  * A button allowing to select one {@link ShapeFactory} which will forwarded
  * to a {@link Page}.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public class ShapeSelection extends CRadioButton {
-    /** the page whose factory might be changed by this button */
-    private Page page;
-    /** the factory this button represents */
-    private ShapeFactory factory;
-    
+  /**
+   * the page whose factory might be changed by this button
+   */
+  private Page page;
+  /**
+   * the factory this button represents
+   */
+  private ShapeFactory factory;
+
+  /**
+   * Creates a new button
+   *
+   * @param page    the page whose factory will be replaced by <code>factory</code>
+   *                when this button is clicked by the user.
+   * @param factory the factory which is represented by this button
+   */
+  public ShapeSelection(Page page, ShapeFactory factory) {
+    this.page = page;
+    this.factory = factory;
+    setText(factory.getName());
+    setIcon(new ShapeIcon());
+  }
+
+  @Override
+  protected void changed() {
+    if (isSelected()) {
+      page.setFactory(factory);
+    }
+  }
+
+  /**
+   * An icon that uses a {@link Shape} to be painted.
+   *
+   * @author Benjamin Sigg
+   */
+  private class ShapeIcon implements Icon {
     /**
-     * Creates a new button
-     * @param page the page whose factory will be replaced by <code>factory</code>
-     * when this button is clicked by the user.
-     * @param factory the factory which is represented by this button
+     * the shape which represents this icon
      */
-    public ShapeSelection( Page page, ShapeFactory factory ){
-        this.page = page;
-        this.factory = factory;
-        setText( factory.getName() );
-        setIcon( new ShapeIcon() );
-    }
-    
-    @Override
-    protected void changed() {
-        if( isSelected() ){
-            page.setFactory( factory );
-        }
-    }
-    
+    private Shape shape;
+
     /**
-     * An icon that uses a {@link Shape} to be painted.
-     * @author Benjamin Sigg
+     * Creates a new icon
      */
-    private class ShapeIcon implements Icon{
-        /** the shape which represents this icon */
-        private Shape shape;
-        
-        /**
-         * Creates a new icon
-         */
-        public ShapeIcon(){
-            shape = factory.create();
-            shape.setColor( Color.BLACK );
-        }
-        
-        public int getIconHeight() {
-            return 16;
-        }
-        
-        public int getIconWidth() {
-            return 16;
-        }
-        
-        public void paintIcon( Component c, Graphics g, int x, int y ) {
-            shape.setPointA( new Point( x+3, y+3 ) );
-            shape.setPointB( new Point( x+13, y+13 ) );
-            shape.paint( g, 1.0 );
-        }
+    public ShapeIcon() {
+      shape = factory.create();
+      shape.setColor(Color.BLACK);
     }
+
+    public int getIconHeight() {
+      return 16;
+    }
+
+    public int getIconWidth() {
+      return 16;
+    }
+
+    public void paintIcon(Component c, Graphics g, int x, int y) {
+      shape.setPointA(new Point(x + 3, y + 3));
+      shape.setPointB(new Point(x + 13, y + 13));
+      shape.paint(g, 1.0);
+    }
+  }
 }

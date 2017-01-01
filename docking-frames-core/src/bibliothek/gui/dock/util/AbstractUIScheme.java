@@ -31,36 +31,39 @@ import java.util.List;
 
 /**
  * An abstract implementation of {@link UIScheme} offering support for listeners.
- * @author Benjamin Sigg
  *
  * @param <V> The kind of value managed by the scheme
  * @param <U> The kind of {@link UIValue} required to access the values
  * @param <B> The kind of filter between <code>V</code> and <code>U</code>
+ * @author Benjamin Sigg
  */
-public abstract class AbstractUIScheme<V, U extends UIValue<V>, B extends UIBridge<V,U>> implements UIScheme<V,U,B>{
-	/** all the listeners of this scheme */
-	private List<UISchemeListener<V, U, B>> listeners = new ArrayList<UISchemeListener<V,U,B>>();
-	
-	public void addListener( UISchemeListener<V, U, B> listener ){
-		if( listener == null ){
-			throw new IllegalArgumentException( "listener must not be null" );
-		}
-		listeners.add( listener );
-	}
+public abstract class AbstractUIScheme<V, U extends UIValue<V>, B extends UIBridge<V, U>> implements UIScheme<V, U, B> {
+  /**
+   * all the listeners of this scheme
+   */
+  private List<UISchemeListener<V, U, B>> listeners = new ArrayList<UISchemeListener<V, U, B>>();
 
-	public void removeListener( UISchemeListener<V, U, B> listener ){
-		listeners.remove( listener );
-	}
+  public void addListener(UISchemeListener<V, U, B> listener) {
+    if (listener == null) {
+      throw new IllegalArgumentException("listener must not be null");
+    }
+    listeners.add(listener);
+  }
 
-	/**
-	 * Fires the event <code>event</code> to all registered {@link UISchemeListener}s.
-	 * @param event the event to fire
-	 */
-	@SuppressWarnings("unchecked")
-	protected void fire( UISchemeEvent<V, U, B> event ){
-		UISchemeListener<V, U, B>[] listeners = this.listeners.toArray( new UISchemeListener[ this.listeners.size() ] );
-		for( UISchemeListener<V,U,B> listener : listeners ){
-			listener.changed( event );
-		}
-	}
+  public void removeListener(UISchemeListener<V, U, B> listener) {
+    listeners.remove(listener);
+  }
+
+  /**
+   * Fires the event <code>event</code> to all registered {@link UISchemeListener}s.
+   *
+   * @param event the event to fire
+   */
+  @SuppressWarnings("unchecked")
+  protected void fire(UISchemeEvent<V, U, B> event) {
+    UISchemeListener<V, U, B>[] listeners = this.listeners.toArray(new UISchemeListener[this.listeners.size()]);
+    for (UISchemeListener<V, U, B> listener : listeners) {
+      listener.changed(event);
+    }
+  }
 }

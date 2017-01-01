@@ -27,8 +27,9 @@ package bibliothek.gui.dock.facile.mode;
 
 /**
  * Represents a station which shows its children in free floating dialogs.
+ *
  * @author Benjamin Sigg
  */
-public interface ExternalizedModeArea extends StationModeArea{
+public interface ExternalizedModeArea extends StationModeArea {
 
 }

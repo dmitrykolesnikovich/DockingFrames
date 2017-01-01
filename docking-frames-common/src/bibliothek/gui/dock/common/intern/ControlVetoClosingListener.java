@@ -25,9 +25,6 @@
  */
 package bibliothek.gui.dock.common.intern;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.common.event.CVetoClosingEvent;
@@ -36,63 +33,73 @@ import bibliothek.gui.dock.event.VetoableDockFrontendEvent;
 import bibliothek.gui.dock.event.VetoableDockFrontendListener;
 import bibliothek.util.FrameworkOnly;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A converter listening for {@link VetoableDockFrontendEvent}s and firing
  * new {@link CVetoClosingEvent}s.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public class ControlVetoClosingListener implements VetoableDockFrontendListener{
-	/** the realm in which this listener works */
-	private CControl control;
-	
-	/** the listener to inform about new events */
-	private CVetoClosingListener callback;
-	
-	/**
-	 * Creates a new converter.
-	 * @param control the control in whose realm this converter works
-	 * @param callback the listener to inform about new events
-	 */
-	public ControlVetoClosingListener( CControl control, CVetoClosingListener callback ){
-		this.control = control;
-		this.callback = callback;
-	}
-	
-	public void hidden( VetoableDockFrontendEvent event ){
-		CDockable[] dockables = getCDockables( event );
-		if( dockables != null && dockables.length > 0 ){
-			callback.closed( new CVetoClosingEvent( control, event, dockables ) );
-		}
-	}
+public class ControlVetoClosingListener implements VetoableDockFrontendListener {
+  /**
+   * the realm in which this listener works
+   */
+  private CControl control;
 
-	public void hiding( VetoableDockFrontendEvent event ){
-		CDockable[] dockables = getCDockables( event );
-		if( dockables != null && dockables.length > 0 ){
-			callback.closing( new CVetoClosingEvent( control, event, dockables ) );
-		}
-	}
+  /**
+   * the listener to inform about new events
+   */
+  private CVetoClosingListener callback;
 
-	/**
-	 * Gets all the {@link CDockable}s that are to be forwarded by this converter.
-	 * @param event the source
-	 * @return the elements to forward, no event is fired if the result is empty or <code>null</code>
-	 */
-	protected CDockable[] getCDockables( VetoableDockFrontendEvent event ){
-		List<CDockable> list = new ArrayList<CDockable>();
-		for( Dockable dockable : event ){
-			if( dockable instanceof CommonDockable ){
-				list.add( ((CommonDockable)dockable).getDockable() );
-			}
-		}
-		return list.toArray( new CDockable[ list.size() ] );
-	}
-	
-	public void showing( VetoableDockFrontendEvent event ){
-		// ignore
-	}
+  /**
+   * Creates a new converter.
+   *
+   * @param control  the control in whose realm this converter works
+   * @param callback the listener to inform about new events
+   */
+  public ControlVetoClosingListener(CControl control, CVetoClosingListener callback) {
+    this.control = control;
+    this.callback = callback;
+  }
 
-	public void shown( VetoableDockFrontendEvent event ){
-		// ignore
-	}
+  public void hidden(VetoableDockFrontendEvent event) {
+    CDockable[] dockables = getCDockables(event);
+    if (dockables != null && dockables.length > 0) {
+      callback.closed(new CVetoClosingEvent(control, event, dockables));
+    }
+  }
+
+  public void hiding(VetoableDockFrontendEvent event) {
+    CDockable[] dockables = getCDockables(event);
+    if (dockables != null && dockables.length > 0) {
+      callback.closing(new CVetoClosingEvent(control, event, dockables));
+    }
+  }
+
+  /**
+   * Gets all the {@link CDockable}s that are to be forwarded by this converter.
+   *
+   * @param event the source
+   * @return the elements to forward, no event is fired if the result is empty or <code>null</code>
+   */
+  protected CDockable[] getCDockables(VetoableDockFrontendEvent event) {
+    List<CDockable> list = new ArrayList<CDockable>();
+    for (Dockable dockable : event) {
+      if (dockable instanceof CommonDockable) {
+        list.add(((CommonDockable)dockable).getDockable());
+      }
+    }
+    return list.toArray(new CDockable[list.size()]);
+  }
+
+  public void showing(VetoableDockFrontendEvent event) {
+    // ignore
+  }
+
+  public void shown(VetoableDockFrontendEvent event) {
+    // ignore
+  }
 }

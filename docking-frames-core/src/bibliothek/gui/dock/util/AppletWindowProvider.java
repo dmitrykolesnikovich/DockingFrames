@@ -26,44 +26,48 @@
 package bibliothek.gui.dock.util;
 
 import java.applet.Applet;
-import java.awt.Component;
+import java.awt.*;
 
 /**
  * A {@link WindowProvider} designed to work with {@link java.applet.Applet}s. Clients
  * should call {@link #start()} and {@link #stop()} from the methods
  * {@link Applet#start()} and {@link Applet#stop()}.
+ *
  * @author Benjamin Sigg
  */
-public class AppletWindowProvider extends ComponentWindowProvider{
-	/** whether the applet has been started or not */
-	private boolean running = false;
-	
-	/**
-	 * Creates a new window provider
-	 * @param component some component of the applet or the applet itself,
-	 * can be <code>null</code>
-	 */
-	public AppletWindowProvider( Component component ){
-		super( component );
-	}
-	
-	/**
-	 * Informs this provider that the applet started.
-	 */
-	public void start(){
-		running = true;
-		fireVisibilityChanged( isShowing() );
-	}
-	
-	/**
-	 * Informs this provider that the applet stopped.
-	 */
-	public void stop(){
-		running = false;
-		fireVisibilityChanged( isShowing() );
-	}
-    
-    public boolean isShowing(){
-    	return running;
-    }
+public class AppletWindowProvider extends ComponentWindowProvider {
+  /**
+   * whether the applet has been started or not
+   */
+  private boolean running = false;
+
+  /**
+   * Creates a new window provider
+   *
+   * @param component some component of the applet or the applet itself,
+   *                  can be <code>null</code>
+   */
+  public AppletWindowProvider(Component component) {
+    super(component);
+  }
+
+  /**
+   * Informs this provider that the applet started.
+   */
+  public void start() {
+    running = true;
+    fireVisibilityChanged(isShowing());
+  }
+
+  /**
+   * Informs this provider that the applet stopped.
+   */
+  public void stop() {
+    running = false;
+    fireVisibilityChanged(isShowing());
+  }
+
+  public boolean isShowing() {
+    return running;
+  }
 }

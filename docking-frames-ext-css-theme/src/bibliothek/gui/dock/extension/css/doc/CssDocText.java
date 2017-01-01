@@ -39,35 +39,40 @@ import java.lang.annotation.RetentionPolicy;
  * a human readable text.</li>
  * <li> Else use {@link #text()} as fallback, without applying {@link #arguments()} </li>
  * </ul>
+ *
  * @author Benjamin Sigg
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CssDocText {
-	/**
-	 * A key that can be used to load text from some map (e.g. translated text) that is to be defined elsewhere.<br>
-	 * The value read from the map is applied to {@link String#format(String, Object...)}, using {@link #arguments()}.
-	 * @return key leading to text, can be <code>"null"</code>
-	 */
-	public String id() default "";
-	
-	/**
-	 * Fallback formatting {@link String}, used to call {@link String#format(String, Object...)} with {@link #arguments()},
-	 * in case that {@link #id()} is <code>null</code>
-	 * @return the format or <code>"null"</code>
-	 */
-	public String format() default "";
-	
-	/**
-	 * Arguments used to call {@link String#format(String, Object...)}.
-	 * @return the arguments, can be empty
-	 */
-	public String[] arguments() default {};
-	
-	/**
-	 * Fallback text, to be used if the other fields cannot be used to get a {@link String}. Will be shown
-	 * unformatted.
-	 * @return the fallback text, can be <code>"null"</code>
-	 */
-	public String text() default "";
+  /**
+   * A key that can be used to load text from some map (e.g. translated text) that is to be defined elsewhere.<br>
+   * The value read from the map is applied to {@link String#format(String, Object...)}, using {@link #arguments()}.
+   *
+   * @return key leading to text, can be <code>"null"</code>
+   */
+  public String id() default "";
+
+  /**
+   * Fallback formatting {@link String}, used to call {@link String#format(String, Object...)} with {@link #arguments()},
+   * in case that {@link #id()} is <code>null</code>
+   *
+   * @return the format or <code>"null"</code>
+   */
+  public String format() default "";
+
+  /**
+   * Arguments used to call {@link String#format(String, Object...)}.
+   *
+   * @return the arguments, can be empty
+   */
+  public String[] arguments() default {};
+
+  /**
+   * Fallback text, to be used if the other fields cannot be used to get a {@link String}. Will be shown
+   * unformatted.
+   *
+   * @return the fallback text, can be <code>"null"</code>
+   */
+  public String text() default "";
 }

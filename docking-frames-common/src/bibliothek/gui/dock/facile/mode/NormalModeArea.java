@@ -31,16 +31,18 @@ import bibliothek.gui.Dockable;
 /**
  * Represents a {@link DockStation} that shows {@link Dockable}s in
  * {@link NormalMode}.
+ *
  * @author Benjamin Sigg
  */
-public interface NormalModeArea extends StationModeArea{
+public interface NormalModeArea extends StationModeArea {
 
-	/**
-	 * Tells whether <code>dockable</code> is a child of this
-	 * station and in a form satisfying the normal-mode criteria.
-	 * @param dockable some potential child
-	 * @return <code>true</code> if <code>dockable</code> is a child
-	 * in normal mode.
-	 */
-	public boolean isNormalModeChild( Dockable dockable );
+  /**
+   * Tells whether <code>dockable</code> is a child of this
+   * station and in a form satisfying the normal-mode criteria.
+   *
+   * @param dockable some potential child
+   * @return <code>true</code> if <code>dockable</code> is a child
+   * in normal mode.
+   */
+  public boolean isNormalModeChild(Dockable dockable);
 }

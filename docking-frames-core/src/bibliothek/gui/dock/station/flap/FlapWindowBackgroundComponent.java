@@ -31,15 +31,19 @@ import bibliothek.util.Path;
 
 /**
  * An {@link UIValue} that represents a {@link FlapWindow}.
+ *
  * @author Benjamin Sigg
  */
-public interface FlapWindowBackgroundComponent extends StationBackgroundComponent{
-	/** The kind of {@link UIValue} this is */
-	public static final Path KIND = StationBackgroundComponent.KIND.append( "flapWindow" );
-	
-	/**
-	 * Gets the window whose background is painted by the algorithm.
-	 * @return the window, not <code>null</code>
-	 */
-	public FlapWindow getWindow();
+public interface FlapWindowBackgroundComponent extends StationBackgroundComponent {
+  /**
+   * The kind of {@link UIValue} this is
+   */
+  public static final Path KIND = StationBackgroundComponent.KIND.append("flapWindow");
+
+  /**
+   * Gets the window whose background is painted by the algorithm.
+   *
+   * @return the window, not <code>null</code>
+   */
+  public FlapWindow getWindow();
 }

@@ -25,107 +25,114 @@
  */
 package bibliothek.gui.dock.control.relocator;
 
-import java.awt.Point;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.control.DockRelocator;
 
+import java.awt.*;
+
 /**
  * A default implementation of {@link DockRelocatorEvent}.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultDockRelocatorEvent implements DockRelocatorEvent{
-	private boolean cancel;
-	private boolean drop;
-	private boolean forbid;
-	private boolean ignore;
-	private DockController controller;
-	private Dockable dockable;
-	private Dockable[] implicit;
-	private DockStation target;
-	private Point mouse;
-	private boolean move;
-	
-	/**
-	 * Creates a new event.
-	 * @param controller the controller in whose realm the event happens
-	 * @param dockable the element that is moved around
-	 * @param implicit the elements that change their position too
-	 * @param target the potential parent of <code>dockable</code>
-	 * @param mouse the location of the mouse on the screen or <code>null</code>
-	 * @param move whether the event does not change the parent of <code>dockable</code>
-	 */
-	public DefaultDockRelocatorEvent( DockController controller, Dockable dockable, Dockable[] implicit, DockStation target, Point mouse, boolean move ){
-		this.implicit = implicit;
-		this.controller = controller;
-		this.dockable = dockable;
-		this.target = target;
-		this.mouse = mouse;
-		this.move = move;
-	}
-	
-	public void cancel(){
-		cancel = true;	
-	}
+public class DefaultDockRelocatorEvent implements DockRelocatorEvent {
+  private boolean cancel;
+  private boolean drop;
+  private boolean forbid;
+  private boolean ignore;
+  private DockController controller;
+  private Dockable dockable;
+  private Dockable[] implicit;
+  private DockStation target;
+  private Point mouse;
+  private boolean move;
 
-	public void drop(){
-		drop = true;
-	}
+  /**
+   * Creates a new event.
+   *
+   * @param controller the controller in whose realm the event happens
+   * @param dockable   the element that is moved around
+   * @param implicit   the elements that change their position too
+   * @param target     the potential parent of <code>dockable</code>
+   * @param mouse      the location of the mouse on the screen or <code>null</code>
+   * @param move       whether the event does not change the parent of <code>dockable</code>
+   */
+  public DefaultDockRelocatorEvent(DockController controller,
+                                   Dockable dockable,
+                                   Dockable[] implicit,
+                                   DockStation target,
+                                   Point mouse,
+                                   boolean move) {
+    this.implicit = implicit;
+    this.controller = controller;
+    this.dockable = dockable;
+    this.target = target;
+    this.mouse = mouse;
+    this.move = move;
+  }
 
-	public void forbid(){
-		forbid = true;
-	}
+  public void cancel() {
+    cancel = true;
+  }
 
-	public DockController getController(){
-		return controller;
-	}
+  public void drop() {
+    drop = true;
+  }
 
-	public Dockable getDockable(){
-		return dockable;
-	}
+  public void forbid() {
+    forbid = true;
+  }
 
-	public Dockable[] getImplicitDockables(){
-		return implicit;
-	}
-	
-	public DockRelocator getSource(){
-		return controller.getRelocator();
-	}
+  public DockController getController() {
+    return controller;
+  }
 
-	public DockStation getTarget(){
-		return target;
-	}
-	
-	public Point getMouseLocation(){
-		if( mouse == null ){
-			return null;
-		}
-		return new Point( mouse );
-	}
+  public Dockable getDockable() {
+    return dockable;
+  }
 
-	public boolean isCanceled(){
-		return cancel;
-	}
+  public Dockable[] getImplicitDockables() {
+    return implicit;
+  }
 
-	public boolean isDropping(){
-		return drop;
-	}
+  public DockRelocator getSource() {
+    return controller.getRelocator();
+  }
 
-	public boolean isForbidden(){
-		return forbid;
-	}
-	
-	public void ignore(){
-		ignore = true;	
-	}
-	
-	public boolean isIgnored(){
-		return ignore;
-	}
-	
-	public boolean isMove(){
-		return move;
-	}
+  public DockStation getTarget() {
+    return target;
+  }
+
+  public Point getMouseLocation() {
+    if (mouse == null) {
+      return null;
+    }
+    return new Point(mouse);
+  }
+
+  public boolean isCanceled() {
+    return cancel;
+  }
+
+  public boolean isDropping() {
+    return drop;
+  }
+
+  public boolean isForbidden() {
+    return forbid;
+  }
+
+  public void ignore() {
+    ignore = true;
+  }
+
+  public boolean isIgnored() {
+    return ignore;
+  }
+
+  public boolean isMove() {
+    return move;
+  }
 }

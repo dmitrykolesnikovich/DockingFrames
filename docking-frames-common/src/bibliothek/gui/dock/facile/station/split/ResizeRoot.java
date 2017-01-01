@@ -29,67 +29,71 @@ import bibliothek.gui.dock.station.split.Root;
 
 /**
  * Represents a {@link Root}.
- * @author Benjamin Sigg
+ *
  * @param <T> the kind of meta-data clients use
+ * @author Benjamin Sigg
  */
-public class ResizeRoot<T> extends ResizeElement<T>{
-    /** the root which is represented by this root-element */
-    private Root root;
-    
-    /** the one child of this root */
-    @SuppressWarnings( "unchecked" )
-    private ResizeElement<T>[] child = new ResizeElement[1];
-    
-    /**
-     * Creates a new root-element
-     * @param layout the layout that uses this root
-     * @param root the root which is represented by this root-element
-     */
-    public ResizeRoot( LockedResizeLayoutManager<T> layout, Root root ){
-        super( null, layout );
-        this.root = root;
-        this.child[0] = layout.toElement( this, root.getChild() );
-    }
-    
-    /**
-     * Gets the root which is represented by this root-element.
-     * @return the root
-     */
-    public Root getRoot() {
-        return root;
-    }
-    
-    @Override
-    public ResizeRoot<T> getResizeRoot() {
-        return this;
-    }
-    
-    /**
-     * Gets the one child of this root
-     * @return the child or <code>null</code>
-     */
-    public ResizeElement<T> getChild() {
-        return child[0];
-    }
-    
-    @Override
-    protected ResizeElement<T>[] getChildren() {
-        if( child[0] == null )
-            return null;
-        
-        return child;
-    }
-    
-    @Override
-    protected ResizeRequest createRequest() {
-        if( child[0] == null )
-            return null;
-        return child[0].getRequest();
-    }
-    
-    @Override
-    public void adapt( double deltaWidth, double deltaHeight ) {
-        if( child[0] != null )
-            child[0].adapt( deltaWidth, deltaHeight );
-    }
+public class ResizeRoot<T> extends ResizeElement<T> {
+  /**
+   * the root which is represented by this root-element
+   */
+  private Root root;
+
+  /**
+   * the one child of this root
+   */
+  @SuppressWarnings("unchecked") private ResizeElement<T>[] child = new ResizeElement[1];
+
+  /**
+   * Creates a new root-element
+   *
+   * @param layout the layout that uses this root
+   * @param root   the root which is represented by this root-element
+   */
+  public ResizeRoot(LockedResizeLayoutManager<T> layout, Root root) {
+    super(null, layout);
+    this.root = root;
+    this.child[0] = layout.toElement(this, root.getChild());
+  }
+
+  /**
+   * Gets the root which is represented by this root-element.
+   *
+   * @return the root
+   */
+  public Root getRoot() {
+    return root;
+  }
+
+  @Override
+  public ResizeRoot<T> getResizeRoot() {
+    return this;
+  }
+
+  /**
+   * Gets the one child of this root
+   *
+   * @return the child or <code>null</code>
+   */
+  public ResizeElement<T> getChild() {
+    return child[0];
+  }
+
+  @Override
+  protected ResizeElement<T>[] getChildren() {
+    if (child[0] == null) return null;
+
+    return child;
+  }
+
+  @Override
+  protected ResizeRequest createRequest() {
+    if (child[0] == null) return null;
+    return child[0].getRequest();
+  }
+
+  @Override
+  public void adapt(double deltaWidth, double deltaHeight) {
+    if (child[0] != null) child[0].adapt(deltaWidth, deltaHeight);
+  }
 }

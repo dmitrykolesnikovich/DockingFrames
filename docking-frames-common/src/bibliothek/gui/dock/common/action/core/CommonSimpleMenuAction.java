@@ -32,22 +32,24 @@ import bibliothek.gui.dock.common.action.CAction;
 
 /**
  * A {@link SimpleMenuAction} implementing {@link CommonDockAction}.
+ *
  * @author Benjamin Sigg
  */
 public class CommonSimpleMenuAction extends SimpleMenuAction implements CommonDecoratableDockAction {
-	private CAction action;
-	
-	/**
-	 * Creates a new action.
-	 * @param action the {@link CAction} wrapping around this {@link DockAction}
-	 * @param menu the content of this menu
-	 */
-	public CommonSimpleMenuAction( CAction action, DockActionSource menu ){
-		super( menu );
-		this.action = action;
-	}
-	
-	public CAction getAction(){
-		return action;
-	}
+  private CAction action;
+
+  /**
+   * Creates a new action.
+   *
+   * @param action the {@link CAction} wrapping around this {@link DockAction}
+   * @param menu   the content of this menu
+   */
+  public CommonSimpleMenuAction(CAction action, DockActionSource menu) {
+    super(menu);
+    this.action = action;
+  }
+
+  public CAction getAction() {
+    return action;
+  }
 }

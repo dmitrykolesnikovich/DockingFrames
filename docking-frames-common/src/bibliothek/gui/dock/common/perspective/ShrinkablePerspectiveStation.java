@@ -31,15 +31,17 @@ import bibliothek.gui.dock.perspective.PerspectiveStation;
 /**
  * This kind of {@link PerspectiveStation} can find out whether it is really
  * needed and can remove itself if not.
+ *
  * @author Benjamin Sigg
  */
-public interface ShrinkablePerspectiveStation extends PerspectiveStation{
-	
-	/**
-	 * Checks the number of children this perspective has. If the number of children is 0 or 1, then
-	 * this perspective replaces itself by its child in the of perspectives. 
-	 * @return the replacement of <code>this</code>, which is either <code>this</code>, the only
-	 * child of <code>this</code>, or <code>null</code>
-	 */
-	public PerspectiveDockable shrink();
+public interface ShrinkablePerspectiveStation extends PerspectiveStation {
+
+  /**
+   * Checks the number of children this perspective has. If the number of children is 0 or 1, then
+   * this perspective replaces itself by its child in the of perspectives.
+   *
+   * @return the replacement of <code>this</code>, which is either <code>this</code>, the only
+   * child of <code>this</code>, or <code>null</code>
+   */
+  public PerspectiveDockable shrink();
 }

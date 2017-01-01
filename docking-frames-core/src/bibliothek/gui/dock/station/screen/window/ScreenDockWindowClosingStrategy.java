@@ -25,18 +25,20 @@
  */
 package bibliothek.gui.dock.station.screen.window;
 
-import javax.swing.JFrame;
-
 import bibliothek.gui.dock.station.screen.ScreenDockWindow;
+
+import javax.swing.*;
 
 /**
  * Strategy deciding how to close a {@link ScreenDockWindow}.
+ *
  * @author Benjamin Sigg
  */
 public interface ScreenDockWindowClosingStrategy {
-	/**
-	 * Called if the user wants to close <code>window</code>, e.g. by clicking on the "x" on a {@link JFrame}.
-	 * @param window the window that should be closed
-	 */
-	public void closing( ScreenDockWindow window );
+  /**
+   * Called if the user wants to close <code>window</code>, e.g. by clicking on the "x" on a {@link JFrame}.
+   *
+   * @param window the window that should be closed
+   */
+  public void closing(ScreenDockWindow window);
 }

@@ -34,10 +34,11 @@ import bibliothek.gui.dock.themes.basic.action.dropdown.DropDownViewItem;
 
 /**
  * A generator for handling {@link CPanelPopup} as child of a dropdown-action.
+ *
  * @author Benjamin Sigg
  */
-public class PanelDropDownGenerator implements ViewGenerator<PanelPopup, DropDownViewItem>{
-	public DropDownViewItem create( ActionViewConverter converter, PanelPopup action, Dockable dockable ){
-		return null;
-	}
+public class PanelDropDownGenerator implements ViewGenerator<PanelPopup, DropDownViewItem> {
+  public DropDownViewItem create(ActionViewConverter converter, PanelPopup action, Dockable dockable) {
+    return null;
+  }
 }

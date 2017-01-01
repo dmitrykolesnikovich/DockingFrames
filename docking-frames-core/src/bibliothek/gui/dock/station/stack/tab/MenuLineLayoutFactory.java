@@ -34,41 +34,46 @@ import bibliothek.gui.dock.station.stack.tab.layouting.TabsLayoutBlock;
  * A factory creating various {@link LayoutBlock}s that are required by the {@link MenuLineLayout}. These objects
  * are responsible for laying out a subset of components, clients may replace this factory and return blocks that
  * behave different that the original blocks.
+ *
  * @author Benjamin Sigg
  */
 public interface MenuLineLayoutFactory {
-	/**
-	 * Creates a new {@link LayoutBlock} representing the menu of <code>pane</code>. This method
-	 * must call {@link MenuLayoutBlock#setMenu(TabMenu)} with an appropriate menu.
-	 * @param layout the layout requesting the block
-	 * @param pane the panel on which the menu will be shown
-	 * @return the menu, not <code>null</code>
-	 */
-	public MenuLayoutBlock createMenu( MenuLineLayout layout, TabPane pane );
-	
-	/**
-	 * Creates a new {@link LayoutBlock} representing the tabs of <code>pane</code>. This method
-	 * may call {@link AbstractTabsLayoutBlock#setPane(TabPane)} with <code>pane</code>.
-	 * @param layout the layout requesting the block
-	 * @param pane the panel on which the tabs will be shown
-	 * @return the tabs, not <code>null</code>
-	 */
-	public TabsLayoutBlock createTabs( MenuLineLayout layout, TabPane pane );
-	
-	/**
-	 * Creates the {@link LayoutBlock} for the info component of <code>pane</code>. This method
-	 * should just call {@link TabPane#getInfoComponent()} and {@link LonelyTabPaneComponent#toLayoutBlock()}.
-	 * @param layout the layout requesting the block
-	 * @param pane the panel on which the component will be shown
-	 * @return the info block or <code>null</code>
-	 */
-	public LayoutBlock createInfo( MenuLineLayout layout, TabPane pane );
-	
-	/**
-	 * Creates the order in which the {@link LayoutBlock}s should be presented.
-	 * @param layout the layout requesting the order
-	 * @param pane the panel on which the components will be shown
-	 * @return the order, not <code>null</code>
-	 */
-	public MenuLineLayoutOrder createOrder( MenuLineLayout layout, TabPane pane );
+  /**
+   * Creates a new {@link LayoutBlock} representing the menu of <code>pane</code>. This method
+   * must call {@link MenuLayoutBlock#setMenu(TabMenu)} with an appropriate menu.
+   *
+   * @param layout the layout requesting the block
+   * @param pane   the panel on which the menu will be shown
+   * @return the menu, not <code>null</code>
+   */
+  public MenuLayoutBlock createMenu(MenuLineLayout layout, TabPane pane);
+
+  /**
+   * Creates a new {@link LayoutBlock} representing the tabs of <code>pane</code>. This method
+   * may call {@link AbstractTabsLayoutBlock#setPane(TabPane)} with <code>pane</code>.
+   *
+   * @param layout the layout requesting the block
+   * @param pane   the panel on which the tabs will be shown
+   * @return the tabs, not <code>null</code>
+   */
+  public TabsLayoutBlock createTabs(MenuLineLayout layout, TabPane pane);
+
+  /**
+   * Creates the {@link LayoutBlock} for the info component of <code>pane</code>. This method
+   * should just call {@link TabPane#getInfoComponent()} and {@link LonelyTabPaneComponent#toLayoutBlock()}.
+   *
+   * @param layout the layout requesting the block
+   * @param pane   the panel on which the component will be shown
+   * @return the info block or <code>null</code>
+   */
+  public LayoutBlock createInfo(MenuLineLayout layout, TabPane pane);
+
+  /**
+   * Creates the order in which the {@link LayoutBlock}s should be presented.
+   *
+   * @param layout the layout requesting the order
+   * @param pane   the panel on which the components will be shown
+   * @return the order, not <code>null</code>
+   */
+  public MenuLineLayoutOrder createOrder(MenuLineLayout layout, TabPane pane);
 }

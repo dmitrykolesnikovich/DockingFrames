@@ -32,11 +32,12 @@ import bibliothek.gui.dock.util.PropertyKey;
  * A {@link PropertyFactory} for a property that needs to be associated with
  * a single instance of a {@link DockController}. For example a property
  * that has observers should be created by this factory.
- * @author Benjamin Sigg 
+ *
  * @param <A> the kind of value this factory handles
+ * @author Benjamin Sigg
  */
 public abstract class DynamicPropertyFactory<A> implements PropertyFactory<A> {
-	public A getDefault( PropertyKey<A> key ){
-		return null;
-	}
+  public A getDefault(PropertyKey<A> key) {
+    return null;
+  }
 }

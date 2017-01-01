@@ -33,17 +33,19 @@ import bibliothek.gui.dock.facile.menu.ThemeMenuPiece;
 /**
  * A {@link ThemeMenuPiece} that offers the {@link DockTheme}s specified
  * in the {@link ThemeMap} of the owning {@link CControl}.
+ *
  * @author Benjamin Sigg
  * @see CControl#getThemes()
  */
-public class CThemeMenuPiece extends ThemeMenuPiece{
-    
-    /**
-     * Creates a new piece.
-     * @param control the control whose theme might be changed using one of themes
-     * of {@link CControl#getThemes()}
-     */
-    public CThemeMenuPiece( CControl control ) {
-        super( control.intern().getController(), control.getThemes() );
-    }
+public class CThemeMenuPiece extends ThemeMenuPiece {
+
+  /**
+   * Creates a new piece.
+   *
+   * @param control the control whose theme might be changed using one of themes
+   *                of {@link CControl#getThemes()}
+   */
+  public CThemeMenuPiece(CControl control) {
+    super(control.intern().getController(), control.getThemes());
+  }
 }

@@ -30,15 +30,17 @@ import bibliothek.gui.dock.station.screen.ScreenDockProperty;
 
 /**
  * This interface allows easy customization of some algorithms of the {@link ExternalizedMode}.
+ *
  * @author Benjamin Sigg
  */
 public interface ExternalizedModeBehavior {
-	/**
-	 * Finds a good location for <code>dockable</code> which was
-	 * never in the {@link ExternalizedMode}.
-	 * @param target the area on which <code>dockable</code> will be dropped
-	 * @param dockable some element
-	 * @return a good location for <code>dockable</code>, must not be <code>null</code>
-	 */
-	public ScreenDockProperty findLocation( ExternalizedModeArea target, Dockable dockable );
+  /**
+   * Finds a good location for <code>dockable</code> which was
+   * never in the {@link ExternalizedMode}.
+   *
+   * @param target   the area on which <code>dockable</code> will be dropped
+   * @param dockable some element
+   * @return a good location for <code>dockable</code>, must not be <code>null</code>
+   */
+  public ScreenDockProperty findLocation(ExternalizedModeArea target, Dockable dockable);
 }

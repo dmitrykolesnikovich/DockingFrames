@@ -35,14 +35,15 @@ import bibliothek.gui.dock.title.DockTitle;
 /**
  * This {@link DockableMovingImageFactory} forwards any call to the {@link DockTheme} of the
  * {@link DockController} that called.
+ *
  * @author Benjamin Sigg
  */
-public class ThemeDockableMovingImageFactory implements DockableMovingImageFactory{
-	public MovingImage create( DockController controller, DockTitle snatched ){
-		return controller.getTheme().getMovingImageFactory( controller ).create( controller, snatched );
-	}
+public class ThemeDockableMovingImageFactory implements DockableMovingImageFactory {
+  public MovingImage create(DockController controller, DockTitle snatched) {
+    return controller.getTheme().getMovingImageFactory(controller).create(controller, snatched);
+  }
 
-	public MovingImage create( DockController controller, Dockable dockable ){
-		return controller.getTheme().getMovingImageFactory( controller ).create( controller, dockable );
-	}	
+  public MovingImage create(DockController controller, Dockable dockable) {
+    return controller.getTheme().getMovingImageFactory(controller).create(controller, dockable);
+  }
 }

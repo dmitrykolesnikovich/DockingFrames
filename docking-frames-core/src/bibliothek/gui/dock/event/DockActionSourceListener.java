@@ -30,27 +30,30 @@ import bibliothek.gui.dock.action.DockAction;
 import bibliothek.gui.dock.action.DockActionSource;
 
 /**
- * A listener that is added to {@link DockActionSource}. The listener 
+ * A listener that is added to {@link DockActionSource}. The listener
  * receives events whenever {@link DockAction DockActions} are added
  * or removed from the source.
+ *
  * @author Benjamin Sigg
  */
 public interface DockActionSourceListener {
-    /**
-     * Invoked when one or more actions are added to the <code>source</code>.
-     * @param source the origin of the event
-     * @param firstIndex the index of the first new action
-     * @param lastIndex the index of the last new action. This value 
-     * must be greater or equal to <code>firstIndex</code>.
-     */
-    public void actionsAdded( DockActionSource source, int firstIndex, int lastIndex );
-    
-    /**
-     * Invoked if one or more actions are removed from the <code>source</code>.
-     * @param source the origin of the event.
-     * @param firstIndex the index of the first action that was removed
-     * @param lastIndex the index of the last action that was removed. This
-     * argument is greater or equal to <code>firstIndex</code>.
-     */
-    public void actionsRemoved( DockActionSource source, int firstIndex, int lastIndex );
+  /**
+   * Invoked when one or more actions are added to the <code>source</code>.
+   *
+   * @param source     the origin of the event
+   * @param firstIndex the index of the first new action
+   * @param lastIndex  the index of the last new action. This value
+   *                   must be greater or equal to <code>firstIndex</code>.
+   */
+  public void actionsAdded(DockActionSource source, int firstIndex, int lastIndex);
+
+  /**
+   * Invoked if one or more actions are removed from the <code>source</code>.
+   *
+   * @param source     the origin of the event.
+   * @param firstIndex the index of the first action that was removed
+   * @param lastIndex  the index of the last action that was removed. This
+   *                   argument is greater or equal to <code>firstIndex</code>.
+   */
+  public void actionsRemoved(DockActionSource source, int firstIndex, int lastIndex);
 }

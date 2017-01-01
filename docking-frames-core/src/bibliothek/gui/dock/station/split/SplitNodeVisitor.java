@@ -28,30 +28,35 @@ package bibliothek.gui.dock.station.split;
 
 /**
  * A visitor for a tree of {@link SplitNode SplitNodes}.
+ *
  * @author Benjamin Sigg
  */
 public interface SplitNodeVisitor {
-	/**
-	 * Invoked when visiting the root of the tree.
-	 * @param root the root
-	 */
-    public void handleRoot( Root root );
-    
-    /**
-     * Invoked when visiting a node of the tree.
-     * @param node a node
-     */
-    public void handleNode( Node node );
-    
-    /**
-     * Invoked when visiting a leaf of the tree.
-     * @param leaf the tree
-     */
-    public void handleLeaf( Leaf leaf );
-    
-    /**
-     * Invoked when visiting a leaf that is a placeholder.
-     * @param placeholder the placeholder
-     */
-    public void handlePlaceholder( Placeholder placeholder );
+  /**
+   * Invoked when visiting the root of the tree.
+   *
+   * @param root the root
+   */
+  public void handleRoot(Root root);
+
+  /**
+   * Invoked when visiting a node of the tree.
+   *
+   * @param node a node
+   */
+  public void handleNode(Node node);
+
+  /**
+   * Invoked when visiting a leaf of the tree.
+   *
+   * @param leaf the tree
+   */
+  public void handleLeaf(Leaf leaf);
+
+  /**
+   * Invoked when visiting a leaf that is a placeholder.
+   *
+   * @param placeholder the placeholder
+   */
+  public void handlePlaceholder(Placeholder placeholder);
 }

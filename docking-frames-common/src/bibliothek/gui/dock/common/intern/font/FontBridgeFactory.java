@@ -30,14 +30,15 @@ import bibliothek.gui.dock.util.font.FontManager;
 
 /**
  * A factory that creates new {@link FontBridge}s.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public interface FontBridgeFactory {
-    /**
-     * Creates a new bridge
-     * @param manager the manager for which the bridge will be used
-     * @return the new bridge
-     */
-    public FontBridge create( FontManager manager );
+  /**
+   * Creates a new bridge
+   *
+   * @param manager the manager for which the bridge will be used
+   * @return the new bridge
+   */
+  public FontBridge create(FontManager manager);
 }

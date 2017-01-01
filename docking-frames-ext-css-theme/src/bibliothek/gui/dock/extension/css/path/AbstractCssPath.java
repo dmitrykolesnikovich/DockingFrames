@@ -25,80 +25,82 @@
  */
 package bibliothek.gui.dock.extension.css.path;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import bibliothek.gui.dock.extension.css.CssNode;
 import bibliothek.gui.dock.extension.css.CssPath;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This abstract implementation of a {@link CssPath} offers methods to store
  * and fire {@link CssPathListener}s.
+ *
  * @author Benjamin Sigg
  */
-public abstract class AbstractCssPath implements CssPath{
-	private List<CssPathListener> listeners = new ArrayList<CssPathListener>( 5 );
-	
-	@Override
-	public void addPathListener( CssPathListener listener ){
-		if( listener == null ){
-			throw new IllegalArgumentException( "listener must not be null" );
-		}
-		if( listeners.isEmpty() ){
-			bind();
-		}
-		listeners.add( listener );
-	}
-	
-	@Override
-	public void removePathListener( CssPathListener listener ){
-		if( !listeners.isEmpty() ){
-			listeners.remove( listener );
-			if( listeners.isEmpty() ){
-				unbind();
-			}
-		}
-	}
-	
-	protected void firePathChanged(){
-		for( CssPathListener listener : listeners.toArray( new CssPathListener[ listeners.size() ] )){
-			listener.pathChanged( this );
-		}
-	}
-	
-	/**
-	 * Called if the amount of observers is increased from <code>0</code> to <code>1</code>.
-	 */
-	protected abstract void bind();
-	
-	/**
-	 * Called if the amount of observers is decreased from <code>1</code> to <code>0</code>.
-	 */
-	protected abstract void unbind();
-	
-	/**
-	 * Tells whether at least one observer is registered.
-	 * @return whether this object is monitored
-	 */
-	protected boolean isBound(){
-		return !listeners.isEmpty();
-	}
-	
-	@Override
-	public String toString(){
-		StringBuilder builder = new StringBuilder();
-		
-		for( int i = 0, n = getSize(); i<n; i++ ){
-			CssNode node = getNode( i );
-			if( builder.length() > 0 ){
-				builder.append( ", " );
-			}
-			builder.append( node.getName() );
-			if( node.getIdentifier() != null ){
-				builder.append( "#" ).append( node.getIdentifier() );
-			}
-		}
-		
-		return builder.toString();
-	}
+public abstract class AbstractCssPath implements CssPath {
+  private List<CssPathListener> listeners = new ArrayList<CssPathListener>(5);
+
+  @Override
+  public void addPathListener(CssPathListener listener) {
+    if (listener == null) {
+      throw new IllegalArgumentException("listener must not be null");
+    }
+    if (listeners.isEmpty()) {
+      bind();
+    }
+    listeners.add(listener);
+  }
+
+  @Override
+  public void removePathListener(CssPathListener listener) {
+    if (!listeners.isEmpty()) {
+      listeners.remove(listener);
+      if (listeners.isEmpty()) {
+        unbind();
+      }
+    }
+  }
+
+  protected void firePathChanged() {
+    for (CssPathListener listener : listeners.toArray(new CssPathListener[listeners.size()])) {
+      listener.pathChanged(this);
+    }
+  }
+
+  /**
+   * Called if the amount of observers is increased from <code>0</code> to <code>1</code>.
+   */
+  protected abstract void bind();
+
+  /**
+   * Called if the amount of observers is decreased from <code>1</code> to <code>0</code>.
+   */
+  protected abstract void unbind();
+
+  /**
+   * Tells whether at least one observer is registered.
+   *
+   * @return whether this object is monitored
+   */
+  protected boolean isBound() {
+    return !listeners.isEmpty();
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+
+    for (int i = 0, n = getSize(); i < n; i++) {
+      CssNode node = getNode(i);
+      if (builder.length() > 0) {
+        builder.append(", ");
+      }
+      builder.append(node.getName());
+      if (node.getIdentifier() != null) {
+        builder.append("#").append(node.getIdentifier());
+      }
+    }
+
+    return builder.toString();
+  }
 }

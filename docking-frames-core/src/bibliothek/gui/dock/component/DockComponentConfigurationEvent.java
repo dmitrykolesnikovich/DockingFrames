@@ -25,42 +25,50 @@
  */
 package bibliothek.gui.dock.component;
 
-import java.awt.Component;
+import java.awt.*;
 
 /**
  * Describes a {@link Component} and its source {@link DockComponentRoot}.
+ *
  * @author Benjamin Sigg
  */
 public class DockComponentConfigurationEvent {
-	/** the parent of <code>component</code> */
-	private DockComponentRoot root;
-	
-	/** a {@link Component} that needs a configuration*/
-	private Component component;
-	
-	/**
-	 * Creates a new event.
-	 * @param root the parent of <code>component</code>
-	 * @param component a {@link Component} that needs a configuration
-	 */
-	public DockComponentConfigurationEvent( DockComponentRoot root, Component component ){
-		this.root = root;
-		this.component = component;
-	}
-	
-	/**
-	 * Gets the parent of {@link #getComponent() the component},
-	 * @return the parent, not <code>null</code>
-	 */
-	public DockComponentRoot getRoot() {
-		return root;
-	}
-	
-	/**
-	 * Gets the {@link Component} that needs a configuration.
-	 * @return the component, not <code>null</code>
-	 */
-	public Component getComponent() {
-		return component;
-	}
+  /**
+   * the parent of <code>component</code>
+   */
+  private DockComponentRoot root;
+
+  /**
+   * a {@link Component} that needs a configuration
+   */
+  private Component component;
+
+  /**
+   * Creates a new event.
+   *
+   * @param root      the parent of <code>component</code>
+   * @param component a {@link Component} that needs a configuration
+   */
+  public DockComponentConfigurationEvent(DockComponentRoot root, Component component) {
+    this.root = root;
+    this.component = component;
+  }
+
+  /**
+   * Gets the parent of {@link #getComponent() the component},
+   *
+   * @return the parent, not <code>null</code>
+   */
+  public DockComponentRoot getRoot() {
+    return root;
+  }
+
+  /**
+   * Gets the {@link Component} that needs a configuration.
+   *
+   * @return the component, not <code>null</code>
+   */
+  public Component getComponent() {
+    return component;
+  }
 }

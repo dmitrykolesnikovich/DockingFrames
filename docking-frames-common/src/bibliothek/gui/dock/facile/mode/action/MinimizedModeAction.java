@@ -34,15 +34,17 @@ import bibliothek.gui.dock.support.mode.Mode;
 /**
  * An action used to change the {@link Mode} of a {@link Dockable} to
  * the {@link MinimizedMode}.
+ *
  * @author Benjamin Sigg
  */
-public class MinimizedModeAction extends LocationModeAction{
-	/**
-	 * Creates a new action.
-	 * @param controller the controller in whose realm this action is used
-	 * @param mode the mode which is applied
-	 */
-	public MinimizedModeAction( DockController controller, MinimizedMode<?> mode ){
-		super( controller, mode, MinimizedMode.ICON_IDENTIFIER, "minimize.in", "minimize.in.tooltip", CControl.KEY_GOTO_MINIMIZED );
-	}
+public class MinimizedModeAction extends LocationModeAction {
+  /**
+   * Creates a new action.
+   *
+   * @param controller the controller in whose realm this action is used
+   * @param mode       the mode which is applied
+   */
+  public MinimizedModeAction(DockController controller, MinimizedMode<?> mode) {
+    super(controller, mode, MinimizedMode.ICON_IDENTIFIER, "minimize.in", "minimize.in.tooltip", CControl.KEY_GOTO_MINIMIZED);
+  }
 }

@@ -35,52 +35,61 @@ import bibliothek.gui.dock.action.LocationHint;
 /**
  * This {@link DockActionSource} is used by the {@link FlapDockStation} to show the hold-action
  * for a {@link Dockable}.
+ *
  * @author Benjamin Sigg
  */
-public class FlapDockStationSource extends DefaultDockActionSource{
-	/** the action to show */
-	private DockAction holdAction;
-	/** the owner of this source */
-	private FlapDockStation station;
-	/** the dockable for which this source is used */
-	private Dockable dockable;
-	
-	/**
-	 * Creates a new {@link FlapDockStationSource}. 
-	 * @param station the owner of this source
-	 * @param dockable the element for which this source is used
-	 * @param holdAction the action to show, can be <code>null</code>
-	 */
-	public FlapDockStationSource( FlapDockStation station, Dockable dockable, DockAction holdAction ){
-		super( new LocationHint( LocationHint.DIRECT_ACTION, LocationHint.LITTLE_LEFT ));
-		
-		this.station = station;
-		this.dockable = dockable;
-		this.holdAction = holdAction;
-	}
-	
-	/**
-	 * Changes the action that is shown in this source
-	 * @param holdAction the new action to show, can be <code>null</code>
-	 */
-	public void setHoldAction( DockAction holdAction ){
-		this.holdAction = holdAction;
-		removeAll();
-		updateHoldSwitchable();
-	}
-	
-	/**
-	 * Adds or removes the only action of this source depending on the result
-	 * of {@link FlapLayoutManager#isHoldSwitchable(FlapDockStation, Dockable)}.
-	 */
-	public void updateHoldSwitchable(){
-		if( station.getCurrentFlapLayoutManager().isHoldSwitchable( station, dockable ) ){
-			if( getDockActionCount() == 0 && holdAction != null ){
-				add( holdAction );
-			}
-		}
-		else{
-			removeAll();
-		}
-	}
+public class FlapDockStationSource extends DefaultDockActionSource {
+  /**
+   * the action to show
+   */
+  private DockAction holdAction;
+  /**
+   * the owner of this source
+   */
+  private FlapDockStation station;
+  /**
+   * the dockable for which this source is used
+   */
+  private Dockable dockable;
+
+  /**
+   * Creates a new {@link FlapDockStationSource}.
+   *
+   * @param station    the owner of this source
+   * @param dockable   the element for which this source is used
+   * @param holdAction the action to show, can be <code>null</code>
+   */
+  public FlapDockStationSource(FlapDockStation station, Dockable dockable, DockAction holdAction) {
+    super(new LocationHint(LocationHint.DIRECT_ACTION, LocationHint.LITTLE_LEFT));
+
+    this.station = station;
+    this.dockable = dockable;
+    this.holdAction = holdAction;
+  }
+
+  /**
+   * Changes the action that is shown in this source
+   *
+   * @param holdAction the new action to show, can be <code>null</code>
+   */
+  public void setHoldAction(DockAction holdAction) {
+    this.holdAction = holdAction;
+    removeAll();
+    updateHoldSwitchable();
+  }
+
+  /**
+   * Adds or removes the only action of this source depending on the result
+   * of {@link FlapLayoutManager#isHoldSwitchable(FlapDockStation, Dockable)}.
+   */
+  public void updateHoldSwitchable() {
+    if (station.getCurrentFlapLayoutManager().isHoldSwitchable(station, dockable)) {
+      if (getDockActionCount() == 0 && holdAction != null) {
+        add(holdAction);
+      }
+    }
+    else {
+      removeAll();
+    }
+  }
 }

@@ -35,61 +35,68 @@ import bibliothek.util.FrameworkOnly;
 /**
  * An {@link ActionOffer} that searches for {@link CommonDockable}s
  * and asks them for their {@link CommonDockable#getSources() sources}.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
 public class CActionOffer implements ActionOffer {
-	/** the owner */
-	private CControl control;
-	
-	/** whether the secondary search is in progress*/
-	private boolean onRecall = false;
-	
-	/**
-	 * Creates a new action offer
-	 * @param control the control for which this offer is used
-	 */
-	public CActionOffer( CControl control ){
-		this.control = control;
-	}
-	
-	public boolean interested( Dockable dockable ){
-		if( onRecall )
-			return false;
-		
-		return dockable instanceof CommonDockable;
-	}
+  /**
+   * the owner
+   */
+  private CControl control;
 
-	public DockActionSource getSource( Dockable dockable,
-			DockActionSource source, DockActionSource[] guards,
-			DockActionSource parent, DockActionSource[] parents ){
+  /**
+   * whether the secondary search is in progress
+   */
+  private boolean onRecall = false;
 
-		DockActionSource[] sources = ((CommonDockable)dockable).getSources();
-		
-		int sizeSources = sources == null ? 0 : sources.length;
-		int sizeGuards = guards == null ? 0 : guards.length;
-		
-		DockActionSource[] newGuards;
-		if( sizeSources == 0 ){
-			newGuards = guards;
-		}
-		else if( sizeGuards == 0 ){
-			newGuards = sources;
-		}
-		else{
-			newGuards = new DockActionSource[ sizeSources + sizeGuards ];
-			System.arraycopy( sources, 0, newGuards, 0, sizeSources );
-			System.arraycopy( guards, 0, newGuards, sizeSources, sizeGuards );
-		}
-		
-		try{
-			onRecall = true;
-			return control.intern().getController().getActionOffer( dockable ).getSource( dockable, source, newGuards, parent, parents );
-		}
-		finally{
-			onRecall = false;
-		}
-	}
-	
-	
+  /**
+   * Creates a new action offer
+   *
+   * @param control the control for which this offer is used
+   */
+  public CActionOffer(CControl control) {
+    this.control = control;
+  }
+
+  public boolean interested(Dockable dockable) {
+    if (onRecall) return false;
+
+    return dockable instanceof CommonDockable;
+  }
+
+  public DockActionSource getSource(Dockable dockable,
+                                    DockActionSource source,
+                                    DockActionSource[] guards,
+                                    DockActionSource parent,
+                                    DockActionSource[] parents) {
+
+    DockActionSource[] sources = ((CommonDockable)dockable).getSources();
+
+    int sizeSources = sources == null ? 0 : sources.length;
+    int sizeGuards = guards == null ? 0 : guards.length;
+
+    DockActionSource[] newGuards;
+    if (sizeSources == 0) {
+      newGuards = guards;
+    }
+    else if (sizeGuards == 0) {
+      newGuards = sources;
+    }
+    else {
+      newGuards = new DockActionSource[sizeSources + sizeGuards];
+      System.arraycopy(sources, 0, newGuards, 0, sizeSources);
+      System.arraycopy(guards, 0, newGuards, sizeSources, sizeGuards);
+    }
+
+    try {
+      onRecall = true;
+      return control.intern().getController().getActionOffer(dockable).getSource(dockable, source, newGuards, parent, parents);
+    }
+    finally {
+      onRecall = false;
+    }
+  }
+
+
 }

@@ -30,29 +30,33 @@ import bibliothek.gui.dock.ScreenDockStation;
 
 /**
  * A listener that can be added to a {@link ScreenDockStation}.
+ *
  * @author Benjamin
  */
 public interface ScreenDockStationListener {
-	/**
-	 * Called if the fullscreen-mode of <code>dockable</code> changed.
-	 * @param station the caller
-	 * @param dockable the element whose mode changed
-	 */
-	public void fullscreenChanged( ScreenDockStation station, Dockable dockable );
-	
-	/**
-	 * Called when <code>window</code> was added to <code>station</code>.
-	 * @param station the caller 
-	 * @param dockable the element that is shown on <code>window</code>
-	 * @param window the new window
-	 */
-	public void windowRegistering( ScreenDockStation station, Dockable dockable, ScreenDockWindow window );
-	
-	/**
-	 * Called when <code>window</code> was removed from <code>station</code>.
-	 * @param station the element that was shown on <code>window</code>
-	 * @param dockable the element that was shown on <code>window</code>
-	 * @param window the removed window
-	 */
-	public void windowDeregistering( ScreenDockStation station, Dockable dockable, ScreenDockWindow window );
+  /**
+   * Called if the fullscreen-mode of <code>dockable</code> changed.
+   *
+   * @param station  the caller
+   * @param dockable the element whose mode changed
+   */
+  public void fullscreenChanged(ScreenDockStation station, Dockable dockable);
+
+  /**
+   * Called when <code>window</code> was added to <code>station</code>.
+   *
+   * @param station  the caller
+   * @param dockable the element that is shown on <code>window</code>
+   * @param window   the new window
+   */
+  public void windowRegistering(ScreenDockStation station, Dockable dockable, ScreenDockWindow window);
+
+  /**
+   * Called when <code>window</code> was removed from <code>station</code>.
+   *
+   * @param station  the element that was shown on <code>window</code>
+   * @param dockable the element that was shown on <code>window</code>
+   * @param window   the removed window
+   */
+  public void windowDeregistering(ScreenDockStation station, Dockable dockable, ScreenDockWindow window);
 }

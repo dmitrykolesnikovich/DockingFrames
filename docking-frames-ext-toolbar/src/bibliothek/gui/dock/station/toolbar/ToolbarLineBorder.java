@@ -25,82 +25,81 @@
  */
 package bibliothek.gui.dock.station.toolbar;
 
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Insets;
-
-import javax.swing.border.Border;
-
 import bibliothek.gui.dock.station.DockableDisplayer.Location;
 import bibliothek.gui.dock.themes.basic.BasicDockableDisplayer;
+
+import javax.swing.border.Border;
+import java.awt.*;
 
 /**
  * A {@link Border} used by {@link ToolbarDockableDisplayer} to paint lines at all sides
  * except the side at which there is a title.
+ *
  * @author Benjamin Sigg
  */
-public class ToolbarLineBorder implements Border{
-	private BasicDockableDisplayer displayer;
-	
-	/**
-	 * Creates a new border.
-	 * @param displayer the displayer using this border
-	 */
-	public ToolbarLineBorder( BasicDockableDisplayer displayer ){
-		this.displayer = displayer;
-	}
-	
-	private Location hiddenSide(){
-		if( displayer.getTitle() == null ){
-			return null;
-		}
-		return displayer.getTitleLocation();
-	}
-	
-	@Override
-	public void paintBorder( Component c, Graphics g, int x, int y, int width, int height ){
-		Location hidden = hiddenSide();
-		g.setColor( c.getForeground() );
-		
-		if( hidden != Location.BOTTOM ){
-			g.drawLine( x, y+height-1, x+width, y+height-1 );
-		}
-		if( hidden != Location.TOP ){
-			g.drawLine( x, y, x+width-1, y );
-		}
-		if( hidden != Location.LEFT ){
-			g.drawLine( x, y, x, y+height-1 );
-		}
-		if( hidden != Location.RIGHT ){
-			g.drawLine( x+width-1, y, x+width-1, y+height-1 );
-		}
-	}
+public class ToolbarLineBorder implements Border {
+  private BasicDockableDisplayer displayer;
 
-	@Override
-	public Insets getBorderInsets( Component c ){
-		Insets insets = new Insets( 1, 1, 1, 1 );
-		Location hidden = hiddenSide();
-		if( hidden != null ){
-			switch( hidden ){
-				case BOTTOM:
-					insets.bottom = 0;
-					break;
-				case TOP:
-					insets.top = 0;
-					break;
-				case LEFT:
-					insets.left = 0;
-					break;
-				case RIGHT:
-					insets.right = 0;
-					break;
-			}
-		}
-		return insets;
-	}
+  /**
+   * Creates a new border.
+   *
+   * @param displayer the displayer using this border
+   */
+  public ToolbarLineBorder(BasicDockableDisplayer displayer) {
+    this.displayer = displayer;
+  }
 
-	@Override
-	public boolean isBorderOpaque(){
-		return false;
-	}
+  private Location hiddenSide() {
+    if (displayer.getTitle() == null) {
+      return null;
+    }
+    return displayer.getTitleLocation();
+  }
+
+  @Override
+  public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+    Location hidden = hiddenSide();
+    g.setColor(c.getForeground());
+
+    if (hidden != Location.BOTTOM) {
+      g.drawLine(x, y + height - 1, x + width, y + height - 1);
+    }
+    if (hidden != Location.TOP) {
+      g.drawLine(x, y, x + width - 1, y);
+    }
+    if (hidden != Location.LEFT) {
+      g.drawLine(x, y, x, y + height - 1);
+    }
+    if (hidden != Location.RIGHT) {
+      g.drawLine(x + width - 1, y, x + width - 1, y + height - 1);
+    }
+  }
+
+  @Override
+  public Insets getBorderInsets(Component c) {
+    Insets insets = new Insets(1, 1, 1, 1);
+    Location hidden = hiddenSide();
+    if (hidden != null) {
+      switch (hidden) {
+        case BOTTOM:
+          insets.bottom = 0;
+          break;
+        case TOP:
+          insets.top = 0;
+          break;
+        case LEFT:
+          insets.left = 0;
+          break;
+        case RIGHT:
+          insets.right = 0;
+          break;
+      }
+    }
+    return insets;
+  }
+
+  @Override
+  public boolean isBorderOpaque() {
+    return false;
+  }
 }

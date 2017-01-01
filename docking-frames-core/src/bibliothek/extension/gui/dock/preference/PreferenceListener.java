@@ -28,14 +28,15 @@ package bibliothek.extension.gui.dock.preference;
 /**
  * A listener to a {@link Preference}, gets informed when the preference
  * changes.
- * @author Benjamin Sigg
- * 
+ *
  * @param <V> the kind of value the observed uses
+ * @author Benjamin Sigg
  */
 public interface PreferenceListener<V> {
-    /**
-     * Called when <code>preference</code> changed its value.
-     * @param preference the preference that changed its value
-     */
-    public void changed( Preference<V> preference );
+  /**
+   * Called when <code>preference</code> changed its value.
+   *
+   * @param preference the preference that changed its value
+   */
+  public void changed(Preference<V> preference);
 }

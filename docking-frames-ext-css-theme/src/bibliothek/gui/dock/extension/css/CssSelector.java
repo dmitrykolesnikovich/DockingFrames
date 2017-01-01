@@ -28,19 +28,22 @@ package bibliothek.gui.dock.extension.css;
 /**
  * The selector of a {@link CssRule} tells whether a rule applies
  * to some some item.
+ *
  * @author Benjamin Sigg
  */
 public interface CssSelector {
-	/**
-	 * Tells whether <code>this</code> selector matches <code>path</code>.
-	 * @param path the path to some {@link CssItem}
-	 * @return whether this selector matches <code>path</code>
-	 */
-	public boolean matches( CssPath path );
-	
-	/**
-	 * Tells how specific this selector is.
-	 * @return the priority of this selector
-	 */
-	public CssSpecificity getSpecificity();
+  /**
+   * Tells whether <code>this</code> selector matches <code>path</code>.
+   *
+   * @param path the path to some {@link CssItem}
+   * @return whether this selector matches <code>path</code>
+   */
+  public boolean matches(CssPath path);
+
+  /**
+   * Tells how specific this selector is.
+   *
+   * @return the priority of this selector
+   */
+  public CssSpecificity getSpecificity();
 }

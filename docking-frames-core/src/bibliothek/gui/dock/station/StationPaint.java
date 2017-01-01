@@ -26,53 +26,57 @@
 
 package bibliothek.gui.dock.station;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
-
 import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
+
+import java.awt.*;
 
 /**
  * A StationPaint draws some parts of {@link DockStation}. All the default-stations
  * use a <code>StationPaint</code> to draw some markings when a {@link Dockable} is moved
  * or dragged.
+ *
  * @author Benjamin Sigg
  */
 public interface StationPaint {
-    /**
-     * Paints a single line from x1/y1 to x2/y2.
-     * @param g the graphics context used for painting
-     * @param station the station on which to paint
-     * @param x1 the x-coordinate of the first end of the line
-     * @param y1 the y-coordinate of the first end of the line
-     * @param x2 the x-coordinate of the second end of the line
-     * @param y2 the y-coordinate of the second end of the line
-     */
-    public void drawInsertionLine( Graphics g, DockStation station, int x1, int y1, int x2, int y2 );
-    
-    /**
-     * Draws a divider between two elements.
-     * @param g the graphics context used for painting
-     * @param station the station on which to paint
-     * @param bounds the rectangle which marks the whole divider
-     */
-    public void drawDivider( Graphics g, DockStation station, Rectangle bounds );
-    
-    /**
-     * Paints some markings when a {@link Dockable} is added to a {@link DockStation}.
-     * @param g the graphics context used for painting
-     * @param station the station on which to paint
-     * @param stationBounds the area on the station which will be affected by the insertion
-     * @param dockableBounds the bounds that the new child will have
-     */
-    public void drawInsertion( Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds );
-    
-    /**
-     * Paints some markings when a {@link Dockable} is removed from a {@link DockStation}.
-     * @param g the graphics context used for painting
-     * @param station the station on which to paint
-     * @param stationBounds the area on the station which will be affected by the removal
-     * @param dockableBounds the bounds that the old child currently has
-     */
-    public void drawRemoval( Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds );
+  /**
+   * Paints a single line from x1/y1 to x2/y2.
+   *
+   * @param g       the graphics context used for painting
+   * @param station the station on which to paint
+   * @param x1      the x-coordinate of the first end of the line
+   * @param y1      the y-coordinate of the first end of the line
+   * @param x2      the x-coordinate of the second end of the line
+   * @param y2      the y-coordinate of the second end of the line
+   */
+  public void drawInsertionLine(Graphics g, DockStation station, int x1, int y1, int x2, int y2);
+
+  /**
+   * Draws a divider between two elements.
+   *
+   * @param g       the graphics context used for painting
+   * @param station the station on which to paint
+   * @param bounds  the rectangle which marks the whole divider
+   */
+  public void drawDivider(Graphics g, DockStation station, Rectangle bounds);
+
+  /**
+   * Paints some markings when a {@link Dockable} is added to a {@link DockStation}.
+   *
+   * @param g              the graphics context used for painting
+   * @param station        the station on which to paint
+   * @param stationBounds  the area on the station which will be affected by the insertion
+   * @param dockableBounds the bounds that the new child will have
+   */
+  public void drawInsertion(Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds);
+
+  /**
+   * Paints some markings when a {@link Dockable} is removed from a {@link DockStation}.
+   *
+   * @param g              the graphics context used for painting
+   * @param station        the station on which to paint
+   * @param stationBounds  the area on the station which will be affected by the removal
+   * @param dockableBounds the bounds that the old child currently has
+   */
+  public void drawRemoval(Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds);
 }

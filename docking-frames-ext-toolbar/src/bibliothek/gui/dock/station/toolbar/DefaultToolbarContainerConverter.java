@@ -30,148 +30,151 @@
 
 package bibliothek.gui.dock.station.toolbar;
 
-import java.util.Map;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.DockHierarchyLock;
 import bibliothek.gui.dock.ToolbarContainerDockStation;
 import bibliothek.gui.dock.perspective.PerspectiveDockable;
 import bibliothek.gui.dock.station.StationChildHandle;
-import bibliothek.gui.dock.station.support.ConvertedPlaceholderListItem;
-import bibliothek.gui.dock.station.support.DockablePlaceholderList;
-import bibliothek.gui.dock.station.support.PerspectivePlaceholderList;
-import bibliothek.gui.dock.station.support.PlaceholderListItemAdapter;
-import bibliothek.gui.dock.station.support.PlaceholderMap;
-import bibliothek.gui.dock.station.support.PlaceholderStrategy;
+import bibliothek.gui.dock.station.support.*;
 import bibliothek.gui.dock.util.DockUtilities;
 import bibliothek.util.Path;
+
+import java.util.Map;
 
 /**
  * Default implementation of {@link ToolbarContainerConverter}. This converter
  * supports all features necessary to read and write {@link PlaceholderMap}s.
- * 
+ *
  * @author Benjamin Sigg
  * @author Herve Guillaume
  */
 public class DefaultToolbarContainerConverter implements ToolbarContainerConverter {
-	@Override
-	public PlaceholderMap getPlaceholders( ToolbarContainerDockStation station ){
-		final PlaceholderMap result = new PlaceholderMap( new Path( "dock.ToolbarContainerStation" ), 0 );
-		result.put( result.newKey( "content" ), "list", station.getDockables().toMap() );
-		return result;
-	}
+  @Override
+  public PlaceholderMap getPlaceholders(ToolbarContainerDockStation station) {
+    final PlaceholderMap result = new PlaceholderMap(new Path("dock.ToolbarContainerStation"), 0);
+    result.put(result.newKey("content"), "list", station.getDockables().toMap());
+    return result;
+  }
 
-	@Override
-	public PlaceholderMap getPlaceholders( ToolbarContainerDockStation station, Map<Dockable, Integer> children ){
-		final PlaceholderMap result = new PlaceholderMap( new Path( "dock.ToolbarContainerStation" ), 0 );
-		result.put( result.newKey( "content" ), "list", convert( station.getPlaceholderStrategy(), station.getDockables(), children ) );
-		return result;
-	}
+  @Override
+  public PlaceholderMap getPlaceholders(ToolbarContainerDockStation station, Map<Dockable, Integer> children) {
+    final PlaceholderMap result = new PlaceholderMap(new Path("dock.ToolbarContainerStation"), 0);
+    result.put(result.newKey("content"), "list", convert(station.getPlaceholderStrategy(), station.getDockables(), children));
+    return result;
+  }
 
-	@Override
-	public PlaceholderMap getPlaceholders( ToolbarContainerDockPerspective station, Map<PerspectiveDockable, Integer> children ){
-		final PlaceholderMap result = new PlaceholderMap( new Path( "dock.ToolbarContainerStation" ), 0 );
-		result.put( result.newKey( "content" ), "list", convert( station.getDockables(), children ) );
-		return result;
-	}
-	
-	private PlaceholderMap convert( final PlaceholderStrategy strategy, DockablePlaceholderList<StationChildHandle> list, final Map<Dockable, Integer> children ){
-		return list.toMap( new PlaceholderListItemAdapter<Dockable, StationChildHandle>(){
-			@Override
-			public ConvertedPlaceholderListItem convert( int index, StationChildHandle handle ){
-				final Dockable dockable = handle.getDockable();
+  @Override
+  public PlaceholderMap getPlaceholders(ToolbarContainerDockPerspective station, Map<PerspectiveDockable, Integer> children) {
+    final PlaceholderMap result = new PlaceholderMap(new Path("dock.ToolbarContainerStation"), 0);
+    result.put(result.newKey("content"), "list", convert(station.getDockables(), children));
+    return result;
+  }
 
-				final ConvertedPlaceholderListItem item = new ConvertedPlaceholderListItem();
-				final Integer id = children.get( dockable );
-				if( id == null ) {
-					return null;
-				}
+  private PlaceholderMap convert(final PlaceholderStrategy strategy,
+                                 DockablePlaceholderList<StationChildHandle> list,
+                                 final Map<Dockable, Integer> children) {
+    return list.toMap(new PlaceholderListItemAdapter<Dockable, StationChildHandle>() {
+      @Override
+      public ConvertedPlaceholderListItem convert(int index, StationChildHandle handle) {
+        final Dockable dockable = handle.getDockable();
 
-				item.putInt( "id", id );
-				item.putInt( "index", index );
-				if( strategy != null ) {
-					final Path placeholder = strategy.getPlaceholderFor( dockable );
-					if( placeholder != null ) {
-						item.putString( "placeholder", placeholder.toString() );
-						item.setPlaceholder( placeholder );
-					}
-				}
-				return item;
-			}
-		} );
-	}
-	
-	private PlaceholderMap convert( PerspectivePlaceholderList<PerspectiveDockable> list, final Map<PerspectiveDockable, Integer> children ){
-		return list.toMap( new PlaceholderListItemAdapter<PerspectiveDockable, PerspectiveDockable>(){
-			@Override
-			public ConvertedPlaceholderListItem convert( int index, PerspectiveDockable dockable ){
-				final ConvertedPlaceholderListItem item = new ConvertedPlaceholderListItem();
-				final Integer id = children.get( dockable );
-				if( id == null ) {
-					return null;
-				}
+        final ConvertedPlaceholderListItem item = new ConvertedPlaceholderListItem();
+        final Integer id = children.get(dockable);
+        if (id == null) {
+          return null;
+        }
 
-				item.putInt( "id", id );
-				item.putInt( "index", index );
-				Path placeholder = dockable.getPlaceholder();
-				if( placeholder != null ) {
-					item.putString( "placeholder", placeholder.toString() );
-					item.setPlaceholder( placeholder );
-				}
-				return item;
-			}
-		} );
-	}
+        item.putInt("id", id);
+        item.putInt("index", index);
+        if (strategy != null) {
+          final Path placeholder = strategy.getPlaceholderFor(dockable);
+          if (placeholder != null) {
+            item.putString("placeholder", placeholder.toString());
+            item.setPlaceholder(placeholder);
+          }
+        }
+        return item;
+      }
+    });
+  }
 
-	@Override
-	public void setPlaceholders( ToolbarContainerDockStation station, PlaceholderMap map ){
-		if( !map.getFormat().equals( new Path( "dock.ToolbarContainerStation" ) ) ) {
-			throw new IllegalArgumentException( "unknown format: " + map.getFormat() );
-		}
-		if( map.getVersion() != 0 ) {
-			throw new IllegalArgumentException( "unknown version: " + map.getVersion() );
-		}
+  private PlaceholderMap convert(PerspectivePlaceholderList<PerspectiveDockable> list, final Map<PerspectiveDockable, Integer> children) {
+    return list.toMap(new PlaceholderListItemAdapter<PerspectiveDockable, PerspectiveDockable>() {
+      @Override
+      public ConvertedPlaceholderListItem convert(int index, PerspectiveDockable dockable) {
+        final ConvertedPlaceholderListItem item = new ConvertedPlaceholderListItem();
+        final Integer id = children.get(dockable);
+        if (id == null) {
+          return null;
+        }
 
-		station.setPlaceholders( map.getMap( map.newKey( "content" ), "list" ) );
-	}
+        item.putInt("id", id);
+        item.putInt("index", index);
+        Path placeholder = dockable.getPlaceholder();
+        if (placeholder != null) {
+          item.putString("placeholder", placeholder.toString());
+          item.setPlaceholder(placeholder);
+        }
+        return item;
+      }
+    });
+  }
 
-	@Override
-	public void setPlaceholders( ToolbarContainerDockStation station, ToolbarContainerConverterCallback callback, PlaceholderMap map, Map<Integer, Dockable> children ){
-		convert( station, callback, map.getMap( map.newKey( "content" ), "list" ), children );
-	}
+  @Override
+  public void setPlaceholders(ToolbarContainerDockStation station, PlaceholderMap map) {
+    if (!map.getFormat().equals(new Path("dock.ToolbarContainerStation"))) {
+      throw new IllegalArgumentException("unknown format: " + map.getFormat());
+    }
+    if (map.getVersion() != 0) {
+      throw new IllegalArgumentException("unknown version: " + map.getVersion());
+    }
 
-	private void convert( final ToolbarContainerDockStation station, final ToolbarContainerConverterCallback callback, PlaceholderMap map, final Map<Integer, Dockable> children ){
-		final DockablePlaceholderList<StationChildHandle> list = new DockablePlaceholderList<StationChildHandle>();
-		callback.setDockables( list );
-		list.read( map, new PlaceholderListItemAdapter<Dockable, StationChildHandle>(){
-			private DockHierarchyLock.Token token;
+    station.setPlaceholders(map.getMap(map.newKey("content"), "list"));
+  }
 
-			@Override
-			public StationChildHandle convert( ConvertedPlaceholderListItem item ){
-				final int id = item.getInt( "id" );
-				final Dockable dockable = children.get( id );
-				if( dockable == null ) {
-					return null;
-				}
+  @Override
+  public void setPlaceholders(ToolbarContainerDockStation station,
+                              ToolbarContainerConverterCallback callback,
+                              PlaceholderMap map,
+                              Map<Integer, Dockable> children) {
+    convert(station, callback, map.getMap(map.newKey("content"), "list"), children);
+  }
 
-				DockUtilities.ensureTreeValidity( station, dockable );
-				token = DockHierarchyLock.acquireLinking( station, dockable );
+  private void convert(final ToolbarContainerDockStation station,
+                       final ToolbarContainerConverterCallback callback,
+                       PlaceholderMap map,
+                       final Map<Integer, Dockable> children) {
+    final DockablePlaceholderList<StationChildHandle> list = new DockablePlaceholderList<StationChildHandle>();
+    callback.setDockables(list);
+    list.read(map, new PlaceholderListItemAdapter<Dockable, StationChildHandle>() {
+      private DockHierarchyLock.Token token;
 
-				final StationChildHandle handle = callback.wrap( dockable );
-				callback.adding( handle );
-				return handle;
-			}
+      @Override
+      public StationChildHandle convert(ConvertedPlaceholderListItem item) {
+        final int id = item.getInt("id");
+        final Dockable dockable = children.get(id);
+        if (dockable == null) {
+          return null;
+        }
 
-			@Override
-			public void added( StationChildHandle handle ){
-				try {
-					callback.added( handle );
-				}
-				finally {
-					token.release();
-				}
-			}
-		} );
-		callback.finished( list );
-	}
+        DockUtilities.ensureTreeValidity(station, dockable);
+        token = DockHierarchyLock.acquireLinking(station, dockable);
+
+        final StationChildHandle handle = callback.wrap(dockable);
+        callback.adding(handle);
+        return handle;
+      }
+
+      @Override
+      public void added(StationChildHandle handle) {
+        try {
+          callback.added(handle);
+        }
+        finally {
+          token.release();
+        }
+      }
+    });
+    callback.finished(list);
+  }
 }

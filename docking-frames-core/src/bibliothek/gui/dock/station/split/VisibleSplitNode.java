@@ -25,44 +25,49 @@
  */
 package bibliothek.gui.dock.station.split;
 
-import java.awt.Rectangle;
-
 import bibliothek.gui.dock.SplitDockStation;
+
+import java.awt.*;
 
 /**
  * Represents a {@link SplitNode} that is visible to the user.
+ *
  * @author Benjamin Sigg
  */
-public abstract class VisibleSplitNode extends SplitNode{
-	/** the current bounds of this node */
-    private Rectangle currentBounds = new Rectangle();
-	
-    /**
-     * Creates a new node.
-     * @param access access to the {@link SplitDockStation}
-     * @param id the unique identifier of this node
-     */
-    protected VisibleSplitNode( SplitDockAccess access, long id ){
-		super( access, id );
-	}
-    
-    @Override
-    public void updateBounds( double x, double y, double width,  double height, double factorW, double factorH, boolean updateComponentBounds ){
-        super.updateBounds( x, y, width, height, factorW, factorH, updateComponentBounds );
-        getAccess().getOwner().revalidate();
-        currentBounds = getBounds();
-    }
-    
-    
-    /**
-     * Gets the current bounds of this root. The difference between the current
-     * bounds and the value {@link #getBounds()} is, that the current bounds are
-     * cached. The current bounds are calculated every time when 
-     * {@link #updateBounds(double, double, double, double, double, double, boolean) updateBounds} 
-     * is called, and then remain until the bounds are updated again.
-     * @return the current bounds
-     */
-    public Rectangle getCurrentBounds() {
-        return currentBounds;
-    }
+public abstract class VisibleSplitNode extends SplitNode {
+  /**
+   * the current bounds of this node
+   */
+  private Rectangle currentBounds = new Rectangle();
+
+  /**
+   * Creates a new node.
+   *
+   * @param access access to the {@link SplitDockStation}
+   * @param id     the unique identifier of this node
+   */
+  protected VisibleSplitNode(SplitDockAccess access, long id) {
+    super(access, id);
+  }
+
+  @Override
+  public void updateBounds(double x, double y, double width, double height, double factorW, double factorH, boolean updateComponentBounds) {
+    super.updateBounds(x, y, width, height, factorW, factorH, updateComponentBounds);
+    getAccess().getOwner().revalidate();
+    currentBounds = getBounds();
+  }
+
+
+  /**
+   * Gets the current bounds of this root. The difference between the current
+   * bounds and the value {@link #getBounds()} is, that the current bounds are
+   * cached. The current bounds are calculated every time when
+   * {@link #updateBounds(double, double, double, double, double, double, boolean) updateBounds}
+   * is called, and then remain until the bounds are updated again.
+   *
+   * @return the current bounds
+   */
+  public Rectangle getCurrentBounds() {
+    return currentBounds;
+  }
 }

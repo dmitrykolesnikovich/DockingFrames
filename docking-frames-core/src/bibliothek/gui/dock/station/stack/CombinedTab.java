@@ -26,54 +26,59 @@
 
 package bibliothek.gui.dock.station.stack;
 
-import java.awt.Component;
-
-import javax.swing.Icon;
-
 import bibliothek.gui.dock.DockElementRepresentative;
 import bibliothek.gui.dock.station.stack.tab.Tab;
 import bibliothek.gui.dock.station.stack.tab.TabConfiguration;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * A tab of a {@link CombinedStackDockComponent}. Every tab represents one
  * Component which can be selected.
+ *
  * @author Benjamin Sigg
  */
-public interface CombinedTab extends DockElementRepresentative, Tab{
-	/**
-	 * Gets the component which paints and represents this tab.
-	 */
-	public Component getComponent();
-	
-	/**
-	 * Sets the text of this tab.
-	 * @param text the text to display
-	 */
-	public void setText( String text );
-	
-	/**
-	 * Sets the image of this tab.
-	 * @param icon an icon that should be shown, can be <code>null</code>
-	 */
-	public void setIcon( Icon icon );
-	
-	/**
-	 * Sets the tooltip of this tab.
-	 * @param tooltip the tooltip text, can be <code>null</code>
-	 */
-	public void setTooltip( String tooltip );
-	
-	/**
-	 * Enables or disables this tab. A disabled should not react to any mouse input, and it
-	 * should be visually distinct from enabled tabs.
-	 * @param enabled whether to enable or disable this tab
-	 */
-	public void setEnabled( boolean enabled );
-	
-	/**
-	 * Fine tunes this tab.
-	 * @param configuration the new configuration to use
-	 * @see CombinedStackDockComponent#getConfiguration(bibliothek.gui.Dockable)
-	 */
-	public void setConfiguration( TabConfiguration configuration );
+public interface CombinedTab extends DockElementRepresentative, Tab {
+  /**
+   * Gets the component which paints and represents this tab.
+   */
+  public Component getComponent();
+
+  /**
+   * Sets the text of this tab.
+   *
+   * @param text the text to display
+   */
+  public void setText(String text);
+
+  /**
+   * Sets the image of this tab.
+   *
+   * @param icon an icon that should be shown, can be <code>null</code>
+   */
+  public void setIcon(Icon icon);
+
+  /**
+   * Sets the tooltip of this tab.
+   *
+   * @param tooltip the tooltip text, can be <code>null</code>
+   */
+  public void setTooltip(String tooltip);
+
+  /**
+   * Enables or disables this tab. A disabled should not react to any mouse input, and it
+   * should be visually distinct from enabled tabs.
+   *
+   * @param enabled whether to enable or disable this tab
+   */
+  public void setEnabled(boolean enabled);
+
+  /**
+   * Fine tunes this tab.
+   *
+   * @param configuration the new configuration to use
+   * @see CombinedStackDockComponent#getConfiguration(bibliothek.gui.Dockable)
+   */
+  public void setConfiguration(TabConfiguration configuration);
 }

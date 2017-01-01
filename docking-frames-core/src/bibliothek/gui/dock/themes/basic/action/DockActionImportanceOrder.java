@@ -32,23 +32,29 @@ import bibliothek.gui.dock.util.PropertyKey;
 import bibliothek.gui.dock.util.property.ConstantPropertyFactory;
 
 /**
- * {@link DockActionImportanceOrder} is used by {@link ButtonPanel} to decide which 
+ * {@link DockActionImportanceOrder} is used by {@link ButtonPanel} to decide which
  * actions are more important than others. If there is not enough space, the actions
- * that are less important are moved to a menu. 
+ * that are less important are moved to a menu.
+ *
  * @author Benjamin Sigg
  */
 public interface DockActionImportanceOrder {
-	/** A {@link PropertyKey} used to set the order in the {@link DockProperties} */
-	public static final PropertyKey<DockActionImportanceOrder> ORDER = new PropertyKey<DockActionImportanceOrder>( "dock.actionImportance",
-			new ConstantPropertyFactory<DockActionImportanceOrder>( new DefaultDockActionImportanceOrder() ), true );
-	
-	/**
-	 * Sorts the actions by their important, the most important action
-	 * has to be at index <code>0</code>, while the least important action
-	 * is at index <code>actions.length-1</code>. This method must not add or remove
-	 * any actions from <code>action</code>, it must only rearrange the content of
-	 * <code>actions</code>
-	 * @param actions the array of actions to sort
-	 */
-	public void order( DockAction[] actions );
+  /**
+   * A {@link PropertyKey} used to set the order in the {@link DockProperties}
+   */
+  public static final PropertyKey<DockActionImportanceOrder> ORDER = new PropertyKey<DockActionImportanceOrder>("dock.actionImportance",
+                                                                                                                new ConstantPropertyFactory<DockActionImportanceOrder>(
+                                                                                                                  new DefaultDockActionImportanceOrder()),
+                                                                                                                true);
+
+  /**
+   * Sorts the actions by their important, the most important action
+   * has to be at index <code>0</code>, while the least important action
+   * is at index <code>actions.length-1</code>. This method must not add or remove
+   * any actions from <code>action</code>, it must only rearrange the content of
+   * <code>actions</code>
+   *
+   * @param actions the array of actions to sort
+   */
+  public void order(DockAction[] actions);
 }

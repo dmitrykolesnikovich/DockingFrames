@@ -29,24 +29,26 @@ import bibliothek.gui.dock.common.CLocation;
 
 /**
  * A location which can be parent of a stack (stack is also known as tabbed-pane).
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
-public abstract class AbstractStackholdingLocation extends CLocation{
-	/**
-	 * Creates a new stack inside this location.
-	 * @param index the tab the new location represents
-	 * @return a tab on a stack
-	 */
-	public CStackLocation stack( int index ){
-		return new CStackLocation( this, index );
-	}
-	
-	/**
-	 * Creates a new stack inside this location.
-	 * @return the tab at the very end of a stack
-	 */
-	public CStackLocation stack(){
-		return new CStackLocation( this );
-	}
+public abstract class AbstractStackholdingLocation extends CLocation {
+  /**
+   * Creates a new stack inside this location.
+   *
+   * @param index the tab the new location represents
+   * @return a tab on a stack
+   */
+  public CStackLocation stack(int index) {
+    return new CStackLocation(this, index);
+  }
+
+  /**
+   * Creates a new stack inside this location.
+   *
+   * @return the tab at the very end of a stack
+   */
+  public CStackLocation stack() {
+    return new CStackLocation(this);
+  }
 }

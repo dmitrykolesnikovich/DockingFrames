@@ -36,50 +36,55 @@ import bibliothek.util.Path;
 /**
  * A model showing various preferences that are used for the layout.
  * <ul>
- * 	<li>What content to show on the button for a minimized {@link Dockable} </li>
- * 	<li>Where to place tabs</li>
- * 	<li>What to show on tabs</li>
- * 	<li>Which {@link CControl#setTheme(String) theme} to use</li>
+ * <li>What content to show on the button for a minimized {@link Dockable} </li>
+ * <li>Where to place tabs</li>
+ * <li>What to show on tabs</li>
+ * <li>Which {@link CControl#setTheme(String) theme} to use</li>
  * </ul>
+ *
  * @author Benjamin Sigg
  */
-public class CLayoutPreferenceModel extends DefaultPreferenceModel{
-	private TabPlacementPreference tabPlacement;
-	private TabContentFilterPreference tabContentFilter;
-	private ThemePreference theme;
-	
-    /**
-     * Creates a new model.
-     * @param control the control whose settings this model represents
-     */
-    public CLayoutPreferenceModel( CControl control ){
-    	super( control.getController() );
-        add( tabPlacement = new TabPlacementPreference( control.intern().getDockProperties(), new Path( "dock.layout.tabplacement" )));
-        add( tabContentFilter = new TabContentFilterPreference( control.intern().getDockProperties(), new Path( "dock.layout.tabcontentfilter" )));
-        add( theme = new ThemePreference( control.intern().getDockProperties(), control.getThemes() ));
-    }
-    
-    /**
-     * Grants access to the preference that tells what content to show on a tab.
-     * @return the preference, not <code>null</code>
-     */
-    public TabContentFilterPreference getTabContentFilter(){
-		return tabContentFilter;
-	}
-    
-    /**
-     * Grants access to the preference that tells where tabs are placed.
-     * @return the preference, not <code>null</code>
-     */
-    public TabPlacementPreference getTabPlacement(){
-		return tabPlacement;
-	}
- 
-    /**
-     * Grants access to the preference that selects the {@link DockTheme}.
-     * @return the preference, not <code>null</code>
-     */
-    public ThemePreference getTheme(){
-		return theme;
-	}
+public class CLayoutPreferenceModel extends DefaultPreferenceModel {
+  private TabPlacementPreference tabPlacement;
+  private TabContentFilterPreference tabContentFilter;
+  private ThemePreference theme;
+
+  /**
+   * Creates a new model.
+   *
+   * @param control the control whose settings this model represents
+   */
+  public CLayoutPreferenceModel(CControl control) {
+    super(control.getController());
+    add(tabPlacement = new TabPlacementPreference(control.intern().getDockProperties(), new Path("dock.layout.tabplacement")));
+    add(tabContentFilter = new TabContentFilterPreference(control.intern().getDockProperties(), new Path("dock.layout.tabcontentfilter")));
+    add(theme = new ThemePreference(control.intern().getDockProperties(), control.getThemes()));
+  }
+
+  /**
+   * Grants access to the preference that tells what content to show on a tab.
+   *
+   * @return the preference, not <code>null</code>
+   */
+  public TabContentFilterPreference getTabContentFilter() {
+    return tabContentFilter;
+  }
+
+  /**
+   * Grants access to the preference that tells where tabs are placed.
+   *
+   * @return the preference, not <code>null</code>
+   */
+  public TabPlacementPreference getTabPlacement() {
+    return tabPlacement;
+  }
+
+  /**
+   * Grants access to the preference that selects the {@link DockTheme}.
+   *
+   * @return the preference, not <code>null</code>
+   */
+  public ThemePreference getTheme() {
+    return theme;
+  }
 }

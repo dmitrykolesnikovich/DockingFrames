@@ -33,25 +33,27 @@ import bibliothek.gui.dock.common.intern.CDockable;
  * This factory is responsible for creating a {@link CAction} that is shown on a {@link CDockable}
  * which is {@link CDockable#isCloseable()}. The action should call {@link CDockable#setVisible(boolean)}
  * when invoked (to close the dockable).
+ *
  * @author Benjamin Sigg
  */
 public interface CloseActionFactory {
-	/**
-	 * A default implementation of {@link CloseActionFactory}, always returns a new
-	 * {@link CCloseAction}.
-	 */
-	public static final CloseActionFactory DEFAULT = new CloseActionFactory(){
-		public CAction create( CControl control, CDockable dockable ){
-			return new CCloseAction( control );
-		}
-	};
-	
-	/**
-	 * Creates a new action.
-	 * @param control the control in whose realm the action is used
-	 * @param dockable the item which is going to show the action
-	 * @return the action, must not be <code>null</code>, but may be an action that is already used
-	 * at other places
-	 */
-	public CAction create( CControl control, CDockable dockable );
+  /**
+   * A default implementation of {@link CloseActionFactory}, always returns a new
+   * {@link CCloseAction}.
+   */
+  public static final CloseActionFactory DEFAULT = new CloseActionFactory() {
+    public CAction create(CControl control, CDockable dockable) {
+      return new CCloseAction(control);
+    }
+  };
+
+  /**
+   * Creates a new action.
+   *
+   * @param control  the control in whose realm the action is used
+   * @param dockable the item which is going to show the action
+   * @return the action, must not be <code>null</code>, but may be an action that is already used
+   * at other places
+   */
+  public CAction create(CControl control, CDockable dockable);
 }

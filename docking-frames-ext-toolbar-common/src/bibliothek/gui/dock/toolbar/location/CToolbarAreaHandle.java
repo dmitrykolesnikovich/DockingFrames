@@ -45,114 +45,114 @@ import bibliothek.gui.dock.util.DockUtilities;
 
 /**
  * A connection between a {@link CToolbarArea} and the {@link CToolbarModeArea} interface.
+ *
  * @author Benjamin Sigg
  */
-public class CToolbarAreaHandle implements CToolbarModeArea{
-	private CToolbarArea station;
-	
-	public CToolbarAreaHandle( CToolbarArea area ){
-		this.station = area;
-	}
+public class CToolbarAreaHandle implements CToolbarModeArea {
+  private CToolbarArea station;
 
-	@Override
-	public CLocation getCLocation( Dockable dockable ){
-		DockableProperty property = DockUtilities.getPropertyChain( getStation(), dockable );
-		CLocation location = station.getStationLocation();
-		return location.expandProperty( station.getStation().getController(), property );
-	}
+  public CToolbarAreaHandle(CToolbarArea area) {
+    this.station = area;
+  }
 
-	@Override
-	public CLocation getCLocation( Dockable dockable, Location location ){
-		DockableProperty property = location.getLocation();
-		CLocation base = station.getStationLocation();
-		if( property == null )
-			return base;
-		
-		return base.expandProperty( station.getStation().getController(), property );
-	}
-	
-	@Override
-	public DockableProperty getLocation( Dockable child ){
-		return DockUtilities.getPropertyChain( station.getStation(), child );
-	}
-	
-	@Override
-	public boolean setLocation( Dockable dockable, DockableProperty location, AffectedSet set ){
-		set.add( dockable );
-		
-		ToolbarContainerDockStation station = this.station.getStation();
-		
-		if( isChild( dockable )){
-			if( location != null ){
-				station.move( dockable, location );
-			}
-			return true;
-		}
-		else{
-			boolean acceptable = DockUtilities.acceptable( getStation(), dockable );
-			if( !acceptable ){
-				return false;
-			}
-			
-			if( location != null ){
-				if( !station.drop( dockable, location )){
-					location = null;
-				}
-			}
-			if( location == null ){
-				station.drop( dockable );
-			}
-			return true;
-		}
-	}
+  @Override
+  public CLocation getCLocation(Dockable dockable) {
+    DockableProperty property = DockUtilities.getPropertyChain(getStation(), dockable);
+    CLocation location = station.getStationLocation();
+    return location.expandProperty(station.getStation().getController(), property);
+  }
 
-	@Override
-	public boolean respectWorkingAreas(){
-		return true;
-	}
+  @Override
+  public CLocation getCLocation(Dockable dockable, Location location) {
+    DockableProperty property = location.getLocation();
+    CLocation base = station.getStationLocation();
+    if (property == null) return base;
 
-	@Override
-	public String getUniqueId(){
-		return station.getUniqueId();
-	}
+    return base.expandProperty(station.getStation().getController(), property);
+  }
 
-	@Override
-	public boolean autoDefaultArea(){
-		return true;
-	}
-	
-	@Override
-	public boolean isLocationRoot(){
-		return true;
-	}
+  @Override
+  public DockableProperty getLocation(Dockable child) {
+    return DockUtilities.getPropertyChain(station.getStation(), child);
+  }
 
-	@Override
-	public boolean isChild( Dockable dockable ){
-		return dockable.asDockStation() != station.getStation() && DockUtilities.isAncestor( station.getStation(), dockable );
-	}
+  @Override
+  public boolean setLocation(Dockable dockable, DockableProperty location, AffectedSet set) {
+    set.add(dockable);
 
-	@Override
-	public DockStation getStation(){
-		return station.getStation();
-	}
+    ToolbarContainerDockStation station = this.station.getStation();
 
-	@Override
-	public void setController( DockController controller ){
-		// ignore
-	}
+    if (isChild(dockable)) {
+      if (location != null) {
+        station.move(dockable, location);
+      }
+      return true;
+    }
+    else {
+      boolean acceptable = DockUtilities.acceptable(getStation(), dockable);
+      if (!acceptable) {
+        return false;
+      }
 
-	@Override
-	public void setMode( LocationMode mode ){
-		//ignore
-	}
+      if (location != null) {
+        if (!station.drop(dockable, location)) {
+          location = null;
+        }
+      }
+      if (location == null) {
+        station.drop(dockable);
+      }
+      return true;
+    }
+  }
 
-	@Override
-	public void addModeAreaListener( ModeAreaListener listener ){
-		// ignore
-	}
+  @Override
+  public boolean respectWorkingAreas() {
+    return true;
+  }
 
-	@Override
-	public void removeModeAreaListener( ModeAreaListener listener ){
-		// ignore
-	}
+  @Override
+  public String getUniqueId() {
+    return station.getUniqueId();
+  }
+
+  @Override
+  public boolean autoDefaultArea() {
+    return true;
+  }
+
+  @Override
+  public boolean isLocationRoot() {
+    return true;
+  }
+
+  @Override
+  public boolean isChild(Dockable dockable) {
+    return dockable.asDockStation() != station.getStation() && DockUtilities.isAncestor(station.getStation(), dockable);
+  }
+
+  @Override
+  public DockStation getStation() {
+    return station.getStation();
+  }
+
+  @Override
+  public void setController(DockController controller) {
+    // ignore
+  }
+
+  @Override
+  public void setMode(LocationMode mode) {
+    //ignore
+  }
+
+  @Override
+  public void addModeAreaListener(ModeAreaListener listener) {
+    // ignore
+  }
+
+  @Override
+  public void removeModeAreaListener(ModeAreaListener listener) {
+    // ignore
+  }
 }

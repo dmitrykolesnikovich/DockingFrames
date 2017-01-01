@@ -32,11 +32,15 @@ import bibliothek.gui.DockTheme;
  * priorities. <code>Priority</code> gives a name to these
  * groups.
  */
-public enum Priority{
-    /** highest priority */
-    CLIENT, 
-    /** for resources set by a {@link DockTheme} that overrides a {@link #DEFAULT} setting */
-    THEME,
-    /** lowest priority, the default-values set by the core items. May also be used by a {@link DockTheme}. */
-    DEFAULT 
+public enum Priority {
+  /**
+   * highest priority
+   */
+  CLIENT, /**
+   * for resources set by a {@link DockTheme} that overrides a {@link #DEFAULT} setting
+   */
+  THEME, /**
+   * lowest priority, the default-values set by the core items. May also be used by a {@link DockTheme}.
+   */
+  DEFAULT
 }

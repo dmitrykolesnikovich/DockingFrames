@@ -25,36 +25,40 @@
  */
 package bibliothek.gui.dock.station.stack.tab;
 
-import java.awt.Dimension;
-
 import bibliothek.gui.Dockable;
+
+import java.awt.*;
 
 /**
  * A {@link Tab} represents a single {@link Dockable} that lies on a {@link TabPane}.
+ *
  * @author Benjamin Sigg
  */
-public interface Tab extends TabPaneComponent{
-	/**
-	 * Gets the element that is associated with this tab.
-	 * @return the element
-	 */
-	public Dockable getDockable();
-	
-	/**
-	 * Gets the minimum size of this tab under the assumption that 
-	 * this tab is displayed together with <code>tabs</code>.
-	 * @param tabs the displayed tabs, exactly one entry is <code>this</code>
-	 * and no entry is <code>null</code>
-	 * @return the minimum size of this tab
-	 */
-	public Dimension getMinimumSize( Tab[] tabs );
-	
-	/**
-	 * Gets the preferred size of this tab under the assumption that 
-	 * this tab is displayed together with <code>tabs</code>.
-	 * @param tabs the displayed tabs, exactly one entry is <code>this</code>
-	 * and no entry is <code>null</code>
-	 * @return the preferred size of this tab
-	 */	
-	public Dimension getPreferredSize( Tab[] tabs );
+public interface Tab extends TabPaneComponent {
+  /**
+   * Gets the element that is associated with this tab.
+   *
+   * @return the element
+   */
+  public Dockable getDockable();
+
+  /**
+   * Gets the minimum size of this tab under the assumption that
+   * this tab is displayed together with <code>tabs</code>.
+   *
+   * @param tabs the displayed tabs, exactly one entry is <code>this</code>
+   *             and no entry is <code>null</code>
+   * @return the minimum size of this tab
+   */
+  public Dimension getMinimumSize(Tab[] tabs);
+
+  /**
+   * Gets the preferred size of this tab under the assumption that
+   * this tab is displayed together with <code>tabs</code>.
+   *
+   * @param tabs the displayed tabs, exactly one entry is <code>this</code>
+   *             and no entry is <code>null</code>
+   * @return the preferred size of this tab
+   */
+  public Dimension getPreferredSize(Tab[] tabs);
 }

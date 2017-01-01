@@ -25,42 +25,47 @@
  */
 package bibliothek.gui.dock.extension.css.doc;
 
+import bibliothek.gui.dock.extension.css.CssProperty;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import bibliothek.gui.dock.extension.css.CssProperty;
-
 /**
  * This annotation documents a css property, it may depend on some class, method or field.
+ *
  * @author Benjamin Sigg
  */
 @Target({ElementType.TYPE, ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CssDocProperty {
-	/**
-	 * The type of the property that is documented, should be a {@link CssProperty}. If the type is not given,
-	 * then the documentation tool may make a best guess, by analyzing the annotated field, method or class.
-	 * @return the type of the property that is required
-	 */
-	public Class<?> type() default Object.class;
-	
-	/**
-	 * The path that will be used to access the documented property.
-	 * @return the path, should not be <code>null</code>
-	 */
-	public CssDocPath path() default @CssDocPath();
-	
-	/**
-	 * The name of the property itself.
-	 * @return the name of the property.
-	 */
-	public CssDocKey property();
-	
-	/**
-	 * Further description of the property, can be any kind of text.
-	 * @return further description, <code>null</code> is valid and just means "no description available".
-	 */
-	public CssDocText description() default @CssDocText();
+  /**
+   * The type of the property that is documented, should be a {@link CssProperty}. If the type is not given,
+   * then the documentation tool may make a best guess, by analyzing the annotated field, method or class.
+   *
+   * @return the type of the property that is required
+   */
+  public Class<?> type() default Object.class;
+
+  /**
+   * The path that will be used to access the documented property.
+   *
+   * @return the path, should not be <code>null</code>
+   */
+  public CssDocPath path() default @CssDocPath();
+
+  /**
+   * The name of the property itself.
+   *
+   * @return the name of the property.
+   */
+  public CssDocKey property();
+
+  /**
+   * Further description of the property, can be any kind of text.
+   *
+   * @return further description, <code>null</code> is valid and just means "no description available".
+   */
+  public CssDocText description() default @CssDocText();
 }

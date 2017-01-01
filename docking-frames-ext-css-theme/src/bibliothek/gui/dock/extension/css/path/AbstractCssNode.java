@@ -25,79 +25,81 @@
  */
 package bibliothek.gui.dock.extension.css.path;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import bibliothek.gui.dock.extension.css.CssNode;
 import bibliothek.gui.dock.extension.css.CssNodeListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This abstract implementation of a {@link CssNode} offers methods to store
  * and fire {@link CssNodeListener}. Further more several methods are implemented
  * telling that this node has no special properties.
+ *
  * @author Benjamin Sigg
  */
-public abstract class AbstractCssNode implements CssNode{
-	private List<CssNodeListener> listeners = new ArrayList<CssNodeListener>( 5 );
-	
-	@Override
-	public void addNodeListener( CssNodeListener listener ){
-		if( listener == null ){
-			throw new IllegalArgumentException( "listener must not be null" );
-		}
-		if( listeners.isEmpty() ){
-			bind();
-		}
-		listeners.add( listener );
-	}
-	
-	@Override
-	public void removeNodeListener( CssNodeListener listener ){
-		if( !listeners.isEmpty() ){
-			listeners.remove( listener );
-			if( listeners.isEmpty() ){
-				unbind();
-			}
-		}
-	}
-	
-	protected void fireNodeChanged(){
-		for( CssNodeListener listener : listeners.toArray( new CssNodeListener[ listeners.size() ] )){
-			listener.nodeChanged( this );
-		}
-	}
-	
-	/**
-	 * Called if the amount of observers is increased from <code>0</code> to <code>1</code>.
-	 */
-	protected abstract void bind();
-	
-	/**
-	 * Called if the amount of observers is decreased from <code>1</code> to <code>0</code>.
-	 */
-	protected abstract void unbind();
-	
-	/**
-	 * Tells whether at least one observer is registered.
-	 * @return whether this object is monitored
-	 */
-	protected boolean isBound(){
-		return !listeners.isEmpty();
-	}
-	
-	public String getIdentifier(){
-		return null;
-	}
-	
-	public String getProperty( String key ){
-		return null;
-	}
-	
-	public boolean hasClass( String className ){
-		return false;
-	}
-	
-	public boolean hasPseudoClass( String className ){
-		return false;
-	}
+public abstract class AbstractCssNode implements CssNode {
+  private List<CssNodeListener> listeners = new ArrayList<CssNodeListener>(5);
+
+  @Override
+  public void addNodeListener(CssNodeListener listener) {
+    if (listener == null) {
+      throw new IllegalArgumentException("listener must not be null");
+    }
+    if (listeners.isEmpty()) {
+      bind();
+    }
+    listeners.add(listener);
+  }
+
+  @Override
+  public void removeNodeListener(CssNodeListener listener) {
+    if (!listeners.isEmpty()) {
+      listeners.remove(listener);
+      if (listeners.isEmpty()) {
+        unbind();
+      }
+    }
+  }
+
+  protected void fireNodeChanged() {
+    for (CssNodeListener listener : listeners.toArray(new CssNodeListener[listeners.size()])) {
+      listener.nodeChanged(this);
+    }
+  }
+
+  /**
+   * Called if the amount of observers is increased from <code>0</code> to <code>1</code>.
+   */
+  protected abstract void bind();
+
+  /**
+   * Called if the amount of observers is decreased from <code>1</code> to <code>0</code>.
+   */
+  protected abstract void unbind();
+
+  /**
+   * Tells whether at least one observer is registered.
+   *
+   * @return whether this object is monitored
+   */
+  protected boolean isBound() {
+    return !listeners.isEmpty();
+  }
+
+  public String getIdentifier() {
+    return null;
+  }
+
+  public String getProperty(String key) {
+    return null;
+  }
+
+  public boolean hasClass(String className) {
+    return false;
+  }
+
+  public boolean hasPseudoClass(String className) {
+    return false;
+  }
 }

@@ -25,25 +25,27 @@
  */
 package bibliothek.extension.gui.dock.theme.eclipse.stack.tab;
 
-import javax.swing.border.Border;
-
 import bibliothek.gui.dock.station.stack.tab.layouting.TabPlacement;
+
+import javax.swing.border.Border;
 
 /**
  * This component shows a {@link Border} that was created by a {@link TabPainter}.
+ *
  * @author Benjamin Sigg
  */
 public interface BorderedComponent {
-	/**
-	 * Requests this component to call {@link TabPainter#getFullBorder(BorderedComponent, bibliothek.gui.DockController, bibliothek.gui.Dockable)}
-	 * again.
-	 */
-	public void updateFullBorder();
-	
-	/**
-	 * Tells at which side tabs are shown.
-	 * @return the side at which tabs are displayed or <code>null</code> if
-	 * this component does not show tabs
-	 */
-	public TabPlacement getDockTabPlacement();
+  /**
+   * Requests this component to call {@link TabPainter#getFullBorder(BorderedComponent, bibliothek.gui.DockController, bibliothek.gui.Dockable)}
+   * again.
+   */
+  public void updateFullBorder();
+
+  /**
+   * Tells at which side tabs are shown.
+   *
+   * @return the side at which tabs are displayed or <code>null</code> if
+   * this component does not show tabs
+   */
+  public TabPlacement getDockTabPlacement();
 }

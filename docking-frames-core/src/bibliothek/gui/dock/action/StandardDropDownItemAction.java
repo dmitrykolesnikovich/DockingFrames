@@ -30,8 +30,9 @@ import bibliothek.gui.dock.action.dropdown.DropDownItemAction;
 
 /**
  * A combination of a {@link DropDownItemAction} and a {@link StandardDockAction}.
+ *
  * @author Benjamin Sigg
  */
 public interface StandardDropDownItemAction extends DropDownItemAction, StandardDockAction {
-	// no new methods
+  // no new methods
 }

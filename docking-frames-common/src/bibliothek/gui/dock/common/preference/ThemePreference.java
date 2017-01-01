@@ -35,36 +35,38 @@ import bibliothek.util.Path;
 /**
  * A preference allowing the user to select one {@link DockTheme}. This preference
  * uses a {@link ThemeMap} to read and store its content.
+ *
  * @author Benjamin Sigg
  */
-public class ThemePreference extends DefaultPreference<String>{
-    private ThemeMap themes;
-    private DockController controller;
-    
-    /**
-     * Creates a new preference.
-     * @param properties the default settings
-     * @param themes a list of themes to show
-     */
-    public ThemePreference( DockProperties properties, ThemeMap themes ){
-        super( Path.TYPE_STRING_CHOICE_PATH, new Path( "dock.theme" ));
-        this.themes = themes;
-        this.controller = properties.getController();
-        
-        setValueInfo( new ThemeChoice( themes, controller ) );
-        
-        setLabelId( "preference.layout.theme.label" );
-        setDescriptionId( "preference.layout.theme.description" );
-        
-        setNatural( true );
-    }
-    
-    public void read() {
-        setValueInfo( new ThemeChoice( themes, controller ) );
-        setValue( themes.getSelectedKey() );
-    }
-    
-    public void write() {
-        themes.select( getValue() );
-    }
+public class ThemePreference extends DefaultPreference<String> {
+  private ThemeMap themes;
+  private DockController controller;
+
+  /**
+   * Creates a new preference.
+   *
+   * @param properties the default settings
+   * @param themes     a list of themes to show
+   */
+  public ThemePreference(DockProperties properties, ThemeMap themes) {
+    super(Path.TYPE_STRING_CHOICE_PATH, new Path("dock.theme"));
+    this.themes = themes;
+    this.controller = properties.getController();
+
+    setValueInfo(new ThemeChoice(themes, controller));
+
+    setLabelId("preference.layout.theme.label");
+    setDescriptionId("preference.layout.theme.description");
+
+    setNatural(true);
+  }
+
+  public void read() {
+    setValueInfo(new ThemeChoice(themes, controller));
+    setValue(themes.getSelectedKey());
+  }
+
+  public void write() {
+    themes.select(getValue());
+  }
 }

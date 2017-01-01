@@ -25,11 +25,7 @@
  */
 package bibliothek.gui.dock.extension.css.transition;
 
-import bibliothek.gui.dock.extension.css.CssItem;
-import bibliothek.gui.dock.extension.css.CssProperty;
-import bibliothek.gui.dock.extension.css.CssPropertyKey;
-import bibliothek.gui.dock.extension.css.CssRuleContent;
-import bibliothek.gui.dock.extension.css.CssScheme;
+import bibliothek.gui.dock.extension.css.*;
 
 /***
  * Represents a list of {@link TransitionalCssRuleContent} tied to one {@link CssItem}. The chain offers methods
@@ -37,38 +33,42 @@ import bibliothek.gui.dock.extension.css.CssScheme;
  * @author Benjamin Sigg
  */
 public interface TransitionalCssRuleChain {
-	/**
-	 * Initializes <code>transition</code> and will use it the next time {@link #transition(CssRuleContent)} is called. 
-	 * Multiple transitions may be initialized before a call to {@link #transition(CssRuleContent)}.
-	 * @param transitionKey the key of the {@link CssProperty} describing <code>transition</code>
-	 * @param transition the additional transition to handle
-	 * @return the rule that represents the current configuration of this chain, the same object may be used
-	 * all the time, or a new object may be created when necessary
-	 */
-	public TransitionalCssRuleContent animate( CssPropertyKey transitionKey, CssTransition<?> transition );
+  /**
+   * Initializes <code>transition</code> and will use it the next time {@link #transition(CssRuleContent)} is called.
+   * Multiple transitions may be initialized before a call to {@link #transition(CssRuleContent)}.
+   *
+   * @param transitionKey the key of the {@link CssProperty} describing <code>transition</code>
+   * @param transition    the additional transition to handle
+   * @return the rule that represents the current configuration of this chain, the same object may be used
+   * all the time, or a new object may be created when necessary
+   */
+  public TransitionalCssRuleContent animate(CssPropertyKey transitionKey, CssTransition<?> transition);
 
-	/**
-	 * Starts an transition for a transition of {@link #getRoot()} to <code>next</code>.
-	 * @param next the next set of rules to use, may be the same object as {@link #getRoot()}, can be <code>null</code>
-	 * @return the rule that represents the current configuration of this chain, the same object may be used
-	 * all the time, or a new object may be created when necessary
-	 */
-	public TransitionalCssRuleContent transition( CssRuleContent next );
-	
-	/**
-	 * Gets the item which is animated by this chain.
-	 * @return the animated item, not <code>null</code>
-	 */
-	public CssItem getItem();
-	
-	/**
-	 * Gets the scheme in whose realm this chain works.
-	 * @return the scheme, not <code>null</code>
-	 */
-	public CssScheme getScheme();
-	
-	/**
-	 * Releases all resources this chain acquired and stops any transition right now.
-	 */
-	public void destroy();
+  /**
+   * Starts an transition for a transition of {@link #getRoot()} to <code>next</code>.
+   *
+   * @param next the next set of rules to use, may be the same object as {@link #getRoot()}, can be <code>null</code>
+   * @return the rule that represents the current configuration of this chain, the same object may be used
+   * all the time, or a new object may be created when necessary
+   */
+  public TransitionalCssRuleContent transition(CssRuleContent next);
+
+  /**
+   * Gets the item which is animated by this chain.
+   *
+   * @return the animated item, not <code>null</code>
+   */
+  public CssItem getItem();
+
+  /**
+   * Gets the scheme in whose realm this chain works.
+   *
+   * @return the scheme, not <code>null</code>
+   */
+  public CssScheme getScheme();
+
+  /**
+   * Releases all resources this chain acquired and stops any transition right now.
+   */
+  public void destroy();
 }

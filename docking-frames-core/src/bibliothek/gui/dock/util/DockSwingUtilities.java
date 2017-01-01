@@ -25,35 +25,34 @@
  */
 package bibliothek.gui.dock.util;
 
-import java.awt.Component;
-import java.awt.Container;
-
-import javax.swing.JComponent;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * A set of methods useful for working with Swing.
+ *
  * @author Benjamin Sigg
  */
 public final class DockSwingUtilities {
-    private DockSwingUtilities(){
-        // nothing
+  private DockSwingUtilities() {
+    // nothing
+  }
+
+  /**
+   * Checks whether the tree of components, starting with <code>component</code>,
+   * contains elements that are not from Swing but from AWT.
+   *
+   * @param component the top of the tree
+   * @return <code>true</code> if at least one AWT component was found
+   */
+  public static boolean containsAWTComponents(Component component) {
+    if (component instanceof Container) {
+      Container container = (Container)component;
+      for (int i = 0, n = container.getComponentCount(); i < n; i++) {
+        if (containsAWTComponents(container.getComponent(i))) return true;
+      }
     }
 
-    /**
-     * Checks whether the tree of components, starting with <code>component</code>,
-     * contains elements that are not from Swing but from AWT.
-     * @param component the top of the tree
-     * @return <code>true</code> if at least one AWT component was found
-     */
-    public static boolean containsAWTComponents( Component component ){
-        if( component instanceof Container ){
-            Container container = (Container)component;
-            for( int i = 0, n = container.getComponentCount(); i<n; i++ ){
-                if( containsAWTComponents( container.getComponent( i ) ))
-                    return true;
-            }
-        }
-
-        return !(component instanceof JComponent);
-    }   
+    return !(component instanceof JComponent);
+  }
 }

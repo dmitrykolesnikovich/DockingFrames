@@ -32,51 +32,53 @@ import bibliothek.gui.dock.station.support.CombinerTarget;
 
 /**
  * This {@link StationDropOperation} represent the no-op, and will not do anything.
+ *
  * @author Benjamin Sigg
  */
-public class NoStationDropOperation implements StationDropOperation{
-	private DockStation target;
-	private Dockable item;
-	
-	/**
-	 * Create a new operation
-	 * @param target the station executing this no-operation 
-	 * @param item the item wich is not moved
-	 */
-	public NoStationDropOperation( DockStation target, Dockable item ){
-		this.target = target;
-		this.item = item;
-	}
-	
-	public void draw(){
-		// ignore
-	}
+public class NoStationDropOperation implements StationDropOperation {
+  private DockStation target;
+  private Dockable item;
 
-	public void destroy( StationDropOperation next ){
-		// ignore		
-	}
+  /**
+   * Create a new operation
+   *
+   * @param target the station executing this no-operation
+   * @param item   the item wich is not moved
+   */
+  public NoStationDropOperation(DockStation target, Dockable item) {
+    this.target = target;
+    this.item = item;
+  }
 
-	public boolean isMove(){
-		return true;
-	}
+  public void draw() {
+    // ignore
+  }
 
-	public void execute(){
-		// ignore		
-	}
+  public void destroy(StationDropOperation next) {
+    // ignore
+  }
 
-	public DockStation getTarget(){
-		return target;
-	}
+  public boolean isMove() {
+    return true;
+  }
 
-	public Dockable getItem(){
-		return item;
-	}
+  public void execute() {
+    // ignore
+  }
 
-	public CombinerTarget getCombination(){
-		return null;
-	}
+  public DockStation getTarget() {
+    return target;
+  }
 
-	public DisplayerCombinerTarget getDisplayerCombination(){
-		return null;
-	}
+  public Dockable getItem() {
+    return item;
+  }
+
+  public CombinerTarget getCombination() {
+    return null;
+  }
+
+  public DisplayerCombinerTarget getDisplayerCombination() {
+    return null;
+  }
 }

@@ -25,42 +25,47 @@
  */
 package bibliothek.gui.dock.support.util;
 
+import bibliothek.util.xml.XElement;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import bibliothek.util.xml.XElement;
-
 /**
  * A resource that is created by the application and is stored persistent
  * by the {@link ApplicationResourceManager}.
+ *
  * @author Benjamin Sigg
  */
 public interface ApplicationResource {
-    /**
-     * Transforms this resource in a stream of bytes.
-     * @param out the stream to write into
-     * @throws IOException if the operation can't be completed
-     */
-    public void write( DataOutputStream out ) throws IOException;
-    
-    /**
-     * Reads the content of this resource from a stream of bytes.
-     * @param in the stream to read from
-     * @throws IOException if the operation can't be finished
-     */
-    public void read( DataInputStream in ) throws IOException;
-    
-    /**
-     * Writes the contents of this resource in xml format.
-     * @param element the element to write into, the attributes of
-     * <code>element</code> should not be changed.
-     */
-    public void writeXML( XElement element );
-    
-    /**
-     * Reads the contents of this resource from a xml element.
-     * @param element the element to read from.
-     */
-    public void readXML( XElement element );
+  /**
+   * Transforms this resource in a stream of bytes.
+   *
+   * @param out the stream to write into
+   * @throws IOException if the operation can't be completed
+   */
+  public void write(DataOutputStream out) throws IOException;
+
+  /**
+   * Reads the content of this resource from a stream of bytes.
+   *
+   * @param in the stream to read from
+   * @throws IOException if the operation can't be finished
+   */
+  public void read(DataInputStream in) throws IOException;
+
+  /**
+   * Writes the contents of this resource in xml format.
+   *
+   * @param element the element to write into, the attributes of
+   *                <code>element</code> should not be changed.
+   */
+  public void writeXML(XElement element);
+
+  /**
+   * Reads the contents of this resource from a xml element.
+   *
+   * @param element the element to read from.
+   */
+  public void readXML(XElement element);
 }

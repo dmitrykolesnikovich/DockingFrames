@@ -27,20 +27,23 @@ package bibliothek.gui.dock.common.intern;
 
 /**
  * A listener that is added to a {@link CDockFrontend}.
+ *
  * @author Benjamin Sigg
  */
 public interface CDockFrontendListener {
-	/**
-	 * Informs that <code>frontend</code> is about to load <code>setting</code>.
-	 * @param frontend the caller of this method
-	 * @param setting the setting that will be loaded
-	 */
-	public void loading( CDockFrontend frontend, CSetting setting );
-	
-	/**
-	 * Informs that <code>frontend</code> did load <code>setting</code>.
-	 * @param frontend the caller of this method
-	 * @param setting the setting that was loaded
-	 */
-	public void loaded( CDockFrontend frontend, CSetting setting );
+  /**
+   * Informs that <code>frontend</code> is about to load <code>setting</code>.
+   *
+   * @param frontend the caller of this method
+   * @param setting  the setting that will be loaded
+   */
+  public void loading(CDockFrontend frontend, CSetting setting);
+
+  /**
+   * Informs that <code>frontend</code> did load <code>setting</code>.
+   *
+   * @param frontend the caller of this method
+   * @param setting  the setting that was loaded
+   */
+  public void loaded(CDockFrontend frontend, CSetting setting);
 }

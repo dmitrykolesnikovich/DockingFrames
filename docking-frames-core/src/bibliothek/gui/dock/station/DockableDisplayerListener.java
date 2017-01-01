@@ -29,19 +29,22 @@ package bibliothek.gui.dock.station;
 /**
  * A listener to a {@link DockableDisplayer}, gets informed if the
  * displayer is no longer valid.
+ *
  * @author Benjamin Sigg
  */
 public interface DockableDisplayerListener {
-	/**
-	 * Called by <code>displayer</code> if it is no longer valid
-	 * and should be replaced by another displayer.
-	 * @param displayer the displayer to replace
-	 */
-	public void discard( DockableDisplayer displayer );
-	
-	/**
-	 * Called if the result of {@link DockableDisplayer#getMoveableElement()} changed.
-	 * @param displayer the source of the event
-	 */
-	public void moveableElementChanged( DockableDisplayer displayer );
+  /**
+   * Called by <code>displayer</code> if it is no longer valid
+   * and should be replaced by another displayer.
+   *
+   * @param displayer the displayer to replace
+   */
+  public void discard(DockableDisplayer displayer);
+
+  /**
+   * Called if the result of {@link DockableDisplayer#getMoveableElement()} changed.
+   *
+   * @param displayer the source of the event
+   */
+  public void moveableElementChanged(DockableDisplayer displayer);
 }

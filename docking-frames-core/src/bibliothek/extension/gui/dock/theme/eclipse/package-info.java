@@ -1,5 +1,5 @@
 /**
- * Various graphical and logical components needed when the 
+ * Various graphical and logical components needed when the
  * {@link bibliothek.extension.gui.dock.theme.EclipseTheme}
  * is active.
  */

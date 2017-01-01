@@ -31,19 +31,22 @@ import bibliothek.gui.dock.title.DockTitle;
 
 /**
  * Definition of properties shared by the {@link RemoteRelocator} and by the {@link DirectRemoteRelocator}.
+ *
  * @author Benjamin Sigg
  */
 public interface BasicRemoteRelocator {
-    /**
-     * Sets the {@link DockTitle} which is dragged, the title might show up below the mouse.
-     * @param title the title that is dragged, can be <code>null</code>
-     */
-    public void setTitle( DockTitle title );
-    
-    /**
-     * Sets whether a {@link MovingImage} should appear during the drag and drop operation, the default
-     * value is <code>true</code>.
-     * @param imageWindow whether a preview of the moved {@link Dockable} should appear
-     */
-    public void setShowImageWindow( boolean imageWindow );
+  /**
+   * Sets the {@link DockTitle} which is dragged, the title might show up below the mouse.
+   *
+   * @param title the title that is dragged, can be <code>null</code>
+   */
+  public void setTitle(DockTitle title);
+
+  /**
+   * Sets whether a {@link MovingImage} should appear during the drag and drop operation, the default
+   * value is <code>true</code>.
+   *
+   * @param imageWindow whether a preview of the moved {@link Dockable} should appear
+   */
+  public void setShowImageWindow(boolean imageWindow);
 }

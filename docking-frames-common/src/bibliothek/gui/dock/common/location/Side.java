@@ -27,16 +27,21 @@ package bibliothek.gui.dock.common.location;
 
 /**
  * Describes a side of a rectangle.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public enum Side {
-	/** the side at the top */
-	NORTH,
-	/** the side at the bottom */
-	SOUTH, 
-	/** the side at the right */
-	EAST, 
-	/** the side at the left */
-	WEST
+  /**
+   * the side at the top
+   */
+  NORTH, /**
+   * the side at the bottom
+   */
+  SOUTH, /**
+   * the side at the right
+   */
+  EAST, /**
+   * the side at the left
+   */
+  WEST
 }

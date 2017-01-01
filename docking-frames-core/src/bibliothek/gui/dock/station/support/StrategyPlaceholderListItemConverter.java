@@ -31,40 +31,45 @@ import bibliothek.gui.Dockable;
 /**
  * This converter uses a {@link PlaceholderStrategy} to create new placeholders, but
  * does not convert placeholders back to dockables.
- * @author Benjamin Sigg
+ *
  * @param <D> the kind of item this converter is used for
+ * @author Benjamin Sigg
  */
 public class StrategyPlaceholderListItemConverter<D extends PlaceholderListItem<Dockable>> extends PlaceholderListItemAdapter<Dockable, D> {
-	/** the strategy to create placeholders */
-	private PlaceholderStrategy strategy;
-	
-	/**
-	 * Creates a new converter
-	 * @param strategy the strategy to create placeholders, can be <code>null</code>
-	 */
-	public StrategyPlaceholderListItemConverter( PlaceholderStrategy strategy ){
-		this.strategy = strategy;
-	}
-	
-	/**
-	 * Gets the strategy that is used for creating placeholders.
-	 * @return the strategy, can be <code>null</code>
-	 */
-	public PlaceholderStrategy getStrategy(){
-		return strategy;
-	}
-	
-	@Override
-	public ConvertedPlaceholderListItem convert( int index, D dockable ){
-		if( strategy != null && dockable != null ){
-			ConvertedPlaceholderListItem item = new ConvertedPlaceholderListItem();
-			item.setPlaceholder( strategy.getPlaceholderFor( dockable.asDockable() ) );
-			DockStation station = dockable.asDockable().asDockStation();
-			if( station != null ){
-				item.setPlaceholderMap( station.getPlaceholders() );
-			}
-			return item;
-		}	
-		return null;
-	}
+  /**
+   * the strategy to create placeholders
+   */
+  private PlaceholderStrategy strategy;
+
+  /**
+   * Creates a new converter
+   *
+   * @param strategy the strategy to create placeholders, can be <code>null</code>
+   */
+  public StrategyPlaceholderListItemConverter(PlaceholderStrategy strategy) {
+    this.strategy = strategy;
+  }
+
+  /**
+   * Gets the strategy that is used for creating placeholders.
+   *
+   * @return the strategy, can be <code>null</code>
+   */
+  public PlaceholderStrategy getStrategy() {
+    return strategy;
+  }
+
+  @Override
+  public ConvertedPlaceholderListItem convert(int index, D dockable) {
+    if (strategy != null && dockable != null) {
+      ConvertedPlaceholderListItem item = new ConvertedPlaceholderListItem();
+      item.setPlaceholder(strategy.getPlaceholderFor(dockable.asDockable()));
+      DockStation station = dockable.asDockable().asDockStation();
+      if (station != null) {
+        item.setPlaceholderMap(station.getPlaceholders());
+      }
+      return item;
+    }
+    return null;
+  }
 }

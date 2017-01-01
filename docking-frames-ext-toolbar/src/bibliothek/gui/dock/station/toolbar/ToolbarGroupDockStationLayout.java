@@ -37,84 +37,88 @@ import bibliothek.gui.dock.toolbar.expand.ExpandedState;
 
 /**
  * A layout object describing the contents of a {@link ToolbarGroupDockStation}.
- * 
+ *
  * @author Benjamin Sigg
  */
 public class ToolbarGroupDockStationLayout {
-	/** the encoded layout of a {@link ToolbarGroupDockStation} */
-	private final PlaceholderMap placeholders;
+  /**
+   * the encoded layout of a {@link ToolbarGroupDockStation}
+   */
+  private final PlaceholderMap placeholders;
 
-	/** whether the children are big or small */
-	private final ExpandedState state;
+  /**
+   * whether the children are big or small
+   */
+  private final ExpandedState state;
 
-	/**
-	 * Creates a new layout object.
-	 * 
-	 * @param map
-	 *            the encoded layout of a {@link ToolbarGroupDockStation}, not
-	 *            <code>null</code>
-	 * @param state
-	 *            whether the children are big or small
-	 */
-	public ToolbarGroupDockStationLayout( PlaceholderMap map, ExpandedState state ){
-		placeholders = map;
-		this.state = state;
-	}
+  /**
+   * Creates a new layout object.
+   *
+   * @param map   the encoded layout of a {@link ToolbarGroupDockStation}, not
+   *              <code>null</code>
+   * @param state whether the children are big or small
+   */
+  public ToolbarGroupDockStationLayout(PlaceholderMap map, ExpandedState state) {
+    placeholders = map;
+    this.state = state;
+  }
 
-	/**
-	 * Gets the encoded layout of a {@link ToolbarGroupDockStation}.
-	 * 
-	 * @return the encoded layout
-	 */
-	public PlaceholderMap getPlaceholders(){
-		return placeholders;
-	}
+  /**
+   * Stores <code>orientation</code> in <code>map</code>.
+   *
+   * @param map         the map to modify
+   * @param orientation the orientation to save
+   * @see #readOrientation(PlaceholderMap)
+   */
+  public static void writeOrientation(PlaceholderMap map, Orientation orientation) {
+    PlaceholderMap.Key key = map.newKey("group");
+    switch (orientation) {
+      case HORIZONTAL:
+        map.putString(key, "orientation", "horizontal");
+        break;
+      case VERTICAL:
+        map.putString(key, "orientation", "vertical");
+        break;
+    }
+  }
 
-	/**
-	 * Tells whether the children are big or small.
-	 * 
-	 * @return the size of the children
-	 */
-	public ExpandedState getState(){
-		return state;
-	}
-	
-	/**
-	 * Stores <code>orientation</code> in <code>map</code>.
-	 * @param map the map to modify
-	 * @param orientation the orientation to save
-	 * @see #readOrientation(PlaceholderMap)
-	 */
-	public static void writeOrientation( PlaceholderMap map, Orientation orientation ){
-		PlaceholderMap.Key key = map.newKey( "group" );
-		switch( orientation ){
-			case HORIZONTAL:
-				map.putString( key, "orientation", "horizontal" );
-				break;
-			case VERTICAL:
-				map.putString( key, "orientation", "vertical" );
-				break;
-		}
-	}
+  /**
+   * Reads an {@link Orientation} from <code>map</code>, this method assumes that the
+   * orientation was written with {@link #writeOrientation(PlaceholderMap, Orientation)}.
+   *
+   * @param map the map to read from
+   * @return the orientation or <code>null</code> if not found
+   * @see #writeOrientation(PlaceholderMap, Orientation)
+   */
+  public static Orientation readOrientation(PlaceholderMap map) {
+    PlaceholderMap.Key key = map.newKey("group");
+    String orientation = map.getString(key, "orientation");
+    if ("horizontal".equals(orientation)) {
+      return Orientation.HORIZONTAL;
+    }
+    else if ("vertical".equals(orientation)) {
+      return Orientation.VERTICAL;
+    }
+    else {
+      return null;
+    }
+  }
 
-	/**
-	 * Reads an {@link Orientation} from <code>map</code>, this method assumes that the
-	 * orientation was written with {@link #writeOrientation(PlaceholderMap, Orientation)}.
-	 * @param map the map to read from
-	 * @return the orientation or <code>null</code> if not found
-	 * @see #writeOrientation(PlaceholderMap, Orientation)
-	 */
-	public static Orientation readOrientation( PlaceholderMap map ){
-		PlaceholderMap.Key key = map.newKey( "group" );
-		String orientation = map.getString( key, "orientation" );
-		if( "horizontal".equals( orientation ) ) {
-			return Orientation.HORIZONTAL;
-		}
-		else if( "vertical".equals( orientation ) ) {
-			return Orientation.VERTICAL;
-		}
-		else{
-			return null;
-		}
-	}
+  /**
+   * Gets the encoded layout of a {@link ToolbarGroupDockStation}.
+   *
+   * @return the encoded layout
+   */
+  public PlaceholderMap getPlaceholders() {
+    return placeholders;
+  }
+
+  /**
+   * Tells whether the children are big or small.
+   *
+   * @return the size of the children
+   */
+  public ExpandedState getState() {
+    return state;
+  }
 }

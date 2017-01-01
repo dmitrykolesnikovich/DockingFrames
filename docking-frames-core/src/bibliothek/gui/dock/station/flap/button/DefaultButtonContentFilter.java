@@ -28,13 +28,14 @@ package bibliothek.gui.dock.station.flap.button;
 import bibliothek.gui.dock.action.DockAction;
 
 /**
- * This default implementation of a {@link ButtonContentFilter} searches for {@link DockAction}s which 
+ * This default implementation of a {@link ButtonContentFilter} searches for {@link DockAction}s which
  * have the annotation {@link ButtonContentAction} attached.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultButtonContentFilter implements ButtonContentFilter{
-	public boolean isButtonAction( DockAction action ){
-		ButtonContentAction button = action.getClass().getAnnotation( ButtonContentAction.class );
-		return button != null;
-	}
+public class DefaultButtonContentFilter implements ButtonContentFilter {
+  public boolean isButtonAction(DockAction action) {
+    ButtonContentAction button = action.getClass().getAnnotation(ButtonContentAction.class);
+    return button != null;
+  }
 }

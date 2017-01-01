@@ -29,25 +29,28 @@ import bibliothek.gui.dock.themes.ThemeFactory;
 
 /**
  * A listener to a {@link ThemeMap}, gets informed about changes of the map.
+ *
  * @author Benjamin Sigg
  */
 public interface ThemeMapListener {
 
-    /**
-     * Called when an entry was changed (includes adding or removing).
-     * @param map the source of the event
-     * @param index the location of the changed entry
-     * @param key the key of the changed entry
-     * @param oldFactory the old value of the entry, <code>null</code> if the entry was added
-     * @param newFactory the new value of the entry, <code>null</code> if the entry was removed
-     */
-    public void changed( ThemeMap map, int index, String key, ThemeFactory oldFactory, ThemeFactory newFactory );
-    
-    /**
-     * Called when the selected factory has been changed.
-     * @param map the source of the event
-     * @param oldKey the name of the old factory, can be <code>null</code>
-     * @param newKey the name of the new factory, can be <code>null</code>
-     */
-    public void selectionChanged( ThemeMap map, String oldKey, String newKey );
+  /**
+   * Called when an entry was changed (includes adding or removing).
+   *
+   * @param map        the source of the event
+   * @param index      the location of the changed entry
+   * @param key        the key of the changed entry
+   * @param oldFactory the old value of the entry, <code>null</code> if the entry was added
+   * @param newFactory the new value of the entry, <code>null</code> if the entry was removed
+   */
+  public void changed(ThemeMap map, int index, String key, ThemeFactory oldFactory, ThemeFactory newFactory);
+
+  /**
+   * Called when the selected factory has been changed.
+   *
+   * @param map    the source of the event
+   * @param oldKey the name of the old factory, can be <code>null</code>
+   * @param newKey the name of the new factory, can be <code>null</code>
+   */
+  public void selectionChanged(ThemeMap map, String oldKey, String newKey);
 }

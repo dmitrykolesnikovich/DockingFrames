@@ -25,60 +25,64 @@
  */
 package bibliothek.gui.dock.common;
 
+import bibliothek.util.xml.XElement;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import bibliothek.util.xml.XElement;
-
 /**
  * A factory that does not store anything.
- * @author Benjamin Sigg
+ *
  * @param <F> the type of dockable this factory handles.
+ * @author Benjamin Sigg
  */
-public abstract class EmptyMultipleCDockableFactory<F extends MultipleCDockable> implements MultipleCDockableFactory<F, MultipleCDockableLayout> {
-    /**
-     * Creates a new instance of the {@link MultipleCDockable} that is
-     * represented by this factory.
-     * @return the new dockable, might be <code>null</code>
-     */
-    public abstract F createDockable();
-    
-    public MultipleCDockableLayout create() {
-        return new EmptyLayout();
+public abstract class EmptyMultipleCDockableFactory<F extends MultipleCDockable>
+  implements MultipleCDockableFactory<F, MultipleCDockableLayout> {
+  /**
+   * Creates a new instance of the {@link MultipleCDockable} that is
+   * represented by this factory.
+   *
+   * @return the new dockable, might be <code>null</code>
+   */
+  public abstract F createDockable();
+
+  public MultipleCDockableLayout create() {
+    return new EmptyLayout();
+  }
+
+  public F read(MultipleCDockableLayout layout) {
+    return createDockable();
+  }
+
+  public MultipleCDockableLayout write(F dockable) {
+    return new EmptyLayout();
+  }
+
+  public boolean match(F dockable, MultipleCDockableLayout layout) {
+    return false;
+  }
+
+  /**
+   * A layout that does not contain any value
+   *
+   * @author Benjamin Sigg
+   */
+  private static class EmptyLayout implements MultipleCDockableLayout {
+    public void readStream(DataInputStream in) throws IOException {
+      // ignore
     }
 
-    public F read( MultipleCDockableLayout layout ) {
-        return createDockable();
+    public void readXML(XElement element) {
+      // ignore
     }
 
-    public MultipleCDockableLayout write( F dockable ) {
-        return new EmptyLayout();
+    public void writeStream(DataOutputStream out) throws IOException {
+      // ignore
     }
-    
-    public boolean match( F dockable, MultipleCDockableLayout layout ){
-    	return false;
+
+    public void writeXML(XElement element) {
+      // ignore
     }
-    
-    /**
-     * A layout that does not contain any value
-     * @author Benjamin Sigg
-     */
-    private static class EmptyLayout implements MultipleCDockableLayout{
-        public void readStream( DataInputStream in ) throws IOException {
-            // ignore
-        }
-
-        public void readXML( XElement element ) {
-            // ignore
-        }
-
-        public void writeStream( DataOutputStream out ) throws IOException {
-            // ignore
-        }
-
-        public void writeXML( XElement element ) {
-            // ignore
-        }
-    }
+  }
 }

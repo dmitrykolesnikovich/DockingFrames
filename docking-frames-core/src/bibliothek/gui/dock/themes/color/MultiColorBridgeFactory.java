@@ -25,44 +25,49 @@
  */
 package bibliothek.gui.dock.themes.color;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import bibliothek.gui.dock.themes.ColorBridgeFactory;
 import bibliothek.gui.dock.util.MultiUIBridge;
 import bibliothek.gui.dock.util.color.ColorManager;
 import bibliothek.gui.dock.util.color.MultiColorBridge;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A factory for a {@link MultiUIBridge}, this factory can contain other
  * factories to fill up the new <code>MultiUIBridge</code>.
+ *
  * @author Benjamin Sigg
  */
 public class MultiColorBridgeFactory implements ColorBridgeFactory {
-    /** the set of factories that will create a child of the MultiColorProvider */
-    private Map<String, ColorBridgeFactory> factories =
-        new HashMap<String, ColorBridgeFactory>();
-    
-    /**
-     * Sets the factory of a child of the {@link MultiUIBridge} which will
-     * be created by this factory.
-     * @param key the name of the child
-     * @param bridge the child or <code>null</code>
-     */
-    public void put( String key, ColorBridgeFactory bridge ){
-        if( bridge == null )
-            factories.remove( key );
-        else
-            factories.put( key, bridge );
+  /**
+   * the set of factories that will create a child of the MultiColorProvider
+   */
+  private Map<String, ColorBridgeFactory> factories = new HashMap<String, ColorBridgeFactory>();
+
+  /**
+   * Sets the factory of a child of the {@link MultiUIBridge} which will
+   * be created by this factory.
+   *
+   * @param key    the name of the child
+   * @param bridge the child or <code>null</code>
+   */
+  public void put(String key, ColorBridgeFactory bridge) {
+    if (bridge == null) {
+      factories.remove(key);
     }
-    
-    public MultiColorBridge create( ColorManager manager ) {
-        MultiColorBridge bridge = new MultiColorBridge( manager );
-        
-        for( Map.Entry<String, ColorBridgeFactory> entry : factories.entrySet()){
-            bridge.put( entry.getKey(), entry.getValue().create( manager ) );
-        }
-        
-        return bridge;
+    else {
+      factories.put(key, bridge);
     }
+  }
+
+  public MultiColorBridge create(ColorManager manager) {
+    MultiColorBridge bridge = new MultiColorBridge(manager);
+
+    for (Map.Entry<String, ColorBridgeFactory> entry : factories.entrySet()) {
+      bridge.put(entry.getKey(), entry.getValue().create(manager));
+    }
+
+    return bridge;
+  }
 }

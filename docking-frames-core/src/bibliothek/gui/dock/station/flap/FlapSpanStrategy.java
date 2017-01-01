@@ -32,41 +32,43 @@ import bibliothek.gui.dock.themes.ThemeManager;
 
 /**
  * Manages the {@link Span}s of a {@link FlapDockStation}.
+ *
  * @author Benjamin Sigg
  */
-public class FlapSpanStrategy extends ListSpanStrategy{
-	private FlapDockStation station;
-	private ButtonPane buttons;
-	
-	/**
-	 * Creates a new strategy.
-	 * @param station the owner of this strategy
-	 * @param buttons the panel showing all buttons
-	 */
-	public FlapSpanStrategy( FlapDockStation station, ButtonPane buttons ){
-		super( ThemeManager.SPAN_FACTORY + ".flap", station );
-		this.buttons = buttons;
-		this.station = station;
-	}
+public class FlapSpanStrategy extends ListSpanStrategy {
+  private FlapDockStation station;
+  private ButtonPane buttons;
 
-	@Override
-	protected int getNumberOfDockables(){
-		return buttons.getNumberOfButtons();
-	}
-	
-	@Override
-	protected boolean isHorizontal(){
-		switch( station.getDirection() ){
-			case NORTH:
-			case SOUTH:
-				return true;
-			default:
-				return false;
-		}
-	}
-	
-	@Override
-	protected void spanResized(){
-		buttons.spanResized();
-	}
+  /**
+   * Creates a new strategy.
+   *
+   * @param station the owner of this strategy
+   * @param buttons the panel showing all buttons
+   */
+  public FlapSpanStrategy(FlapDockStation station, ButtonPane buttons) {
+    super(ThemeManager.SPAN_FACTORY + ".flap", station);
+    this.buttons = buttons;
+    this.station = station;
+  }
+
+  @Override
+  protected int getNumberOfDockables() {
+    return buttons.getNumberOfButtons();
+  }
+
+  @Override
+  protected boolean isHorizontal() {
+    switch (station.getDirection()) {
+      case NORTH:
+      case SOUTH:
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  @Override
+  protected void spanResized() {
+    buttons.spanResized();
+  }
 }

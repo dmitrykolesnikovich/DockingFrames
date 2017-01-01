@@ -41,46 +41,48 @@ import bibliothek.gui.dock.toolbar.CToolbarItem;
 
 /**
  * A {@link ToolbarItemDockable} that is used as {@link CommonDockable} by a {@link CToolbarItem}.
+ *
  * @author Benjamin Sigg
  */
 public class CommonToolbarItemDockable extends ToolbarItemDockable implements CommonDockable {
-	private CToolbarItem item;
+  private CToolbarItem item;
 
-	/**
-	 * Creates a new dockable.
-	 * @param item the item which is represented by this dockable
-	 */
-	public CommonToolbarItemDockable( CToolbarItem item ){
-		this.item = item;
-	}
+  /**
+   * Creates a new dockable.
+   *
+   * @param item the item which is represented by this dockable
+   */
+  public CommonToolbarItemDockable(CToolbarItem item) {
+    this.item = item;
+  }
 
-	@Override
-	public CommonToolbarItemDockable asDockable(){
-		return this;
-	}
+  @Override
+  public CommonToolbarItemDockable asDockable() {
+    return this;
+  }
 
-	@Override
-	public CommonDockStation<?, ?> asDockStation(){
-		return null;
-	}
+  @Override
+  public CommonDockStation<?, ?> asDockStation() {
+    return null;
+  }
 
-	@Override
-	public CDockable getDockable(){
-		return item;
-	}
+  @Override
+  public CDockable getDockable() {
+    return item;
+  }
 
-	@Override
-	public CStation<?> getStation(){
-		return null;
-	}
+  @Override
+  public CStation<?> getStation() {
+    return null;
+  }
 
-	@Override
-	public DockActionSource[] getSources(){
-		return new DockActionSource[]{};
-	}
+  @Override
+  public DockActionSource[] getSources() {
+    return new DockActionSource[]{};
+  }
 
-	@Override
-	public String getFactoryID(){
-		return CommonSingleDockableFactory.BACKUP_FACTORY_ID;
-	}
+  @Override
+  public String getFactoryID() {
+    return CommonSingleDockableFactory.BACKUP_FACTORY_ID;
+  }
 }

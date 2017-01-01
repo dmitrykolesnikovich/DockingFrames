@@ -25,73 +25,80 @@
  */
 package bibliothek.gui.dock.control.relocator;
 
+import bibliothek.gui.dock.station.StationDropOperation;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import bibliothek.gui.dock.station.StationDropOperation;
 
 /**
  * An {@link Inserter} which consists of several child {@link Inserter}s. In any method the first
  * result that is not <code>null</code> is the result of the entire {@link Inserter}.
+ *
  * @author Benjamin Sigg
  */
-public class MultiInserter implements Inserter{
-	/** all the inserters that were added to <code>this</code> */
-	private List<Inserter> inserters = new ArrayList<Inserter>();
-	
-	/**
-	 * Adds a new {@link Inserter} to the list of {@link Inserter}s.
-	 * @param inserter the new item, not <code>null</code>
-	 */
-	public void add( Inserter inserter ){
-		if( inserter == null ){
-			throw new IllegalArgumentException( "inserter must not be null" );
-		}
-		inserters.add( inserter );
-	}
-	
-	/**
-	 * Removes <code>inserter</code> from the list of {@link Inserter}s.
-	 * @param inserter the item to remove
-	 */
-	public void remove( Inserter inserter ){
-		inserters.remove( inserter );
-	}
-	
-	/**
-	 * Gets the total number of {@link Inserter}s in this list of inserters.
-	 * @return the list of inserters
-	 */
-	public int size(){
-		return inserters.size();
-	}
-	
-	/**
-	 * Gets the <code>index</code>'th inserter in the list of inserters.
-	 * @param index the location
-	 * @return the inserter, not <code>null</code>
-	 */
-	public Inserter get( int index ){
-		return inserters.get( index );
-	}
-	
-	public StationDropOperation before( InserterSource source ){
-		for( Inserter inserter : inserters ){
-			StationDropOperation result = inserter.before( source );
-			if( result != null ){
-				return result;
-			}
-		}
-		return null;
-	}
+public class MultiInserter implements Inserter {
+  /**
+   * all the inserters that were added to <code>this</code>
+   */
+  private List<Inserter> inserters = new ArrayList<Inserter>();
 
-	public StationDropOperation after( InserterSource source ){
-		for( Inserter inserter : inserters ){
-			StationDropOperation result = inserter.after( source );
-			if( result != null ){
-				return result;
-			}
-		}
-		return null;
-	}
+  /**
+   * Adds a new {@link Inserter} to the list of {@link Inserter}s.
+   *
+   * @param inserter the new item, not <code>null</code>
+   */
+  public void add(Inserter inserter) {
+    if (inserter == null) {
+      throw new IllegalArgumentException("inserter must not be null");
+    }
+    inserters.add(inserter);
+  }
+
+  /**
+   * Removes <code>inserter</code> from the list of {@link Inserter}s.
+   *
+   * @param inserter the item to remove
+   */
+  public void remove(Inserter inserter) {
+    inserters.remove(inserter);
+  }
+
+  /**
+   * Gets the total number of {@link Inserter}s in this list of inserters.
+   *
+   * @return the list of inserters
+   */
+  public int size() {
+    return inserters.size();
+  }
+
+  /**
+   * Gets the <code>index</code>'th inserter in the list of inserters.
+   *
+   * @param index the location
+   * @return the inserter, not <code>null</code>
+   */
+  public Inserter get(int index) {
+    return inserters.get(index);
+  }
+
+  public StationDropOperation before(InserterSource source) {
+    for (Inserter inserter : inserters) {
+      StationDropOperation result = inserter.before(source);
+      if (result != null) {
+        return result;
+      }
+    }
+    return null;
+  }
+
+  public StationDropOperation after(InserterSource source) {
+    for (Inserter inserter : inserters) {
+      StationDropOperation result = inserter.after(source);
+      if (result != null) {
+        return result;
+      }
+    }
+    return null;
+  }
 }

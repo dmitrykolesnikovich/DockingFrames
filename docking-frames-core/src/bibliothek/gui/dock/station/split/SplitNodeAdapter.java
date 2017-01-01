@@ -27,26 +27,27 @@ package bibliothek.gui.dock.station.split;
 
 /**
  * An implementation of {@link SplitNodeVisitor}, all methods call {@link #handle(SplitNode)}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class SplitNodeAdapter implements SplitNodeVisitor{
-	public void handleLeaf( Leaf leaf ) {
-		handle( leaf );
-	}
-	
-	public void handleNode( Node node ) {
-		handle( node );
-	}
-	
-	public void handlePlaceholder( Placeholder placeholder ) {
-		handle( placeholder );
-	}
-	
-	public void handleRoot( Root root ) {
-		handle( root );
-	}
-	
-	protected void handle( SplitNode node ){
-		// do nothing
-	}
+public abstract class SplitNodeAdapter implements SplitNodeVisitor {
+  public void handleLeaf(Leaf leaf) {
+    handle(leaf);
+  }
+
+  public void handleNode(Node node) {
+    handle(node);
+  }
+
+  public void handlePlaceholder(Placeholder placeholder) {
+    handle(placeholder);
+  }
+
+  public void handleRoot(Root root) {
+    handle(root);
+  }
+
+  protected void handle(SplitNode node) {
+    // do nothing
+  }
 }

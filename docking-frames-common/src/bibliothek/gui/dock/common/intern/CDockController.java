@@ -34,44 +34,49 @@ import bibliothek.gui.dock.control.focus.FocusRequest;
 
 /**
  * The {@link DockController} that is usually used by a {@link CControl}.
+ *
  * @author Benjamin Sigg
  */
-public class CDockController extends DockController{
-	/** the control which uses this controller */
-	private CControl owner;
-	
-	/**
-	 * Creates a new controller
-	 * @param owner the owner of this controller
-	 */
-	public CDockController( CControl owner ){
-		this.owner = owner;
-	}
-	
-	/**
-	 * Creates a new controller
-	 * @param owner the owner of this controller
-	 * @param factory tells this controller how to initialize several subsystems
-	 */
-	public CDockController( CControl owner, DockControllerFactory factory ){
-		super( factory );
-		this.owner = owner;
-	}
-	
-	@Override
-	public void setFocusedDockable( FocusRequest request ){
-		if( request.getSource() != null ){
-			Dockable focusedDockable = request.getSource().getElement().asDockable();
-			CLocationModeManager states = owner.getLocationManager();
-			if( states != null && !states.isOnTransaction() && focusedDockable != null ){
-				states.ensureNotHidden( focusedDockable );
-			}
-		}
-		super.setFocusedDockable( request );
-	}
-	
-	@Override
-	protected void showCoreWarning(){
-		// do not show the warning
-	}
+public class CDockController extends DockController {
+  /**
+   * the control which uses this controller
+   */
+  private CControl owner;
+
+  /**
+   * Creates a new controller
+   *
+   * @param owner the owner of this controller
+   */
+  public CDockController(CControl owner) {
+    this.owner = owner;
+  }
+
+  /**
+   * Creates a new controller
+   *
+   * @param owner   the owner of this controller
+   * @param factory tells this controller how to initialize several subsystems
+   */
+  public CDockController(CControl owner, DockControllerFactory factory) {
+    super(factory);
+    this.owner = owner;
+  }
+
+  @Override
+  public void setFocusedDockable(FocusRequest request) {
+    if (request.getSource() != null) {
+      Dockable focusedDockable = request.getSource().getElement().asDockable();
+      CLocationModeManager states = owner.getLocationManager();
+      if (states != null && !states.isOnTransaction() && focusedDockable != null) {
+        states.ensureNotHidden(focusedDockable);
+      }
+    }
+    super.setFocusedDockable(request);
+  }
+
+  @Override
+  protected void showCoreWarning() {
+    // do not show the warning
+  }
 }

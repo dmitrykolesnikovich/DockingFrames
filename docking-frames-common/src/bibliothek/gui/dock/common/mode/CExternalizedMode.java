@@ -44,74 +44,81 @@ import bibliothek.gui.dock.support.mode.Mode;
 
 /**
  * Manages areas on which externalized dockables are shown.
+ *
  * @author Benjamin Sigg
  */
 public class CExternalizedMode extends ExternalizedMode<CExternalizedModeArea> implements CLocationMode {
-	/** The control in whose realm this externalized mode operates */
-	private CControl control;
-	
-	/** actions to externalize an element */
-	private LocationModeActionProvider externalize;
-	
-	/** actions to unmaximize an element */
-	private LocationModeActionProvider unmaximize;
-	
-	/**
-	 * Creates a new mode.
-	 * @param control the owner of this mode
-	 */
-	public CExternalizedMode( CControl control ){
-		this.control = control;
-		externalize = new KeyedLocationModeActionProvider( CDockable.ACTION_KEY_EXTERNALIZE, new CExternalizeAction( control ));
-		unmaximize = new KeyedLocationModeActionProvider( CDockable.ACTION_KEY_UNMAXIMIZE_EXTERNALIZED, new CUnmaximizeExternalizedAction( control ));
-		
-		setActionProvider( new MappingLocationModeActionProvider() {
-			protected LocationModeActionProvider getProvider( Dockable dockable, Mode<Location> currentMode, DockActionSource currentSource ){
-				if( currentMode instanceof CMaximizedMode ){
-					if( ((CMaximizedMode)currentMode).getUnmaximizedMode( dockable ) instanceof CExternalizedMode ){
-						return unmaximize;
-					}
-				}
-				return externalize;
-			}
-		});
-	}
+  /**
+   * The control in whose realm this externalized mode operates
+   */
+  private CControl control;
 
-	public CLocation getCLocation( Dockable dockable ){
-		CExternalizedModeArea area = get( dockable );
-		if( area == null )
-			return null;
-		
-		return area.getCLocation( dockable );
-	}
-	
-	public CLocation getCLocation( Dockable dockable, Location location ){
-		CModeArea area = get( location.getRoot() );
-		if( area == null )
-			return null;
-			
-		return area.getCLocation( dockable, location );
-	}
-	
-	public boolean isBasicMode(){
-		return true;
-	}
-	
-	public boolean respectWorkingAreas( DockStation station ){
-		CModeArea area = get( station );
-		if( area == null ){
-			return true;
-		}
-		if( area.getStation() != station ){
-			CStation<?> cstation = control.findStation( station );
-			if( cstation == null || cstation.getStation() != area.getStation() ){
-				return true;
-			}
-		}
-		return area.respectWorkingAreas();
-	}
-	
-	public LocationModePerspective createPerspective(){
-		return new CExternalizedModePerspective();
-	}
+  /**
+   * actions to externalize an element
+   */
+  private LocationModeActionProvider externalize;
+
+  /**
+   * actions to unmaximize an element
+   */
+  private LocationModeActionProvider unmaximize;
+
+  /**
+   * Creates a new mode.
+   *
+   * @param control the owner of this mode
+   */
+  public CExternalizedMode(CControl control) {
+    this.control = control;
+    externalize = new KeyedLocationModeActionProvider(CDockable.ACTION_KEY_EXTERNALIZE, new CExternalizeAction(control));
+    unmaximize =
+      new KeyedLocationModeActionProvider(CDockable.ACTION_KEY_UNMAXIMIZE_EXTERNALIZED, new CUnmaximizeExternalizedAction(control));
+
+    setActionProvider(new MappingLocationModeActionProvider() {
+      protected LocationModeActionProvider getProvider(Dockable dockable, Mode<Location> currentMode, DockActionSource currentSource) {
+        if (currentMode instanceof CMaximizedMode) {
+          if (((CMaximizedMode)currentMode).getUnmaximizedMode(dockable) instanceof CExternalizedMode) {
+            return unmaximize;
+          }
+        }
+        return externalize;
+      }
+    });
+  }
+
+  public CLocation getCLocation(Dockable dockable) {
+    CExternalizedModeArea area = get(dockable);
+    if (area == null) return null;
+
+    return area.getCLocation(dockable);
+  }
+
+  public CLocation getCLocation(Dockable dockable, Location location) {
+    CModeArea area = get(location.getRoot());
+    if (area == null) return null;
+
+    return area.getCLocation(dockable, location);
+  }
+
+  public boolean isBasicMode() {
+    return true;
+  }
+
+  public boolean respectWorkingAreas(DockStation station) {
+    CModeArea area = get(station);
+    if (area == null) {
+      return true;
+    }
+    if (area.getStation() != station) {
+      CStation<?> cstation = control.findStation(station);
+      if (cstation == null || cstation.getStation() != area.getStation()) {
+        return true;
+      }
+    }
+    return area.respectWorkingAreas();
+  }
+
+  public LocationModePerspective createPerspective() {
+    return new CExternalizedModePerspective();
+  }
 }

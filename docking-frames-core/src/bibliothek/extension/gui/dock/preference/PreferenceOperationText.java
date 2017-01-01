@@ -31,30 +31,37 @@ import bibliothek.util.Path;
 
 /**
  * A text that is used by a {@link PreferenceOperation}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class PreferenceOperationText extends TextValue{
-	/** what kind of {@link UIValue} this is */
-	public static final Path KIND_OPERATION = KIND_TEXT.append( "operation" );
-	
-	/** the element that is using this text */
-	private PreferenceOperation operation;
-	
-	/**
-	 * Creates a new text.
-	 * @param id the unique identifier of this text
-	 * @param operation the operation that is using this text
-	 */
-	public PreferenceOperationText( String id, PreferenceOperation operation ){
-		super( id, KIND_OPERATION );
-		this.operation = operation;
-	}
-	
-	/**
-	 * Gets the element that is using this text.
-	 * @return the element
-	 */
-	public PreferenceOperation getOperation(){
-		return operation;
-	}
+public abstract class PreferenceOperationText extends TextValue {
+  /**
+   * what kind of {@link UIValue} this is
+   */
+  public static final Path KIND_OPERATION = KIND_TEXT.append("operation");
+
+  /**
+   * the element that is using this text
+   */
+  private PreferenceOperation operation;
+
+  /**
+   * Creates a new text.
+   *
+   * @param id        the unique identifier of this text
+   * @param operation the operation that is using this text
+   */
+  public PreferenceOperationText(String id, PreferenceOperation operation) {
+    super(id, KIND_OPERATION);
+    this.operation = operation;
+  }
+
+  /**
+   * Gets the element that is using this text.
+   *
+   * @return the element
+   */
+  public PreferenceOperation getOperation() {
+    return operation;
+  }
 }

@@ -25,45 +25,45 @@
  */
 package bibliothek.extension.gui.dock.theme.eclipse;
 
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.dock.focus.DefaultDockableSelection;
 import bibliothek.gui.dock.focus.DockableSelection;
 import bibliothek.gui.dock.themes.color.DockableSelectionColor;
 import bibliothek.gui.dock.util.color.ColorCodes;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * A {@link DockableSelection} that uses its own border.
+ *
  * @author Benjamin Sigg
  */
-@ColorCodes( {"selection.border"} )
+@ColorCodes({"selection.border"})
 public class EclipseDockableSelection extends DefaultDockableSelection {
-    private DockableSelectionColor borderColor;
-   
-    /**
-     * Creates the new selection
-     */
-    public EclipseDockableSelection(){
-        borderColor = new DockableSelectionColor( this, "selection.border", Color.BLACK ){
-            @Override
-            protected void changed( Color oldColor, Color newColor ) {
-                setBorder( BorderFactory.createLineBorder( newColor ));
-            }
-        };
-    }
-    
-    @Override
-    public void open( DockController controller ) {
-        borderColor.setManager( controller.getColors() );
-        super.open( controller );
-    }
-    
-    @Override
-    public void close() {
-        borderColor.setManager( null );
-        super.close();
-    }
+  private DockableSelectionColor borderColor;
+
+  /**
+   * Creates the new selection
+   */
+  public EclipseDockableSelection() {
+    borderColor = new DockableSelectionColor(this, "selection.border", Color.BLACK) {
+      @Override
+      protected void changed(Color oldColor, Color newColor) {
+        setBorder(BorderFactory.createLineBorder(newColor));
+      }
+    };
+  }
+
+  @Override
+  public void open(DockController controller) {
+    borderColor.setManager(controller.getColors());
+    super.open(controller);
+  }
+
+  @Override
+  public void close() {
+    borderColor.setManager(null);
+    super.close();
+  }
 }

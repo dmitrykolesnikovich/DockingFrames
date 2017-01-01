@@ -33,21 +33,23 @@ import bibliothek.gui.dock.station.DisplayerFactory;
 /**
  * A {@link DisplayerFactory} that forwards all calls to the {@link DisplayerFactory}
  * of the current {@link DockTheme}.
+ *
  * @author Benjamin Sigg
  */
-public class ThemeDisplayerFactory implements DisplayerFactory{
-	private DockController controller;
-	
-	/**
-	 * Creates a new factory.
-	 * @param controller the owner of this factory
-	 */
-	public ThemeDisplayerFactory( DockController controller ){
-		this.controller = controller;
-	}
-	
-	public void request( DisplayerRequest request ){
-		controller.getTheme().getDisplayFactory( request.getParent() ).request( request );
-	}
+public class ThemeDisplayerFactory implements DisplayerFactory {
+  private DockController controller;
+
+  /**
+   * Creates a new factory.
+   *
+   * @param controller the owner of this factory
+   */
+  public ThemeDisplayerFactory(DockController controller) {
+    this.controller = controller;
+  }
+
+  public void request(DisplayerRequest request) {
+    controller.getTheme().getDisplayFactory(request.getParent()).request(request);
+  }
 
 }

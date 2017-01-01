@@ -31,60 +31,64 @@ import bibliothek.gui.dock.util.PropertyValue;
 
 /**
  * Information about a {@link TabPane} that gets laid out by a {@link AbstractTabLayoutManager}.
- * This class implements  {@link TabPaneListener}, the listener is added and removed from the 
+ * This class implements  {@link TabPaneListener}, the listener is added and removed from the
  * {@link TabPane} automatically.
+ *
  * @author Benjamin Sigg
  */
-public class AbstractTabLayoutManagerPane implements TabPaneListener{
-	/** the panel that is laid out */
-	private TabPane pane;
-	
-	private PropertyValue<Boolean> useSmallMinimumSize = new PropertyValue<Boolean>( TabPane.USE_SMALL_MINIMUM_SIZE ) {
-		@Override
-		protected void valueChanged( Boolean oldValue, Boolean newValue ) {
-			// nothing
-		}
-	};
-	
-	/**
-	 * Creates a new info.
-	 * @param pane the owner
-	 */
-	public AbstractTabLayoutManagerPane( TabPane pane ){
-		if( pane == null )
-			throw new IllegalStateException( "pane must not be null" );
-		this.pane = pane;
-	}
-	
-	/**
-	 * Gets the owner of this info.
-	 * @return the owner, not <code>null</code>
-	 */
-	public TabPane getPane(){
-		return pane;
-	}
+public class AbstractTabLayoutManagerPane implements TabPaneListener {
+  /**
+   * the panel that is laid out
+   */
+  private TabPane pane;
 
-	public void added( TabPane pane, Dockable dockable ){
-		// ignore
-	}
+  private PropertyValue<Boolean> useSmallMinimumSize = new PropertyValue<Boolean>(TabPane.USE_SMALL_MINIMUM_SIZE) {
+    @Override
+    protected void valueChanged(Boolean oldValue, Boolean newValue) {
+      // nothing
+    }
+  };
 
-	public void infoComponentChanged( TabPane pane, LonelyTabPaneComponent oldInfo, LonelyTabPaneComponent newInfo ){
-		// ignore
-	}
+  /**
+   * Creates a new info.
+   *
+   * @param pane the owner
+   */
+  public AbstractTabLayoutManagerPane(TabPane pane) {
+    if (pane == null) throw new IllegalStateException("pane must not be null");
+    this.pane = pane;
+  }
 
-	public void removed( TabPane pane, Dockable dockable ){
-		// ignore
-	}
+  /**
+   * Gets the owner of this info.
+   *
+   * @return the owner, not <code>null</code>
+   */
+  public TabPane getPane() {
+    return pane;
+  }
 
-	public void selectionChanged( TabPane pane ){
-		// ignore
-	}
-	
-	public void controllerChanged( TabPane pane, DockController controller ){
-		useSmallMinimumSize.setProperties( controller );
-	}
-	
-	protected boolean isUseSmallMinimumSize(){
-		return useSmallMinimumSize.getValue();
-	}
+  public void added(TabPane pane, Dockable dockable) {
+    // ignore
+  }
+
+  public void infoComponentChanged(TabPane pane, LonelyTabPaneComponent oldInfo, LonelyTabPaneComponent newInfo) {
+    // ignore
+  }
+
+  public void removed(TabPane pane, Dockable dockable) {
+    // ignore
+  }
+
+  public void selectionChanged(TabPane pane) {
+    // ignore
+  }
+
+  public void controllerChanged(TabPane pane, DockController controller) {
+    useSmallMinimumSize.setProperties(controller);
+  }
+
+  protected boolean isUseSmallMinimumSize() {
+    return useSmallMinimumSize.getValue();
+  }
 }

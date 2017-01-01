@@ -31,35 +31,38 @@ import java.util.List;
 /**
  * An abstract implementation of {@link LookAndFeelColors}, handles all the
  * tasks that are related to the management of the {@link LookAndFeelColorsListener}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class AbstractLookAndFeelColors implements LookAndFeelColors{
-    protected List<LookAndFeelColorsListener> listeners = new ArrayList<LookAndFeelColorsListener>();
-    
-    public void addListener( LookAndFeelColorsListener listener ) {
-        if( listener == null )
-            throw new IllegalArgumentException( "listener must not be null" );
-        listeners.add( listener );
+public abstract class AbstractLookAndFeelColors implements LookAndFeelColors {
+  protected List<LookAndFeelColorsListener> listeners = new ArrayList<LookAndFeelColorsListener>();
+
+  public void addListener(LookAndFeelColorsListener listener) {
+    if (listener == null) throw new IllegalArgumentException("listener must not be null");
+    listeners.add(listener);
+  }
+
+  public void removeListener(LookAndFeelColorsListener listener) {
+    listeners.remove(listener);
+  }
+
+  /**
+   * Fires an event that the color <code>key</code> has changed.
+   *
+   * @param key the key of the changed color
+   */
+  protected void fireColorChanged(String key) {
+    for (LookAndFeelColorsListener listener : listeners.toArray(new LookAndFeelColorsListener[listeners.size()])) {
+      listener.colorChanged(key);
     }
-    
-    public void removeListener( LookAndFeelColorsListener listener ) {
-        listeners.remove( listener );
+  }
+
+  /**
+   * Fires an event that some colors changed
+   */
+  protected void fireColorsChanged() {
+    for (LookAndFeelColorsListener listener : listeners.toArray(new LookAndFeelColorsListener[listeners.size()])) {
+      listener.colorsChanged();
     }
-    
-    /**
-     * Fires an event that the color <code>key</code> has changed.
-     * @param key the key of the changed color
-     */
-    protected void fireColorChanged( String key ){
-        for( LookAndFeelColorsListener listener : listeners.toArray( new LookAndFeelColorsListener[ listeners.size() ] ))
-            listener.colorChanged( key );
-    }
-    
-    /**
-     * Fires an event that some colors changed
-     */
-    protected void fireColorsChanged(){
-        for( LookAndFeelColorsListener listener : listeners.toArray( new LookAndFeelColorsListener[ listeners.size() ] ))
-            listener.colorsChanged();
-    }
+  }
 }

@@ -31,96 +31,110 @@ import bibliothek.gui.dock.common.intern.CDockable;
 /**
  * A listener added to a {@link CDockable}, this listener will get informed
  * about property changes of {@link CDockable}.
+ *
  * @author Benjamin Sigg
  * @see CDockableStateListener
  */
 public interface CDockablePropertyListener {
-    /**
-     * Called when the {@link CDockable#isCloseable() closeable}-property has 
-     * changed.
-     * @param dockable the source of the event
-     */
-    public void closeableChanged( CDockable dockable );
-    
-    /**
-     * Called when the {@link CDockable#isMinimizable() minimizable}-property
-     * has changed.
-     * @param dockable the source of the event
-     */
-    public void minimizableChanged( CDockable dockable );
-    
-    /**
-     * Called when the {@link CDockable#isMaximizable() maximizable}-property
-     * has changed.
-     * @param dockable the source of the event
-     */
-    public void maximizableChanged( CDockable dockable );
-    
-    /**
-     * Called when the {@link CDockable#isExternalizable() externalizable}-property
-     * has changed.
-     * @param dockable the source of the event
-     */
-    public void externalizableChanged( CDockable dockable );
-    
-    /**
-     * Called when the {@link CDockable#isNormalizeable()}-property has changed.
-     * @param dockable the source of the event
-     */
-    public void normalizeableChanged( CDockable dockable );
-    
-    /**
-     * Called when the {@link CDockable#isResizeLockedHorizontally()} or
-     * {@link CDockable#isResizeLockedVertically()}-property has changed.
-     * @param dockable the source of the event
-     */
-    public void resizeLockedChanged( CDockable dockable );
-    
-    /**
-     * Called when the {@link CDockable#isMinimizedHold()}-property has changed.
-     * @param dockable the source of the event
-     */
-    public void stickyChanged( CDockable dockable );
-    
+  /**
+   * Called when the {@link CDockable#isCloseable() closeable}-property has
+   * changed.
+   *
+   * @param dockable the source of the event
+   */
+  public void closeableChanged(CDockable dockable);
 
-    /**
-     * Called when the property {@link CDockable#getMinimizedSize()} has changed. 
-     * @param dockable the source of the event
-     */
-    public void minimizeSizeChanged( CDockable dockable );
-    
-    /**
-     * Called when the property {@link CDockable#isMinimizedHoldSwitchable()} has changed.
-     * @param dockable the source of the event
-     */
-    public void stickySwitchableChanged( CDockable dockable );
-    
-    /**
-     * Called when the property {@link CDockable#isTitleShown()} has changed.
-     * @param dockable the source of the event
-     */
-    public void titleShownChanged( CDockable dockable );
-    
-    /**
-     * Called when the property {@link CDockable#isSingleTabShown()} has changed.
-     * @param dockable the source of the event
-     */
-    public void singleTabShownChanged( CDockable dockable );
-    
-    /**
-     * Called when an action that is returned by {@link CDockable#getAction(String)}
-     * has been exchanged.
-     * @param dockable the source of the event
-     * @param key the name of the exchanged action
-     * @param oldAction the old action, can be <code>null</code>
-     * @param newAction the new action, can be <code>null</code>
-     */
-    public void actionChanged( CDockable dockable, String key, CAction oldAction, CAction newAction );
-    
-    /**
-     * Called if the result of {@link CDockable#isEnabled(bibliothek.gui.dock.common.EnableableItem)} changed
-     * for any argument.
-     * @param dockable the source of the event
-     */
-    public void enabledChanged( CDockable dockable );
+  /**
+   * Called when the {@link CDockable#isMinimizable() minimizable}-property
+   * has changed.
+   *
+   * @param dockable the source of the event
+   */
+  public void minimizableChanged(CDockable dockable);
+
+  /**
+   * Called when the {@link CDockable#isMaximizable() maximizable}-property
+   * has changed.
+   *
+   * @param dockable the source of the event
+   */
+  public void maximizableChanged(CDockable dockable);
+
+  /**
+   * Called when the {@link CDockable#isExternalizable() externalizable}-property
+   * has changed.
+   *
+   * @param dockable the source of the event
+   */
+  public void externalizableChanged(CDockable dockable);
+
+  /**
+   * Called when the {@link CDockable#isNormalizeable()}-property has changed.
+   *
+   * @param dockable the source of the event
+   */
+  public void normalizeableChanged(CDockable dockable);
+
+  /**
+   * Called when the {@link CDockable#isResizeLockedHorizontally()} or
+   * {@link CDockable#isResizeLockedVertically()}-property has changed.
+   *
+   * @param dockable the source of the event
+   */
+  public void resizeLockedChanged(CDockable dockable);
+
+  /**
+   * Called when the {@link CDockable#isMinimizedHold()}-property has changed.
+   *
+   * @param dockable the source of the event
+   */
+  public void stickyChanged(CDockable dockable);
+
+
+  /**
+   * Called when the property {@link CDockable#getMinimizedSize()} has changed.
+   *
+   * @param dockable the source of the event
+   */
+  public void minimizeSizeChanged(CDockable dockable);
+
+  /**
+   * Called when the property {@link CDockable#isMinimizedHoldSwitchable()} has changed.
+   *
+   * @param dockable the source of the event
+   */
+  public void stickySwitchableChanged(CDockable dockable);
+
+  /**
+   * Called when the property {@link CDockable#isTitleShown()} has changed.
+   *
+   * @param dockable the source of the event
+   */
+  public void titleShownChanged(CDockable dockable);
+
+  /**
+   * Called when the property {@link CDockable#isSingleTabShown()} has changed.
+   *
+   * @param dockable the source of the event
+   */
+  public void singleTabShownChanged(CDockable dockable);
+
+  /**
+   * Called when an action that is returned by {@link CDockable#getAction(String)}
+   * has been exchanged.
+   *
+   * @param dockable  the source of the event
+   * @param key       the name of the exchanged action
+   * @param oldAction the old action, can be <code>null</code>
+   * @param newAction the new action, can be <code>null</code>
+   */
+  public void actionChanged(CDockable dockable, String key, CAction oldAction, CAction newAction);
+
+  /**
+   * Called if the result of {@link CDockable#isEnabled(bibliothek.gui.dock.common.EnableableItem)} changed
+   * for any argument.
+   *
+   * @param dockable the source of the event
+   */
+  public void enabledChanged(CDockable dockable);
 }

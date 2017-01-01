@@ -25,37 +25,39 @@
  */
 package bibliothek.extension.gui.dock.theme.flat;
 
-import javax.swing.BorderFactory;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.station.stack.menu.ButtonCombinedMenu;
 import bibliothek.gui.dock.themes.basic.action.BasicButtonModel;
 import bibliothek.gui.dock.themes.basic.action.BasicTrigger;
 import bibliothek.gui.dock.themes.basic.action.buttons.BasicMiniButton;
 
+import javax.swing.*;
+
 /**
  * A menu that contains a list of {@link Dockable}s to select.
+ *
  * @author Benjamin Sigg
  */
-public class FlatMenu extends ButtonCombinedMenu<BasicMiniButton>{
-	/**
-	 * Creates a new {@link FlatMenu}.
-	 * @param parent the panel for which this menu is used
-	 */
-	public FlatMenu( FlatTabPane parent ){
-		super( parent, parent.getMenuHandler() );
-	}
-	
-	@Override
-	protected BasicMiniButton createButton( BasicTrigger trigger ){
-        BasicMiniButton button = new BasicMiniButton( trigger, null );
-        button.setMouseOverBorder( BorderFactory.createEtchedBorder() );
-        button.setNormalSelectedBorder( BorderFactory.createEtchedBorder() );
-        return button;
-	}
-	
-	@Override
-	protected BasicButtonModel getModel( BasicMiniButton button ){
-		return button.getModel();
-	}
+public class FlatMenu extends ButtonCombinedMenu<BasicMiniButton> {
+  /**
+   * Creates a new {@link FlatMenu}.
+   *
+   * @param parent the panel for which this menu is used
+   */
+  public FlatMenu(FlatTabPane parent) {
+    super(parent, parent.getMenuHandler());
+  }
+
+  @Override
+  protected BasicMiniButton createButton(BasicTrigger trigger) {
+    BasicMiniButton button = new BasicMiniButton(trigger, null);
+    button.setMouseOverBorder(BorderFactory.createEtchedBorder());
+    button.setNormalSelectedBorder(BorderFactory.createEtchedBorder());
+    return button;
+  }
+
+  @Override
+  protected BasicButtonModel getModel(BasicMiniButton button) {
+    return button.getModel();
+  }
 }

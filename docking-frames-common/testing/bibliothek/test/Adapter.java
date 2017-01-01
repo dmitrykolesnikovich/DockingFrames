@@ -27,12 +27,11 @@ package bibliothek.test;
 
 /**
  * Used to convert some object into another kind of object.
- * 
- * @author Benjamin Sigg
  *
  * @param <S> the source type
  * @param <D> the destination type
+ * @author Benjamin Sigg
  */
-public interface Adapter<S,D> {
-	public D adapt( S value );
+public interface Adapter<S, D> {
+  public D adapt(S value);
 }

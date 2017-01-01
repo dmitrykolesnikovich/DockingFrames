@@ -1,4 +1,3 @@
-
 /*
  * Bibliothek - DockingFrames
  * Library built on Java/Swing, allows the user to "drag and drop"
@@ -37,36 +36,37 @@ import bibliothek.util.Path;
 /**
  * A preference for {@link FlapDockStation#BUTTON_CONTENT}. Only a few selected settings are available through
  * this preference.
+ *
  * @author Benjamin Sigg
  * @deprecated replaced by {@link ButtonContentPreferenceModel}
  */
 @Deprecated
-public class ButtonContentPreference extends DefaultPreference<String>{
-	private DockProperties properties;
-	private ButtonContentChoice choice;
-	
-	/**
-	 * Creates a new preference.
-	 * @param properties the properties to read or write from
-	 * @param path the path of this property
-	 */
-	public ButtonContentPreference( DockProperties properties, Path path ){
-		super( Path.TYPE_STRING_CHOICE_PATH, path );
-		if( properties == null )
-			throw new IllegalArgumentException( "properties must not be null" );
-		
-		choice = new ButtonContentChoice( properties );
-		setValueInfo( choice );
-		setLabelId( "preference.layout.ButtonContentPreference.text" );
-		setDescriptionId( "preference.layout.ButtonContentPreference.description" );
-		this.properties = properties;
-	}
-	
-	public void read() {
-		setValue( choice.valueToIdentifier( properties.get( FlapDockStation.BUTTON_CONTENT, Priority.CLIENT )));
-	}
-	
-	public void write() {
-		properties.setOrRemove( FlapDockStation.BUTTON_CONTENT, choice.identifierToValue( getValue() ), Priority.CLIENT );
-	}
+public class ButtonContentPreference extends DefaultPreference<String> {
+  private DockProperties properties;
+  private ButtonContentChoice choice;
+
+  /**
+   * Creates a new preference.
+   *
+   * @param properties the properties to read or write from
+   * @param path       the path of this property
+   */
+  public ButtonContentPreference(DockProperties properties, Path path) {
+    super(Path.TYPE_STRING_CHOICE_PATH, path);
+    if (properties == null) throw new IllegalArgumentException("properties must not be null");
+
+    choice = new ButtonContentChoice(properties);
+    setValueInfo(choice);
+    setLabelId("preference.layout.ButtonContentPreference.text");
+    setDescriptionId("preference.layout.ButtonContentPreference.description");
+    this.properties = properties;
+  }
+
+  public void read() {
+    setValue(choice.valueToIdentifier(properties.get(FlapDockStation.BUTTON_CONTENT, Priority.CLIENT)));
+  }
+
+  public void write() {
+    properties.setOrRemove(FlapDockStation.BUTTON_CONTENT, choice.identifierToValue(getValue()), Priority.CLIENT);
+  }
 }

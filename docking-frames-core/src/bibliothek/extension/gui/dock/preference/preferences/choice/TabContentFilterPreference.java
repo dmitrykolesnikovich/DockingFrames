@@ -33,18 +33,20 @@ import bibliothek.util.Path;
 
 /**
  * Lets the user choose the value of {@link StackDockStation#TAB_CONTENT_FILTER}.
+ *
  * @author Benjamin Sigg
  */
-public class TabContentFilterPreference extends ChoiceDockPropertyPreference<TabContentFilter>{
-	/**
-	 * Creates a new choice.
-	 * @param properties the properties to read and write
-	 * @param path the unique identifier of this preference
-	 */
-	public TabContentFilterPreference( DockProperties properties, Path path ){
-		super( properties, StackDockStation.TAB_CONTENT_FILTER, path, new TabContentFilterChoice( properties ) );
-		
-		setLabelId( "preference.layout.tabcontentfilter.label" );
-		setDescriptionId( "preference.layout.tabcontentfilter.description" );
-	}
+public class TabContentFilterPreference extends ChoiceDockPropertyPreference<TabContentFilter> {
+  /**
+   * Creates a new choice.
+   *
+   * @param properties the properties to read and write
+   * @param path       the unique identifier of this preference
+   */
+  public TabContentFilterPreference(DockProperties properties, Path path) {
+    super(properties, StackDockStation.TAB_CONTENT_FILTER, path, new TabContentFilterChoice(properties));
+
+    setLabelId("preference.layout.tabcontentfilter.label");
+    setDescriptionId("preference.layout.tabcontentfilter.description");
+  }
 }

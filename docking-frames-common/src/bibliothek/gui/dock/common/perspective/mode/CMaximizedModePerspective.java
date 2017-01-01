@@ -25,9 +25,6 @@
  */
 package bibliothek.gui.dock.common.perspective.mode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import bibliothek.gui.dock.common.mode.CMaximizedMode;
 import bibliothek.gui.dock.common.mode.ExtendedMode;
 import bibliothek.gui.dock.facile.mode.Location;
@@ -35,64 +32,72 @@ import bibliothek.gui.dock.facile.mode.MaximizedModeSetting;
 import bibliothek.gui.dock.support.mode.ModeSetting;
 import bibliothek.util.Path;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Represents a {@link CMaximizedMode}.
+ *
  * @author Benjamin Sigg
  */
-public class CMaximizedModePerspective extends AbstractModePerspective<CMaximizedModeAreaPerspective>{
-	/** unforwarded information about the last mode some dockable was in before maximization */
-	private Map<String, Path> lastMaximizedMode = new HashMap<String, Path>();
-	/** unforwarded information about the last location some dockable was in before maximization */
-	private Map<String, Location> lastMaximizedLocation = new HashMap<String, Location>();
-	
-	public ExtendedMode getIdentifier(){
-		return ExtendedMode.MAXIMIZED;
-	}
-	
-	@Override
-	public void add( CMaximizedModeAreaPerspective location ){
-		super.add( location );
-		forward( location );
-	}
-	
-	private void forward( CMaximizedModeAreaPerspective area ){
-		Path mode = lastMaximizedMode.remove( area.getUniqueId() );
-		Location location = lastMaximizedLocation.remove( area.getUniqueId() );
-		
-		area.setUnmaximize( mode, location );
-	}
-	
-	@Override
-	public void readSetting( ModeSetting<Location> setting ){
-		if( setting instanceof MaximizedModeSetting ){
-			lastMaximizedLocation.clear();
-			lastMaximizedMode.clear();
-			
-			lastMaximizedLocation.putAll( ((MaximizedModeSetting)setting).getLastMaximizedLocation() );
-			lastMaximizedMode.putAll( ((MaximizedModeSetting)setting).getLastMaximizedMode() );
-			
-			for( int i = 0, n = getAreaCount(); i < n; i++ ){
-				forward( getArea( i ));
-			}
-		}
-	}
-	
-	@Override
-	public void writeSetting( ModeSetting<Location> setting ){
-		if( setting instanceof MaximizedModeSetting ){
-			MaximizedModeSetting modeSetting = (MaximizedModeSetting)setting;
-			
-			for( int i = 0, n = getAreaCount(); i<n; i++ ){
-				CMaximizedModeAreaPerspective area = getArea( i );
-				Path mode = area.getUnmaximizeMode();
-				if( mode != null ){
-					modeSetting.getLastMaximizedMode().put( area.getUniqueId(), mode );
-					Location location = area.getUnmaximizeLocation();
-					if( location != null ){
-						modeSetting.getLastMaximizedLocation().put( area.getUniqueId(), location );
-					}
-				}
-			}
-		}
-	}
+public class CMaximizedModePerspective extends AbstractModePerspective<CMaximizedModeAreaPerspective> {
+  /**
+   * unforwarded information about the last mode some dockable was in before maximization
+   */
+  private Map<String, Path> lastMaximizedMode = new HashMap<String, Path>();
+  /**
+   * unforwarded information about the last location some dockable was in before maximization
+   */
+  private Map<String, Location> lastMaximizedLocation = new HashMap<String, Location>();
+
+  public ExtendedMode getIdentifier() {
+    return ExtendedMode.MAXIMIZED;
+  }
+
+  @Override
+  public void add(CMaximizedModeAreaPerspective location) {
+    super.add(location);
+    forward(location);
+  }
+
+  private void forward(CMaximizedModeAreaPerspective area) {
+    Path mode = lastMaximizedMode.remove(area.getUniqueId());
+    Location location = lastMaximizedLocation.remove(area.getUniqueId());
+
+    area.setUnmaximize(mode, location);
+  }
+
+  @Override
+  public void readSetting(ModeSetting<Location> setting) {
+    if (setting instanceof MaximizedModeSetting) {
+      lastMaximizedLocation.clear();
+      lastMaximizedMode.clear();
+
+      lastMaximizedLocation.putAll(((MaximizedModeSetting)setting).getLastMaximizedLocation());
+      lastMaximizedMode.putAll(((MaximizedModeSetting)setting).getLastMaximizedMode());
+
+      for (int i = 0, n = getAreaCount(); i < n; i++) {
+        forward(getArea(i));
+      }
+    }
+  }
+
+  @Override
+  public void writeSetting(ModeSetting<Location> setting) {
+    if (setting instanceof MaximizedModeSetting) {
+      MaximizedModeSetting modeSetting = (MaximizedModeSetting)setting;
+
+      for (int i = 0, n = getAreaCount(); i < n; i++) {
+        CMaximizedModeAreaPerspective area = getArea(i);
+        Path mode = area.getUnmaximizeMode();
+        if (mode != null) {
+          modeSetting.getLastMaximizedMode().put(area.getUniqueId(), mode);
+          Location location = area.getUnmaximizeLocation();
+          if (location != null) {
+            modeSetting.getLastMaximizedLocation().put(area.getUniqueId(), location);
+          }
+        }
+      }
+    }
+  }
 }

@@ -34,15 +34,17 @@ import bibliothek.gui.dock.support.mode.Mode;
 /**
  * An action used to change the {@link Mode} of a {@link Dockable} to
  * the {@link ExternalizedMode}.
+ *
  * @author Benjamin Sigg
  */
-public class ExternalizedModeAction extends LocationModeAction{
-	/**
-	 * Creates a new action.
-	 * @param controller the controller in whose realm this action is used
-	 * @param mode the mode which is applied
-	 */
-	public ExternalizedModeAction( DockController controller, ExternalizedMode<?> mode ){
-		super( controller, mode, ExternalizedMode.ICON_IDENTIFIER, "externalize.in", "externalize.in.tooltip", CControl.KEY_GOTO_EXTERNALIZED );
-	}
+public class ExternalizedModeAction extends LocationModeAction {
+  /**
+   * Creates a new action.
+   *
+   * @param controller the controller in whose realm this action is used
+   * @param mode       the mode which is applied
+   */
+  public ExternalizedModeAction(DockController controller, ExternalizedMode<?> mode) {
+    super(controller, mode, ExternalizedMode.ICON_IDENTIFIER, "externalize.in", "externalize.in.tooltip", CControl.KEY_GOTO_EXTERNALIZED);
+  }
 }

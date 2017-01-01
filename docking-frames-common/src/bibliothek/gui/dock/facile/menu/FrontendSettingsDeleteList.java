@@ -31,20 +31,22 @@ import bibliothek.gui.dock.support.menu.FrontendSettingsList;
 /**
  * Shows the settings of a {@link DockFrontend} and allows the user to
  * delete some settings.
+ *
  * @author Benjamin Sigg
  */
 public class FrontendSettingsDeleteList extends FrontendSettingsList {
 
-	/**
-	 * Creates a new list.
-	 * @param frontend the frontend from which settings might be deleted
-	 */
-	public FrontendSettingsDeleteList( DockFrontend frontend ){
-		super( frontend );
-	}
+  /**
+   * Creates a new list.
+   *
+   * @param frontend the frontend from which settings might be deleted
+   */
+  public FrontendSettingsDeleteList(DockFrontend frontend) {
+    super(frontend);
+  }
 
-	@Override
-	protected void action( String name ){
-		getFrontend().delete( name );
-	}
+  @Override
+  protected void action(String name) {
+    getFrontend().delete(name);
+  }
 }

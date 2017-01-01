@@ -29,13 +29,15 @@ package bibliothek.test;
  * An {@link Inspectable} is an object that provides access to an {@link Inspect}.<br>
  * <b>Note: </b> This interface is meant for debugging purposes only, subclasses are not
  * required to provide an efficient implementation or even care for memory leaks.
+ *
  * @author Benjamin Sigg
  */
 public interface Inspectable {
-	/**
-	 * Gets internal information about this {@link Inspectable}.
-	 * @param graph the graph for which the {@link Inspect} is used
-	 * @return a new instance of of an {@link Inspect} object
-	 */
-	public Inspect inspect( InspectionGraph graph );
+  /**
+   * Gets internal information about this {@link Inspectable}.
+   *
+   * @param graph the graph for which the {@link Inspect} is used
+   * @return a new instance of of an {@link Inspect} object
+   */
+  public Inspect inspect(InspectionGraph graph);
 }

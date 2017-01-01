@@ -37,17 +37,17 @@ import bibliothek.gui.dock.station.toolbar.ToolbarDockStationFactory;
 import bibliothek.gui.dock.station.toolbar.ToolbarGroupDockStationFactory;
 import bibliothek.gui.dock.station.toolbar.ToolbarItemDockableFactory;
 
-public class ToolbarDockFrontendExtension implements DockFrontendExtension{
-	@Override
-	public void install( DockFrontend frontend ){
-		frontend.registerFactory( new ToolbarContainerDockStationFactory() );
-		frontend.registerFactory( new ToolbarGroupDockStationFactory() );
-		frontend.registerFactory( new ToolbarDockStationFactory() );
-		frontend.registerFactory( new ToolbarItemDockableFactory() );
-	}
+public class ToolbarDockFrontendExtension implements DockFrontendExtension {
+  @Override
+  public void install(DockFrontend frontend) {
+    frontend.registerFactory(new ToolbarContainerDockStationFactory());
+    frontend.registerFactory(new ToolbarGroupDockStationFactory());
+    frontend.registerFactory(new ToolbarDockStationFactory());
+    frontend.registerFactory(new ToolbarItemDockableFactory());
+  }
 
-	@Override
-	public void uninstall( DockFrontend frontend ){
-		// ignore
-	}
+  @Override
+  public void uninstall(DockFrontend frontend) {
+    // ignore
+  }
 }

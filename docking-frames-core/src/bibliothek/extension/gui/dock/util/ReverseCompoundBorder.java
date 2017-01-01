@@ -25,45 +25,42 @@
  */
 package bibliothek.extension.gui.dock.util;
 
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Insets;
-
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
+import java.awt.*;
 
 /**
  * Behaves like its super-class but the painting order of the
  * borders is reversed.
+ *
  * @author Benjamin Sigg
  */
-public class ReverseCompoundBorder extends CompoundBorder{
-	public ReverseCompoundBorder( Border outsideBorder, Border insideBorder ){
-		super( outsideBorder, insideBorder );
-	}
+public class ReverseCompoundBorder extends CompoundBorder {
+  public ReverseCompoundBorder(Border outsideBorder, Border insideBorder) {
+    super(outsideBorder, insideBorder);
+  }
 
-	@Override
-	public void paintBorder( Component c, Graphics g, int x, int y, int width, int height ){
-		Insets  nextInsets;
-		int px, py, pw, ph;
+  @Override
+  public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+    Insets nextInsets;
+    int px, py, pw, ph;
 
-		px = x;
-		py = y;
-		pw = width;
-		ph = height;
+    px = x;
+    py = y;
+    pw = width;
+    ph = height;
 
-		if( outsideBorder != null ) {
-			nextInsets = outsideBorder.getBorderInsets(c);
-			px += nextInsets.left;
-			py += nextInsets.top;
-			pw = pw - nextInsets.right - nextInsets.left;
-			ph = ph - nextInsets.bottom - nextInsets.top;
-		}
-		if( insideBorder != null ) 
-			insideBorder.paintBorder( c, g, px, py, pw, ph );		
-		
-		if( outsideBorder != null ) {
-			outsideBorder.paintBorder(c, g, x, y, width, height );		
-		}
-	}
+    if (outsideBorder != null) {
+      nextInsets = outsideBorder.getBorderInsets(c);
+      px += nextInsets.left;
+      py += nextInsets.top;
+      pw = pw - nextInsets.right - nextInsets.left;
+      ph = ph - nextInsets.bottom - nextInsets.top;
+    }
+    if (insideBorder != null) insideBorder.paintBorder(c, g, px, py, pw, ph);
+
+    if (outsideBorder != null) {
+      outsideBorder.paintBorder(c, g, x, y, width, height);
+    }
+  }
 }

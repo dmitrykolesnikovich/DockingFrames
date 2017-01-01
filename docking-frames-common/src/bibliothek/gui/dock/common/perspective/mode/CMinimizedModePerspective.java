@@ -30,10 +30,11 @@ import bibliothek.gui.dock.common.mode.ExtendedMode;
 
 /**
  * Represents a {@link CMinimizedMode}.
+ *
  * @author Benjamin Sigg
  */
-public class CMinimizedModePerspective extends AbstractModePerspective<CModeAreaPerspective>{
-	public ExtendedMode getIdentifier(){
-		return ExtendedMode.MINIMIZED;
-	}
+public class CMinimizedModePerspective extends AbstractModePerspective<CModeAreaPerspective> {
+  public ExtendedMode getIdentifier() {
+    return ExtendedMode.MINIMIZED;
+  }
 }

@@ -25,44 +25,44 @@
  */
 package bibliothek.paint;
 
-import java.awt.image.BufferedImage;
-
-import javax.swing.Icon;
-
 import bibliothek.demonstration.Demonstration;
 import bibliothek.demonstration.Monitor;
 import bibliothek.paint.util.Resources;
 
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+
 /**
  * A class allowing to startup this application in a secure
  * environment.
+ *
  * @author Benjamin Sigg
  */
 public class Webstart implements Demonstration {
-    public String getHTML() {
-    	return Resources.getText();
-    }
+  public static void main(String[] args) {
+    Core core = new Core(true);
+    core.startup(null);
+  }
 
-    public Icon getIcon() {
-    	return Resources.getIcon( "application" );
-    }
+  public String getHTML() {
+    return Resources.getText();
+  }
 
-    public BufferedImage getImage() {
-    	return Resources.getScreenshot();
-    }
+  public Icon getIcon() {
+    return Resources.getIcon("application");
+  }
 
-    public String getName() {
-        return "Paint";
-    }
+  public BufferedImage getImage() {
+    return Resources.getScreenshot();
+  }
 
-    public static void main( String[] args ){
-    	Core core = new Core( true );
-        core.startup( null );
-	}
-    
-    public void show( Monitor monitor ) {
-        Core core = new Core( true );
-        core.startup( monitor );
-    }
+  public String getName() {
+    return "Paint";
+  }
+
+  public void show(Monitor monitor) {
+    Core core = new Core(true);
+    core.startup(monitor);
+  }
 
 }

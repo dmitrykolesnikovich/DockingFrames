@@ -25,85 +25,89 @@
  */
 package bibliothek.gui.dock.extension.css.property;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import bibliothek.gui.dock.extension.css.CssProperty;
 import bibliothek.gui.dock.extension.css.CssPropertyContainer;
 import bibliothek.gui.dock.extension.css.CssPropertyContainerListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This implementation of {@link CssPropertyContainer} offers methods to store observers
  * and fire events to them.
+ *
  * @author Benjamin Sigg
  */
-public abstract class AbstractCssPropertyContainer implements CssPropertyContainer{
-	private List<CssPropertyContainerListener> listeners = new ArrayList<CssPropertyContainerListener>( 3 );
-	
-	/**
-	 * Called if the number of observers increased from <code>0</code> to <code>1</code>.
-	 */
-	protected abstract void bind();
-	
-	/**
-	 * Called if the number of observers decreased from <code>1</code> to <code>0</code>.
-	 */
-	protected abstract void unbind();
-	
-	/**
-	 * Tells whether there is at least one observer
-	 * @return whether at least one observer has been added
-	 */
-	protected boolean isBound(){
-		return !listeners.isEmpty();
-	}
-	
-	/**
-	 * Calls {@link CssPropertyContainerListener#propertyAdded(CssPropertyContainer, String, CssProperty)} on
-	 * all known observers.
-	 * @param key the key of the new property
-	 * @param property the new property
-	 */
-	protected void firePropertyAdded( String key, CssProperty<?> property ){
-		for( CssPropertyContainerListener listener : listeners() ){
-			listener.propertyAdded( this, key, property );
-		}
-	}
-	
-	/**
-	 * CAlls {@link CssPropertyContainerListener#propertyRemoved(CssPropertyContainer, String, CssProperty)} on
-	 * all known observers.
-	 * @param key the key of the removed property
-	 * @param property the removed property
-	 */
-	protected void firePropertyRemoved( String key, CssProperty<?> property ){
-		for( CssPropertyContainerListener listener : listeners() ){
-			listener.propertyRemoved( this, key, property );
-		}
-	}
-	
-	private CssPropertyContainerListener[] listeners(){
-		return listeners.toArray( new CssPropertyContainerListener[ listeners.size() ] );
-	}
-	
-	@Override
-	public void addPropertyContainerListener( CssPropertyContainerListener listener ){
-		if( listener == null ){
-			throw new IllegalArgumentException( "listener must not be null" );
-		}
-		if( listeners.isEmpty() ){
-			bind();
-		}
-		listeners.add( listener );
-	}
-	
-	@Override
-	public void removePropertyContainerListener( CssPropertyContainerListener listener ){
-		if( !listeners.isEmpty() ){
-			listeners.remove( listener );
-			if( listeners.isEmpty() ){
-				unbind();
-			}
-		}
-	}
+public abstract class AbstractCssPropertyContainer implements CssPropertyContainer {
+  private List<CssPropertyContainerListener> listeners = new ArrayList<CssPropertyContainerListener>(3);
+
+  /**
+   * Called if the number of observers increased from <code>0</code> to <code>1</code>.
+   */
+  protected abstract void bind();
+
+  /**
+   * Called if the number of observers decreased from <code>1</code> to <code>0</code>.
+   */
+  protected abstract void unbind();
+
+  /**
+   * Tells whether there is at least one observer
+   *
+   * @return whether at least one observer has been added
+   */
+  protected boolean isBound() {
+    return !listeners.isEmpty();
+  }
+
+  /**
+   * Calls {@link CssPropertyContainerListener#propertyAdded(CssPropertyContainer, String, CssProperty)} on
+   * all known observers.
+   *
+   * @param key      the key of the new property
+   * @param property the new property
+   */
+  protected void firePropertyAdded(String key, CssProperty<?> property) {
+    for (CssPropertyContainerListener listener : listeners()) {
+      listener.propertyAdded(this, key, property);
+    }
+  }
+
+  /**
+   * CAlls {@link CssPropertyContainerListener#propertyRemoved(CssPropertyContainer, String, CssProperty)} on
+   * all known observers.
+   *
+   * @param key      the key of the removed property
+   * @param property the removed property
+   */
+  protected void firePropertyRemoved(String key, CssProperty<?> property) {
+    for (CssPropertyContainerListener listener : listeners()) {
+      listener.propertyRemoved(this, key, property);
+    }
+  }
+
+  private CssPropertyContainerListener[] listeners() {
+    return listeners.toArray(new CssPropertyContainerListener[listeners.size()]);
+  }
+
+  @Override
+  public void addPropertyContainerListener(CssPropertyContainerListener listener) {
+    if (listener == null) {
+      throw new IllegalArgumentException("listener must not be null");
+    }
+    if (listeners.isEmpty()) {
+      bind();
+    }
+    listeners.add(listener);
+  }
+
+  @Override
+  public void removePropertyContainerListener(CssPropertyContainerListener listener) {
+    if (!listeners.isEmpty()) {
+      listeners.remove(listener);
+      if (listeners.isEmpty()) {
+        unbind();
+      }
+    }
+  }
 }

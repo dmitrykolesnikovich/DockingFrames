@@ -25,71 +25,75 @@
  */
 package bibliothek.gui.dock.control;
 
-import java.awt.Component;
-import java.awt.event.AWTEventListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseWheelListener;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.DockStation;
 
+import java.awt.*;
+import java.awt.event.*;
+
 /**
- * The {@link GlobalMouseDispatcher} is used to keep track of the location of mouse on the screen. In a 
+ * The {@link GlobalMouseDispatcher} is used to keep track of the location of mouse on the screen. In a
  * normal desktop application this is equivalent of installing an {@link AWTEventListener}. In a secure
  * environment the {@link GlobalMouseDispatcher} is restricted to register events that are forwarded by {@link Component}s
  * to it. Any {@link DockStation} forwards its events to this class.
+ *
  * @author Benjamin Sigg
  */
 public interface GlobalMouseDispatcher {
-	/**
-	 * Called by various {@link Component}s when they register a {@link MouseEvent}. Calls to this method are only
-	 * necessary when in a {@link DockController#isRestrictedEnvironment() restricted environment}. The  
-	 * {@link GlobalMouseDispatcher} may filter the events, but usually the event is forwarded to all
-	 * registered {@link MouseListener}s. 
-	 * @param event the event to forward
-	 */
-	public void dispatch( MouseEvent event );
-	
-	/**
-	 * Adds the observer <code>listener</code> to this dispatcher.
-	 * @param listener the new listener, not <code>null</code>
-	 */
-	public void addMouseListener( MouseListener listener );
-	
-	/**
-	 * Removes the observer <code>listener</code> from this dispatcher.
-	 * @param listener the listener to remove
-	 */
-	public void removeMouseListener( MouseListener listener );
-	
-	/**
-	 * Adds the observer <code>listener</code> to this dispatcher.
-	 * @param listener the new listener, not <code>null</code>
-	 */
-	public void addMouseMotionListener( MouseMotionListener listener );
+  /**
+   * Called by various {@link Component}s when they register a {@link MouseEvent}. Calls to this method are only
+   * necessary when in a {@link DockController#isRestrictedEnvironment() restricted environment}. The
+   * {@link GlobalMouseDispatcher} may filter the events, but usually the event is forwarded to all
+   * registered {@link MouseListener}s.
+   *
+   * @param event the event to forward
+   */
+  public void dispatch(MouseEvent event);
 
-	/**
-	 * Removes the observer <code>listener</code> from this dispatcher.
-	 * @param listener the listener to remove
-	 */
-	public void removeMouseMotionListener( MouseMotionListener listener );
+  /**
+   * Adds the observer <code>listener</code> to this dispatcher.
+   *
+   * @param listener the new listener, not <code>null</code>
+   */
+  public void addMouseListener(MouseListener listener);
 
-	/**
-	 * Adds the observer <code>listener</code> to this dispatcher.
-	 * @param listener the new listener, not <code>null</code>
-	 */
-	public void addMouseWheelListener( MouseWheelListener listener );
-	
-	/**
-	 * Removes the observer <code>listener</code> from this dispatcher.
-	 * @param listener the listener to remove
-	 */
-	public void removeMouseWheelListener( MouseWheelListener listener );
-	
-	/**
-	 * Releases any resources this dispatcher holds.
-	 */
-	public void kill();
+  /**
+   * Removes the observer <code>listener</code> from this dispatcher.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeMouseListener(MouseListener listener);
+
+  /**
+   * Adds the observer <code>listener</code> to this dispatcher.
+   *
+   * @param listener the new listener, not <code>null</code>
+   */
+  public void addMouseMotionListener(MouseMotionListener listener);
+
+  /**
+   * Removes the observer <code>listener</code> from this dispatcher.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeMouseMotionListener(MouseMotionListener listener);
+
+  /**
+   * Adds the observer <code>listener</code> to this dispatcher.
+   *
+   * @param listener the new listener, not <code>null</code>
+   */
+  public void addMouseWheelListener(MouseWheelListener listener);
+
+  /**
+   * Removes the observer <code>listener</code> from this dispatcher.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeMouseWheelListener(MouseWheelListener listener);
+
+  /**
+   * Releases any resources this dispatcher holds.
+   */
+  public void kill();
 }

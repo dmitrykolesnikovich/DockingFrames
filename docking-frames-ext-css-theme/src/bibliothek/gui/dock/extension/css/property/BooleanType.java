@@ -25,20 +25,20 @@
  */
 package bibliothek.gui.dock.extension.css.property;
 
-import bibliothek.gui.dock.extension.css.CssType;
 import bibliothek.gui.dock.extension.css.CssDeclarationValue;
+import bibliothek.gui.dock.extension.css.CssType;
 import bibliothek.gui.dock.extension.css.transition.MiddleTransitionalCssProperty;
 import bibliothek.gui.dock.extension.css.transition.TransitionalCssProperty;
 
-public class BooleanType implements CssType<Boolean>{
-	@Override
-	public Boolean convert( CssDeclarationValue value ){
-		String text = value.getSingleValue();
-		return "true".equals( text ) || "t".equals( text ) || "1".equals( text ) || "on".equals( text ) || "yes".equals( text );
-	}
-	
-	@Override
-	public TransitionalCssProperty<Boolean> createTransition(){
-		return new MiddleTransitionalCssProperty<Boolean>();
-	}
+public class BooleanType implements CssType<Boolean> {
+  @Override
+  public Boolean convert(CssDeclarationValue value) {
+    String text = value.getSingleValue();
+    return "true".equals(text) || "t".equals(text) || "1".equals(text) || "on".equals(text) || "yes".equals(text);
+  }
+
+  @Override
+  public TransitionalCssProperty<Boolean> createTransition() {
+    return new MiddleTransitionalCssProperty<Boolean>();
+  }
 }

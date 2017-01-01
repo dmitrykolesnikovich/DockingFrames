@@ -30,12 +30,14 @@ import bibliothek.gui.dock.common.action.CAction;
 
 /**
  * A {@link DockAction} that is used by a {@link CAction}.
+ *
  * @author Benjamin Sigg
  */
-public interface CommonDockAction extends DockAction{
-	/**
-	 * Gets the {@link CAction} which wraps this {@link DockAction}.
-	 * @return the wrapping action, not <code>null</code>
-	 */
-	public CAction getAction();
+public interface CommonDockAction extends DockAction {
+  /**
+   * Gets the {@link CAction} which wraps this {@link DockAction}.
+   *
+   * @return the wrapping action, not <code>null</code>
+   */
+  public CAction getAction();
 }

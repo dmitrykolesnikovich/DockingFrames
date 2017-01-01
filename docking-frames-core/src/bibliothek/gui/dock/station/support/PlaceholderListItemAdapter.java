@@ -29,23 +29,23 @@ import bibliothek.gui.Dockable;
 
 /**
  * An adapter for {@link PlaceholderListItemConverter}, all methods implemented by this adapter do nothing.
- * @author Benjamin Sigg
  *
  * @param <D> the kind of object that represents a {@link Dockable}
  * @param <P> the kind of data a subclass handles
+ * @author Benjamin Sigg
  */
 public abstract class PlaceholderListItemAdapter<D, P extends PlaceholderListItem<D>> implements PlaceholderListItemConverter<D, P> {
-	public P convert( ConvertedPlaceholderListItem item ){
-		// ignore
-		return null;
-	}
-	
-	public ConvertedPlaceholderListItem convert(int index, P dockable){
-		// ignore
-		return null;
-	}
-	
-	public void added(P dockable){
-		// ignore
-	}
+  public P convert(ConvertedPlaceholderListItem item) {
+    // ignore
+    return null;
+  }
+
+  public ConvertedPlaceholderListItem convert(int index, P dockable) {
+    // ignore
+    return null;
+  }
+
+  public void added(P dockable) {
+    // ignore
+  }
 }

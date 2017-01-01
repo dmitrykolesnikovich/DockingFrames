@@ -39,14 +39,16 @@ import bibliothek.gui.dock.common.intern.CDockable;
  * <li>When saving a layout, only the unique id of a {@link SingleCDockable} is written out. Everything else has
  * to be saved by the client itself.</li>
  * </ul>
+ *
  * @author Benjamin Sigg
  */
-public interface SingleCDockable extends CDockable{
-	
-	/**
-	 * Gets the id of this dockable. The id is unique if among all dockables
-	 * which are added to the same {@link CControl}.
-	 * @return the unique id
-	 */
-	public String getUniqueId();
+public interface SingleCDockable extends CDockable {
+
+  /**
+   * Gets the id of this dockable. The id is unique if among all dockables
+   * which are added to the same {@link CControl}.
+   *
+   * @return the unique id
+   */
+  public String getUniqueId();
 }

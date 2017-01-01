@@ -30,8 +30,9 @@ import bibliothek.gui.dock.facile.mode.ExternalizedModeArea;
 /**
  * Combination of {@link ExternalizedModeArea} and {@link CModeArea}, does not
  * specify new methods.
+ *
  * @author Benjamin Sigg
  */
-public interface CExternalizedModeArea extends ExternalizedModeArea, CModeArea{
+public interface CExternalizedModeArea extends ExternalizedModeArea, CModeArea {
 
 }

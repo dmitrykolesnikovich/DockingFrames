@@ -25,9 +25,6 @@
  */
 package bibliothek.gui.dock.common.intern.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.StackDockStation;
@@ -39,68 +36,72 @@ import bibliothek.gui.dock.common.intern.CommonDockable;
 import bibliothek.gui.dock.displayer.SingleTabDecider;
 import bibliothek.gui.dock.event.SingleTabDeciderListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Observes and handles the single-tab property of {@link CDockable}s.
+ *
  * @author Benjamin Sigg
  */
 public class CommonSingleTabDecider implements SingleTabDecider {
-	private List<SingleTabDeciderListener> listeners = new ArrayList<SingleTabDeciderListener>();
-	private CControl control;
-	
-	private CDockablePropertyListener dockableListener = new CDockableAdapter(){
-		@Override
-		public void singleTabShownChanged( CDockable cdockable ){
-			Dockable dockable = cdockable.intern();
+  private List<SingleTabDeciderListener> listeners = new ArrayList<SingleTabDeciderListener>();
+  private CControl control;
 
-			for( SingleTabDeciderListener listener : listeners() ){
-				listener.showSingleTabChanged( CommonSingleTabDecider.this, dockable );
-			}
-		}
-	};
+  private CDockablePropertyListener dockableListener = new CDockableAdapter() {
+    @Override
+    public void singleTabShownChanged(CDockable cdockable) {
+      Dockable dockable = cdockable.intern();
 
-	/**
-	 * Creates a new decider
-	 * @param control the realm in which this decider works
-	 */
-	public CommonSingleTabDecider( CControl control ){
-		this.control = control;
-	}
+      for (SingleTabDeciderListener listener : listeners()) {
+        listener.showSingleTabChanged(CommonSingleTabDecider.this, dockable);
+      }
+    }
+  };
 
-	public void addSingleTabDeciderListener( SingleTabDeciderListener listener ){
-		boolean empty = listeners.isEmpty();
-		listeners.add( listener );
-		if( empty ){
-			control.addPropertyListener( dockableListener );
-		}
-	}
+  /**
+   * Creates a new decider
+   *
+   * @param control the realm in which this decider works
+   */
+  public CommonSingleTabDecider(CControl control) {
+    this.control = control;
+  }
 
-	public void removeSingleTabDeciderListener( SingleTabDeciderListener listener ){
-		listeners.remove( listener );
-		if( listeners.isEmpty() ){
-			control.removePropertyListener( dockableListener );
-		}
-	}
+  public void addSingleTabDeciderListener(SingleTabDeciderListener listener) {
+    boolean empty = listeners.isEmpty();
+    listeners.add(listener);
+    if (empty) {
+      control.addPropertyListener(dockableListener);
+    }
+  }
 
-	/**
-	 * Gets all listeners that are currently registered at this decider.
-	 * @return all listeners
-	 */
-	protected SingleTabDeciderListener[] listeners(){
-		return listeners.toArray( new SingleTabDeciderListener[ listeners.size() ] );
-	}
+  public void removeSingleTabDeciderListener(SingleTabDeciderListener listener) {
+    listeners.remove(listener);
+    if (listeners.isEmpty()) {
+      control.removePropertyListener(dockableListener);
+    }
+  }
 
-	public boolean showSingleTab( DockStation station, Dockable dockable ){
-		if( dockable.asDockStation() != null )
-			return false;
+  /**
+   * Gets all listeners that are currently registered at this decider.
+   *
+   * @return all listeners
+   */
+  protected SingleTabDeciderListener[] listeners() {
+    return listeners.toArray(new SingleTabDeciderListener[listeners.size()]);
+  }
 
-		if( station instanceof StackDockStation )
-			return false;
+  public boolean showSingleTab(DockStation station, Dockable dockable) {
+    if (dockable.asDockStation() != null) return false;
 
-		if( dockable instanceof CommonDockable ){
-			CDockable cdockable = ((CommonDockable)dockable).getDockable();
-			return cdockable.isSingleTabShown();
-		}
+    if (station instanceof StackDockStation) return false;
 
-		return false;
-	}
+    if (dockable instanceof CommonDockable) {
+      CDockable cdockable = ((CommonDockable)dockable).getDockable();
+      return cdockable.isSingleTabShown();
+    }
+
+    return false;
+  }
 }

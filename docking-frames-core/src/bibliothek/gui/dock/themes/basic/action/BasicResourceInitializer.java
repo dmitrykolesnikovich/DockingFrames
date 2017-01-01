@@ -30,14 +30,16 @@ import bibliothek.gui.dock.themes.border.BorderModifier;
 /**
  * A {@link BasicResourceInitializer} is a helper class used by a {@link BasicButtonModel} to
  * lazily initialize resources.
+ *
  * @author Benjamin Sigg
  */
 public interface BasicResourceInitializer {
-	/**
-	 * Ensures that the {@link BorderModifier} with the specified key is installed 
-	 * and ready to be accessed through {@link BasicButtonModel#getBorder(String)};
-	 * @param model the caller of this initializer
-	 * @param key the key of the border to check
-	 */
-	public void ensureBorder( BasicButtonModel model, String key );
+  /**
+   * Ensures that the {@link BorderModifier} with the specified key is installed
+   * and ready to be accessed through {@link BasicButtonModel#getBorder(String)};
+   *
+   * @param model the caller of this initializer
+   * @param key   the key of the border to check
+   */
+  public void ensureBorder(BasicButtonModel model, String key);
 }

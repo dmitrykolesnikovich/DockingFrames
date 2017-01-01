@@ -29,51 +29,58 @@ import bibliothek.gui.dock.station.split.Leaf;
 
 /**
  * Represents a {@link Leaf}.
+ *
  * @author Benjamin Sigg
  */
-public class ResizeLeaf<T> extends ResizeElement<T>{
-    /** the leaf that is represented by this ResizeLeaf */
-    private Leaf leaf;
-    /** temporary data created by the LayoutManager */
-    private T temporary;
-    
-    /**
-     * Creates a new leaf element.
-     * @param layout the layout manager that uses this leafs
-     * @param parent the parent of this node
-     * @param leaf the leaf that is represented by this element
-     */
-    public ResizeLeaf( LockedResizeLayoutManager<T> layout, ResizeElement<T> parent, Leaf leaf ){
-        super( parent, layout );
-        this.leaf = leaf;
-    }
-    
-    /**
-     * Gets the leaf which is represented by this leaf-element.
-     * @return the origin
-     */
-    public Leaf getLeaf() {
-        return leaf;
-    }
-    
-    @Override
-    protected ResizeRequest createRequest() {
-        return getLayout().getRequest( temporary, leaf );
-    }
-    
-    @Override
-    public void prepareResize() {
-        temporary = getLayout().prepareResize( leaf );
-        super.prepareResize();
-    }
-    
-    @Override
-    protected ResizeElement<T>[] getChildren() {
-        return null;
-    }
-    
-    @Override
-    public void adapt( double deltaWidth, double deltaHeight ) {
-        // nothing to do
-    }
+public class ResizeLeaf<T> extends ResizeElement<T> {
+  /**
+   * the leaf that is represented by this ResizeLeaf
+   */
+  private Leaf leaf;
+  /**
+   * temporary data created by the LayoutManager
+   */
+  private T temporary;
+
+  /**
+   * Creates a new leaf element.
+   *
+   * @param layout the layout manager that uses this leafs
+   * @param parent the parent of this node
+   * @param leaf   the leaf that is represented by this element
+   */
+  public ResizeLeaf(LockedResizeLayoutManager<T> layout, ResizeElement<T> parent, Leaf leaf) {
+    super(parent, layout);
+    this.leaf = leaf;
+  }
+
+  /**
+   * Gets the leaf which is represented by this leaf-element.
+   *
+   * @return the origin
+   */
+  public Leaf getLeaf() {
+    return leaf;
+  }
+
+  @Override
+  protected ResizeRequest createRequest() {
+    return getLayout().getRequest(temporary, leaf);
+  }
+
+  @Override
+  public void prepareResize() {
+    temporary = getLayout().prepareResize(leaf);
+    super.prepareResize();
+  }
+
+  @Override
+  protected ResizeElement<T>[] getChildren() {
+    return null;
+  }
+
+  @Override
+  public void adapt(double deltaWidth, double deltaHeight) {
+    // nothing to do
+  }
 }

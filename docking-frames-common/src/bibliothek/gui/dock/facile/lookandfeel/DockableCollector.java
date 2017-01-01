@@ -25,42 +25,47 @@
  */
 package bibliothek.gui.dock.facile.lookandfeel;
 
-import java.awt.Component;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import bibliothek.gui.DockFrontend;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.support.lookandfeel.ComponentCollector;
 
+import java.awt.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * A {@link ComponentCollector} which collects all {@link Component}s accessible
  * through the known {@link Dockable}s of a {@link DockFrontend}.
+ *
  * @author Benjamin Sigg
  */
 public class DockableCollector implements ComponentCollector {
-    /** the source of Components */
-    private DockFrontend frontend;
-    
-    /**
-     * Creates a new collector
-     * @param frontend the source of all {@link Component}s
-     */
-    public DockableCollector( DockFrontend frontend ){
-        if( frontend == null )
-            throw new NullPointerException( "frontend must not be null" );
-        this.frontend = frontend;
+  /**
+   * the source of Components
+   */
+  private DockFrontend frontend;
+
+  /**
+   * Creates a new collector
+   *
+   * @param frontend the source of all {@link Component}s
+   */
+  public DockableCollector(DockFrontend frontend) {
+    if (frontend == null) throw new NullPointerException("frontend must not be null");
+    this.frontend = frontend;
+  }
+
+  public Collection<Component> listComponents() {
+    Set<Component> set = new HashSet<Component>();
+    for (Dockable dockable : frontend.listDockables()) {
+      set.add(dockable.getComponent());
     }
-    
-    public Collection<Component> listComponents() {
-        Set<Component> set = new HashSet<Component>();
-        for( Dockable dockable : frontend.listDockables() )
-            set.add( dockable.getComponent() );
-        
-        for( Dockable dockable : frontend.getController().getRegister().listDockables() )
-            set.add( dockable.getComponent() );
-        
-        return set;
+
+    for (Dockable dockable : frontend.getController().getRegister().listDockables()) {
+      set.add(dockable.getComponent());
     }
+
+    return set;
+  }
 }

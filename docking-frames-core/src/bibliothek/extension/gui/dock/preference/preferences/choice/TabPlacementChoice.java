@@ -30,25 +30,26 @@ import bibliothek.gui.dock.util.DockProperties;
 
 /**
  * Lets the user choose a {@link TabPlacement}.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public class TabPlacementChoice extends DefaultChoice<TabPlacement> {
-	/**
-	 * Creates a new choice
-	 * @param properties default settings
-	 */
-	public TabPlacementChoice( DockProperties properties ){
-		super( properties.getController() );
-		
-		addLinked( "theme", "preference.layout.tabplacement.theme", null );
-		addLinked( "top", "preference.layout.tabplacement.top", TabPlacement.TOP_OF_DOCKABLE );
-		addLinked( "bottom", "preference.layout.tabplacement.bottom", TabPlacement.BOTTOM_OF_DOCKABLE );
-		addLinked( "left", "preference.layout.tabplacement.left", TabPlacement.LEFT_OF_DOCKABLE );
-		addLinked( "right", "preference.layout.tabplacement.right", TabPlacement.RIGHT_OF_DOCKABLE );
-		
-		if( getDefaultChoice() == null ){
-			setDefaultChoice( "theme" );
-		}
-	}
+  /**
+   * Creates a new choice
+   *
+   * @param properties default settings
+   */
+  public TabPlacementChoice(DockProperties properties) {
+    super(properties.getController());
+
+    addLinked("theme", "preference.layout.tabplacement.theme", null);
+    addLinked("top", "preference.layout.tabplacement.top", TabPlacement.TOP_OF_DOCKABLE);
+    addLinked("bottom", "preference.layout.tabplacement.bottom", TabPlacement.BOTTOM_OF_DOCKABLE);
+    addLinked("left", "preference.layout.tabplacement.left", TabPlacement.LEFT_OF_DOCKABLE);
+    addLinked("right", "preference.layout.tabplacement.right", TabPlacement.RIGHT_OF_DOCKABLE);
+
+    if (getDefaultChoice() == null) {
+      setDefaultChoice("theme");
+    }
+  }
 }

@@ -25,30 +25,33 @@
  */
 package bibliothek.gui.dock.event;
 
-import java.awt.Component;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.dock.control.ComponentHierarchyObserver;
+
+import java.awt.*;
 
 /**
  * A listener of a {@link ComponentHierarchyObserver}, this listener
  * gets informed whenever some {@link Component}s enter or leave the realm
  * of a {@link DockController}.
+ *
  * @author Benjamin Sigg
  */
 public interface ComponentHierarchyObserverListener {
-    /**
-     * Called when some {@link Component}s have entered the realm of
-     * <code>controller</code>.
-     * @param event an event object that contains all the new {@link Component}s
-     */
-    public void added( ComponentHierarchyObserverEvent event );
-    
-    /**
-     * Called when some {@link Component}s have left the realm of
-     * <code>controller</code>.
-     * @param event an event object that contains all the {@link Component}s
-     * that were just removed
-     */
-    public void removed( ComponentHierarchyObserverEvent event );
+  /**
+   * Called when some {@link Component}s have entered the realm of
+   * <code>controller</code>.
+   *
+   * @param event an event object that contains all the new {@link Component}s
+   */
+  public void added(ComponentHierarchyObserverEvent event);
+
+  /**
+   * Called when some {@link Component}s have left the realm of
+   * <code>controller</code>.
+   *
+   * @param event an event object that contains all the {@link Component}s
+   *              that were just removed
+   */
+  public void removed(ComponentHierarchyObserverEvent event);
 }

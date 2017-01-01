@@ -29,24 +29,28 @@ import bibliothek.gui.Dockable;
 
 /**
  * Describes the state of a tab.
+ *
  * @author Benjamin Sigg
  */
 public interface EclipseTabStateInfo {
-	/**
-	 * Gets the {@link Dockable} which is represented by this tab.
-	 * @return the dockable, may not be <code>null</code>
-	 */
-	public Dockable getDockable();
-	
-	/**
-	 * Whether the tab is currently selected.
-	 * @return whether the tab is selected
-	 */
-	public boolean isSelected();
-	
-	/**
-	 * Whether the tab is currently focused.
-	 * @return whether the tab is focused
-	 */
-	public boolean isFocused();
+  /**
+   * Gets the {@link Dockable} which is represented by this tab.
+   *
+   * @return the dockable, may not be <code>null</code>
+   */
+  public Dockable getDockable();
+
+  /**
+   * Whether the tab is currently selected.
+   *
+   * @return whether the tab is selected
+   */
+  public boolean isSelected();
+
+  /**
+   * Whether the tab is currently focused.
+   *
+   * @return whether the tab is focused
+   */
+  public boolean isFocused();
 }

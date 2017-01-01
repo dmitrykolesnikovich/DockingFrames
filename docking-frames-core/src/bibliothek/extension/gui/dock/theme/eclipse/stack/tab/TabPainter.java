@@ -25,54 +25,59 @@
  */
 package bibliothek.extension.gui.dock.theme.eclipse.stack.tab;
 
-import javax.swing.border.Border;
-
 import bibliothek.extension.gui.dock.theme.eclipse.stack.EclipseTabPane;
 import bibliothek.gui.DockController;
 import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
 
+import javax.swing.border.Border;
+
 /**
  * A {@link TabPainter} is used to setup the basic graphical elements
  * of a {@link EclipseTabPane}.
+ *
  * @author Janni Kovacs
  * @author Benjamin Sigg
  */
 public interface TabPainter {
-    /**
-	 * Creates a new painter for the component which contains the tabs.
-	 * @param pane the panel for which this painter will be used
-	 * @return the new painter, can be <code>null</code>
-	 */
-	public TabPanePainter createDecorationPainter( EclipseTabPane pane );
-	
-	/**
-	 * Creates a new tab for an {@link EclipseTabPane}. At the time this method
-	 * is called the {@link EclipseTabPane} is connected to a {@link DockController}
-	 * which will not change as long as the created {@link TabComponent} is 
-	 * in use. The {@link EclipseTabPane} is also connected to a {@link DockStation}
-	 * which will neither change as long as the tab is in use.
-	 * @param pane the panel for which this tab is required
-	 * @param dockable the element for which the tab is shown
-	 * @return the new tab, never <code>null</code>
-	 */
-	public TabComponent createTabComponent( EclipseTabPane pane, Dockable dockable );
-	
-	/**
-	 * Creates a new invisible tab for <code>pane</code> representing <code>dockable</code>.
-	 * @param pane the owner of the new tab
-	 * @param dockable what the new tab represents
-	 * @return the new tab, never <code>null</code>
-	 */
-	public InvisibleTab createInvisibleTab( InvisibleTabPane pane, Dockable dockable );
-	
-	/**
-	 * Gets the border which will be around <code>pane</code> when <code>dockable</code>
-	 * is selected.
-	 * @param owner the component on which the border will be shown
-	 * @param controller the current controller, never <code>null</code>
-	 * @param dockable the element which might influence the border, never <code>null</code>
-	 * @return the border of <code>dockable</code> or <code>null</code>
-	 */
-	public Border getFullBorder( BorderedComponent owner, DockController controller, Dockable dockable );
+  /**
+   * Creates a new painter for the component which contains the tabs.
+   *
+   * @param pane the panel for which this painter will be used
+   * @return the new painter, can be <code>null</code>
+   */
+  public TabPanePainter createDecorationPainter(EclipseTabPane pane);
+
+  /**
+   * Creates a new tab for an {@link EclipseTabPane}. At the time this method
+   * is called the {@link EclipseTabPane} is connected to a {@link DockController}
+   * which will not change as long as the created {@link TabComponent} is
+   * in use. The {@link EclipseTabPane} is also connected to a {@link DockStation}
+   * which will neither change as long as the tab is in use.
+   *
+   * @param pane     the panel for which this tab is required
+   * @param dockable the element for which the tab is shown
+   * @return the new tab, never <code>null</code>
+   */
+  public TabComponent createTabComponent(EclipseTabPane pane, Dockable dockable);
+
+  /**
+   * Creates a new invisible tab for <code>pane</code> representing <code>dockable</code>.
+   *
+   * @param pane     the owner of the new tab
+   * @param dockable what the new tab represents
+   * @return the new tab, never <code>null</code>
+   */
+  public InvisibleTab createInvisibleTab(InvisibleTabPane pane, Dockable dockable);
+
+  /**
+   * Gets the border which will be around <code>pane</code> when <code>dockable</code>
+   * is selected.
+   *
+   * @param owner      the component on which the border will be shown
+   * @param controller the current controller, never <code>null</code>
+   * @param dockable   the element which might influence the border, never <code>null</code>
+   * @return the border of <code>dockable</code> or <code>null</code>
+   */
+  public Border getFullBorder(BorderedComponent owner, DockController controller, Dockable dockable);
 }

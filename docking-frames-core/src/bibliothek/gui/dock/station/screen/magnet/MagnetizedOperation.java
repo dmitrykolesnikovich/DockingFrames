@@ -25,30 +25,32 @@
  */
 package bibliothek.gui.dock.station.screen.magnet;
 
-import java.awt.Rectangle;
-
 import bibliothek.gui.dock.station.screen.ScreenDockWindow;
+
+import java.awt.*;
 
 
 /**
- * A callback used by {@link ScreenDockWindow}s to calculate the attraction between two 
+ * A callback used by {@link ScreenDockWindow}s to calculate the attraction between two
  * {@link ScreenDockWindow}s.
+ *
  * @author Benjamin Sigg
  */
 public interface MagnetizedOperation {
-	
-	/**
-	 * To be called by a {@link ScreenDockWindow} if the user updates the size or 
-	 * location of the window. This method calculates then to which other windows
-	 * an attraction may exist.
-	 * @param bounds the boundaries the window would have if the operation would stop
-	 * right now.
-	 * @return the boundaries the window would have if attraction is respected, never <code>null</code>
-	 */
-	public Rectangle attract( Rectangle bounds );
-	
-	/**
-	 * To be called by a {@link ScreenDockWindow} once moving or resizing is finished.
-	 */
-	public void stop();
+
+  /**
+   * To be called by a {@link ScreenDockWindow} if the user updates the size or
+   * location of the window. This method calculates then to which other windows
+   * an attraction may exist.
+   *
+   * @param bounds the boundaries the window would have if the operation would stop
+   *               right now.
+   * @return the boundaries the window would have if attraction is respected, never <code>null</code>
+   */
+  public Rectangle attract(Rectangle bounds);
+
+  /**
+   * To be called by a {@link ScreenDockWindow} once moving or resizing is finished.
+   */
+  public void stop();
 }

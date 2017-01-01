@@ -30,50 +30,53 @@ import bibliothek.gui.dock.common.intern.CDockable;
 
 /**
  * A {@link CAction} is associated with one {@link CDockable}, allowing the
- * user to perform actions which are somehow connected to that <code>CDockable</code>. 
+ * user to perform actions which are somehow connected to that <code>CDockable</code>.
+ *
  * @author Benjamin Sigg
  */
 public class CAction {
-    /** the internal representation of the action */
-    private CommonDockAction action;
-    
-    /**
-     * Creates a new empty {@link CAction}, subclasses must call
-     * {@link #init(CommonDockAction)} to complete initialization of this action.
-     */
-    protected CAction(){
-    	// nothing
-    }
-    
-    /**
-     * Creates a new CAction
-     * @param action the internal representation of this action. Subclasses
-     * can put <code>null</code> in here and later call {@link #init(CommonDockAction)}
-     */
-    protected CAction( CommonDockAction action ){
-        if( action != null )
-            init( action );
-    }
-    
-    /**
-     * Initializes this action. This method can be called only once.
-     * @param action the internal representation, not <code>null</code>
-     */
-    protected void init( CommonDockAction action ){
-        if( this.action != null )
-            throw new IllegalStateException( "already initialized" );
-        
-        if( action == null )
-            throw new NullPointerException( "action is null" );
-        
-        this.action = action;
-    }
-    
-    /**
-     * Gets the internal representation of the action.
-     * @return the representation
-     */
-    public CommonDockAction intern(){
-        return action;
-    }
+  /**
+   * the internal representation of the action
+   */
+  private CommonDockAction action;
+
+  /**
+   * Creates a new empty {@link CAction}, subclasses must call
+   * {@link #init(CommonDockAction)} to complete initialization of this action.
+   */
+  protected CAction() {
+    // nothing
+  }
+
+  /**
+   * Creates a new CAction
+   *
+   * @param action the internal representation of this action. Subclasses
+   *               can put <code>null</code> in here and later call {@link #init(CommonDockAction)}
+   */
+  protected CAction(CommonDockAction action) {
+    if (action != null) init(action);
+  }
+
+  /**
+   * Initializes this action. This method can be called only once.
+   *
+   * @param action the internal representation, not <code>null</code>
+   */
+  protected void init(CommonDockAction action) {
+    if (this.action != null) throw new IllegalStateException("already initialized");
+
+    if (action == null) throw new NullPointerException("action is null");
+
+    this.action = action;
+  }
+
+  /**
+   * Gets the internal representation of the action.
+   *
+   * @return the representation
+   */
+  public CommonDockAction intern() {
+    return action;
+  }
 }

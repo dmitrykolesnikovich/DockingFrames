@@ -31,58 +31,63 @@ import bibliothek.gui.Dockable;
 
 /**
  * An event that tells which {@link Dockable} was selected on wich {@link DockStation}
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public class DockableSelectionEvent {
-    private DockController controller;
-    private DockStation station;
-    private Dockable oldSelected;
-    private Dockable newSelected;
-    
-    /**
-     * Creates a new event.
-     * @param controller the controller in whose realm the change occurred
-     * @param station the station on which the change occurred
-     * @param oldSelected the {@link Dockable} that was selected before the change
-     * @param newSelected the {@link Dockable} that is selected after the change
-     */
-    public DockableSelectionEvent( DockController controller, DockStation station, Dockable oldSelected, Dockable newSelected ){
-        this.controller = controller;
-        this.station = station;
-        this.oldSelected = oldSelected;
-        this.newSelected = newSelected;
-    }
-    
-    /**
-     * Gets the controller in whose realm the selection change occurred.
-     * @return the controller
-     */
-    public DockController getController() {
-        return controller;
-    }
-    
-    /**
-     * Gets the station whose selected {@link Dockable} changed.
-     * @return the parent of the old and new selected {@link Dockable}
-     */
-    public DockStation getStation() {
-        return station;
-    }
-    
-    /**
-     * Gets the element that was selected before the change.
-     * @return the old selected element, can be <code>null</code>
-     */
-    public Dockable getOldSelected() {
-        return oldSelected;
-    }
-    
-    /**
-     * Gets the element that is selected after the change. 
-     * @return the newly selected element, can be <code>null</code>
-     */
-    public Dockable getNewSelected() {
-        return newSelected;
-    }
+  private DockController controller;
+  private DockStation station;
+  private Dockable oldSelected;
+  private Dockable newSelected;
+
+  /**
+   * Creates a new event.
+   *
+   * @param controller  the controller in whose realm the change occurred
+   * @param station     the station on which the change occurred
+   * @param oldSelected the {@link Dockable} that was selected before the change
+   * @param newSelected the {@link Dockable} that is selected after the change
+   */
+  public DockableSelectionEvent(DockController controller, DockStation station, Dockable oldSelected, Dockable newSelected) {
+    this.controller = controller;
+    this.station = station;
+    this.oldSelected = oldSelected;
+    this.newSelected = newSelected;
+  }
+
+  /**
+   * Gets the controller in whose realm the selection change occurred.
+   *
+   * @return the controller
+   */
+  public DockController getController() {
+    return controller;
+  }
+
+  /**
+   * Gets the station whose selected {@link Dockable} changed.
+   *
+   * @return the parent of the old and new selected {@link Dockable}
+   */
+  public DockStation getStation() {
+    return station;
+  }
+
+  /**
+   * Gets the element that was selected before the change.
+   *
+   * @return the old selected element, can be <code>null</code>
+   */
+  public Dockable getOldSelected() {
+    return oldSelected;
+  }
+
+  /**
+   * Gets the element that is selected after the change.
+   *
+   * @return the newly selected element, can be <code>null</code>
+   */
+  public Dockable getNewSelected() {
+    return newSelected;
+  }
 }

@@ -29,43 +29,47 @@ package bibliothek.gui.dock.station.stack;
  * A handler to change and read the visibility state and the z order of some item.
  * This handler is attached to some other component, the visibility state and the
  * z order depend not only on the item put also on internal states of the other items.
- * @author Benjamin Sigg
  *
  * @param <T> the kind of item whose visibility is changed
+ * @author Benjamin Sigg
  */
 public interface CombinedHandler<T> {
-	/**
-	 * Sets the visibility of <code>item</code>.
-	 * @param item some item
-	 * @param visible its new visibility state
-	 * @throws IllegalArgumentException if <code>item</code> does not belong
-	 * to the component this handler is attached to
-	 */
-	public void setVisible( T item, boolean visible );
-	
-	/**
-	 * Tells whether <code>item</code> is visible or not.
-	 * @param item some item
-	 * @return <code>true</code> if visible, <code>false</code> otherwise
-	 * @throws IllegalArgumentException if <code>item</code> does not belong
-	 * to the component this handler is attached to
-	 */
-	public boolean isVisible( T item );
-	
-	/**
-	 * Sets the z order of <code>item</code>, items with lower z order
-	 * are painted first.
-	 * @param item some item
-	 * @param order its z order
-	 */
-	public void setZOrder( T item, int order );
-	
-	/**
-	 * Gets the z order of <code>item</code>.
-	 * @param item the item
-	 * @return the z order
-	 * @throws IllegalArgumentException if <code>item</code> does not
-	 * belong to the component this handler is attached to
-	 */
-	public int getZOrder( T item );
+  /**
+   * Sets the visibility of <code>item</code>.
+   *
+   * @param item    some item
+   * @param visible its new visibility state
+   * @throws IllegalArgumentException if <code>item</code> does not belong
+   *                                  to the component this handler is attached to
+   */
+  public void setVisible(T item, boolean visible);
+
+  /**
+   * Tells whether <code>item</code> is visible or not.
+   *
+   * @param item some item
+   * @return <code>true</code> if visible, <code>false</code> otherwise
+   * @throws IllegalArgumentException if <code>item</code> does not belong
+   *                                  to the component this handler is attached to
+   */
+  public boolean isVisible(T item);
+
+  /**
+   * Sets the z order of <code>item</code>, items with lower z order
+   * are painted first.
+   *
+   * @param item  some item
+   * @param order its z order
+   */
+  public void setZOrder(T item, int order);
+
+  /**
+   * Gets the z order of <code>item</code>.
+   *
+   * @param item the item
+   * @return the z order
+   * @throws IllegalArgumentException if <code>item</code> does not
+   *                                  belong to the component this handler is attached to
+   */
+  public int getZOrder(T item);
 }

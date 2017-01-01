@@ -25,67 +25,66 @@
  */
 package bibliothek.extension.gui.dock.preference.editor;
 
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JCheckBox;
-
 import bibliothek.extension.gui.dock.preference.PreferenceEditor;
 import bibliothek.extension.gui.dock.preference.PreferenceEditorCallback;
 import bibliothek.extension.gui.dock.preference.PreferenceEditorFactory;
 import bibliothek.extension.gui.dock.preference.PreferenceOperation;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * An editor intended to be used for {@link Path#TYPE_BOOLEAN_PATH}. This editor just shows a {@link JCheckBox}.
+ *
  * @author Benjamin Sigg
  */
-public class BooleanEditor extends JCheckBox implements PreferenceEditor<Boolean>{
-	/**
-	 * A factory creating {@link BooleanEditor}s.
-	 */
-	public static final PreferenceEditorFactory<Boolean> FACTORY = new PreferenceEditorFactory<Boolean>(){
-		public PreferenceEditor<Boolean> create() {
-			return new BooleanEditor();
-		}
-	};
-	
-	private PreferenceEditorCallback<Boolean> callback;
-	
-	/**
-	 * Creates a new editor
-	 */
-	public BooleanEditor(){
-		addActionListener( new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				if( callback != null )
-					callback.set( getValue() );
-			}
-		});
-	}
-	
-	public void doOperation( PreferenceOperation operation ){
-		// ignore
-	}
+public class BooleanEditor extends JCheckBox implements PreferenceEditor<Boolean> {
+  /**
+   * A factory creating {@link BooleanEditor}s.
+   */
+  public static final PreferenceEditorFactory<Boolean> FACTORY = new PreferenceEditorFactory<Boolean>() {
+    public PreferenceEditor<Boolean> create() {
+      return new BooleanEditor();
+    }
+  };
 
-	public Component getComponent() {
-		return this;
-	}
+  private PreferenceEditorCallback<Boolean> callback;
 
-	public Boolean getValue() {
-		return isSelected();
-	}
+  /**
+   * Creates a new editor
+   */
+  public BooleanEditor() {
+    addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        if (callback != null) callback.set(getValue());
+      }
+    });
+  }
 
-	public void setCallback(PreferenceEditorCallback<Boolean> callback) {
-		this.callback = callback;
-	}
+  public void doOperation(PreferenceOperation operation) {
+    // ignore
+  }
 
-	public void setValue( Boolean value ){
-		setSelected( Boolean.TRUE.equals( value ));
-	}
+  public Component getComponent() {
+    return this;
+  }
 
-	public void setValueInfo(Object information) {
-		// ignore
-	}
+  public Boolean getValue() {
+    return isSelected();
+  }
+
+  public void setValue(Boolean value) {
+    setSelected(Boolean.TRUE.equals(value));
+  }
+
+  public void setCallback(PreferenceEditorCallback<Boolean> callback) {
+    this.callback = callback;
+  }
+
+  public void setValueInfo(Object information) {
+    // ignore
+  }
 }

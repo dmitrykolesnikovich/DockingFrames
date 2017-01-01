@@ -30,11 +30,7 @@
 package bibliothek.gui.dock.toolbar.perspective;
 
 import bibliothek.gui.DockFrontend;
-import bibliothek.gui.dock.DockElement;
-import bibliothek.gui.dock.ToolbarContainerDockStation;
-import bibliothek.gui.dock.ToolbarDockStation;
-import bibliothek.gui.dock.ToolbarGroupDockStation;
-import bibliothek.gui.dock.ToolbarItemDockable;
+import bibliothek.gui.dock.*;
 import bibliothek.gui.dock.frontend.FrontendPerspectiveCacheExtension;
 import bibliothek.gui.dock.perspective.PerspectiveElement;
 import bibliothek.gui.dock.station.toolbar.ToolbarContainerDockPerspective;
@@ -43,28 +39,29 @@ import bibliothek.gui.dock.station.toolbar.ToolbarGroupDockPerspective;
 
 /**
  * This extension adds new types of {@link PerspectiveElement}s to the {@link DockFrontend}.
+ *
  * @author Benjamin Sigg
  */
-public class ToolbarFrontendPerspectiveCacheExtension implements FrontendPerspectiveCacheExtension{
-	@Override
-	public PerspectiveElement get( String id, DockElement element, boolean isRootStation ){
-		if( element instanceof ToolbarContainerDockStation ){
-			return new ToolbarContainerDockPerspective();
-		}
-		if( element instanceof ToolbarGroupDockStation ){
-			return new ToolbarGroupDockPerspective();
-		}
-		if( element instanceof ToolbarDockStation ){
-			return new ToolbarDockPerspective();
-		}
-		if( element instanceof ToolbarItemDockable ){
-			return new FrontendToolbarItemPerspective( id );
-		}
-		return null;
-	}
-	
-	@Override
-	public String get( PerspectiveElement element ){
-		return null;
-	}
+public class ToolbarFrontendPerspectiveCacheExtension implements FrontendPerspectiveCacheExtension {
+  @Override
+  public PerspectiveElement get(String id, DockElement element, boolean isRootStation) {
+    if (element instanceof ToolbarContainerDockStation) {
+      return new ToolbarContainerDockPerspective();
+    }
+    if (element instanceof ToolbarGroupDockStation) {
+      return new ToolbarGroupDockPerspective();
+    }
+    if (element instanceof ToolbarDockStation) {
+      return new ToolbarDockPerspective();
+    }
+    if (element instanceof ToolbarItemDockable) {
+      return new FrontendToolbarItemPerspective(id);
+    }
+    return null;
+  }
+
+  @Override
+  public String get(PerspectiveElement element) {
+    return null;
+  }
 }

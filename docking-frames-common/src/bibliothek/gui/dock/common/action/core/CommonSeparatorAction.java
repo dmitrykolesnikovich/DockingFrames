@@ -31,22 +31,24 @@ import bibliothek.gui.dock.common.action.CAction;
 
 /**
  * A {@link SeparatorAction} implementing the {@link CommonDockAction} interface.
+ *
  * @author Benjamin Sigg
  */
-public class CommonSeparatorAction extends SeparatorAction implements CommonDockAction{
-	private CAction action;
-	
-	/**
-	 * Creates a new action.
-	 * @param action the action wrapping around this {@link SeparatorAction}
-	 * @param targets where to show this separator
-	 */
-	public CommonSeparatorAction( CAction action, ViewTarget<?>... targets ){
-		super( targets );
-		this.action = action;
-	}
-	
-	public CAction getAction(){
-		return action;
-	}
+public class CommonSeparatorAction extends SeparatorAction implements CommonDockAction {
+  private CAction action;
+
+  /**
+   * Creates a new action.
+   *
+   * @param action  the action wrapping around this {@link SeparatorAction}
+   * @param targets where to show this separator
+   */
+  public CommonSeparatorAction(CAction action, ViewTarget<?>... targets) {
+    super(targets);
+    this.action = action;
+  }
+
+  public CAction getAction() {
+    return action;
+  }
 }

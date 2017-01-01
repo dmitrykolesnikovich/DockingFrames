@@ -27,12 +27,14 @@ package bibliothek.gui.dock.extension.css;
 
 /**
  * An observer that can be added to a {@link CssNode}.
+ *
  * @author Benjamin Sigg
  */
 public interface CssNodeListener {
-	/**
-	 * Called if any property of <code>node</code> changed.
-	 * @param node the source of the event
-	 */
-	public void nodeChanged( CssNode node );
+  /**
+   * Called if any property of <code>node</code> changed.
+   *
+   * @param node the source of the event
+   */
+  public void nodeChanged(CssNode node);
 }

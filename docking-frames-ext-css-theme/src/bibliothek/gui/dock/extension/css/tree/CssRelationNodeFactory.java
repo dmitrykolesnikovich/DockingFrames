@@ -32,17 +32,18 @@ import bibliothek.gui.dock.extension.css.CssNode;
 /**
  * A factory for creating {@link CssNode}s describing the relation
  * between a {@link Dockable} and its parent {@link DockStation}.
- * @author Benjamin Sigg
  *
  * @param <S> the type of station this factory manages
+ * @author Benjamin Sigg
  */
 public interface CssRelationNodeFactory<S extends DockStation> {
-	/**
-	 * Creates a node describing the relation between <code>parent</code> 
-	 * and <code>child</code>.
-	 * @param parent the parent {@link DockStation}
-	 * @param child the child {@link Dockable}
-	 * @return the relation or <code>null</code>
-	 */
-	public CssNode createRelation( S parent, Dockable child );
+  /**
+   * Creates a node describing the relation between <code>parent</code>
+   * and <code>child</code>.
+   *
+   * @param parent the parent {@link DockStation}
+   * @param child  the child {@link Dockable}
+   * @return the relation or <code>null</code>
+   */
+  public CssNode createRelation(S parent, Dockable child);
 }

@@ -33,56 +33,67 @@ import bibliothek.util.Path;
 
 /**
  * A font that is used by a button showing a {@link DockAction}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class ButtonFont extends AbstractDockFont{
-	/** this kind describes a font that is used by a button */
-	public static final Path KIND_BUTTON_FONT = KIND_DOCK_FONT.append( "button" );
-	
-	/** the action which is shown on the button */
-	private DockAction action;
-	
-	/** the dockable for which the font is used */
-	private Dockable dockable;
+public abstract class ButtonFont extends AbstractDockFont {
+  /**
+   * this kind describes a font that is used by a button
+   */
+  public static final Path KIND_BUTTON_FONT = KIND_DOCK_FONT.append("button");
 
-	/**
-	 * Creates a new font
-	 * @param id the unique id of this font
-	 * @param dockable the element which is associated with <code>action</code>
-	 * @param action the action for which a button is shown
-	 * @param backup the backup value used of no other value is available
-	 */
-	public ButtonFont( String id, Dockable dockable, DockAction action, FontModifier backup ){
-		this( id, dockable, action, KIND_BUTTON_FONT, backup );
-	}
-	
-	/**
-	 * Creates a new font
-	 * @param id the unique id of this font
-	 * @param dockable the element which is associated with <code>action</code>
-	 * @param action the action for which a button is shown
-	 * @param kind what kind of font this is
-	 * @param backup the backup value used of no other value is available
-	 */
-	public ButtonFont( String id, Dockable dockable, DockAction action, Path kind, FontModifier backup ){
-		super( id, kind, backup );
-		this.dockable = dockable;
-		this.action = action;
-	}
-	
-	/**
-	 * Gets the action for which this font is used.
-	 * @return the action, may be <code>null</code>
-	 */
-	public DockAction getAction(){
-		return action;
-	}
-	
-	/**
-	 * Gets the dockable for with which {@link #getAction() the action} is associated. 
-	 * @return the dockable, may be <code>null</code>
-	 */
-	public Dockable getDockable(){
-		return dockable;
-	}
+  /**
+   * the action which is shown on the button
+   */
+  private DockAction action;
+
+  /**
+   * the dockable for which the font is used
+   */
+  private Dockable dockable;
+
+  /**
+   * Creates a new font
+   *
+   * @param id       the unique id of this font
+   * @param dockable the element which is associated with <code>action</code>
+   * @param action   the action for which a button is shown
+   * @param backup   the backup value used of no other value is available
+   */
+  public ButtonFont(String id, Dockable dockable, DockAction action, FontModifier backup) {
+    this(id, dockable, action, KIND_BUTTON_FONT, backup);
+  }
+
+  /**
+   * Creates a new font
+   *
+   * @param id       the unique id of this font
+   * @param dockable the element which is associated with <code>action</code>
+   * @param action   the action for which a button is shown
+   * @param kind     what kind of font this is
+   * @param backup   the backup value used of no other value is available
+   */
+  public ButtonFont(String id, Dockable dockable, DockAction action, Path kind, FontModifier backup) {
+    super(id, kind, backup);
+    this.dockable = dockable;
+    this.action = action;
+  }
+
+  /**
+   * Gets the action for which this font is used.
+   *
+   * @return the action, may be <code>null</code>
+   */
+  public DockAction getAction() {
+    return action;
+  }
+
+  /**
+   * Gets the dockable for with which {@link #getAction() the action} is associated.
+   *
+   * @return the dockable, may be <code>null</code>
+   */
+  public Dockable getDockable() {
+    return dockable;
+  }
 }

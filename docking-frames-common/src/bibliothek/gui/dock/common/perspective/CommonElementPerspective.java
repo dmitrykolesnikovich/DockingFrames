@@ -30,12 +30,14 @@ import bibliothek.gui.dock.perspective.PerspectiveElement;
 /**
  * A {@link PerspectiveElement} that has an additional representation as
  * a {@link CElementPerspective}.
+ *
  * @author Benjamin Sigg
  */
-public interface CommonElementPerspective extends PerspectiveElement{
-	/**
-	 * Gets the element that is represented by this {@link PerspectiveElement}.
-	 * @return the represented element, not <code>null</code>
-	 */
-	public CElementPerspective getElement();
+public interface CommonElementPerspective extends PerspectiveElement {
+  /**
+   * Gets the element that is represented by this {@link PerspectiveElement}.
+   *
+   * @return the represented element, not <code>null</code>
+   */
+  public CElementPerspective getElement();
 }

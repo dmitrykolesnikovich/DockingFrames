@@ -28,12 +28,14 @@ package bibliothek.gui.dock.themes.basic;
 /**
  * This listener is added to a {@link BasicDockableDisplayerDecorator} and is informed if some
  * properties of the decorator change.
+ *
  * @author Benjamin Sigg
  */
 public interface BasicDockableDisplayerDecoratorListener {
-	/**
-	 * Called if the result of {@link BasicDockableDisplayerDecorator#getMoveableElement()} changed.
-	 * @param decorator the source of the event
-	 */
-	public void moveableElementChanged( BasicDockableDisplayerDecorator decorator );
+  /**
+   * Called if the result of {@link BasicDockableDisplayerDecorator#getMoveableElement()} changed.
+   *
+   * @param decorator the source of the event
+   */
+  public void moveableElementChanged(BasicDockableDisplayerDecorator decorator);
 }

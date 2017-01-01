@@ -31,58 +31,66 @@ import bibliothek.gui.Dockable;
 
 /**
  * These events are used for {@link DockTitle DockTitles}, to transfer information
- * between {@link DockStation station} and title. See the method 
+ * between {@link DockStation station} and title. See the method
  * {@link DockTitle#changed(DockTitleEvent)} for more details.
+ *
  * @author Benjamin Sigg
  */
 public class DockTitleEvent {
-    /** The station on which the title is shown */
-    private DockStation station;
-    
-    /** The dockable for which the title is rendered */
-    private Dockable dockable;
-    
-    /**
-     * Constructs a new event. 
-     * @param dockable the {@link Dockable} for which the target-title
-     * is rendered
-     */
-    public DockTitleEvent( Dockable dockable ){
-        this( null, dockable );
-    }
+  /**
+   * The station on which the title is shown
+   */
+  private DockStation station;
 
-    /**
-     * Constructs a new event. This constructor should only be called
-     * if a {@link DockStation} itself sends the event. Other components
-     * should use {@link #DockTitleEvent(Dockable)}.
-     * @param station the station on which the target-title is displayed
-     * @param dockable the {@link Dockable} for which the target-title
-     * is rendered
-     */
-    public DockTitleEvent( DockStation station, Dockable dockable ){
-        if( dockable == null )
-            throw new IllegalArgumentException( "dockable must not be null" );
-        
-        this.dockable = dockable;
-        this.station = station;
-    }
-    
-    /**
-     * Gets the station which created the event, and on which the target-title
-     * is displayed.
-     * @return the station, <code>null</code> if the event was not sent
-     * by the station
-     */
-    public DockStation getStation() {
-        return station;
-    }
-    
-    /**
-     * Gets the {@link Dockable} for which the target-title is used.
-     * @return the owner of the title
-     */
-    public Dockable getDockable() {
-        return dockable;
-    }
-    
+  /**
+   * The dockable for which the title is rendered
+   */
+  private Dockable dockable;
+
+  /**
+   * Constructs a new event.
+   *
+   * @param dockable the {@link Dockable} for which the target-title
+   *                 is rendered
+   */
+  public DockTitleEvent(Dockable dockable) {
+    this(null, dockable);
+  }
+
+  /**
+   * Constructs a new event. This constructor should only be called
+   * if a {@link DockStation} itself sends the event. Other components
+   * should use {@link #DockTitleEvent(Dockable)}.
+   *
+   * @param station  the station on which the target-title is displayed
+   * @param dockable the {@link Dockable} for which the target-title
+   *                 is rendered
+   */
+  public DockTitleEvent(DockStation station, Dockable dockable) {
+    if (dockable == null) throw new IllegalArgumentException("dockable must not be null");
+
+    this.dockable = dockable;
+    this.station = station;
+  }
+
+  /**
+   * Gets the station which created the event, and on which the target-title
+   * is displayed.
+   *
+   * @return the station, <code>null</code> if the event was not sent
+   * by the station
+   */
+  public DockStation getStation() {
+    return station;
+  }
+
+  /**
+   * Gets the {@link Dockable} for which the target-title is used.
+   *
+   * @return the owner of the title
+   */
+  public Dockable getDockable() {
+    return dockable;
+  }
+
 }

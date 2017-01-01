@@ -30,54 +30,56 @@ import bibliothek.gui.dock.extension.css.CssNodeListener;
 
 /**
  * This node offers no features other than a unmodifiable name.
+ *
  * @author Benjamin Sigg
  */
-public class NamedCssNode implements CssNode{
-	private String name;
-	
-	/**
-	 * Creates a new node.
-	 * @param name the name of this node, must not be <code>null</code>
-	 */
-	public NamedCssNode( String name ){
-		if( name == null ){
-			throw new IllegalArgumentException( "name must not be null" );
-		}
-		this.name = name;
-	}
-	
-	@Override
-	public String getName(){
-		return name;
-	}
+public class NamedCssNode implements CssNode {
+  private String name;
 
-	@Override
-	public String getIdentifier(){
-		return null;
-	}
+  /**
+   * Creates a new node.
+   *
+   * @param name the name of this node, must not be <code>null</code>
+   */
+  public NamedCssNode(String name) {
+    if (name == null) {
+      throw new IllegalArgumentException("name must not be null");
+    }
+    this.name = name;
+  }
 
-	@Override
-	public boolean hasClass( String className ){
-		return false;
-	}
+  @Override
+  public String getName() {
+    return name;
+  }
 
-	@Override
-	public boolean hasPseudoClass( String className ){
-		return false;
-	}
+  @Override
+  public String getIdentifier() {
+    return null;
+  }
 
-	@Override
-	public String getProperty( String key ){
-		return null;
-	}
+  @Override
+  public boolean hasClass(String className) {
+    return false;
+  }
 
-	@Override
-	public void addNodeListener( CssNodeListener listener ){
-		// ignore
-	}
+  @Override
+  public boolean hasPseudoClass(String className) {
+    return false;
+  }
 
-	@Override
-	public void removeNodeListener( CssNodeListener listener ){
-		// ignore
-	}
+  @Override
+  public String getProperty(String key) {
+    return null;
+  }
+
+  @Override
+  public void addNodeListener(CssNodeListener listener) {
+    // ignore
+  }
+
+  @Override
+  public void removeNodeListener(CssNodeListener listener) {
+    // ignore
+  }
 }

@@ -25,54 +25,59 @@
  */
 package bibliothek.gui.dock.station.screen.magnet;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.ScreenDockStation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A combination of several {@link AttractorStrategy}s into one strategy.
+ *
  * @author Benjamin Sigg
  */
-public class MultiAttractorStrategy implements AttractorStrategy{
-	/** all the strategies that are registered */
-	private List<AttractorStrategy> strategies = new ArrayList<AttractorStrategy>();
+public class MultiAttractorStrategy implements AttractorStrategy {
+  /**
+   * all the strategies that are registered
+   */
+  private List<AttractorStrategy> strategies = new ArrayList<AttractorStrategy>();
 
-	/**
-	 * Adds <code>strategy</code> to the list of strategies that are used.
-	 * @param strategy a new strategy, must not be <code>null</code>
-	 */
-	public void add( AttractorStrategy strategy ){
-		if( strategy == null ){
-			throw new IllegalArgumentException( "strategy must not be null" );
-		}
-		strategies.add( strategy );
-	}
-	
-	/**
-	 * Removes <code>strategy</code> from the list of strategies that are used.
-	 * @param strategy the strategy to remove
-	 */
-	public void remove( AttractorStrategy strategy ){
-		strategies.remove( strategy );
-	}
-	
-	public Attraction attract( ScreenDockStation parent, Dockable moved, Dockable fixed ){
-		Attraction attraction = Attraction.NEUTRAL;
-		for( AttractorStrategy strategy : strategies ){
-			Attraction next = strategy.attract( parent, moved, fixed );
-			attraction = attraction.stronger( next );
-		}
-		return attraction;
-	}
+  /**
+   * Adds <code>strategy</code> to the list of strategies that are used.
+   *
+   * @param strategy a new strategy, must not be <code>null</code>
+   */
+  public void add(AttractorStrategy strategy) {
+    if (strategy == null) {
+      throw new IllegalArgumentException("strategy must not be null");
+    }
+    strategies.add(strategy);
+  }
 
-	public Attraction stick( ScreenDockStation parent, Dockable moved, Dockable fixed ){
-		Attraction attraction = Attraction.NEUTRAL;
-		for( AttractorStrategy strategy : strategies ){
-			Attraction next = strategy.stick( parent, moved, fixed );
-			attraction = attraction.stronger( next );
-		}
-		return attraction;
-	}
+  /**
+   * Removes <code>strategy</code> from the list of strategies that are used.
+   *
+   * @param strategy the strategy to remove
+   */
+  public void remove(AttractorStrategy strategy) {
+    strategies.remove(strategy);
+  }
+
+  public Attraction attract(ScreenDockStation parent, Dockable moved, Dockable fixed) {
+    Attraction attraction = Attraction.NEUTRAL;
+    for (AttractorStrategy strategy : strategies) {
+      Attraction next = strategy.attract(parent, moved, fixed);
+      attraction = attraction.stronger(next);
+    }
+    return attraction;
+  }
+
+  public Attraction stick(ScreenDockStation parent, Dockable moved, Dockable fixed) {
+    Attraction attraction = Attraction.NEUTRAL;
+    for (AttractorStrategy strategy : strategies) {
+      Attraction next = strategy.stick(parent, moved, fixed);
+      attraction = attraction.stronger(next);
+    }
+    return attraction;
+  }
 }

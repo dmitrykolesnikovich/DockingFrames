@@ -33,12 +33,7 @@ package bibliothek.gui.dock.station.toolbar;
 import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.Orientation;
-import bibliothek.gui.dock.AbstractToolbarDockStation;
-import bibliothek.gui.dock.ScreenDockStation;
-import bibliothek.gui.dock.ToolbarContainerDockStation;
-import bibliothek.gui.dock.ToolbarDockStation;
-import bibliothek.gui.dock.ToolbarGroupDockStation;
-import bibliothek.gui.dock.ToolbarItemDockable;
+import bibliothek.gui.dock.*;
 import bibliothek.gui.dock.station.ToolbarTabDockStation;
 
 /**
@@ -64,121 +59,123 @@ import bibliothek.gui.dock.station.ToolbarTabDockStation;
  * <li> <code>ToolbarGroupDockStation</code> <= <code>ToolbarDockStation</code>
  * <li> <code>ToolbarDockStation</code> <= <code>ComponentDockable</code>
  * </ul>
- * 
+ *
  * @author Benjamin Sigg
  * @author Herve Guillaume
  */
-public class DefaultToolbarStrategy implements ToolbarStrategy{
+public class DefaultToolbarStrategy implements ToolbarStrategy {
 
-	@Override
-	public Dockable ensureToolbarLayer( DockStation station, Dockable dockable ){
-		if (station instanceof ToolbarDockStation){
-			return dockable;
-		}
+  @Override
+  public Dockable ensureToolbarLayer(DockStation station, Dockable dockable) {
+    if (station instanceof ToolbarDockStation) {
+      return dockable;
+    }
 
-		if (station instanceof ToolbarGroupDockStation){
-			if (dockable instanceof ToolbarDockStation){
-				return dockable;
-			} else{
-				ToolbarDockStation replacement = new ToolbarDockStation();
-				replacement.setOrientation( getOrientation( dockable ) );
-				return replacement;
-			}
-		}
+    if (station instanceof ToolbarGroupDockStation) {
+      if (dockable instanceof ToolbarDockStation) {
+        return dockable;
+      }
+      else {
+        ToolbarDockStation replacement = new ToolbarDockStation();
+        replacement.setOrientation(getOrientation(dockable));
+        return replacement;
+      }
+    }
 
-		if ((station instanceof ToolbarContainerDockStation)
-				|| (station instanceof ScreenDockStation)){
-			if (dockable instanceof ToolbarGroupDockStation){
-				return dockable;
-			} else{
-				ToolbarGroupDockStation replacement = new ToolbarGroupDockStation();
-				replacement.setOrientation( getOrientation( dockable ) );
-				return replacement;
-			}
-		}
+    if ((station instanceof ToolbarContainerDockStation) || (station instanceof ScreenDockStation)) {
+      if (dockable instanceof ToolbarGroupDockStation) {
+        return dockable;
+      }
+      else {
+        ToolbarGroupDockStation replacement = new ToolbarGroupDockStation();
+        replacement.setOrientation(getOrientation(dockable));
+        return replacement;
+      }
+    }
 
-		return null;
-	}
-	
-	/**
-	 * Tells what orientation should be applied to the parent of <code>dockable</code>.
-	 * @param dockable some item that is dropped
-	 * @return the preferred orientation of the parent
-	 */
-	protected Orientation getOrientation( Dockable dockable ){
-		Orientation orientation = null;
-		if( dockable instanceof ToolbarItemDockable ){
-			orientation = ((ToolbarItemDockable)dockable).getOrientation();
-		} else if( dockable instanceof AbstractToolbarDockStation ){
-			orientation = ((AbstractToolbarDockStation)dockable).getOrientation();
-		}
-		if( orientation == null ){
-			orientation = Orientation.HORIZONTAL;
-		}
-		return orientation;
-	}
+    return null;
+  }
 
-	@Override
-	public boolean isToolbarGroupPartParent( DockStation parent,
-			Dockable child, boolean strong ){
-		if (strong){
-			if (child instanceof ToolbarItemDockable){
-				return (parent instanceof ToolbarDockStation);
-			}
+  /**
+   * Tells what orientation should be applied to the parent of <code>dockable</code>.
+   *
+   * @param dockable some item that is dropped
+   * @return the preferred orientation of the parent
+   */
+  protected Orientation getOrientation(Dockable dockable) {
+    Orientation orientation = null;
+    if (dockable instanceof ToolbarItemDockable) {
+      orientation = ((ToolbarItemDockable)dockable).getOrientation();
+    }
+    else if (dockable instanceof AbstractToolbarDockStation) {
+      orientation = ((AbstractToolbarDockStation)dockable).getOrientation();
+    }
+    if (orientation == null) {
+      orientation = Orientation.HORIZONTAL;
+    }
+    return orientation;
+  }
 
-			if (child instanceof ToolbarDockStation){
-				return parent instanceof ToolbarGroupDockStation;
-			}
+  @Override
+  public boolean isToolbarGroupPartParent(DockStation parent, Dockable child, boolean strong) {
+    if (strong) {
+      if (child instanceof ToolbarItemDockable) {
+        return (parent instanceof ToolbarDockStation);
+      }
 
-			if (child instanceof ToolbarGroupDockStation){
-				return (parent instanceof ToolbarContainerDockStation)
-						|| (parent instanceof ScreenDockStation || (parent instanceof ToolbarContainerDockStation));
-			}
+      if (child instanceof ToolbarDockStation) {
+        return parent instanceof ToolbarGroupDockStation;
+      }
 
-			return false;
-		} else{
-			// floating policy
-			if (parent instanceof ScreenDockStation){
-				return true;
-			}
+      if (child instanceof ToolbarGroupDockStation) {
+        return (parent instanceof ToolbarContainerDockStation) ||
+               (parent instanceof ScreenDockStation || (parent instanceof ToolbarContainerDockStation));
+      }
 
-			// ?? policy
-			if ((child instanceof ToolbarItemDockable)
-					&& (parent instanceof ToolbarTabDockStation)){
-				return true;
-			}
-			// docking and merging policy
-			if (isToolbarParent(parent)){
-				if ((child instanceof ToolbarItemDockable)
-						|| (child instanceof ToolbarDockStation)){
-					return true;
-				} else if ((child instanceof ToolbarGroupDockStation)
-						&& ((parent instanceof ToolbarGroupDockStation) || (parent instanceof ToolbarContainerDockStation))){
-					return true;
-				} else{
-					return false;
-				}
-			} else{
-				return false;
-			}
-		}
-	}
+      return false;
+    }
+    else {
+      // floating policy
+      if (parent instanceof ScreenDockStation) {
+        return true;
+      }
 
-	private boolean isToolbarParent( DockStation station ){
-		return station instanceof AbstractToolbarDockStation
-				|| station instanceof ToolbarContainerDockStation;
-	}
+      // ?? policy
+      if ((child instanceof ToolbarItemDockable) && (parent instanceof ToolbarTabDockStation)) {
+        return true;
+      }
+      // docking and merging policy
+      if (isToolbarParent(parent)) {
+        if ((child instanceof ToolbarItemDockable) || (child instanceof ToolbarDockStation)) {
+          return true;
+        }
+        else if ((child instanceof ToolbarGroupDockStation) &&
+                 ((parent instanceof ToolbarGroupDockStation) || (parent instanceof ToolbarContainerDockStation))) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+      else {
+        return false;
+      }
+    }
+  }
 
-	@Override
-	public boolean isToolbarGroupPart( Dockable dockable ){
-		return dockable instanceof ToolbarItemDockable
-				|| (dockable instanceof ToolbarDockStation)
-				|| (dockable instanceof ToolbarGroupDockStation);
-	}
+  private boolean isToolbarParent(DockStation station) {
+    return station instanceof AbstractToolbarDockStation || station instanceof ToolbarContainerDockStation;
+  }
 
-	@Override
-	public boolean isToolbarPart( Dockable dockable ){
-		return (dockable instanceof ToolbarGroupDockStation)
-				|| isToolbarGroupPart(dockable);
-	}
+  @Override
+  public boolean isToolbarGroupPart(Dockable dockable) {
+    return dockable instanceof ToolbarItemDockable ||
+           (dockable instanceof ToolbarDockStation) ||
+           (dockable instanceof ToolbarGroupDockStation);
+  }
+
+  @Override
+  public boolean isToolbarPart(Dockable dockable) {
+    return (dockable instanceof ToolbarGroupDockStation) || isToolbarGroupPart(dockable);
+  }
 }

@@ -25,61 +25,61 @@
  */
 package bibliothek.gui.dock.common.intern;
 
-import java.awt.event.KeyEvent;
-
-import javax.swing.KeyStroke;
-
 import bibliothek.gui.dock.DockElement;
 import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.common.event.CKeyboardListener;
 
+import javax.swing.*;
+import java.awt.event.KeyEvent;
+
 public class CancelDragAndDropOperation implements CKeyboardListener {
-	private CControl control;
+  private CControl control;
 
-	public CancelDragAndDropOperation( CControl control ) {
-		this.control = control;
-	}
+  public CancelDragAndDropOperation(CControl control) {
+    this.control = control;
+  }
 
-	public DockElement getTreeLocation() {
-		return null;
-	}
+  public DockElement getTreeLocation() {
+    return null;
+  }
 
-	private boolean dragAndDropHappening() {
-		return control.getController().getRelocator().isOnMove();
-	}
+  private boolean dragAndDropHappening() {
+    return control.getController().getRelocator().isOnMove();
+  }
 
-	private boolean isCancelKeyStroke( KeyEvent event ) {
-		KeyStroke keyStroke = control.getProperty( CControl.KEY_CANCEL_OPERATION );
-		if( keyStroke == null ) {
-			return false;
-		}
+  private boolean isCancelKeyStroke(KeyEvent event) {
+    KeyStroke keyStroke = control.getProperty(CControl.KEY_CANCEL_OPERATION);
+    if (keyStroke == null) {
+      return false;
+    }
 
-		KeyStroke observedKeyStroke = KeyStroke.getKeyStrokeForEvent( event );
-		return keyStroke.equals( observedKeyStroke );
-	}
+    KeyStroke observedKeyStroke = KeyStroke.getKeyStrokeForEvent(event);
+    return keyStroke.equals(observedKeyStroke);
+  }
 
-	private void cancelOperation() {
-		control.getController().getRelocator().cancel();
-	}
+  private void cancelOperation() {
+    control.getController().getRelocator().cancel();
+  }
 
-	public boolean keyPressed( CDockable source, KeyEvent event ) {
-		if( event.isConsumed() ) {
-			return false;
-		}
+  public boolean keyPressed(CDockable source, KeyEvent event) {
+    if (event.isConsumed()) {
+      return false;
+    }
 
-		if( dragAndDropHappening() && isCancelKeyStroke( event ) ) {
-			cancelOperation();
-			return true;
-		} else {
-			return false;
-		}
-	}
+    if (dragAndDropHappening() && isCancelKeyStroke(event)) {
+      cancelOperation();
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
-	public boolean keyReleased( CDockable source, KeyEvent event ) {
-		return false;
-	}
+  public boolean keyReleased(CDockable source, KeyEvent event) {
+    return false;
+  }
 
-	public boolean keyTyped( CDockable source, KeyEvent event ) {
-		return false;
-	}
+  public boolean keyTyped(CDockable source, KeyEvent event) {
+    return false;
+  }
 }

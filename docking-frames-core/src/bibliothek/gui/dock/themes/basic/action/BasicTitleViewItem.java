@@ -26,36 +26,39 @@
 
 package bibliothek.gui.dock.themes.basic.action;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.action.view.ViewItem;
 import bibliothek.gui.dock.title.DockTitle;
 
+import java.awt.*;
+
 /**
  * A view item that will be shown between some buttons on a DockTitle.
- * @author Benjamin Sigg
  *
  * @param <A> the type of item wrapped in this object
+ * @author Benjamin Sigg
  */
 public interface BasicTitleViewItem<A> extends ViewItem<A> {
-	/**
-	 * Informs the item about the orientation of the title that uses this 
-	 * item.
-	 * @param orientation the orientation
-	 */
-	public void setOrientation( DockTitle.Orientation orientation );
-	
-	/**
-	 * Called by the title that shows this item to tell this item what the
-	 * foreground color of the title is.
-	 * @param foreground the foreground color of the title
-	 */
-	public void setForeground( Color foreground );
-	
-	/**
-	 * Called by the title that shows this item to tell this item what the
-	 * background color of the title is.
-	 * @param background the background color of the title
-	 */
-	public void setBackground( Color background );
+  /**
+   * Informs the item about the orientation of the title that uses this
+   * item.
+   *
+   * @param orientation the orientation
+   */
+  public void setOrientation(DockTitle.Orientation orientation);
+
+  /**
+   * Called by the title that shows this item to tell this item what the
+   * foreground color of the title is.
+   *
+   * @param foreground the foreground color of the title
+   */
+  public void setForeground(Color foreground);
+
+  /**
+   * Called by the title that shows this item to tell this item what the
+   * background color of the title is.
+   *
+   * @param background the background color of the title
+   */
+  public void setBackground(Color background);
 }

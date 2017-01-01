@@ -31,15 +31,19 @@ import bibliothek.util.Path;
 
 /**
  * Represents the background of a {@link DockTitle}.
+ *
  * @author Benjamin Sigg
  */
-public interface DockTitleBackgroundComponent extends BackgroundComponent{
-	/** the kind of value this {@link UIValue} is */
-	public static final Path KIND = BackgroundComponent.KIND.append( "title" );
-	
-	/**
-	 * Gets the title which is represented by this {@link UIValue}.
-	 * @return the title, not <code>null</code>
-	 */
-	public DockTitle getTitle();
+public interface DockTitleBackgroundComponent extends BackgroundComponent {
+  /**
+   * the kind of value this {@link UIValue} is
+   */
+  public static final Path KIND = BackgroundComponent.KIND.append("title");
+
+  /**
+   * Gets the title which is represented by this {@link UIValue}.
+   *
+   * @return the title, not <code>null</code>
+   */
+  public DockTitle getTitle();
 }

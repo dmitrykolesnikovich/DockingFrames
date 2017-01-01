@@ -30,16 +30,18 @@ import bibliothek.gui.dock.util.UIProperties;
 
 /**
  * A {@link FontManager} contains {@link FontModifier}s, {@link DockFont}s
- * and {@link FontBridge}s. Changes of any {@link FontModifier}s will be 
+ * and {@link FontBridge}s. Changes of any {@link FontModifier}s will be
  * reported to the {@link DockFont}s.
+ *
  * @author Benjamin Sigg
  */
-public class FontManager extends UIProperties<FontModifier, DockFont, FontBridge>{
-	/**
-	 * Creates a new map.
-	 * @param controller the controller in whose realm this manager is used
-	 */
-	public FontManager( DockController controller ){
-		super( controller );
-	}
+public class FontManager extends UIProperties<FontModifier, DockFont, FontBridge> {
+  /**
+   * Creates a new map.
+   *
+   * @param controller the controller in whose realm this manager is used
+   */
+  public FontManager(DockController controller) {
+    super(controller);
+  }
 }

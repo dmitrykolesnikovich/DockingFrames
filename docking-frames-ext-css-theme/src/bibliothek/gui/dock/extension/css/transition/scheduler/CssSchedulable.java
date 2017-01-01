@@ -27,15 +27,17 @@ package bibliothek.gui.dock.extension.css.transition.scheduler;
 
 /**
  * Some kind of animation that can be triggered by the {@link CssScheduler}.
+ *
  * @author Benjamin Sigg
  */
 public interface CssSchedulable {
-	/**
-	 * Called with some delay, usually in the EDT, from <code>scheduler</code>.
-	 * @param scheduler the scheduler, may be used to schedule a follow up event
-	 * @param delay the amount of milliseconds passed since the last call to
-	 * {@link CssScheduler#step(CssSchedulable)} from within this method,
-	 * or <code>-1</code> if <code>step</code> was not called by this method
-	 */
-	public void step( CssScheduler scheduler, int delay );
+  /**
+   * Called with some delay, usually in the EDT, from <code>scheduler</code>.
+   *
+   * @param scheduler the scheduler, may be used to schedule a follow up event
+   * @param delay     the amount of milliseconds passed since the last call to
+   *                  {@link CssScheduler#step(CssSchedulable)} from within this method,
+   *                  or <code>-1</code> if <code>step</code> was not called by this method
+   */
+  public void step(CssScheduler scheduler, int delay);
 }

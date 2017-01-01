@@ -26,9 +26,6 @@
 
 package bibliothek.extension.gui.dock.theme.flat;
 
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.themes.ThemeManager;
 import bibliothek.gui.dock.themes.basic.BasicDockTitle;
@@ -36,31 +33,34 @@ import bibliothek.gui.dock.title.AbstractDockTitle;
 import bibliothek.gui.dock.title.DockTitleFactory;
 import bibliothek.gui.dock.title.DockTitleRequest;
 
+import javax.swing.*;
+
 /**
  * A factory that creates instances of {@link BasicDockTitle}, but
  * changes their active and inactive right color to the Dockables background.
- * If {@link JComponent#updateUI() updateUI} is called, the colors will be 
+ * If {@link JComponent#updateUI() updateUI} is called, the colors will be
  * updated as well.
+ *
  * @author Benjamin Sigg
  */
-public class FlatTitleFactory implements DockTitleFactory{
-	public void install( DockTitleRequest request ){
-		// ignore	
-	}
-	
-	public void uninstall( DockTitleRequest request ){
-		// ignore	
-	}
-	
-	public void request( DockTitleRequest request ){
-		Dockable dockable = request.getTarget();
-		if( dockable.asDockStation() == null ){
-			request.answer( new BasicDockTitle( dockable, request.getVersion() ) );
-		}
-		else{
-			AbstractDockTitle title = new AbstractDockTitle( dockable, request.getVersion() );
-	        title.setBorder( ThemeManager.BORDER_MODIFIER + ".title.flat", BorderFactory.createLineBorder( title.getBackground().darker() ));
-	        request.answer( title );
-		}
-	}
+public class FlatTitleFactory implements DockTitleFactory {
+  public void install(DockTitleRequest request) {
+    // ignore
+  }
+
+  public void uninstall(DockTitleRequest request) {
+    // ignore
+  }
+
+  public void request(DockTitleRequest request) {
+    Dockable dockable = request.getTarget();
+    if (dockable.asDockStation() == null) {
+      request.answer(new BasicDockTitle(dockable, request.getVersion()));
+    }
+    else {
+      AbstractDockTitle title = new AbstractDockTitle(dockable, request.getVersion());
+      title.setBorder(ThemeManager.BORDER_MODIFIER + ".title.flat", BorderFactory.createLineBorder(title.getBackground().darker()));
+      request.answer(title);
+    }
+  }
 }

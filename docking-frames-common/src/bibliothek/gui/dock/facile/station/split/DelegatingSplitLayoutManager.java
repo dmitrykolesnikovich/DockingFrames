@@ -33,56 +33,57 @@ import bibliothek.gui.dock.station.split.*;
 /**
  * A {@link SplitLayoutManager} which delegates all its work to another manager.
  * This class is intended to be subclassed in order to override some methods.
+ *
  * @author Benjamin Sigg
  */
 public class DelegatingSplitLayoutManager implements SplitLayoutManager {
-    private SplitLayoutManager delegate;
-    
-    /**
-     * Creates a new manager
-     * @param delegate the manager whose methods will be called unless a
-     * subclass has overridden them.
-     */
-    public DelegatingSplitLayoutManager( SplitLayoutManager delegate ){
-        if( delegate == null )
-            throw new NullPointerException( "delegate must not be null" );
-        this.delegate = delegate;
-    }
-    
-    public void calculateDivider( SplitDockStation station, PutInfo putInfo, Leaf origin, StationDropItem item ) {
-        delegate.calculateDivider( station, putInfo, origin, item );
-    }
+  private SplitLayoutManager delegate;
 
-    public void install( SplitDockStation station ) {
-        delegate.install( station );
-    }
+  /**
+   * Creates a new manager
+   *
+   * @param delegate the manager whose methods will be called unless a
+   *                 subclass has overridden them.
+   */
+  public DelegatingSplitLayoutManager(SplitLayoutManager delegate) {
+    if (delegate == null) throw new NullPointerException("delegate must not be null");
+    this.delegate = delegate;
+  }
 
-    public PutInfo prepareDrop( SplitDockStation station, StationDropItem dockable ){
-        return delegate.prepareDrop( station, dockable );
-    }
+  public void calculateDivider(SplitDockStation station, PutInfo putInfo, Leaf origin, StationDropItem item) {
+    delegate.calculateDivider(station, putInfo, origin, item);
+  }
 
-    public PutInfo prepareMove( SplitDockStation station, StationDropItem dockable ){
-        return delegate.prepareMove( station, dockable );
-    }
+  public void install(SplitDockStation station) {
+    delegate.install(station);
+  }
 
-    public void uninstall( SplitDockStation station ) {
-        delegate.uninstall( station );
-    }
+  public PutInfo prepareDrop(SplitDockStation station, StationDropItem dockable) {
+    return delegate.prepareDrop(station, dockable);
+  }
 
-    public void updateBounds( Root root, double x, double y, double factorW, double factorH ) {
-        delegate.updateBounds( root, x, y, factorW, factorH );
-    }
+  public PutInfo prepareMove(SplitDockStation station, StationDropItem dockable) {
+    return delegate.prepareMove(station, dockable);
+  }
 
-    public double validateDivider( SplitDockStation station, double divider, Node node ) {
-        return delegate.validateDivider( station, divider, node );
-    }
+  public void uninstall(SplitDockStation station) {
+    delegate.uninstall(station);
+  }
 
-    public PutInfo validatePutInfo( SplitDockStation station, PutInfo info ) {
-        return delegate.validatePutInfo( station, info );
-    }
+  public void updateBounds(Root root, double x, double y, double factorW, double factorH) {
+    delegate.updateBounds(root, x, y, factorW, factorH);
+  }
 
-    public Dockable willMakeFullscreen( SplitDockStation station, Dockable dockable ) {
-        return delegate.willMakeFullscreen( station, dockable );
-    }
+  public double validateDivider(SplitDockStation station, double divider, Node node) {
+    return delegate.validateDivider(station, divider, node);
+  }
+
+  public PutInfo validatePutInfo(SplitDockStation station, PutInfo info) {
+    return delegate.validatePutInfo(station, info);
+  }
+
+  public Dockable willMakeFullscreen(SplitDockStation station, Dockable dockable) {
+    return delegate.willMakeFullscreen(station, dockable);
+  }
 
 }

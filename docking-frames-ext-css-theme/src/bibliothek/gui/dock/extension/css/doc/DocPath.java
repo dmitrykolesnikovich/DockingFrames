@@ -31,126 +31,143 @@ import java.util.List;
 
 /**
  * Describes the location of a {@link DocProperty}.
+ *
  * @author Benjamin Sigg
  */
 public class DocPath {
-	/** the property whose path <code>this</code> is */
-	private DocProperty property;
-	
-	/** all the nodes of this path */
-	private List<DocNode> nodes = new ArrayList<DocNode>();
-	
-	/** the unsorted nodes of this path */
-	private List<DocNode> unordered = new ArrayList<DocNode>();
-	
-	/** the actual path */
-	private CssDocPath path;
-	
-	/** the parent path of <code>this</code> */
-	private DocPath parent;
-	
-	/**
-	 * Calculates the path of <code>property</code>.
-	 * @param property the property whose path <code>this</code> represents.
-	 * @param path the actual path
-	 */
-	public DocPath( DocProperty property, CssDocPath path ){
-		this.property = property;
-		add( path );
-	}
-	
-	/**
-	 * Gets the parent path of <code>this</code>.
-	 * @return the parent path, can be <code>null</code>
-	 */
-	public DocPath getParent(){
-		return parent;
-	}
-	
-	/**
-	 * Gets the root of the documentation.
-	 * @return the root
-	 */
-	public DocRoot getRoot(){
-		return property.getRoot();
-	}
-	
-	/**
-	 * Gets the documentation of this path.
-	 * @return the documentation
-	 */
-	public DocText getDescription(){
-		return new DocText( getRoot(), path.description() ); 
-	}
-	
-	/**
-	 * Gets the sorted nodes, that appear exactly one time on the path.
-	 * @return the sorted nodes
-	 */
-	public Iterable<DocNode> getNodes(){
-		return nodes;
-	}
-	
-	/**
-	 * Gets the nodes whose order and number of appearance is unknown.
-	 * @return the unordered nodes
-	 */
-	public Iterable<DocNode> getUnordered(){
-		return unordered;
-	}
-	
-	private void add( CssDocPath path ){
-		String refId = path.referenceId();
-		if( !refId.isEmpty() ){
-			add( getPathFor( refId, path.referencePath() ));
-		}
-		else{
-			unpack( path );
-		}
-	}
-	
-	private void unpack( CssDocPath path ){
-		this.path = path;
-		
-		for( CssDocPathNode node : path.nodes() ){
-			add( nodes, node );
-		}
-		for( CssDocPathNode node : path.unordered() ){
-			add( unordered, node );
-		}
-		
-		String parentId = path.parentId();
-		if( !parentId.isEmpty() ){
-			parent = new DocPath( property, getPathFor( parentId, path.parentClass() ));
-		}
-	}
-	
-	private CssDocPath getPathFor( String refId, Class<?> refClass ){
-		CssDocPath path;
-		
-		if( refClass == Object.class ){
-			path = property.getClazz().getPath( refId );
-		}
-		else{
-			path = property.getRoot().get( refClass ).getPath( refId );
-		}
-		if( path == null ){
-			throw new IllegalArgumentException( "unknown ref: " + refId + " " + refClass );
-		}
-		return path;
-	}
-	
-	private void add( Collection<DocNode> target, CssDocPathNode node ){
-		Class<?> refClass = node.reference();
-		if( refClass == Object.class ){
-			target.add( new DocNode( this, node ));
-		}
-		else{
-			CssDocPathNode replacement = refClass.getAnnotation( CssDocPathNode.class );
-			if( replacement == null ){
-				throw new IllegalArgumentException( "referenced " + refClass + " does not have any css-doc-path-nodes" );
-			}
-			add( target, replacement );
-		}
-	}
+  /**
+   * the property whose path <code>this</code> is
+   */
+  private DocProperty property;
+
+  /**
+   * all the nodes of this path
+   */
+  private List<DocNode> nodes = new ArrayList<DocNode>();
+
+  /**
+   * the unsorted nodes of this path
+   */
+  private List<DocNode> unordered = new ArrayList<DocNode>();
+
+  /**
+   * the actual path
+   */
+  private CssDocPath path;
+
+  /**
+   * the parent path of <code>this</code>
+   */
+  private DocPath parent;
+
+  /**
+   * Calculates the path of <code>property</code>.
+   *
+   * @param property the property whose path <code>this</code> represents.
+   * @param path     the actual path
+   */
+  public DocPath(DocProperty property, CssDocPath path) {
+    this.property = property;
+    add(path);
+  }
+
+  /**
+   * Gets the parent path of <code>this</code>.
+   *
+   * @return the parent path, can be <code>null</code>
+   */
+  public DocPath getParent() {
+    return parent;
+  }
+
+  /**
+   * Gets the root of the documentation.
+   *
+   * @return the root
+   */
+  public DocRoot getRoot() {
+    return property.getRoot();
+  }
+
+  /**
+   * Gets the documentation of this path.
+   *
+   * @return the documentation
+   */
+  public DocText getDescription() {
+    return new DocText(getRoot(), path.description());
+  }
+
+  /**
+   * Gets the sorted nodes, that appear exactly one time on the path.
+   *
+   * @return the sorted nodes
+   */
+  public Iterable<DocNode> getNodes() {
+    return nodes;
+  }
+
+  /**
+   * Gets the nodes whose order and number of appearance is unknown.
+   *
+   * @return the unordered nodes
+   */
+  public Iterable<DocNode> getUnordered() {
+    return unordered;
+  }
+
+  private void add(CssDocPath path) {
+    String refId = path.referenceId();
+    if (!refId.isEmpty()) {
+      add(getPathFor(refId, path.referencePath()));
+    }
+    else {
+      unpack(path);
+    }
+  }
+
+  private void unpack(CssDocPath path) {
+    this.path = path;
+
+    for (CssDocPathNode node : path.nodes()) {
+      add(nodes, node);
+    }
+    for (CssDocPathNode node : path.unordered()) {
+      add(unordered, node);
+    }
+
+    String parentId = path.parentId();
+    if (!parentId.isEmpty()) {
+      parent = new DocPath(property, getPathFor(parentId, path.parentClass()));
+    }
+  }
+
+  private CssDocPath getPathFor(String refId, Class<?> refClass) {
+    CssDocPath path;
+
+    if (refClass == Object.class) {
+      path = property.getClazz().getPath(refId);
+    }
+    else {
+      path = property.getRoot().get(refClass).getPath(refId);
+    }
+    if (path == null) {
+      throw new IllegalArgumentException("unknown ref: " + refId + " " + refClass);
+    }
+    return path;
+  }
+
+  private void add(Collection<DocNode> target, CssDocPathNode node) {
+    Class<?> refClass = node.reference();
+    if (refClass == Object.class) {
+      target.add(new DocNode(this, node));
+    }
+    else {
+      CssDocPathNode replacement = refClass.getAnnotation(CssDocPathNode.class);
+      if (replacement == null) {
+        throw new IllegalArgumentException("referenced " + refClass + " does not have any css-doc-path-nodes");
+      }
+      add(target, replacement);
+    }
+  }
 }

@@ -28,29 +28,33 @@ package bibliothek.gui.dock.extension.css.transition;
 /**
  * This listener can be added to a {@link RuleChainLink} and will be informed if the link changes its
  * position in the chain.
+ *
  * @author Benjamin Sigg
  */
 public interface RuleChainLinkListener {
-	/**
-	 * Called if the predecessor of <code>source</code> changed.
-	 * @param source the source of the event
-	 * @param oldPrevious the old predecessor, may be <code>null</code>
-	 * @param newPrevious the new predecessor, may be <code>null</code>
-	 */
-	public void previousChanged( RuleChainLink source, RuleChainLink oldPrevious, RuleChainLink newPrevious );
-	
-	/**
-	 * Called if the successor of <code>source</code> changed.
-	 * @param source the source of the event
-	 * @param oldNext the old successor, may be <code>null</code>
-	 * @param newNext the new successor, may be <code>null</code>
-	 */
-	public void nextChanged( RuleChainLink source, RuleChainLink oldNext, RuleChainLink newNext );
-	
-	/**
-	 * Called after <code>source</code> has been removed from the chain. This is always the
-	 * last event a link fires, it will never again be part of the chain.
-	 * @param source the link that was removed
-	 */
-	public void removed( RuleChainLink source );
+  /**
+   * Called if the predecessor of <code>source</code> changed.
+   *
+   * @param source      the source of the event
+   * @param oldPrevious the old predecessor, may be <code>null</code>
+   * @param newPrevious the new predecessor, may be <code>null</code>
+   */
+  public void previousChanged(RuleChainLink source, RuleChainLink oldPrevious, RuleChainLink newPrevious);
+
+  /**
+   * Called if the successor of <code>source</code> changed.
+   *
+   * @param source  the source of the event
+   * @param oldNext the old successor, may be <code>null</code>
+   * @param newNext the new successor, may be <code>null</code>
+   */
+  public void nextChanged(RuleChainLink source, RuleChainLink oldNext, RuleChainLink newNext);
+
+  /**
+   * Called after <code>source</code> has been removed from the chain. This is always the
+   * last event a link fires, it will never again be part of the chain.
+   *
+   * @param source the link that was removed
+   */
+  public void removed(RuleChainLink source);
 }

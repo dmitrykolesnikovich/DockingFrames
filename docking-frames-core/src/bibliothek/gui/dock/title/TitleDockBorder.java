@@ -32,15 +32,19 @@ import bibliothek.util.Path;
 
 /**
  * A {@link BorderModifier} used by a {@link DockTitle}.
+ *
  * @author Benjamin Sigg
  */
-public interface TitleDockBorder extends DockBorder{
-	/** the type of this {@link UIValue} */
-	public static final Path KIND = DockBorder.KIND.append( "title" );
-	
-	/**
-	 * Gets the title for which this border is used.
-	 * @return the title
-	 */
-	public DockTitle getTitle();
+public interface TitleDockBorder extends DockBorder {
+  /**
+   * the type of this {@link UIValue}
+   */
+  public static final Path KIND = DockBorder.KIND.append("title");
+
+  /**
+   * Gets the title for which this border is used.
+   *
+   * @return the title
+   */
+  public DockTitle getTitle();
 }

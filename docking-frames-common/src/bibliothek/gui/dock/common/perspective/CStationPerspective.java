@@ -33,56 +33,64 @@ import bibliothek.util.Path;
 
 /**
  * A representation of a {@link CStation}.
+ *
  * @author Benjamin Sigg
  */
-public interface CStationPerspective extends CElementPerspective{
-	/**
-	 * Gets the unique identifier of this station.
-	 * @return the unique identifier
-	 */
-	public String getUniqueId();
-	
-	/**
-	 * Gets the unique id denoting the type of this {@link CStation}, this should be the
-	 * exact same result as {@link CStation#getTypeId()} will return.
-	 * @return the type id, can be <code>null</code>
-	 */
-	public Path getTypeId();
-	
-	/**
-	 * Informs this station by which perspective it is used. 
-	 * @param perspective the perspective that uses this station or <code>null</code>
-	 */
-	@FrameworkOnly
-	public void setPerspective( CPerspective perspective );
-	
-	/**
-	 * Gets the perspective which presents this station.
-	 * @return the owner of this station, can be <code>null</code>
-	 */
-	public CPerspective getPerspective();
+public interface CStationPerspective extends CElementPerspective {
+  /**
+   * Gets the unique identifier of this station.
+   *
+   * @return the unique identifier
+   */
+  public String getUniqueId();
 
-	/**
-	 * Tells whether this station will act as a {@link CStation#isWorkingArea() working area}.
-	 * @return whether this station acts as working area
-	 */
-	public boolean isWorkingArea();
-	
+  /**
+   * Gets the unique id denoting the type of this {@link CStation}, this should be the
+   * exact same result as {@link CStation#getTypeId()} will return.
+   *
+   * @return the type id, can be <code>null</code>
+   */
+  public Path getTypeId();
 
-	/**
-	 * Tells whether this is a root station or not.
-	 * @return the root flag
-	 * @see #setRoot(boolean)
-	 */
-	public boolean isRoot();
-	
-	/**
-	 * Sets the root station flag. Setting flag is equivalent of setting the <code>root</code> parameter when calling
-	 * {@link CControl#addStation(bibliothek.gui.dock.common.CStation, boolean)}. The location of a {@link Dockable} is
-	 * always relative to its nearest root-station parent.<br>
-	 * Please note that the root-flag set by calling {@link CControl#addStation(bibliothek.gui.dock.common.CStation, boolean)} will
-	 * never be overridden by the flag set in the perspective.
-	 * @param root
-	 */
-	public void setRoot( boolean root );
+  /**
+   * Gets the perspective which presents this station.
+   *
+   * @return the owner of this station, can be <code>null</code>
+   */
+  public CPerspective getPerspective();
+
+  /**
+   * Informs this station by which perspective it is used.
+   *
+   * @param perspective the perspective that uses this station or <code>null</code>
+   */
+  @FrameworkOnly
+  public void setPerspective(CPerspective perspective);
+
+  /**
+   * Tells whether this station will act as a {@link CStation#isWorkingArea() working area}.
+   *
+   * @return whether this station acts as working area
+   */
+  public boolean isWorkingArea();
+
+
+  /**
+   * Tells whether this is a root station or not.
+   *
+   * @return the root flag
+   * @see #setRoot(boolean)
+   */
+  public boolean isRoot();
+
+  /**
+   * Sets the root station flag. Setting flag is equivalent of setting the <code>root</code> parameter when calling
+   * {@link CControl#addStation(bibliothek.gui.dock.common.CStation, boolean)}. The location of a {@link Dockable} is
+   * always relative to its nearest root-station parent.<br>
+   * Please note that the root-flag set by calling {@link CControl#addStation(bibliothek.gui.dock.common.CStation, boolean)} will
+   * never be overridden by the flag set in the perspective.
+   *
+   * @param root
+   */
+  public void setRoot(boolean root);
 }

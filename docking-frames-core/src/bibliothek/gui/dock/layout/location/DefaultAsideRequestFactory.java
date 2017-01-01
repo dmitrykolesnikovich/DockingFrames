@@ -33,28 +33,30 @@ import bibliothek.util.Path;
 
 /**
  * This factory creates new instances of {@link DefaultAsideRequest}.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultAsideRequestFactory implements AsideRequestFactory{
-	private DockProperties properties;
-	
-	/**
-	 * Creates the new factory
-	 * @param properties required to access the {@link PlaceholderStrategy}
-	 */
-	public DefaultAsideRequestFactory( DockProperties properties ){
-		if( properties == null ){
-			throw new IllegalArgumentException( "properties must not be null" );
-		}
-		this.properties = properties;
-	}
-	
-	public AsideRequest createAsideRequest( DockableProperty location, Dockable dockable ){
-		Path placeholder = null;
-		PlaceholderStrategy strategy = properties.get( PlaceholderStrategy.PLACEHOLDER_STRATEGY );
-		if( strategy != null ){
-			placeholder = strategy.getPlaceholderFor( dockable );
-		}
-		return new DefaultAsideRequest( location, placeholder );
-	}
+public class DefaultAsideRequestFactory implements AsideRequestFactory {
+  private DockProperties properties;
+
+  /**
+   * Creates the new factory
+   *
+   * @param properties required to access the {@link PlaceholderStrategy}
+   */
+  public DefaultAsideRequestFactory(DockProperties properties) {
+    if (properties == null) {
+      throw new IllegalArgumentException("properties must not be null");
+    }
+    this.properties = properties;
+  }
+
+  public AsideRequest createAsideRequest(DockableProperty location, Dockable dockable) {
+    Path placeholder = null;
+    PlaceholderStrategy strategy = properties.get(PlaceholderStrategy.PLACEHOLDER_STRATEGY);
+    if (strategy != null) {
+      placeholder = strategy.getPlaceholderFor(dockable);
+    }
+    return new DefaultAsideRequest(location, placeholder);
+  }
 }

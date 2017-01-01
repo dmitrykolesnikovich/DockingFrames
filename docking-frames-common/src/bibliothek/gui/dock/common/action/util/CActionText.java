@@ -32,30 +32,37 @@ import bibliothek.util.Path;
 
 /**
  * A text that is used by a {@link CAction}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class CActionText extends TextValue{
-	/** what kind of {@link UIValue} this is */
-	public static final Path KIND_CACTION = KIND_TEXT.append( "caction" );
+public abstract class CActionText extends TextValue {
+  /**
+   * what kind of {@link UIValue} this is
+   */
+  public static final Path KIND_CACTION = KIND_TEXT.append("caction");
 
-	/** the action which is using this text */
-	private CAction action;
-	
-	/**
-	 * Creates a new {@link CActionText}.
-	 * @param id the unique identifier of this text
-	 * @param action the action using the text
-	 */
-	public CActionText( String id, CAction action ){
-		super( id, KIND_CACTION );
-		this.action = action;
-	}
-	
-	/**
-	 * Gets the action which is using this text.
-	 * @return the action
-	 */
-	public CAction getAction(){
-		return action;
-	}
+  /**
+   * the action which is using this text
+   */
+  private CAction action;
+
+  /**
+   * Creates a new {@link CActionText}.
+   *
+   * @param id     the unique identifier of this text
+   * @param action the action using the text
+   */
+  public CActionText(String id, CAction action) {
+    super(id, KIND_CACTION);
+    this.action = action;
+  }
+
+  /**
+   * Gets the action which is using this text.
+   *
+   * @return the action
+   */
+  public CAction getAction() {
+    return action;
+  }
 }

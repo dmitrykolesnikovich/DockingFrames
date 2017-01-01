@@ -25,18 +25,19 @@
  */
 package bibliothek.gui.dock.action.popup;
 
-import java.awt.Component;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.action.DockActionSource;
+
+import java.awt.*;
 
 /**
  * The default implementation of a {@link ActionPopupMenuFactory} creates
  * new {@link DefaultActionPopupMenu}s.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultActionPopupMenuFactory implements ActionPopupMenuFactory{
-	public ActionPopupMenu createMenu( Component owner, Dockable dockable, DockActionSource actions, Object source ){
-		return new DefaultActionPopupMenu( dockable, actions );
-	}
+public class DefaultActionPopupMenuFactory implements ActionPopupMenuFactory {
+  public ActionPopupMenu createMenu(Component owner, Dockable dockable, DockActionSource actions, Object source) {
+    return new DefaultActionPopupMenu(dockable, actions);
+  }
 }

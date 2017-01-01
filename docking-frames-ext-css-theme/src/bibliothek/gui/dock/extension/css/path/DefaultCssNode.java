@@ -25,170 +25,179 @@
  */
 package bibliothek.gui.dock.extension.css.path;
 
+import bibliothek.gui.dock.extension.css.CssNode;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import bibliothek.gui.dock.extension.css.CssNode;
-
 /**
  * This {@link CssNode} offers the possibility to set any property
  * from outside at any time.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultCssNode extends AbstractCssNode{
-	private String name;
-	private String identifier;
-	private Map<String, String> properties;
-	private Set<String> classes;
-	private Set<String> pseudoClasses;
+public class DefaultCssNode extends AbstractCssNode {
+  private String name;
+  private String identifier;
+  private Map<String, String> properties;
+  private Set<String> classes;
+  private Set<String> pseudoClasses;
 
-	/**
-	 * Creates a new node
-	 * @param name the name of this node, must not be <code>null</code>
-	 */
-	public DefaultCssNode( String name ){
-		setName( name );
-	}
-	
-	@Override
-	public String getName(){
-		return name;
-	}
-	
-	@Override
-	protected void bind(){
-		// ignore
-	}
-	
-	@Override
-	protected void unbind(){
-		// ignore	
-	}
-	
-	/**
-	 * Changes the name of this node.
-	 * @param name the new name, not <code>null</code>
-	 */
-	public void setName( String name ){
-		if( name == null || name.length() == 0 ){
-			throw new IllegalArgumentException( "name must not be null nor must it have a length of 0" );
-		}
-		this.name = name;
-		fireNodeChanged();
-	}
-	
-	@Override
-	public String getIdentifier(){
-		return identifier;
-	}
-	
-	/**
-	 * Changes the identifier of this node.
-	 * @param identifier the new identifier, can be <code>null</code>
-	 */
-	public void setIdentifier( String identifier ){
-		this.identifier = identifier;
-		fireNodeChanged();
-	}
-	
-	@Override
-	public String getProperty( String key ){
-		if( properties == null ){
-			return null;
-		}
-		return properties.get( key );
-	}
-	
-	/**
-	 * Changes a property of this node.
-	 * @param key the name of the property
-	 * @param value the new value, can be <code>null</code>
-	 */
-	public void putProperty( String key, String value ){
-		if( value == null ){
-			if( properties != null ){
-				properties.remove( key );
-				if( properties.isEmpty() ){
-					properties = null;
-				}
-			}
-		}
-		else{
-			if( properties == null ){
-				properties = new HashMap<String, String>();
-			}
-			properties.put( key, value );
-		}
-		fireNodeChanged();
-	}
-	
-	@Override
-	public boolean hasClass( String className ){
-		if( classes == null ){
-			return false;
-		}
-		return classes.contains( className );
-	}
-	
-	/**
-	 * Adds a class to this node.
-	 * @param className the name of the class
-	 */
-	public void addClass( String className ){
-		if( classes == null ){
-			classes = new HashSet<String>();
-		}
-		classes.add( className );
-		fireNodeChanged();
-	}
-	
-	/**
-	 * Removes a class of this node.
-	 * @param className the name of the class to remove
-	 */
-	public void removeClass( String className ){
-		if( classes != null ){
-			classes.remove( className );
-			if( classes.isEmpty() ){
-				classes = null;
-			}
-			fireNodeChanged();
-		}
-	}
-	
-	@Override
-	public boolean hasPseudoClass( String className ){
-		if( pseudoClasses == null ){
-			return false;
-		}
-		return pseudoClasses.contains( className );
-	}
+  /**
+   * Creates a new node
+   *
+   * @param name the name of this node, must not be <code>null</code>
+   */
+  public DefaultCssNode(String name) {
+    setName(name);
+  }
 
-	/**
-	 * Adds a pseudo-class to this node.
-	 * @param className the name of the class
-	 */
-	public void addPseudoClass( String className ){
-		if( pseudoClasses == null ){
-			pseudoClasses = new HashSet<String>();
-		}
-		pseudoClasses.add( className );
-		fireNodeChanged();
-	}
-	
-	/**
-	 * Removes a pseudo-class of this node.
-	 * @param className the name of the class to remove
-	 */
-	public void removePseudoClass( String className ){
-		if( pseudoClasses != null ){
-			pseudoClasses.remove( className );
-			if( pseudoClasses.isEmpty() ){
-				pseudoClasses = null;
-			}
-			fireNodeChanged();
-		}
-	}
+  @Override
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * Changes the name of this node.
+   *
+   * @param name the new name, not <code>null</code>
+   */
+  public void setName(String name) {
+    if (name == null || name.length() == 0) {
+      throw new IllegalArgumentException("name must not be null nor must it have a length of 0");
+    }
+    this.name = name;
+    fireNodeChanged();
+  }
+
+  @Override
+  protected void bind() {
+    // ignore
+  }
+
+  @Override
+  protected void unbind() {
+    // ignore
+  }
+
+  @Override
+  public String getIdentifier() {
+    return identifier;
+  }
+
+  /**
+   * Changes the identifier of this node.
+   *
+   * @param identifier the new identifier, can be <code>null</code>
+   */
+  public void setIdentifier(String identifier) {
+    this.identifier = identifier;
+    fireNodeChanged();
+  }
+
+  @Override
+  public String getProperty(String key) {
+    if (properties == null) {
+      return null;
+    }
+    return properties.get(key);
+  }
+
+  /**
+   * Changes a property of this node.
+   *
+   * @param key   the name of the property
+   * @param value the new value, can be <code>null</code>
+   */
+  public void putProperty(String key, String value) {
+    if (value == null) {
+      if (properties != null) {
+        properties.remove(key);
+        if (properties.isEmpty()) {
+          properties = null;
+        }
+      }
+    }
+    else {
+      if (properties == null) {
+        properties = new HashMap<String, String>();
+      }
+      properties.put(key, value);
+    }
+    fireNodeChanged();
+  }
+
+  @Override
+  public boolean hasClass(String className) {
+    if (classes == null) {
+      return false;
+    }
+    return classes.contains(className);
+  }
+
+  /**
+   * Adds a class to this node.
+   *
+   * @param className the name of the class
+   */
+  public void addClass(String className) {
+    if (classes == null) {
+      classes = new HashSet<String>();
+    }
+    classes.add(className);
+    fireNodeChanged();
+  }
+
+  /**
+   * Removes a class of this node.
+   *
+   * @param className the name of the class to remove
+   */
+  public void removeClass(String className) {
+    if (classes != null) {
+      classes.remove(className);
+      if (classes.isEmpty()) {
+        classes = null;
+      }
+      fireNodeChanged();
+    }
+  }
+
+  @Override
+  public boolean hasPseudoClass(String className) {
+    if (pseudoClasses == null) {
+      return false;
+    }
+    return pseudoClasses.contains(className);
+  }
+
+  /**
+   * Adds a pseudo-class to this node.
+   *
+   * @param className the name of the class
+   */
+  public void addPseudoClass(String className) {
+    if (pseudoClasses == null) {
+      pseudoClasses = new HashSet<String>();
+    }
+    pseudoClasses.add(className);
+    fireNodeChanged();
+  }
+
+  /**
+   * Removes a pseudo-class of this node.
+   *
+   * @param className the name of the class to remove
+   */
+  public void removePseudoClass(String className) {
+    if (pseudoClasses != null) {
+      pseudoClasses.remove(className);
+      if (pseudoClasses.isEmpty()) {
+        pseudoClasses = null;
+      }
+      fireNodeChanged();
+    }
+  }
 }

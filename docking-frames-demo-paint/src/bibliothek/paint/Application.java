@@ -28,12 +28,12 @@ package bibliothek.paint;
 /**
  * Class containing the startup-method, used to start the application in
  * the "everything allowed"-mode.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public class Application {
-    public static void main( String[] args ) {
-        Core core = new Core( false );
-        core.startup( null );
-    }
+  public static void main(String[] args) {
+    Core core = new Core(false);
+    core.startup(null);
+  }
 }

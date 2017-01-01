@@ -31,65 +31,65 @@ package bibliothek.util.container;
 
 /**
  * An object containing four generic fields.
- * @author Benjamin Sigg
+ *
  * @param <A> type of the first field
  * @param <B> type of the second field
  * @param <C> type of the third field
  * @param <D> type of the fourth field
+ * @author Benjamin Sigg
  */
-public class Quartuple<A,B,C,D> extends Triple<A,B,C>{
-	private D d;
-	
-	public Quartuple(){
-        // nothing to do
-	}
-	
-	public Quartuple( A a, B b, C c, D d ){
-		super( a, b, c );
-		this.d = d;
-	}
+public class Quartuple<A, B, C, D> extends Triple<A, B, C> {
+  private D d;
 
-	public void setD( D d ){
-		this.d = d;
-	}
-	
-	public D getD(){
-		return d;
-	}
-	
-    @SuppressWarnings("unchecked")
-    @Override
-	public Quartuple<A, B, C, D> clone(){
-		return (Quartuple<A, B, C, D>)super.clone();
-	}
-	
-    @SuppressWarnings("unchecked")
-	@Override
-	public boolean equals( Object o ){
-		if (this == o) {
-			return true;
-		}
+  public Quartuple() {
+    // nothing to do
+  }
 
-		if (o == null) {
-			return false;
-		}
+  public Quartuple(A a, B b, C c, D d) {
+    super(a, b, c);
+    this.d = d;
+  }
 
-		if (this.getClass() == o.getClass()) {
-			Quartuple s = (Quartuple)o;
-			return super.equals( o ) && ( (s.d == null && d == null) || (s.d != null && s.d.equals( d )));
-		}
+  public D getD() {
+    return d;
+  }
 
-		return false;
-	}
-	
-    @Override
-	public int hashCode(){
-		return super.hashCode() ^ (d == null ? 0 : d.hashCode());
-	}
-	
-    @Override
-	public String toString(){
-		return getClass().getName() + "[a=" + getA() + ", b=" + getB() + 
-			", c=" + getC() + ", d=" + d + "]";
-	}
+  public void setD(D d) {
+    this.d = d;
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public Quartuple<A, B, C, D> clone() {
+    return (Quartuple<A, B, C, D>)super.clone();
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+
+    if (o == null) {
+      return false;
+    }
+
+    if (this.getClass() == o.getClass()) {
+      Quartuple s = (Quartuple)o;
+      return super.equals(o) && ((s.d == null && d == null) || (s.d != null && s.d.equals(d)));
+    }
+
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode() ^ (d == null ? 0 : d.hashCode());
+  }
+
+  @Override
+  public String toString() {
+    return getClass().getName() + "[a=" + getA() + ", b=" + getB() + ", c=" + getC() + ", d=" + d + "]";
+  }
 }

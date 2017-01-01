@@ -25,98 +25,101 @@
  */
 package bibliothek.gui.dock.station.flap.button;
 
+import bibliothek.gui.Dockable;
+import bibliothek.gui.dock.event.DockableListener;
+import bibliothek.gui.dock.title.DockTitle;
+
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.Icon;
-
-import bibliothek.gui.Dockable;
-import bibliothek.gui.dock.event.DockableListener;
-import bibliothek.gui.dock.title.DockTitle;
-
 /**
  * This abstract implementation of a {@link ButtonContentCondition} adds itself as {@link DockableListener} to any
  * {@link Dockable} that is installed. Subclasses may override the methods of the {@link DockableListener} and
  * react on changes (the default behavior is always to do nothing).
+ *
  * @author Benjamin Sigg
  */
-public abstract class AbstractButtonContentCondition implements ButtonContentCondition, DockableListener{
-	private Map<Dockable, List<ButtonContent>> contents = new HashMap<Dockable, List<ButtonContent>>();
-	
-	public void install( Dockable dockable, ButtonContent content ){
-		List<ButtonContent> list = contents.get( dockable );
-		if( list == null ){
-			list = new ArrayList<ButtonContent>();
-			contents.put( dockable, list );
-			install( dockable );
-		}
-		list.add( content );
-	}
-	
-	public void uninstall( Dockable dockable, ButtonContent content ){
-		List<ButtonContent> list = contents.get( dockable );
-		if( list != null ){
-			list.remove( content );
-			if( list.isEmpty() ){
-				contents.remove( dockable );
-				uninstall( dockable );
-			}
-		}
-	}
-	
-	/**
-	 * Calls the method {@link ButtonContent#handleChange(Dockable)} on all {@link ButtonContent}s that are
-	 * currently using this {@link ButtonContentCondition} that that have installed <code>dockable</code>.
-	 * @param dockable the element whose properties have changed
-	 */
-	protected void fire( Dockable dockable ){
-		List<ButtonContent> list = contents.get( dockable );
-		if( list != null ){
-			for( ButtonContent content : list ){
-				content.handleChange( dockable );
-			}
-		}
-	}
+public abstract class AbstractButtonContentCondition implements ButtonContentCondition, DockableListener {
+  private Map<Dockable, List<ButtonContent>> contents = new HashMap<Dockable, List<ButtonContent>>();
 
-	/**
-	 * Called when <code>dockable</code> has to be observed.
-	 * @param dockable the element to observe
-	 */
-	protected void install( Dockable dockable ){
-		dockable.addDockableListener( this );
-	}
-	
-	/**
-	 * Called when <code>dockable</code> no longer has to be observed.
-	 * @param dockable the element that no longer needs to be observed
-	 */
-	protected void uninstall( Dockable dockable ){
-		dockable.removeDockableListener( this );
-	}
-	
-	public void titleBound( Dockable dockable, DockTitle title ){
-		// ignore
-	}
-	
-	public void titleExchanged( Dockable dockable, DockTitle title ){
-		// ignore
-	}
-	
-	public void titleIconChanged( Dockable dockable, Icon oldIcon, Icon newIcon ){
-		// ignore
-	}
-	
-	public void titleTextChanged( Dockable dockable, String oldTitle, String newTitle ){
-		// ignore		
-	}
-	
-	public void titleToolTipChanged( Dockable dockable, String oldToolTip, String newToolTip ){
-		// ignore	
-	}
-	
-	public void titleUnbound( Dockable dockable, DockTitle title ){
-		// ignore
-	}
+  public void install(Dockable dockable, ButtonContent content) {
+    List<ButtonContent> list = contents.get(dockable);
+    if (list == null) {
+      list = new ArrayList<ButtonContent>();
+      contents.put(dockable, list);
+      install(dockable);
+    }
+    list.add(content);
+  }
+
+  public void uninstall(Dockable dockable, ButtonContent content) {
+    List<ButtonContent> list = contents.get(dockable);
+    if (list != null) {
+      list.remove(content);
+      if (list.isEmpty()) {
+        contents.remove(dockable);
+        uninstall(dockable);
+      }
+    }
+  }
+
+  /**
+   * Calls the method {@link ButtonContent#handleChange(Dockable)} on all {@link ButtonContent}s that are
+   * currently using this {@link ButtonContentCondition} that that have installed <code>dockable</code>.
+   *
+   * @param dockable the element whose properties have changed
+   */
+  protected void fire(Dockable dockable) {
+    List<ButtonContent> list = contents.get(dockable);
+    if (list != null) {
+      for (ButtonContent content : list) {
+        content.handleChange(dockable);
+      }
+    }
+  }
+
+  /**
+   * Called when <code>dockable</code> has to be observed.
+   *
+   * @param dockable the element to observe
+   */
+  protected void install(Dockable dockable) {
+    dockable.addDockableListener(this);
+  }
+
+  /**
+   * Called when <code>dockable</code> no longer has to be observed.
+   *
+   * @param dockable the element that no longer needs to be observed
+   */
+  protected void uninstall(Dockable dockable) {
+    dockable.removeDockableListener(this);
+  }
+
+  public void titleBound(Dockable dockable, DockTitle title) {
+    // ignore
+  }
+
+  public void titleExchanged(Dockable dockable, DockTitle title) {
+    // ignore
+  }
+
+  public void titleIconChanged(Dockable dockable, Icon oldIcon, Icon newIcon) {
+    // ignore
+  }
+
+  public void titleTextChanged(Dockable dockable, String oldTitle, String newTitle) {
+    // ignore
+  }
+
+  public void titleToolTipChanged(Dockable dockable, String oldToolTip, String newToolTip) {
+    // ignore
+  }
+
+  public void titleUnbound(Dockable dockable, DockTitle title) {
+    // ignore
+  }
 }

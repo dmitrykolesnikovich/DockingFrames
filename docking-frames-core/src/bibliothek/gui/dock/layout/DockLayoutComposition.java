@@ -25,91 +25,108 @@
  */
 package bibliothek.gui.dock.layout;
 
-import java.util.List;
-
 import bibliothek.gui.dock.DockElement;
+
+import java.util.List;
 
 /**
  * A {@link DockLayoutComposition} describes all relations and positions of a
  * set of {@link DockElement}s. The <code>DockLayoutComposition</code> does not
  * have any references to <code>DockElement</code>s, but with the help of a
  * {@link DockSituation} new trees of <code>DockElement</code>s can be created.
+ *
  * @author Benjamin Sigg
  */
 public class DockLayoutComposition {
-    /** a description of the {@link DockElement} that is represented by this composition */
-    private DockLayoutInfo layout;
-    /** additional information about the element */
-    private List<DockLayout<?>> adjacent;
-    /** the list of known children of this element */
-    private List<DockLayoutComposition> children;
-    /** tells that the children of this station should be ignored */
-    private boolean ignoreChildren;
-    
-    /**
-     * Creates a new composition.
-     * @param layout the content of the element that is represented by this composition,
-     * can be <code>null</code>
-     * @param adjacent additional information about the element, can be <code>null</code>
-     * @param children the children of the station represented by this composition
-     * @param ignoreChildren whether the children should be ignored or not
-     */
-    public DockLayoutComposition( DockLayoutInfo layout, List<DockLayout<?>> adjacent, List<DockLayoutComposition> children, boolean ignoreChildren ){
-        if( children == null )
-            throw new IllegalArgumentException( "children must not be null" );
-        
-        this.layout = layout;
-        this.adjacent = adjacent;
-        this.children = children;
-        this.ignoreChildren = ignoreChildren;
+  /**
+   * a description of the {@link DockElement} that is represented by this composition
+   */
+  private DockLayoutInfo layout;
+  /**
+   * additional information about the element
+   */
+  private List<DockLayout<?>> adjacent;
+  /**
+   * the list of known children of this element
+   */
+  private List<DockLayoutComposition> children;
+  /**
+   * tells that the children of this station should be ignored
+   */
+  private boolean ignoreChildren;
+
+  /**
+   * Creates a new composition.
+   *
+   * @param layout         the content of the element that is represented by this composition,
+   *                       can be <code>null</code>
+   * @param adjacent       additional information about the element, can be <code>null</code>
+   * @param children       the children of the station represented by this composition
+   * @param ignoreChildren whether the children should be ignored or not
+   */
+  public DockLayoutComposition(DockLayoutInfo layout,
+                               List<DockLayout<?>> adjacent,
+                               List<DockLayoutComposition> children,
+                               boolean ignoreChildren) {
+    if (children == null) throw new IllegalArgumentException("children must not be null");
+
+    this.layout = layout;
+    this.adjacent = adjacent;
+    this.children = children;
+    this.ignoreChildren = ignoreChildren;
+  }
+
+  /**
+   * Gets the layout which describes the element of this composition.
+   *
+   * @return the layout, can be <code>null</code> to indicate that this composition
+   * was not loaded properly
+   */
+  public DockLayoutInfo getLayout() {
+    return layout;
+  }
+
+  /**
+   * Gets the additional information about the element.
+   *
+   * @return the additional information or <code>null</code>
+   */
+  public List<DockLayout<?>> getAdjacent() {
+    return adjacent;
+  }
+
+  /**
+   * Searches for the {@link DockLayout} whose factory is set to <code>factoryId</code>.
+   *
+   * @param factoryId the name of some {@link AdjacentDockFactory}.
+   * @return the matching layout or <code>null</code> if not found
+   */
+  public DockLayout<?> getAdjacent(String factoryId) {
+    if (adjacent != null) {
+      for (DockLayout<?> layout : adjacent) {
+        if (layout.getFactoryID().equals(factoryId)) {
+          return layout;
+        }
+      }
     }
-    
-    /**
-     * Gets the layout which describes the element of this composition.
-     * @return the layout, can be <code>null</code> to indicate that this composition
-     * was not loaded properly
-     */
-    public DockLayoutInfo getLayout() {
-        return layout;
-    }
-    
-    /**
-     * Gets the additional information about the element.
-     * @return the additional information or <code>null</code>
-     */
-    public List<DockLayout<?>> getAdjacent() {
-        return adjacent;
-    }
-    
-    /**
-     * Searches for the {@link DockLayout} whose factory is set to <code>factoryId</code>.
-     * @param factoryId the name of some {@link AdjacentDockFactory}.
-     * @return the matching layout or <code>null</code> if not found
-     */
-    public DockLayout<?> getAdjacent( String factoryId ){
-    	if( adjacent != null ){
-	    	for( DockLayout<?> layout : adjacent ){
-	    		if( layout.getFactoryID().equals( factoryId )){
-	    			return layout;
-	    		}
-	    	}
-    	}
-    	return null;
-    }
-    
-    /**
-     * Gets the list of all known children of this composition.
-     * @return the list of children
-     */
-    public List<DockLayoutComposition> getChildren() {
-        return children;
-    }
-    
-    /**
-     * Tells that the children of this composition were ignored.
-     * @return <code>true</code> if the children are to be ignored
-     */
-    public boolean isIgnoreChildren() {
-        return ignoreChildren;
-    }
+    return null;
+  }
+
+  /**
+   * Gets the list of all known children of this composition.
+   *
+   * @return the list of children
+   */
+  public List<DockLayoutComposition> getChildren() {
+    return children;
+  }
+
+  /**
+   * Tells that the children of this composition were ignored.
+   *
+   * @return <code>true</code> if the children are to be ignored
+   */
+  public boolean isIgnoreChildren() {
+    return ignoreChildren;
+  }
 }

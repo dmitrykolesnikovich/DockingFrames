@@ -25,99 +25,110 @@
  */
 package bibliothek.gui.dock.station.stack.tab;
 
-import java.awt.Dimension;
-import java.awt.Insets;
-import java.awt.Rectangle;
-
 import bibliothek.gui.dock.station.stack.tab.layouting.TabPlacement;
+
+import java.awt.*;
 
 /**
  * A {@link TabPaneComponent} is a child of a {@link TabPane}. It is painted
  * onto the screen and has some boundaries.
+ *
  * @author Benjamin Sigg
  */
 public interface TabPaneComponent {
-	/**
-	 * Gets the parent of this component.
-	 * @return the parent
-	 */
-	public TabPane getTabParent();
-	
-	/**
-	 * Gets the current location and size of this component.
-	 * @return the size and location
-	 */
-	public Rectangle getBounds();
-	
-	/**
-	 * Sets the current location and size of this component.
-	 * @param bounds the size and location
-	 */
-	public void setBounds( Rectangle bounds );
-	
-	/**
-	 * Sets the z order of this component. The z order tells which component to
-	 * paint first, as lower the order as earlier a component is to be painted.
-	 * If two components overlap, then the one with the higher z order appears
-	 * in front of the one with the lower z order. If two components have the same
-	 * z order, then it is unspecified which component is painted first.<br>
-	 * A z-order is at least 0 and must not exceed the number of {@link TabPaneComponent}s
-	 * on the parent {@link TabPane}. The implementation may increase or
-	 * decrease z-orders to prevent collisions between components with the same
-	 * order.
-	 * @param order the order, can be any integer.
-	 */
-	public void setZOrder( int order );
-	
-	/**
-	 * Gets the value of the z order.
-	 * @return the z order
-	 * @see #setZOrder(int)
-	 */
-	public int getZOrder();
-	
-	/**
-	 * Tells how much of this component may be overlapped by another component <code>other</code>.
-	 * @param other another component which may be painted over this component
-	 * @return the border of this component that may not be visible, not <code>null</code>
-	 */
-	public Insets getOverlap( TabPaneComponent other );
-		
-	/**
-	 * Gets the minimal size this component should have
-	 * @return the minimal size
-	 */
-	public Dimension getMinimumSize();
-	
-	/**
-	 * Gets the preferred size of this component
-	 * @return the preferred size
-	 */
-	public Dimension getPreferredSize();
-	
-	/**
-	 * Gets the maximal size this component should have
-	 * @return the maximal size
-	 */
-	public Dimension getMaximumSize();
+  /**
+   * Gets the parent of this component.
+   *
+   * @return the parent
+   */
+  public TabPane getTabParent();
 
-	/**
-	 * Changes the visibility state of this component. Invisible components
-	 * should be removed from any parent.
-	 * @param visible the new state
-	 */
-	public void setPaneVisible( boolean visible );
-	
-	/**
-	 * Tells whether this component is visible or not.
-	 * @return <code>true</code> if visible, <code>false</code> otherwise
-	 */
-	public boolean isPaneVisible();
-	
-	/**
-	 * Tells this component how to paint itself.
-	 * @param orientation the orientation, not <code>null</code>
-	 * @throws IllegalArgumentException if <code>orientation</code> is <code>null</code>
-	 */
-	public void setOrientation( TabPlacement orientation );
+  /**
+   * Gets the current location and size of this component.
+   *
+   * @return the size and location
+   */
+  public Rectangle getBounds();
+
+  /**
+   * Sets the current location and size of this component.
+   *
+   * @param bounds the size and location
+   */
+  public void setBounds(Rectangle bounds);
+
+  /**
+   * Gets the value of the z order.
+   *
+   * @return the z order
+   * @see #setZOrder(int)
+   */
+  public int getZOrder();
+
+  /**
+   * Sets the z order of this component. The z order tells which component to
+   * paint first, as lower the order as earlier a component is to be painted.
+   * If two components overlap, then the one with the higher z order appears
+   * in front of the one with the lower z order. If two components have the same
+   * z order, then it is unspecified which component is painted first.<br>
+   * A z-order is at least 0 and must not exceed the number of {@link TabPaneComponent}s
+   * on the parent {@link TabPane}. The implementation may increase or
+   * decrease z-orders to prevent collisions between components with the same
+   * order.
+   *
+   * @param order the order, can be any integer.
+   */
+  public void setZOrder(int order);
+
+  /**
+   * Tells how much of this component may be overlapped by another component <code>other</code>.
+   *
+   * @param other another component which may be painted over this component
+   * @return the border of this component that may not be visible, not <code>null</code>
+   */
+  public Insets getOverlap(TabPaneComponent other);
+
+  /**
+   * Gets the minimal size this component should have
+   *
+   * @return the minimal size
+   */
+  public Dimension getMinimumSize();
+
+  /**
+   * Gets the preferred size of this component
+   *
+   * @return the preferred size
+   */
+  public Dimension getPreferredSize();
+
+  /**
+   * Gets the maximal size this component should have
+   *
+   * @return the maximal size
+   */
+  public Dimension getMaximumSize();
+
+  /**
+   * Tells whether this component is visible or not.
+   *
+   * @return <code>true</code> if visible, <code>false</code> otherwise
+   */
+  public boolean isPaneVisible();
+
+  /**
+   * Changes the visibility state of this component. Invisible components
+   * should be removed from any parent.
+   *
+   * @param visible the new state
+   */
+  public void setPaneVisible(boolean visible);
+
+  /**
+   * Tells this component how to paint itself.
+   *
+   * @param orientation the orientation, not <code>null</code>
+   * @throws IllegalArgumentException if <code>orientation</code> is <code>null</code>
+   */
+  public void setOrientation(TabPlacement orientation);
 }

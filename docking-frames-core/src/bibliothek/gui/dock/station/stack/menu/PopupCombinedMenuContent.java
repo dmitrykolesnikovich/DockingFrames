@@ -25,124 +25,133 @@
  */
 package bibliothek.gui.dock.station.stack.menu;
 
-import java.awt.Component;
+import bibliothek.gui.DockController;
+import bibliothek.gui.Dockable;
+
+import javax.swing.*;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.AbstractAction;
-import javax.swing.JPopupMenu;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
-
-import bibliothek.gui.DockController;
-import bibliothek.gui.Dockable;
-
 /**
  * A {@link CombinedMenuContent} that opens a normal {@link JPopupMenu} to
  * display the selection.
+ *
  * @author Benjamin Sigg
  */
-public class PopupCombinedMenuContent implements CombinedMenuContent{
-	/** currently open menu */
-	private JPopupMenu menu;
-	
-	/** the observers of this menu */
-	private List<CombinedMenuContentListener> listeners = new ArrayList<CombinedMenuContentListener>();
-	
-	public void addCombinedMenuContentListener( CombinedMenuContentListener listener ){
-		listeners.add( listener );
-	}
+public class PopupCombinedMenuContent implements CombinedMenuContent {
+  /**
+   * currently open menu
+   */
+  private JPopupMenu menu;
 
-	public void removeCombinedMenuContentListener( CombinedMenuContentListener listener ){
-		listeners.remove( listener );
-	}
-	
-	/**
-	 * Gets all the listeners that are currently registered.
-	 * @return all the observers
-	 */
-	protected CombinedMenuContentListener[] listeners(){
-		return listeners.toArray( new CombinedMenuContentListener[ listeners.size() ] );
-	}
+  /**
+   * the observers of this menu
+   */
+  private List<CombinedMenuContentListener> listeners = new ArrayList<CombinedMenuContentListener>();
 
-	public void open( DockController controller, Component parent, int x, int y, Item[] content ){
-		cancel();
-		
-		menu = new JPopupMenu();
-		menu.addPopupMenuListener( new PopupMenuListener(){
-			public void popupMenuCanceled( PopupMenuEvent e ){
-				cancel();
-			}
-			public void popupMenuWillBecomeInvisible( PopupMenuEvent e ){
-				// ignore
-			}
-			public void popupMenuWillBecomeVisible( PopupMenuEvent e ){
-				// ignore
-			}
-		});
-		
-		for( Item item : content ){
-			menu.add( new ItemAction( item ) );
-		}
-		
-		menu.show( parent, x, y );
-		
-		for( CombinedMenuContentListener listener : listeners() ){
-			listener.opened( this );
-		}
-	}
-	
-	public void cancel(){
-		if( menu != null ){	
-			JPopupMenu menu = this.menu;
-			this.menu = null;
-			menu.setVisible( false );
-			
-			for( CombinedMenuContentListener listener : listeners() ){
-				listener.canceled( this );
-			}
-		}
-	}
-	
-	/**
-	 * Closes this menu and informs all listeners that <code>dockable</code>
-	 * has been selected.
-	 * @param dockable the newly selected element
-	 */
-	public void select( Dockable dockable ){
-		if( menu != null ){
-			JPopupMenu menu = this.menu;
-			this.menu = null;
-			menu.setVisible( false );
-			
-			for( CombinedMenuContentListener listener : listeners() ){
-				listener.selected( this, dockable );
-			}
-		}
-	}
+  public void addCombinedMenuContentListener(CombinedMenuContentListener listener) {
+    listeners.add(listener);
+  }
 
-	/**
-	 * A single item of this menu.
-	 * @author Benjamin Sigg
-	 */
-	private class ItemAction extends AbstractAction{
-		private Dockable dockable;
-		
-		/**
-		 * Creates a new action.
-		 * @param content text, icon and value of this action
-		 */
-		public ItemAction( Item content ){
-			this.dockable = content.getDockable();
-			putValue( NAME, content.getText() );
-			putValue( SHORT_DESCRIPTION, content.getToolTip() );
-			putValue( SMALL_ICON, content.getIcon() );
-			setEnabled( content.isEnabled() );
-		}
-		
-		public void actionPerformed( ActionEvent e ){
-			select( dockable );
-		}
-	}
+  public void removeCombinedMenuContentListener(CombinedMenuContentListener listener) {
+    listeners.remove(listener);
+  }
+
+  /**
+   * Gets all the listeners that are currently registered.
+   *
+   * @return all the observers
+   */
+  protected CombinedMenuContentListener[] listeners() {
+    return listeners.toArray(new CombinedMenuContentListener[listeners.size()]);
+  }
+
+  public void open(DockController controller, Component parent, int x, int y, Item[] content) {
+    cancel();
+
+    menu = new JPopupMenu();
+    menu.addPopupMenuListener(new PopupMenuListener() {
+      public void popupMenuCanceled(PopupMenuEvent e) {
+        cancel();
+      }
+
+      public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+        // ignore
+      }
+
+      public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+        // ignore
+      }
+    });
+
+    for (Item item : content) {
+      menu.add(new ItemAction(item));
+    }
+
+    menu.show(parent, x, y);
+
+    for (CombinedMenuContentListener listener : listeners()) {
+      listener.opened(this);
+    }
+  }
+
+  public void cancel() {
+    if (menu != null) {
+      JPopupMenu menu = this.menu;
+      this.menu = null;
+      menu.setVisible(false);
+
+      for (CombinedMenuContentListener listener : listeners()) {
+        listener.canceled(this);
+      }
+    }
+  }
+
+  /**
+   * Closes this menu and informs all listeners that <code>dockable</code>
+   * has been selected.
+   *
+   * @param dockable the newly selected element
+   */
+  public void select(Dockable dockable) {
+    if (menu != null) {
+      JPopupMenu menu = this.menu;
+      this.menu = null;
+      menu.setVisible(false);
+
+      for (CombinedMenuContentListener listener : listeners()) {
+        listener.selected(this, dockable);
+      }
+    }
+  }
+
+  /**
+   * A single item of this menu.
+   *
+   * @author Benjamin Sigg
+   */
+  private class ItemAction extends AbstractAction {
+    private Dockable dockable;
+
+    /**
+     * Creates a new action.
+     *
+     * @param content text, icon and value of this action
+     */
+    public ItemAction(Item content) {
+      this.dockable = content.getDockable();
+      putValue(NAME, content.getText());
+      putValue(SHORT_DESCRIPTION, content.getToolTip());
+      putValue(SMALL_ICON, content.getIcon());
+      setEnabled(content.isEnabled());
+    }
+
+    public void actionPerformed(ActionEvent e) {
+      select(dockable);
+    }
+  }
 }

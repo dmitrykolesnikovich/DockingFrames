@@ -33,14 +33,17 @@ import bibliothek.gui.dock.common.mode.ExtendedMode;
 
 /**
  * This action {@link ExtendedMode#MINIMIZED minimizes} each {@link CDockable} to which it is added.
+ *
  * @author Benjamin Sigg
  */
-public class CMinimizeAction extends CExtendedModeAction{
-    /**
-     * Creates a new action
-     * @param control the control for which this action will be used
-     */
-    public CMinimizeAction( CControl control ){
-        super( control, ExtendedMode.MINIMIZED, CLocationModeManager.ICON_MANAGER_KEY_MINIMIZE, "minimize.in", "minimize.in.tooltip", CControl.KEY_GOTO_MINIMIZED );
-    }
+public class CMinimizeAction extends CExtendedModeAction {
+  /**
+   * Creates a new action
+   *
+   * @param control the control for which this action will be used
+   */
+  public CMinimizeAction(CControl control) {
+    super(control, ExtendedMode.MINIMIZED, CLocationModeManager.ICON_MANAGER_KEY_MINIMIZE, "minimize.in", "minimize.in.tooltip",
+          CControl.KEY_GOTO_MINIMIZED);
+  }
 }

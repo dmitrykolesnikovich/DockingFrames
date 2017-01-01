@@ -25,42 +25,42 @@
  */
 package bibliothek.gui.dock.util.laf;
 
-import java.awt.Color;
-import java.awt.SystemColor;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * A set of colors derived from {@link SystemColor}s.
+ *
  * @author Benjamin Sigg
  */
-public class Windows extends AbstractLookAndFeelColors{
-    private Map<String, Color> colors = new HashMap<String, Color>();
-    
-    /**
-     * Creates the new {@link LookAndFeelColors}
-     */
-    public Windows(){
-        colors.put( TITLE_BACKGROUND, SystemColor.inactiveCaption );
-        colors.put( TITLE_FOREGROUND, SystemColor.inactiveCaptionText );
-        colors.put( TITLE_SELECTION_BACKGROUND, SystemColor.activeCaption );
-        colors.put( TITLE_SELECTION_FOREGROUND, SystemColor.activeCaptionText );
-        colors.put( SELECTION, SystemColor.textHighlight );
-        colors.put( PANEL_BACKGROUND, SystemColor.control );
-        colors.put( PANEL_FOREGROUND, SystemColor.controlText );
-        colors.put( CONTROL_SHADOW, SystemColor.controlShadow );
-        colors.put( WINDOW_BORDER, SystemColor.windowBorder );
-    }
-    
-    public void bind() {
-        // ignore
-    }
-    
-    public void unbind() {
-        // ignore
-    }
-    
-    public Color getColor( String key ) {
-        return colors.get( key );
-    }
+public class Windows extends AbstractLookAndFeelColors {
+  private Map<String, Color> colors = new HashMap<String, Color>();
+
+  /**
+   * Creates the new {@link LookAndFeelColors}
+   */
+  public Windows() {
+    colors.put(TITLE_BACKGROUND, SystemColor.inactiveCaption);
+    colors.put(TITLE_FOREGROUND, SystemColor.inactiveCaptionText);
+    colors.put(TITLE_SELECTION_BACKGROUND, SystemColor.activeCaption);
+    colors.put(TITLE_SELECTION_FOREGROUND, SystemColor.activeCaptionText);
+    colors.put(SELECTION, SystemColor.textHighlight);
+    colors.put(PANEL_BACKGROUND, SystemColor.control);
+    colors.put(PANEL_FOREGROUND, SystemColor.controlText);
+    colors.put(CONTROL_SHADOW, SystemColor.controlShadow);
+    colors.put(WINDOW_BORDER, SystemColor.windowBorder);
+  }
+
+  public void bind() {
+    // ignore
+  }
+
+  public void unbind() {
+    // ignore
+  }
+
+  public Color getColor(String key) {
+    return colors.get(key);
+  }
 }

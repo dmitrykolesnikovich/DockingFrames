@@ -25,32 +25,36 @@
  */
 package bibliothek.gui.dock.extension.css.property.font;
 
-import java.awt.Font;
-
 import bibliothek.gui.dock.extension.css.CssPropertyContainer;
 import bibliothek.gui.dock.util.font.FontModifier;
+
+import java.awt.*;
 
 /**
  * A {@link CssFontModifier} is an algorithm that takes a default {@link Font}, and
  * converts it into a new font.
+ *
  * @author Benjamin Sigg
  */
-public interface CssFontModifier extends CssPropertyContainer{
-	/**
-	 * Gets the actual modifier. The object returned by this method is immutable.
-	 * @return the actual modifier
-	 */
-	public FontModifier getModifier();
-	
-	/**
-	 * Adds <code>listener</code> as observer to this property.
-	 * @param listener the new observer
-	 */
-	public void addFontModifierListener( CssFontModifierListener listener );
+public interface CssFontModifier extends CssPropertyContainer {
+  /**
+   * Gets the actual modifier. The object returned by this method is immutable.
+   *
+   * @return the actual modifier
+   */
+  public FontModifier getModifier();
 
-	/**
-	 * Removes <code>listener</code> as observer from this property.
-	 * @param listener the observer to remove
-	 */
-	public void removeFontModifierListener( CssFontModifierListener listener );
+  /**
+   * Adds <code>listener</code> as observer to this property.
+   *
+   * @param listener the new observer
+   */
+  public void addFontModifierListener(CssFontModifierListener listener);
+
+  /**
+   * Removes <code>listener</code> as observer from this property.
+   *
+   * @param listener the observer to remove
+   */
+  public void removeFontModifierListener(CssFontModifierListener listener);
 }

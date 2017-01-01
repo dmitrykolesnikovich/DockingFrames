@@ -31,20 +31,21 @@ import bibliothek.gui.dock.station.flap.button.ButtonContentCondition;
 
 /**
  * A list of {@link ButtonContentConditionChoice}s.
+ *
  * @author Benjamin Sigg
  */
 public class ButtonContentConditionChoice extends DefaultChoice<ButtonContentCondition> {
-	public ButtonContentConditionChoice( DockController controller ){
-		super( controller );
-		
-		addLinked( "theme", "preference.buttonContent.condition.theme", ButtonContent.THEME );
-		addLinked( "true", "preference.buttonContent.condition.true", ButtonContent.TRUE );
-		addLinked( "false", "preference.buttonContent.condition.false", ButtonContent.FALSE );
-		addLinked( "ifDockable", "preference.buttonContent.condition.ifDockable", ButtonContent.IF_DOCKABLE );
-		addLinked( "ifStation", "preference.buttonContent.condition.ifStation", ButtonContent.IF_STATION );
-		addLinked( "notIfIcon", "preference.buttonContent.condition.notIfIcon", ButtonContent.NOT_IF_ICON );
-		addLinked( "notIfText", "preference.buttonContent.condition.notIfText", ButtonContent.NOT_IF_TEXT );
-		
-		setDefaultChoice( "theme" );
-	}
+  public ButtonContentConditionChoice(DockController controller) {
+    super(controller);
+
+    addLinked("theme", "preference.buttonContent.condition.theme", ButtonContent.THEME);
+    addLinked("true", "preference.buttonContent.condition.true", ButtonContent.TRUE);
+    addLinked("false", "preference.buttonContent.condition.false", ButtonContent.FALSE);
+    addLinked("ifDockable", "preference.buttonContent.condition.ifDockable", ButtonContent.IF_DOCKABLE);
+    addLinked("ifStation", "preference.buttonContent.condition.ifStation", ButtonContent.IF_STATION);
+    addLinked("notIfIcon", "preference.buttonContent.condition.notIfIcon", ButtonContent.NOT_IF_ICON);
+    addLinked("notIfText", "preference.buttonContent.condition.notIfText", ButtonContent.NOT_IF_TEXT);
+
+    setDefaultChoice("theme");
+  }
 }

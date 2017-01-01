@@ -30,12 +30,14 @@ import bibliothek.gui.dock.action.DockAction;
 /**
  * This listener is added to a {@link CDecorateableAction} and is informed if the property
  * of the action changed.
+ *
  * @author Benjamin Sigg
  */
 public interface CDecorateableActionListener {
-	/**
-	 * Called if the result of {@link CDecorateableAction#isShowTextOnButtons()} changed.
-	 * @param action the source of the event
-	 */
-	public void showTextOnButtonsChanged( CDecorateableAction<? extends DockAction> action );
+  /**
+   * Called if the result of {@link CDecorateableAction#isShowTextOnButtons()} changed.
+   *
+   * @param action the source of the event
+   */
+  public void showTextOnButtonsChanged(CDecorateableAction<? extends DockAction> action);
 }

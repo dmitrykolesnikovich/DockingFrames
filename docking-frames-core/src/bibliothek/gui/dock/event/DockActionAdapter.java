@@ -26,39 +26,40 @@
 
 package bibliothek.gui.dock.event;
 
-import java.util.Set;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.action.StandardDockAction;
+
+import java.util.Set;
 
 /**
  * An abstract implementation of {@link StandardDockActionListener}. All methods
  * of this class are empty. The class can be used instead of {@link StandardDockActionListener},
  * when only a few selected methods have to be implemented.
+ *
  * @author Benjamin Sigg
  */
 public abstract class DockActionAdapter implements StandardDockActionListener {
-	public void actionEnabledChanged( StandardDockAction action, Set<Dockable> dockables ){
-		// do nothing
-	}
-	
-	public void actionIconChanged( StandardDockAction action, Set<Dockable> dockables ){
-		// do nothing
-	}
-	
-    public void actionDisabledIconChanged( StandardDockAction action, Set<Dockable> dockables ){
-    	// do nothing
-    }
-    
-    public void actionTextChanged( StandardDockAction action, Set<Dockable> dockables ){
-    	// do nothing
-    }
-    
-    public void actionTooltipTextChanged( StandardDockAction action, Set<Dockable> dockables ){
-    	// do nothing
-    }
-    
-    public void actionRepresentativeChanged( StandardDockAction action, Set<Dockable> dockables ){
-    	// do nothing
-    }
+  public void actionEnabledChanged(StandardDockAction action, Set<Dockable> dockables) {
+    // do nothing
+  }
+
+  public void actionIconChanged(StandardDockAction action, Set<Dockable> dockables) {
+    // do nothing
+  }
+
+  public void actionDisabledIconChanged(StandardDockAction action, Set<Dockable> dockables) {
+    // do nothing
+  }
+
+  public void actionTextChanged(StandardDockAction action, Set<Dockable> dockables) {
+    // do nothing
+  }
+
+  public void actionTooltipTextChanged(StandardDockAction action, Set<Dockable> dockables) {
+    // do nothing
+  }
+
+  public void actionRepresentativeChanged(StandardDockAction action, Set<Dockable> dockables) {
+    // do nothing
+  }
 }

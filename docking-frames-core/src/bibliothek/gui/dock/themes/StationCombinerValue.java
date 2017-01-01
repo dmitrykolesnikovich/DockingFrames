@@ -43,50 +43,53 @@ import bibliothek.util.Path;
  * A <code>StationCombinerValue</code> encloses a {@link Combiner} and uses
  * the combiner as delegate. If the wrapper has no delegate, it uses
  * the {@link DockUI} to get a combiner from the current {@link DockTheme}.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public class StationCombinerValue extends StationThemeItemValue<Combiner> implements CombinerValue, Combiner {
-	/** What kind of {@link UIValue} this is */
-	public static final Path KIND_STATION = CombinerValue.KIND_COMBINER.append( "station" );
-	
-	/**
-	 * Creates a new value.
-	 * @param id the identifier of this value, used to read a resource from the {@link ThemeManager}
-	 * @param station the owner of this object
-	 */
-    public StationCombinerValue( String id, DockStation station ){
-    	super( id, KIND_STATION, ThemeManager.COMBINER_TYPE, station );
+  /**
+   * What kind of {@link UIValue} this is
+   */
+  public static final Path KIND_STATION = CombinerValue.KIND_COMBINER.append("station");
+
+  /**
+   * Creates a new value.
+   *
+   * @param id      the identifier of this value, used to read a resource from the {@link ThemeManager}
+   * @param station the owner of this object
+   */
+  public StationCombinerValue(String id, DockStation station) {
+    super(id, KIND_STATION, ThemeManager.COMBINER_TYPE, station);
+  }
+
+  public CombinerTarget prepare(CombinerSource source, Enforcement force) {
+    Combiner combiner = get();
+    if (combiner == null) {
+      if (force.getForce() > 0.5f) {
+        combiner = new BasicCombiner();
+      }
+      else {
+        return null;
+      }
     }
 
-    public CombinerTarget prepare( CombinerSource source, Enforcement force ){
-    	Combiner combiner = get();
-    	if( combiner == null ){
-    		if( force.getForce() > 0.5f ){
-    			combiner = new BasicCombiner();
-    		}
-    		else{
-    			return null;
-    		}
-    	}
-    	
-    	return combiner.prepare( source, force );
+    return combiner.prepare(source, force);
+  }
+
+  public Dockable combine(CombinerSource source, CombinerTarget target) {
+    Combiner combiner = get();
+    if (combiner == null) {
+      combiner = new BasicCombiner();
     }
 
-    public Dockable combine( CombinerSource source, CombinerTarget target ){
-    	Combiner combiner = get();
-    	if( combiner == null ){
-   			combiner = new BasicCombiner();
-    	}
+    return combiner.combine(source, target);
+  }
 
-        return combiner.combine( source, target );
+  public void aside(AsideRequest request) {
+    Combiner combiner = get();
+    if (combiner == null) {
+      combiner = new BasicCombiner();
     }
-    
-    public void aside( AsideRequest request ){
-    	Combiner combiner = get();
-    	if( combiner == null ){
-    		combiner = new BasicCombiner();
-    	}
-    	combiner.aside( request );
-    }
+    combiner.aside(request);
+  }
 }

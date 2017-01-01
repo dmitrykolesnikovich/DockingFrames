@@ -32,28 +32,31 @@ import bibliothek.gui.dock.dockable.DefaultDockablePerspective;
 /**
  * This {@link DefaultDockablePerspective} represents a {@link DefaultDockable} that was added
  * to a {@link DockFrontend} with a unique identifier.
+ *
  * @author Benjamin Sigg
  */
-public class FrontendDockablePerspective extends DefaultDockablePerspective{
-	private String id;
-	
-	/**
-	 * Creates a new representation.
-	 * @param id the unique identifier of this perspective, not <code>null</code>
-	 */
-	public FrontendDockablePerspective( String id ){
-		if( id == null ){
-			throw new IllegalArgumentException( "id must not be null" );
-		}
-		this.id = id;
-	}
-	
-	/**
-	 * Gets the unique identifier this {@link DefaultDockable} has on its 
-	 * {@link DockFrontend}.
-	 * @return the unique identifier, not <code>null</code>
-	 */
-	public String getId(){
-		return id;
-	}
+public class FrontendDockablePerspective extends DefaultDockablePerspective {
+  private String id;
+
+  /**
+   * Creates a new representation.
+   *
+   * @param id the unique identifier of this perspective, not <code>null</code>
+   */
+  public FrontendDockablePerspective(String id) {
+    if (id == null) {
+      throw new IllegalArgumentException("id must not be null");
+    }
+    this.id = id;
+  }
+
+  /**
+   * Gets the unique identifier this {@link DefaultDockable} has on its
+   * {@link DockFrontend}.
+   *
+   * @return the unique identifier, not <code>null</code>
+   */
+  public String getId() {
+    return id;
+  }
 }

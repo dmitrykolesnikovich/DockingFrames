@@ -34,14 +34,17 @@ import bibliothek.gui.dock.ToolbarItemDockable;
 
 /**
  * A factory for reading and writing {@link ToolbarItemDockable}s.
+ *
  * @author Benjamin Sigg
  */
-public class ToolbarItemDockableFactory extends DummyDockFactory<ToolbarItemDockable>{
-	/** unique unmodifiable identifier of this factory */
-	public static final String ID = "ToolbarItemDockableFactory";
+public class ToolbarItemDockableFactory extends DummyDockFactory<ToolbarItemDockable> {
+  /**
+   * unique unmodifiable identifier of this factory
+   */
+  public static final String ID = "ToolbarItemDockableFactory";
 
-	@Override
-	public String getID(){
-		return ID;
-	}
+  @Override
+  public String getID() {
+    return ID;
+  }
 }

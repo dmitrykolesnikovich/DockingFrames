@@ -30,25 +30,29 @@ import bibliothek.gui.dock.title.DockTitle;
 /**
  * An item represents a set of properties, accessible by some {@link #getPath() key}. For example
  * a {@link DockTitle} could get its properties from a {@link CssItem}.
+ *
  * @author Benjamin Sigg
  */
-public interface CssItem extends CssPropertyContainer{
-	/**
-	 * Gets the key to this item. Note that more than one item may have the same path.
-	 * @return the location of this node in the tree of items
-	 */
-	public CssPath getPath();
-	
-	/**
-	 * Adds a listener to this item, the listener will be informed when properties of this
-	 * item are changed.
-	 * @param listener the new listener, not <code>null</code>
-	 */
-	public void addItemListener( CssItemListener listener );
-	
-	/**
-	 * Removes <code>listener</code> from this item.
-	 * @param listener the listener to remove
-	 */
-	public void removeItemListener( CssItemListener listener );
+public interface CssItem extends CssPropertyContainer {
+  /**
+   * Gets the key to this item. Note that more than one item may have the same path.
+   *
+   * @return the location of this node in the tree of items
+   */
+  public CssPath getPath();
+
+  /**
+   * Adds a listener to this item, the listener will be informed when properties of this
+   * item are changed.
+   *
+   * @param listener the new listener, not <code>null</code>
+   */
+  public void addItemListener(CssItemListener listener);
+
+  /**
+   * Removes <code>listener</code> from this item.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeItemListener(CssItemListener listener);
 }

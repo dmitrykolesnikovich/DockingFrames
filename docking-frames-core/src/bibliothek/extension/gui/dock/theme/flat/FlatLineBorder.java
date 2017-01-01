@@ -25,33 +25,33 @@
  */
 package bibliothek.extension.gui.dock.theme.flat;
 
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Insets;
+import bibliothek.util.Colors;
 
 import javax.swing.border.Border;
-
-import bibliothek.util.Colors;
+import java.awt.*;
 
 /**
  * A border used by {@link FlatButtonTitle} if the button is not selected or active. This border paints
  * only a thin, nearly invisible line around a {@link Component}.
+ *
  * @author Benjamin Sigg
  */
-public class FlatLineBorder implements Border{
-	/** a constant instance of {@link FlatLineBorder} */
-	public static final FlatLineBorder INSTANCE = new FlatLineBorder();
-	
-	public Insets getBorderInsets( Component c ){
-		return new Insets( 2, 2, 2, 2 );
-	}
+public class FlatLineBorder implements Border {
+  /**
+   * a constant instance of {@link FlatLineBorder}
+   */
+  public static final FlatLineBorder INSTANCE = new FlatLineBorder();
 
-	public boolean isBorderOpaque(){
-		return false;
-	}
+  public Insets getBorderInsets(Component c) {
+    return new Insets(2, 2, 2, 2);
+  }
 
-	public void paintBorder( Component c, Graphics g, int x, int y, int width, int height ){
-		g.setColor( Colors.diffMirror( c.getBackground(), 0.15 ) );
-		g.drawRect( x+1, y+1, width-3, height-3 );
-	}
+  public boolean isBorderOpaque() {
+    return false;
+  }
+
+  public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+    g.setColor(Colors.diffMirror(c.getBackground(), 0.15));
+    g.drawRect(x + 1, y + 1, width - 3, height - 3);
+  }
 }

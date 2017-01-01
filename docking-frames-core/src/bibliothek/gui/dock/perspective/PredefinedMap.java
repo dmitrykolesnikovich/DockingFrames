@@ -29,20 +29,23 @@ package bibliothek.gui.dock.perspective;
 /**
  * A helper class that can tell for some {@link PerspectiveElement}s what their unique identifier is,
  * and that can convert the unique identifier to a {@link PerspectiveElement}.
+ *
  * @author Benjamin Sigg
  */
-public interface PredefinedMap{
-	/**
-	 * Given <code>element</code>, tells what unique identifier <code>element</code> has.
-	 * @param element the element whose identifier is searched
-	 * @return the unique identifier or <code>null</code> if <code>element</code> is not known to this map
-	 */
-	public String get( PerspectiveElement element );
-	
-	/**
-	 * Given a unique identifier <code>id</code>, tells what {@link PerspectiveElement} belongs to that id.
-	 * @param id the unique identifier
-	 * @return the matching element, can be <code>null</code> if <code>id</code> is unknown
-	 */
-	public PerspectiveElement get( String id );
+public interface PredefinedMap {
+  /**
+   * Given <code>element</code>, tells what unique identifier <code>element</code> has.
+   *
+   * @param element the element whose identifier is searched
+   * @return the unique identifier or <code>null</code> if <code>element</code> is not known to this map
+   */
+  public String get(PerspectiveElement element);
+
+  /**
+   * Given a unique identifier <code>id</code>, tells what {@link PerspectiveElement} belongs to that id.
+   *
+   * @param id the unique identifier
+   * @return the matching element, can be <code>null</code> if <code>id</code> is unknown
+   */
+  public PerspectiveElement get(String id);
 }

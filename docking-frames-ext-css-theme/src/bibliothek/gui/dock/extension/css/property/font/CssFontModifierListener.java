@@ -28,12 +28,14 @@ package bibliothek.gui.dock.extension.css.property.font;
 /**
  * A listener that can be added to a {@link CssFontModifier}, it will be informed
  * if the modifier changes its behavior.
+ *
  * @author Benjamin Sigg
  */
 public interface CssFontModifierListener {
-	/**
-	 * Called if the modifier changed its behavior.
-	 * @param source the source of the event
-	 */
-	public void modifierChanged( CssFontModifier source );
+  /**
+   * Called if the modifier changed its behavior.
+   *
+   * @param source the source of the event
+   */
+  public void modifierChanged(CssFontModifier source);
 }

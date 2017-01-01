@@ -30,30 +30,33 @@ import bibliothek.gui.DockController;
 /**
  * A {@link SilentPropertyValue} is a {@link PropertyValue} that does not react to
  * changes of its value.
- * @author Benjamin Sigg
+ *
  * @param <A> the type of the wrapped value
+ * @author Benjamin Sigg
  */
 public class SilentPropertyValue<A> extends PropertyValue<A> {
-	/**
-     * Creates a new value.
-     * @param key the key used to access the value in {@link DockProperties}
-     * @param controller the controller from which properties are to be read
-     */
-	public SilentPropertyValue( PropertyKey<A> key, DockController controller ){
-		super( key, controller );
-	}
+  /**
+   * Creates a new value.
+   *
+   * @param key        the key used to access the value in {@link DockProperties}
+   * @param controller the controller from which properties are to be read
+   */
+  public SilentPropertyValue(PropertyKey<A> key, DockController controller) {
+    super(key, controller);
+  }
 
-	/**
-	 * Creates a new value.
-	 * @param key the key used to access the value in {@link DockProperties}
-	 */
-	public SilentPropertyValue( PropertyKey<A> key ){
-		super( key );
-	}
+  /**
+   * Creates a new value.
+   *
+   * @param key the key used to access the value in {@link DockProperties}
+   */
+  public SilentPropertyValue(PropertyKey<A> key) {
+    super(key);
+  }
 
-	@Override
-	protected void valueChanged( A oldValue, A newValue ){
-		// ignored
-	}
+  @Override
+  protected void valueChanged(A oldValue, A newValue) {
+    // ignored
+  }
 
 }

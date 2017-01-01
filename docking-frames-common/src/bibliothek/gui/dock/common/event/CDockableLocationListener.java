@@ -33,22 +33,23 @@ import bibliothek.gui.dock.station.screen.ScreenDockWindow;
  * whenever the location changes, or when the visibility to the user changes.<br>
  * <b>Note:</b>
  * <ul>
- * 	<li>Many events can be fired in rapid succession, for example if the user resizes a {@link ScreenDockWindow} 
+ * <li>Many events can be fired in rapid succession, for example if the user resizes a {@link ScreenDockWindow}
  * one event is fired whenever a movement of the mouse is detected.</li>
- * 	<li>This is a supporting listener and does not forward any information that could not be gathered by other
+ * <li>This is a supporting listener and does not forward any information that could not be gathered by other
  * listeners.</li>
- *  <li>New events are created delayed in order to collect as many information as possible. 
- *  If a client uses different listeners, then events sent to {@link CDockableLocationListener} may seem to 
- *  arrive very late. However, at the moment when an event arrives, its data is current.</li>
- *  <li>Due to its delayed nature, this listener may not receive events that cancel each other.</li>
+ * <li>New events are created delayed in order to collect as many information as possible.
+ * If a client uses different listeners, then events sent to {@link CDockableLocationListener} may seem to
+ * arrive very late. However, at the moment when an event arrives, its data is current.</li>
+ * <li>Due to its delayed nature, this listener may not receive events that cancel each other.</li>
  * </ul>
- * 
+ *
  * @author Benjamin Sigg
  */
 public interface CDockableLocationListener {
-	/**
-	 * Called if the visibility and/or the location of a {@link CDockable} changed.
-	 * @param event detailed information about the event
-	 */
-	public void changed( CDockableLocationEvent event );
+  /**
+   * Called if the visibility and/or the location of a {@link CDockable} changed.
+   *
+   * @param event detailed information about the event
+   */
+  public void changed(CDockableLocationEvent event);
 }

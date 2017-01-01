@@ -29,77 +29,73 @@
  */
 package bibliothek.gui.dock.station.toolbar.menu;
 
-import javax.swing.Icon;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.event.DockableAdapter;
 import bibliothek.gui.dock.event.DockableListener;
 
+import javax.swing.*;
+
 /**
  * A {@link CustomizationToolbarButton} which uses an already existing
  * {@link Dockable} to gain access to icon and description.
- * 
+ *
  * @author Benjamin Sigg
- * 
  */
-public class EagerCustomizationToolbarButton extends CustomizationToolbarButton{
-	private Dockable dockable;
-	private DockableListener listener = new DockableAdapter(){
-		public void titleIconChanged( Dockable dockable, Icon oldIcon,
-				Icon newIcon ){
-			setIcon(newIcon);
-		}
+public class EagerCustomizationToolbarButton extends CustomizationToolbarButton {
+  private Dockable dockable;
+  private DockableListener listener = new DockableAdapter() {
+    public void titleIconChanged(Dockable dockable, Icon oldIcon, Icon newIcon) {
+      setIcon(newIcon);
+    }
 
-		public void titleTextChanged( Dockable dockable, String oldTitle,
-				String newTitle ){
-			setText(newTitle);
-		}
+    public void titleTextChanged(Dockable dockable, String oldTitle, String newTitle) {
+      setText(newTitle);
+    }
 
-		public void titleToolTipChanged( Dockable dockable, String oldTooltip,
-				String newTooltip ){
-			setDescription(newTooltip);
-		}
-	};
+    public void titleToolTipChanged(Dockable dockable, String oldTooltip, String newTooltip) {
+      setDescription(newTooltip);
+    }
+  };
 
-	/**
-	 * Creates a new button, a {@link DockableListener} is added to
-	 * <code>dockable</code> to read icon and description.
-	 * 
-	 * @param dockable
-	 *            the item represented by this button
-	 */
-	public EagerCustomizationToolbarButton( Dockable dockable ){
-		this.dockable = dockable;
-	}
+  /**
+   * Creates a new button, a {@link DockableListener} is added to
+   * <code>dockable</code> to read icon and description.
+   *
+   * @param dockable the item represented by this button
+   */
+  public EagerCustomizationToolbarButton(Dockable dockable) {
+    this.dockable = dockable;
+  }
 
-	@Override
-	protected boolean hasDockable(){
-		return true;
-	}
+  @Override
+  protected boolean hasDockable() {
+    return true;
+  }
 
-	@Override
-	protected Dockable getDockable(){
-		return dockable;
-	}
+  @Override
+  protected Dockable getDockable() {
+    return dockable;
+  }
 
-	@Override
-	public void bind( CustomizationMenuCallback callback ){
-		dockable.addDockableListener(listener);
-		if (dockable.getTitleIcon() != null){
-			setIcon(dockable.getTitleIcon());
-		} else{
-			setText(dockable.getTitleText());
-		}
-		setDescription(dockable.getTitleToolTip());
-		super.bind(callback);
-	}
+  @Override
+  public void bind(CustomizationMenuCallback callback) {
+    dockable.addDockableListener(listener);
+    if (dockable.getTitleIcon() != null) {
+      setIcon(dockable.getTitleIcon());
+    }
+    else {
+      setText(dockable.getTitleText());
+    }
+    setDescription(dockable.getTitleToolTip());
+    super.bind(callback);
+  }
 
-	@Override
-	public void unbind(){
-		super.unbind();
-		dockable.removeDockableListener(listener);
-		setIcon(null);
-		setDescription(null);
-		setText(null);
-	}
+  @Override
+  public void unbind() {
+    super.unbind();
+    dockable.removeDockableListener(listener);
+    setIcon(null);
+    setDescription(null);
+    setText(null);
+  }
 }

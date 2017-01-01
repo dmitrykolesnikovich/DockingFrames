@@ -25,21 +25,23 @@
  */
 package bibliothek.gui.dock.util.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.util.MultiUIBridge;
+
+import java.awt.*;
 
 /**
  * A {@link ColorBridge} which uses other bridges to handle some colors.
+ *
  * @author Benjamin Sigg
  */
-public class MultiColorBridge extends MultiUIBridge<Color, DockColor> implements ColorBridge{
-    /**
-     * Creates a new {@link ColorBridge}.
-     * @param manager the manager from whom this provider will get default
-     * colors when necessary
-     */
-    public MultiColorBridge( ColorManager manager ){
-        super( manager );
-    }
+public class MultiColorBridge extends MultiUIBridge<Color, DockColor> implements ColorBridge {
+  /**
+   * Creates a new {@link ColorBridge}.
+   *
+   * @param manager the manager from whom this provider will get default
+   *                colors when necessary
+   */
+  public MultiColorBridge(ColorManager manager) {
+    super(manager);
+  }
 }

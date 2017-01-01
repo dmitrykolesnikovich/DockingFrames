@@ -31,43 +31,43 @@ import bibliothek.gui.Dockable;
 /**
  * A class implementing all methods of {@link DockFrontendListener}, but
  * not doing anything inside these methods.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public abstract class DockFrontendAdapter implements DockFrontendListener {
-    public void added( DockFrontend frontend, Dockable dockable ) {
-        // empty
-    }
+  public void added(DockFrontend frontend, Dockable dockable) {
+    // empty
+  }
 
-    public void deleted( DockFrontend frontend, String name ) {
-        // empty
-    }
+  public void deleted(DockFrontend frontend, String name) {
+    // empty
+  }
 
-    public void hidden( DockFrontend fronend, Dockable dockable ) {
-        // empty
-    }
+  public void hidden(DockFrontend fronend, Dockable dockable) {
+    // empty
+  }
 
-    public void hideable( DockFrontend frontend, Dockable dockable, boolean hideable ) {
-        // empty
-    }
+  public void hideable(DockFrontend frontend, Dockable dockable, boolean hideable) {
+    // empty
+  }
 
-    public void loaded( DockFrontend frontend, String name ) {
-        // empty
-    }
+  public void loaded(DockFrontend frontend, String name) {
+    // empty
+  }
 
-    public void read( DockFrontend frontend, String name ){
-    	// empty
-    }
-    
-    public void removed( DockFrontend frontend, Dockable dockable ) {
-        // empty
-    }
+  public void read(DockFrontend frontend, String name) {
+    // empty
+  }
 
-    public void saved( DockFrontend frontend, String name ) {
-        // empty
-    }
+  public void removed(DockFrontend frontend, Dockable dockable) {
+    // empty
+  }
 
-    public void shown( DockFrontend frontend, Dockable dockable ) {
-        // empty
-    }
+  public void saved(DockFrontend frontend, String name) {
+    // empty
+  }
+
+  public void shown(DockFrontend frontend, Dockable dockable) {
+    // empty
+  }
 }

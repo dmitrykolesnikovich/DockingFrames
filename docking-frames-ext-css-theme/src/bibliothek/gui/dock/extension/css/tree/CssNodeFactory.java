@@ -29,14 +29,16 @@ import bibliothek.gui.dock.extension.css.CssNode;
 
 /**
  * A factory for creating {@link CssNode}s that describes some {@link Object}.
- * @author Benjamin Sigg
+ *
  * @param <E> the kind of object that is described by the nodes
+ * @author Benjamin Sigg
  */
 public interface CssNodeFactory<E> {
-	/**
-	 * Creates a new node describing <code>object</code>.
-	 * @param object the object that will be described
-	 * @return the node, not <code>null</code>
-	 */
-	public CssNode create( E object );
+  /**
+   * Creates a new node describing <code>object</code>.
+   *
+   * @param object the object that will be described
+   * @return the node, not <code>null</code>
+   */
+  public CssNode create(E object);
 }

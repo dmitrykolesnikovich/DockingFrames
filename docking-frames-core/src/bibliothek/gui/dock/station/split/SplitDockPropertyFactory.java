@@ -31,20 +31,25 @@ import bibliothek.gui.dock.layout.DockablePropertyFactory;
 
 /**
  * A factory that creates instances of {@link SplitDockProperty}.
+ *
  * @author Benjamin Sigg
  */
-public class SplitDockPropertyFactory implements DockablePropertyFactory{
-	/** The id that is used for this factory */
-    public static final String ID = "SplitDockPropertyFactory";
-    
-    /** An instance of the factory that can be used at any location */
-    public static final SplitDockPropertyFactory FACTORY = new SplitDockPropertyFactory();
-    
-    public String getID() {
-        return ID;
-    }
-    
-    public DockableProperty createProperty() {
-        return new SplitDockProperty();
-    }
+public class SplitDockPropertyFactory implements DockablePropertyFactory {
+  /**
+   * The id that is used for this factory
+   */
+  public static final String ID = "SplitDockPropertyFactory";
+
+  /**
+   * An instance of the factory that can be used at any location
+   */
+  public static final SplitDockPropertyFactory FACTORY = new SplitDockPropertyFactory();
+
+  public String getID() {
+    return ID;
+  }
+
+  public DockableProperty createProperty() {
+    return new SplitDockProperty();
+  }
 }

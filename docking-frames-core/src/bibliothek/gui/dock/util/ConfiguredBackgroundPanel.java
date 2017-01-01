@@ -25,54 +25,58 @@
  */
 package bibliothek.gui.dock.util;
 
-import java.awt.Graphics;
-import java.awt.LayoutManager;
+import java.awt.*;
 
 
 /**
  * A {@link BackgroundPanel} implementing {@link #configure(Transparency)}. This implementation
  * just changes the {@link #setTransparency(Transparency) transparency property} property according to the current
- * {@link Transparency}. 
+ * {@link Transparency}.
+ *
  * @author Benjamin Sigg
  */
-public class ConfiguredBackgroundPanel extends BackgroundPanel{
-	/** The {@link Transparency} to use if {@link #configure(Transparency)} is called with {@link Transparency#DEFAULT} */
-	private Transparency defaultTransparency = Transparency.DEFAULT;
-	
-	/**
-	 * Creates a new panel.
-	 * @param layout the layout manager to use on this panel, can be <code>null</code>
-	 * @param transparency the default transparency to use if nothing else is set
-	 */
-	public ConfiguredBackgroundPanel( LayoutManager layout, Transparency transparency ){
-		super( layout, transparency );
-		defaultTransparency = transparency;
-	}
+public class ConfiguredBackgroundPanel extends BackgroundPanel {
+  /**
+   * The {@link Transparency} to use if {@link #configure(Transparency)} is called with {@link Transparency#DEFAULT}
+   */
+  private Transparency defaultTransparency = Transparency.DEFAULT;
 
-	/**
-	 * Creates a new panel.
-	 * @param transparency the default transparency to use if nothing else is set
-	 */
-	public ConfiguredBackgroundPanel( Transparency transparency ){
-		super( transparency );
-		defaultTransparency = transparency;
-	}
-	
-	@Override
-	protected void configure( Transparency transparency ){
-		switch( transparency ){
-			case DEFAULT:
-				setTransparency( defaultTransparency );
-				break;
-			case SOLID:
-			case TRANSPARENT:
-				setTransparency( transparency );
-				break;
-		}
-	}
-	
-	@Override
-	protected void setupRenderingHints( Graphics g ) {
-		// ignore	
-	}
+  /**
+   * Creates a new panel.
+   *
+   * @param layout       the layout manager to use on this panel, can be <code>null</code>
+   * @param transparency the default transparency to use if nothing else is set
+   */
+  public ConfiguredBackgroundPanel(LayoutManager layout, Transparency transparency) {
+    super(layout, transparency);
+    defaultTransparency = transparency;
+  }
+
+  /**
+   * Creates a new panel.
+   *
+   * @param transparency the default transparency to use if nothing else is set
+   */
+  public ConfiguredBackgroundPanel(Transparency transparency) {
+    super(transparency);
+    defaultTransparency = transparency;
+  }
+
+  @Override
+  protected void configure(Transparency transparency) {
+    switch (transparency) {
+      case DEFAULT:
+        setTransparency(defaultTransparency);
+        break;
+      case SOLID:
+      case TRANSPARENT:
+        setTransparency(transparency);
+        break;
+    }
+  }
+
+  @Override
+  protected void setupRenderingHints(Graphics g) {
+    // ignore
+  }
 }

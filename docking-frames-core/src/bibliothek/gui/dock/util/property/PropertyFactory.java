@@ -30,27 +30,29 @@ import bibliothek.gui.dock.util.PropertyKey;
 
 /**
  * A strategy to create or store the default value of a {@link PropertyKey}.
- * @author Benjamin Sigg
  *
  * @param <A> the kind of value this strategy handles
+ * @author Benjamin Sigg
  */
 public interface PropertyFactory<A> {
-	/**
-	 * Gets the default value for <code>key</code>. This method is called
-	 * only once for the combination of <code>key</code> and <code>properties</code>,
-	 * it can either always return the same object or create a new one every 
-	 * time. The results gets stored as default value in <code>properties</code>.
-	 * @param key the key for which to get the default
-	 * @param properties the map in which the default will be stored
-	 * @return the new default value, <code>null</code> is valid
-	 */
-	public A getDefault( PropertyKey<A> key, DockProperties properties );
-	
-	/**
-	 * Asks for the default value that should be used if no {@link DockProperties}
-	 * are available.
-	 * @param key the key of the property
-	 * @return the default value, can be <code>null</code>
-	 */
-	public A getDefault( PropertyKey<A> key );
+  /**
+   * Gets the default value for <code>key</code>. This method is called
+   * only once for the combination of <code>key</code> and <code>properties</code>,
+   * it can either always return the same object or create a new one every
+   * time. The results gets stored as default value in <code>properties</code>.
+   *
+   * @param key        the key for which to get the default
+   * @param properties the map in which the default will be stored
+   * @return the new default value, <code>null</code> is valid
+   */
+  public A getDefault(PropertyKey<A> key, DockProperties properties);
+
+  /**
+   * Asks for the default value that should be used if no {@link DockProperties}
+   * are available.
+   *
+   * @param key the key of the property
+   * @return the default value, can be <code>null</code>
+   */
+  public A getDefault(PropertyKey<A> key);
 }

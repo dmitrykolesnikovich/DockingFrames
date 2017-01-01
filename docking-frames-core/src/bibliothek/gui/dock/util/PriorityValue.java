@@ -29,70 +29,78 @@ import bibliothek.gui.DockTheme;
 
 /**
  * A container for three values of different priority.
- * @author Benjamin Sigg
+ *
  * @param <T> the kind of values in this container
+ * @author Benjamin Sigg
  */
 public class PriorityValue<T> {
-    /** the default value */
-    private T valueDefault;
-    /** the value set by a {@link DockTheme} */
-    private T valueTheme;
-    /** the value set by the client */
-    private T valueClient;
-    
-    /**
-     * Sets the value for a given priority.
-     * @param priority the priority of <code>value</code>
-     * @param value the new value, can be <code>null</code>
-     * @return <code>true</code> if the result of {@link #get()}
-     * changes because of the call of this method
-     */
-    public boolean set( Priority priority, T value ){
-        T old = get();
-        
-        switch( priority ){
-            case DEFAULT:
-                valueDefault = value;
-                break;
-            case THEME:
-                valueTheme = value;
-                break;
-            case CLIENT:
-                valueClient = value;
-                break;
-        }
-        
-        return old != get();
+  /**
+   * the default value
+   */
+  private T valueDefault;
+  /**
+   * the value set by a {@link DockTheme}
+   */
+  private T valueTheme;
+  /**
+   * the value set by the client
+   */
+  private T valueClient;
+
+  /**
+   * Sets the value for a given priority.
+   *
+   * @param priority the priority of <code>value</code>
+   * @param value    the new value, can be <code>null</code>
+   * @return <code>true</code> if the result of {@link #get()}
+   * changes because of the call of this method
+   */
+  public boolean set(Priority priority, T value) {
+    T old = get();
+
+    switch (priority) {
+      case DEFAULT:
+        valueDefault = value;
+        break;
+      case THEME:
+        valueTheme = value;
+        break;
+      case CLIENT:
+        valueClient = value;
+        break;
     }
-    
-    /**
-     * Gets the value for a given priority.
-     * @param priority the priority for which the value is requested 
-     * @return the value that was {@link #set(Priority, Object)} for <code>priority</code>
-     */
-    public T get( Priority priority ){
-        switch( priority ){
-            case CLIENT:
-                return valueClient;
-            case DEFAULT:
-                return valueDefault;
-            case THEME:
-                return valueTheme;
-        }
-        return null;
-    }
-    
-    /**
-     * Gets the current value with the highest priority.
-     * @return the value or <code>null</code>
-     */
-    public T get(){
-        if( valueClient != null )
-            return valueClient;
-        
-        if( valueTheme != null )
-            return valueTheme;
-        
+
+    return old != get();
+  }
+
+  /**
+   * Gets the value for a given priority.
+   *
+   * @param priority the priority for which the value is requested
+   * @return the value that was {@link #set(Priority, Object)} for <code>priority</code>
+   */
+  public T get(Priority priority) {
+    switch (priority) {
+      case CLIENT:
+        return valueClient;
+      case DEFAULT:
         return valueDefault;
+      case THEME:
+        return valueTheme;
     }
+    return null;
+  }
+
+  /**
+   * Gets the current value with the highest priority.
+   *
+   * @return the value or <code>null</code>
+   */
+  public T get() {
+    if (valueClient != null) return valueClient;
+
+    if (valueTheme != null) return valueTheme;
+
+    return valueDefault;
+  }
 }

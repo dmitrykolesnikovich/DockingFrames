@@ -25,32 +25,37 @@
  */
 package bibliothek.gui.dock.action;
 
-import java.awt.Component;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.themes.basic.action.buttons.MiniButton;
 import bibliothek.gui.dock.util.BackgroundComponent;
 import bibliothek.gui.dock.util.UIValue;
 import bibliothek.util.Path;
 
+import java.awt.*;
+
 /**
  * Represents the background of a {@link Component} that somehow paints a {@link DockAction}. For example
  * the component could be a {@link MiniButton}.
+ *
  * @author Benjamin Sigg
  */
-public interface DockActionBackgroundComponent extends BackgroundComponent{
-	/** the kind of {@link UIValue} this is */
-	public static final Path KIND = BackgroundComponent.KIND.append( "action" );
-	
-	/**
-	 * Gets the {@link DockAction} which is painted by this component.
-	 * @return the action, not <code>null</code>
-	 */
-	public DockAction getAction();
+public interface DockActionBackgroundComponent extends BackgroundComponent {
+  /**
+   * the kind of {@link UIValue} this is
+   */
+  public static final Path KIND = BackgroundComponent.KIND.append("action");
 
-	/**
-	 * Gets the {@link Dockable} for which the {@link #getAction() action} is shown.
-	 * @return the dockable, not <code>null</code>
-	 */
-	public Dockable getDockable();
+  /**
+   * Gets the {@link DockAction} which is painted by this component.
+   *
+   * @return the action, not <code>null</code>
+   */
+  public DockAction getAction();
+
+  /**
+   * Gets the {@link Dockable} for which the {@link #getAction() action} is shown.
+   *
+   * @return the dockable, not <code>null</code>
+   */
+  public Dockable getDockable();
 }

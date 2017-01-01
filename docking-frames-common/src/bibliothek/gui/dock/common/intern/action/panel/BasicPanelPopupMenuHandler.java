@@ -25,48 +25,49 @@
  */
 package bibliothek.gui.dock.common.intern.action.panel;
 
-import java.awt.event.ActionListener;
-
-import javax.swing.JMenu;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.common.action.CPanelPopup.PanelPopup;
 import bibliothek.gui.dock.themes.basic.action.menu.AbstractMenuHandler;
 
+import javax.swing.*;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+import java.awt.event.ActionListener;
+
 /**
  * A menu showing a custom component instead of menu items.
+ *
  * @author Benjamin Sigg
  */
-public class BasicPanelPopupMenuHandler extends AbstractMenuHandler<JMenu, PanelPopup>{
-	/**
-	 * Creates a new handler.
-	 * @param action the action shown in this menu
-	 * @param dockable the owner of the action
-	 */
-	public BasicPanelPopupMenuHandler( PanelPopup action, Dockable dockable ){
-		super( action, dockable, new JMenu() );
-		item.getPopupMenu().addPopupMenuListener( new PopupMenuListener(){
-			public void popupMenuWillBecomeVisible( PopupMenuEvent e ){
-				BasicPanelPopupMenuHandler.this.action.onMenuTrigger( item.getPopupMenu() );
-			}
-			
-			public void popupMenuCanceled( PopupMenuEvent e ){
-				item.getPopupMenu().removeAll();
-			}
-			
-			public void popupMenuWillBecomeInvisible( PopupMenuEvent e ){
-				item.getPopupMenu().removeAll();
-			}
-		});
-	}
+public class BasicPanelPopupMenuHandler extends AbstractMenuHandler<JMenu, PanelPopup> {
+  /**
+   * Creates a new handler.
+   *
+   * @param action   the action shown in this menu
+   * @param dockable the owner of the action
+   */
+  public BasicPanelPopupMenuHandler(PanelPopup action, Dockable dockable) {
+    super(action, dockable, new JMenu());
+    item.getPopupMenu().addPopupMenuListener(new PopupMenuListener() {
+      public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+        BasicPanelPopupMenuHandler.this.action.onMenuTrigger(item.getPopupMenu());
+      }
 
-	public void addActionListener( ActionListener listener ){
-		// ignore
-	}
+      public void popupMenuCanceled(PopupMenuEvent e) {
+        item.getPopupMenu().removeAll();
+      }
 
-	public void removeActionListener( ActionListener listener ){
-		// ignore
-	}
+      public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+        item.getPopupMenu().removeAll();
+      }
+    });
+  }
+
+  public void addActionListener(ActionListener listener) {
+    // ignore
+  }
+
+  public void removeActionListener(ActionListener listener) {
+    // ignore
+  }
 }

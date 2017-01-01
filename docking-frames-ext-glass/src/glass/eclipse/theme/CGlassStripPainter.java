@@ -25,209 +25,200 @@
  */
 package glass.eclipse.theme;
 
-import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
-import bibliothek.extension.gui.dock.theme.eclipse.stack.*;
-import bibliothek.extension.gui.dock.theme.eclipse.stack.tab.*;
-import bibliothek.gui.*;
-import bibliothek.gui.dock.util.*;
-import bibliothek.gui.dock.util.color.*;
-import kux.glass.*;
 import glass.eclipse.theme.factory.*;
 import glass.eclipse.theme.utils.*;
+import kux.glass.*;
 
 
 /**
  * Paints the background of the tab by painting a glass background.
+ *
  * @author Thomas Hilbert
  */
 @ColorCodes("stack.border.glass")
 public class CGlassStripPainter implements TabPanePainter {
-   private final AbstractDockColor color = new AbstractDockColor("stack.border.glass", DockColor.KIND_DOCK_COLOR, Color.BLACK) {
-      @Override
-      protected void changed (Color oldColor, Color newColor) {
-         pane.repaint();
-      }
-   };
+  private final EclipseTabPane pane;
+  private final AbstractDockColor color = new AbstractDockColor("stack.border.glass", DockColor.KIND_DOCK_COLOR, Color.BLACK) {
+    @Override
+    protected void changed(Color oldColor, Color newColor) {
+      pane.repaint();
+    }
+  };
+  public IGlassFactory.SGlassParameter glassStrip;
+  PropertyValue<IGlassParameterFactory> propValueFactory = new PropertyValue<IGlassParameterFactory>(EclipseThemeExtension.GLASS_FACTORY) {
+    @Override
+    protected void valueChanged(IGlassParameterFactory paramA1, IGlassParameterFactory paramA2) {
+      pane.repaint();
+    }
+  };
+  IGlassFactory glass = CGlassFactoryGenerator.Create();
 
-   PropertyValue<IGlassParameterFactory> propValueFactory = new PropertyValue<IGlassParameterFactory>(EclipseThemeExtension.GLASS_FACTORY) {
-      @Override
-      protected void valueChanged (IGlassParameterFactory paramA1, IGlassParameterFactory paramA2) {
-         pane.repaint();
-      }
-   };
+  /**
+   * Creates a new painter.
+   *
+   * @param tabbedComponent the component for which this painter will work
+   */
+  public CGlassStripPainter(EclipseTabPane pane) {
+    this.pane = pane;
+  }
 
-   private final EclipseTabPane pane;
-   public IGlassFactory.SGlassParameter glassStrip;
+  public void paint(Graphics g) {
+    paintBackground(g);
+  }
 
-   IGlassFactory glass = CGlassFactoryGenerator.Create();
+  private void paintHorizontal(Graphics g, Rectangle available, Rectangle bounds, int y) {
+    paintBackground(g, available.x, bounds.y, available.width, bounds.height, true);
 
-   /**
-    * Creates a new painter.
-    * @param tabbedComponent the component for which this painter will work
-    */
-   public CGlassStripPainter (EclipseTabPane pane) {
-      this.pane = pane;
-   }
+    if (available.x < bounds.x - 1) {
+      // left side
+      g.drawLine(available.x, y, bounds.x - 1, y);
+    }
 
-   public void paint (Graphics g) {
-      paintBackground(g);
-   }
+    if (available.x + available.width > bounds.x + bounds.width) {
+      // right side
+      g.drawLine(available.x + available.width, y, bounds.x + bounds.width, y);
+    }
+  }
 
-   private void paintHorizontal (Graphics g, Rectangle available, Rectangle bounds, int y) {
-      paintBackground(g, available.x, bounds.y, available.width, bounds.height, true);
+  private void paintVertical(Graphics g, Rectangle available, Rectangle bounds, int x) {
+    paintBackground(g, bounds.x, available.y, available.height, bounds.width, false);
 
-      if (available.x < bounds.x - 1) {
-         // left side
-         g.drawLine(available.x, y, bounds.x - 1, y);
-      }
+    if (available.y < bounds.y - 1) {
+      g.drawLine(x, available.y, x, bounds.y - 1);
+    }
+    if (available.y + available.height > bounds.y + bounds.height) {
+      g.drawLine(x, available.y + available.height, x, bounds.y + bounds.height);
+    }
+  }
 
-      if (available.x + available.width > bounds.x + bounds.width) {
-         // right side
-         g.drawLine(available.x + available.width, y, bounds.x + bounds.width, y);
-      }
-   }
+  protected void getGlassParameters() {
+    IGlassParameterFactory f = propValueFactory.getValue();
+    glassStrip = f.getStripBGGlassParameters();
+  }
 
-   private void paintVertical (Graphics g, Rectangle available, Rectangle bounds, int x) {
-      paintBackground(g, bounds.x, available.y, available.height, bounds.width, false);
+  protected int toTransformedEdgeMask(int srcMask) {
+    int iNewMask = 0;
 
-      if (available.y < bounds.y - 1) {
-         g.drawLine(x, available.y, x, bounds.y - 1);
-      }
-      if (available.y + available.height > bounds.y + bounds.height) {
-         g.drawLine(x, available.y + available.height, x, bounds.y + bounds.height);
-      }
-   }
+    switch (pane.getDockTabPlacement()) {
+      case BOTTOM_OF_DOCKABLE:
+      case TOP_OF_DOCKABLE:
+        // no modify needed
+        iNewMask = srcMask;
+        break;
+      case RIGHT_OF_DOCKABLE:
+        iNewMask = CEclipseBorder.ShiftEdgeMask(srcMask, false);
+        break;
+      case LEFT_OF_DOCKABLE:
+        iNewMask = CEclipseBorder.ShiftEdgeMask(srcMask, false);
+        break;
+    }
 
-   protected void getGlassParameters () {
-      IGlassParameterFactory f = propValueFactory.getValue();
-      glassStrip = f.getStripBGGlassParameters();
-   }
+    return (iNewMask);
+  }
 
-   protected int toTransformedEdgeMask (int srcMask) {
-      int iNewMask = 0;
+  protected void paintBackground(Graphics g, int x, int y, int w, int h, boolean horizontal) {
+    getGlassParameters();
 
-      switch (pane.getDockTabPlacement()) {
-         case BOTTOM_OF_DOCKABLE:
-         case TOP_OF_DOCKABLE:
-            // no modify needed
-            iNewMask = srcMask;
-            break;
-         case RIGHT_OF_DOCKABLE:
-            iNewMask = CEclipseBorder.ShiftEdgeMask(srcMask, false);
-            break;
-         case LEFT_OF_DOCKABLE:
-            iNewMask = CEclipseBorder.ShiftEdgeMask(srcMask, false);
-            break;
-      }
+    if (w > 0 && h > 0) {
+      Graphics2D g2d = (Graphics2D)g.create();
 
-      return (iNewMask);
-   }
+      if (glassStrip != null) {
+        BufferedImage im = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 
-   protected void paintBackground (Graphics g, int x, int y, int w, int h, boolean horizontal) {
-      getGlassParameters();
+        Graphics2D gg = im.createGraphics();
+        gg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        gg.setColor(Color.WHITE);
 
-      if (w > 0 && h > 0) {
-         Graphics2D g2d = (Graphics2D)g.create();
+        if (pane.getComponent().getBorder() instanceof CEclipseBorder) {
+          CEclipseBorder ec = (CEclipseBorder)pane.getComponent().getBorder();
 
-         if (glassStrip != null) {
-            BufferedImage im = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+          Path2D p = null;
+          switch (pane.getDockTabPlacement()) {
+            case BOTTOM_OF_DOCKABLE:
+              p = CEclipseBorder.CreateBorderShape(0, 1, w + 1, h, toTransformedEdgeMask(ec.getRoundEdges()), ec.getCornerRadius());
+              break;
+            case TOP_OF_DOCKABLE:
+              p = CEclipseBorder.CreateBorderShape(0, 0, w + 1, h, toTransformedEdgeMask(ec.getRoundEdges()), ec.getCornerRadius());
+              break;
+            case RIGHT_OF_DOCKABLE:
+              p = CEclipseBorder.CreateBorderShape(0, 1, w + 1, h, toTransformedEdgeMask(ec.getRoundEdges()), ec.getCornerRadius());
+              break;
+            case LEFT_OF_DOCKABLE:
+              p = CEclipseBorder.CreateBorderShape(0, 0, w + 1, h, toTransformedEdgeMask(ec.getRoundEdges()), ec.getCornerRadius());
+              break;
+          }
+          gg.fill(p);
+        }
+        else {
+          gg.fillRect(0, 0, w, h);
+        }
 
-            Graphics2D gg = im.createGraphics();
-            gg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            gg.setColor(Color.WHITE);
+        gg.setComposite(AlphaComposite.SrcIn);
+        try {
+          glass.Render2Graphics(new Dimension(w, h), gg, glassStrip, true);
+        }
+        catch (Exception e) {
+          glass.Render2Graphics(new Dimension(w, h), gg, CGlassFactory.VALUE_STEEL, true);
+        }
 
-            if (pane.getComponent().getBorder() instanceof CEclipseBorder) {
-               CEclipseBorder ec = (CEclipseBorder)pane.getComponent().getBorder();
+        gg.dispose();
 
-               Path2D p = null;
-               switch (pane.getDockTabPlacement()) {
-                  case BOTTOM_OF_DOCKABLE:
-                     p = CEclipseBorder.CreateBorderShape(0, 1, w + 1, h, toTransformedEdgeMask(ec.getRoundEdges()), ec.getCornerRadius());
-                     break;
-                  case TOP_OF_DOCKABLE:
-                     p = CEclipseBorder.CreateBorderShape(0, 0, w + 1, h, toTransformedEdgeMask(ec.getRoundEdges()), ec.getCornerRadius());
-                     break;
-                  case RIGHT_OF_DOCKABLE:
-                     p = CEclipseBorder.CreateBorderShape(0, 1, w + 1, h, toTransformedEdgeMask(ec.getRoundEdges()), ec.getCornerRadius());
-                     break;
-                  case LEFT_OF_DOCKABLE:
-                     p = CEclipseBorder.CreateBorderShape(0, 0, w + 1, h, toTransformedEdgeMask(ec.getRoundEdges()), ec.getCornerRadius());
-                     break;
-               }
-               gg.fill(p);
-            }
-            else {
-               gg.fillRect(0, 0, w, h);
-            }
+        if (!horizontal) {
+          AffineTransform atTrans = AffineTransform.getTranslateInstance(x /*+ h*/, y + w);
+          atTrans.concatenate(COutlineHelper.tRot90CCW);
 
-            gg.setComposite(AlphaComposite.SrcIn);
-            try {
-               glass.Render2Graphics(new Dimension(w, h), gg, glassStrip, true);
-            }
-            catch (Exception e) {
-               glass.Render2Graphics(new Dimension(w, h), gg, CGlassFactory.VALUE_STEEL, true);
-            }
-
-            gg.dispose();
-
-            if ( !horizontal) {
-               AffineTransform atTrans = AffineTransform.getTranslateInstance(x /*+ h*/, y + w);
-               atTrans.concatenate(COutlineHelper.tRot90CCW);
-
-               g2d.drawImage(im, atTrans, null);
-            }
-            else {
-               g2d.drawImage(im, x, y, null);
-            }
-         }
-
-         g2d.dispose();
-      }
-   }
-
-   public void setController (DockController controller) {
-      ColorManager colors = controller == null ? null : controller.getColors();
-      color.setManager(colors);
-
-      propValueFactory.setProperties(controller);
-   }
-
-   public void paintBackground (Graphics g) {
-      Dockable selection = pane.getSelectedDockable();
-      if (selection == null) {
-         return;
+          g2d.drawImage(im, atTrans, null);
+        }
+        else {
+          g2d.drawImage(im, x, y, null);
+        }
       }
 
-      EclipseTab tab = pane.getTab(selection);
-      if (tab == null || !tab.isPaneVisible()) {
-         return;
-      }
-      
-      Rectangle bounds = tab.getBounds();
-      Rectangle available = pane.getAvailableArea();
+      g2d.dispose();
+    }
+  }
 
-      g.setColor(color.value());
+  public void setController(DockController controller) {
+    ColorManager colors = controller == null ? null : controller.getColors();
+    color.setManager(colors);
 
-      switch (pane.getDockTabPlacement()) {
-         case TOP_OF_DOCKABLE:
-            paintHorizontal(g, available, bounds, bounds.y + bounds.height - 1);
-            break;
-         case BOTTOM_OF_DOCKABLE:
-            paintHorizontal(g, available, bounds, bounds.y);
-            break;
-         case LEFT_OF_DOCKABLE:
-            paintVertical(g, available, bounds, bounds.x + bounds.width - 1);
-            break;
-         case RIGHT_OF_DOCKABLE:
-            paintVertical(g, available, bounds, bounds.x);
-            break;
-      }
-   }
+    propValueFactory.setProperties(controller);
+  }
 
-   public void paintForeground (Graphics g) {
-      // TODO Auto-generated method stub
+  public void paintBackground(Graphics g) {
+    Dockable selection = pane.getSelectedDockable();
+    if (selection == null) {
+      return;
+    }
 
-   }
+    EclipseTab tab = pane.getTab(selection);
+    if (tab == null || !tab.isPaneVisible()) {
+      return;
+    }
+
+    Rectangle bounds = tab.getBounds();
+    Rectangle available = pane.getAvailableArea();
+
+    g.setColor(color.value());
+
+    switch (pane.getDockTabPlacement()) {
+      case TOP_OF_DOCKABLE:
+        paintHorizontal(g, available, bounds, bounds.y + bounds.height - 1);
+        break;
+      case BOTTOM_OF_DOCKABLE:
+        paintHorizontal(g, available, bounds, bounds.y);
+        break;
+      case LEFT_OF_DOCKABLE:
+        paintVertical(g, available, bounds, bounds.x + bounds.width - 1);
+        break;
+      case RIGHT_OF_DOCKABLE:
+        paintVertical(g, available, bounds, bounds.x);
+        break;
+    }
+  }
+
+  public void paintForeground(Graphics g) {
+    // TODO Auto-generated method stub
+
+  }
 }

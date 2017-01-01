@@ -31,15 +31,19 @@ import bibliothek.util.Path;
 
 /**
  * A {@link BackgroundComponent} representing a {@link TabMenu} on a {@link TabPane}.
+ *
  * @author Benjamin Sigg
  */
-public interface TabPaneMenuBackgroundComponent extends TabPaneChildBackgroundComponent{
-	/** the type of this {@link UIValue} */
-	public static final Path KIND = TabPaneChildBackgroundComponent.KIND.append( "menu" );
-	
-	/**
-	 * Gets the menu which is represented by this component.
-	 * @return the menu, not <code>null</code>
-	 */
-	public TabMenu getMenu();
+public interface TabPaneMenuBackgroundComponent extends TabPaneChildBackgroundComponent {
+  /**
+   * the type of this {@link UIValue}
+   */
+  public static final Path KIND = TabPaneChildBackgroundComponent.KIND.append("menu");
+
+  /**
+   * Gets the menu which is represented by this component.
+   *
+   * @return the menu, not <code>null</code>
+   */
+  public TabMenu getMenu();
 }

@@ -25,28 +25,30 @@
  */
 package bibliothek.gui.dock.extension.css.transition;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.extension.css.CssItem;
 import bibliothek.gui.dock.extension.css.CssScheme;
 import bibliothek.gui.dock.extension.css.CssType;
 
+import java.awt.*;
+
 /**
  * A property for handing a {@link Color} with a transition.
+ *
  * @author Benjamin Sigg
  */
-public abstract class ColorTransitionProperty extends CssTransitionProperty<Color>{
-	/**
-	 * Creates the new property.
-	 * @param scheme the scheme in whose realm this property will work
-	 * @param item the item to which this property belongs
-	 */
-	public ColorTransitionProperty( CssScheme scheme, CssItem item ){
-		super( scheme, item );
-	}
+public abstract class ColorTransitionProperty extends CssTransitionProperty<Color> {
+  /**
+   * Creates the new property.
+   *
+   * @param scheme the scheme in whose realm this property will work
+   * @param item   the item to which this property belongs
+   */
+  public ColorTransitionProperty(CssScheme scheme, CssItem item) {
+    super(scheme, item);
+  }
 
-	@Override
-	public CssType<Color> getType( CssScheme scheme ){
-		return scheme.getConverter( Color.class );
-	}	
+  @Override
+  public CssType<Color> getType(CssScheme scheme) {
+    return scheme.getConverter(Color.class);
+  }
 }

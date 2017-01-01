@@ -34,77 +34,78 @@ import bibliothek.gui.dock.station.StationDropOperation;
 import bibliothek.gui.dock.themes.basic.TabDisplayerCombinerTarget;
 
 /**
- * This {@link Merger} merges {@link StackDockStation}s that are dropped onto a single 
+ * This {@link Merger} merges {@link StackDockStation}s that are dropped onto a single
  * tabbed {@link Dockable}.
+ *
  * @author Benjamin Sigg
  */
-public class TabMerger implements Merger{
-	public boolean canMerge( StationDropOperation operation, DockStation parent, DockStation child ){
-		if( operation == null ){
-			return false;
-		}
-		
-		DisplayerCombinerTarget target = operation.getDisplayerCombination();
-		if( target instanceof TabDisplayerCombinerTarget ){
-			TabDisplayerCombinerTarget tab = (TabDisplayerCombinerTarget)target;
-			
-			if( !tab.isValid() ){
-				return false;
-			}
-			if( !(operation.getItem() instanceof StackDockStation)){
-				return false;
-			}
-			
-			Dockable item = operation.getItem();
-			if( !parent.accept( item ) || !item.accept( parent )){
-				return false;
-			}
-			
-			DockController controller = parent.getController();
-			if( controller != null ){
-				if( !controller.getAcceptance().accept( parent, item )){
-					return false;
-				}
-			}
-			
-			if( !parent.canReplace( tab.getTarget(), operation.getItem() )){
-				return false;
-			}
-			
-			if( !((StackDockStation)item).acceptable( tab.getTarget() )){
-				return false;
-			}
-			
-			return true;
-		}
-		return false;
-	}
+public class TabMerger implements Merger {
+  public boolean canMerge(StationDropOperation operation, DockStation parent, DockStation child) {
+    if (operation == null) {
+      return false;
+    }
 
-	public void merge( StationDropOperation operation, DockStation parent, DockStation child ){
-		DisplayerCombinerTarget target = operation.getDisplayerCombination();
-		if( target instanceof TabDisplayerCombinerTarget ){
-			TabDisplayerCombinerTarget tab = (TabDisplayerCombinerTarget)target;
-			StackDockStation station = (StackDockStation)operation.getItem();
-			if( station.getDockParent() != null ){
-				station.getDockParent().drag( station );
-			}
-			
-			Dockable dockable = tab.getTarget();
-			parent.replace( dockable, station );
-			
-			Dockable selected = station.getFrontDockable();
-			
-			if( tab.getIndex() == 0 ){
-				station.add( dockable, station.getDockableCount() );
-			}
-			else{
-				station.add( dockable, 0 );
-			}
-			
-			DockController controller = station.getController();
-			if( controller != null ){
-				controller.setFocusedDockable( selected, false );
-			}
-		}
-	}
+    DisplayerCombinerTarget target = operation.getDisplayerCombination();
+    if (target instanceof TabDisplayerCombinerTarget) {
+      TabDisplayerCombinerTarget tab = (TabDisplayerCombinerTarget)target;
+
+      if (!tab.isValid()) {
+        return false;
+      }
+      if (!(operation.getItem() instanceof StackDockStation)) {
+        return false;
+      }
+
+      Dockable item = operation.getItem();
+      if (!parent.accept(item) || !item.accept(parent)) {
+        return false;
+      }
+
+      DockController controller = parent.getController();
+      if (controller != null) {
+        if (!controller.getAcceptance().accept(parent, item)) {
+          return false;
+        }
+      }
+
+      if (!parent.canReplace(tab.getTarget(), operation.getItem())) {
+        return false;
+      }
+
+      if (!((StackDockStation)item).acceptable(tab.getTarget())) {
+        return false;
+      }
+
+      return true;
+    }
+    return false;
+  }
+
+  public void merge(StationDropOperation operation, DockStation parent, DockStation child) {
+    DisplayerCombinerTarget target = operation.getDisplayerCombination();
+    if (target instanceof TabDisplayerCombinerTarget) {
+      TabDisplayerCombinerTarget tab = (TabDisplayerCombinerTarget)target;
+      StackDockStation station = (StackDockStation)operation.getItem();
+      if (station.getDockParent() != null) {
+        station.getDockParent().drag(station);
+      }
+
+      Dockable dockable = tab.getTarget();
+      parent.replace(dockable, station);
+
+      Dockable selected = station.getFrontDockable();
+
+      if (tab.getIndex() == 0) {
+        station.add(dockable, station.getDockableCount());
+      }
+      else {
+        station.add(dockable, 0);
+      }
+
+      DockController controller = station.getController();
+      if (controller != null) {
+        controller.setFocusedDockable(selected, false);
+      }
+    }
+  }
 }

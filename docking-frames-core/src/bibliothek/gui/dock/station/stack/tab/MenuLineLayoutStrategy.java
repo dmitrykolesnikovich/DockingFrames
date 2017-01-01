@@ -30,19 +30,21 @@ import bibliothek.gui.dock.station.stack.tab.layouting.Size;
 /**
  * Provides customizable algorithms used by the {@link MenuLineLayout}, these algorithms
  * tell how exactly to lay out the items of a {@link TabPane}.
+ *
  * @author Benjamin Sigg
  */
 public interface MenuLineLayoutStrategy {
-	/**
-	 * Calculates how good a layout with the given sizes is. To calculate the score
-	 * the method may call {@link Size#getScore()}. {@link MenuLineLayout} will create
-	 * different combinations of {@link Size}, call this method, and use the one combination
-	 * with the highest score.
-	 * @param possibility a description of the layout that might be applied 
-	 * @param menuSize the size of the menu, can be <code>null</code> if the menu is now shown
-	 * @param infoSize the size of the info-component, can be <code>null</code> if the component is not shown
-	 * @param tabSize the size of the tabs, can be <code>null</code> if there are no tabs
-	 * @return the score, a value between <code>0.0</code> and <code>1.0</code>
-	 */
-	public double getScore( MenuLineLayoutPossibility possibility, Size menuSize, Size infoSize, Size tabSize );
+  /**
+   * Calculates how good a layout with the given sizes is. To calculate the score
+   * the method may call {@link Size#getScore()}. {@link MenuLineLayout} will create
+   * different combinations of {@link Size}, call this method, and use the one combination
+   * with the highest score.
+   *
+   * @param possibility a description of the layout that might be applied
+   * @param menuSize    the size of the menu, can be <code>null</code> if the menu is now shown
+   * @param infoSize    the size of the info-component, can be <code>null</code> if the component is not shown
+   * @param tabSize     the size of the tabs, can be <code>null</code> if there are no tabs
+   * @return the score, a value between <code>0.0</code> and <code>1.0</code>
+   */
+  public double getScore(MenuLineLayoutPossibility possibility, Size menuSize, Size infoSize, Size tabSize);
 }

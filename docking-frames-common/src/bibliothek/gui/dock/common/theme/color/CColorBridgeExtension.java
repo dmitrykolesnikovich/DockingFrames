@@ -35,32 +35,35 @@ import bibliothek.util.Path;
 
 /**
  * This extension is used by a {@link CDockTheme} to add additional {@link ColorBridge}s.
+ *
  * @author Benjamin Sigg
  */
 @ClientOnly
 public interface CColorBridgeExtension {
-	/**
-	 * The name of this extension. 
-	 */
-	public static final Path EXTENSION_NAME = new Path( "dock.ccolorbridgefactory" );
-	
-	/**
-	 * The name of the parameter that links to the {@link CDockTheme} that uses this factory
-	 */
-	public static final String PARAMETER_NAME = "theme";
-	
-	/**
-	 * Gets the name of the bridge, e.g. an extension that modifies the colors
-	 * of a tab would return {@link TabColor#KIND_TAB_COLOR}.
-	 * @return the name, not <code>null</code>
-	 */
-	public Path getKey();
-	
-    /**
-     * Creates a new bridge for <code>manager</code>.
-     * @param control the control in whose realm the bridge will be used
-     * @param manager the manager which will use the bridge
-     * @return the new bridge
-     */
-    public CColorBridge create( CControl control, ColorManager manager );
+  /**
+   * The name of this extension.
+   */
+  public static final Path EXTENSION_NAME = new Path("dock.ccolorbridgefactory");
+
+  /**
+   * The name of the parameter that links to the {@link CDockTheme} that uses this factory
+   */
+  public static final String PARAMETER_NAME = "theme";
+
+  /**
+   * Gets the name of the bridge, e.g. an extension that modifies the colors
+   * of a tab would return {@link TabColor#KIND_TAB_COLOR}.
+   *
+   * @return the name, not <code>null</code>
+   */
+  public Path getKey();
+
+  /**
+   * Creates a new bridge for <code>manager</code>.
+   *
+   * @param control the control in whose realm the bridge will be used
+   * @param manager the manager which will use the bridge
+   * @return the new bridge
+   */
+  public CColorBridge create(CControl control, ColorManager manager);
 }

@@ -29,18 +29,21 @@ import bibliothek.gui.DockFrontend;
 
 /**
  * An extension to the {@link DockFrontend}, can modify the frontend.
+ *
  * @author Benjamin Sigg
  */
 public interface DockFrontendExtension {
-	/**
-	 * Called upon construction of <code>frontend</code>.
-	 * @param frontend the frontend which was constructed
-	 */
-	public void install( DockFrontend frontend );
-	
-	/**
-	 * Called upon destruction of <code>frontend</code>.
-	 * @param frontend the frontend which was destroyed
-	 */
-	public void uninstall( DockFrontend frontend );
+  /**
+   * Called upon construction of <code>frontend</code>.
+   *
+   * @param frontend the frontend which was constructed
+   */
+  public void install(DockFrontend frontend);
+
+  /**
+   * Called upon destruction of <code>frontend</code>.
+   *
+   * @param frontend the frontend which was destroyed
+   */
+  public void uninstall(DockFrontend frontend);
 }

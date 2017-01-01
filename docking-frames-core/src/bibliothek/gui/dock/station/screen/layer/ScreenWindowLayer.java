@@ -25,39 +25,40 @@
  */
 package bibliothek.gui.dock.station.screen.layer;
 
-import java.awt.Component;
-
 import bibliothek.gui.dock.ScreenDockStation;
 import bibliothek.gui.dock.station.layer.DefaultDropLayer;
 import bibliothek.gui.dock.station.layer.DockStationDropLayer;
 import bibliothek.gui.dock.station.layer.LayerPriority;
 import bibliothek.gui.dock.station.screen.ScreenDockWindow;
 
+import java.awt.*;
+
 /**
  * Describes a layer where one {@link ScreenDockWindow} resides.
+ *
  * @author Benjamin Sigg
  */
-public class ScreenWindowLayer extends DefaultDropLayer{
-	private ScreenDockWindow window;
-	
-	public ScreenWindowLayer( ScreenDockStation station, ScreenDockWindow window ){
-		super( station );
-		this.window = window;
-		setPriority( LayerPriority.FLOAT_FREE );
-	}
-	
-	public boolean contains( int x, int y ){
-		return window.contains( x, y );
-	}
-	
-	@Override
-	public Component getComponent(){
-		return window.getDockableDisplayer().getComponent();
-	}
-	
-	@Override
-	public DockStationDropLayer modify( DockStationDropLayer child ){
-		child.setPriority( getPriority().merge( child.getPriority() ));
-		return child;
-	}
+public class ScreenWindowLayer extends DefaultDropLayer {
+  private ScreenDockWindow window;
+
+  public ScreenWindowLayer(ScreenDockStation station, ScreenDockWindow window) {
+    super(station);
+    this.window = window;
+    setPriority(LayerPriority.FLOAT_FREE);
+  }
+
+  public boolean contains(int x, int y) {
+    return window.contains(x, y);
+  }
+
+  @Override
+  public Component getComponent() {
+    return window.getDockableDisplayer().getComponent();
+  }
+
+  @Override
+  public DockStationDropLayer modify(DockStationDropLayer child) {
+    child.setPriority(getPriority().merge(child.getPriority()));
+    return child;
+  }
 }

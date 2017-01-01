@@ -25,25 +25,26 @@
  */
 package bibliothek.gui.dock.extension.css.property.paint;
 
-import bibliothek.gui.dock.extension.css.CssType;
 import bibliothek.gui.dock.extension.css.CssDeclarationValue;
+import bibliothek.gui.dock.extension.css.CssType;
 import bibliothek.gui.dock.extension.css.transition.TransitionalCssProperty;
 
 /**
  * A type creating new {@link CssPaint}s.
+ *
  * @author Benjamin Sigg
  */
-public class CssPaintType implements CssType<CssPaint>{
-	@Override
-	public CssPaint convert( CssDeclarationValue value ){
-		if( "solid".equals( value.getSingleValue() )){
-			return new SolidCssPaint();
-		}
-		return null;
-	}	
-	
-	@Override
-	public TransitionalCssProperty<CssPaint> createTransition(){
-		return new TransitionalCssPaintProperty();
-	}
+public class CssPaintType implements CssType<CssPaint> {
+  @Override
+  public CssPaint convert(CssDeclarationValue value) {
+    if ("solid".equals(value.getSingleValue())) {
+      return new SolidCssPaint();
+    }
+    return null;
+  }
+
+  @Override
+  public TransitionalCssProperty<CssPaint> createTransition() {
+    return new TransitionalCssPaintProperty();
+  }
 }

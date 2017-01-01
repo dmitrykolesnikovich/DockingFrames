@@ -40,54 +40,55 @@ import bibliothek.gui.dock.station.toolbar.ToolbarStrategy;
 /**
  * Modifies the behavior of {@link ScreenDockStation} such that dropping a toolbar item results in
  * the creation of additional, new {@link DockStation}s.
+ *
  * @author Benjamin Sigg
  */
 public class ToolbarScreenDockStationExtension implements ScreenDockStationExtension {
-	private DockController controller;
-	
-	private Dockable pending;
-	
-	public ToolbarScreenDockStationExtension( DockController controller ){
-		this.controller = controller;
-	}
-	
-	@Override
-	public boolean canReplace( ScreenDockStation station, Dockable old, Dockable next ) {
-		ToolbarStrategy strategy = controller.getProperties().get( ToolbarStrategy.STRATEGY );
-		return strategy.isToolbarGroupPartParent( station, next, true );
-	}
+  private DockController controller;
 
-	@Override
-	public void drop( ScreenDockStation station, DropArguments arguments ){
-		if( arguments.getWindow() == null ){
-			ToolbarStrategy strategy = controller.getProperties().get( ToolbarStrategy.STRATEGY );
-			Dockable dockable = arguments.getDockable();
-			
-			if( strategy.isToolbarPart( dockable ) ){
-				Dockable replacement = strategy.ensureToolbarLayer( station, dockable );
-				if( replacement != dockable ){					
-					pending = dockable;
-				}
-				else{
-					pending = null;
-				}
-				arguments.setDockable( replacement );
-			}
-		}
-		else{
-			pending = null;
-		}
-	}
+  private Dockable pending;
 
-	@Override
-	public void dropped( ScreenDockStation station, DropArguments arguments, boolean successfull ){
-		if( pending != null && successfull ){
-			DockStation child = arguments.getDockable().asDockStation();
-			DockableProperty successor = arguments.getProperty().getSuccessor();
-			if( successor == null || !child.drop( pending, successor )){
-				child.drop( pending );
-			}
-		}
-		pending = null;
-	}
+  public ToolbarScreenDockStationExtension(DockController controller) {
+    this.controller = controller;
+  }
+
+  @Override
+  public boolean canReplace(ScreenDockStation station, Dockable old, Dockable next) {
+    ToolbarStrategy strategy = controller.getProperties().get(ToolbarStrategy.STRATEGY);
+    return strategy.isToolbarGroupPartParent(station, next, true);
+  }
+
+  @Override
+  public void drop(ScreenDockStation station, DropArguments arguments) {
+    if (arguments.getWindow() == null) {
+      ToolbarStrategy strategy = controller.getProperties().get(ToolbarStrategy.STRATEGY);
+      Dockable dockable = arguments.getDockable();
+
+      if (strategy.isToolbarPart(dockable)) {
+        Dockable replacement = strategy.ensureToolbarLayer(station, dockable);
+        if (replacement != dockable) {
+          pending = dockable;
+        }
+        else {
+          pending = null;
+        }
+        arguments.setDockable(replacement);
+      }
+    }
+    else {
+      pending = null;
+    }
+  }
+
+  @Override
+  public void dropped(ScreenDockStation station, DropArguments arguments, boolean successfull) {
+    if (pending != null && successfull) {
+      DockStation child = arguments.getDockable().asDockStation();
+      DockableProperty successor = arguments.getProperty().getSuccessor();
+      if (successor == null || !child.drop(pending, successor)) {
+        child.drop(pending);
+      }
+    }
+    pending = null;
+  }
 }

@@ -35,31 +35,34 @@ import bibliothek.gui.dock.station.StationDropOperation;
  * An algorithm used during drag and drop to merge two {@link DockStation}s. The {@link Merger} usually is not
  * accessed by the involved {@link DockStation}s or {@link Dockable}s directly, rather it is accessed
  * by the {@link DockRelocator} once a {@link StationDropOperation} has been found.
+ *
  * @author Benjamin Sigg
  * @see Combiner
  * @see Inserter
  */
 public interface Merger {
-	/**
-	 * Checks whether {@link #merge(StationDropOperation, DockStation, DockStation)} will succeed or not. This
-	 * method will only be called if <code>parent</code> would accept all children
-	 * of <code>child</code>. This method may be called during "drop" and during "move" operations.
-	 * @param operation the operation that would be executed, can be <code>null</code>
-	 * @param parent an existing station
-	 * @param child a station that is dragged around and may be dropped onto <code>parent</code>
-	 * @return whether {@link #merge(StationDropOperation, DockStation, DockStation)} will succeed
-	 */
-	public boolean canMerge( StationDropOperation operation, DockStation parent, DockStation child );
-	
-	/**
-	 * Moves all children of <code>child</code> to <code>parent</code>, leaving <code>child</code>
-	 * empty. This method is only called if {@link #canMerge(StationDropOperation, DockStation, DockStation) canMerge}
-	 * returned <code>true</code> and if the <code>accept</code>-methods allow the operation.<br>
-	 * If the parent of <code>child</code> is not <code>parent</code>, then <code>child</code> will be removed
-	 * from its parent. Otherwise the child remains, allowing this {@link Merger} to reuse it.
-	 * @param operation the operation that would be executed, can be <code>null</code>
-	 * @param parent the new parent of the children
-	 * @param child the station to dissolve
-	 */
-	public void merge( StationDropOperation operation, DockStation parent, DockStation child );
+  /**
+   * Checks whether {@link #merge(StationDropOperation, DockStation, DockStation)} will succeed or not. This
+   * method will only be called if <code>parent</code> would accept all children
+   * of <code>child</code>. This method may be called during "drop" and during "move" operations.
+   *
+   * @param operation the operation that would be executed, can be <code>null</code>
+   * @param parent    an existing station
+   * @param child     a station that is dragged around and may be dropped onto <code>parent</code>
+   * @return whether {@link #merge(StationDropOperation, DockStation, DockStation)} will succeed
+   */
+  public boolean canMerge(StationDropOperation operation, DockStation parent, DockStation child);
+
+  /**
+   * Moves all children of <code>child</code> to <code>parent</code>, leaving <code>child</code>
+   * empty. This method is only called if {@link #canMerge(StationDropOperation, DockStation, DockStation) canMerge}
+   * returned <code>true</code> and if the <code>accept</code>-methods allow the operation.<br>
+   * If the parent of <code>child</code> is not <code>parent</code>, then <code>child</code> will be removed
+   * from its parent. Otherwise the child remains, allowing this {@link Merger} to reuse it.
+   *
+   * @param operation the operation that would be executed, can be <code>null</code>
+   * @param parent    the new parent of the children
+   * @param child     the station to dissolve
+   */
+  public void merge(StationDropOperation operation, DockStation parent, DockStation child);
 }

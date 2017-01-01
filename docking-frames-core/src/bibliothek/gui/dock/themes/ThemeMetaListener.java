@@ -27,30 +27,35 @@ package bibliothek.gui.dock.themes;
 
 /**
  * A listener that can be added to a {@link ThemeMeta}.
+ *
  * @author Benjamin Sigg
  */
 public interface ThemeMetaListener {
-	/**
-	 * Called if the name of <code>meta</code> changed.
-	 * @param meta the meta whose property changed
-	 */
-	public void nameChanged( ThemeMeta meta );
+  /**
+   * Called if the name of <code>meta</code> changed.
+   *
+   * @param meta the meta whose property changed
+   */
+  public void nameChanged(ThemeMeta meta);
 
-	/**
-	 * Called if the description of <code>meta</code> changed.
-	 * @param meta the meta whose property changed
-	 */
-	public void descriptionChanged( ThemeMeta meta );
-	
-	/**
-	 * Called if the authors of <code>meta</code> changed.
-	 * @param meta the meta whose property changed
-	 */
-	public void authorsChanged( ThemeMeta meta );
-	
-	/**
-	 * Called if the webpages of <code>meta</code> changed.
-	 * @param meta the meta whose property changed
-	 */
-	public void webpagesChanged( ThemeMeta meta );
+  /**
+   * Called if the description of <code>meta</code> changed.
+   *
+   * @param meta the meta whose property changed
+   */
+  public void descriptionChanged(ThemeMeta meta);
+
+  /**
+   * Called if the authors of <code>meta</code> changed.
+   *
+   * @param meta the meta whose property changed
+   */
+  public void authorsChanged(ThemeMeta meta);
+
+  /**
+   * Called if the webpages of <code>meta</code> changed.
+   *
+   * @param meta the meta whose property changed
+   */
+  public void webpagesChanged(ThemeMeta meta);
 }

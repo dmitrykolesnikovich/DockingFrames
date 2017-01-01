@@ -49,91 +49,103 @@ import bibliothek.util.Path;
 /**
  * This {@link CStation} handles those {@link CDockable}s whose mode is
  * {@link ExtendedMode#EXTERNALIZED}.
+ *
  * @author Benjamin Sigg
  */
 public class CExternalizeArea extends AbstractCStation<CScreenDockStation> {
-	/** The result of {@link #getTypeId()} */
-	public static final Path TYPE_ID = new Path( "dock", "CExternalizeArea" );
-	
-	/** responsible for handling resize requests */
-    private ScreenResizeRequestHandler handler;
-    /** responsible for representing this in the {@link CLocationModeManager} */
-    private CScreenDockStationHandle handle;
-    /** keeps track of the visibility of the parent window */
-    private WindowProviderVisibility visibility;
-    
-    /**
-     * Creates a new area.
-     * @param control the owner of this area
-     * @param id the unique identifier of this area
-     */
-    public CExternalizeArea( CControl control, String id ){
-    	init( control, id );
-    }
-    
-    
-    private void init( CControl control, String id ){
-    	CommonDockStation<ScreenDockStation,CScreenDockStation> station = control.getFactory().createScreenDockStation( control.getRootWindow(), new CommonStationDelegate<CScreenDockStation>(){
-			public boolean isTitleDisplayed( DockTitleVersion title ){
-				return false;
-			}
-			
-			public CStation<CScreenDockStation> getStation(){
-				return CExternalizeArea.this;
-			}
-			
-			public DockActionSource[] getSources(){
-				return new DockActionSource[]{};
-			}
-			
-			public CDockable getDockable(){
-				return null;
-			}
-		});
-    	
-    	init( station.asDockStation(), id, CExternalizedLocation.STATION );
-    	
-    	handler = new ScreenResizeRequestHandler( getStation() );
-    	visibility = new WindowProviderVisibility( getStation() );
-    	getStation().setShowing( false );
-    }
-    
-    @Override
-    protected void install( CControlAccess access ) {
-        access.getOwner().addResizeRequestListener( handler );
-        
-        visibility.setProvider( access.getOwner().getRootWindow() );
-        
-        if( handle == null ){
-        	handle = new CScreenDockStationHandle( this, access.getLocationManager() );
+  /**
+   * The result of {@link #getTypeId()}
+   */
+  public static final Path TYPE_ID = new Path("dock", "CExternalizeArea");
+
+  /**
+   * responsible for handling resize requests
+   */
+  private ScreenResizeRequestHandler handler;
+  /**
+   * responsible for representing this in the {@link CLocationModeManager}
+   */
+  private CScreenDockStationHandle handle;
+  /**
+   * keeps track of the visibility of the parent window
+   */
+  private WindowProviderVisibility visibility;
+
+  /**
+   * Creates a new area.
+   *
+   * @param control the owner of this area
+   * @param id      the unique identifier of this area
+   */
+  public CExternalizeArea(CControl control, String id) {
+    init(control, id);
+  }
+
+
+  private void init(CControl control, String id) {
+    CommonDockStation<ScreenDockStation, CScreenDockStation> station =
+      control.getFactory().createScreenDockStation(control.getRootWindow(), new CommonStationDelegate<CScreenDockStation>() {
+        public boolean isTitleDisplayed(DockTitleVersion title) {
+          return false;
         }
-        
-        CExternalizedMode externalizedMode = access.getLocationManager().getExternalizedMode();
-        CMaximizedMode maximizedMode = access.getLocationManager().getMaximizedMode();
-        
-        externalizedMode.add( handle.getExternalizedModeArea() );
-        if( externalizedMode.getDefaultArea() == null ){
-        	externalizedMode.setDefaultArea( handle.getExternalizedModeArea() );
+
+        public CStation<CScreenDockStation> getStation() {
+          return CExternalizeArea.this;
         }
-        
-        maximizedMode.add( handle.getMaximizedModeArea() );
+
+        public DockActionSource[] getSources() {
+          return new DockActionSource[]{};
+        }
+
+        public CDockable getDockable() {
+          return null;
+        }
+      });
+
+    init(station.asDockStation(), id, CExternalizedLocation.STATION);
+
+    handler = new ScreenResizeRequestHandler(getStation());
+    visibility = new WindowProviderVisibility(getStation());
+    getStation().setShowing(false);
+  }
+
+  @Override
+  protected void install(CControlAccess access) {
+    access.getOwner().addResizeRequestListener(handler);
+
+    visibility.setProvider(access.getOwner().getRootWindow());
+
+    if (handle == null) {
+      handle = new CScreenDockStationHandle(this, access.getLocationManager());
     }
-    @Override
-    protected void uninstall( CControlAccess access ) {
-    	visibility.setProvider( null );
-    	getStation().setShowing( false );
-    	
-        access.getOwner().removeResizeRequestListener( handler );
-        
-        access.getLocationManager().getExternalizedMode().remove( handle.getExternalizedModeArea().getUniqueId() );
-        access.getLocationManager().getMaximizedMode().remove( handle.getMaximizedModeArea().getUniqueId() );
+
+    CExternalizedMode externalizedMode = access.getLocationManager().getExternalizedMode();
+    CMaximizedMode maximizedMode = access.getLocationManager().getMaximizedMode();
+
+    externalizedMode.add(handle.getExternalizedModeArea());
+    if (externalizedMode.getDefaultArea() == null) {
+      externalizedMode.setDefaultArea(handle.getExternalizedModeArea());
     }
-    
-    public CStationPerspective createPerspective(){
-	    return new CExternalizePerspective( getUniqueId(), getTypeId() );
-    }
-    
-    public Path getTypeId(){
-	    return TYPE_ID;
-    }
+
+    maximizedMode.add(handle.getMaximizedModeArea());
+  }
+
+  @Override
+  protected void uninstall(CControlAccess access) {
+    visibility.setProvider(null);
+    getStation().setShowing(false);
+
+    access.getOwner().removeResizeRequestListener(handler);
+
+    access.getLocationManager().getExternalizedMode().remove(handle.getExternalizedModeArea().getUniqueId());
+    access.getLocationManager().getMaximizedMode().remove(handle.getMaximizedModeArea().getUniqueId());
+  }
+
+  public CStationPerspective createPerspective() {
+    return new CExternalizePerspective(getUniqueId(), getTypeId());
+  }
+
+  public Path getTypeId() {
+    return TYPE_ID;
+  }
 }

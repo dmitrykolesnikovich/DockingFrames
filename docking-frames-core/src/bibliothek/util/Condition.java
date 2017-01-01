@@ -27,12 +27,14 @@ package bibliothek.util;
 
 /**
  * A condition is a boolean value that depends on some properties.
+ *
  * @author Benjamin Sigg
  */
 public interface Condition {
-    /**
-     * Gets the current state of this condition.
-     * @return <code>true</code> if the condition is met, <code>false</code> otherwise
-     */
-    public boolean getState();
+  /**
+   * Gets the current state of this condition.
+   *
+   * @return <code>true</code> if the condition is met, <code>false</code> otherwise
+   */
+  public boolean getState();
 }

@@ -25,12 +25,12 @@
  */
 package bibliothek.gui.dock.util.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.dock.util.AbstractUIValue;
 import bibliothek.gui.dock.util.UIProperties;
 import bibliothek.util.Path;
+
+import java.awt.*;
 
 /**
  * A {@link DockColor} that contains more than one {@link Color}:
@@ -40,57 +40,62 @@ import bibliothek.util.Path;
  * <li>backup: is a color used when all other colors are unavailable</li>
  * </ul><br>
  * This class also has methods to add or remove itself from a {@link ColorManager}.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public abstract class AbstractDockColor extends AbstractUIValue<Color, DockColor> implements DockColor {
-    /**
-     * Creates a new {@link DockColor}.
-     * @param id the id of the color for which <code>this</code> should listen
-     */
-    public AbstractDockColor( String id ){
-        super( id );
-    }
-    
-    /**
-     * Creates a new {@link DockColor}.
-     * @param id the id of the color for which <code>this</code> should listen
-     * @param kind the kind of {@link DockColor} this is
-     */
-    public AbstractDockColor( String id, Path kind ){
-        super( id, kind );
-    }
-    
-    /**
-     * Creates a new {@link DockColor}.
-     * @param id the id of the color for which <code>this</code> should listen
-     * @param kind the kind of {@link DockColor} this is, can be <code>null</code>
-     * @param backup a backup color, can be <code>null</code>
-     */
-    public AbstractDockColor( String id, Path kind, Color backup ){
-        super( id, kind, backup );
-    }
-    
-    @Override
-    protected DockColor me() {
-        return this;
-    }
-    
-    /**
-     * This method just calls {@link #setManager(UIProperties)} with the
-     * <code>controller</code>s {@link ColorManager}. 
-     * @param controller the owner of this {@link DockColor} or <code>null</code>
-     */
-    public void connect( DockController controller ){
-        setManager( controller == null ? null : controller.getColors() );
-    }
-    
-    /**
-     * Gets the first non-<code>null</code> value of the list
-     * <code>override</code>, <code>value</code>, <code>backup</code>.
-     * @return a color or <code>null</code>
-     */
-    public Color color(){
-        return value();
-    }
+  /**
+   * Creates a new {@link DockColor}.
+   *
+   * @param id the id of the color for which <code>this</code> should listen
+   */
+  public AbstractDockColor(String id) {
+    super(id);
+  }
+
+  /**
+   * Creates a new {@link DockColor}.
+   *
+   * @param id   the id of the color for which <code>this</code> should listen
+   * @param kind the kind of {@link DockColor} this is
+   */
+  public AbstractDockColor(String id, Path kind) {
+    super(id, kind);
+  }
+
+  /**
+   * Creates a new {@link DockColor}.
+   *
+   * @param id     the id of the color for which <code>this</code> should listen
+   * @param kind   the kind of {@link DockColor} this is, can be <code>null</code>
+   * @param backup a backup color, can be <code>null</code>
+   */
+  public AbstractDockColor(String id, Path kind, Color backup) {
+    super(id, kind, backup);
+  }
+
+  @Override
+  protected DockColor me() {
+    return this;
+  }
+
+  /**
+   * This method just calls {@link #setManager(UIProperties)} with the
+   * <code>controller</code>s {@link ColorManager}.
+   *
+   * @param controller the owner of this {@link DockColor} or <code>null</code>
+   */
+  public void connect(DockController controller) {
+    setManager(controller == null ? null : controller.getColors());
+  }
+
+  /**
+   * Gets the first non-<code>null</code> value of the list
+   * <code>override</code>, <code>value</code>, <code>backup</code>.
+   *
+   * @return a color or <code>null</code>
+   */
+  public Color color() {
+    return value();
+  }
 }

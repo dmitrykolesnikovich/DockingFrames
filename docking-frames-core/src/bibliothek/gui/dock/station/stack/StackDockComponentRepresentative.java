@@ -30,71 +30,83 @@ import bibliothek.gui.dock.DockElement;
 import bibliothek.gui.dock.DockElementRepresentative;
 
 /**
- * This utility class keeps track of the current {@link DockElementRepresentative} 
+ * This utility class keeps track of the current {@link DockElementRepresentative}
  * that is created by a {@link StackDockComponent}. It also registers the representative
  * at a {@link DockController}.
+ *
  * @author Benjamin Sigg
  */
 public class StackDockComponentRepresentative {
-	/** the controller to which {@link #representative} is added */
-	private DockController controller;
-	/** the target to which {@link #representative} points */
-	private DockElement target;
-	/** the component that creates {@link #representative} */
-	private StackDockComponent component;
-	/** the representation of {@link #target} */
-	private DockElementRepresentative representative;
+  /**
+   * the controller to which {@link #representative} is added
+   */
+  private DockController controller;
+  /**
+   * the target to which {@link #representative} points
+   */
+  private DockElement target;
+  /**
+   * the component that creates {@link #representative}
+   */
+  private StackDockComponent component;
+  /**
+   * the representation of {@link #target}
+   */
+  private DockElementRepresentative representative;
 
-	/**
-	 * Sets the factory that creates new {@link DockElementRepresentative}s.
-	 * @param component the new factory, can be <code>null</code>
-	 */
-	public void setComponent( StackDockComponent component ){
-		if( this.component != component ){
-			clearRepresentative();
-			this.component = component;
-			buildRepresentative();
-		}
-	}
-	
-	/**
-	 * Sets the controller to which new {@link DockElementRepresentative}s should
-	 * be added.
-	 * @param controller the new controller, can be <code>null</code>
-	 */
-	public void setController( DockController controller ){
-		if( this.controller != controller ){
-			clearRepresentative();
-			this.controller = controller;
-			buildRepresentative();
-		}
-	}
-	
-	/**
-	 * Sets the target to which new {@link DockElementRepresentative}s point.
-	 * @param target the new target, can be <code>null</code>
-	 */
-	public void setTarget( DockElement target ){
-		if( this.target != target ){
-			clearRepresentative();
-			this.target = target;
-			buildRepresentative();
-		}
-	}
-	
-	private void clearRepresentative(){
-		if( representative != null && controller != null ){
-			controller.removeRepresentative( representative );
-			representative = null;
-		}
-	}
-	
-	private void buildRepresentative(){
-		if( controller != null && target != null && representative == null && component != null ){
-			representative = component.createDefaultRepresentation( target );
-			if( representative != null ){
-				controller.addRepresentative( representative );
-			}
-		}
-	}
+  /**
+   * Sets the factory that creates new {@link DockElementRepresentative}s.
+   *
+   * @param component the new factory, can be <code>null</code>
+   */
+  public void setComponent(StackDockComponent component) {
+    if (this.component != component) {
+      clearRepresentative();
+      this.component = component;
+      buildRepresentative();
+    }
+  }
+
+  /**
+   * Sets the controller to which new {@link DockElementRepresentative}s should
+   * be added.
+   *
+   * @param controller the new controller, can be <code>null</code>
+   */
+  public void setController(DockController controller) {
+    if (this.controller != controller) {
+      clearRepresentative();
+      this.controller = controller;
+      buildRepresentative();
+    }
+  }
+
+  /**
+   * Sets the target to which new {@link DockElementRepresentative}s point.
+   *
+   * @param target the new target, can be <code>null</code>
+   */
+  public void setTarget(DockElement target) {
+    if (this.target != target) {
+      clearRepresentative();
+      this.target = target;
+      buildRepresentative();
+    }
+  }
+
+  private void clearRepresentative() {
+    if (representative != null && controller != null) {
+      controller.removeRepresentative(representative);
+      representative = null;
+    }
+  }
+
+  private void buildRepresentative() {
+    if (controller != null && target != null && representative == null && component != null) {
+      representative = component.createDefaultRepresentation(target);
+      if (representative != null) {
+        controller.addRepresentative(representative);
+      }
+    }
+  }
 }

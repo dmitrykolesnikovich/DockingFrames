@@ -25,11 +25,6 @@
  */
 package bibliothek.gui.dock.common.intern.action;
 
-import java.awt.event.KeyEvent;
-
-import javax.swing.Icon;
-import javax.swing.KeyStroke;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
@@ -46,214 +41,252 @@ import bibliothek.gui.dock.util.PropertyValue;
 import bibliothek.gui.dock.util.TextManager;
 import bibliothek.util.FrameworkOnly;
 
+import javax.swing.*;
+import java.awt.event.KeyEvent;
+
 /**
- * This action is intended to change the {@link ExtendedMode} of a 
+ * This action is intended to change the {@link ExtendedMode} of a
  * {@link CDockable} by calling {@link CDockable#setExtendedMode(ExtendedMode)}.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public class CExtendedModeAction extends CDropDownItem<CExtendedModeAction.Action>{
-    /** the mode into which this action leads */
-    private ExtendedMode mode;
-    
-    /** a listener to the {@link IconManager}, may change the icon of this action */
-    private DockActionIcon iconListener;
-    
-    /** the key stroke that triggers this action */
-    private PropertyValue<KeyStroke> stroke;
-    
-    /** the control for which this action is used */
-    private CControl control;
-    
-    /** the text of this action */
-    private CActionText text;
-    
-    /** the tooltip of this action */
-    private CActionText tooltip;
-    
-    /** the internal representation */
-    private Action action;
-    /** the controller of {@link #control} or <code>null</code> */
-    private DockController controller;
-    
+public class CExtendedModeAction extends CDropDownItem<CExtendedModeAction.Action> {
+  /**
+   * the mode into which this action leads
+   */
+  private ExtendedMode mode;
+
+  /**
+   * a listener to the {@link IconManager}, may change the icon of this action
+   */
+  private DockActionIcon iconListener;
+
+  /**
+   * the key stroke that triggers this action
+   */
+  private PropertyValue<KeyStroke> stroke;
+
+  /**
+   * the control for which this action is used
+   */
+  private CControl control;
+
+  /**
+   * the text of this action
+   */
+  private CActionText text;
+
+  /**
+   * the tooltip of this action
+   */
+  private CActionText tooltip;
+
+  /**
+   * the internal representation
+   */
+  private Action action;
+  /**
+   * the controller of {@link #control} or <code>null</code>
+   */
+  private DockController controller;
+
+  /**
+   * Creates a new action.
+   *
+   * @param control    the control for which this action will be used
+   * @param mode       the mode into which this action leads
+   * @param iconKey    the key of the icon when searching in the {@link IconManager}
+   * @param textKey    the key for the text of this action when searching the {@link TextManager}
+   * @param tooltipKey the key for the tooltip of this action when searching the {@link TextManager}
+   * @param gotoStroke the key to the {@link KeyStroke} that triggers this action
+   */
+  protected CExtendedModeAction(CControl control,
+                                ExtendedMode mode,
+                                String iconKey,
+                                String textKey,
+                                String tooltipKey,
+                                PropertyKey<KeyStroke> gotoStroke) {
+    super(null);
+    init(control, mode, iconKey, textKey, tooltipKey, gotoStroke);
+  }
+
+  /**
+   * Creates an empty, non initialized action. Subclasses must call {@link #init(CControl, ExtendedMode, String, String, String, PropertyKey)} to
+   * complete initialization.
+   */
+  protected CExtendedModeAction() {
+    super(null);
+  }
+
+  /**
+   * Creates a new action, this method must be called only once.
+   *
+   * @param control    the control for which this action will be used
+   * @param mode       the mode into which this action leads
+   * @param iconKey    the key of the icon when searching in the {@link IconManager}
+   * @param textKey    the key for the text of this action when searching the {@link TextManager}
+   * @param tooltipKey the key for the tooltip of this action when searching the {@link TextManager}
+   * @param gotoStroke the key to the {@link KeyStroke} that triggers this action
+   */
+  protected void init(CControl control,
+                      ExtendedMode mode,
+                      String iconKey,
+                      String textKey,
+                      String tooltipKey,
+                      PropertyKey<KeyStroke> gotoStroke) {
+    action = createAction();
+    init(action);
+
+    if (control == null) throw new NullPointerException("control is null");
+    if (mode == null) throw new NullPointerException("mode is null");
+    if (iconKey == null) throw new NullPointerException("iconKey is null");
+    if (gotoStroke == null) throw new NullPointerException("gotoStroke is null");
+
+    this.control = control;
+    this.mode = mode;
+
+    iconListener = new DockActionIcon(iconKey, action) {
+      protected void changed(Icon oldValue, Icon newValue) {
+        setIcon(newValue);
+      }
+    };
+
+    stroke = new PropertyValue<KeyStroke>(gotoStroke) {
+      @Override
+      protected void valueChanged(KeyStroke oldValue, KeyStroke newValue) {
+        setAccelerator(newValue);
+      }
+    };
+
+    text = new CActionText(textKey, this) {
+      protected void changed(String oldValue, String newValue) {
+        setText(newValue);
+      }
+    };
+
+    tooltip = new CActionText(tooltipKey, this) {
+      protected void changed(String oldValue, String newValue) {
+        setTooltip(newValue);
+      }
+    };
+  }
+
+  /**
+   * Gets the controller from which this action currently reads its content.
+   *
+   * @return the controller or <code>null</code>
+   */
+  protected DockController getController() {
+    return controller;
+  }
+
+  /**
+   * Exchanges all the properties such that they are read from <code>controller</code>
+   *
+   * @param controller the controller from which to read properties, or <code>null</code>
+   */
+  protected void setController(DockController controller) {
+    this.controller = controller;
+    stroke.setProperties(controller);
+    iconListener.setController(controller);
+    text.setController(controller);
+    tooltip.setController(controller);
+  }
+
+  /**
+   * Checks whether this action is able to trigger this action.
+   *
+   * @param event an event that matches the accelerator of this action
+   * @return <code>true</code> if this action really is triggered
+   */
+  protected boolean checkTrigger(KeyEvent event) {
+    return true;
+  }
+
+  /**
+   * This method actually changes the {@link ExtendedMode} of <code>dockable</code>
+   * to the mode that was given to this action in the constructor. Every
+   * triggering of this action will finally call this method, so this method
+   * is the optimal point to be overridden and modified.
+   *
+   * @param dockable the element for which the action is executed
+   */
+  public void action(CDockable dockable) {
+    dockable.setExtendedMode(mode);
+  }
+
+  /**
+   * Creates an instance of the action representing this {@link CExtendedModeAction}.
+   *
+   * @return the action
+   */
+  protected Action createAction() {
+    return new Action();
+  }
+
+  /**
+   * The internal representation of a {@link CExtendedModeAction}.
+   *
+   * @author Benjamin Sigg
+   */
+  public class Action extends CommonSimpleButtonAction {
     /**
-     * Creates a new action.
-     * @param control the control for which this action will be used
-     * @param mode the mode into which this action leads
-     * @param iconKey the key of the icon when searching in the {@link IconManager}
-     * @param textKey the key for the text of this action when searching the {@link TextManager}
-     * @param tooltipKey the key for the tooltip of this action when searching the {@link TextManager}
-     * @param gotoStroke the key to the {@link KeyStroke} that triggers this action
+     * how many times this action was bound
      */
-    protected CExtendedModeAction( CControl control, ExtendedMode mode, String iconKey, String textKey, String tooltipKey, PropertyKey<KeyStroke> gotoStroke ){
-        super( null );
-        init( control, mode, iconKey, textKey, tooltipKey, gotoStroke );
-    }
+    private int count = 0;
 
     /**
-     * Creates an empty, non initialized action. Subclasses must call {@link #init(CControl, ExtendedMode, String, String, String, PropertyKey)} to
-     * complete initialization.
+     * Creates a new action.
      */
-    protected CExtendedModeAction(){
-    	super( null );
+    public Action() {
+      super(CExtendedModeAction.this);
     }
-    
-    /**
-     * Creates a new action, this method must be called only once.
-     * @param control the control for which this action will be used
-     * @param mode the mode into which this action leads
-     * @param iconKey the key of the icon when searching in the {@link IconManager}
-     * @param textKey the key for the text of this action when searching the {@link TextManager}
-     * @param tooltipKey the key for the tooltip of this action when searching the {@link TextManager}
-     * @param gotoStroke the key to the {@link KeyStroke} that triggers this action
-     */
-    protected void init( CControl control, ExtendedMode mode, String iconKey, String textKey, String tooltipKey, PropertyKey<KeyStroke> gotoStroke ){
-        action = createAction();
-        init( action );
-        
-        if( control == null )
-            throw new NullPointerException( "control is null" );
-        if( mode == null )
-            throw new NullPointerException( "mode is null" );
-        if( iconKey == null )
-            throw new NullPointerException( "iconKey is null" );
-        if( gotoStroke == null )
-            throw new NullPointerException( "gotoStroke is null" );
-        
-        this.control = control;
-        this.mode = mode;
-        
-        iconListener = new DockActionIcon( iconKey, action ){
-			protected void changed( Icon oldValue, Icon newValue ){
-				setIcon( newValue );
-			}
-		};
-        
-        stroke = new PropertyValue<KeyStroke>( gotoStroke ){
-            @Override
-            protected void valueChanged( KeyStroke oldValue, KeyStroke newValue ) {
-                setAccelerator( newValue );
-            }
-        };
-        
-        text = new CActionText( textKey, this ){
-			protected void changed( String oldValue, String newValue ){
-				setText( newValue );
-			}
-		};
-		
-		tooltip = new CActionText( tooltipKey, this ){
-			protected void changed( String oldValue, String newValue ){
-				setTooltip( newValue );	
-			}
-		};
+
+    @Override
+    protected boolean trigger(KeyEvent event, Dockable dockable) {
+      if (checkTrigger(event)) {
+        return super.trigger(event, dockable);
+      }
+      else {
+        return false;
+      }
     }
-    
-    /**
-     * Exchanges all the properties such that they are read from <code>controller</code>
-     * @param controller the controller from which to read properties, or <code>null</code>
-     */
-    protected void setController( DockController controller ){
-        this.controller = controller;
-        stroke.setProperties( controller );
-        iconListener.setController( controller );
-        text.setController( controller );
-        tooltip.setController( controller );
-    }
-    
-    /**
-     * Gets the controller from which this action currently reads its content.
-     * @return the controller or <code>null</code>
-     */
-    protected DockController getController() {
-        return controller;
-    }
-    
-    /**
-     * Checks whether this action is able to trigger this action.
-     * @param event an event that matches the accelerator of this action
-     * @return <code>true</code> if this action really is triggered
-     */
-    protected boolean checkTrigger( KeyEvent event ){
-        return true;
-    }
-    
-    /**
-     * This method actually changes the {@link ExtendedMode} of <code>dockable</code> 
-     * to the mode that was given to this action in the constructor. Every 
-     * triggering of this action will finally call this method, so this method
-     * is the optimal point to be overridden and modified.
-     * @param dockable the element for which the action is executed
-     */
-    public void action( CDockable dockable ){
-        dockable.setExtendedMode( mode );
-    }
-    
-    /**
-     * Creates an instance of the action representing this {@link CExtendedModeAction}.
-     * @return the action
-     */
-    protected Action createAction(){
-    	return new Action();
-    }
-    
-    /**
-     * The internal representation of a {@link CExtendedModeAction}.
-     * @author Benjamin Sigg
-     */
-    public class Action extends CommonSimpleButtonAction{
-        /** how many times this action was bound */
-        private int count = 0;
-        
-        /**
-         * Creates a new action.
-         */
-        public Action(){
-        	super( CExtendedModeAction.this );
+
+    @Override
+    public void action(Dockable dockable) {
+      while (dockable != null) {
+        if (dockable instanceof CommonDockable) {
+          CExtendedModeAction.this.action(((CommonDockable)dockable).getDockable());
+          return;
         }
-        
-        @Override
-        protected boolean trigger( KeyEvent event, Dockable dockable ) {
-            if( checkTrigger( event ))
-                return super.trigger( event, dockable );
-            else
-                return false;
+
+        DockStation station = dockable.asDockStation();
+        if (station == null) {
+          return;
         }
-        
-        @Override
-        public void action( Dockable dockable ) {
-        	while( dockable != null ){
-	            if( dockable instanceof CommonDockable ){
-	                CExtendedModeAction.this.action( ((CommonDockable)dockable).getDockable() );
-	                return;
-	            }
-	            
-	            DockStation station = dockable.asDockStation();
-	            if( station == null ){
-	            	return;
-	            }
-	            else{
-	            	dockable = station.getFrontDockable();
-	            }
-        	}
+        else {
+          dockable = station.getFrontDockable();
         }
-        
-        @Override
-        protected void bound( Dockable dockable ) {
-            super.bound( dockable );
-            if( count == 0 ){
-                setController( control.intern().getController() );
-            }
-            count++;
-        }
-        
-        @Override
-        protected void unbound( Dockable dockable ) {
-            super.unbound( dockable );
-            count--;
-            if( count == 0 ){
-                setController( null );
-            }
-        }
+      }
     }
+
+    @Override
+    protected void bound(Dockable dockable) {
+      super.bound(dockable);
+      if (count == 0) {
+        setController(control.intern().getController());
+      }
+      count++;
+    }
+
+    @Override
+    protected void unbound(Dockable dockable) {
+      super.unbound(dockable);
+      count--;
+      if (count == 0) {
+        setController(null);
+      }
+    }
+  }
 }

@@ -31,52 +31,54 @@ import bibliothek.gui.dock.common.mode.ExtendedMode;
 import bibliothek.gui.dock.layout.DockableProperty;
 
 /**
- * This location represents an {@link ExtendedMode}. Using this location on a 
+ * This location represents an {@link ExtendedMode}. Using this location on a
  * {@link CDockable} is equivalent of calling {@link CDockable#setExtendedMode(bibliothek.gui.dock.common.mode.ExtendedMode)}.
+ *
  * @author Benjamin Sigg
  */
-public class CExtendedModeLocation extends CLocation{
-	private ExtendedMode mode;
-	
-	/**
-	 * Creates a new location. 
-	 * @param mode the mode this location represents, not <code>null</code>
-	 */
-	public CExtendedModeLocation( ExtendedMode mode ){
-		if( mode == null ){
-			throw new IllegalArgumentException( "mode must not be null" );
-		}
-		this.mode = mode;
-	}
-	
-	@Override
-	public CLocation getParent(){
-		return null;
-	}
-	
-	/**
-	 * @deprecated see {@link CLocation#aside()} for an explanation.
-	 */
-	@Deprecated
-	@Override
-	public CLocation aside(){
-		return this;
-	}
+public class CExtendedModeLocation extends CLocation {
+  private ExtendedMode mode;
 
-	@Override
-	public CLocation expandProperty( DockableProperty property, CLocationExpandStrategy strategy ){
-		return null;
-	}
+  /**
+   * Creates a new location.
+   *
+   * @param mode the mode this location represents, not <code>null</code>
+   */
+  public CExtendedModeLocation(ExtendedMode mode) {
+    if (mode == null) {
+      throw new IllegalArgumentException("mode must not be null");
+    }
+    this.mode = mode;
+  }
 
-	public ExtendedMode findMode(){
-		return mode;
-	}
+  @Override
+  public CLocation getParent() {
+    return null;
+  }
 
-	public DockableProperty findProperty( DockableProperty successor ){
-		return successor;
-	}
+  /**
+   * @deprecated see {@link CLocation#aside()} for an explanation.
+   */
+  @Deprecated
+  @Override
+  public CLocation aside() {
+    return this;
+  }
 
-	public String findRoot(){
-		return null;
-	}
+  @Override
+  public CLocation expandProperty(DockableProperty property, CLocationExpandStrategy strategy) {
+    return null;
+  }
+
+  public ExtendedMode findMode() {
+    return mode;
+  }
+
+  public DockableProperty findProperty(DockableProperty successor) {
+    return successor;
+  }
+
+  public String findRoot() {
+    return null;
+  }
 }

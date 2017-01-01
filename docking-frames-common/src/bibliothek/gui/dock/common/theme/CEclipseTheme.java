@@ -25,10 +25,6 @@
  */
 package bibliothek.gui.dock.common.theme;
 
-import java.util.Map;
-
-import javax.swing.Icon;
-
 import bibliothek.extension.gui.dock.theme.EclipseTheme;
 import bibliothek.gui.DockController;
 import bibliothek.gui.dock.action.view.ActionViewConverter;
@@ -58,94 +54,102 @@ import bibliothek.gui.dock.util.font.FontBridge;
 import bibliothek.gui.dock.util.font.FontManager;
 import bibliothek.util.ClientOnly;
 
+import javax.swing.*;
+import java.util.Map;
+
 /**
  * A wrapper around a {@link EclipseTheme}, allows to use the {@link ColorMap} of
  * {@link CDockable}.
+ *
  * @author Benjamin Sigg
  */
 @ClientOnly
-public class CEclipseTheme extends CDockTheme<EclipseTheme>{
-    /**
-     * Creates a new theme.
-     * @param control the controller for which this theme will be used
-     * @param theme the theme that gets encapsulated
-     */
-    public CEclipseTheme( CControl control, EclipseTheme theme ){
-        super( theme );
-        init( control );
-    }
-    
-    /**
-     * Creates a new theme. This theme can be used directly with a 
-     * {@link CControl}.
-     * @param control the controller for which this theme will be used.
-     */
-    public CEclipseTheme( CControl control ){
-        this( new EclipseTheme() );
-        init( control );
-    }
-    
-    /**
-     * Creates a new theme.
-     * @param theme the delegate which will do most of the work
-     */
-    private CEclipseTheme( EclipseTheme theme ){
-        super( theme, new NoStackTheme( theme ) );
-    }
-    
-    /**
-     * Initializes the properties of this theme.
-     * @param control the controller for which this theme will be used
-     */
-    private void init( final CControl control ){
-        putColorBridgeFactory( TabColor.KIND_TAB_COLOR, new ColorBridgeFactory(){
-            public ColorBridge create( ColorManager manager ) {
-                EclipseTabTransmitter transmitter = new EclipseTabTransmitter( manager );
-                transmitter.setControl( control );
-                return transmitter;
-            }
-        });
+public class CEclipseTheme extends CDockTheme<EclipseTheme> {
+  /**
+   * Creates a new theme.
+   *
+   * @param control the controller for which this theme will be used
+   * @param theme   the theme that gets encapsulated
+   */
+  public CEclipseTheme(CControl control, EclipseTheme theme) {
+    super(theme);
+    init(control);
+  }
 
-        putColorBridgeFactory( TitleColor.KIND_FLAP_BUTTON_COLOR, new ColorBridgeFactory(){
-        	public ColorBridge create(ColorManager manager) {
-        		BasicButtonTitleTransmitter transmitter = new BasicButtonTitleTransmitter( manager );
-        		transmitter.setControl( control );
-        		return transmitter;
-        	}
-        });
-        
-        initDefaultFontBridges( control );
-        putFontBridgeFactory( TitleFont.KIND_TAB_TITLE_FONT, new FontBridgeFactory(){
-            public FontBridge create( FontManager manager ) {
-                TabTitleFontTransmitter transmitter = new TabTitleFontTransmitter( manager );
-                transmitter.setControl( control );
-                return transmitter;
-            }
-        });
+  /**
+   * Creates a new theme. This theme can be used directly with a
+   * {@link CControl}.
+   *
+   * @param control the controller for which this theme will be used.
+   */
+  public CEclipseTheme(CControl control) {
+    this(new EclipseTheme());
+    init(control);
+  }
+
+  /**
+   * Creates a new theme.
+   *
+   * @param theme the delegate which will do most of the work
+   */
+  private CEclipseTheme(EclipseTheme theme) {
+    super(theme, new NoStackTheme(theme));
+  }
+
+  /**
+   * Initializes the properties of this theme.
+   *
+   * @param control the controller for which this theme will be used
+   */
+  private void init(final CControl control) {
+    putColorBridgeFactory(TabColor.KIND_TAB_COLOR, new ColorBridgeFactory() {
+      public ColorBridge create(ColorManager manager) {
+        EclipseTabTransmitter transmitter = new EclipseTabTransmitter(manager);
+        transmitter.setControl(control);
+        return transmitter;
+      }
+    });
+
+    putColorBridgeFactory(TitleColor.KIND_FLAP_BUTTON_COLOR, new ColorBridgeFactory() {
+      public ColorBridge create(ColorManager manager) {
+        BasicButtonTitleTransmitter transmitter = new BasicButtonTitleTransmitter(manager);
+        transmitter.setControl(control);
+        return transmitter;
+      }
+    });
+
+    initDefaultFontBridges(control);
+    putFontBridgeFactory(TitleFont.KIND_TAB_TITLE_FONT, new FontBridgeFactory() {
+      public FontBridge create(FontManager manager) {
+        TabTitleFontTransmitter transmitter = new TabTitleFontTransmitter(manager);
+        transmitter.setControl(control);
+        return transmitter;
+      }
+    });
+  }
+
+  @Override
+  public void install(DockController controller) {
+    super.install(controller);
+    IconManager manager = controller.getIcons();
+    Map<String, Icon> icons =
+      DockUtilities.loadIcons("data/bibliothek/gui/dock/common/icons/eclipse/icons.ini", null, CEclipseTheme.class.getClassLoader());
+    for (Map.Entry<String, Icon> entry : icons.entrySet()) {
+      manager.setIconTheme(entry.getKey(), entry.getValue());
     }
-    
-    @Override
-    public void install( DockController controller ) {
-        super.install( controller );
-        IconManager manager = controller.getIcons();
-        Map<String, Icon> icons = DockUtilities.loadIcons(
-                "data/bibliothek/gui/dock/common/icons/eclipse/icons.ini", null, CEclipseTheme.class.getClassLoader() );
-        for( Map.Entry<String, Icon> entry : icons.entrySet() ){
-            manager.setIconTheme( entry.getKey(), entry.getValue() );
-        }
-        ActionViewConverter converter = controller.getActionViewConverter();
-    	converter.putTheme( CPanelPopup.PANEL_POPUP, ViewTarget.TITLE, new EclipsePanelPopupGenerator());
-    	converter.putTheme( CPanelPopup.PANEL_POPUP, ViewTarget.MENU, new PanelMenuGenerator() );
-    	converter.putTheme( CPanelPopup.PANEL_POPUP, ViewTarget.DROP_DOWN, new PanelDropDownGenerator() );
-    }
-    
-    @Override
-    public void uninstall( DockController controller ) {
-        super.uninstall( controller );
-        controller.getIcons().clear( Priority.THEME );
-        ActionViewConverter converter = controller.getActionViewConverter();
-    	converter.putTheme( CPanelPopup.PANEL_POPUP, ViewTarget.TITLE, null );
-    	converter.putTheme( CPanelPopup.PANEL_POPUP, ViewTarget.MENU, null );
-    	converter.putTheme( CPanelPopup.PANEL_POPUP, ViewTarget.DROP_DOWN, null );
-    }
+    ActionViewConverter converter = controller.getActionViewConverter();
+    converter.putTheme(CPanelPopup.PANEL_POPUP, ViewTarget.TITLE, new EclipsePanelPopupGenerator());
+    converter.putTheme(CPanelPopup.PANEL_POPUP, ViewTarget.MENU, new PanelMenuGenerator());
+    converter.putTheme(CPanelPopup.PANEL_POPUP, ViewTarget.DROP_DOWN, new PanelDropDownGenerator());
+  }
+
+  @Override
+  public void uninstall(DockController controller) {
+    super.uninstall(controller);
+    controller.getIcons().clear(Priority.THEME);
+    ActionViewConverter converter = controller.getActionViewConverter();
+    converter.putTheme(CPanelPopup.PANEL_POPUP, ViewTarget.TITLE, null);
+    converter.putTheme(CPanelPopup.PANEL_POPUP, ViewTarget.MENU, null);
+    converter.putTheme(CPanelPopup.PANEL_POPUP, ViewTarget.DROP_DOWN, null);
+  }
 }

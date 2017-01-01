@@ -32,29 +32,31 @@ import bibliothek.paint.view.Page;
 
 /**
  * Removes the last drawn shape from a picture.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
-public class EraseLastShape extends CButton{
-	/** the page this actions belongs to */
-	private Page page;
-	
-	/**
-	 * Creates a new action.
-	 * @param page the page this action belongs to
-	 */
-	public EraseLastShape( Page page ){
-		this.page = page;
-		
-		setText( "Undo" );
-		setTooltip( "Erases the newest shape of the picture" );
-		setIcon( Resources.getIcon( "shape.remove" ) );
-	}
-	
-	@Override
-	protected void action(){
-		Picture picture = page.getPicture();
-		if( picture != null )
-			picture.removeLast();
-	}
+public class EraseLastShape extends CButton {
+  /**
+   * the page this actions belongs to
+   */
+  private Page page;
+
+  /**
+   * Creates a new action.
+   *
+   * @param page the page this action belongs to
+   */
+  public EraseLastShape(Page page) {
+    this.page = page;
+
+    setText("Undo");
+    setTooltip("Erases the newest shape of the picture");
+    setIcon(Resources.getIcon("shape.remove"));
+  }
+
+  @Override
+  protected void action() {
+    Picture picture = page.getPicture();
+    if (picture != null) picture.removeLast();
+  }
 }

@@ -28,22 +28,24 @@ package bibliothek.gui.dock.station.screen.magnet;
 import bibliothek.gui.dock.station.screen.ScreenDockWindow;
 
 /**
- * Creates by a {@link MagnetStrategy}, this operation is created once movement or resizing of a 
- * {@link ScreenDockWindow} started and exists until this operation stopped. 
+ * Creates by a {@link MagnetStrategy}, this operation is created once movement or resizing of a
+ * {@link ScreenDockWindow} started and exists until this operation stopped.
+ *
  * @author Benjamin Sigg
  */
 public interface MagnetOperation {
-	/**
-	 * Called by <code>controller</code> after a {@link ScreenDockWindow} moved or changed
-	 * its size (or both). This method has to find out whether the window is attracted to another
-	 * window and if so it must call one of the <code>attract</code> methods of <code>request</code>.
-	 * @param controller the caller of this method, may be used to find other {@link ScreenDockWindow}s
-	 * @param request detailed information about the event
-	 */
-	public void attract( MagnetController controller, MagnetRequest request );
-	
-	/**
-	 * Called once the operation is no longer needed. 
-	 */
-	public void destroy();
+  /**
+   * Called by <code>controller</code> after a {@link ScreenDockWindow} moved or changed
+   * its size (or both). This method has to find out whether the window is attracted to another
+   * window and if so it must call one of the <code>attract</code> methods of <code>request</code>.
+   *
+   * @param controller the caller of this method, may be used to find other {@link ScreenDockWindow}s
+   * @param request    detailed information about the event
+   */
+  public void attract(MagnetController controller, MagnetRequest request);
+
+  /**
+   * Called once the operation is no longer needed.
+   */
+  public void destroy();
 }

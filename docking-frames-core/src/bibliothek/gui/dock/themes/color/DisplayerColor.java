@@ -25,50 +25,58 @@
  */
 package bibliothek.gui.dock.themes.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.station.DockableDisplayer;
 import bibliothek.gui.dock.util.color.AbstractDockColor;
 import bibliothek.util.Path;
 
+import java.awt.*;
+
 /**
  * A color used on a {@link DockableDisplayer}.
+ *
  * @author Benjamin Sigg
  */
 public abstract class DisplayerColor extends AbstractDockColor {
-    /** the kind of color {@link DisplayerColor} is */
-    public static final Path KIND_DISPLAYER_COLOR = KIND_DOCK_COLOR.append( "DisplayerColor" );
-    
-    /** the element for which the color is needed */
-    private DockableDisplayer displayer;
-    
-    /**
-     * Creates a new {@link DisplayerColor}
-     * @param id the identifier of the color
-     * @param kind which kind of color this is
-     * @param displayer the element for which the color is used
-     * @param backup a backup color
-     */
-    public DisplayerColor( String id, Path kind, DockableDisplayer displayer, Color backup ){
-        super( id, kind, backup );
-        this.displayer = displayer;
-    }
-    
-    /**
-     * Creates a new {@link DisplayerColor}
-     * @param id the identifier of the color
-     * @param displayer the element for which the color is used
-     * @param backup a backup color
-     */
-    public DisplayerColor( String id, DockableDisplayer displayer, Color backup ){
-       this( id, KIND_DISPLAYER_COLOR, displayer, backup ); 
-    }
-    
-    /**
-     * Gets the element for which this color is used.
-     * @return the element
-     */
-    public DockableDisplayer getDisplayer() {
-        return displayer;
-    }
+  /**
+   * the kind of color {@link DisplayerColor} is
+   */
+  public static final Path KIND_DISPLAYER_COLOR = KIND_DOCK_COLOR.append("DisplayerColor");
+
+  /**
+   * the element for which the color is needed
+   */
+  private DockableDisplayer displayer;
+
+  /**
+   * Creates a new {@link DisplayerColor}
+   *
+   * @param id        the identifier of the color
+   * @param kind      which kind of color this is
+   * @param displayer the element for which the color is used
+   * @param backup    a backup color
+   */
+  public DisplayerColor(String id, Path kind, DockableDisplayer displayer, Color backup) {
+    super(id, kind, backup);
+    this.displayer = displayer;
+  }
+
+  /**
+   * Creates a new {@link DisplayerColor}
+   *
+   * @param id        the identifier of the color
+   * @param displayer the element for which the color is used
+   * @param backup    a backup color
+   */
+  public DisplayerColor(String id, DockableDisplayer displayer, Color backup) {
+    this(id, KIND_DISPLAYER_COLOR, displayer, backup);
+  }
+
+  /**
+   * Gets the element for which this color is used.
+   *
+   * @return the element
+   */
+  public DockableDisplayer getDisplayer() {
+    return displayer;
+  }
 }

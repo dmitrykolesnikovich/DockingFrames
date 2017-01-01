@@ -32,27 +32,29 @@ import bibliothek.gui.dock.common.mode.ExtendedMode;
 /**
  * This {@link CGroupMovement} is the most basic movement as it represents the movement of one
  * lonely {@link Dockable}.
+ *
  * @author Benjamin Sigg
  */
-public class SingleGroupMovement implements CGroupMovement{
-	private Dockable dockable;
-	private ExtendedMode target;
-	
-	/**
-	 * Creates a new movement object.
-	 * @param dockable the element whose location will be changed
-	 * @param target the new mode for <code>dockable</code>
-	 */
-	public SingleGroupMovement( Dockable dockable, ExtendedMode target ){
-		this.dockable = dockable;
-		this.target = target;
-	}
-	
-	public void apply( CGroupBehaviorCallback callback ){
-		callback.setMode( dockable, target );	
-	}
-	
-	public boolean forceAccept( DockStation parent, Dockable child ){
-		return true;
-	}
+public class SingleGroupMovement implements CGroupMovement {
+  private Dockable dockable;
+  private ExtendedMode target;
+
+  /**
+   * Creates a new movement object.
+   *
+   * @param dockable the element whose location will be changed
+   * @param target   the new mode for <code>dockable</code>
+   */
+  public SingleGroupMovement(Dockable dockable, ExtendedMode target) {
+    this.dockable = dockable;
+    this.target = target;
+  }
+
+  public void apply(CGroupBehaviorCallback callback) {
+    callback.setMode(dockable, target);
+  }
+
+  public boolean forceAccept(DockStation parent, Dockable child) {
+    return true;
+  }
 }

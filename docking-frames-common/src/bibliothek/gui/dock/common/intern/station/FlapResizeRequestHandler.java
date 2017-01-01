@@ -36,39 +36,42 @@ import bibliothek.gui.dock.common.layout.RequestDimension;
  * A handler that can change the size of a {@link CDockable} such that it
  * has its {@link CDockable#getAndClearResizeRequest() preferred size} if
  * its parent is a {@link FlapDockStation}
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
-public class FlapResizeRequestHandler extends AbstractResizeRequestHandler{
-    /** the station whose children will be resized */
-    private FlapDockStation station;
-    
-    /**
-     * Creates a new handler.
-     * @param station the station whose children will be resized
-     */
-    public FlapResizeRequestHandler( FlapDockStation station ){
-        this.station = station;
-    }
-    
-    public void handleResizeRequest( CControl control ) {
-        boolean horizontal = station.getDirection() == Direction.SOUTH || station.getDirection() == Direction.NORTH;
-        
-        for( int i = 0, n = station.getDockableCount(); i<n; i++ ){
-            Dockable dockable = station.getDockable( i );
-            RequestDimension size = getAndClearResizeRequest( dockable );
-            if( size != null ){
-                if( horizontal ){
-                    if( size.isWidthSet() ){
-                        station.setWindowSize( dockable, size.getWidth() );
-                    }
-                }
-                else{
-                    if( size.isHeightSet() ){
-                        station.setWindowSize( dockable, size.getHeight() );
-                    }
-                }
-            }
+public class FlapResizeRequestHandler extends AbstractResizeRequestHandler {
+  /**
+   * the station whose children will be resized
+   */
+  private FlapDockStation station;
+
+  /**
+   * Creates a new handler.
+   *
+   * @param station the station whose children will be resized
+   */
+  public FlapResizeRequestHandler(FlapDockStation station) {
+    this.station = station;
+  }
+
+  public void handleResizeRequest(CControl control) {
+    boolean horizontal = station.getDirection() == Direction.SOUTH || station.getDirection() == Direction.NORTH;
+
+    for (int i = 0, n = station.getDockableCount(); i < n; i++) {
+      Dockable dockable = station.getDockable(i);
+      RequestDimension size = getAndClearResizeRequest(dockable);
+      if (size != null) {
+        if (horizontal) {
+          if (size.isWidthSet()) {
+            station.setWindowSize(dockable, size.getWidth());
+          }
         }
+        else {
+          if (size.isHeightSet()) {
+            station.setWindowSize(dockable, size.getHeight());
+          }
+        }
+      }
     }
+  }
 }

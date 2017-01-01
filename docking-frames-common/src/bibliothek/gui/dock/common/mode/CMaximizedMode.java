@@ -41,80 +41,80 @@ import bibliothek.gui.dock.facile.mode.MaximizedModeArea;
 
 /**
  * Manages {@link CMaximizedModeArea}s.
+ *
  * @author Benjamin Sigg
  */
 public class CMaximizedMode extends MaximizedMode<CMaximizedModeArea> implements CLocationMode {
-	/** the control in whose realm this mode is working */
-	private CControl control;
-	
-	/**
-	 * Creates a new mode.
-	 * @param control the control in whose realm this mode works.
-	 */
-	public CMaximizedMode( CControl control ){
-		this.control = control;
-		setActionProvider( new KeyedLocationModeActionProvider(
-				CDockable.ACTION_KEY_MAXIMIZE,
-				new CMaximizeAction( control )) );
-	}
-	
-	public CLocation getCLocation( Dockable dockable ){
-		CMaximizedModeArea area = get( dockable );
-		if( area == null )
-			return null;
-			
-		return area.getCLocation( dockable );
-	}
-	
-	public CLocation getCLocation( Dockable dockable, Location location ){
-		CModeArea area = get( location.getRoot() );
-		if( area == null )
-			return null;
-			
-		return area.getCLocation( dockable, location );
-	}
-	
-	public boolean isBasicMode(){
-		return false;
-	}
-	
-	public boolean respectWorkingAreas( DockStation station ){
-		CModeArea area = get( station );
-		if( area == null ){
-			return true;
-		}
-		return area.respectWorkingAreas();
-	}
-	
-	public LocationModePerspective createPerspective(){
-		return new CMaximizedModePerspective();
-	}
-	
-	@Override
-	public MaximizedModeArea getMaximizeArea( Dockable dockable, Location history ){
-		MaximizedModeArea area = super.getMaximizeArea( dockable, history );
-		if( area == null ){
-			DockStation parent = dockable.getDockParent();
-			while( parent != null ){
-				CStation<?> station = control.getStation( parent );
-				if( station != null ){
-					CStationContainer container = control.getRegister().getContainer( station );
-					if( container != null ){
-						CStation<? extends DockStation> result = container.getDefaultStation( ExtendedMode.MAXIMIZED );
-						if( result != null ){
-							return getMaximizeArea( result.getStation() );
-						}
-					}
-				}
-				Dockable temp = parent.asDockable();
-				if( temp == null ){
-					parent = null;
-				}
-				else{
-					parent = temp.getDockParent();
-				}
-			}
-		}
-		return area;
-	}
+  /**
+   * the control in whose realm this mode is working
+   */
+  private CControl control;
+
+  /**
+   * Creates a new mode.
+   *
+   * @param control the control in whose realm this mode works.
+   */
+  public CMaximizedMode(CControl control) {
+    this.control = control;
+    setActionProvider(new KeyedLocationModeActionProvider(CDockable.ACTION_KEY_MAXIMIZE, new CMaximizeAction(control)));
+  }
+
+  public CLocation getCLocation(Dockable dockable) {
+    CMaximizedModeArea area = get(dockable);
+    if (area == null) return null;
+
+    return area.getCLocation(dockable);
+  }
+
+  public CLocation getCLocation(Dockable dockable, Location location) {
+    CModeArea area = get(location.getRoot());
+    if (area == null) return null;
+
+    return area.getCLocation(dockable, location);
+  }
+
+  public boolean isBasicMode() {
+    return false;
+  }
+
+  public boolean respectWorkingAreas(DockStation station) {
+    CModeArea area = get(station);
+    if (area == null) {
+      return true;
+    }
+    return area.respectWorkingAreas();
+  }
+
+  public LocationModePerspective createPerspective() {
+    return new CMaximizedModePerspective();
+  }
+
+  @Override
+  public MaximizedModeArea getMaximizeArea(Dockable dockable, Location history) {
+    MaximizedModeArea area = super.getMaximizeArea(dockable, history);
+    if (area == null) {
+      DockStation parent = dockable.getDockParent();
+      while (parent != null) {
+        CStation<?> station = control.getStation(parent);
+        if (station != null) {
+          CStationContainer container = control.getRegister().getContainer(station);
+          if (container != null) {
+            CStation<? extends DockStation> result = container.getDefaultStation(ExtendedMode.MAXIMIZED);
+            if (result != null) {
+              return getMaximizeArea(result.getStation());
+            }
+          }
+        }
+        Dockable temp = parent.asDockable();
+        if (temp == null) {
+          parent = null;
+        }
+        else {
+          parent = temp.getDockParent();
+        }
+      }
+    }
+    return area;
+  }
 }

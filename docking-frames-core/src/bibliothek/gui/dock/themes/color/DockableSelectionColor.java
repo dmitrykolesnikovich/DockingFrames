@@ -25,51 +25,57 @@
  */
 package bibliothek.gui.dock.themes.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.focus.DockableSelection;
 import bibliothek.gui.dock.util.color.AbstractDockColor;
 import bibliothek.gui.dock.util.color.DockColor;
 import bibliothek.util.Path;
 
+import java.awt.*;
+
 /**
  * A color used by a {@link DockableSelection}.
+ *
  * @author Benjamin Sigg
  */
 public abstract class DockableSelectionColor extends AbstractDockColor {
-    /** the kind of color {@link DockableSelectionColor} is */
-    public static final Path KIND_DOCKABLE_SELECTION_COLOR = KIND_DOCK_COLOR.append( "DockableSelectionColor" );
-    
-    private DockableSelection selection;
-    
-    /**
-     * Creates a new {@link DockColor}.
-     * @param selection the owner of this color
-     * @param id the id of this color
-     * @param kind the kind of color this is
-     * @param backup the backup color if nothing is available
-     */
-    public DockableSelectionColor( DockableSelection selection, String id, Path kind, Color backup ){
-        super( id, kind, backup );
-        this.selection = selection;
-    }
-    
-    /**
-     * Creates a new {@link DockColor}.
-     * @param selection the owner of this color
-     * @param id the id of this color
-     * @param backup the backup color if nothing is available
-     */
-    public DockableSelectionColor( DockableSelection selection, String id, Color backup ){
-        super( id, KIND_DOCKABLE_SELECTION_COLOR, backup );
-        this.selection = selection;
-    }
-    
-    /**
-     * Gets the selection that uses this color.
-     * @return the owner
-     */
-    public DockableSelection getSelection() {
-        return selection;
-    }
+  /**
+   * the kind of color {@link DockableSelectionColor} is
+   */
+  public static final Path KIND_DOCKABLE_SELECTION_COLOR = KIND_DOCK_COLOR.append("DockableSelectionColor");
+
+  private DockableSelection selection;
+
+  /**
+   * Creates a new {@link DockColor}.
+   *
+   * @param selection the owner of this color
+   * @param id        the id of this color
+   * @param kind      the kind of color this is
+   * @param backup    the backup color if nothing is available
+   */
+  public DockableSelectionColor(DockableSelection selection, String id, Path kind, Color backup) {
+    super(id, kind, backup);
+    this.selection = selection;
+  }
+
+  /**
+   * Creates a new {@link DockColor}.
+   *
+   * @param selection the owner of this color
+   * @param id        the id of this color
+   * @param backup    the backup color if nothing is available
+   */
+  public DockableSelectionColor(DockableSelection selection, String id, Color backup) {
+    super(id, KIND_DOCKABLE_SELECTION_COLOR, backup);
+    this.selection = selection;
+  }
+
+  /**
+   * Gets the selection that uses this color.
+   *
+   * @return the owner
+   */
+  public DockableSelection getSelection() {
+    return selection;
+  }
 }

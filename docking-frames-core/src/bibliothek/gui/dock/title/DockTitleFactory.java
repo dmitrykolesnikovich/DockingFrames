@@ -29,34 +29,38 @@ package bibliothek.gui.dock.title;
 /**
  * A factory for creating instances of {@link DockTitle}. Clients might install
  * {@link DockTitleRequest}s on this factory such that this factory can always
- * change the title that is currently shown. A factory should call 
+ * change the title that is currently shown. A factory should call
  * {@link DockTitleRequest#answer(DockTitle)} only when requested so, meaning
  * only if the method {@link #request(DockTitleRequest)} is called. If a factory
  * wishes to exchange a title it should call {@link DockTitleRequest#request()} which
- * in return might then call {@link #request(DockTitleRequest)}. 
+ * in return might then call {@link #request(DockTitleRequest)}.
+ *
  * @author Benjamin Sigg
  */
 public interface DockTitleFactory {
-    
-	/**
-	 * Informs this factory that it might need to create a {@link DockTitle} for
-	 * <code>request</code>. 
-	 * @param request the new request
-	 */
-	public void install( DockTitleRequest request );
-	
-	/**
-	 * Asks this factory to provide a {@link DockTitle} for <code>request</code>,
-	 * this method should call {@link DockTitleRequest#answer(DockTitle)}. Note
-	 * that this method may be called for requests that are not installed!
-	 * @param request the request to answer
-	 */
-	public void request( DockTitleRequest request );
-	
-	/**
-	 * Informs this factory that it no longer requires to provide any titles
-	 * for <code>request</code>.
-	 * @param request the request that is no longer managed by this factory
-	 */
-	public void uninstall( DockTitleRequest request );
+
+  /**
+   * Informs this factory that it might need to create a {@link DockTitle} for
+   * <code>request</code>.
+   *
+   * @param request the new request
+   */
+  public void install(DockTitleRequest request);
+
+  /**
+   * Asks this factory to provide a {@link DockTitle} for <code>request</code>,
+   * this method should call {@link DockTitleRequest#answer(DockTitle)}. Note
+   * that this method may be called for requests that are not installed!
+   *
+   * @param request the request to answer
+   */
+  public void request(DockTitleRequest request);
+
+  /**
+   * Informs this factory that it no longer requires to provide any titles
+   * for <code>request</code>.
+   *
+   * @param request the request that is no longer managed by this factory
+   */
+  public void uninstall(DockTitleRequest request);
 }

@@ -25,83 +25,86 @@
  */
 package bibliothek.gui.dock.station.stack.tab;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Insets;
-import java.awt.Rectangle;
-
 import bibliothek.gui.dock.station.stack.tab.layouting.TabPlacement;
+
+import java.awt.*;
 
 /**
  * A {@link TabPaneComponent} that really represents a {@link Component}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class AbstractTabPaneComponent implements TabPaneComponent{
-	/** the owner of this component */
-	private TabPane parent;
-	
-	/** how to paint this component */
-	private TabPlacement orientation = TabPlacement.TOP_OF_DOCKABLE;
-	
-	/**
-	 * Creates a new object.
-	 * @param parent the owner of this object, not <code>null</code>
-	 */
-	public AbstractTabPaneComponent( TabPane parent ){
-		if( parent == null )
-			throw new IllegalArgumentException( "parent must not be null" );
-		this.parent = parent;
-	}
-	
-	/**
-	 * Gets the {@link Component} which is wrapped into this
-	 * {@link AbstractTabPaneComponent}. This method is not called from the 
-	 * constructor.
-	 * @return the wrapped {@link Component}, not <code>null</code>
-	 */
-	public abstract Component getComponent();
-	
-	public Rectangle getBounds(){
-		return getComponent().getBounds();
-	}
+public abstract class AbstractTabPaneComponent implements TabPaneComponent {
+  /**
+   * the owner of this component
+   */
+  private TabPane parent;
 
-	public Dimension getMaximumSize(){
-		return getComponent().getMaximumSize();
-	}
+  /**
+   * how to paint this component
+   */
+  private TabPlacement orientation = TabPlacement.TOP_OF_DOCKABLE;
 
-	public Dimension getMinimumSize(){
-		return getComponent().getMinimumSize();
-	}
+  /**
+   * Creates a new object.
+   *
+   * @param parent the owner of this object, not <code>null</code>
+   */
+  public AbstractTabPaneComponent(TabPane parent) {
+    if (parent == null) throw new IllegalArgumentException("parent must not be null");
+    this.parent = parent;
+  }
 
-	public Dimension getPreferredSize(){
-		return getComponent().getPreferredSize();
-	}
+  /**
+   * Gets the {@link Component} which is wrapped into this
+   * {@link AbstractTabPaneComponent}. This method is not called from the
+   * constructor.
+   *
+   * @return the wrapped {@link Component}, not <code>null</code>
+   */
+  public abstract Component getComponent();
 
-	public TabPane getTabParent(){
-		return parent;
-	}
+  public Rectangle getBounds() {
+    return getComponent().getBounds();
+  }
 
-	public void setBounds( Rectangle bounds ){
-		getComponent().setBounds( bounds );
-	}
-	
-	public Insets getOverlap( TabPaneComponent other ){
-		return new Insets( 0, 0, 0, 0 );
-	}
-	
-	public void setOrientation( TabPlacement orientation ){
-		if( orientation == null )
-			throw new IllegalArgumentException( "orientation must not be null" );
-		
-		this.orientation = orientation;
-	}
-	
-	/**
-	 * Gets the orientation of this component.
-	 * @return the orientation, never <code>null</code>
-	 * @see #setOrientation(TabPlacement)
-	 */
-	public TabPlacement getOrientation(){
-		return orientation;
-	}
+  public void setBounds(Rectangle bounds) {
+    getComponent().setBounds(bounds);
+  }
+
+  public Dimension getMaximumSize() {
+    return getComponent().getMaximumSize();
+  }
+
+  public Dimension getMinimumSize() {
+    return getComponent().getMinimumSize();
+  }
+
+  public Dimension getPreferredSize() {
+    return getComponent().getPreferredSize();
+  }
+
+  public TabPane getTabParent() {
+    return parent;
+  }
+
+  public Insets getOverlap(TabPaneComponent other) {
+    return new Insets(0, 0, 0, 0);
+  }
+
+  /**
+   * Gets the orientation of this component.
+   *
+   * @return the orientation, never <code>null</code>
+   * @see #setOrientation(TabPlacement)
+   */
+  public TabPlacement getOrientation() {
+    return orientation;
+  }
+
+  public void setOrientation(TabPlacement orientation) {
+    if (orientation == null) throw new IllegalArgumentException("orientation must not be null");
+
+    this.orientation = orientation;
+  }
 }

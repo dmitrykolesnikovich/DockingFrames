@@ -30,26 +30,30 @@ import bibliothek.gui.dock.util.PropertyKey;
 
 /**
  * A {@link PropertyFactory} that always returns the same value.
- * @author Benjamin Sigg
+ *
  * @param <A> the kind of value this factory handles
+ * @author Benjamin Sigg
  */
-public class ConstantPropertyFactory<A> implements PropertyFactory<A>{
-	/** the default value */
-	private A value;
-	
-	/**
-	 * Creates a new factory.
-	 * @param value the value this factory returns, can be <code>null</code>
-	 */
-	public ConstantPropertyFactory( A value ){
-		this.value = value;
-	}
-	
-	public A getDefault( PropertyKey<A> key, DockProperties properties ){
-		return value;
-	}
-	
-	public A getDefault( PropertyKey<A> key ){
-		return value;
-	}
+public class ConstantPropertyFactory<A> implements PropertyFactory<A> {
+  /**
+   * the default value
+   */
+  private A value;
+
+  /**
+   * Creates a new factory.
+   *
+   * @param value the value this factory returns, can be <code>null</code>
+   */
+  public ConstantPropertyFactory(A value) {
+    this.value = value;
+  }
+
+  public A getDefault(PropertyKey<A> key, DockProperties properties) {
+    return value;
+  }
+
+  public A getDefault(PropertyKey<A> key) {
+    return value;
+  }
 }

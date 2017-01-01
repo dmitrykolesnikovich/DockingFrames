@@ -25,26 +25,22 @@
  */
 package glass.eclipse.theme.icon;
 
-import javax.swing.*;
-import bibliothek.gui.dock.station.stack.tab.*;
-import bibliothek.gui.dock.themes.icon.*;
-
-
 /**
  * Specialized icon bridge which returns a different styled icon for
  * tab overflow menus.
- * @author cthilber
  *
+ * @author cthilber
  */
 public class CTabMenuOverflowIconBridge extends TabMenuOverflowIconBridge {
-   /**
-    * Returns an icon that represents <code>menu</code> in its current state. This method is called
-    * every time when the number of children of <code>menu</code> changes.
-    * @param menu the menu for which an icon is required
-    * @return the icon, can (but should not) be <code>null</code>
-    */
-   @Override
-   protected Icon createIcon (TabMenu menu) {
-      return new CTabMenuOverflowIcon(menu.getDockableCount());
-   }
+  /**
+   * Returns an icon that represents <code>menu</code> in its current state. This method is called
+   * every time when the number of children of <code>menu</code> changes.
+   *
+   * @param menu the menu for which an icon is required
+   * @return the icon, can (but should not) be <code>null</code>
+   */
+  @Override
+  protected Icon createIcon(TabMenu menu) {
+    return new CTabMenuOverflowIcon(menu.getDockableCount());
+  }
 }

@@ -31,20 +31,22 @@ import bibliothek.gui.dock.common.action.CAction;
 
 /**
  * An implementation of a {@link SimpleDropDownAction} also implementing {@link CommonDockAction}.
+ *
  * @author Benjamin Sigg
  */
-public class CommonSimpleDropDownAction extends SimpleDropDownAction implements CommonDecoratableDockAction{
-	private CAction action;
-	
-	/**
-	 * Creates a new action.
-	 * @param action the {@link CAction} wrapping around this {@link DockAction}, not <code>null</code>
-	 */
-	public CommonSimpleDropDownAction( CAction action ){
-		this.action = action;
-	}
-	
-	public CAction getAction(){
-		return action;
-	}
+public class CommonSimpleDropDownAction extends SimpleDropDownAction implements CommonDecoratableDockAction {
+  private CAction action;
+
+  /**
+   * Creates a new action.
+   *
+   * @param action the {@link CAction} wrapping around this {@link DockAction}, not <code>null</code>
+   */
+  public CommonSimpleDropDownAction(CAction action) {
+    this.action = action;
+  }
+
+  public CAction getAction() {
+    return action;
+  }
 }

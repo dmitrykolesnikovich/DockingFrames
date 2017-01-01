@@ -30,46 +30,51 @@ import bibliothek.gui.Dockable;
 
 /**
  * An event describing the focus transfer from one {@link Dockable} to another.
+ *
  * @author Benjamin Sigg
  */
 public class DockableFocusEvent {
-    private DockController controller;
-    private Dockable oldFocus;
-    private Dockable newFocus;
-    
-    /**
-     * Creates a new event.
-     * @param controller the controller on which the change occurred
-     * @param oldFocus the {@link Dockable} that was focused earlier, can be <code>null</code>
-     * @param newFocus the {@link Dockable} that is focused now, can be <code>null</code>
-     */
-    public DockableFocusEvent( DockController controller, Dockable oldFocus, Dockable newFocus ){
-        this.controller = controller;
-        this.oldFocus = oldFocus;
-        this.newFocus = newFocus;
-    }
-    
-    /**
-     * Gets the controller on which the focus change occurred.
-     * @return the source
-     */
-    public DockController getController() {
-        return controller;
-    }
-    
-    /**
-     * Gets the {@link Dockable} which had the focus before the change.
-     * @return the old focus owner, can be <code>null</code>
-     */
-    public Dockable getOldFocusOwner() {
-        return oldFocus;
-    }
-    
-    /**
-     * Gets the {@link Dockable} which has the focus after the change.
-     * @return the new focus owner, can be <code>null</code>
-     */
-    public Dockable getNewFocusOwner() {
-        return newFocus;
-    }
+  private DockController controller;
+  private Dockable oldFocus;
+  private Dockable newFocus;
+
+  /**
+   * Creates a new event.
+   *
+   * @param controller the controller on which the change occurred
+   * @param oldFocus   the {@link Dockable} that was focused earlier, can be <code>null</code>
+   * @param newFocus   the {@link Dockable} that is focused now, can be <code>null</code>
+   */
+  public DockableFocusEvent(DockController controller, Dockable oldFocus, Dockable newFocus) {
+    this.controller = controller;
+    this.oldFocus = oldFocus;
+    this.newFocus = newFocus;
+  }
+
+  /**
+   * Gets the controller on which the focus change occurred.
+   *
+   * @return the source
+   */
+  public DockController getController() {
+    return controller;
+  }
+
+  /**
+   * Gets the {@link Dockable} which had the focus before the change.
+   *
+   * @return the old focus owner, can be <code>null</code>
+   */
+  public Dockable getOldFocusOwner() {
+    return oldFocus;
+  }
+
+  /**
+   * Gets the {@link Dockable} which has the focus after the change.
+   *
+   * @return the new focus owner, can be <code>null</code>
+   */
+  public Dockable getNewFocusOwner() {
+    return newFocus;
+  }
 }

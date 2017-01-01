@@ -25,57 +25,54 @@
  */
 package bibliothek.gui.dock.common.intern.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.common.ColorMap;
 import bibliothek.gui.dock.themes.basic.BasicDockTitle;
 import bibliothek.gui.dock.util.color.ColorManager;
 import bibliothek.util.Colors;
 
+import java.awt.*;
+
 /**
  * A connection between the {@link ColorMap}s and the {@link BasicDockTitle}s.
+ *
  * @author Benjamin Sigg
  */
 public class BasicTitleTransmitter extends TitleColorTransmitter {
-    private static final String[] KEYS = { 
-        "title.active.left", "title.inactive.left", 
-        "title.active.right", "title.inactive.right", 
-        "title.active.text", "title.inactive.text" };
-        
-    /**
-     * Creates a new transmitter.
-     * @param manager the source of colors
-     */
-    public BasicTitleTransmitter( ColorManager manager ){
-        super( manager, KEYS );
-    }
-        
-    @Override
-    protected Color convert( Color source, String key ) {
-    	if( isFocused( key ))
-            return convertFocused( source, key );
-        
-        if( "title.inactive.text".equals( key ))
-            return Colors.diffMirror( source, 1.0 );
-        
-        return source;
-    }
+  private static final String[] KEYS =
+    {"title.active.left", "title.inactive.left", "title.active.right", "title.inactive.right", "title.active.text", "title.inactive.text"};
 
-    @Override
-    protected Color convertFocused( Color source, String key ) {
-        if( "title.active.text".equals( key ))
-            return Colors.diffMirror( source, 1.0 );
-        
-        return source;
-    }
+  /**
+   * Creates a new transmitter.
+   *
+   * @param manager the source of colors
+   */
+  public BasicTitleTransmitter(ColorManager manager) {
+    super(manager, KEYS);
+  }
 
-    @Override
-    protected boolean isFocused( String id ) {
-        return id.contains( "active" ) && !id.contains( "inactive" );
-    }
+  @Override
+  protected Color convert(Color source, String key) {
+    if (isFocused(key)) return convertFocused(source, key);
 
-    @Override
-    protected boolean isForeground( String id ) {
-        return id.contains( "text" );
-    }
+    if ("title.inactive.text".equals(key)) return Colors.diffMirror(source, 1.0);
+
+    return source;
+  }
+
+  @Override
+  protected Color convertFocused(Color source, String key) {
+    if ("title.active.text".equals(key)) return Colors.diffMirror(source, 1.0);
+
+    return source;
+  }
+
+  @Override
+  protected boolean isFocused(String id) {
+    return id.contains("active") && !id.contains("inactive");
+  }
+
+  @Override
+  protected boolean isForeground(String id) {
+    return id.contains("text");
+  }
 }

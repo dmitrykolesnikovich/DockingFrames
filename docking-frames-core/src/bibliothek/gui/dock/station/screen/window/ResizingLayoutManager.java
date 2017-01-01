@@ -25,44 +25,41 @@
  */
 package bibliothek.gui.dock.station.screen.window;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.LayoutManager;
-import java.awt.Rectangle;
-
 import bibliothek.gui.dock.station.screen.ScreenDockWindow;
+
+import java.awt.*;
 
 /**
  * This {@link LayoutManager} changes the size of a {@link ScreenDockWindow} such that it has
  * the same size as its preferred size, this update is only executed if the content of the window
  * was invalidated.<br>
  * This {@link LayoutManager} behaves like a {@link GridLayout} with one column and one row.
+ *
  * @author Benjamin Sigg
  */
-public class ResizingLayoutManager extends GridLayout{
-	private ScreenDockWindow window;
-	private Component windowComponent;
-	
-	/**
-	 * Creates a new layout manager
-	 * @param window the window which is updated
-	 * @param windowComponent the component whose preferred size will be used for <code>window</code>
-	 */
-	public ResizingLayoutManager( ScreenDockWindow window, Component windowComponent ){
-		this.window = window;
-		this.windowComponent = windowComponent;
-	}
-	
-	@Override
-	public void layoutContainer( Container parent ){
-		Rectangle bounds = window.getWindowBounds();
-		Dimension size = windowComponent.getPreferredSize();
-		if( bounds.width != size.width || bounds.height != size.height ){
-			window.setWindowBounds( new Rectangle( bounds.getLocation(), size ) );
-		}
-		
-		super.layoutContainer( parent );
-	}
+public class ResizingLayoutManager extends GridLayout {
+  private ScreenDockWindow window;
+  private Component windowComponent;
+
+  /**
+   * Creates a new layout manager
+   *
+   * @param window          the window which is updated
+   * @param windowComponent the component whose preferred size will be used for <code>window</code>
+   */
+  public ResizingLayoutManager(ScreenDockWindow window, Component windowComponent) {
+    this.window = window;
+    this.windowComponent = windowComponent;
+  }
+
+  @Override
+  public void layoutContainer(Container parent) {
+    Rectangle bounds = window.getWindowBounds();
+    Dimension size = windowComponent.getPreferredSize();
+    if (bounds.width != size.width || bounds.height != size.height) {
+      window.setWindowBounds(new Rectangle(bounds.getLocation(), size));
+    }
+
+    super.layoutContainer(parent);
+  }
 }

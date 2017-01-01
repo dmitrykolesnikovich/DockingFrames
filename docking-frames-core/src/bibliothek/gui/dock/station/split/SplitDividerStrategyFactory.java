@@ -29,13 +29,15 @@ import bibliothek.gui.dock.SplitDockStation;
 
 /**
  * This factory creates new instances of {@link SplitDividerStrategy}s.
+ *
  * @author Benjamin Sigg
  */
 public interface SplitDividerStrategyFactory {
-	/**
-	 * Creates a new strategy.
-	 * @param station the station which is going to use the strategy
-	 * @return the new strategy, must not be <code>null</code>
-	 */
-	public SplitDividerStrategy create( SplitDockStation station );
+  /**
+   * Creates a new strategy.
+   *
+   * @param station the station which is going to use the strategy
+   * @return the new strategy, must not be <code>null</code>
+   */
+  public SplitDividerStrategy create(SplitDockStation station);
 }

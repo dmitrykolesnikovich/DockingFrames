@@ -25,26 +25,29 @@
  */
 package bibliothek.gui.dock.util;
 
-import java.awt.Component;
+import java.awt.*;
 
 /**
- *  A description of how some {@link Component} (e.g. a {@link BackgroundComponent} or a {@link PaintableComponent})
- *  handles transparency.
+ * A description of how some {@link Component} (e.g. a {@link BackgroundComponent} or a {@link PaintableComponent})
+ * handles transparency.
+ *
  * @author Benjamin Sigg
  */
-public enum Transparency{
-	/** 
-	 * The background is not to be painted at all. This does not mean that the component is completely
-	 * invisible, as there might still be a foreground that is painted.
-	 */
-	TRANSPARENT,
-	
-	/** The background is guaranteed to cover the entire component */
-	SOLID,
-	
-	/**
-	 * The component decides on its own how to paint the background, 
-	 * there may be some transparent patches or not.
-	 */
-	DEFAULT
+public enum Transparency {
+  /**
+   * The background is not to be painted at all. This does not mean that the component is completely
+   * invisible, as there might still be a foreground that is painted.
+   */
+  TRANSPARENT,
+
+  /**
+   * The background is guaranteed to cover the entire component
+   */
+  SOLID,
+
+  /**
+   * The component decides on its own how to paint the background,
+   * there may be some transparent patches or not.
+   */
+  DEFAULT
 }

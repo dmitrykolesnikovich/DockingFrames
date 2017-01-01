@@ -34,14 +34,15 @@ import bibliothek.gui.dock.util.DockProperties;
  * is normally registered in the {@link DockProperties} with the key
  * {@link StackDockStation#COMPONENT_FACTORY} and read by the {@link StackDockStation}
  * whenever the property changes.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public interface StackDockComponentFactory {
-    /**
-     * Creates a new component for <code>station</code>.
-     * @param parent the station for which the component should be generated.
-     * @return the new component
-     */
-    public StackDockComponent create( StackDockComponentParent parent );
+  /**
+   * Creates a new component for <code>station</code>.
+   *
+   * @param parent the station for which the component should be generated.
+   * @return the new component
+   */
+  public StackDockComponent create(StackDockComponentParent parent);
 }

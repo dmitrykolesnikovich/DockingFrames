@@ -25,66 +25,73 @@
  */
 package bibliothek.gui.dock.station.stack;
 
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-
-import javax.swing.TransferHandler.TransferSupport;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.StackDockStation;
 
+import javax.swing.TransferHandler.TransferSupport;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+
 /**
  * Default implementation of a {@link DndAutoSelectStrategy}, it is based on {@link TransferSupport}.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultDndAutoSelectStrategyRequest implements DndAutoSelectStrategyRequest{
-	/** the station that detected the event */
-	private StackDockStation station;
-	
-	/** the {@link Dockable} beneath the mouse */
-	private Dockable dockable;
-	
-	/** additional information about the event */
-	private TransferSupport transferSupport;
-	
-	/**
-	 * Creates a new request object.
-	 * @param station the source of the event
-	 * @param dockable the dockable beneath the mouse
-	 * @param transferSupport additional information about the event
-	 */
-	public DefaultDndAutoSelectStrategyRequest( StackDockStation station, Dockable dockable, TransferSupport transferSupport ){
-		this.station = station;
-		this.dockable = dockable;
-		this.transferSupport = transferSupport;
-	}
+public class DefaultDndAutoSelectStrategyRequest implements DndAutoSelectStrategyRequest {
+  /**
+   * the station that detected the event
+   */
+  private StackDockStation station;
 
-	@Override
-	public StackDockStation getStation(){
-		return station;
-	}
+  /**
+   * the {@link Dockable} beneath the mouse
+   */
+  private Dockable dockable;
 
-	@Override
-	public Dockable getDockable(){
-		return dockable;
-	}
+  /**
+   * additional information about the event
+   */
+  private TransferSupport transferSupport;
 
-	@Override
-	public DataFlavor[] getDataFlavors(){
-		return transferSupport.getDataFlavors();
-	}
+  /**
+   * Creates a new request object.
+   *
+   * @param station         the source of the event
+   * @param dockable        the dockable beneath the mouse
+   * @param transferSupport additional information about the event
+   */
+  public DefaultDndAutoSelectStrategyRequest(StackDockStation station, Dockable dockable, TransferSupport transferSupport) {
+    this.station = station;
+    this.dockable = dockable;
+    this.transferSupport = transferSupport;
+  }
 
-	@Override
-	public Transferable getTransferable(){
-		return transferSupport.getTransferable();
-	}
+  @Override
+  public StackDockStation getStation() {
+    return station;
+  }
 
-	@Override
-	public void toFront(){
-		DockController controller = dockable.getController();
-		if( controller != null ){
-			controller.setFocusedDockable( dockable, false );
-		}
-	}
+  @Override
+  public Dockable getDockable() {
+    return dockable;
+  }
+
+  @Override
+  public DataFlavor[] getDataFlavors() {
+    return transferSupport.getDataFlavors();
+  }
+
+  @Override
+  public Transferable getTransferable() {
+    return transferSupport.getTransferable();
+  }
+
+  @Override
+  public void toFront() {
+    DockController controller = dockable.getController();
+    if (controller != null) {
+      controller.setFocusedDockable(dockable, false);
+    }
+  }
 }

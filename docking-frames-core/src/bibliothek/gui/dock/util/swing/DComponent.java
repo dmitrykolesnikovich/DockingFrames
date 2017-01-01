@@ -25,49 +25,52 @@
  */
 package bibliothek.gui.dock.util.swing;
 
-import javax.swing.JComponent;
-
 import bibliothek.gui.dock.util.font.FontModifier;
+
+import javax.swing.*;
 
 /**
  * A component whose font can be changed by a {@link FontModifier}.
+ *
  * @author Benjamin Sigg
  */
-public class DComponent extends JComponent{
-    private FontUpdater updater;
+public class DComponent extends JComponent {
+  private FontUpdater updater;
 
-    /**
-     * Creates a new panel
-     */
-    public DComponent(){
-        updater = new FontUpdater( this );
+  /**
+   * Creates a new panel
+   */
+  public DComponent() {
+    updater = new FontUpdater(this);
+  }
+
+  @Override
+  public void updateUI() {
+    if (updater == null) {
+      super.updateUI();
     }
-    
-    @Override
-    public void updateUI() {
-        if( updater == null ){
-            super.updateUI();
-        }
-        else{
-            updater.enterUpdateUI();
-            super.updateUI();
-            updater.leaveUpdateUI();
-        }
+    else {
+      updater.enterUpdateUI();
+      super.updateUI();
+      updater.leaveUpdateUI();
     }
-    
-    /**
-     * Sets the modifier which is used to update the font of this label.
-     * @param modifier the new modifier, can be <code>null</code>
-     */
-    public void setFontModifier( FontModifier modifier ) {
-        updater.setFontModifier( modifier );
-    }
-    
-    /**
-     * Gets the modifier which is used to update the font of this label.
-     * @return the modifier, may be <code>null</code>
-     */
-    public FontModifier getFontModifier() {
-        return updater.getFontModifier();
-    }
+  }
+
+  /**
+   * Gets the modifier which is used to update the font of this label.
+   *
+   * @return the modifier, may be <code>null</code>
+   */
+  public FontModifier getFontModifier() {
+    return updater.getFontModifier();
+  }
+
+  /**
+   * Sets the modifier which is used to update the font of this label.
+   *
+   * @param modifier the new modifier, can be <code>null</code>
+   */
+  public void setFontModifier(FontModifier modifier) {
+    updater.setFontModifier(modifier);
+  }
 }

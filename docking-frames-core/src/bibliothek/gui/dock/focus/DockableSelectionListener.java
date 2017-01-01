@@ -30,23 +30,26 @@ import bibliothek.gui.Dockable;
 /**
  * This listener is added to a {@link DockableSelection} and gets informed
  * when the user selects an element or cancels the selection.
+ *
  * @author Benjamin Sigg
  */
 public interface DockableSelectionListener {
-    /**
-     * Called when an element is selected, but the selection is not yet confirmed.
-     * @param dockable the currently selected element, can be <code>null</code>
-     */
-    public void considering( Dockable dockable );
-    
-    /**
-     * Called when an element is selected and the selection confirmed.
-     * @param dockable the selected element, not <code>null</code>
-     */
-    public void selected( Dockable dockable );
-    
-    /**
-     * Called when the user cancels the operation.
-     */
-    public void canceled();
+  /**
+   * Called when an element is selected, but the selection is not yet confirmed.
+   *
+   * @param dockable the currently selected element, can be <code>null</code>
+   */
+  public void considering(Dockable dockable);
+
+  /**
+   * Called when an element is selected and the selection confirmed.
+   *
+   * @param dockable the selected element, not <code>null</code>
+   */
+  public void selected(Dockable dockable);
+
+  /**
+   * Called when the user cancels the operation.
+   */
+  public void canceled();
 }

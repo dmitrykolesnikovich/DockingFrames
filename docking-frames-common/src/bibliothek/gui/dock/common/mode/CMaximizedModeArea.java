@@ -30,6 +30,7 @@ import bibliothek.gui.dock.facile.mode.MaximizedModeArea;
 /**
  * Combination of {@link MaximizedModeArea} and {@link CModeArea}, does
  * not introduce new methods.
+ *
  * @author Benjamin Sigg
  */
 public interface CMaximizedModeArea extends MaximizedModeArea, CModeArea {

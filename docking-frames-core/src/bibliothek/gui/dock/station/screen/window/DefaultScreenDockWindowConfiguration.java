@@ -25,8 +25,6 @@
  */
 package bibliothek.gui.dock.station.screen.window;
 
-import java.util.List;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.ScreenDockStation;
@@ -34,46 +32,57 @@ import bibliothek.gui.dock.station.screen.ScreenDockWindowConfiguration;
 import bibliothek.gui.dock.util.extension.ExtensionName;
 import bibliothek.util.Path;
 
+import java.util.List;
+
 /**
  * The default implementation of {@link ScreenDockWindowConfiguration} always returns <code>null</code>
  * from its {@link #getConfiguration(ScreenDockStation, Dockable)} method, thus telling the {@link ScreenDockStation}
  * to use a default configuration.<br>
  * This configuration offers an {@link #CONFIGURATION_EXTENSION extension point}, any configuration added through
  * that point will be asked first for a configuration before returning the default value.
- * 
+ *
  * @author Benjamin Sigg
  */
-public class DefaultScreenDockWindowConfiguration implements ScreenDockWindowConfiguration{
-	/** name of an {@link ExtensionName} for adding additional {@link ScreenDockWindowConfiguration}s */
-	public static final Path CONFIGURATION_EXTENSION = new Path( "dock.DefaultScreenDockWindowConfiguration" );
-	
-	/** a parameter pointing to <code>this</code>. */
-	public static final String CONFIGURATION_EXTENSION_PARAM = "configuration";
-	
-	/** additional configurations to consider */
-	private ScreenDockWindowConfiguration[] extensions;
-	
-	/**
-	 * Creates a new configuration.
-	 * @param controller used to load extension, can be <code>null</code>
-	 */
-	public DefaultScreenDockWindowConfiguration( DockController controller ){
-		if( controller != null ){
-			List<ScreenDockWindowConfiguration> list = controller.getExtensions().load( new ExtensionName<ScreenDockWindowConfiguration>( CONFIGURATION_EXTENSION, ScreenDockWindowConfiguration.class, CONFIGURATION_EXTENSION_PARAM, this ) );
-			extensions = list.toArray( new ScreenDockWindowConfiguration[ list.size() ] );
-		}
-		else{
-			extensions = new ScreenDockWindowConfiguration[]{};
-		}
-	}
-	
-	public WindowConfiguration getConfiguration( ScreenDockStation station, Dockable dockable ){
-		for( ScreenDockWindowConfiguration extension : extensions ){
-			WindowConfiguration result = extension.getConfiguration( station, dockable );
-			if( result != null ){
-				return result;
-			}
-		}
-		return null;
-	}
+public class DefaultScreenDockWindowConfiguration implements ScreenDockWindowConfiguration {
+  /**
+   * name of an {@link ExtensionName} for adding additional {@link ScreenDockWindowConfiguration}s
+   */
+  public static final Path CONFIGURATION_EXTENSION = new Path("dock.DefaultScreenDockWindowConfiguration");
+
+  /**
+   * a parameter pointing to <code>this</code>.
+   */
+  public static final String CONFIGURATION_EXTENSION_PARAM = "configuration";
+
+  /**
+   * additional configurations to consider
+   */
+  private ScreenDockWindowConfiguration[] extensions;
+
+  /**
+   * Creates a new configuration.
+   *
+   * @param controller used to load extension, can be <code>null</code>
+   */
+  public DefaultScreenDockWindowConfiguration(DockController controller) {
+    if (controller != null) {
+      List<ScreenDockWindowConfiguration> list = controller.getExtensions().load(
+        new ExtensionName<ScreenDockWindowConfiguration>(CONFIGURATION_EXTENSION, ScreenDockWindowConfiguration.class,
+                                                         CONFIGURATION_EXTENSION_PARAM, this));
+      extensions = list.toArray(new ScreenDockWindowConfiguration[list.size()]);
+    }
+    else {
+      extensions = new ScreenDockWindowConfiguration[]{};
+    }
+  }
+
+  public WindowConfiguration getConfiguration(ScreenDockStation station, Dockable dockable) {
+    for (ScreenDockWindowConfiguration extension : extensions) {
+      WindowConfiguration result = extension.getConfiguration(station, dockable);
+      if (result != null) {
+        return result;
+      }
+    }
+    return null;
+  }
 }

@@ -31,24 +31,26 @@ import bibliothek.gui.dock.util.property.ConstantPropertyFactory;
 
 /**
  * A factory that is responsible for creating {@link DockStationDropLayer}s for {@link DockStation}s.
+ *
+ * @author Benjamin Sigg
  * @see DockStationDropLayer
  * @see DockStation#getLayers()
- * @author Benjamin Sigg
  */
 public interface DockStationDropLayerFactory {
-	/**
-	 * Key to replace the default {@link DockStationDropLayerFactory} with a custom factory.
-	 */
-	public static PropertyKey<DockStationDropLayerFactory> DROP_LAYER_FACTORY = 
-			new PropertyKey<DockStationDropLayerFactory>( "dock.dropLayerFactory", 
-					new ConstantPropertyFactory<DockStationDropLayerFactory>( new DefaultDockStationDropLayerFactory() ), true );
-	
-	/**
-	 * Gets all the {@link DockStationDropLayer}s that should be used for finding out whether a drag and drop
-	 * operation has <code>station</code> as target.<br>
-	 * @see DockStation#getLayers()
-	 * @param station the station whose drag-and-drop layers are requested
-	 * @return the layers, not <code>null</code> - but an empty array is a valid result
-	 */
-	public DockStationDropLayer[] getLayers( DockStation station );
+  /**
+   * Key to replace the default {@link DockStationDropLayerFactory} with a custom factory.
+   */
+  public static PropertyKey<DockStationDropLayerFactory> DROP_LAYER_FACTORY =
+    new PropertyKey<DockStationDropLayerFactory>("dock.dropLayerFactory", new ConstantPropertyFactory<DockStationDropLayerFactory>(
+      new DefaultDockStationDropLayerFactory()), true);
+
+  /**
+   * Gets all the {@link DockStationDropLayer}s that should be used for finding out whether a drag and drop
+   * operation has <code>station</code> as target.<br>
+   *
+   * @param station the station whose drag-and-drop layers are requested
+   * @return the layers, not <code>null</code> - but an empty array is a valid result
+   * @see DockStation#getLayers()
+   */
+  public DockStationDropLayer[] getLayers(DockStation station);
 }

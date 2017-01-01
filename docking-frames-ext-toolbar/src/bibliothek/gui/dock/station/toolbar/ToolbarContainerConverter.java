@@ -30,69 +30,67 @@
 
 package bibliothek.gui.dock.station.toolbar;
 
-import java.util.Map;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.ToolbarContainerDockStation;
 import bibliothek.gui.dock.perspective.PerspectiveDockable;
 import bibliothek.gui.dock.station.support.PlaceholderMap;
 
+import java.util.Map;
+
 /**
  * A helper interface used by the {@link ToolbarContainerDockStation} to read
  * and write {@link PlaceholderMap}s.
- * 
+ *
  * @author Benjamin Sigg
  * @author Herve Guillaume
  */
 public interface ToolbarContainerConverter {
-	/**
-	 * Called by {@link ToolbarContainerDockStation#getPlaceholders()}
-	 * 
-	 * @param station
-	 *            the calling station
-	 * @return the placeholders
-	 */
-	public PlaceholderMap getPlaceholders( ToolbarContainerDockStation station );
+  /**
+   * Called by {@link ToolbarContainerDockStation#getPlaceholders()}
+   *
+   * @param station the calling station
+   * @return the placeholders
+   */
+  public PlaceholderMap getPlaceholders(ToolbarContainerDockStation station);
 
-	/**
-	 * Called by {@link ToolbarContainerDockStation#getPlaceholders(Map)}
-	 * @param station the calling station
-	 * @param children identifiers for the children of the station
-	 * @return the placeholders
-	 */
-	public PlaceholderMap getPlaceholders( ToolbarContainerDockStation station, Map<Dockable, Integer> children );
+  /**
+   * Called by {@link ToolbarContainerDockStation#getPlaceholders(Map)}
+   *
+   * @param station  the calling station
+   * @param children identifiers for the children of the station
+   * @return the placeholders
+   */
+  public PlaceholderMap getPlaceholders(ToolbarContainerDockStation station, Map<Dockable, Integer> children);
 
-	/**
-	 * Called by {@link ToolbarDockStationFactory#getPerspectiveLayout(bibliothek.gui.dock.perspective.PerspectiveElement, Map)}
-	 * @param station the calling station
-	 * @param children identifiers for the children of the station
-	 * @return the placeholders
-	 */
-	public PlaceholderMap getPlaceholders( ToolbarContainerDockPerspective station, Map<PerspectiveDockable, Integer> children );
-	
-	/**
-	 * Called by
-	 * {@link ToolbarContainerDockStation#setPlaceholders(PlaceholderMap)}
-	 * 
-	 * @param station
-	 *            the calling station
-	 * @param map
-	 *            the placeholders to read
-	 */
-	public void setPlaceholders( ToolbarContainerDockStation station, PlaceholderMap map );
+  /**
+   * Called by {@link ToolbarDockStationFactory#getPerspectiveLayout(bibliothek.gui.dock.perspective.PerspectiveElement, Map)}
+   *
+   * @param station  the calling station
+   * @param children identifiers for the children of the station
+   * @return the placeholders
+   */
+  public PlaceholderMap getPlaceholders(ToolbarContainerDockPerspective station, Map<PerspectiveDockable, Integer> children);
 
-	/**
-	 * Called by
-	 * {@link ToolbarContainerDockStation#setPlaceholders(PlaceholderMap, Map)}
-	 * 
-	 * @param station
-	 *            the calling station
-	 * @param callback
-	 *            offers methods to call private methods of <code>station</code>
-	 * @param children
-	 *            the new children of <code>station</code>
-	 * @param map
-	 *            the placeholders to read
-	 */
-	public void setPlaceholders( ToolbarContainerDockStation station, ToolbarContainerConverterCallback callback, PlaceholderMap map, Map<Integer, Dockable> children );
+  /**
+   * Called by
+   * {@link ToolbarContainerDockStation#setPlaceholders(PlaceholderMap)}
+   *
+   * @param station the calling station
+   * @param map     the placeholders to read
+   */
+  public void setPlaceholders(ToolbarContainerDockStation station, PlaceholderMap map);
+
+  /**
+   * Called by
+   * {@link ToolbarContainerDockStation#setPlaceholders(PlaceholderMap, Map)}
+   *
+   * @param station  the calling station
+   * @param callback offers methods to call private methods of <code>station</code>
+   * @param children the new children of <code>station</code>
+   * @param map      the placeholders to read
+   */
+  public void setPlaceholders(ToolbarContainerDockStation station,
+                              ToolbarContainerConverterCallback callback,
+                              PlaceholderMap map,
+                              Map<Integer, Dockable> children);
 }

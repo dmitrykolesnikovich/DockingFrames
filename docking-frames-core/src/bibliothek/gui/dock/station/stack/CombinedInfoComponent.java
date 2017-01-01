@@ -25,19 +25,21 @@
  */
 package bibliothek.gui.dock.station.stack;
 
-import java.awt.Component;
-
 import bibliothek.gui.dock.station.stack.tab.LonelyTabPaneComponent;
 
+import java.awt.*;
+
 /**
- * The info component used by the {@link CombinedStackDockComponent} is 
+ * The info component used by the {@link CombinedStackDockComponent} is
  * supposed to be represented by a {@link Component}.
+ *
  * @author Benjamin Sigg
  */
 public interface CombinedInfoComponent extends LonelyTabPaneComponent {
-	/**
-	 * Gets the representation of this info component.
-	 * @return the representation
-	 */
-	public Component getComponent();
+  /**
+   * Gets the representation of this info component.
+   *
+   * @return the representation
+   */
+  public Component getComponent();
 }

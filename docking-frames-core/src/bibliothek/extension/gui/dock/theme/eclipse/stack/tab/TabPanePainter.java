@@ -25,39 +25,42 @@
  */
 package bibliothek.extension.gui.dock.theme.eclipse.stack.tab;
 
-import java.awt.Component;
-import java.awt.Graphics;
-
 import bibliothek.extension.gui.dock.theme.eclipse.stack.EclipseTabPane;
 import bibliothek.gui.DockController;
 
+import java.awt.*;
+
 /**
  * A {@link TabPanePainter} paints decorations on a {@link EclipseTabPane}.
+ *
  * @author Benjamin Sigg
  */
 public interface TabPanePainter {
-    /**
-     * Sets the controller for which this painter is used.
-     * @param controller the controller, can be <code>null</code>
-     */
-    public void setController( DockController controller );
-    
-    /**
-     * Paints the decorations of the {@link EclipseTabPane} with this 
-     * this painter is associated. This method is called before any {@link Component}
-     * is painted. The graphics object is such that its point 0/0 falls together
-     * with the point 0/0 of {@link EclipseTabPane#getAvailableArea()}.  
-     * @param g graphics context to use for painting
-     */
-    public void paintBackground( Graphics g );
-    
-    /**
-     * Paints the decorations of the {@link EclipseTabPane} with which
-     * this painter is associated. This method is called after the {@link Component}s 
-     * have been painted. The graphics object is such that
-     * its point 0/0 falls together with the point 0/0 of
-     * {@link EclipseTabPane#getAvailableArea()}. 
-     * @param g the graphics used to paint on <code>tabStrip</code> 
-     */
-    public void paintForeground( Graphics g);
+  /**
+   * Sets the controller for which this painter is used.
+   *
+   * @param controller the controller, can be <code>null</code>
+   */
+  public void setController(DockController controller);
+
+  /**
+   * Paints the decorations of the {@link EclipseTabPane} with this
+   * this painter is associated. This method is called before any {@link Component}
+   * is painted. The graphics object is such that its point 0/0 falls together
+   * with the point 0/0 of {@link EclipseTabPane#getAvailableArea()}.
+   *
+   * @param g graphics context to use for painting
+   */
+  public void paintBackground(Graphics g);
+
+  /**
+   * Paints the decorations of the {@link EclipseTabPane} with which
+   * this painter is associated. This method is called after the {@link Component}s
+   * have been painted. The graphics object is such that
+   * its point 0/0 falls together with the point 0/0 of
+   * {@link EclipseTabPane#getAvailableArea()}.
+   *
+   * @param g the graphics used to paint on <code>tabStrip</code>
+   */
+  public void paintForeground(Graphics g);
 }

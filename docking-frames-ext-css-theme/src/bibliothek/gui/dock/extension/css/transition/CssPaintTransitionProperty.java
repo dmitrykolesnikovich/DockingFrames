@@ -32,30 +32,32 @@ import bibliothek.gui.dock.extension.css.property.paint.CssPaint;
 
 /**
  * A property for handling a {@link CssPaint} with a transition.
+ *
  * @author Benjamin Sigg
  */
-public abstract class CssPaintTransitionProperty extends CssContainerTransitionProperty<CssPaint>{
-	/**
-	 * Creates the new property.
-	 * @param scheme the scheme in whose realm this property will work
-	 * @param item the item to which this property belongs
-	 */
-	public CssPaintTransitionProperty( CssScheme scheme, CssItem item ){
-		super( scheme, item );
-	}
+public abstract class CssPaintTransitionProperty extends CssContainerTransitionProperty<CssPaint> {
+  /**
+   * Creates the new property.
+   *
+   * @param scheme the scheme in whose realm this property will work
+   * @param item   the item to which this property belongs
+   */
+  public CssPaintTransitionProperty(CssScheme scheme, CssItem item) {
+    super(scheme, item);
+  }
 
-	@Override
-	public CssType<CssPaint> getType( CssScheme scheme ){
-		return scheme.getConverter( CssPaint.class );
-	}
+  @Override
+  public CssType<CssPaint> getType(CssScheme scheme) {
+    return scheme.getConverter(CssPaint.class);
+  }
 
-	@Override
-	protected void bind(){
-		// ignore
-	}
+  @Override
+  protected void bind() {
+    // ignore
+  }
 
-	@Override
-	protected void unbind(){
-		// ignore
-	}
+  @Override
+  protected void unbind() {
+    // ignore
+  }
 }

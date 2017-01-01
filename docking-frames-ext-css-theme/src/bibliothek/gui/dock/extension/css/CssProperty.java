@@ -32,31 +32,33 @@ package bibliothek.gui.dock.extension.css;
  * attached to a {@link CssItem}.<br>
  * In nested properties, if the parent property has the key "x" and the child property has the
  * key "y", then inside the css file a property called "x-y" is searched.
- * 
- * @author Benjamin Sigg
  *
  * @param <T> the type of this property
+ * @author Benjamin Sigg
  */
 public interface CssProperty<T> extends CssPropertyContainer {
-	/**
-	 * Sets the value of this property.
-	 * @param value the new value, can be <code>null</code>
-	 */
-	public void set( T value );
-	
-	/**
-	 * Gest the type of this property.
-	 * @param scheme the scheme in whose realm this property will be used
-	 * @return the type, can be used to convert a {@link String} to
-	 * a <code>T</code>
-	 */
-	public CssType<T> getType( CssScheme scheme );
-	
-	/**
-	 * Called by <code>scheme</code> once it starts or stops monitoring this property.
-	 * @param scheme the scheme which is responsible for setting the value of this property, or <code>null</code>
-	 * @param key the key with which <code>scheme</code> will search for the value of this property, or <code>null</code>
-	 * @throws IllegalStateException if this method is called twice in a row with non-<code>null</code> arguments
-	 */
-	public void setScheme( CssScheme scheme, CssPropertyKey key );
+  /**
+   * Sets the value of this property.
+   *
+   * @param value the new value, can be <code>null</code>
+   */
+  public void set(T value);
+
+  /**
+   * Gest the type of this property.
+   *
+   * @param scheme the scheme in whose realm this property will be used
+   * @return the type, can be used to convert a {@link String} to
+   * a <code>T</code>
+   */
+  public CssType<T> getType(CssScheme scheme);
+
+  /**
+   * Called by <code>scheme</code> once it starts or stops monitoring this property.
+   *
+   * @param scheme the scheme which is responsible for setting the value of this property, or <code>null</code>
+   * @param key    the key with which <code>scheme</code> will search for the value of this property, or <code>null</code>
+   * @throws IllegalStateException if this method is called twice in a row with non-<code>null</code> arguments
+   */
+  public void setScheme(CssScheme scheme, CssPropertyKey key);
 }

@@ -35,24 +35,25 @@ import bibliothek.gui.dock.title.DockTitle;
 
 /**
  * A factory creating {@link BubbleDisplayer}.
+ *
  * @author Benjamin Sigg
  */
 public class BubbleDisplayerFactory implements DisplayerFactory {
-	public void request( DisplayerRequest request ){
-		Dockable dockable = request.getTarget();
-    	DockStation station = request.getParent();
-    	DockTitle title = request.getTitle();
-    	
-		BubbleDisplayer displayer = new BubbleDisplayer( station, dockable, title );
-		if( station instanceof StackDockStation ){
-			displayer.setStacked( true );
-		}
-		
-        if( dockable.asDockStation() != null ){
-            displayer.setTitleLocation( Location.RIGHT );
-        }
-        
-        request.answer( displayer );
+  public void request(DisplayerRequest request) {
+    Dockable dockable = request.getTarget();
+    DockStation station = request.getParent();
+    DockTitle title = request.getTitle();
+
+    BubbleDisplayer displayer = new BubbleDisplayer(station, dockable, title);
+    if (station instanceof StackDockStation) {
+      displayer.setStacked(true);
     }
-    
+
+    if (dockable.asDockStation() != null) {
+      displayer.setTitleLocation(Location.RIGHT);
+    }
+
+    request.answer(displayer);
+  }
+
 }

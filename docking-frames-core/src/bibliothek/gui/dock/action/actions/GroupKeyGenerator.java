@@ -32,17 +32,17 @@ import bibliothek.gui.Dockable;
  * A converter creating keys for {@link Dockable}s. Several {@link Dockable}s can
  * have the same key. Used by a {@link GroupedDockAction} to build groups of {@link Dockable}s
  * (in each group all <code>Dockable</code>s have the same key).
- * 
- * @author Benjamin Sigg
  *
  * @param <K> the type of key generate by this class
+ * @author Benjamin Sigg
  */
 public interface GroupKeyGenerator<K> {
-	/**
-	 * Generates a new key. Every value except <code>null</code> is a valid
-	 * result.
-	 * @param dockable the dockable for which a key is requested.
-	 * @return the new key
-	 */
-	public K generateKey( Dockable dockable );
+  /**
+   * Generates a new key. Every value except <code>null</code> is a valid
+   * result.
+   *
+   * @param dockable the dockable for which a key is requested.
+   * @return the new key
+   */
+  public K generateKey(Dockable dockable);
 }

@@ -25,36 +25,40 @@
  */
 package bibliothek.gui.dock.event;
 
-import javax.swing.LookAndFeel;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.DockTheme;
+
+import javax.swing.*;
 
 /**
  * A listener added to the {@link DockController}. This listener gets informed
  * when the {@link LookAndFeel} or the {@link DockTheme} changes.
+ *
  * @author Benjamin Sigg
  */
 public interface UIListener {
-    /**
-     * Called when the {@link LookAndFeel} has been exchanged.
-     * @param controller the calling controller
-     */
-    public void updateUI( DockController controller );
-    
-	/**
-	 * Called before the {@link DockTheme} of <code>controller</code> changes.
-	 * @param controller the source of the event
-	 * @param oldTheme the current theme
-	 * @param newTheme the theme that gets applied
-	 */
-	public void themeWillChange( DockController controller, DockTheme oldTheme, DockTheme newTheme );
-	
-	/**
-	 * Called after the {@link DockTheme} of <code>controller</code> was changed.
-	 * @param controller the source of the event
-	 * @param oldTheme the theme that was used before the event
-	 * @param newTheme the current theme
-	 */
-	public void themeChanged( DockController controller, DockTheme oldTheme, DockTheme newTheme );
+  /**
+   * Called when the {@link LookAndFeel} has been exchanged.
+   *
+   * @param controller the calling controller
+   */
+  public void updateUI(DockController controller);
+
+  /**
+   * Called before the {@link DockTheme} of <code>controller</code> changes.
+   *
+   * @param controller the source of the event
+   * @param oldTheme   the current theme
+   * @param newTheme   the theme that gets applied
+   */
+  public void themeWillChange(DockController controller, DockTheme oldTheme, DockTheme newTheme);
+
+  /**
+   * Called after the {@link DockTheme} of <code>controller</code> was changed.
+   *
+   * @param controller the source of the event
+   * @param oldTheme   the theme that was used before the event
+   * @param newTheme   the current theme
+   */
+  public void themeChanged(DockController controller, DockTheme oldTheme, DockTheme newTheme);
 }

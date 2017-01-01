@@ -33,26 +33,30 @@ import bibliothek.gui.dock.station.StationDropOperation;
 /**
  * Contains information about a drop and drop operation that needs to be examined by
  * an {@link Inserter}.
+ *
  * @author Benjamin Sigg
  */
 public interface InserterSource {
-	/**
-	 * Gets the {@link DockStation} which might be the next parent of {@link #getItem()}.
-	 * @return the future parent, never <code>null</code>
-	 */
-	public DockStation getParent();
-	
-	/**
-	 * Gets information about the item that is dropped.
-	 * @return detailed information about the dropping {@link Dockable}
-	 */
-	public StationDropItem getItem();
-	
-	/**
-	 * Gets the {@link StationDropOperation} that was created by {@link DockStation#prepareDrop(StationDropItem)},
-	 * this might be <code>null</code> if the station was not yet asked or if the station does not
-	 * accept the new child.
-	 * @return the pending operation, can be <code>null</code>
-	 */
-	public StationDropOperation getOperation();
+  /**
+   * Gets the {@link DockStation} which might be the next parent of {@link #getItem()}.
+   *
+   * @return the future parent, never <code>null</code>
+   */
+  public DockStation getParent();
+
+  /**
+   * Gets information about the item that is dropped.
+   *
+   * @return detailed information about the dropping {@link Dockable}
+   */
+  public StationDropItem getItem();
+
+  /**
+   * Gets the {@link StationDropOperation} that was created by {@link DockStation#prepareDrop(StationDropItem)},
+   * this might be <code>null</code> if the station was not yet asked or if the station does not
+   * accept the new child.
+   *
+   * @return the pending operation, can be <code>null</code>
+   */
+  public StationDropOperation getOperation();
 }

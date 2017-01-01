@@ -27,31 +27,39 @@ package bibliothek.extension.gui.dock.theme.eclipse;
 
 /**
  * Can be used for an {@link EclipseTabDockAction} to fine tune the behavior.
+ *
  * @author Benjamin Sigg
  */
 public enum EclipseTabDockActionLocation {
-	/** the action is shown both on the tab and on the side */
-	BOTH,
-	/** the action is not shown at all (it will appear in the drop down menu) */
-	HIDDEN,
-	/** the action is shown on the side */
-	SIDE,
-	/** the action is shown on the tab*/
-	TAB;
-	
-	/**
-	 * Tells whether this location points to a tab.
-	 * @return <code>true</code> if this location points to a tab
-	 */
-	public boolean isTab(){
-		return this == TAB || this == BOTH;
-	}
-	
-	/**
-	 * Tells whether this location points to the side.
-	 * @return <code>true</code> if this location points to the side
-	 */
-	public boolean isSide(){
-		return this == SIDE || this == BOTH;
-	}
+  /**
+   * the action is shown both on the tab and on the side
+   */
+  BOTH, /**
+   * the action is not shown at all (it will appear in the drop down menu)
+   */
+  HIDDEN, /**
+   * the action is shown on the side
+   */
+  SIDE, /**
+   * the action is shown on the tab
+   */
+  TAB;
+
+  /**
+   * Tells whether this location points to a tab.
+   *
+   * @return <code>true</code> if this location points to a tab
+   */
+  public boolean isTab() {
+    return this == TAB || this == BOTH;
+  }
+
+  /**
+   * Tells whether this location points to the side.
+   *
+   * @return <code>true</code> if this location points to the side
+   */
+  public boolean isSide() {
+    return this == SIDE || this == BOTH;
+  }
 }

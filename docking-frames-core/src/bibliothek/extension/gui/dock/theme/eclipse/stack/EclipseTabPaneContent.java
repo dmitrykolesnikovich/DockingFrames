@@ -25,52 +25,53 @@
  */
 package bibliothek.extension.gui.dock.theme.eclipse.stack;
 
-import java.awt.Graphics;
-
-import javax.swing.border.Border;
-
 import bibliothek.extension.gui.dock.theme.eclipse.stack.tab.TabPanePainter;
 import bibliothek.gui.dock.station.stack.CombinedStackDockContentPane;
 
+import javax.swing.border.Border;
+import java.awt.*;
+
 /**
  * The panel painting the background of a {@link EclipseTabPane}.
+ *
  * @author Benjamin Sigg
  */
-public class EclipseTabPaneContent extends CombinedStackDockContentPane{
-	private EclipseTabPane pane;
-	
-	public EclipseTabPaneContent( EclipseTabPane pane ){
-		super( pane );
-		this.pane = pane;
-		setPaintBackground( false );
-	}
-	
-	/**
-	 * Gets the parent of this panel.
-	 * @return the parent
-	 */
-	public EclipseTabPane getPane(){
-		return pane;
-	}
-	
-	@Override
-	public void paintBackground( Graphics g ){
-		getPane().getPainter().paintBackground( g );
-	}
-	
-	@Override
-	public void paintBorder( Graphics g ){
-		// ignore
-	}
+public class EclipseTabPaneContent extends CombinedStackDockContentPane {
+  private EclipseTabPane pane;
 
-	@Override
-	public void paintOverlay( Graphics g ){
-		TabPanePainter painter = getPane().getPainter();
-		painter.paintForeground( g );
-		
-		Border border = getBorder();
-		if( border != null ){
-			border.paintBorder( this, g, 0, 0, getWidth(), getHeight() );
-		}
-	}
+  public EclipseTabPaneContent(EclipseTabPane pane) {
+    super(pane);
+    this.pane = pane;
+    setPaintBackground(false);
+  }
+
+  /**
+   * Gets the parent of this panel.
+   *
+   * @return the parent
+   */
+  public EclipseTabPane getPane() {
+    return pane;
+  }
+
+  @Override
+  public void paintBackground(Graphics g) {
+    getPane().getPainter().paintBackground(g);
+  }
+
+  @Override
+  public void paintBorder(Graphics g) {
+    // ignore
+  }
+
+  @Override
+  public void paintOverlay(Graphics g) {
+    TabPanePainter painter = getPane().getPainter();
+    painter.paintForeground(g);
+
+    Border border = getBorder();
+    if (border != null) {
+      border.paintBorder(this, g, 0, 0, getWidth(), getHeight());
+    }
+  }
 }

@@ -32,15 +32,19 @@ import bibliothek.util.Path;
 
 /**
  * An {@link UIValue} that is used to retrieve a {@link SpanFactory} from a {@link ThemeManager}.
+ *
  * @author Benjamin Sigg
  */
-public interface SpanFactoryValue extends UIValue<SpanFactory>{
-	/** the kind of {@link UIValue} this is */
-	public static final Path KIND_SPAN_FACTORY = new Path( "dock", "span" );
-	
-	/**
-	 * Gets the station for which this {@link UIValue} works.
-	 * @return the owner
-	 */
-	public DockStation getStation();
+public interface SpanFactoryValue extends UIValue<SpanFactory> {
+  /**
+   * the kind of {@link UIValue} this is
+   */
+  public static final Path KIND_SPAN_FACTORY = new Path("dock", "span");
+
+  /**
+   * Gets the station for which this {@link UIValue} works.
+   *
+   * @return the owner
+   */
+  public DockStation getStation();
 }

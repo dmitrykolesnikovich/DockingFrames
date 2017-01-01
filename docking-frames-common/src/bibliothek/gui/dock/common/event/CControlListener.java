@@ -31,36 +31,41 @@ import bibliothek.gui.dock.common.intern.CDockable;
 /**
  * A listener to a {@link CControl}, gets informed when {@link CDockable}s
  * are added or removed, opened or closed.
+ *
  * @author Benjamin Sigg
  */
 public interface CControlListener {
-    /**
-     * Called when <code>dockable</code> has been made public.
-     * @param control the caller
-     * @param dockable the element that is now known
-     */
-    public void added( CControl control, CDockable dockable );
-    
-    /**
-     * Called when <code>dockable</code> has been removed.
-     * @param control the caller
-     * @param dockable the element that is no longer known
-     */
-    public void removed( CControl control, CDockable dockable );
-    
-    /**
-     * Called when <code>dockable</code> has been made visible.
-     * @param control the caller
-     * @param dockable the element that is now visible
-     * @see CDockable#isVisible()
-     */
-    public void opened( CControl control, CDockable dockable );
-    
-    /**
-     * Called when <code>dockable</code> has been made invisible.
-     * @param control the caller
-     * @param dockable the element that is no longer visible
-     * @see CDockable#isVisible()
-     */
-    public void closed( CControl control, CDockable dockable );
+  /**
+   * Called when <code>dockable</code> has been made public.
+   *
+   * @param control  the caller
+   * @param dockable the element that is now known
+   */
+  public void added(CControl control, CDockable dockable);
+
+  /**
+   * Called when <code>dockable</code> has been removed.
+   *
+   * @param control  the caller
+   * @param dockable the element that is no longer known
+   */
+  public void removed(CControl control, CDockable dockable);
+
+  /**
+   * Called when <code>dockable</code> has been made visible.
+   *
+   * @param control  the caller
+   * @param dockable the element that is now visible
+   * @see CDockable#isVisible()
+   */
+  public void opened(CControl control, CDockable dockable);
+
+  /**
+   * Called when <code>dockable</code> has been made invisible.
+   *
+   * @param control  the caller
+   * @param dockable the element that is no longer visible
+   * @see CDockable#isVisible()
+   */
+  public void closed(CControl control, CDockable dockable);
 }

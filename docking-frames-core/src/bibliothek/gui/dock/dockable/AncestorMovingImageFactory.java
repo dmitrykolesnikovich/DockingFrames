@@ -25,84 +25,84 @@
  */
 package bibliothek.gui.dock.dockable;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.image.BufferedImage;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.swing.SwingUtilities;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.title.DockTitle;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * This factory tries to find a common anchestor of {@link DockTitle} and
  * of {@link Dockable} and shows a screenshot of this component.
+ *
  * @author Benjamin Sigg
  */
-public class AncestorMovingImageFactory extends ScreencaptureMovingImageFactory{
-    /**
-     * Creates a new factory.
-     * @param max the maximal size of the images created by this factory, or <code>null</code>
-     * for not having a maximum size
-     * @param alpha the transparency, where 0 means completely transparent and 1 means completely opaque
-     */
-	public AncestorMovingImageFactory( Dimension max, float alpha ){
-		super( max, alpha );
-	}
+public class AncestorMovingImageFactory extends ScreencaptureMovingImageFactory {
+  /**
+   * Creates a new factory.
+   *
+   * @param max   the maximal size of the images created by this factory, or <code>null</code>
+   *              for not having a maximum size
+   * @param alpha the transparency, where 0 means completely transparent and 1 means completely opaque
+   */
+  public AncestorMovingImageFactory(Dimension max, float alpha) {
+    super(max, alpha);
+  }
 
-	@Override
-	public MovingImage create( DockController controller, Dockable dockable ){
-		Component[] dockableAncestor = ancestors( dockable.getComponent() );
-		int nearest = dockableAncestor.length + 1;
-		Component best = null;
-		
-		for( DockTitle title : dockable.listBoundTitles() ){
-			Component[] titleAncestor = ancestors( title.getComponent() );
-			
-			int index = 0;
-			while( index < dockableAncestor.length && index < titleAncestor.length && dockableAncestor[index] == titleAncestor[index]){
-				index++;
-			}
-			index--;
-			
-			int dist = dockableAncestor.length - index;
-			if( dist < nearest ){
-				nearest = dist;
-				best = dockableAncestor[index];
-			}
-		}
-		
-		if( best == null ){
-			return super.create( controller, dockable );
-		}
-		else{
-			BufferedImage image = createImageFrom( controller, best );
-			
-			TrueMovingImage moving = new TrueMovingImage();
-			moving.setAlpha( getAlpha() );
-	        moving.setImage( image );
-	        return moving;
-		}
-	}
-	
-	private Component[] ancestors( Component component ){
-		Component root = SwingUtilities.getRoot( component );
-		if( root == component ){
-			return new Component[]{ component };
-		}
-		
-		List<Component> result = new LinkedList<Component>();
-		
-		while( root != component ){
-			result.add( 0, component );
-			component = component.getParent();
-		}
-		
-		result.add( 0, root );
-		
-		return result.toArray( new Component[ result.size() ] );
-	}
+  @Override
+  public MovingImage create(DockController controller, Dockable dockable) {
+    Component[] dockableAncestor = ancestors(dockable.getComponent());
+    int nearest = dockableAncestor.length + 1;
+    Component best = null;
+
+    for (DockTitle title : dockable.listBoundTitles()) {
+      Component[] titleAncestor = ancestors(title.getComponent());
+
+      int index = 0;
+      while (index < dockableAncestor.length && index < titleAncestor.length && dockableAncestor[index] == titleAncestor[index]) {
+        index++;
+      }
+      index--;
+
+      int dist = dockableAncestor.length - index;
+      if (dist < nearest) {
+        nearest = dist;
+        best = dockableAncestor[index];
+      }
+    }
+
+    if (best == null) {
+      return super.create(controller, dockable);
+    }
+    else {
+      BufferedImage image = createImageFrom(controller, best);
+
+      TrueMovingImage moving = new TrueMovingImage();
+      moving.setAlpha(getAlpha());
+      moving.setImage(image);
+      return moving;
+    }
+  }
+
+  private Component[] ancestors(Component component) {
+    Component root = SwingUtilities.getRoot(component);
+    if (root == component) {
+      return new Component[]{component};
+    }
+
+    List<Component> result = new LinkedList<Component>();
+
+    while (root != component) {
+      result.add(0, component);
+      component = component.getParent();
+    }
+
+    result.add(0, root);
+
+    return result.toArray(new Component[result.size()]);
+  }
 }

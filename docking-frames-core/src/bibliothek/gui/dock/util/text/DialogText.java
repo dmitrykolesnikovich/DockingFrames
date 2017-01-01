@@ -25,37 +25,44 @@
  */
 package bibliothek.gui.dock.util.text;
 
-import javax.swing.JDialog;
-
 import bibliothek.gui.dock.util.UIValue;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+
 /**
  * A text that is shown on or by a {@link JDialog}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class DialogText extends TextValue{
-	/** what kind of {@link UIValue} this is */
-	public static final Path KIND_DIALOG = KIND_TEXT.append( "dialog" );
-	
-	/** the dialog using this text */
-	private JDialog dialog;
-	
-	/**
-	 * Creates a new text
-	 * @param id the unique identifier of this text
-	 * @param dialog the dialog which is using the text
-	 */
-	public DialogText( String id, JDialog dialog ){
-		super(  id, KIND_DIALOG );
-		this.dialog = dialog;
-	}
-	
-	/**
-	 * Gets the dialog for which the text is used.
-	 * @return the dialog
-	 */
-	public JDialog getDialog(){
-		return dialog;
-	}
+public abstract class DialogText extends TextValue {
+  /**
+   * what kind of {@link UIValue} this is
+   */
+  public static final Path KIND_DIALOG = KIND_TEXT.append("dialog");
+
+  /**
+   * the dialog using this text
+   */
+  private JDialog dialog;
+
+  /**
+   * Creates a new text
+   *
+   * @param id     the unique identifier of this text
+   * @param dialog the dialog which is using the text
+   */
+  public DialogText(String id, JDialog dialog) {
+    super(id, KIND_DIALOG);
+    this.dialog = dialog;
+  }
+
+  /**
+   * Gets the dialog for which the text is used.
+   *
+   * @return the dialog
+   */
+  public JDialog getDialog() {
+    return dialog;
+  }
 }

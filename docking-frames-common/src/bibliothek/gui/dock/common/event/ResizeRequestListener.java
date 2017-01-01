@@ -34,13 +34,15 @@ import bibliothek.gui.dock.common.intern.CDockable;
  * when {@link CControl#handleResizeRequests()} is called.<br>
  * If this listener is used by a {@link DockStation}, than that station should
  * update its layout such that {@link CDockable#getAndClearResizeRequest()} is matched.
+ *
  * @author Benjamin Sigg
  */
 public interface ResizeRequestListener {
-    /**
-     * Called when the layout of {@link DockStation}s should be updated such
-     * that {@link CDockable#getAndClearResizeRequest()} is matched.
-     * @param control the control in whose realm the station is
-     */
-    public void handleResizeRequest( CControl control );
+  /**
+   * Called when the layout of {@link DockStation}s should be updated such
+   * that {@link CDockable#getAndClearResizeRequest()} is matched.
+   *
+   * @param control the control in whose realm the station is
+   */
+  public void handleResizeRequest(CControl control);
 }

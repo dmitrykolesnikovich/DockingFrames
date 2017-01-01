@@ -25,26 +25,28 @@
  */
 package bibliothek.gui.dock.util.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.dock.util.Priority;
 import bibliothek.gui.dock.util.UIProperties;
 
+import java.awt.*;
+
 /**
  * A {@link ColorManager} contains {@link Color}s, {@link ColorBridge}s and
- * {@link DockColor}s. Some <code>DockColor</code>s are associated with a 
+ * {@link DockColor}s. Some <code>DockColor</code>s are associated with a
  * <code>ColorBridge</code>. If a <code>Color</code> in this manager is
  * {@link UIProperties#put(Priority, String, Object) set}, then each <code>DockColor</code>
  * that listens for that color gets informed about the change.
+ *
  * @author Benjamin Sigg
  */
-public class ColorManager extends UIProperties<Color, DockColor, ColorBridge>{
-	/**
-	 * Creates a new manager.
-	 * @param controller the controller in whose realm this map is used
-	 */
-	public ColorManager( DockController controller ){
-		super( controller );
-	}
+public class ColorManager extends UIProperties<Color, DockColor, ColorBridge> {
+  /**
+   * Creates a new manager.
+   *
+   * @param controller the controller in whose realm this map is used
+   */
+  public ColorManager(DockController controller) {
+    super(controller);
+  }
 }

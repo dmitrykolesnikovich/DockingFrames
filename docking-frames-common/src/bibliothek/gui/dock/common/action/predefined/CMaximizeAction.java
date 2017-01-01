@@ -25,10 +25,6 @@
  */
 package bibliothek.gui.dock.common.action.predefined;
 
-import java.awt.event.KeyEvent;
-
-import javax.swing.KeyStroke;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.common.intern.CDockable;
@@ -37,54 +33,59 @@ import bibliothek.gui.dock.common.mode.CLocationModeManager;
 import bibliothek.gui.dock.common.mode.ExtendedMode;
 import bibliothek.gui.dock.util.PropertyValue;
 
+import javax.swing.*;
+import java.awt.event.KeyEvent;
+
 /**
  * An action that {@link ExtendedMode#MAXIMIZED maximizes} each {@link CDockable} to which it is added.
+ *
  * @author Benjamin Sigg
  */
-public class CMaximizeAction extends CExtendedModeAction{
-    
-    /**
-     * {@link KeyStroke} used to go into, or go out from the maximized state.
-     */
-    private PropertyValue<KeyStroke> keyStrokeMaximizeChange = new PropertyValue<KeyStroke>( CControl.KEY_MAXIMIZE_CHANGE ){
-        @Override
-        protected void valueChanged( KeyStroke oldValue, KeyStroke newValue ) {
-            if( keyStrokeMaximized.getValue() == null )
-                setAccelerator( newValue );
-        }
-    };
-    
-    
-    /**
-     * {@link KeyStroke} used on the maximize-action.
-     */
-    private PropertyValue<KeyStroke> keyStrokeMaximized = new PropertyValue<KeyStroke>( CControl.KEY_GOTO_MAXIMIZED ){
-        @Override
-        protected void valueChanged( KeyStroke oldValue, KeyStroke newValue ) {
-            if( newValue == null )
-                setAccelerator( keyStrokeMaximizeChange.getValue() );
-            else
-                setAccelerator( newValue );
-        }
-    };
-    
-    /**
-     * Creates a new action
-     * @param control the control for which this action will be used
-     */
-    public CMaximizeAction( CControl control ){
-        super( control, ExtendedMode.MAXIMIZED, CLocationModeManager.ICON_MANAGER_KEY_MAXIMIZE, "maximize.in", "maximize.in.tooltip", CControl.KEY_GOTO_MAXIMIZED );
-    }
-    
+public class CMaximizeAction extends CExtendedModeAction {
+
+  /**
+   * {@link KeyStroke} used on the maximize-action.
+   */
+  private PropertyValue<KeyStroke> keyStrokeMaximized = new PropertyValue<KeyStroke>(CControl.KEY_GOTO_MAXIMIZED) {
     @Override
-    protected void setController( DockController controller ) {
-        super.setController( controller );
-        keyStrokeMaximizeChange.setProperties( controller );
-        keyStrokeMaximized.setProperties( controller );
+    protected void valueChanged(KeyStroke oldValue, KeyStroke newValue) {
+      if (newValue == null) {
+        setAccelerator(keyStrokeMaximizeChange.getValue());
+      }
+      else {
+        setAccelerator(newValue);
+      }
     }
-    
+  };
+  /**
+   * {@link KeyStroke} used to go into, or go out from the maximized state.
+   */
+  private PropertyValue<KeyStroke> keyStrokeMaximizeChange = new PropertyValue<KeyStroke>(CControl.KEY_MAXIMIZE_CHANGE) {
     @Override
-    protected boolean checkTrigger( KeyEvent event ) {
-        return !KeyStroke.getKeyStrokeForEvent( event ).equals( keyStrokeMaximizeChange.getValue());
+    protected void valueChanged(KeyStroke oldValue, KeyStroke newValue) {
+      if (keyStrokeMaximized.getValue() == null) setAccelerator(newValue);
     }
+  };
+
+  /**
+   * Creates a new action
+   *
+   * @param control the control for which this action will be used
+   */
+  public CMaximizeAction(CControl control) {
+    super(control, ExtendedMode.MAXIMIZED, CLocationModeManager.ICON_MANAGER_KEY_MAXIMIZE, "maximize.in", "maximize.in.tooltip",
+          CControl.KEY_GOTO_MAXIMIZED);
+  }
+
+  @Override
+  protected void setController(DockController controller) {
+    super.setController(controller);
+    keyStrokeMaximizeChange.setProperties(controller);
+    keyStrokeMaximized.setProperties(controller);
+  }
+
+  @Override
+  protected boolean checkTrigger(KeyEvent event) {
+    return !KeyStroke.getKeyStrokeForEvent(event).equals(keyStrokeMaximizeChange.getValue());
+  }
 }

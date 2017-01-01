@@ -25,88 +25,89 @@
  */
 package bibliothek.gui.dock.extension.css.transition.types;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.extension.css.transition.TransitionalCssProperty;
 import bibliothek.gui.dock.extension.css.transition.TransitionalCssPropertyCallback;
 
+import java.awt.*;
+
 /**
  * Animated property blending one {@link Color} into another {@link Color}.
+ *
  * @author Benjamin Sigg
  */
-public class TransitionalColorProperty implements TransitionalCssProperty<Color>{
-	private Color source;
-	private Color target;
-	private double transition;
-	private TransitionalCssPropertyCallback<Color> callback;
-	
-	@Override
-	public void setCallback( TransitionalCssPropertyCallback<Color> callback ){
-		this.callback = callback;
-	}
+public class TransitionalColorProperty implements TransitionalCssProperty<Color> {
+  private Color source;
+  private Color target;
+  private double transition;
+  private TransitionalCssPropertyCallback<Color> callback;
 
-	@Override
-	public void setSource( Color source ){
-		this.source = source;
-		update();
-	}
+  @Override
+  public void setCallback(TransitionalCssPropertyCallback<Color> callback) {
+    this.callback = callback;
+  }
 
-	@Override
-	public void setTarget( Color target ){
-		this.target = target;
-		update();
-	}
+  @Override
+  public void setSource(Color source) {
+    this.source = source;
+    update();
+  }
 
-	@Override
-	public void setTransition( double transition ){
-		this.transition = transition;
-		update();
-	}
+  @Override
+  public void setTarget(Color target) {
+    this.target = target;
+    update();
+  }
 
-	private void update(){
-		if( source == null && target == null ){
-			callback.set( null );
-		}
-		else{
-			int as = 0;
-			int rs = 0;
-			int gs = 0;
-			int bs = 0;
-			
-			int at = 0;
-			int rt = 0;
-			int gt = 0;
-			int bt = 0;
-			
-			if( source != null ){
-				as = source.getAlpha();
-				rs = source.getRed();
-				gs = source.getGreen();
-				bs = source.getBlue();
-			}
-			
-			if( target != null ){
-				at = target.getAlpha();
-				rt = target.getRed();
-				gt = target.getGreen();
-				bt = target.getBlue();
-			}
-			
-			int a = mix( as, at );
-			int r = mix( rs, rt );
-			int g = mix( gs, gt );
-			int b = mix( bs, bt );
-			
-			callback.set( new Color( r, g, b, a ) );
-		}
-	}
-	
-	private int mix( int a, int b ){
-		return Math.min( 255, Math.max( 0, (int)Math.round( a * (1-transition) + b * transition ) ) );
-	}
-	
-	@Override
-	public void step( int delay ){
-		update();
-	}
+  @Override
+  public void setTransition(double transition) {
+    this.transition = transition;
+    update();
+  }
+
+  private void update() {
+    if (source == null && target == null) {
+      callback.set(null);
+    }
+    else {
+      int as = 0;
+      int rs = 0;
+      int gs = 0;
+      int bs = 0;
+
+      int at = 0;
+      int rt = 0;
+      int gt = 0;
+      int bt = 0;
+
+      if (source != null) {
+        as = source.getAlpha();
+        rs = source.getRed();
+        gs = source.getGreen();
+        bs = source.getBlue();
+      }
+
+      if (target != null) {
+        at = target.getAlpha();
+        rt = target.getRed();
+        gt = target.getGreen();
+        bt = target.getBlue();
+      }
+
+      int a = mix(as, at);
+      int r = mix(rs, rt);
+      int g = mix(gs, gt);
+      int b = mix(bs, bt);
+
+      callback.set(new Color(r, g, b, a));
+    }
+  }
+
+  private int mix(int a, int b) {
+    return Math.min(255, Math.max(0, (int)Math.round(a * (1 - transition) + b * transition)));
+  }
+
+  @Override
+  public void step(int delay) {
+    update();
+  }
 }

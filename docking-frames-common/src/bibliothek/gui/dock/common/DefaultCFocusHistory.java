@@ -25,66 +25,68 @@
  */
 package bibliothek.gui.dock.common;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.common.intern.CDockable;
 import bibliothek.gui.dock.common.intern.CommonDockable;
 import bibliothek.gui.dock.control.focus.FocusHistory;
 import bibliothek.util.Filter;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * The default implementation of {@link CFocusHistory} does not offer any additional
  * functionality.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultCFocusHistory implements CFocusHistory{
-	private CControl control;
-	
-	/**
-	 * Creates a new history
-	 * @param control the source of all {@link CDockable}s
-	 */
-	public DefaultCFocusHistory( CControl control ){
-		this.control = control;
-	}
-	
-	public CDockable[] getHistory(){
-		FocusHistory history = control.getController().getFocusHistory();
-		List<CDockable> result = new ArrayList<CDockable>();
-		Dockable[] dockables = history.getHistory();
-		for( int i = dockables.length-1; i >= 0; i-- ){
-			Dockable dockable = dockables[i];
-			if( dockable instanceof CommonDockable ){
-				CDockable cdockable = ((CommonDockable)dockable).getDockable();
-				result.add( cdockable );
-			}
-		}
-		return result.toArray( new CDockable[ result.size() ] );
-	}
-	
-	public CDockable getFirst( Filter<CDockable> filter ){
-		CDockable[] history = getHistory();
-		Set<CDockable> visited = new HashSet<CDockable>();
-		
-		for( CDockable dockable : history ){
-			if( filter.includes( dockable )){
-				return dockable;
-			}
-			visited.add( dockable );
-		}
-		
-		for( CDockable dockable : control.getRegister().getDockables() ){
-			if( !visited.contains( dockable )){
-				if( filter.includes( dockable )){
-					return dockable;
-				}
-			}
-		}
-		
-		return null;
-	}
+public class DefaultCFocusHistory implements CFocusHistory {
+  private CControl control;
+
+  /**
+   * Creates a new history
+   *
+   * @param control the source of all {@link CDockable}s
+   */
+  public DefaultCFocusHistory(CControl control) {
+    this.control = control;
+  }
+
+  public CDockable[] getHistory() {
+    FocusHistory history = control.getController().getFocusHistory();
+    List<CDockable> result = new ArrayList<CDockable>();
+    Dockable[] dockables = history.getHistory();
+    for (int i = dockables.length - 1; i >= 0; i--) {
+      Dockable dockable = dockables[i];
+      if (dockable instanceof CommonDockable) {
+        CDockable cdockable = ((CommonDockable)dockable).getDockable();
+        result.add(cdockable);
+      }
+    }
+    return result.toArray(new CDockable[result.size()]);
+  }
+
+  public CDockable getFirst(Filter<CDockable> filter) {
+    CDockable[] history = getHistory();
+    Set<CDockable> visited = new HashSet<CDockable>();
+
+    for (CDockable dockable : history) {
+      if (filter.includes(dockable)) {
+        return dockable;
+      }
+      visited.add(dockable);
+    }
+
+    for (CDockable dockable : control.getRegister().getDockables()) {
+      if (!visited.contains(dockable)) {
+        if (filter.includes(dockable)) {
+          return dockable;
+        }
+      }
+    }
+
+    return null;
+  }
 }

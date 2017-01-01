@@ -26,88 +26,93 @@
 
 package bibliothek.gui.dock.station.screen;
 
-import java.awt.Dimension;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.ScreenDockStation;
+
+import java.awt.*;
 
 /**
  * A {@link ScreenDropSizeStrategy} is used by a {@link ScreenDockStation} to decide some details
  * on how to drop a {@link Dockable}.
+ *
  * @author Benjamin Sigg
  */
 public interface ScreenDropSizeStrategy {
-	/**
-	 * The {@link #getDropSize(ScreenDockStation, Dockable)} of a {@link Dockable} is always its
-	 * current size when using this strategy. This is the default strategy.
-	 */
-	public static final ScreenDropSizeStrategy CURRENT_SIZE = new ScreenDropSizeStrategy(){
-		public void install( ScreenDockStation station ){
-			// ignore
-		}
+  /**
+   * The {@link #getDropSize(ScreenDockStation, Dockable)} of a {@link Dockable} is always its
+   * current size when using this strategy. This is the default strategy.
+   */
+  public static final ScreenDropSizeStrategy CURRENT_SIZE = new ScreenDropSizeStrategy() {
+    public void install(ScreenDockStation station) {
+      // ignore
+    }
 
-		public void uninstall( ScreenDockStation station ){
-			// ignore
-		}
+    public void uninstall(ScreenDockStation station) {
+      // ignore
+    }
 
-		public Dimension getDropSize( ScreenDockStation station, Dockable dockable ){
-			return dockable.getComponent().getSize();
-		}
-		
-		public Dimension getAddSize( ScreenDockStation station, Dockable dockable ){
-			return dockable.getComponent().getPreferredSize();
-		}
-	};
-	
-	/**
-	 * This strategy always returns the preferred size of a {@link Dockable}.
-	 */
-	public static final ScreenDropSizeStrategy PREFERRED_SIZE = new ScreenDropSizeStrategy(){
-		public void install( ScreenDockStation station ){
-			// ignore
-		}
+    public Dimension getDropSize(ScreenDockStation station, Dockable dockable) {
+      return dockable.getComponent().getSize();
+    }
 
-		public void uninstall( ScreenDockStation station ){
-			// ignore
-		}
+    public Dimension getAddSize(ScreenDockStation station, Dockable dockable) {
+      return dockable.getComponent().getPreferredSize();
+    }
+  };
 
-		public Dimension getDropSize( ScreenDockStation station, Dockable dockable ){
-			return dockable.getComponent().getPreferredSize();
-		}
-		
-		public Dimension getAddSize( ScreenDockStation station, Dockable dockable ){
-			return dockable.getComponent().getPreferredSize();
-		}
-	};
-	
-	/**
-	 * Informs this strategy that is is used by <code>station</code>.
-	 * @param station the station using this strategy
-	 */
-	public void install( ScreenDockStation station );
-	
-	/**
-	 * Informs this strategy that it is no longer used by <code>station</code>.
-	 * @param station the station no longer using this strategy
-	 */
-	public void uninstall( ScreenDockStation station );
-	
-	/**
-	 * Called when <code>dockable</code> is about to be dropped into <code>station</code> and the
-	 * new size of <code>dockable</code> must be found.
-	 * @param station the new parent of <code>dockable</code>
-	 * @param dockable the item that is about to be dropped
-	 * @return the new size of <code>dockable</code>. This size will be validated by the
-	 * current {@link BoundaryRestriction}.
-	 */
-	public Dimension getDropSize( ScreenDockStation station, Dockable dockable );
-	
-	/**
-	 * Called when <code>dockable</code> is added to <code>station</code>, but not by a drag and drop
-	 * operation.
-	 * @param station the new parent of <code>dockable</code>
-	 * @param dockable the item that is about to be dropped
-	 * @return the new size of <code>dockable</code>, usually this is the preferred size
-	 */
-	public Dimension getAddSize( ScreenDockStation station, Dockable dockable );
+  /**
+   * This strategy always returns the preferred size of a {@link Dockable}.
+   */
+  public static final ScreenDropSizeStrategy PREFERRED_SIZE = new ScreenDropSizeStrategy() {
+    public void install(ScreenDockStation station) {
+      // ignore
+    }
+
+    public void uninstall(ScreenDockStation station) {
+      // ignore
+    }
+
+    public Dimension getDropSize(ScreenDockStation station, Dockable dockable) {
+      return dockable.getComponent().getPreferredSize();
+    }
+
+    public Dimension getAddSize(ScreenDockStation station, Dockable dockable) {
+      return dockable.getComponent().getPreferredSize();
+    }
+  };
+
+  /**
+   * Informs this strategy that is is used by <code>station</code>.
+   *
+   * @param station the station using this strategy
+   */
+  public void install(ScreenDockStation station);
+
+  /**
+   * Informs this strategy that it is no longer used by <code>station</code>.
+   *
+   * @param station the station no longer using this strategy
+   */
+  public void uninstall(ScreenDockStation station);
+
+  /**
+   * Called when <code>dockable</code> is about to be dropped into <code>station</code> and the
+   * new size of <code>dockable</code> must be found.
+   *
+   * @param station  the new parent of <code>dockable</code>
+   * @param dockable the item that is about to be dropped
+   * @return the new size of <code>dockable</code>. This size will be validated by the
+   * current {@link BoundaryRestriction}.
+   */
+  public Dimension getDropSize(ScreenDockStation station, Dockable dockable);
+
+  /**
+   * Called when <code>dockable</code> is added to <code>station</code>, but not by a drag and drop
+   * operation.
+   *
+   * @param station  the new parent of <code>dockable</code>
+   * @param dockable the item that is about to be dropped
+   * @return the new size of <code>dockable</code>, usually this is the preferred size
+   */
+  public Dimension getAddSize(ScreenDockStation station, Dockable dockable);
 }

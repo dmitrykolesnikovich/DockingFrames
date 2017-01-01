@@ -33,19 +33,20 @@ import bibliothek.util.Path;
 
 /**
  * Lets the user choose the value of {@link StackDockStation#TAB_PLACEMENT}.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
-public class TabPlacementPreference extends ChoiceDockPropertyPreference<TabPlacement>{
-	/**
-	 * Creates a new choice.
-	 * @param properties the properties to read and write
-	 * @param path the unique identifier of this preference
-	 */
-	public TabPlacementPreference( DockProperties properties, Path path ){
-		super( properties, StackDockStation.TAB_PLACEMENT, path, new TabPlacementChoice( properties ) );
-		
-		setLabelId( "preference.layout.tabplacement.label" );
-		setDescriptionId( "preference.layout.tabplacement.description" );
-	}
+public class TabPlacementPreference extends ChoiceDockPropertyPreference<TabPlacement> {
+  /**
+   * Creates a new choice.
+   *
+   * @param properties the properties to read and write
+   * @param path       the unique identifier of this preference
+   */
+  public TabPlacementPreference(DockProperties properties, Path path) {
+    super(properties, StackDockStation.TAB_PLACEMENT, path, new TabPlacementChoice(properties));
+
+    setLabelId("preference.layout.tabplacement.label");
+    setDescriptionId("preference.layout.tabplacement.description");
+  }
 }

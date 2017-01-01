@@ -29,12 +29,14 @@ import bibliothek.gui.DockController;
 
 /**
  * A button which requires a {@link DockController} to paint its content.
+ *
  * @author Benjamin Sigg
  */
 public interface RoundButtonConnectable {
-    /**
-     * Sets the controller of this element.
-     * @param controller the controller, can be <code>null</code>
-     */
-    public void setController( DockController controller );
+  /**
+   * Sets the controller of this element.
+   *
+   * @param controller the controller, can be <code>null</code>
+   */
+  public void setController(DockController controller);
 }

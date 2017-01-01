@@ -30,33 +30,38 @@ import bibliothek.gui.dock.common.intern.CDockable;
 
 /**
  * Represents a {@link CDockable} in a {@link CPerspective}.
+ *
  * @author Benjamin Sigg
  */
-public interface CDockablePerspective extends CElementPerspective{
-	/**
-	 * Gets the next parent of this perspective that represents a {@link CStation}. This method
-	 * may jump over some parents to get to the next station.
-	 * @return the next station, may be <code>null</code>
-	 */
-	public CStationPerspective getParent();
-	
-	/**
-	 * Sets the working-area of this element. This user will not be able drag
-	 * this element away from that working-area.
-	 * @param workingArea the working-area, can be <code>null</code>
-	 */
-	public void setWorkingArea( CStationPerspective workingArea );
-	
-	/**
-	 * Gets the working-area of this element
-	 * @return the area, can be <code>null</code>
-	 * @see #setWorkingArea(CStationPerspective)
-	 */
-	public CStationPerspective getWorkingArea();
-	
-	/**
-	 * Gets information about the locations this dockable had in the past.
-	 * @return the locations, not <code>null</code>
-	 */
-	public LocationHistory getLocationHistory();
+public interface CDockablePerspective extends CElementPerspective {
+  /**
+   * Gets the next parent of this perspective that represents a {@link CStation}. This method
+   * may jump over some parents to get to the next station.
+   *
+   * @return the next station, may be <code>null</code>
+   */
+  public CStationPerspective getParent();
+
+  /**
+   * Gets the working-area of this element
+   *
+   * @return the area, can be <code>null</code>
+   * @see #setWorkingArea(CStationPerspective)
+   */
+  public CStationPerspective getWorkingArea();
+
+  /**
+   * Sets the working-area of this element. This user will not be able drag
+   * this element away from that working-area.
+   *
+   * @param workingArea the working-area, can be <code>null</code>
+   */
+  public void setWorkingArea(CStationPerspective workingArea);
+
+  /**
+   * Gets information about the locations this dockable had in the past.
+   *
+   * @return the locations, not <code>null</code>
+   */
+  public LocationHistory getLocationHistory();
 }

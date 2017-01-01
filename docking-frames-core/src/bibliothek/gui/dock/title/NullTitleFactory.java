@@ -28,21 +28,24 @@ package bibliothek.gui.dock.title;
 
 /**
  * A {@link DockTitleFactory} that does not create any titles.
+ *
  * @author Benjamin Sigg
  */
 public class NullTitleFactory implements DockTitleFactory {
-	/** a public instance of {@link NullTitleFactory} */
-	public static final NullTitleFactory INSTANCE = new NullTitleFactory();
-	
-	public void install( DockTitleRequest request ){
-		// ignore
-	}
-	
-	public void uninstall( DockTitleRequest request ){
-		// ignore	
-	}
-	
-	public void request( DockTitleRequest request ){
-		request.answer( null );	
-	}
+  /**
+   * a public instance of {@link NullTitleFactory}
+   */
+  public static final NullTitleFactory INSTANCE = new NullTitleFactory();
+
+  public void install(DockTitleRequest request) {
+    // ignore
+  }
+
+  public void uninstall(DockTitleRequest request) {
+    // ignore
+  }
+
+  public void request(DockTitleRequest request) {
+    request.answer(null);
+  }
 }

@@ -29,37 +29,39 @@ import bibliothek.gui.dock.common.CMinimizeArea;
 
 /**
  * A location describing a child of a {@link CMinimizeArea}.
+ *
  * @author Benjamin Sigg
  */
-public class CMinimizeAreaLocation extends CFlapLocation{
-    private CMinimizeArea area;
+public class CMinimizeAreaLocation extends CFlapLocation {
+  private CMinimizeArea area;
 
-    /**
-     * Crates a new location at the end of the minimize area.
-     * @param area the minimize area, not <code>null</code>
-     */
-    public CMinimizeAreaLocation( CMinimizeArea area ){
-        if( area == null )
-            throw new NullPointerException( "area must not be null" );
-        
-        this.area = area;
-    }
-    
-    /**
-     * Gets the {@link CMinimizeArea} which is represented by this location.
-     * @return the area, not <code>null</code>
-     */
-    public CMinimizeArea getArea(){
-		return area;
-	}
-    
-    @Override
-    public String findRoot() {
-        return area.getUniqueId();
-    }
-    
-    @Override
-    public String toString() {
-        return "[" + findRoot() + "]";
-    }
+  /**
+   * Crates a new location at the end of the minimize area.
+   *
+   * @param area the minimize area, not <code>null</code>
+   */
+  public CMinimizeAreaLocation(CMinimizeArea area) {
+    if (area == null) throw new NullPointerException("area must not be null");
+
+    this.area = area;
+  }
+
+  /**
+   * Gets the {@link CMinimizeArea} which is represented by this location.
+   *
+   * @return the area, not <code>null</code>
+   */
+  public CMinimizeArea getArea() {
+    return area;
+  }
+
+  @Override
+  public String findRoot() {
+    return area.getUniqueId();
+  }
+
+  @Override
+  public String toString() {
+    return "[" + findRoot() + "]";
+  }
 }

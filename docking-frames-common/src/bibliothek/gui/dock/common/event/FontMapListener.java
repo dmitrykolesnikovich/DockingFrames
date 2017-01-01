@@ -31,14 +31,16 @@ import bibliothek.gui.dock.util.font.FontModifier;
 /**
  * A listener to a {@link FontMap}, gets informed when an entry
  * of the map changes.
+ *
  * @author Benjamin Sigg
  */
 public interface FontMapListener {
-    /**
-     * Called when a font changed.
-     * @param map the source of the event
-     * @param key the id of the font that changed
-     * @param font the new font, might be <code>null</code>
-     */
-    public void fontChanged( FontMap map, String key, FontModifier font );
+  /**
+   * Called when a font changed.
+   *
+   * @param map  the source of the event
+   * @param key  the id of the font that changed
+   * @param font the new font, might be <code>null</code>
+   */
+  public void fontChanged(FontMap map, String key, FontModifier font);
 }

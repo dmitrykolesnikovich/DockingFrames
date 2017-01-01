@@ -25,105 +25,112 @@
  */
 package bibliothek.extension.gui.dock.theme.eclipse.stack.tab4;
 
-import java.awt.Component;
-import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
-import javax.swing.SwingUtilities;
-
 import bibliothek.extension.gui.dock.theme.eclipse.stack.tab.TabComponent;
 import bibliothek.gui.DockController;
 import bibliothek.gui.dock.control.GlobalMouseDispatcher;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
 /**
  * Tells whether the mouse is currently over a {@link TabComponent} or one of its children.
+ *
  * @author Benjamin Sigg
  */
-public class HoverCondition extends TabComponentCondition{
-	/** the last event that has been seen */
-	private MouseEvent latestEvent;
-	
-	/** the controller in whose realm this condition is used */
-	private DockController controller;
-	
-	/** the listener that was added to the {@link GlobalMouseDispatcher} */
-	private Listener listener = new Listener();
-	
-	/**
-	 * Creates a new condition.
-	 * @param component the component to observe
-	 */
-	public HoverCondition( TabComponent component ){
-		super( component );
-	}
+public class HoverCondition extends TabComponentCondition {
+  /**
+   * the last event that has been seen
+   */
+  private MouseEvent latestEvent;
 
-	/**
-	 * Sets the controller which is used to register global {@link MouseEvent}s.
-	 * @param controller the controller to observe or <code>null</code> to remove all listeners
-	 */
-	public void setController( DockController controller ){
-		if( this.controller != controller ){
-			if( this.controller != null ){
-				GlobalMouseDispatcher dispatcher = this.controller.getGlobalMouseDispatcher();
-				dispatcher.removeMouseListener( listener );
-				dispatcher.removeMouseMotionListener( listener );
-			}
-			this.controller = controller;
-			if( this.controller != null ){
-				GlobalMouseDispatcher dispatcher = this.controller.getGlobalMouseDispatcher();
-				dispatcher.addMouseListener( listener );
-				dispatcher.addMouseMotionListener( listener );
-			}
-			invalidate( null );
-		}
-	}
-	
-	@Override
-	protected boolean checkCondition(){
-		MouseEvent event = latestEvent;
-		if( event == null ){
-			return false;
-		}
-		Point location = event.getPoint();
-		Component component = getComponent().getComponent();
-		location = SwingUtilities.convertPoint( event.getComponent(), location, component );
-		return component.contains( location );
-	}
-	
-	private void invalidate( MouseEvent event ){
-		latestEvent = event;
-		invalidate();
-	}
-	
-	private class Listener implements MouseListener, MouseMotionListener{
-		public void mouseDragged( MouseEvent e ){
-			// ignore	
-		}
+  /**
+   * the controller in whose realm this condition is used
+   */
+  private DockController controller;
 
-		public void mouseMoved( MouseEvent e ){
-			invalidate( e );
-		}
+  /**
+   * the listener that was added to the {@link GlobalMouseDispatcher}
+   */
+  private Listener listener = new Listener();
 
-		public void mouseClicked( MouseEvent e ){
-			invalidate( e );
-		}
+  /**
+   * Creates a new condition.
+   *
+   * @param component the component to observe
+   */
+  public HoverCondition(TabComponent component) {
+    super(component);
+  }
 
-		public void mousePressed( MouseEvent e ){
-			invalidate( e );
-		}
+  /**
+   * Sets the controller which is used to register global {@link MouseEvent}s.
+   *
+   * @param controller the controller to observe or <code>null</code> to remove all listeners
+   */
+  public void setController(DockController controller) {
+    if (this.controller != controller) {
+      if (this.controller != null) {
+        GlobalMouseDispatcher dispatcher = this.controller.getGlobalMouseDispatcher();
+        dispatcher.removeMouseListener(listener);
+        dispatcher.removeMouseMotionListener(listener);
+      }
+      this.controller = controller;
+      if (this.controller != null) {
+        GlobalMouseDispatcher dispatcher = this.controller.getGlobalMouseDispatcher();
+        dispatcher.addMouseListener(listener);
+        dispatcher.addMouseMotionListener(listener);
+      }
+      invalidate(null);
+    }
+  }
 
-		public void mouseReleased( MouseEvent e ){
-			invalidate( e );
-		}
+  @Override
+  protected boolean checkCondition() {
+    MouseEvent event = latestEvent;
+    if (event == null) {
+      return false;
+    }
+    Point location = event.getPoint();
+    Component component = getComponent().getComponent();
+    location = SwingUtilities.convertPoint(event.getComponent(), location, component);
+    return component.contains(location);
+  }
 
-		public void mouseEntered( MouseEvent e ){
-			invalidate( e );
-		}
+  private void invalidate(MouseEvent event) {
+    latestEvent = event;
+    invalidate();
+  }
 
-		public void mouseExited( MouseEvent e ){
-			invalidate( e );
-		}		
-	}
+  private class Listener implements MouseListener, MouseMotionListener {
+    public void mouseDragged(MouseEvent e) {
+      // ignore
+    }
+
+    public void mouseMoved(MouseEvent e) {
+      invalidate(e);
+    }
+
+    public void mouseClicked(MouseEvent e) {
+      invalidate(e);
+    }
+
+    public void mousePressed(MouseEvent e) {
+      invalidate(e);
+    }
+
+    public void mouseReleased(MouseEvent e) {
+      invalidate(e);
+    }
+
+    public void mouseEntered(MouseEvent e) {
+      invalidate(e);
+    }
+
+    public void mouseExited(MouseEvent e) {
+      invalidate(e);
+    }
+  }
 }

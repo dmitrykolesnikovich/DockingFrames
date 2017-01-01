@@ -30,18 +30,19 @@ import bibliothek.gui.dock.title.DockTitleRequest;
 
 /**
  * A factory creating new {@link SmoothDefaultButtonTitle}s.
+ *
  * @author Benjamin Sigg
  */
-public class SmoothDefaultButtonTitleFactory implements DockTitleFactory{
-	public void install( DockTitleRequest request ){
-		// ignore	
-	}
-	
-	public void uninstall( DockTitleRequest request ){
-		// ignore	
-	}
-	
-	public void request( DockTitleRequest request ){
-		request.answer( new SmoothDefaultButtonTitle( request.getTarget(), request.getVersion() ) );	
-	}
+public class SmoothDefaultButtonTitleFactory implements DockTitleFactory {
+  public void install(DockTitleRequest request) {
+    // ignore
+  }
+
+  public void uninstall(DockTitleRequest request) {
+    // ignore
+  }
+
+  public void request(DockTitleRequest request) {
+    request.answer(new SmoothDefaultButtonTitle(request.getTarget(), request.getVersion()));
+  }
 }

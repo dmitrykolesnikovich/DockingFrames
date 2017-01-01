@@ -25,32 +25,33 @@
  */
 package bibliothek.extension.gui.dock.preference.preferences;
 
-import java.awt.event.KeyEvent;
-
-import javax.swing.KeyStroke;
-
 import bibliothek.gui.DockFrontend;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.util.DockProperties;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+import java.awt.event.KeyEvent;
+
 /**
  * Preference for the shortcut used by the {@link DockFrontend} to hide
  * {@link Dockable}s.
+ *
  * @author Benjamin Sigg
  * @see DockFrontend#HIDE_ACCELERATOR
  */
-public class KeyStrokeHidePreference extends DockPropertyPreference<KeyStroke>{
-	/**
-	 * Creates a new preference
-	 * @param properties to read and write the value of this preference
-	 */
-	public KeyStrokeHidePreference( DockProperties properties ){
-		super( properties, DockFrontend.HIDE_ACCELERATOR, Path.TYPE_KEYSTROKE_PATH, new Path( "dock.frontend.INIT_SELECTION" ));
-		
-		setLabelId( "preference.shortcuts.hide_accelerator.label" );
-		setDescriptionId( "preference.shortcuts.hide_accelerator.description" );
-		
-		setDefaultValue( KeyStroke.getKeyStroke( KeyEvent.VK_F4, KeyEvent.CTRL_DOWN_MASK  ) );
-	}
+public class KeyStrokeHidePreference extends DockPropertyPreference<KeyStroke> {
+  /**
+   * Creates a new preference
+   *
+   * @param properties to read and write the value of this preference
+   */
+  public KeyStrokeHidePreference(DockProperties properties) {
+    super(properties, DockFrontend.HIDE_ACCELERATOR, Path.TYPE_KEYSTROKE_PATH, new Path("dock.frontend.INIT_SELECTION"));
+
+    setLabelId("preference.shortcuts.hide_accelerator.label");
+    setDescriptionId("preference.shortcuts.hide_accelerator.description");
+
+    setDefaultValue(KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.CTRL_DOWN_MASK));
+  }
 }

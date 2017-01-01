@@ -25,40 +25,36 @@
  */
 package bibliothek.gui.dock.common.perspective;
 
-import bibliothek.gui.dock.common.CContentArea;
-import bibliothek.gui.dock.common.CExternalizeArea;
-import bibliothek.gui.dock.common.CGridArea;
-import bibliothek.gui.dock.common.CMinimizeArea;
-import bibliothek.gui.dock.common.CStation;
-import bibliothek.gui.dock.common.CWorkingArea;
+import bibliothek.gui.dock.common.*;
 import bibliothek.util.Path;
 
 /**
  * This default implementation of a {@link MissingPerspectiveStrategy} creates {@link CStationPerspective}s for
  * the {@link CStation}s that are already known to the framework.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultMissingPerspectiveFactory implements MissingPerspectiveStrategy{
-	public CStationPerspective createStation( String id, Path typeId ){
-		if( CContentArea.TYPE_ID_CENTER.equals( typeId )){
-			return new CGridPerspective( id, typeId, false );
-		}
-		if( CContentArea.TYPE_ID_MINIMIZE.equals( typeId )){
-			return new CMinimizePerspective( id, typeId );
-		}
-		if( CGridArea.TYPE_ID.equals( typeId )){
-			return new CGridPerspective( id, typeId, false );
-		}
-		if( CWorkingArea.TYPE_ID.equals( typeId )){
-			return new CGridPerspective( id, typeId, true );
-		}
-		if( CMinimizeArea.TYPE_ID.equals( typeId )){
-			return new CMinimizePerspective( id, typeId );
-		}
-		if( CExternalizeArea.TYPE_ID.equals( typeId )){
-			return new CExternalizePerspective( id, typeId );
-		}
-		
-		return null;
-	}
+public class DefaultMissingPerspectiveFactory implements MissingPerspectiveStrategy {
+  public CStationPerspective createStation(String id, Path typeId) {
+    if (CContentArea.TYPE_ID_CENTER.equals(typeId)) {
+      return new CGridPerspective(id, typeId, false);
+    }
+    if (CContentArea.TYPE_ID_MINIMIZE.equals(typeId)) {
+      return new CMinimizePerspective(id, typeId);
+    }
+    if (CGridArea.TYPE_ID.equals(typeId)) {
+      return new CGridPerspective(id, typeId, false);
+    }
+    if (CWorkingArea.TYPE_ID.equals(typeId)) {
+      return new CGridPerspective(id, typeId, true);
+    }
+    if (CMinimizeArea.TYPE_ID.equals(typeId)) {
+      return new CMinimizePerspective(id, typeId);
+    }
+    if (CExternalizeArea.TYPE_ID.equals(typeId)) {
+      return new CExternalizePerspective(id, typeId);
+    }
+
+    return null;
+  }
 }

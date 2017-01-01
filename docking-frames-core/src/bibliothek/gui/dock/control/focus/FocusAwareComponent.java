@@ -25,32 +25,34 @@
  */
 package bibliothek.gui.dock.control.focus;
 
-import java.awt.Component;
-
 import bibliothek.gui.Dockable;
+
+import java.awt.*;
 
 /**
  * A {@link Component} implementing this interface tells the framework that
  * it is aware of the existence of the {@link MouseFocusObserver} and that this
  * {@link Component} prefers to request its focus independently. The framework
  * will call {@link #maybeRequestFocus()} instead of {@link Component#requestFocusInWindow()}
- * when it encounters this interface.  
+ * when it encounters this interface.
+ *
  * @author Benjamin Sigg
  */
 public interface FocusAwareComponent {
-	/**
-	 * Called by the {@link MouseFocusObserver} instead of 
-	 * {@link Component#requestFocusInWindow()}.
-	 */
-	public void maybeRequestFocus();
+  /**
+   * Called by the {@link MouseFocusObserver} instead of
+   * {@link Component#requestFocusInWindow()}.
+   */
+  public void maybeRequestFocus();
 
-	/**
-	 * Informs this {@link FocusAwareComponent} that is should run <code>run</code> after
-	 * it has requested the focus. <code>run</code> must only be executed once. It does not
-	 * contain references to objects that need to be cleaned by the garbage collector, so this
-	 * {@link FocusAwareComponent} can keep a reference of <code>run</code> for a long time.
-	 * @param run this {@link Runnable} will make sure that the {@link Dockable} is selected
-	 * that belongs to this {@link Component}, not <code>null</code>.
-	 */
-	public void invokeOnFocusRequest( Runnable run );
+  /**
+   * Informs this {@link FocusAwareComponent} that is should run <code>run</code> after
+   * it has requested the focus. <code>run</code> must only be executed once. It does not
+   * contain references to objects that need to be cleaned by the garbage collector, so this
+   * {@link FocusAwareComponent} can keep a reference of <code>run</code> for a long time.
+   *
+   * @param run this {@link Runnable} will make sure that the {@link Dockable} is selected
+   *            that belongs to this {@link Component}, not <code>null</code>.
+   */
+  public void invokeOnFocusRequest(Runnable run);
 }

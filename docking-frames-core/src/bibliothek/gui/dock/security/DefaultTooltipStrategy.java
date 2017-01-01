@@ -25,47 +25,48 @@
  */
 package bibliothek.gui.dock.security;
 
-import java.awt.Component;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
-
-import javax.swing.JComponent;
-import javax.swing.JToolTip;
 
 /**
  * The default implementation of {@link TooltipStrategy} calls the methods of the {@link Component}
  * under the mouse whenever possible.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultTooltipStrategy implements TooltipStrategy{
-	public void install( GlassedPane pane ){
-		// ignore
-	}
-	public void uninstall( GlassedPane pane ){
-		// ignore
-	}
-	
-	public void setTooltipText( Component component, MouseEvent event, boolean overNewComponent, TooltipStrategyCallback callback ){
-		if( component instanceof JComponent ){
-        	JComponent jcomp = (JComponent)component;
-            String tooltip = jcomp.getToolTipText( event );
-            String thistip = callback.getToolTipText();
+public class DefaultTooltipStrategy implements TooltipStrategy {
+  public void install(GlassedPane pane) {
+    // ignore
+  }
 
-            if( tooltip != thistip || overNewComponent ){
-                if( tooltip == null || thistip == null || !tooltip.equals( thistip ) || overNewComponent ){
-                	callback.setToolTipText( tooltip );
-                }
-            }
+  public void uninstall(GlassedPane pane) {
+    // ignore
+  }
+
+  public void setTooltipText(Component component, MouseEvent event, boolean overNewComponent, TooltipStrategyCallback callback) {
+    if (component instanceof JComponent) {
+      JComponent jcomp = (JComponent)component;
+      String tooltip = jcomp.getToolTipText(event);
+      String thistip = callback.getToolTipText();
+
+      if (tooltip != thistip || overNewComponent) {
+        if (tooltip == null || thistip == null || !tooltip.equals(thistip) || overNewComponent) {
+          callback.setToolTipText(tooltip);
         }
-        else{
-        	callback.setToolTipText( null );
-        }
-	}
-	public JToolTip createTooltip( Component component, TooltipStrategyCallback callback ){
-		if( component instanceof JComponent ){
-    		return ((JComponent)component).createToolTip();
-    	}
-    	else{
-    		return callback.createToolTip();
-    	}
-	}
+      }
+    }
+    else {
+      callback.setToolTipText(null);
+    }
+  }
+
+  public JToolTip createTooltip(Component component, TooltipStrategyCallback callback) {
+    if (component instanceof JComponent) {
+      return ((JComponent)component).createToolTip();
+    }
+    else {
+      return callback.createToolTip();
+    }
+  }
 }

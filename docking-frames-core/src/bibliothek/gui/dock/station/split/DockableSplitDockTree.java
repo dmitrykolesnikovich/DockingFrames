@@ -29,11 +29,12 @@ import bibliothek.gui.Dockable;
 
 /**
  * Implementation of a {@link SplitDockTree} that works with {@link Dockable}s.
+ *
  * @author Benjamin Sigg
  */
-public class DockableSplitDockTree extends SplitDockTree<Dockable>{
-	@Override
-	public Dockable[] array( int size ){
-		return new Dockable[ size ];
-	}
+public class DockableSplitDockTree extends SplitDockTree<Dockable> {
+  @Override
+  public Dockable[] array(int size) {
+    return new Dockable[size];
+  }
 }

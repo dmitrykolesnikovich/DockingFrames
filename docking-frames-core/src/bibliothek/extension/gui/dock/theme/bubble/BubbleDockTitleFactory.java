@@ -30,18 +30,19 @@ import bibliothek.gui.dock.title.DockTitleRequest;
 
 /**
  * A factory creating ordinary instances of {@link BubbleDockTitle}.
+ *
  * @author Benjamin Sigg
  */
 public class BubbleDockTitleFactory implements DockTitleFactory {
-	public void install( DockTitleRequest request ){
-		// ignore
-	}
-	
-	public void uninstall( DockTitleRequest request ){
-		// ignore	
-	}
-	
-	public void request( DockTitleRequest request ){
-		request.answer( new BubbleDockTitle( request.getTarget(), request.getVersion() ) );
-	}
+  public void install(DockTitleRequest request) {
+    // ignore
+  }
+
+  public void uninstall(DockTitleRequest request) {
+    // ignore
+  }
+
+  public void request(DockTitleRequest request) {
+    request.answer(new BubbleDockTitle(request.getTarget(), request.getVersion()));
+  }
 }

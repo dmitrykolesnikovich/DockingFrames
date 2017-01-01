@@ -34,9 +34,10 @@ import bibliothek.util.FrameworkOnly;
  * The combination of a {@link CommonDockAction} and a {@link SharingStandardDockAction}, does not introduce
  * any new methods or fields.<br>
  * This is the interface any {@link DockAction} that is used by a {@link CDecorateableAction} must implement.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public interface CommonDecoratableDockAction extends CommonDockAction, SharingStandardDockAction{
+public interface CommonDecoratableDockAction extends CommonDockAction, SharingStandardDockAction {
 
 }

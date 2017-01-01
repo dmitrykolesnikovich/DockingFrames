@@ -35,34 +35,39 @@ import bibliothek.gui.dock.title.DockTitleVersion;
 /**
  * Implements several methods that could be used by a {@link CommonDockStation}. Instances
  * of this interface are most times used as delegate by a {@link CommonDockStation}.
- * @author Benjamin Sigg
+ *
  * @param <S> the type of {@link DockStation} this delegate represents
+ * @author Benjamin Sigg
  */
 public interface CommonStationDelegate<S extends CommonDockStation<?, ?>> {
-	/**
-	 * Gets a result for {@link CommonDockable#getDockable()}.
-	 * @return the dockable as it is seen by Common
-	 */
-	public CDockable getDockable();
-	
-	/**
-	 * Gets a result for {@link CommonDockStation#getStation()}.
-	 * @return the station as it is seen by Common
-	 */
-	public CStation<S> getStation();
-	
-	/**
-	 * Gets a result for {@link CommonDockable#getSources()}.
-	 * @return the sources for the owner of this delegate
-	 */
-	public DockActionSource[] getSources();
-	
-	/**
-	 * Decides whether to show <code>title</code> for the owner
-	 * of this delegate.
-	 * @param title the title that might be shown
-	 * @return <code>true</code> if the title should be visible, <code>false</code>
-	 * otherwise
-	 */
-	public boolean isTitleDisplayed( DockTitleVersion title );
+  /**
+   * Gets a result for {@link CommonDockable#getDockable()}.
+   *
+   * @return the dockable as it is seen by Common
+   */
+  public CDockable getDockable();
+
+  /**
+   * Gets a result for {@link CommonDockStation#getStation()}.
+   *
+   * @return the station as it is seen by Common
+   */
+  public CStation<S> getStation();
+
+  /**
+   * Gets a result for {@link CommonDockable#getSources()}.
+   *
+   * @return the sources for the owner of this delegate
+   */
+  public DockActionSource[] getSources();
+
+  /**
+   * Decides whether to show <code>title</code> for the owner
+   * of this delegate.
+   *
+   * @param title the title that might be shown
+   * @return <code>true</code> if the title should be visible, <code>false</code>
+   * otherwise
+   */
+  public boolean isTitleDisplayed(DockTitleVersion title);
 }

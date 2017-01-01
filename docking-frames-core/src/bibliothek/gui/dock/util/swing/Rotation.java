@@ -27,15 +27,21 @@ package bibliothek.gui.dock.util.swing;
 
 /**
  * Represents a counter-clockwise rotation of a multiple of 90 degrees.
+ *
  * @author Benjamin Sigg
  */
 public enum Rotation {
-	/** no rotation at all */
-	DEGREE_0,
-	/** top wanders to the left */
-	DEGREE_90,
-	/** top wanders to bottom */
-	DEGREE_180,
-	/** top wanders to the right */
-	DEGREE_270,
+  /**
+   * no rotation at all
+   */
+  DEGREE_0, /**
+   * top wanders to the left
+   */
+  DEGREE_90, /**
+   * top wanders to bottom
+   */
+  DEGREE_180, /**
+   * top wanders to the right
+   */
+  DEGREE_270,
 }

@@ -32,30 +32,37 @@ import bibliothek.util.Path;
 
 /**
  * Represents a text that is used by a {@link MenuPiece}
+ *
  * @author Benjamin Sigg
  */
-public abstract class MenuPieceText extends TextValue{
-	/** what kind of {@link UIValue} this is */
-	public static final Path KIND_MENU = KIND_TEXT.append( "menu" );
-	
-	/** the menu using the text */
-	private MenuPiece menu;
-	
-	/**
-	 * Creates a new text.
-	 * @param id the unique identifier of this text
-	 * @param menu the menu that is using this text
-	 */
-	public MenuPieceText( String id, MenuPiece menu ){
-		super( id, KIND_MENU );
-		this.menu = menu;
-	}
-	
-	/**
-	 * Gets the menu which is using this text.
-	 * @return the menu
-	 */
-	public MenuPiece getMenu(){
-		return menu;
-	}
+public abstract class MenuPieceText extends TextValue {
+  /**
+   * what kind of {@link UIValue} this is
+   */
+  public static final Path KIND_MENU = KIND_TEXT.append("menu");
+
+  /**
+   * the menu using the text
+   */
+  private MenuPiece menu;
+
+  /**
+   * Creates a new text.
+   *
+   * @param id   the unique identifier of this text
+   * @param menu the menu that is using this text
+   */
+  public MenuPieceText(String id, MenuPiece menu) {
+    super(id, KIND_MENU);
+    this.menu = menu;
+  }
+
+  /**
+   * Gets the menu which is using this text.
+   *
+   * @return the menu
+   */
+  public MenuPiece getMenu() {
+    return menu;
+  }
 }

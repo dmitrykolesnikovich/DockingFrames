@@ -25,16 +25,17 @@
  */
 package bibliothek.gui.dock.util.icon;
 
-import javax.swing.Icon;
-
 import bibliothek.gui.dock.util.IconManager;
 import bibliothek.gui.dock.util.UIBridge;
+
+import javax.swing.*;
 
 /**
  * A filter between {@link IconManager} and {@link DockIcon}, transfers {@link Icon}s
  * from {@link IconManager} to {@link DockIcon}.
+ *
  * @author Benjamin Sigg
  */
 public interface DockIconBridge extends UIBridge<Icon, DockIcon> {
-	// nothing
+  // nothing
 }

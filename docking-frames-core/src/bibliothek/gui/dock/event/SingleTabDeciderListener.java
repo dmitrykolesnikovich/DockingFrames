@@ -30,14 +30,16 @@ import bibliothek.gui.dock.displayer.SingleTabDecider;
 
 /**
  * This listener is added to a {@link SingleTabDecider}.
+ *
  * @author Benjamin Sigg
  */
 public interface SingleTabDeciderListener {
-	/**
-	 * Called if the single-tab property of <code>dockable</code> might be
-	 * changed.
-	 * @param source the source of the event
-	 * @param dockable the affected dockable
-	 */
-	public void showSingleTabChanged( SingleTabDecider source, Dockable dockable );
+  /**
+   * Called if the single-tab property of <code>dockable</code> might be
+   * changed.
+   *
+   * @param source   the source of the event
+   * @param dockable the affected dockable
+   */
+  public void showSingleTabChanged(SingleTabDecider source, Dockable dockable);
 }

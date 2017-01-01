@@ -31,12 +31,7 @@ import bibliothek.gui.dock.action.DefaultActionOffer;
 import bibliothek.gui.dock.action.view.ActionViewConverter;
 import bibliothek.gui.dock.component.DefaultDockComponentManager;
 import bibliothek.gui.dock.component.DockComponentManager;
-import bibliothek.gui.dock.control.focus.DefaultFocusHistory;
-import bibliothek.gui.dock.control.focus.DefaultFocusStrategy;
-import bibliothek.gui.dock.control.focus.DefaultMouseFocusObserver;
-import bibliothek.gui.dock.control.focus.FocusController;
-import bibliothek.gui.dock.control.focus.FocusHistory;
-import bibliothek.gui.dock.control.focus.MouseFocusObserver;
+import bibliothek.gui.dock.control.focus.*;
 import bibliothek.gui.dock.control.relocator.DefaultDockRelocator;
 import bibliothek.gui.dock.event.ControllerSetupListener;
 import bibliothek.gui.dock.event.DockRegisterListener;
@@ -45,106 +40,103 @@ import bibliothek.gui.dock.util.extension.ExtensionManager;
 /**
  * A very simple implementation of {@link DockControllerFactory}, creating
  * only the default-versions of every element.
+ *
  * @author Benjamin Sigg
  */
 public class DefaultDockControllerFactory implements DockControllerFactory {
-    public DockRegisterListener createActionBinder( DockController controller, ControllerSetupCollection setup ) {
-        return new ActionBinder( controller );
-    }
+  public DockRegisterListener createActionBinder(DockController controller, ControllerSetupCollection setup) {
+    return new ActionBinder(controller);
+  }
 
-    public ActionViewConverter createActionViewConverter(
-            DockController controller, ControllerSetupCollection setup ) {
-        
-        return new ActionViewConverter();
-    }
+  public ActionViewConverter createActionViewConverter(DockController controller, ControllerSetupCollection setup) {
 
-    public ActionOffer createDefaultActionOffer( DockController controller, ControllerSetupCollection setup ) {
-        return new DefaultActionOffer();
-    }
+    return new ActionViewConverter();
+  }
 
-    public DoubleClickController createDoubleClickController(
-            DockController controller, ControllerSetupCollection setup ) {
-        
-        return new DoubleClickController( setup );
-    }
+  public ActionOffer createDefaultActionOffer(DockController controller, ControllerSetupCollection setup) {
+    return new DefaultActionOffer();
+  }
 
-    public DockRegisterListener createVisibilityFocusObserver( DockController controller, ControllerSetupCollection setup ){
-        return new VisibilityFocusObserver( controller );
-    }
-    
-    public FocusController createFocusController( DockController controller, ControllerSetupCollection setup ){
-    	final DefaultFocusController focus = new DefaultFocusController( controller );
-    	
-    	setup.add( new ControllerSetupListener(){
-			public void done( DockController controller ){
-				focus.setStrategy( new DefaultFocusStrategy( controller ) );
-			}
-		});
-	    
-    	return focus;
-    }
+  public DoubleClickController createDoubleClickController(DockController controller, ControllerSetupCollection setup) {
 
-    public FocusHistory createFocusHistory( DockController controller, ControllerSetupCollection setup ){
-    	final DefaultFocusHistory history = new DefaultFocusHistory();
-    	
-    	setup.add( new ControllerSetupListener(){
-			public void done( DockController controller ){
-				history.setController( controller );
-			}
-		});
-    	
-    	return history;
-    }
-    
-    public DockableSelector createDockableSelector( DockController controller, ControllerSetupCollection setup ) {
-        final DockableSelector selector = new DockableSelector();
-        
-        setup.add( new ControllerSetupListener(){
-            public void done( DockController controller ) {
-                selector.setController( controller );
-            }
-        });
-        
-        return selector;
-    }
-    
-    public KeyboardController createKeyboardController(
-            DockController controller, ControllerSetupCollection setup ) {
-        
-        return new DefaultKeyboardController( controller, setup );
-    }
+    return new DoubleClickController(setup);
+  }
 
-    public MouseFocusObserver createMouseFocusObserver(
-            DockController controller, ControllerSetupCollection setup ) {
-        
-        return new DefaultMouseFocusObserver( controller, setup );
-    }
+  public DockRegisterListener createVisibilityFocusObserver(DockController controller, ControllerSetupCollection setup) {
+    return new VisibilityFocusObserver(controller);
+  }
 
-    public PopupController createPopupController( DockController controller, ControllerSetupCollection setup ) {
-        return new PopupController( controller );
-    }
+  public FocusController createFocusController(DockController controller, ControllerSetupCollection setup) {
+    final DefaultFocusController focus = new DefaultFocusController(controller);
 
-    public DockRegister createRegister( DockController controller, ControllerSetupCollection setup ) {
-        return new DockRegister( controller );
-    }
+    setup.add(new ControllerSetupListener() {
+      public void done(DockController controller) {
+        focus.setStrategy(new DefaultFocusStrategy(controller));
+      }
+    });
 
-    public DockRelocator createRelocator( DockController controller, ControllerSetupCollection setup ) {
-        return new DefaultDockRelocator( controller, setup );
-    }
+    return focus;
+  }
 
-    public SingleParentRemover createSingleParentRemover( DockController controller, ControllerSetupCollection setup ) {
-        return new SingleParentRemover();
-    }
-    
-    public GlobalMouseDispatcher createGlobalMouseDispatcher( DockController controller, ControllerSetupCollection setup ){
-    	return new DefaultGlobalMouseDispatcher( controller, setup );
-    }
-    
-    public ExtensionManager createExtensionManager( DockController controller, ControllerSetupCollection setup ){
-    	return new ExtensionManager( controller );
-    }
-    
-    public DockComponentManager createDockComponentManager(DockController dockController, ControllerSetupCollection setup) {
-    	return new DefaultDockComponentManager();
-    }
+  public FocusHistory createFocusHistory(DockController controller, ControllerSetupCollection setup) {
+    final DefaultFocusHistory history = new DefaultFocusHistory();
+
+    setup.add(new ControllerSetupListener() {
+      public void done(DockController controller) {
+        history.setController(controller);
+      }
+    });
+
+    return history;
+  }
+
+  public DockableSelector createDockableSelector(DockController controller, ControllerSetupCollection setup) {
+    final DockableSelector selector = new DockableSelector();
+
+    setup.add(new ControllerSetupListener() {
+      public void done(DockController controller) {
+        selector.setController(controller);
+      }
+    });
+
+    return selector;
+  }
+
+  public KeyboardController createKeyboardController(DockController controller, ControllerSetupCollection setup) {
+
+    return new DefaultKeyboardController(controller, setup);
+  }
+
+  public MouseFocusObserver createMouseFocusObserver(DockController controller, ControllerSetupCollection setup) {
+
+    return new DefaultMouseFocusObserver(controller, setup);
+  }
+
+  public PopupController createPopupController(DockController controller, ControllerSetupCollection setup) {
+    return new PopupController(controller);
+  }
+
+  public DockRegister createRegister(DockController controller, ControllerSetupCollection setup) {
+    return new DockRegister(controller);
+  }
+
+  public DockRelocator createRelocator(DockController controller, ControllerSetupCollection setup) {
+    return new DefaultDockRelocator(controller, setup);
+  }
+
+  public SingleParentRemover createSingleParentRemover(DockController controller, ControllerSetupCollection setup) {
+    return new SingleParentRemover();
+  }
+
+  public GlobalMouseDispatcher createGlobalMouseDispatcher(DockController controller, ControllerSetupCollection setup) {
+    return new DefaultGlobalMouseDispatcher(controller, setup);
+  }
+
+  public ExtensionManager createExtensionManager(DockController controller, ControllerSetupCollection setup) {
+    return new ExtensionManager(controller);
+  }
+
+  public DockComponentManager createDockComponentManager(DockController dockController, ControllerSetupCollection setup) {
+    return new DefaultDockComponentManager();
+  }
 }

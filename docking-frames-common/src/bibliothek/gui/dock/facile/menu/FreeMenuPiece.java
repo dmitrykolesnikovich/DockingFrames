@@ -25,57 +25,58 @@
  */
 package bibliothek.gui.dock.facile.menu;
 
-import java.awt.Component;
-
 import bibliothek.gui.dock.support.menu.BaseMenuPiece;
 import bibliothek.gui.dock.support.menu.MenuPiece;
 import bibliothek.util.ClientOnly;
 
+import java.awt.*;
+
 /**
  * A {@link MenuPiece} that does not add any children by itself. All items
  * have to be added or removed directly by the client.
+ *
  * @author Benjamin Sigg
  */
 @ClientOnly
-public class FreeMenuPiece extends BaseMenuPiece{
-    
-    @Override
-    public int getItemCount() {
-        return super.getItemCount();
-    }
-    
-    @Override
-    public Component getItem( int index ) {
-        return super.getItem( index );
-    }
-    
-    @Override
-    public void add( Component item ) {
-        super.add( item );
-    }
-    
-    @Override
-    public void addSeparator(){
-    	super.addSeparator();
-    }
-    
-    @Override
-    public void insert( int index, Component item ) {
-        super.insert( index, item );
-    }
-    
-    @Override
-    public void insertSeparator( int index ){
-    	super.insertSeparator( index );
-    }
-    
-    @Override
-    public void remove( int index ) {
-        super.remove( index );
-    }
-    
-    @Override
-    public void remove( Component item ) {
-        super.remove( item );
-    }
+public class FreeMenuPiece extends BaseMenuPiece {
+
+  @Override
+  public int getItemCount() {
+    return super.getItemCount();
+  }
+
+  @Override
+  public Component getItem(int index) {
+    return super.getItem(index);
+  }
+
+  @Override
+  public void add(Component item) {
+    super.add(item);
+  }
+
+  @Override
+  public void addSeparator() {
+    super.addSeparator();
+  }
+
+  @Override
+  public void insert(int index, Component item) {
+    super.insert(index, item);
+  }
+
+  @Override
+  public void insertSeparator(int index) {
+    super.insertSeparator(index);
+  }
+
+  @Override
+  public void remove(int index) {
+    super.remove(index);
+  }
+
+  @Override
+  public void remove(Component item) {
+    super.remove(item);
+  }
 }

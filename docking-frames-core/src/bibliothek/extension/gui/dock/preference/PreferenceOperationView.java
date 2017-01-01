@@ -25,47 +25,53 @@
  */
 package bibliothek.extension.gui.dock.preference;
 
-import javax.swing.Icon;
+import javax.swing.*;
 
 /**
  * A view of a {@link PreferenceOperation} tailored to use the properties that
  * are related to a {@link PreferenceModel}.
+ *
  * @author Benjamin Sigg
  */
 public interface PreferenceOperationView {
-	/**
-	 * Gets the operation which is represented by this view.
-	 * @return the operation, not <code>null</code>
-	 */
-	public PreferenceOperation getOperation();
-	
-	/**
-	 * Gets the current icon of this view.
-	 * @return the icon
-	 */
-	public Icon getIcon();
-	
-	/**
-	 * Gets the description of this view.
-	 * @return the description
-	 */
-	public String getDescription();
-	
-	/**
-	 * Adds a listener to this view, the listener is to be informed about
-	 * changes on this view.
-	 * @param listener the new listener
-	 */
-	public void addListener( PreferenceOperationViewListener listener );
-	
-	/**
-	 * Removes the listener <code>listener</code> from this view.
-	 * @param listener the listener to remove
-	 */
-	public void removeListener( PreferenceOperationViewListener listener );
-	
-	/**
-	 * Informs this view that it is no longer required and can safely free resources.
-	 */
-	public void destroy();
+  /**
+   * Gets the operation which is represented by this view.
+   *
+   * @return the operation, not <code>null</code>
+   */
+  public PreferenceOperation getOperation();
+
+  /**
+   * Gets the current icon of this view.
+   *
+   * @return the icon
+   */
+  public Icon getIcon();
+
+  /**
+   * Gets the description of this view.
+   *
+   * @return the description
+   */
+  public String getDescription();
+
+  /**
+   * Adds a listener to this view, the listener is to be informed about
+   * changes on this view.
+   *
+   * @param listener the new listener
+   */
+  public void addListener(PreferenceOperationViewListener listener);
+
+  /**
+   * Removes the listener <code>listener</code> from this view.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeListener(PreferenceOperationViewListener listener);
+
+  /**
+   * Informs this view that it is no longer required and can safely free resources.
+   */
+  public void destroy();
 }

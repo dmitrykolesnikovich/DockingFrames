@@ -29,11 +29,12 @@ import bibliothek.gui.dock.perspective.PerspectiveDockable;
 
 /**
  * Implementation of a {@link SplitDockTree} that works with {@link PerspectiveDockable}s.
+ *
  * @author Benjamin Sigg
  */
-public class PerspectiveSplitDockTree extends SplitDockTree<PerspectiveDockable>{
-	@Override
-	public PerspectiveDockable[] array( int size ){
-		return new PerspectiveDockable[ size ];
-	}
+public class PerspectiveSplitDockTree extends SplitDockTree<PerspectiveDockable> {
+  @Override
+  public PerspectiveDockable[] array(int size) {
+    return new PerspectiveDockable[size];
+  }
 }

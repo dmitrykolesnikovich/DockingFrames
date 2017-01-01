@@ -32,53 +32,59 @@ import bibliothek.gui.dock.DockFactory;
  * A {@link DockLayout} describes the contents of one {@link DockElement}. It is
  * an intermediate format between a {@link DockElement} and the persistent representation
  * for example a xml-file. <code>DockLayout</code>s wrap around the data that is created and stored
- * by {@link DockFactory}s. 
- * @author Benjamin Sigg
+ * by {@link DockFactory}s.
+ *
  * @param <L> the kind of data stored for in this layout
+ * @author Benjamin Sigg
  */
-public class DockLayout<L>{
-    private String factory;
-    private L data;
-    
-    /**
-     * Creates a new layout.
-     * @param factory the factory that created the layout, might be <code>null</code>
-     * @param data the data that is stored in this layout, might be <code>null</code>
-     */
-    public DockLayout( String factory, L data ){
-        this.factory = factory;
-        this.data = data;
-    }
-    
-    /**
-     * Sets the identifier of the factory which created this layout.
-     * @param id the identifier of the factory
-     */
-    public void setFactoryID( String id ){
-        factory = id;
-    }
-    
-    /**
-     * Gets the identifier of the factory which created this layout.
-     * @return the identifier of the factory
-     */
-    public String getFactoryID(){
-        return factory;
-    }
-    
-    /**
-     * Sets the data that is stored in the layout.
-     * @param data the data, can be <code>null</code>
-     */
-    public void setData( L data ) {
-        this.data = data;
-    }
-    
-    /**
-     * Gets the data that is stored in the layout.
-     * @return the data, can be <code>null</code>
-     */
-    public L getData() {
-        return data;
-    }
+public class DockLayout<L> {
+  private String factory;
+  private L data;
+
+  /**
+   * Creates a new layout.
+   *
+   * @param factory the factory that created the layout, might be <code>null</code>
+   * @param data    the data that is stored in this layout, might be <code>null</code>
+   */
+  public DockLayout(String factory, L data) {
+    this.factory = factory;
+    this.data = data;
+  }
+
+  /**
+   * Gets the identifier of the factory which created this layout.
+   *
+   * @return the identifier of the factory
+   */
+  public String getFactoryID() {
+    return factory;
+  }
+
+  /**
+   * Sets the identifier of the factory which created this layout.
+   *
+   * @param id the identifier of the factory
+   */
+  public void setFactoryID(String id) {
+    factory = id;
+  }
+
+  /**
+   * Gets the data that is stored in the layout.
+   *
+   * @return the data, can be <code>null</code>
+   */
+  public L getData() {
+    return data;
+  }
+
+  /**
+   * Sets the data that is stored in the layout.
+   *
+   * @param data the data, can be <code>null</code>
+   */
+  public void setData(L data) {
+    this.data = data;
+  }
 }

@@ -28,22 +28,25 @@ package bibliothek.gui.dock.extension.css;
 /**
  * This listener is added to a {@link CssPropertyContainer} and is informed if
  * sub-properties are added or removed.
+ *
  * @author Benjamin Sigg
  */
 public interface CssPropertyContainerListener {
-	/**
-	 * Called if a property has been added to <code>source</code>.
-	 * @param source the source of the event
-	 * @param key the key of the new property
-	 * @param property the property that has been added
-	 */
-	public void propertyAdded( CssPropertyContainer source, String key, CssProperty<?> property );
-	
-	/**
-	 * Called if a property has been removed from <code>source</code>.
-	 * @param source the source of the event
-	 * @param key the key of the removed property
-	 * @param property the property that has been removed
-	 */
-	public void propertyRemoved( CssPropertyContainer source, String key, CssProperty<?> property );
+  /**
+   * Called if a property has been added to <code>source</code>.
+   *
+   * @param source   the source of the event
+   * @param key      the key of the new property
+   * @param property the property that has been added
+   */
+  public void propertyAdded(CssPropertyContainer source, String key, CssProperty<?> property);
+
+  /**
+   * Called if a property has been removed from <code>source</code>.
+   *
+   * @param source   the source of the event
+   * @param key      the key of the removed property
+   * @param property the property that has been removed
+   */
+  public void propertyRemoved(CssPropertyContainer source, String key, CssProperty<?> property);
 }

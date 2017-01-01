@@ -32,35 +32,37 @@ import bibliothek.gui.dock.facile.mode.status.ExtendedModeEnablement;
 /**
  * Used by a {@link LocationModeManager} to change the {@link ExtendedMode} when
  * an element gets double-clicked.
+ *
  * @author Benjamin Sigg
  * @see LocationModeManager#setDoubleClickStrategy(DoubleClickLocationStrategy)
  */
 public interface DoubleClickLocationStrategy {
-	/**
-	 * The default implementation of a {@link DoubleClickLocationStrategy} switches between
-	 * {@link ExtendedMode#NORMALIZED} and {@link ExtendedMode#MAXIMIZED}.
-	 */
-	public static DoubleClickLocationStrategy DEFAULT = new DoubleClickLocationStrategy() {
-		public ExtendedMode handleDoubleClick( Dockable dockable, ExtendedMode current, ExtendedModeEnablement enablement ){
-			if( current == ExtendedMode.MAXIMIZED ){
-				return ExtendedMode.NORMALIZED;
-			}
-			else{
-				if( enablement.isAvailable( dockable, ExtendedMode.MAXIMIZED ).isAvailable()){
-					return ExtendedMode.MAXIMIZED;
-				}
-				return null;
-			}
-		}
-	};
-	
-	/**
-	 * Called if the user double-clicked on <code>dockable</code>.
-	 * @param dockable the clicked element
-	 * @param current the current mode of <code>dockable</code>, might be <code>null</code>
-	 * @param enablement tells which modes are available for <code>dockable</code> and which not
-	 * @return the mode that <code>dockable</code> should be assigned, <code>null</code> indicates
-	 * that nothing should happen
-	 */
-	public ExtendedMode handleDoubleClick( Dockable dockable, ExtendedMode current, ExtendedModeEnablement enablement );
+  /**
+   * The default implementation of a {@link DoubleClickLocationStrategy} switches between
+   * {@link ExtendedMode#NORMALIZED} and {@link ExtendedMode#MAXIMIZED}.
+   */
+  public static DoubleClickLocationStrategy DEFAULT = new DoubleClickLocationStrategy() {
+    public ExtendedMode handleDoubleClick(Dockable dockable, ExtendedMode current, ExtendedModeEnablement enablement) {
+      if (current == ExtendedMode.MAXIMIZED) {
+        return ExtendedMode.NORMALIZED;
+      }
+      else {
+        if (enablement.isAvailable(dockable, ExtendedMode.MAXIMIZED).isAvailable()) {
+          return ExtendedMode.MAXIMIZED;
+        }
+        return null;
+      }
+    }
+  };
+
+  /**
+   * Called if the user double-clicked on <code>dockable</code>.
+   *
+   * @param dockable   the clicked element
+   * @param current    the current mode of <code>dockable</code>, might be <code>null</code>
+   * @param enablement tells which modes are available for <code>dockable</code> and which not
+   * @return the mode that <code>dockable</code> should be assigned, <code>null</code> indicates
+   * that nothing should happen
+   */
+  public ExtendedMode handleDoubleClick(Dockable dockable, ExtendedMode current, ExtendedModeEnablement enablement);
 }

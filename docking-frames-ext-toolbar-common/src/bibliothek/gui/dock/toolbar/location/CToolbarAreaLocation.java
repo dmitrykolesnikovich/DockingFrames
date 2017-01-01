@@ -38,66 +38,69 @@ import bibliothek.gui.dock.toolbar.CToolbarArea;
 
 /**
  * A {@link CLocation} pointing to a {@link CToolbarArea}.
+ *
  * @author Benjamin Sigg
  */
-public class CToolbarAreaLocation extends CLocation{
-	private CToolbarArea root;
-	
-	/**
-	 * Creates a new location.
-	 * @param root the area to which this location points
-	 */
-	public CToolbarAreaLocation( CToolbarArea root ){
-		this.root = root;
-	}
-	
-	/**
-	 * Gets a location that points to a specific group of toolbars on
-	 * a {@link CToolbarArea}.
-	 * @param group the index of the group, a value of <code>-1</code> points to the 
-	 * not yet existing group at the beginning of the area
-	 * @return the location pointing to <code>group</code>
-	 */
-	public CToolbarGroupLocation group( int group ){
-		return new CToolbarGroupLocation( this, group );
-	}
-	
-	@Override
-	public CLocation getParent(){
-		return null;
-	}
+public class CToolbarAreaLocation extends CLocation {
+  private CToolbarArea root;
 
-	@Override
-	public String findRoot(){
-		return root.getUniqueId();
-	}
+  /**
+   * Creates a new location.
+   *
+   * @param root the area to which this location points
+   */
+  public CToolbarAreaLocation(CToolbarArea root) {
+    this.root = root;
+  }
 
-	@Override
-	public ExtendedMode findMode(){
-		return CToolbarMode.TOOLBAR;
-	}
+  /**
+   * Gets a location that points to a specific group of toolbars on
+   * a {@link CToolbarArea}.
+   *
+   * @param group the index of the group, a value of <code>-1</code> points to the
+   *              not yet existing group at the beginning of the area
+   * @return the location pointing to <code>group</code>
+   */
+  public CToolbarGroupLocation group(int group) {
+    return new CToolbarGroupLocation(this, group);
+  }
 
-	@Override
-	public DockableProperty findProperty( DockableProperty successor ){
-		if( successor == null ){
-			return new ToolbarContainerProperty( 0, null );
-		}
-		else{
-			return successor;
-		}
-	}
+  @Override
+  public CLocation getParent() {
+    return null;
+  }
 
-	/**
-	 * @deprecated see {@link CLocation#aside()} for an explanation.
-	 */
-	@Deprecated
-	@Override
-	public CLocation aside(){
-		return this;
-	}
-	
-	@Override
-	public String toString(){
-		return "[toolbar-area " + root.getUniqueId() + "]";
-	}
+  @Override
+  public String findRoot() {
+    return root.getUniqueId();
+  }
+
+  @Override
+  public ExtendedMode findMode() {
+    return CToolbarMode.TOOLBAR;
+  }
+
+  @Override
+  public DockableProperty findProperty(DockableProperty successor) {
+    if (successor == null) {
+      return new ToolbarContainerProperty(0, null);
+    }
+    else {
+      return successor;
+    }
+  }
+
+  /**
+   * @deprecated see {@link CLocation#aside()} for an explanation.
+   */
+  @Deprecated
+  @Override
+  public CLocation aside() {
+    return this;
+  }
+
+  @Override
+  public String toString() {
+    return "[toolbar-area " + root.getUniqueId() + "]";
+  }
 }

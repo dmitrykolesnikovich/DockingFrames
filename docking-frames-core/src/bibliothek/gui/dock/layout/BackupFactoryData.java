@@ -28,39 +28,42 @@ package bibliothek.gui.dock.layout;
 /**
  * Some client specified data and an identifier for that data. This class
  * is immutable.
- * @author Benjamin Sigg
+ *
  * @param <D> the kind of data this {@link BackupFactoryData} stores.
+ * @author Benjamin Sigg
  */
 public class BackupFactoryData<D> {
-    private String identifier;
-    private D data;
-    
-    /**
-     * Creates a new {@link BackupFactoryData}
-     * @param identifier the identifier of this piece of data, can be <code>null</code>
-     * @param data the client specified data, might be <code>null</code>
-     */
-    public BackupFactoryData( String identifier, D data ){        
-        if( identifier == null )
-            throw new IllegalArgumentException( "id must not be null" );
-        
-        this.identifier = identifier;
-        this.data = data;
-    }
-    
-    /**
-     * Gets the identifier of this data.
-     * @return the identifier, can be <code>null</code>
-     */
-    public String getIdentifier() {
-        return identifier;
-    }
-    
-    /**
-     * Gets the data that is wrapped up by this {@link BackupFactoryData}.
-     * @return the data, can be <code>null</code>
-     */
-    public D getData() {
-        return data;
-    }
+  private String identifier;
+  private D data;
+
+  /**
+   * Creates a new {@link BackupFactoryData}
+   *
+   * @param identifier the identifier of this piece of data, can be <code>null</code>
+   * @param data       the client specified data, might be <code>null</code>
+   */
+  public BackupFactoryData(String identifier, D data) {
+    if (identifier == null) throw new IllegalArgumentException("id must not be null");
+
+    this.identifier = identifier;
+    this.data = data;
+  }
+
+  /**
+   * Gets the identifier of this data.
+   *
+   * @return the identifier, can be <code>null</code>
+   */
+  public String getIdentifier() {
+    return identifier;
+  }
+
+  /**
+   * Gets the data that is wrapped up by this {@link BackupFactoryData}.
+   *
+   * @return the data, can be <code>null</code>
+   */
+  public D getData() {
+    return data;
+  }
 }

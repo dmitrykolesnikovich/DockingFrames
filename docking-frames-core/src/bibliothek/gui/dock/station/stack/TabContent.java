@@ -25,52 +25,57 @@
  */
 package bibliothek.gui.dock.station.stack;
 
-import javax.swing.Icon;
-
 import bibliothek.gui.dock.StackDockStation;
+
+import javax.swing.*;
 
 /**
  * All the content of a single tab on a {@link StackDockStation}.
+ *
  * @author Benjamin Sigg
  */
 public class TabContent {
-	private Icon icon;
-	private String title;
-	private String tooltip;
-	
-	/**
-	 * Creates a new set of data.
-	 * @param icon the icon of this tab
-	 * @param title the text of this tab
-	 * @param tooltip the tooltip of this tab
-	 */
-	public TabContent( Icon icon, String title, String tooltip ){
-		this.icon = icon;
-		this.title = title;
-		this.tooltip = tooltip;
-	}
-	
-	/**
-	 * Gets the icon of this tab.
-	 * @return the icon, can be <code>null</code>
-	 */
-	public Icon getIcon(){
-		return icon;
-	}
+  private Icon icon;
+  private String title;
+  private String tooltip;
 
-	/**
-	 * Gets the text of this tab.
-	 * @return the text, can be <code>null</code>
-	 */
-	public String getTitle(){
-		return title;
-	}
-	
-	/**
-	 * Gets the tooltip of this tab
-	 * @return the tooltip, can be <code>null</code>
-	 */
-	public String getTooltip(){
-		return tooltip;
-	}
+  /**
+   * Creates a new set of data.
+   *
+   * @param icon    the icon of this tab
+   * @param title   the text of this tab
+   * @param tooltip the tooltip of this tab
+   */
+  public TabContent(Icon icon, String title, String tooltip) {
+    this.icon = icon;
+    this.title = title;
+    this.tooltip = tooltip;
+  }
+
+  /**
+   * Gets the icon of this tab.
+   *
+   * @return the icon, can be <code>null</code>
+   */
+  public Icon getIcon() {
+    return icon;
+  }
+
+  /**
+   * Gets the text of this tab.
+   *
+   * @return the text, can be <code>null</code>
+   */
+  public String getTitle() {
+    return title;
+  }
+
+  /**
+   * Gets the tooltip of this tab
+   *
+   * @return the tooltip, can be <code>null</code>
+   */
+  public String getTooltip() {
+    return tooltip;
+  }
 }

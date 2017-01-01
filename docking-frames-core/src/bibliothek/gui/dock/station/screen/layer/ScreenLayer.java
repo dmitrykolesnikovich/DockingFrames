@@ -32,11 +32,12 @@ import bibliothek.gui.dock.station.layer.LayerPriority;
 
 /**
  * Describes the fallback layer, the layer where {@link Dockable}s start to float.
+ *
  * @author Benjamin Sigg
  */
-public class ScreenLayer extends DefaultDropLayer{
-	public ScreenLayer( ScreenDockStation station ){
-		super( station );
-		setPriority( LayerPriority.FALLBACK );
-	}
+public class ScreenLayer extends DefaultDropLayer {
+  public ScreenLayer(ScreenDockStation station) {
+    super(station);
+    setPriority(LayerPriority.FALLBACK);
+  }
 }

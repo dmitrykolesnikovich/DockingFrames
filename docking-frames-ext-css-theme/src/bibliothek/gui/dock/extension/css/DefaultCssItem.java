@@ -25,94 +25,96 @@
  */
 package bibliothek.gui.dock.extension.css;
 
+import bibliothek.gui.dock.extension.css.property.AbstractCssPropertyContainer;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import bibliothek.gui.dock.extension.css.property.AbstractCssPropertyContainer;
-
 /**
  * The default {@link CssItem} offers methods to easily add and remove
  * {@link CssProperty}s.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultCssItem extends AbstractCssPropertyContainer implements CssItem{
-	private List<CssItemListener> listeners = new ArrayList<CssItemListener>();
-	
-	private CssPath path;
-	
-	private Map<String, CssProperty<?>> properties = new HashMap<String, CssProperty<?>>();
-	
-	/**
-	 * Creates a new item
-	 * @param path the path of this item, not <code>null</code>
-	 */
-	public DefaultCssItem( CssPath path ){
-		setPath( path );
-	}
-	
-	@Override
-	protected void bind(){
-		// ignore
-	}
-	
-	@Override
-	protected void unbind(){
-		// ignore	
-	}
-	
-	@Override
-	public CssPath getPath(){
-		return path;
-	}
-	
-	public void setPath( CssPath path ){
-		if( path == null ){
-			throw new IllegalArgumentException( "path must not be null" );
-		}
-		this.path = path;
-		for( CssItemListener listener : listeners() ){
-			listener.pathChanged( this );
-		}
-	}
+public class DefaultCssItem extends AbstractCssPropertyContainer implements CssItem {
+  private List<CssItemListener> listeners = new ArrayList<CssItemListener>();
 
-	@Override
-	public String[] getPropertyKeys(){
-		return properties.keySet().toArray( new String[ properties.size() ] );
-	}
+  private CssPath path;
 
-	@Override
-	public CssProperty<?> getProperty( String key ){
-		return properties.get( key );
-	}
-	
-	public void putProperty( String key, CssProperty<?> property ){
-		CssProperty<?> oldProperty = properties.remove( key );
-		if( oldProperty != null ){
-			firePropertyRemoved( key, oldProperty );
-		}
-		if( property != null ){
-			properties.put( key, property );
-			firePropertyAdded( key, property );
-		}
-	}
-	
-	private CssItemListener[] listeners(){
-		return listeners.toArray( new CssItemListener[ listeners.size() ] );
-	}
+  private Map<String, CssProperty<?>> properties = new HashMap<String, CssProperty<?>>();
 
-	@Override
-	public void addItemListener( CssItemListener listener ){
-		if( listener == null ){
-			throw new IllegalArgumentException( "listener must not be null" );
-		}
-		listeners.add( listener );
-	}
+  /**
+   * Creates a new item
+   *
+   * @param path the path of this item, not <code>null</code>
+   */
+  public DefaultCssItem(CssPath path) {
+    setPath(path);
+  }
 
-	@Override
-	public void removeItemListener( CssItemListener listener ){
-		listeners.remove( listener );
-	}
+  @Override
+  protected void bind() {
+    // ignore
+  }
+
+  @Override
+  protected void unbind() {
+    // ignore
+  }
+
+  @Override
+  public CssPath getPath() {
+    return path;
+  }
+
+  public void setPath(CssPath path) {
+    if (path == null) {
+      throw new IllegalArgumentException("path must not be null");
+    }
+    this.path = path;
+    for (CssItemListener listener : listeners()) {
+      listener.pathChanged(this);
+    }
+  }
+
+  @Override
+  public String[] getPropertyKeys() {
+    return properties.keySet().toArray(new String[properties.size()]);
+  }
+
+  @Override
+  public CssProperty<?> getProperty(String key) {
+    return properties.get(key);
+  }
+
+  public void putProperty(String key, CssProperty<?> property) {
+    CssProperty<?> oldProperty = properties.remove(key);
+    if (oldProperty != null) {
+      firePropertyRemoved(key, oldProperty);
+    }
+    if (property != null) {
+      properties.put(key, property);
+      firePropertyAdded(key, property);
+    }
+  }
+
+  private CssItemListener[] listeners() {
+    return listeners.toArray(new CssItemListener[listeners.size()]);
+  }
+
+  @Override
+  public void addItemListener(CssItemListener listener) {
+    if (listener == null) {
+      throw new IllegalArgumentException("listener must not be null");
+    }
+    listeners.add(listener);
+  }
+
+  @Override
+  public void removeItemListener(CssItemListener listener) {
+    listeners.remove(listener);
+  }
 
 }

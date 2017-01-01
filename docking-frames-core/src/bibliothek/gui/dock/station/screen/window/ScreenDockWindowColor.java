@@ -32,15 +32,19 @@ import bibliothek.util.Path;
 
 /**
  * Represents a color that is used to paint something of a {@link ScreenDockWindow}.
+ *
  * @author Benjamin Sigg
  */
-public interface ScreenDockWindowColor extends DockColor{
-	/** the type of this {@link UIValue} */
-	public static final Path KIND_SCREEN_WINDOW_COLOR = DockColor.KIND_DOCK_COLOR.append( "screenWindow" );
-	
-	/**
-	 * Gets the window for which this color is used.
-	 * @return the window, not <code>null</code>
-	 */
-	public ScreenDockWindow getWindow();
+public interface ScreenDockWindowColor extends DockColor {
+  /**
+   * the type of this {@link UIValue}
+   */
+  public static final Path KIND_SCREEN_WINDOW_COLOR = DockColor.KIND_DOCK_COLOR.append("screenWindow");
+
+  /**
+   * Gets the window for which this color is used.
+   *
+   * @return the window, not <code>null</code>
+   */
+  public ScreenDockWindow getWindow();
 }

@@ -31,26 +31,30 @@ import bibliothek.util.Path;
 /**
  * Represents a station which can contain "maximized" children, this
  * representation is handled by a {@link CMaximizedModePerspective}.
+ *
  * @author Benjamin Sigg
  */
-public interface CMaximizedModeAreaPerspective extends CModeAreaPerspective{
-	/**
-	 * Sets the origin of the currently maximized child of this area. If this area can function without
-	 * such information, then this method can just be ignored.
-	 * @param mode the mode that was used, can be <code>null</code>
-	 * @param location the exact location, must match <code>mode</code>, can be <code>null</code>
-	 */
-	public void setUnmaximize( Path mode, Location location );
-	
-	/**
-	 * Gets the mode the currently maximized item should use when unmaximized.
-	 * @return the unmaximize mode, can be <code>null</code>
-	 */
-	public Path getUnmaximizeMode();
-	
-	/**
-	 * Gets the location the currently maximized item should use when unmaximized.
-	 * @return the unmaximize location, can be <code>null</code>
-	 */
-	public Location getUnmaximizeLocation();
+public interface CMaximizedModeAreaPerspective extends CModeAreaPerspective {
+  /**
+   * Sets the origin of the currently maximized child of this area. If this area can function without
+   * such information, then this method can just be ignored.
+   *
+   * @param mode     the mode that was used, can be <code>null</code>
+   * @param location the exact location, must match <code>mode</code>, can be <code>null</code>
+   */
+  public void setUnmaximize(Path mode, Location location);
+
+  /**
+   * Gets the mode the currently maximized item should use when unmaximized.
+   *
+   * @return the unmaximize mode, can be <code>null</code>
+   */
+  public Path getUnmaximizeMode();
+
+  /**
+   * Gets the location the currently maximized item should use when unmaximized.
+   *
+   * @return the unmaximize location, can be <code>null</code>
+   */
+  public Location getUnmaximizeLocation();
 }

@@ -37,21 +37,24 @@ import bibliothek.gui.dock.common.intern.CDockable;
  * <li>Many copies of one {@link MultipleCDockable} can be part of a {@link CControl}</li>
  * <li>When saving a layout, the contents of a {@link MultipleCDockable} are written out by a {@link MultipleCDockableFactory}</li>
  * </ul>
+ *
  * @author Benjamin Sigg
  */
-public interface MultipleCDockable extends CDockable{
-	/**
-	 * Gets the factory that created this dockable.
-	 * @return the factory, must not be <code>null</code>
-	 */
-	public MultipleCDockableFactory<?,?> getFactory();
-	
-	/**
-	 * Tells whether this {@link MultipleCDockable} should be removed from the
-	 * {@link CControl} when it is made invisible. If in doubt, return
-	 * <code>true</code>.
-	 * @return <code>true</code> if this dockable should be removed from
-	 * the controller when made invisible.
-	 */
-	public boolean isRemoveOnClose();
+public interface MultipleCDockable extends CDockable {
+  /**
+   * Gets the factory that created this dockable.
+   *
+   * @return the factory, must not be <code>null</code>
+   */
+  public MultipleCDockableFactory<?, ?> getFactory();
+
+  /**
+   * Tells whether this {@link MultipleCDockable} should be removed from the
+   * {@link CControl} when it is made invisible. If in doubt, return
+   * <code>true</code>.
+   *
+   * @return <code>true</code> if this dockable should be removed from
+   * the controller when made invisible.
+   */
+  public boolean isRemoveOnClose();
 }

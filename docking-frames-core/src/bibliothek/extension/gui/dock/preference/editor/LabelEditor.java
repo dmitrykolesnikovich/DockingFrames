@@ -25,54 +25,54 @@
  */
 package bibliothek.extension.gui.dock.preference.editor;
 
-import java.awt.Component;
-
-import javax.swing.JLabel;
-
 import bibliothek.extension.gui.dock.preference.PreferenceEditor;
 import bibliothek.extension.gui.dock.preference.PreferenceEditorCallback;
 import bibliothek.extension.gui.dock.preference.PreferenceEditorFactory;
 import bibliothek.extension.gui.dock.preference.PreferenceOperation;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * A label editor just shows some object, but does not modify the object.
+ *
  * @author Benjamin Sigg
  */
-public class LabelEditor extends JLabel implements PreferenceEditor<Object>{
-    /**
-     * A factory creating new {@link LabelEditor}s.
-     */
-    public static final PreferenceEditorFactory<Object> FACTORY = new PreferenceEditorFactory<Object>(){
-        public PreferenceEditor<Object> create() {
-            return new LabelEditor();
-        }
-    };
-    
-    private Object value;
-    
-    public void doOperation( PreferenceOperation operation ) {
-        // does not declare any operations
+public class LabelEditor extends JLabel implements PreferenceEditor<Object> {
+  /**
+   * A factory creating new {@link LabelEditor}s.
+   */
+  public static final PreferenceEditorFactory<Object> FACTORY = new PreferenceEditorFactory<Object>() {
+    public PreferenceEditor<Object> create() {
+      return new LabelEditor();
     }
+  };
 
-    public Component getComponent() {
-        return this;
-    }
+  private Object value;
 
-    public Object getValue() {
-        return value;
-    }
+  public void doOperation(PreferenceOperation operation) {
+    // does not declare any operations
+  }
 
-    public void setCallback( PreferenceEditorCallback<Object> callback ) {
-        // ignore
-    }
+  public Component getComponent() {
+    return this;
+  }
 
-    public void setValue( Object value ) {
-        this.value = value;
-        setText( String.valueOf( value ) );
-    }
+  public Object getValue() {
+    return value;
+  }
 
-    public void setValueInfo( Object information ) {
-        // ignore
-    }
+  public void setValue(Object value) {
+    this.value = value;
+    setText(String.valueOf(value));
+  }
+
+  public void setCallback(PreferenceEditorCallback<Object> callback) {
+    // ignore
+  }
+
+  public void setValueInfo(Object information) {
+    // ignore
+  }
 
 }

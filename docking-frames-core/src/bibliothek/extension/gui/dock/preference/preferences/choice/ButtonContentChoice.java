@@ -32,31 +32,33 @@ import bibliothek.gui.dock.util.DockProperties;
 /**
  * A choice for a {@link ButtonContent}. Only a selected set of {@link ButtonContent}s are available through this
  * choice.
+ *
  * @author Benjamin Sigg
  * @deprecated replaced by {@link ButtonContentPreferenceModel}
  */
 @Deprecated
-public class ButtonContentChoice extends DefaultChoice<ButtonContent>{
-	
-	/**
-	 * Creates a new choice
-	 * @param properties default settings
-	 */
-	public ButtonContentChoice( DockProperties properties ){
-		super( properties.getController() );
-		
-		addLinked( "td", "preference.layout.choice.ButtonContent.theme_dependent", ButtonContent.THEME_DEPENDENT );
-		
-		addLinked( "io", "preference.layout.choice.ButtonContent.icon_only", ButtonContent.ICON_ONLY );
-		addLinked( "to", "preference.layout.choice.ButtonContent.text_only", ButtonContent.TEXT_ONLY );
-		addLinked( "ito", "preference.layout.choice.ButtonContent.icon_and_text_only", ButtonContent.ICON_AND_TEXT_ONLY );
-		addLinked( "itto", "preference.layout.choice.ButtonContent.icon_then_text_only", ButtonContent.ICON_THEN_TEXT_ONLY );
-		addLinked( "ttio", "preference.layout.choice.ButtonContent.text_then_icon_only", ButtonContent.TEXT_THEN_ICON_ONLY );
-		
-		addLinked( "ia", "preference.layout.choice.ButtonContent.icon_actions", ButtonContent.ICON_ACTIONS );
-		addLinked( "ta", "preference.layout.choice.ButtonContent.text_actions", ButtonContent.TEXT_ACTIONS );
-		addLinked( "ita", "preference.layout.choice.ButtonContent.icon_and_text_actions", ButtonContent.ICON_AND_TEXT_ACTIONS );
-		addLinked( "itta", "preference.layout.choice.ButtonContent.icon_then_text_actions", ButtonContent.ICON_THEN_TEXT_ACTIONS );
-		addLinked( "ttia", "preference.layout.choice.ButtonContent.text_then_icon_actions", ButtonContent.TEXT_THEN_ICON_ACTIONS );
-	}
+public class ButtonContentChoice extends DefaultChoice<ButtonContent> {
+
+  /**
+   * Creates a new choice
+   *
+   * @param properties default settings
+   */
+  public ButtonContentChoice(DockProperties properties) {
+    super(properties.getController());
+
+    addLinked("td", "preference.layout.choice.ButtonContent.theme_dependent", ButtonContent.THEME_DEPENDENT);
+
+    addLinked("io", "preference.layout.choice.ButtonContent.icon_only", ButtonContent.ICON_ONLY);
+    addLinked("to", "preference.layout.choice.ButtonContent.text_only", ButtonContent.TEXT_ONLY);
+    addLinked("ito", "preference.layout.choice.ButtonContent.icon_and_text_only", ButtonContent.ICON_AND_TEXT_ONLY);
+    addLinked("itto", "preference.layout.choice.ButtonContent.icon_then_text_only", ButtonContent.ICON_THEN_TEXT_ONLY);
+    addLinked("ttio", "preference.layout.choice.ButtonContent.text_then_icon_only", ButtonContent.TEXT_THEN_ICON_ONLY);
+
+    addLinked("ia", "preference.layout.choice.ButtonContent.icon_actions", ButtonContent.ICON_ACTIONS);
+    addLinked("ta", "preference.layout.choice.ButtonContent.text_actions", ButtonContent.TEXT_ACTIONS);
+    addLinked("ita", "preference.layout.choice.ButtonContent.icon_and_text_actions", ButtonContent.ICON_AND_TEXT_ACTIONS);
+    addLinked("itta", "preference.layout.choice.ButtonContent.icon_then_text_actions", ButtonContent.ICON_THEN_TEXT_ACTIONS);
+    addLinked("ttia", "preference.layout.choice.ButtonContent.text_then_icon_actions", ButtonContent.TEXT_THEN_ICON_ACTIONS);
+  }
 }

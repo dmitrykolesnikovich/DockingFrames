@@ -25,35 +25,36 @@
  */
 package bibliothek.gui.dock.extension.css.property.shape;
 
-import java.awt.Shape;
-import java.awt.geom.Ellipse2D;
-
 import bibliothek.gui.dock.extension.css.property.SimpleCssPropertyContainer;
+
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
 /**
  * An {@link OvalShape} is an oval touching the borders of the available space.
+ *
  * @author Benjamin Sigg
  */
-public class OvalShape extends SimpleCssPropertyContainer implements CssShape{
-	private Ellipse2D shape;
-	
-	@Override
-	public void setSize( int width, int height ){
-		if( shape == null || shape.getWidth() != width || shape.getHeight() != height ){
-			shape = new Ellipse2D.Double( 0, 0, width, height );
-		}
-	}
+public class OvalShape extends SimpleCssPropertyContainer implements CssShape {
+  private Ellipse2D shape;
 
-	@Override
-	public boolean contains( int x, int y ){
-		if( shape == null ){
-			return false;
-		}
-		return shape.contains( x, y );
-	}
+  @Override
+  public void setSize(int width, int height) {
+    if (shape == null || shape.getWidth() != width || shape.getHeight() != height) {
+      shape = new Ellipse2D.Double(0, 0, width, height);
+    }
+  }
 
-	@Override
-	public Shape toShape(){
-		return shape;
-	}
+  @Override
+  public boolean contains(int x, int y) {
+    if (shape == null) {
+      return false;
+    }
+    return shape.contains(x, y);
+  }
+
+  @Override
+  public Shape toShape() {
+    return shape;
+  }
 }

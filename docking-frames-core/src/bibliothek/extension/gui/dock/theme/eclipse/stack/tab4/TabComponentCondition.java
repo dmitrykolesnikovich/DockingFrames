@@ -30,68 +30,79 @@ import bibliothek.extension.gui.dock.theme.eclipse.stack.tab.TabComponent;
 /**
  * A {@link TabComponentCondition} is a layer around a {@link TabComponent} that offers access to an
  * implicitly defined condition, e.g. whether the mouse is over the {@link TabComponent}.
+ *
  * @author Benjamin Sigg
  */
 public abstract class TabComponentCondition {
-	/** the observed component */
-	private TabComponent component;
-	
-	/** the current state of the condition */
-	private boolean condition = false;
-	
-	/** whether the value of {@link #condition} is valid */
-	private boolean valid = false;
-	
-	/**
-	 * Creates a new condition
-	 * @param component the component to observe, not <code>null</code>
-	 */
-	public TabComponentCondition( TabComponent component ){
-		if( component == null ){
-			throw new IllegalArgumentException( "component must not be null" );
-		}
-		this.component = component;
-	}
-	
-	/**
-	 * Gets the {@link TabComponent} which is observed by this condition.
-	 * @return the observed component
-	 */
-	public TabComponent getComponent(){
-		return component;
-	}
-	
-	/**
-	 * Reads the condition. This method is only called if {@link #invalidate()} was called. Otherwise the previously
-	 * stored value is returned.
-	 * @return <code>true</code> if the condition is fulfilled, <code>false</code> otherwise
-	 */
-	protected abstract boolean checkCondition();
-	
-	/**
-	 * Tells this condition that it is no longer valid and that its state has to be
-	 * calculated again.
-	 */
-	public void invalidate(){
-		valid = false;
-	}
-	
-	/**
-	 * Makes sure the state of this condition is valid. This method does nothing if
-	 * {@link #invalidate()} was not called.
-	 */
-	public void validate(){
-		if( !valid ){
-			condition = checkCondition();
-			valid = true;
-		}
-	}
-	
-	/**
-	 * Tells whether the condition is fulfilled or not.
-	 * @return the state of this condition
-	 */
-	public boolean getCondition(){
-		return condition;
-	}
+  /**
+   * the observed component
+   */
+  private TabComponent component;
+
+  /**
+   * the current state of the condition
+   */
+  private boolean condition = false;
+
+  /**
+   * whether the value of {@link #condition} is valid
+   */
+  private boolean valid = false;
+
+  /**
+   * Creates a new condition
+   *
+   * @param component the component to observe, not <code>null</code>
+   */
+  public TabComponentCondition(TabComponent component) {
+    if (component == null) {
+      throw new IllegalArgumentException("component must not be null");
+    }
+    this.component = component;
+  }
+
+  /**
+   * Gets the {@link TabComponent} which is observed by this condition.
+   *
+   * @return the observed component
+   */
+  public TabComponent getComponent() {
+    return component;
+  }
+
+  /**
+   * Reads the condition. This method is only called if {@link #invalidate()} was called. Otherwise the previously
+   * stored value is returned.
+   *
+   * @return <code>true</code> if the condition is fulfilled, <code>false</code> otherwise
+   */
+  protected abstract boolean checkCondition();
+
+  /**
+   * Tells this condition that it is no longer valid and that its state has to be
+   * calculated again.
+   */
+  public void invalidate() {
+    valid = false;
+  }
+
+  /**
+   * Makes sure the state of this condition is valid. This method does nothing if
+   * {@link #invalidate()} was not called.
+   */
+  public void validate() {
+    if (!valid) {
+      condition = checkCondition();
+      valid = true;
+    }
+  }
+
+  /**
+   * Tells whether the condition is fulfilled or not.
+   *
+   * @return the state of this condition
+   */
+  public boolean getCondition() {
+    return condition;
+  }
 }

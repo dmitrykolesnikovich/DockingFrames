@@ -38,54 +38,56 @@ import bibliothek.util.FrameworkOnly;
  * waits until a {@link CStation} with a specific identifier is registered. It then calls
  * {@link CDockable#setWorkingArea(CStation)} with this station. This listener automatically
  * removes itself once its mission is over.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public class DelayedWorkingAreaSetter extends DockRegisterAdapter{
-	private String area;
-	private CDockable dockable;
-	private CControl control;
-	
-	/**
-	 * Creates a new setter.
-	 * @param area the {@link CStation} for which to search
-	 * @param dockable the element whose working area should be set
-	 * @param control the control to monitor
-	 */
-	public DelayedWorkingAreaSetter( String area, CDockable dockable, CControl control ){
-		this.area = area;
-		this.dockable = dockable;
-		this.control = control;
-	}
-	
-	public void install(){
-		control.getController().getRegister().addDockRegisterListener( this );
-	}
-	
-	/**
-	 * Removes all listeners this {@link DelayedWorkingAreaSetter} has added anywhere.
-	 */
-	public void uninstall(){
-		control.getController().getRegister().removeDockRegisterListener( this );
-	}
+public class DelayedWorkingAreaSetter extends DockRegisterAdapter {
+  private String area;
+  private CDockable dockable;
+  private CControl control;
 
-	public void dockStationRegistering( DockController controller, DockStation station ){
-		if( station instanceof CommonDockStation<?,?>){
-			CommonDockStation<?, ?> common = (CommonDockStation<?, ?>)station;
-			CStation<?> cstation = common.getStation();
-			String id = cstation.getUniqueId();
-			if( id.equals( area )){
-				if( cstation.isWorkingArea() ){
-					dockable.setWorkingArea( cstation );
-				}
-				uninstall();
-			}
-		}
-	}
-	
-	@Override
-	public void registerUnstalled( DockController controller ){
-		// means the layout is loaded completely
-		uninstall();
-	}
+  /**
+   * Creates a new setter.
+   *
+   * @param area     the {@link CStation} for which to search
+   * @param dockable the element whose working area should be set
+   * @param control  the control to monitor
+   */
+  public DelayedWorkingAreaSetter(String area, CDockable dockable, CControl control) {
+    this.area = area;
+    this.dockable = dockable;
+    this.control = control;
+  }
+
+  public void install() {
+    control.getController().getRegister().addDockRegisterListener(this);
+  }
+
+  /**
+   * Removes all listeners this {@link DelayedWorkingAreaSetter} has added anywhere.
+   */
+  public void uninstall() {
+    control.getController().getRegister().removeDockRegisterListener(this);
+  }
+
+  public void dockStationRegistering(DockController controller, DockStation station) {
+    if (station instanceof CommonDockStation<?, ?>) {
+      CommonDockStation<?, ?> common = (CommonDockStation<?, ?>)station;
+      CStation<?> cstation = common.getStation();
+      String id = cstation.getUniqueId();
+      if (id.equals(area)) {
+        if (cstation.isWorkingArea()) {
+          dockable.setWorkingArea(cstation);
+        }
+        uninstall();
+      }
+    }
+  }
+
+  @Override
+  public void registerUnstalled(DockController controller) {
+    // means the layout is loaded completely
+    uninstall();
+  }
 }

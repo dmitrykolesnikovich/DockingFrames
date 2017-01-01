@@ -33,62 +33,69 @@ import bibliothek.gui.dock.util.font.FontModifier;
 
 /**
  * A property for handling a {@link CssFontModifier} with a transition.
+ *
  * @author Benjamin Sigg
  */
-public abstract class CssFontTransitionProperty extends CssContainerTransitionProperty<CssFontModifier>{
-	/** listener added to the current font modifier */
-	private CssFontModifierListener listener = new CssFontModifierListener(){
-		@Override
-		public void modifierChanged( CssFontModifier source ){
-			setModifier( source.getModifier() );	
-		}
-	};
-	
-	/** the current font modifier */
-	private CssFontModifier modifier;
-	
-	/**
-	 * Creates the new property.
-	 * @param scheme the scheme in whose realm this property will work
-	 * @param item the item to which this property belongs
-	 */
-	public CssFontTransitionProperty( CssScheme scheme, CssItem item ){
-		super( scheme, item );
-	}
-	
-	@Override
-	public CssType<CssFontModifier> getType( CssScheme scheme ){
-		return scheme.getConverter( CssFontModifier.class );
-	}
-	
-	@Override
-	protected void propertyChanged( CssFontModifier value ){
-		if( modifier != null ){
-			modifier.removeFontModifierListener( listener );
-		}
-		modifier = value;
-		if( modifier != null ){
-			modifier.addFontModifierListener( listener );
-			setModifier( modifier.getModifier() );
-		}
-		else{
-			setModifier( null );
-		}
-	}
-	
-	/**
-	 * Called if the {@link CssFontModifier} was exchanged or updated.
-	 * @param modifier the new modifier, may be <code>null</code>
-	 */
-	protected abstract void setModifier( FontModifier modifier );
-	
-	@Override
-	protected void bind(){
-		// ignore
-	}
-	
-	@Override
-	protected void unbind(){
-		// ignore
-	}
+public abstract class CssFontTransitionProperty extends CssContainerTransitionProperty<CssFontModifier> {
+  /**
+   * listener added to the current font modifier
+   */
+  private CssFontModifierListener listener = new CssFontModifierListener() {
+    @Override
+    public void modifierChanged(CssFontModifier source) {
+      setModifier(source.getModifier());
+    }
+  };
+
+  /**
+   * the current font modifier
+   */
+  private CssFontModifier modifier;
+
+  /**
+   * Creates the new property.
+   *
+   * @param scheme the scheme in whose realm this property will work
+   * @param item   the item to which this property belongs
+   */
+  public CssFontTransitionProperty(CssScheme scheme, CssItem item) {
+    super(scheme, item);
+  }
+
+  @Override
+  public CssType<CssFontModifier> getType(CssScheme scheme) {
+    return scheme.getConverter(CssFontModifier.class);
+  }
+
+  @Override
+  protected void propertyChanged(CssFontModifier value) {
+    if (modifier != null) {
+      modifier.removeFontModifierListener(listener);
+    }
+    modifier = value;
+    if (modifier != null) {
+      modifier.addFontModifierListener(listener);
+      setModifier(modifier.getModifier());
+    }
+    else {
+      setModifier(null);
+    }
+  }
+
+  /**
+   * Called if the {@link CssFontModifier} was exchanged or updated.
+   *
+   * @param modifier the new modifier, may be <code>null</code>
+   */
+  protected abstract void setModifier(FontModifier modifier);
+
+  @Override
+  protected void bind() {
+    // ignore
+  }
+
+  @Override
+  protected void unbind() {
+    // ignore
+  }
 }

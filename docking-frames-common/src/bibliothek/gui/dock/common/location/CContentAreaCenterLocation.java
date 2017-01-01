@@ -32,50 +32,56 @@ import bibliothek.gui.dock.station.split.SplitDockProperty;
 
 /**
  * This location points to the center of a {@link CContentArea}.
+ *
  * @author Benjamin Sigg
  */
-public class CContentAreaCenterLocation extends CSplitLocation{
-    /** location of the {@link CContentArea} itself */
-    private CBaseLocation base;
-    
-    /**
-     * Creates a new location
-     * @param base the location describing a {@link CContentArea}, not <code>null</code>
-     */
-    public CContentAreaCenterLocation( CBaseLocation base ){
-        if( base == null )
-            throw new NullPointerException( "base is null" );
-        this.base = base;
-    }
+public class CContentAreaCenterLocation extends CSplitLocation {
+  /**
+   * location of the {@link CContentArea} itself
+   */
+  private CBaseLocation base;
 
-    /**
-     * Gets the location representing the {@link CContentArea} of which this
-     * location represents the center.
-     * @return the content-area
-     */
-    public CBaseLocation getBase(){
-		return base;
-	}
-    
-    @Override
-    public DockableProperty findProperty( DockableProperty successor ){
-    	if( successor == null ){
-    		return new SplitDockProperty( 0, 0, 1, 1 );
-    	}
-    	return successor;
+  /**
+   * Creates a new location
+   *
+   * @param base the location describing a {@link CContentArea}, not <code>null</code>
+   */
+  public CContentAreaCenterLocation(CBaseLocation base) {
+    if (base == null) throw new NullPointerException("base is null");
+    this.base = base;
+  }
+
+  /**
+   * Gets the location representing the {@link CContentArea} of which this
+   * location represents the center.
+   *
+   * @return the content-area
+   */
+  public CBaseLocation getBase() {
+    return base;
+  }
+
+  @Override
+  public DockableProperty findProperty(DockableProperty successor) {
+    if (successor == null) {
+      return new SplitDockProperty(0, 0, 1, 1);
     }
-    
-    @Override
-    public String findRoot() {
-        CContentArea area = base.getContentArea();
-        if( area == null )
-            return CContentArea.getCenterIdentifier( CControl.CONTENT_AREA_STATIONS_ID );
-        else
-            return area.getCenterIdentifier();
+    return successor;
+  }
+
+  @Override
+  public String findRoot() {
+    CContentArea area = base.getContentArea();
+    if (area == null) {
+      return CContentArea.getCenterIdentifier(CControl.CONTENT_AREA_STATIONS_ID);
     }
-    
-    @Override
-    public String toString() {
-        return "[" + findRoot() + "]";
+    else {
+      return area.getCenterIdentifier();
     }
+  }
+
+  @Override
+  public String toString() {
+    return "[" + findRoot() + "]";
+  }
 }

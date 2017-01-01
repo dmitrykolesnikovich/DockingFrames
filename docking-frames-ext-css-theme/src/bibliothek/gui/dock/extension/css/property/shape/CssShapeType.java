@@ -25,25 +25,26 @@
  */
 package bibliothek.gui.dock.extension.css.property.shape;
 
-import bibliothek.gui.dock.extension.css.CssType;
 import bibliothek.gui.dock.extension.css.CssDeclarationValue;
+import bibliothek.gui.dock.extension.css.CssType;
 import bibliothek.gui.dock.extension.css.transition.TransitionalCssProperty;
 
 /**
  * A type creating new {@link CssShape}s.
+ *
  * @author Benjamin Sigg
  */
-public class CssShapeType implements CssType<CssShape>{
-	@Override
-	public CssShape convert( CssDeclarationValue value ){
-		if( "oval".equals( value.getSingleValue() )){
-			return new OvalShape();
-		}
-		return null;
-	}
-	
-	@Override
-	public TransitionalCssProperty<CssShape> createTransition(){
-		return null;
-	}
+public class CssShapeType implements CssType<CssShape> {
+  @Override
+  public CssShape convert(CssDeclarationValue value) {
+    if ("oval".equals(value.getSingleValue())) {
+      return new OvalShape();
+    }
+    return null;
+  }
+
+  @Override
+  public TransitionalCssProperty<CssShape> createTransition() {
+    return null;
+  }
 }

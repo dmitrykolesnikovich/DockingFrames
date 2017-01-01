@@ -36,13 +36,14 @@ import bibliothek.gui.dock.common.intern.CDockable;
  * can fire a veto indicating that some {@link CDockable} must not yet be closed.<br>
  * Please note:
  * <ul>
- * 	<li>It may not always be possible to cancel a closing-operation.</li>
- * 	<li>There is no guarantee that {@link #closing(CVetoClosingEvent)} is called before {@link #closed(CVetoClosingEvent)}</li>
- * 	<li>The event-object passed to {@link #closing(CVetoClosingEvent)} and {@link #closed(CVetoClosingEvent)} may not be equal, even if they describe the same event</li>
- * 	<li>Events may be split: if {@link #closing(CVetoClosingEvent)} was called once and handled three dockables, then {@link #closed(CVetoClosingEvent)} may be called three times to handle one dockable</li>
- * 	<li> {@link MultipleCDockable}s that are not children of a {@link CWorkingArea} are closed and re-opened if the layout changes ({@link CControl#load(String)}). This may be
- *  prevented with a correct implementation of {@link MultipleCDockableFactory#match(MultipleCDockable, bibliothek.gui.dock.common.MultipleCDockableLayout) MultipleCDockableFactory.match}. </li>
+ * <li>It may not always be possible to cancel a closing-operation.</li>
+ * <li>There is no guarantee that {@link #closing(CVetoClosingEvent)} is called before {@link #closed(CVetoClosingEvent)}</li>
+ * <li>The event-object passed to {@link #closing(CVetoClosingEvent)} and {@link #closed(CVetoClosingEvent)} may not be equal, even if they describe the same event</li>
+ * <li>Events may be split: if {@link #closing(CVetoClosingEvent)} was called once and handled three dockables, then {@link #closed(CVetoClosingEvent)} may be called three times to handle one dockable</li>
+ * <li> {@link MultipleCDockable}s that are not children of a {@link CWorkingArea} are closed and re-opened if the layout changes ({@link CControl#load(String)}). This may be
+ * prevented with a correct implementation of {@link MultipleCDockableFactory#match(MultipleCDockable, bibliothek.gui.dock.common.MultipleCDockableLayout) MultipleCDockableFactory.match}. </li>
  * </ul>
+ *
  * @author Benjamin Sigg
  * @see CControl#addVetoClosingListener(CVetoClosingListener)
  * @see CControl#removeVetoClosingListener(CVetoClosingListener)
@@ -50,19 +51,21 @@ import bibliothek.gui.dock.common.intern.CDockable;
  * @see CDockable#removeVetoClosingListener(CVetoClosingListener)
  */
 public interface CVetoClosingListener {
-	/**
-	 * Called before a set of {@link CDockable}s gets closed. This method may be invoked
-	 * with events that are already canceled, check the {@link CVetoClosingEvent#isCanceled()} 
-	 * property. 
-	 * @param event the event that will happen but may be canceled
-	 */
-	public void closing( CVetoClosingEvent event );
-	
-	/**
-	 * Called after a set of {@link CDockable}s has been closed. This
-	 * method may be called without {@link #closing(CVetoClosingEvent)} been
-	 * called beforehand.
-	 * @param event the event that has already happened
-	 */
-	public void closed( CVetoClosingEvent event );
+  /**
+   * Called before a set of {@link CDockable}s gets closed. This method may be invoked
+   * with events that are already canceled, check the {@link CVetoClosingEvent#isCanceled()}
+   * property.
+   *
+   * @param event the event that will happen but may be canceled
+   */
+  public void closing(CVetoClosingEvent event);
+
+  /**
+   * Called after a set of {@link CDockable}s has been closed. This
+   * method may be called without {@link #closing(CVetoClosingEvent)} been
+   * called beforehand.
+   *
+   * @param event the event that has already happened
+   */
+  public void closed(CVetoClosingEvent event);
 }

@@ -31,12 +31,13 @@ import bibliothek.gui.dock.extension.css.property.AbstractContainerCssProperty;
 
 /**
  * Allows access to a {@link CssPaint}.
+ *
  * @author Benjamin Sigg
  */
 public abstract class PaintCssProperty extends AbstractContainerCssProperty<CssPaint> {
-	@Override
-	public CssType<CssPaint> getType( CssScheme scheme ){
-		return scheme.getConverter( CssPaint.class );
-	}
+  @Override
+  public CssType<CssPaint> getType(CssScheme scheme) {
+    return scheme.getConverter(CssPaint.class);
+  }
 }
 

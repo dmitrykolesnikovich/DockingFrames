@@ -30,14 +30,16 @@ import bibliothek.gui.dock.layout.DockableProperty;
 
 /**
  * A factory creating new {@link AsideRequest}s.
+ *
  * @author Benjamin Sigg
  */
 public interface AsideRequestFactory {
-	/**
-	 * Creates a new {@link AsideRequest} for <code>dockable</code>.
-	 * @param location the location whose neighbor is searched
-	 * @param dockable the element whose new location is searched
-	 * @return the request for <code>dockable</code>
-	 */
-	public AsideRequest createAsideRequest( DockableProperty location, Dockable dockable );
+  /**
+   * Creates a new {@link AsideRequest} for <code>dockable</code>.
+   *
+   * @param location the location whose neighbor is searched
+   * @param dockable the element whose new location is searched
+   * @return the request for <code>dockable</code>
+   */
+  public AsideRequest createAsideRequest(DockableProperty location, Dockable dockable);
 }

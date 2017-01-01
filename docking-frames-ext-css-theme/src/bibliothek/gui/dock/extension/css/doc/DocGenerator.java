@@ -31,40 +31,42 @@ import bibliothek.gui.dock.extension.css.theme.CssDockTitle;
 /**
  * An application able to generate documentation of all the available css elements reading some annotations
  * directly from the class files.
+ *
  * @author Benjamin Sigg
  */
 public class DocGenerator {
-	public static void main( String[] args ){
-		DocGenerator generator = new DocGenerator();
-		generator.add( CssDockTitle.class );
-		generator.format();
-	}
-	
-	private DocRoot root = new DocRoot();
-	
-	private DocFormatter formatter = new TextFormatter();
-	
-	/**
-	 * Adds an additional class to the set of classes that need documentation.
-	 * @param classToDocument the new class
-	 */
-	public void add( Class<?> classToDocument ){
-		root.add( classToDocument );
-	}
-	
-	/**
-	 * Sets the algorithm that should be used to format the documentation.
-	 * @param formatter the formating algorithm
-	 */
-	public void setFormatter( DocFormatter formatter ){
-		this.formatter = formatter;
-	}
-	
-	/**
-	 * Reads all the classes that need documentation, and calls the 
-	 * {@link DocFormatter} with a new {@link DocRoot}.
-	 */
-	public void format(){
-		formatter.format( root );
-	}
+  private DocRoot root = new DocRoot();
+  private DocFormatter formatter = new TextFormatter();
+
+  public static void main(String[] args) {
+    DocGenerator generator = new DocGenerator();
+    generator.add(CssDockTitle.class);
+    generator.format();
+  }
+
+  /**
+   * Adds an additional class to the set of classes that need documentation.
+   *
+   * @param classToDocument the new class
+   */
+  public void add(Class<?> classToDocument) {
+    root.add(classToDocument);
+  }
+
+  /**
+   * Sets the algorithm that should be used to format the documentation.
+   *
+   * @param formatter the formating algorithm
+   */
+  public void setFormatter(DocFormatter formatter) {
+    this.formatter = formatter;
+  }
+
+  /**
+   * Reads all the classes that need documentation, and calls the
+   * {@link DocFormatter} with a new {@link DocRoot}.
+   */
+  public void format() {
+    formatter.format(root);
+  }
 }

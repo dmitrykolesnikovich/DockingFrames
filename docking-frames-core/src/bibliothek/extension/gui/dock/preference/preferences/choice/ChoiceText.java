@@ -31,41 +31,49 @@ import bibliothek.util.Path;
 
 /**
  * Represents a text that is used for a {@link Choice}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class ChoiceText extends TextValue{
-	/** the kind of this {@link UIValue} */
-	public static final Path KIND_CHOICE = KIND_TEXT.append( "choice" );
-	
-	/** the choice using this text */
-	private Choice choice;
+public abstract class ChoiceText extends TextValue {
+  /**
+   * the kind of this {@link UIValue}
+   */
+  public static final Path KIND_CHOICE = KIND_TEXT.append("choice");
 
-	/**
-	 * Creates a new {@link ChoiceText}.
-	 * @param id the unique identifier of this {@link UIValue}
-	 * @param choice the choice for which the text is required
-	 */
-	public ChoiceText( String id, Choice choice ){
-		super( id, KIND_CHOICE );
-		this.choice = choice;
-	}
-	
-	/**
-	 * Creates a new {@link ChoiceText}.
-	 * @param id the unique identifier of this {@link UIValue}
-	 * @param choice the choice for which the text is required
-	 * @param kind what kind of {@link UIValue} this is
-	 */
-	public ChoiceText( String id, Choice choice, Path kind ){
-		super( id, kind );
-		this.choice = choice;
-	}
+  /**
+   * the choice using this text
+   */
+  private Choice choice;
 
-	/**
-	 * Gets the choice which is using this text.
-	 * @return the choice
-	 */
-	public Choice getChoice(){
-		return choice;
-	}
+  /**
+   * Creates a new {@link ChoiceText}.
+   *
+   * @param id     the unique identifier of this {@link UIValue}
+   * @param choice the choice for which the text is required
+   */
+  public ChoiceText(String id, Choice choice) {
+    super(id, KIND_CHOICE);
+    this.choice = choice;
+  }
+
+  /**
+   * Creates a new {@link ChoiceText}.
+   *
+   * @param id     the unique identifier of this {@link UIValue}
+   * @param choice the choice for which the text is required
+   * @param kind   what kind of {@link UIValue} this is
+   */
+  public ChoiceText(String id, Choice choice, Path kind) {
+    super(id, kind);
+    this.choice = choice;
+  }
+
+  /**
+   * Gets the choice which is using this text.
+   *
+   * @return the choice
+   */
+  public Choice getChoice() {
+    return choice;
+  }
 }

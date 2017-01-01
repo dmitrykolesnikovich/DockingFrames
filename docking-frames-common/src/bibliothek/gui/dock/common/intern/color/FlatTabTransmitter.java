@@ -25,126 +25,98 @@
  */
 package bibliothek.gui.dock.common.intern.color;
 
-import java.awt.Color;
-
 import bibliothek.extension.gui.dock.theme.FlatTheme;
 import bibliothek.gui.dock.common.ColorMap;
 import bibliothek.gui.dock.common.intern.CDockable;
-import bibliothek.gui.dock.util.color.ColorManager;
 import bibliothek.gui.dock.util.color.ColorBridge;
+import bibliothek.gui.dock.util.color.ColorManager;
 import bibliothek.util.Colors;
+
+import java.awt.*;
 
 /**
  * A {@link ColorBridge} for {@link FlatTheme} used in combination with
  * {@link CDockable} and its {@link ColorMap}.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public class FlatTabTransmitter extends TabColorTransmitter {
-    private static final String[] KEYS = {
-        "stack.tab.border.out.selected", 
-        "stack.tab.border.center.selected",
-        "stack.tab.border.out.focused", 
-        "stack.tab.border.center.focused",
-        "stack.tab.border.out", 
-        "stack.tab.border.center",
-                    
-        "stack.tab.background.top.selected", 
-        "stack.tab.background.bottom.selected",
-        "stack.tab.background.top.focused", 
-        "stack.tab.background.bottom.focused",
-        "stack.tab.background.top", 
-        "stack.tab.background.bottom",
-        
-        "stack.tab.foreground.selected",
-        "stack.tab.foreground.focused",
-        "stack.tab.foreground"
-    };
-    
-    /**
-     * Creates a new transmitter
-     * @param manager the source for colors
-     */
-    public FlatTabTransmitter( ColorManager manager ) {
-        super( manager, KEYS );
-    }
+  private static final String[] KEYS =
+    {"stack.tab.border.out.selected", "stack.tab.border.center.selected", "stack.tab.border.out.focused", "stack.tab.border.center.focused",
+      "stack.tab.border.out", "stack.tab.border.center",
 
-    @Override
-    protected Color convert( Color source, String key ) {
-        if( key.contains( "focused" ))
-            return convertFocused( Colors.diffMirror( source, 0.6 ), key );
-        
-        if( key.contains( "selected" ))
-            return convertSelected( Colors.diffMirror( source, 0.3 ), key );
+      "stack.tab.background.top.selected", "stack.tab.background.bottom.selected", "stack.tab.background.top.focused",
+      "stack.tab.background.bottom.focused", "stack.tab.background.top", "stack.tab.background.bottom",
 
-        if( "stack.tab.border.out".equals( key ))
-            return null;
-        if( "stack.tab.border.center".equals( key ))
-            return null;
-        
-        if( "stack.tab.background.top".equals( key ))
-            return Colors.darker( source, 0.3 );
-        if( "stack.tab.background.bottom".equals( key ))
-            return Colors.brighter( source, 0.3 );
-        
-        if( "stack.tab.foreground".equals( key ))
-            return Colors.diffMirror( source, 1.0 );
+      "stack.tab.foreground.selected", "stack.tab.foreground.focused", "stack.tab.foreground"};
 
-        return null;
-    }
+  /**
+   * Creates a new transmitter
+   *
+   * @param manager the source for colors
+   */
+  public FlatTabTransmitter(ColorManager manager) {
+    super(manager, KEYS);
+  }
 
-    @Override
-    protected Color convertSelected( Color source, String key ) {
-        if( key.contains( "focused" ))
-            return convertFocused( Colors.diffMirror( source, 0.3 ), key );
+  @Override
+  protected Color convert(Color source, String key) {
+    if (key.contains("focused")) return convertFocused(Colors.diffMirror(source, 0.6), key);
 
-        if( "stack.tab.border.out.selected".equals( key ))
-            return null;
-        if( "stack.tab.border.center.selected".equals( key ))
-            return null;
-        
-        if( "stack.tab.background.top.selected".equals( key ))
-            return Colors.darker( source, 0.3 );
-        if( "stack.tab.background.bottom.selected".equals( key ))
-            return Colors.brighter( source, 0.3 );
-        
-        if( "stack.tab.foreground.selected".equals( key ))
-            return Colors.diffMirror( source, 1.0 );
+    if (key.contains("selected")) return convertSelected(Colors.diffMirror(source, 0.3), key);
 
-        return null;
-    }
+    if ("stack.tab.border.out".equals(key)) return null;
+    if ("stack.tab.border.center".equals(key)) return null;
 
-    @Override
-    protected Color convertFocused( Color source, String key ) {
-        if( "stack.tab.border.out.focused".equals( key ))
-            return null;
-        if( "stack.tab.border.center.focused".equals( key ))
-            return null;
-        
-        if( "stack.tab.background.top.focused".equals( key ))
-            return Colors.darker( source, 0.3 );
-        if( "stack.tab.background.bottom.focused".equals( key ))
-            return Colors.brighter( source, 0.3 );
-        
-        if( "stack.tab.foreground.focused".equals( key ))
-            return Colors.diffMirror( source, 1.0 );
+    if ("stack.tab.background.top".equals(key)) return Colors.darker(source, 0.3);
+    if ("stack.tab.background.bottom".equals(key)) return Colors.brighter(source, 0.3);
 
-        return null;
-    }
+    if ("stack.tab.foreground".equals(key)) return Colors.diffMirror(source, 1.0);
+
+    return null;
+  }
+
+  @Override
+  protected Color convertSelected(Color source, String key) {
+    if (key.contains("focused")) return convertFocused(Colors.diffMirror(source, 0.3), key);
+
+    if ("stack.tab.border.out.selected".equals(key)) return null;
+    if ("stack.tab.border.center.selected".equals(key)) return null;
+
+    if ("stack.tab.background.top.selected".equals(key)) return Colors.darker(source, 0.3);
+    if ("stack.tab.background.bottom.selected".equals(key)) return Colors.brighter(source, 0.3);
+
+    if ("stack.tab.foreground.selected".equals(key)) return Colors.diffMirror(source, 1.0);
+
+    return null;
+  }
+
+  @Override
+  protected Color convertFocused(Color source, String key) {
+    if ("stack.tab.border.out.focused".equals(key)) return null;
+    if ("stack.tab.border.center.focused".equals(key)) return null;
+
+    if ("stack.tab.background.top.focused".equals(key)) return Colors.darker(source, 0.3);
+    if ("stack.tab.background.bottom.focused".equals(key)) return Colors.brighter(source, 0.3);
+
+    if ("stack.tab.foreground.focused".equals(key)) return Colors.diffMirror(source, 1.0);
+
+    return null;
+  }
 
 
-    @Override
-    protected boolean isFocused( String id ) {
-        return id.contains( "focused" );
-    }
+  @Override
+  protected boolean isFocused(String id) {
+    return id.contains("focused");
+  }
 
-    @Override
-    protected boolean isForeground( String id ) {
-        return id.contains( "foreground" );
-    }
+  @Override
+  protected boolean isForeground(String id) {
+    return id.contains("foreground");
+  }
 
-    @Override
-    protected boolean isSelected( String id ) {
-        return id.contains( "selected" );
-    }
+  @Override
+  protected boolean isSelected(String id) {
+    return id.contains("selected");
+  }
 }

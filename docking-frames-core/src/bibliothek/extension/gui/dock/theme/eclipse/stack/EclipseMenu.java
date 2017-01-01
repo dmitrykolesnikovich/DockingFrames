@@ -36,24 +36,26 @@ import bibliothek.gui.dock.themes.icon.TabMenuOverflowIconBridge;
  * A menu used by the {@link EclipseTabPane} to select {@link Dockable}s.<br>
  * The icon of the menu is {@link TabMenuOverflowIconBridge#ICON_KEY}, and thus changes automatically
  * when the number of children changes.
+ *
  * @author Benjamin Sigg
  */
-public class EclipseMenu extends ButtonCombinedMenu<RoundRectButton>{
-	/**
-	 * Creates a new menu.
-	 * @param pane the owner of this menu
-	 */
-	public EclipseMenu( EclipseTabPane pane ){
-		super( pane, pane.getMenuHandler() );
-	}
-	
-	@Override
-	protected RoundRectButton createButton( BasicTrigger trigger ){
-		return new RoundRectButton( trigger, null );
-	}
-	
-	@Override
-	protected BasicButtonModel getModel( RoundRectButton button ){
-		return button.getModel();
-	}
+public class EclipseMenu extends ButtonCombinedMenu<RoundRectButton> {
+  /**
+   * Creates a new menu.
+   *
+   * @param pane the owner of this menu
+   */
+  public EclipseMenu(EclipseTabPane pane) {
+    super(pane, pane.getMenuHandler());
+  }
+
+  @Override
+  protected RoundRectButton createButton(BasicTrigger trigger) {
+    return new RoundRectButton(trigger, null);
+  }
+
+  @Override
+  protected BasicButtonModel getModel(RoundRectButton button) {
+    return button.getModel();
+  }
 }

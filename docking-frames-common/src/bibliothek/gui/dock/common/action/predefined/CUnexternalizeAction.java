@@ -35,14 +35,17 @@ import bibliothek.gui.dock.common.mode.ExtendedMode;
  * An action that un-externalizes (=normalizes) each {@link CDockable} to which it is added.
  * This action does the same as the {@link CNormalizeAction}, it just has another icon
  * and title for the user.
+ *
  * @author Benjamin Sigg
  */
-public class CUnexternalizeAction extends CExtendedModeAction{
-    /**
-     * Creates a new action
-     * @param control the control for which this action will be used
-     */
-    public CUnexternalizeAction( CControl control ){
-        super( control, ExtendedMode.NORMALIZED, CLocationModeManager.ICON_MANAGER_KEY_UNEXTERNALIZE, "externalize.out", "externalize.out.tooltip", CControl.KEY_GOTO_NORMALIZED );
-    }
+public class CUnexternalizeAction extends CExtendedModeAction {
+  /**
+   * Creates a new action
+   *
+   * @param control the control for which this action will be used
+   */
+  public CUnexternalizeAction(CControl control) {
+    super(control, ExtendedMode.NORMALIZED, CLocationModeManager.ICON_MANAGER_KEY_UNEXTERNALIZE, "externalize.out",
+          "externalize.out.tooltip", CControl.KEY_GOTO_NORMALIZED);
+  }
 }

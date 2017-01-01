@@ -30,8 +30,9 @@ import bibliothek.gui.dock.util.UIBridge;
 
 /**
  * A filter between a {@link TextManager} and a {@link TextValue}.
+ *
  * @author Benjamin Sigg
  */
-public interface TextBridge extends UIBridge<String, TextValue>{
+public interface TextBridge extends UIBridge<String, TextValue> {
 
 }

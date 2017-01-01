@@ -33,25 +33,21 @@ import bibliothek.gui.dock.extension.css.property.IntegerCssProperty;
 import bibliothek.gui.dock.extension.css.theme.CssDockTitle;
 import bibliothek.gui.dock.title.AbstractMultiDockTitle;
 
-@CssDocProperty(
-		path=@CssDocPath(referencePath=CssDockTitle.class, referenceId="self"),
-		property=@CssDocKey(key="icontextgap"),
-		type=Integer.class,
-		description=@CssDocText(text="The size of the gap between icon and text."))
-public class TitleIconTextGapProperty extends IntegerCssProperty{
-	private AbstractMultiDockTitle title;
-	
-	public TitleIconTextGapProperty( AbstractMultiDockTitle title ){
-		this.title = title;
-	}
-	
-	@Override
-	public void set( Integer value ){
-		if( value == null ){
-			title.setIconTextGap( 0 );
-		}
-		else{
-			title.setIconTextGap( value );
-		}
-	}
+@CssDocProperty(path = @CssDocPath(referencePath = CssDockTitle.class, referenceId = "self"), property = @CssDocKey(key = "icontextgap"), type = Integer.class, description = @CssDocText(text = "The size of the gap between icon and text."))
+public class TitleIconTextGapProperty extends IntegerCssProperty {
+  private AbstractMultiDockTitle title;
+
+  public TitleIconTextGapProperty(AbstractMultiDockTitle title) {
+    this.title = title;
+  }
+
+  @Override
+  public void set(Integer value) {
+    if (value == null) {
+      title.setIconTextGap(0);
+    }
+    else {
+      title.setIconTextGap(value);
+    }
+  }
 }

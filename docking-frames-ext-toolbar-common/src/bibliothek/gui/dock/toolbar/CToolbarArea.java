@@ -46,52 +46,58 @@ import bibliothek.gui.dock.toolbar.perspective.CToolbarAreaPerspective;
 import bibliothek.util.Path;
 
 /**
- * The {@link CToolbarArea} acts as root {@link CStation} for toolbars. 
+ * The {@link CToolbarArea} acts as root {@link CStation} for toolbars.
+ *
  * @author Benjamin Sigg
  */
 public class CToolbarArea extends AbstractCStation<CommonToolbarContainerDockStation> {
-	/** The result of {@link #getTypeId()} */
-	public static final Path TYPE_ID = new Path( "dock", "CToolbarArea" );
-	
-	/** connection between <code>this</code> and the {@link CLocationModeManager} */
-	private CToolbarAreaHandle handle;
-	
-	/**
-	 * Creates a new container.
-	 * @param id the unique identifier of this container, not <code>null</code>
-	 * @param orientation whether the items are aligned horizontally or vertically, not <code>null</code>
-	 */
-	public CToolbarArea( String id, Orientation orientation ){
-		CLocation location = new CToolbarAreaLocation( this );
-		init( new CommonToolbarContainerDockStation( this, orientation ), id, location );
-	}
-	
-	@Override
-	public CToolbarAreaLocation getStationLocation(){
-		return (CToolbarAreaLocation)super.getStationLocation();
-	}
-	
-	@Override
-	public CStationPerspective createPerspective(){
-		return new CToolbarAreaPerspective( getUniqueId() );
-	}
+  /**
+   * The result of {@link #getTypeId()}
+   */
+  public static final Path TYPE_ID = new Path("dock", "CToolbarArea");
 
-	@Override
-	public Path getTypeId(){
-		return TYPE_ID;
-	}
+  /**
+   * connection between <code>this</code> and the {@link CLocationModeManager}
+   */
+  private CToolbarAreaHandle handle;
 
-	@Override
-	protected void install( CControlAccess access ){
-		handle = new CToolbarAreaHandle( this );
-		CToolbarMode mode = (CToolbarMode)access.getLocationManager().getMode( ToolbarMode.IDENTIFIER );
-		mode.add( handle );
-	}
+  /**
+   * Creates a new container.
+   *
+   * @param id          the unique identifier of this container, not <code>null</code>
+   * @param orientation whether the items are aligned horizontally or vertically, not <code>null</code>
+   */
+  public CToolbarArea(String id, Orientation orientation) {
+    CLocation location = new CToolbarAreaLocation(this);
+    init(new CommonToolbarContainerDockStation(this, orientation), id, location);
+  }
 
-	@Override
-	protected void uninstall( CControlAccess access ){
-		CToolbarMode mode = (CToolbarMode)access.getLocationManager().getMode( ToolbarMode.IDENTIFIER );
-		mode.remove( handle.getUniqueId() );
-		handle = null;
-	}
+  @Override
+  public CToolbarAreaLocation getStationLocation() {
+    return (CToolbarAreaLocation)super.getStationLocation();
+  }
+
+  @Override
+  public CStationPerspective createPerspective() {
+    return new CToolbarAreaPerspective(getUniqueId());
+  }
+
+  @Override
+  public Path getTypeId() {
+    return TYPE_ID;
+  }
+
+  @Override
+  protected void install(CControlAccess access) {
+    handle = new CToolbarAreaHandle(this);
+    CToolbarMode mode = (CToolbarMode)access.getLocationManager().getMode(ToolbarMode.IDENTIFIER);
+    mode.add(handle);
+  }
+
+  @Override
+  protected void uninstall(CControlAccess access) {
+    CToolbarMode mode = (CToolbarMode)access.getLocationManager().getMode(ToolbarMode.IDENTIFIER);
+    mode.remove(handle.getUniqueId());
+    handle = null;
+  }
 }

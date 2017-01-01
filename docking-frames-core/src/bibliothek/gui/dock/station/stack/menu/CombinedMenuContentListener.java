@@ -29,27 +29,31 @@ import bibliothek.gui.Dockable;
 
 /**
  * A listener added to a {@link CombinedMenuContent}.
+ *
  * @author Benjamin Sigg
  */
 public interface CombinedMenuContentListener {
-	/**
-	 * Called when <code>menu</code> is made visible.
-	 * @param menu the source of the event
-	 */
-	public void opened( CombinedMenuContent menu );
-	
-	/**
-	 * Called after <code>menu</code> was made invisible without making
-	 * any selection.
-	 * @param menu the source of the event
-	 */
-	public void canceled( CombinedMenuContent menu );
-	
-	/**
-	 * Called after <code>menu</code> was made invisible with making
-	 * a selection.
-	 * @param menu the source of the event
-	 * @param selection the selection made on the menu
-	 */
-	public void selected( CombinedMenuContent menu, Dockable selection );
+  /**
+   * Called when <code>menu</code> is made visible.
+   *
+   * @param menu the source of the event
+   */
+  public void opened(CombinedMenuContent menu);
+
+  /**
+   * Called after <code>menu</code> was made invisible without making
+   * any selection.
+   *
+   * @param menu the source of the event
+   */
+  public void canceled(CombinedMenuContent menu);
+
+  /**
+   * Called after <code>menu</code> was made invisible with making
+   * a selection.
+   *
+   * @param menu      the source of the event
+   * @param selection the selection made on the menu
+   */
+  public void selected(CombinedMenuContent menu, Dockable selection);
 }

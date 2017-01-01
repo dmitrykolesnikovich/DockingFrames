@@ -33,122 +33,128 @@ import bibliothek.gui.dock.common.mode.ExtendedMode;
  * A class implementing all methods of {@link CDockableStateListener}
  * and {@link CDockablePropertyListener}.
  * The methods have an empty body and can be overridden by subclasses.
+ *
  * @author Benjamin Sigg
  */
 public class CDockableAdapter implements CDockableStateListener, CDockablePropertyListener {
-    public void closeableChanged( CDockable dockable ) {
-        // empty
-    }
-    
-    public void resizeLockedChanged( CDockable dockable ) {
-        // empty
-    }
+  public void closeableChanged(CDockable dockable) {
+    // empty
+  }
 
-    public void externalizableChanged( CDockable dockable ) {
-        // empty
-    }
+  public void resizeLockedChanged(CDockable dockable) {
+    // empty
+  }
 
-    public void maximizableChanged( CDockable dockable ) {
-        // empty
-    }
-    
-    public void normalizeableChanged( CDockable dockable ){
-	    // empty	
-    }
+  public void externalizableChanged(CDockable dockable) {
+    // empty
+  }
 
-    public void minimizableChanged( CDockable dockable ) {
-        // empty
-    }
-    
-    public void stickyChanged( CDockable dockable ) {
-        // empty
-    }
-    
-    public void minimizeSizeChanged( CDockable dockable ) {
-        // empty
-    }
-    
-    public void stickySwitchableChanged( CDockable dockable ){
-    	// empty
-    }
-    
-    public void titleShownChanged( CDockable dockable ) {
-        // empty
-    }
-    
-    public void singleTabShownChanged( CDockable dockable ){
-	    // empty	
-    }
+  public void maximizableChanged(CDockable dockable) {
+    // empty
+  }
 
-    public void actionChanged( CDockable dockable, String key, CAction oldAction, CAction newAction ) {
-        // empty
-    }
-    
-    public void visibilityChanged( CDockable dockable ) {
-        // empty
-    }
-    
-    public void enabledChanged( CDockable dockable ){
-    	// empty
-    }
+  public void normalizeableChanged(CDockable dockable) {
+    // empty
+  }
 
-    /**
-     * Called when the <code>dockable</code> has been minimized.
-     * @param dockable the source of the event
-     */
-    public void minimized( CDockable dockable ){
-    	// empty
+  public void minimizableChanged(CDockable dockable) {
+    // empty
+  }
+
+  public void stickyChanged(CDockable dockable) {
+    // empty
+  }
+
+  public void minimizeSizeChanged(CDockable dockable) {
+    // empty
+  }
+
+  public void stickySwitchableChanged(CDockable dockable) {
+    // empty
+  }
+
+  public void titleShownChanged(CDockable dockable) {
+    // empty
+  }
+
+  public void singleTabShownChanged(CDockable dockable) {
+    // empty
+  }
+
+  public void actionChanged(CDockable dockable, String key, CAction oldAction, CAction newAction) {
+    // empty
+  }
+
+  public void visibilityChanged(CDockable dockable) {
+    // empty
+  }
+
+  public void enabledChanged(CDockable dockable) {
+    // empty
+  }
+
+  /**
+   * Called when the <code>dockable</code> has been minimized.
+   *
+   * @param dockable the source of the event
+   */
+  public void minimized(CDockable dockable) {
+    // empty
+  }
+
+  /**
+   * Called when the <code>dockable</code> has been maximized.
+   *
+   * @param dockable the source of the event
+   */
+  public void maximized(CDockable dockable) {
+    // empty
+  }
+
+  /**
+   * Called when the <code>dockable</code> has been normalized.
+   *
+   * @param dockable the source of the event
+   */
+  public void normalized(CDockable dockable) {
+    // empty
+  }
+
+  /**
+   * Called when the <code>dockable</code> has been externalized.
+   *
+   * @param dockable the source of the event
+   */
+  public void externalized(CDockable dockable) {
+    // empty
+  }
+
+  /**
+   * Called by {@link #extendedModeChanged(CDockable, ExtendedMode)} if none of the
+   * default modes was selected
+   *
+   * @param dockable the element whose mode changed
+   * @param mode     the new mode
+   */
+  public void modeChanged(CDockable dockable, ExtendedMode mode) {
+    // empty
+  }
+
+  public void extendedModeChanged(CDockable dockable, ExtendedMode mode) {
+    if (mode == ExtendedMode.EXTERNALIZED) {
+      externalized(dockable);
     }
- 
-    /**
-     * Called when the <code>dockable</code> has been maximized.
-     * @param dockable the source of the event
-     */
-    public void maximized( CDockable dockable ){
-    	// empty
+    else if (mode == ExtendedMode.MAXIMIZED) {
+      maximized(dockable);
     }
-    
-    /**
-     * Called when the <code>dockable</code> has been normalized.
-     * @param dockable the source of the event
-     */
-    public void normalized( CDockable dockable ){
-    	// empty
+    else if (mode == ExtendedMode.MINIMIZED) {
+      minimized(dockable);
     }
-    
-    /**
-     * Called when the <code>dockable</code> has been externalized.
-     * @param dockable the source of the event
-     */
-    public void externalized( CDockable dockable ){
-    	// empty
+    else if (mode == ExtendedMode.NORMALIZED) {
+      normalized(dockable);
     }
-    
-    /**
-     * Called by {@link #extendedModeChanged(CDockable, ExtendedMode)} if none of the
-     * default modes was selected
-     * @param dockable the element whose mode changed
-     * @param mode the new mode
-     */
-    public void modeChanged( CDockable dockable, ExtendedMode mode ){
-    	// empty
+    else {
+      modeChanged(dockable, mode);
     }
-    
-    public void extendedModeChanged( CDockable dockable, ExtendedMode mode ){
-	    if( mode == ExtendedMode.EXTERNALIZED ){
-	    	externalized( dockable );
-	    }
-	    else if( mode == ExtendedMode.MAXIMIZED ){
-	    	maximized( dockable );
-	    }
-	    else if( mode == ExtendedMode.MINIMIZED ){
-	    	minimized( dockable );
-	    }
-	    else if( mode == ExtendedMode.NORMALIZED ){
-	    	normalized( dockable );
-	    }
-	    else{
-	    	modeChanged( dockable, mode );
-	    }
-    }
+  }
 }

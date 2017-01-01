@@ -33,55 +33,59 @@ import bibliothek.gui.dock.station.split.SplitDockProperty;
 
 /**
  * A location representing a {@link CWorkingArea}.
+ *
  * @author Benjamin Sigg
  */
-public class CWorkingAreaLocation extends CSplitLocation{
-    /** the area to which this location relates */
-    private CWorkingArea area;
-    
-    /**
-     * Creates a new location.
-     * @param area the area which is represented by this location
-     */
-    public CWorkingAreaLocation( CWorkingArea area ){
-        if( area == null )
-            throw new NullPointerException( "area must not be null" );
-        this.area = area;
-    }
-    
-    /**
-     * Gets the workingarea to which this location relates.
-     * @return the area or <code>null</code> if the default center is meant.
-     */
-    public CWorkingArea getWorkingArea(){
-        return area;
-    }
-    
-    @Override
-    public CLocation aside() {
-        return this;
-    }
-    
-    @Override
-    public ExtendedMode findMode() {
-        return ExtendedMode.NORMALIZED;
-    }
+public class CWorkingAreaLocation extends CSplitLocation {
+  /**
+   * the area to which this location relates
+   */
+  private CWorkingArea area;
 
-    @Override
-    public DockableProperty findProperty( DockableProperty successor ) {
-    	if( successor == null ){
-    		return new SplitDockProperty( 0, 0, 1, 1 );
-    	}
-        return successor;
-    }
+  /**
+   * Creates a new location.
+   *
+   * @param area the area which is represented by this location
+   */
+  public CWorkingAreaLocation(CWorkingArea area) {
+    if (area == null) throw new NullPointerException("area must not be null");
+    this.area = area;
+  }
 
-    @Override
-    public String findRoot() {
-        return area.getUniqueId();
+  /**
+   * Gets the workingarea to which this location relates.
+   *
+   * @return the area or <code>null</code> if the default center is meant.
+   */
+  public CWorkingArea getWorkingArea() {
+    return area;
+  }
+
+  @Override
+  public CLocation aside() {
+    return this;
+  }
+
+  @Override
+  public ExtendedMode findMode() {
+    return ExtendedMode.NORMALIZED;
+  }
+
+  @Override
+  public DockableProperty findProperty(DockableProperty successor) {
+    if (successor == null) {
+      return new SplitDockProperty(0, 0, 1, 1);
     }
-    
-    @Override
-    public String toString() {
-        return "[" + findRoot() + "]";
-    }
+    return successor;
+  }
+
+  @Override
+  public String findRoot() {
+    return area.getUniqueId();
+  }
+
+  @Override
+  public String toString() {
+    return "[" + findRoot() + "]";
+  }
 }

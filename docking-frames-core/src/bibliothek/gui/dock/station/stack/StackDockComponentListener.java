@@ -30,20 +30,23 @@ import bibliothek.gui.Dockable;
 /**
  * This listener can be added to a {@link StackDockComponent}. It will receive events if the
  * selection or the available tabs changes.
+ *
  * @author Benjamin Sigg
  */
 public interface StackDockComponentListener {
-	/**
-	 * Called if the current selection on <code>stack</code> changed.
-	 * @param stack the source of the event
-	 */
-	public void selectionChanged( StackDockComponent stack );
-	
-	/**
-	 * Called if the result of {@link StackDockComponent#getTabAt(int)} changed
-	 * for any index associated with <code>dockable</code>
-	 * @param stack the source of the event
-	 * @param dockable the element with a new value
-	 */
-	public void tabChanged( StackDockComponent stack, Dockable dockable );
+  /**
+   * Called if the current selection on <code>stack</code> changed.
+   *
+   * @param stack the source of the event
+   */
+  public void selectionChanged(StackDockComponent stack);
+
+  /**
+   * Called if the result of {@link StackDockComponent#getTabAt(int)} changed
+   * for any index associated with <code>dockable</code>
+   *
+   * @param stack    the source of the event
+   * @param dockable the element with a new value
+   */
+  public void tabChanged(StackDockComponent stack, Dockable dockable);
 }

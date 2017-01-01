@@ -29,16 +29,18 @@ import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
 
 /**
- * A listener that gets called when the selected {@link Dockable} of a 
+ * A listener that gets called when the selected {@link Dockable} of a
  * {@link DockStation} changes.
+ *
  * @author Benjamin Sigg
  */
 public interface DockableSelectionListener {
-    
-    /**
-     * Called when <code>station</code> changes its selected <code>dockable</code>.
-     * @param event contains the newly selected element
-     * @see DockStation#getFrontDockable()
-     */
-    public void dockableSelected( DockableSelectionEvent event );
+
+  /**
+   * Called when <code>station</code> changes its selected <code>dockable</code>.
+   *
+   * @param event contains the newly selected element
+   * @see DockStation#getFrontDockable()
+   */
+  public void dockableSelected(DockableSelectionEvent event);
 }

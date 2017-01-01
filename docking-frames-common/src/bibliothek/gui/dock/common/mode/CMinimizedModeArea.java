@@ -30,6 +30,7 @@ import bibliothek.gui.dock.facile.mode.MinimizedModeArea;
 /**
  * Combination of {@link MinimizedModeArea} and {@link CModeArea}, does
  * not introduce any new methods.
+ *
  * @author Benjamin Sigg
  */
 public interface CMinimizedModeArea extends MinimizedModeArea, CModeArea {

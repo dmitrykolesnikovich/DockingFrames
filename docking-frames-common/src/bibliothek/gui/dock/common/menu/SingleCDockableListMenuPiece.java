@@ -40,170 +40,192 @@ import bibliothek.gui.dock.facile.menu.CloseableDockableMenuPiece;
  * {@link CDockable}s by clicking onto these items.<br>
  * <b>Please note: </b> this menu shows only {@link CDockable}s that really do exist,
  * if a dockable is loaded lazy, then this menu does not show the element!
+ *
  * @author Benjamin Sigg
  */
 public class SingleCDockableListMenuPiece extends CloseableDockableMenuPiece {
-    /** the list of all {@link CDockable}s */
-    private CControl control;
-    
-    /** a manager that ensures that those {@link CDockable}s which are closeable have an item in the menu */
-    private CloseableListenerManager closeableManager = new CloseableListenerManager();
-    
+  /**
+   * the list of all {@link CDockable}s
+   */
+  private CControl control;
+
+  /**
+   * a manager that ensures that those {@link CDockable}s which are closeable have an item in the menu
+   */
+  private CloseableListenerManager closeableManager = new CloseableListenerManager();
+
+  /**
+   * Creates a new piece.
+   *
+   * @param control the control to observe for new {@link Dockable}s, can be <code>null</code>.
+   */
+  public SingleCDockableListMenuPiece(CControl control) {
+    setControl(control);
+  }
+
+  /**
+   * Exchanges the {@link CControl} whose {@link CDockable}s are observed
+   * by this piece.
+   *
+   * @param control the new control to observe, can be <code>null</code>
+   */
+  public void setControl(CControl control) {
+    if (this.control != control) {
+      this.control = control;
+      if (control == null) {
+        setFrontend(null);
+      }
+      else {
+        setFrontend(control.intern());
+      }
+    }
+  }
+
+  @Override
+  public void bind() {
+    if (!isBound()) {
+      super.bind();
+      closeableManager.bind();
+    }
+  }
+
+  @Override
+  public void unbind() {
+    if (isBound()) {
+      super.unbind();
+      closeableManager.unbind();
+    }
+  }
+
+  @Override
+  public void setFrontend(DockFrontend frontend) {
+    super.setFrontend(frontend);
+    closeableManager.setFrontend(frontend);
+  }
+
+  @Override
+  protected void show(Dockable dockable) {
+    if (dockable instanceof CommonDockable) {
+      ((CommonDockable)dockable).getDockable().setVisible(true);
+    }
+    else {
+      super.show(dockable);
+    }
+  }
+
+  @Override
+  protected void hide(Dockable dockable) {
+    if (dockable instanceof CommonDockable) {
+      ((CommonDockable)dockable).getDockable().setVisible(false);
+    }
+    else {
+      super.hide(dockable);
+    }
+  }
+
+  @Override
+  protected boolean include(Dockable dockable) {
+    if (dockable instanceof CommonDockable) return ((CommonDockable)dockable).getDockable().isCloseable();
+
+    return super.include(dockable);
+  }
+
+  /**
+   * A listener added to a {@link DockFrontend}, will add or remove
+   * the {@link CloseableListener} from {@link CDockable}s when they are
+   * added or removed to {@link #frontend}.
+   *
+   * @author Benjamin Sigg
+   */
+  private class CloseableListenerManager extends DockFrontendAdapter {
     /**
-     * Creates a new piece.
-     * @param control the control to observe for new {@link Dockable}s, can be <code>null</code>.
+     * the listener to add or remove
      */
-    public SingleCDockableListMenuPiece( CControl control ) {
-        setControl( control );
+    private CloseableListener listener = new CloseableListener();
+    /**
+     * the frontend to observe
+     */
+    private DockFrontend frontend;
+
+    /**
+     * Sets the frontend that will be observed for new or deleted
+     * {@link CDockable}s.
+     *
+     * @param frontend the new frontend, can be <code>null</code>
+     */
+    public void setFrontend(DockFrontend frontend) {
+      if (this.frontend != frontend) {
+        if (isBound()) {
+          if (this.frontend != null) {
+            this.frontend.removeFrontendListener(this);
+            for (Dockable dockable : frontend.listDockables()) {
+              removed(this.frontend, dockable);
+            }
+          }
+        }
+
+        this.frontend = frontend;
+
+        if (isBound()) {
+          if (this.frontend != null) {
+            this.frontend.addFrontendListener(this);
+            for (Dockable dockable : frontend.listDockables()) {
+              added(this.frontend, dockable);
+            }
+          }
+        }
+      }
     }
 
     /**
-     * Exchanges the {@link CControl} whose {@link CDockable}s are observed
-     * by this piece.
-     * @param control the new control to observe, can be <code>null</code>
+     * Connects this listener with {@link #frontend}
      */
-    public void setControl( CControl control ) {
-        if( this.control != control ){
-            this.control = control;
-            if( control == null ){
-                setFrontend( null );
-            }
-            else{
-                setFrontend( control.intern() );
-            }
+    public void bind() {
+      if (this.frontend != null) {
+        frontend.addFrontendListener(this);
+        for (Dockable dockable : frontend.listDockables()) {
+          added(frontend, dockable);
         }
+      }
     }
-    
-    @Override
-    public void bind(){
-    	if( !isBound() ){
-    		super.bind();
-    		closeableManager.bind();
-    	}
-    }
-    
-    @Override
-    public void unbind(){
-    	if( isBound() ){
-    		super.unbind();
-    		closeableManager.unbind();
-    	}
-    }
-    
-    @Override
-    public void setFrontend( DockFrontend frontend ) {
-        super.setFrontend( frontend );
-        closeableManager.setFrontend( frontend );
-    }
-    
-    @Override
-    protected void show( Dockable dockable ) {
-        if( dockable instanceof CommonDockable )
-            ((CommonDockable)dockable).getDockable().setVisible( true );
-        else
-            super.show( dockable );
-    }
-    
-    @Override
-    protected void hide( Dockable dockable ) {
-        if( dockable instanceof CommonDockable )
-            ((CommonDockable)dockable).getDockable().setVisible( false );
-        else
-            super.hide( dockable );
-    }
-    
-    @Override
-    protected boolean include( Dockable dockable ) {
-        if( dockable instanceof CommonDockable )
-            return ((CommonDockable)dockable).getDockable().isCloseable();
-        
-        return super.include( dockable );
-    }
-    
+
     /**
-     * A listener added to a {@link DockFrontend}, will add or remove
-     * the {@link CloseableListener} from {@link CDockable}s when they are
-     * added or removed to {@link #frontend}.
-     * @author Benjamin Sigg
+     * Disconnects this listener from {@link #frontend}
      */
-    private class CloseableListenerManager extends DockFrontendAdapter{
-        /** the listener to add or remove */
-        private CloseableListener listener = new CloseableListener();
-        /** the frontend to observe */
-        private DockFrontend frontend;
-        
-        /**
-         * Sets the frontend that will be observed for new or deleted
-         * {@link CDockable}s.
-         * @param frontend the new frontend, can be <code>null</code>
-         */
-        public void setFrontend( DockFrontend frontend ) {
-        	if( this.frontend != frontend ){
-        		if( isBound() ){
-	                if( this.frontend != null ){
-	                    this.frontend.removeFrontendListener( this );
-	                    for( Dockable dockable : frontend.listDockables() )
-	                        removed( this.frontend, dockable );
-	                }
-        		}
-                
-                this.frontend = frontend;
-                
-                if( isBound() ){
-	                if( this.frontend != null ){
-	                    this.frontend.addFrontendListener( this );
-	                    for( Dockable dockable : frontend.listDockables() )
-	                        added( this.frontend, dockable );
-	                }
-                }
-            }
+    public void unbind() {
+      if (frontend != null) {
+        frontend.removeFrontendListener(this);
+        for (Dockable dockable : frontend.listDockables()) {
+          removed(frontend, dockable);
         }
-        
-        /**
-         * Connects this listener with {@link #frontend}
-         */
-        public void bind(){
-        	if( this.frontend != null ){
-                frontend.addFrontendListener( this );
-                for( Dockable dockable : frontend.listDockables() )
-                    added( frontend, dockable );
-            }
-        }
-        
-        /**
-         * Disconnects this listener from {@link #frontend}
-         */
-        public void unbind(){
-        	if( frontend != null ){
-                frontend.removeFrontendListener( this );
-                for( Dockable dockable : frontend.listDockables() )
-                    removed( frontend, dockable );
-            }
-        }
-        
-        @Override
-        public void added( DockFrontend frontend, Dockable dockable ) {
-            if( dockable instanceof CommonDockable ){
-                ((CommonDockable)dockable).getDockable().addCDockablePropertyListener( listener );
-            }
-        }
-        @Override
-        public void removed( DockFrontend frontend, Dockable dockable ) {
-            if( dockable instanceof CommonDockable ){
-                ((CommonDockable)dockable).getDockable().removeCDockablePropertyListener( listener );
-            }
-        }
+      }
     }
-    
-    /**
-     * A listener waiting for the closeable-property to change, and then
-     * calling {@link SingleCDockableListMenuPiece#check(Dockable)}.
-     * @author Benjamin Sigg
-     */
-    private class CloseableListener extends CDockableAdapter{
-        @Override
-        public void closeableChanged( CDockable dockable ) {
-            check( dockable.intern() );
-        }
+
+    @Override
+    public void added(DockFrontend frontend, Dockable dockable) {
+      if (dockable instanceof CommonDockable) {
+        ((CommonDockable)dockable).getDockable().addCDockablePropertyListener(listener);
+      }
     }
+
+    @Override
+    public void removed(DockFrontend frontend, Dockable dockable) {
+      if (dockable instanceof CommonDockable) {
+        ((CommonDockable)dockable).getDockable().removeCDockablePropertyListener(listener);
+      }
+    }
+  }
+
+  /**
+   * A listener waiting for the closeable-property to change, and then
+   * calling {@link SingleCDockableListMenuPiece#check(Dockable)}.
+   *
+   * @author Benjamin Sigg
+   */
+  private class CloseableListener extends CDockableAdapter {
+    @Override
+    public void closeableChanged(CDockable dockable) {
+      check(dockable.intern());
+    }
+  }
 }

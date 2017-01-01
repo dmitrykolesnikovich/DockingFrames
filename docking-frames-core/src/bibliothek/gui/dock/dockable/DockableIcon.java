@@ -32,29 +32,34 @@ import bibliothek.util.Path;
 
 /**
  * An icon that is used for a {@link Dockable}
+ *
  * @author Benjamin Sigg
  */
-public abstract class DockableIcon extends DockIcon{
-	/** what kind of {@link UIValue} this is */
-	public static final Path KIND_DOCKABLE = KIND_ICON.append( "dockable" );
-	
-	private Dockable dockable;
-	
-	/**
-	 * Creates a new icon
-	 * @param id the identifier of the icon
-	 * @param dockable the element for which the icon is used
-	 */
-	public DockableIcon( String id, Dockable dockable ){
-		super( id, KIND_DOCKABLE );
-		this.dockable = dockable;
-	}
-	
-	/**
-	 * Gets the {@link Dockable} for which this icon is used.
-	 * @return the dockable
-	 */
-	public Dockable getDockable(){
-		return dockable;
-	}
+public abstract class DockableIcon extends DockIcon {
+  /**
+   * what kind of {@link UIValue} this is
+   */
+  public static final Path KIND_DOCKABLE = KIND_ICON.append("dockable");
+
+  private Dockable dockable;
+
+  /**
+   * Creates a new icon
+   *
+   * @param id       the identifier of the icon
+   * @param dockable the element for which the icon is used
+   */
+  public DockableIcon(String id, Dockable dockable) {
+    super(id, KIND_DOCKABLE);
+    this.dockable = dockable;
+  }
+
+  /**
+   * Gets the {@link Dockable} for which this icon is used.
+   *
+   * @return the dockable
+   */
+  public Dockable getDockable() {
+    return dockable;
+  }
 }

@@ -25,83 +25,84 @@
  */
 package bibliothek.gui.dock.themes.basic.action;
 
-import javax.swing.Icon;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.dock.action.ActionContentModifier;
 import bibliothek.gui.dock.themes.border.BorderModifier;
 import bibliothek.gui.dock.title.DockTitle.Orientation;
 import bibliothek.gui.dock.util.BackgroundPaint;
 
+import javax.swing.*;
+
 /**
  * A simple implementation of {@link BasicButtonModelListener} forwarding
  * any event expect {@link #triggered()}, {@link #bound(BasicButtonModel, DockController)} and
  * {@link #unbound(BasicButtonModel, DockController)} to {@link #changed()}.
+ *
  * @author Benjamin Sigg
  */
-public class BasicButtonModelAdapter implements BasicButtonModelListener{
-	public void textChanged( BasicButtonModel model, String oldText, String text ){
-		changed();	
-	}
-	
-	public void disabledIconChanged( BasicButtonModel model, Icon oldIcon, Icon icon ){
-		changed();
-	}
+public class BasicButtonModelAdapter implements BasicButtonModelListener {
+  public void textChanged(BasicButtonModel model, String oldText, String text) {
+    changed();
+  }
 
-	public void enabledStateChanged( BasicButtonModel model, boolean enabled ){
-		changed();
-	}
+  public void disabledIconChanged(BasicButtonModel model, Icon oldIcon, Icon icon) {
+    changed();
+  }
 
-	public void mouseInside( BasicButtonModel model, boolean mouseInside ){
-		changed();
-	}
+  public void enabledStateChanged(BasicButtonModel model, boolean enabled) {
+    changed();
+  }
 
-	public void mousePressed( BasicButtonModel model, boolean mousePressed ){
-		changed();
-	}
+  public void mouseInside(BasicButtonModel model, boolean mouseInside) {
+    changed();
+  }
 
-	public void orientationChanged( BasicButtonModel model, Orientation old, Orientation orientation ){
-		changed();
-	}
+  public void mousePressed(BasicButtonModel model, boolean mousePressed) {
+    changed();
+  }
 
-	public void iconChanged( BasicButtonModel model, ActionContentModifier modifier, Icon oldIcon, Icon icon ){
-		changed();
-	}
-	
-	public void selectedStateChanged( BasicButtonModel model, boolean selected ){
-		changed();
-	}
+  public void orientationChanged(BasicButtonModel model, Orientation old, Orientation orientation) {
+    changed();
+  }
 
-	public void tooltipChanged( BasicButtonModel model, String old, String tooltip ){
-		changed();
-	}
-	
-	public void backgroundChanged( BasicButtonModel model, BackgroundPaint oldBackground, BackgroundPaint newBackground ){
-		changed();
-	}
-	
-	public void borderChanged( BasicButtonModel model, String key, BorderModifier oldBorder, BorderModifier newBorder ){
-		changed();
-	}
+  public void iconChanged(BasicButtonModel model, ActionContentModifier modifier, Icon oldIcon, Icon icon) {
+    changed();
+  }
 
-	public void bound( BasicButtonModel model, DockController controller ){
-		// nothing
-	}
-	
-	public void unbound( BasicButtonModel model, DockController controller ){
-		// nothing
-	}
-	
-	
-	public void triggered(){
-		// nothing
-	}
+  public void selectedStateChanged(BasicButtonModel model, boolean selected) {
+    changed();
+  }
 
-	/**
-	 * Called by all methods except {@link #triggered()} of this
-	 * adapter.
-	 */
-	protected void changed(){
-		// nothing
-	}
+  public void tooltipChanged(BasicButtonModel model, String old, String tooltip) {
+    changed();
+  }
+
+  public void backgroundChanged(BasicButtonModel model, BackgroundPaint oldBackground, BackgroundPaint newBackground) {
+    changed();
+  }
+
+  public void borderChanged(BasicButtonModel model, String key, BorderModifier oldBorder, BorderModifier newBorder) {
+    changed();
+  }
+
+  public void bound(BasicButtonModel model, DockController controller) {
+    // nothing
+  }
+
+  public void unbound(BasicButtonModel model, DockController controller) {
+    // nothing
+  }
+
+
+  public void triggered() {
+    // nothing
+  }
+
+  /**
+   * Called by all methods except {@link #triggered()} of this
+   * adapter.
+   */
+  protected void changed() {
+    // nothing
+  }
 }

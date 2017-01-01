@@ -35,104 +35,106 @@ import bibliothek.util.Path;
 /**
  * Supporting class for {@link SplitDockStation}, provides the implementation of {@link SplitDockStation#getPlaceholders()}
  * and {@link SplitDockStation#setPlaceholders(PlaceholderMap)}
+ *
  * @author Benjamin Sigg
  */
-public class SplitPlaceholderConverter extends AbstractSplitPlaceholderConverter<SplitDockStation, SplitNode, Dockable>{
-	/**
-	 * Creates a new converter
-	 * @param station the station for which the converter will be used
-	 */
-	public SplitPlaceholderConverter( SplitDockStation station ){
-		super( station );
-	}
-	
-	@Override
-	protected SplitNode getRoot( SplitDockStation station ){
-		return station.getRoot();
-	}
-	
-	@Override
-	protected PlaceholderStrategy getPlaceholderStrategy( SplitDockStation station ){
-		return station.getPlaceholderStrategy();
-	}
-	
-	@Override
-	protected SplitDockTree<Dockable> createTree(){
-		return new DockableSplitDockTree();
-	}
-	
-	@Override
-	protected void dropTree( SplitDockStation station, SplitDockTree<Dockable> tree ){
-		station.dropTree( tree );
-	}
-	
-	@Override
-	protected boolean isLeaf( SplitNode node ){
-		return node instanceof Leaf;
-	}
-	
-	@Override
-	protected boolean isNode( SplitNode node ){
-		return node instanceof Node;
-	}
-	
-	@Override
-	protected boolean isPlaceholder( SplitNode node ){
-		return node instanceof Placeholder;
-	}
-	
-	@Override
-	protected boolean isRoot( SplitNode node ){
-		return node instanceof Root;
-	}
-	
-	@Override
-	protected Path[] getPlaceholders( SplitNode node ){
-		return node.getPlaceholders();
-	}
-	
-	@Override
-	protected PlaceholderMap getPlaceholderMap( SplitNode node ){
-		return node.getPlaceholderMap();
-	}
-	
-	@Override
-	protected long getId( SplitNode node ){
-		return node.getId();
-	}
-	
-	@Override
-	protected double getDivider( SplitNode node ){
-		return ((Node)node).getDivider();
-	}
-	
-	@Override
-	protected Orientation getOrientation( SplitNode node ){
-		return ((Node)node).getOrientation();
-	}
-	
-	@Override
-	protected Dockable getDockable( SplitNode leaf ){
-		return ((Leaf)leaf).getDockable();
-	}
-	
-	@Override
-	protected SplitNode getLeftChild( SplitNode node ){
-		return ((Node)node).getLeft();
-	}
-	
-	@Override
-	protected SplitNode getRightChild( SplitNode node ){
-		return ((Node)node).getRight();
-	}
-	
-	@Override
-	protected SplitNode getRootChild( SplitNode root ){
-		return ((Root)root).getChild();
-	}
-	
-	@Override
-	protected Path getPlaceholderFor( Dockable dockable ){
-		return getStation().getPlaceholderStrategy().getPlaceholderFor( dockable );
-	}
+public class SplitPlaceholderConverter extends AbstractSplitPlaceholderConverter<SplitDockStation, SplitNode, Dockable> {
+  /**
+   * Creates a new converter
+   *
+   * @param station the station for which the converter will be used
+   */
+  public SplitPlaceholderConverter(SplitDockStation station) {
+    super(station);
+  }
+
+  @Override
+  protected SplitNode getRoot(SplitDockStation station) {
+    return station.getRoot();
+  }
+
+  @Override
+  protected PlaceholderStrategy getPlaceholderStrategy(SplitDockStation station) {
+    return station.getPlaceholderStrategy();
+  }
+
+  @Override
+  protected SplitDockTree<Dockable> createTree() {
+    return new DockableSplitDockTree();
+  }
+
+  @Override
+  protected void dropTree(SplitDockStation station, SplitDockTree<Dockable> tree) {
+    station.dropTree(tree);
+  }
+
+  @Override
+  protected boolean isLeaf(SplitNode node) {
+    return node instanceof Leaf;
+  }
+
+  @Override
+  protected boolean isNode(SplitNode node) {
+    return node instanceof Node;
+  }
+
+  @Override
+  protected boolean isPlaceholder(SplitNode node) {
+    return node instanceof Placeholder;
+  }
+
+  @Override
+  protected boolean isRoot(SplitNode node) {
+    return node instanceof Root;
+  }
+
+  @Override
+  protected Path[] getPlaceholders(SplitNode node) {
+    return node.getPlaceholders();
+  }
+
+  @Override
+  protected PlaceholderMap getPlaceholderMap(SplitNode node) {
+    return node.getPlaceholderMap();
+  }
+
+  @Override
+  protected long getId(SplitNode node) {
+    return node.getId();
+  }
+
+  @Override
+  protected double getDivider(SplitNode node) {
+    return ((Node)node).getDivider();
+  }
+
+  @Override
+  protected Orientation getOrientation(SplitNode node) {
+    return ((Node)node).getOrientation();
+  }
+
+  @Override
+  protected Dockable getDockable(SplitNode leaf) {
+    return ((Leaf)leaf).getDockable();
+  }
+
+  @Override
+  protected SplitNode getLeftChild(SplitNode node) {
+    return ((Node)node).getLeft();
+  }
+
+  @Override
+  protected SplitNode getRightChild(SplitNode node) {
+    return ((Node)node).getRight();
+  }
+
+  @Override
+  protected SplitNode getRootChild(SplitNode root) {
+    return ((Root)root).getChild();
+  }
+
+  @Override
+  protected Path getPlaceholderFor(Dockable dockable) {
+    return getStation().getPlaceholderStrategy().getPlaceholderFor(dockable);
+  }
 }

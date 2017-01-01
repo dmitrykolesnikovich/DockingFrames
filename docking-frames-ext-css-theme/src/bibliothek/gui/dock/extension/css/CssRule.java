@@ -28,32 +28,37 @@ package bibliothek.gui.dock.extension.css;
 /**
  * A {@link CssRule} is a set of properties and exactly one {@link CssSelector} that tells which
  * {@link CssItem}s are entitled to read these properties.
+ *
  * @author Benjamin Sigg
  */
 public interface CssRule {
-	/**
-	 * The selector tells which {@link CssItem} should read properties from this rule.
-	 * @return the selector, not <code>null</code>
-	 */
-	public CssSelector getSelector();
-	
-	/**
-	 * Gets the set of properties. This method should always return the same object, and it
-	 * should not return <code>null</code>.
-	 * @return the set of properties, not <code>null</code>
-	 */
-	public CssRuleContent getContent();
-	
-	/**
-	 * Adds <code>listener</code> to this rule, <code>listener</code> will be informed if
-	 * a property or the selector of his rule changes.
-	 * @param listener the listener to add, not <code>null</code>
-	 */
-	public void addRuleListener( CssRuleListener listener );
-	
-	/**
-	 * Removes <code>listener</code> from this rule.
-	 * @param listener the listener to remove
-	 */
-	public void removeRuleListener( CssRuleListener listener );
+  /**
+   * The selector tells which {@link CssItem} should read properties from this rule.
+   *
+   * @return the selector, not <code>null</code>
+   */
+  public CssSelector getSelector();
+
+  /**
+   * Gets the set of properties. This method should always return the same object, and it
+   * should not return <code>null</code>.
+   *
+   * @return the set of properties, not <code>null</code>
+   */
+  public CssRuleContent getContent();
+
+  /**
+   * Adds <code>listener</code> to this rule, <code>listener</code> will be informed if
+   * a property or the selector of his rule changes.
+   *
+   * @param listener the listener to add, not <code>null</code>
+   */
+  public void addRuleListener(CssRuleListener listener);
+
+  /**
+   * Removes <code>listener</code> from this rule.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeRuleListener(CssRuleListener listener);
 }

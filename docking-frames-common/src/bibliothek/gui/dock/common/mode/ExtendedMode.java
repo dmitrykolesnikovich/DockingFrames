@@ -25,73 +25,76 @@
  */
 package bibliothek.gui.dock.common.mode;
 
-import bibliothek.gui.dock.facile.mode.ExternalizedMode;
-import bibliothek.gui.dock.facile.mode.LocationMode;
-import bibliothek.gui.dock.facile.mode.MaximizedMode;
-import bibliothek.gui.dock.facile.mode.MinimizedMode;
-import bibliothek.gui.dock.facile.mode.NormalMode;
+import bibliothek.gui.dock.facile.mode.*;
 import bibliothek.util.ClientOnly;
 import bibliothek.util.Path;
 
 /**
  * A extendible set of unique singleton identifiers for the various instances of {@link LocationMode mode}.
+ *
  * @author Benjamin Sigg
  */
 @ClientOnly
 public class ExtendedMode {
-	/** the dockable is as small as possible, see also {@link MinimizedMode} */
-	public static final ExtendedMode MINIMIZED = new ExtendedMode( MinimizedMode.IDENTIFIER );
-	/** the dockable is as big as possible, see also {@link MaximizedMode} */
-	public static final ExtendedMode MAXIMIZED = new ExtendedMode( MaximizedMode.IDENTIFIER );
-	/** the dockable has the normal size, see also {@link NormalMode} */
-	public static final ExtendedMode NORMALIZED = new ExtendedMode( NormalMode.IDENTIFIER );
-	/** the dockable is floating in a dialog, see also {@link ExternalizedMode} */
-	public static final ExtendedMode EXTERNALIZED = new ExtendedMode( ExternalizedMode.IDENTIFIER );
-	
-	/** the unique identifier of the mode */
-	private Path modeIdentifier;
-	
-	/**
-	 * Creates a new key.
-	 * @param modeIdentifier the unique identifier of the mode
-	 */
-	public ExtendedMode( Path modeIdentifier ){
-		if( modeIdentifier == null )
-			throw new IllegalArgumentException( "identifer must not be null" );
-		this.modeIdentifier = modeIdentifier;
-	}
-	
-	/**
-	 * Gets the unique identifier of the mode.
-	 * @return the identifier, not <code>null</code>
-	 */
-	public Path getModeIdentifier(){
-		return modeIdentifier;
-	}
+  /**
+   * the dockable is as small as possible, see also {@link MinimizedMode}
+   */
+  public static final ExtendedMode MINIMIZED = new ExtendedMode(MinimizedMode.IDENTIFIER);
+  /**
+   * the dockable is as big as possible, see also {@link MaximizedMode}
+   */
+  public static final ExtendedMode MAXIMIZED = new ExtendedMode(MaximizedMode.IDENTIFIER);
+  /**
+   * the dockable has the normal size, see also {@link NormalMode}
+   */
+  public static final ExtendedMode NORMALIZED = new ExtendedMode(NormalMode.IDENTIFIER);
+  /**
+   * the dockable is floating in a dialog, see also {@link ExternalizedMode}
+   */
+  public static final ExtendedMode EXTERNALIZED = new ExtendedMode(ExternalizedMode.IDENTIFIER);
 
-	@Override
-	public int hashCode(){
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((modeIdentifier == null) ? 0 : modeIdentifier.hashCode());
-		return result;
-	}
+  /**
+   * the unique identifier of the mode
+   */
+  private Path modeIdentifier;
 
-	@Override
-	public boolean equals( Object obj ){
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ExtendedMode other = (ExtendedMode) obj;
-		if (modeIdentifier == null) {
-			if (other.modeIdentifier != null)
-				return false;
-		} else if (!modeIdentifier.equals( other.modeIdentifier ))
-			return false;
-		return true;
-	}
+  /**
+   * Creates a new key.
+   *
+   * @param modeIdentifier the unique identifier of the mode
+   */
+  public ExtendedMode(Path modeIdentifier) {
+    if (modeIdentifier == null) throw new IllegalArgumentException("identifer must not be null");
+    this.modeIdentifier = modeIdentifier;
+  }
+
+  /**
+   * Gets the unique identifier of the mode.
+   *
+   * @return the identifier, not <code>null</code>
+   */
+  public Path getModeIdentifier() {
+    return modeIdentifier;
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((modeIdentifier == null) ? 0 : modeIdentifier.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    ExtendedMode other = (ExtendedMode)obj;
+    if (modeIdentifier == null) {
+      if (other.modeIdentifier != null) return false;
+    }
+    else if (!modeIdentifier.equals(other.modeIdentifier)) return false;
+    return true;
+  }
 }

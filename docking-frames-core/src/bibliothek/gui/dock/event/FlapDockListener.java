@@ -31,14 +31,16 @@ import bibliothek.gui.dock.FlapDockStation;
 
 /**
  * A listener that is added to a {@link FlapDockStation}.
+ *
  * @author Benjamin Sigg
  */
 public interface FlapDockListener {
-    /**
-     * Invoked when the hold-property of a {@link Dockable} has been changed. 
-     * @param station the station invoking this listener
-     * @param dockable the {@link Dockable} whose property has been changed
-     * @param hold the new value of the property
-     */
-    public void holdChanged( FlapDockStation station, Dockable dockable, boolean hold );
+  /**
+   * Invoked when the hold-property of a {@link Dockable} has been changed.
+   *
+   * @param station  the station invoking this listener
+   * @param dockable the {@link Dockable} whose property has been changed
+   * @param hold     the new value of the property
+   */
+  public void holdChanged(FlapDockStation station, Dockable dockable, boolean hold);
 }

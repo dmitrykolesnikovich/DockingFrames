@@ -30,46 +30,48 @@ import bibliothek.gui.dock.station.Combiner;
 /**
  * Describes how much a caller to {@link Combiner#prepare(CombinerSource, Enforcement)} would
  * like the method to succeed.
+ *
  * @author Benjamin Sigg
  */
-public enum Enforcement{
-	/** 
-	 * {@link Combiner#prepare(CombinerSource, Enforcement) prepare} must return a value that
-	 * is not <code>null</code>. 
-	 */
-	HARD(1.0f),
-	
-	/**
-	 * The caller of {@link Combiner#prepare(CombinerSource, Enforcement) prepare} does have a backup
-	 * plan should the method return <code>null</code>, but it is not a good one.
-	 */
-	EXPECTED(0.6f),
-	
-	/**
-	 * The caller of {@link Combiner#prepare(CombinerSource, Enforcement) prepare} does have a backup
-	 * plan should the method return <code>null</code>, and it is a good one.
-	 */
-	WHISHED(0.3f), 
-	
-	/**
-	 * It is completely up to the {@link Combiner} whether {@link Combiner#prepare(CombinerSource, Enforcement) prepare}
-	 * returns <code>null</code> or not.
-	 */
-	FREE(0.0f);
-	
-	private final float force;
-	
-	private Enforcement( float force ){
-		this.force = force;
-	}
-	
-	/**
-	 * Gets the force on a scale of 0 to 1, where 0 means that {@link Combiner#prepare(CombinerSource, Enforcement) prepare}
-	 * is free to do what it wants, while 1 means that {@link Combiner#prepare(CombinerSource, Enforcement) prepare}
-	 * must not return a <code>null</code> value.
-	 * @return the force of the request
-	 */
-	public float getForce(){
-		return force;
-	}
+public enum Enforcement {
+  /**
+   * {@link Combiner#prepare(CombinerSource, Enforcement) prepare} must return a value that
+   * is not <code>null</code>.
+   */
+  HARD(1.0f),
+
+  /**
+   * The caller of {@link Combiner#prepare(CombinerSource, Enforcement) prepare} does have a backup
+   * plan should the method return <code>null</code>, but it is not a good one.
+   */
+  EXPECTED(0.6f),
+
+  /**
+   * The caller of {@link Combiner#prepare(CombinerSource, Enforcement) prepare} does have a backup
+   * plan should the method return <code>null</code>, and it is a good one.
+   */
+  WHISHED(0.3f),
+
+  /**
+   * It is completely up to the {@link Combiner} whether {@link Combiner#prepare(CombinerSource, Enforcement) prepare}
+   * returns <code>null</code> or not.
+   */
+  FREE(0.0f);
+
+  private final float force;
+
+  private Enforcement(float force) {
+    this.force = force;
+  }
+
+  /**
+   * Gets the force on a scale of 0 to 1, where 0 means that {@link Combiner#prepare(CombinerSource, Enforcement) prepare}
+   * is free to do what it wants, while 1 means that {@link Combiner#prepare(CombinerSource, Enforcement) prepare}
+   * must not return a <code>null</code> value.
+   *
+   * @return the force of the request
+   */
+  public float getForce() {
+    return force;
+  }
 }

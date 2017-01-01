@@ -31,65 +31,78 @@ import bibliothek.gui.dock.common.MultipleCDockableLayout;
 /**
  * An intermediate representation of the layout of a {@link CommonDockable}
  * that is connected with a {@link MultipleCDockable}.
+ *
  * @author Benjamin Sigg
  */
 public class CommonMultipleDockableLayout {
-    /** the layout of the {@link MultipleCDockable}  */
-    private MultipleCDockableLayout layout;
-    
-    /** the unique id of the dockable */
-    private String id;
-    /** the area on which the dockable was, might be <code>null</code> */
-    private String area;
-    
-    /**
-     * Sets the description of the layout of a {@link MultipleCDockable}. The 
-     * described dockable is connected with the {@link CommonDockable} for
-     * which this layout was created.
-     * @param layout the layout
-     */
-    public void setLayout( MultipleCDockableLayout layout ) {
-        this.layout = layout;
-    }
-    
-    /**
-     * Gets the layout of the {@link MultipleCDockable} that is associated with
-     * the {@link CommonDockable} for which this layout was created.
-     * @return the layout
-     */
-    public MultipleCDockableLayout getLayout() {
-        return layout;
-    }
-    
-    /**
-     * Sets the unique id of the dockable.
-     * @param id the unique id
-     */
-    public void setId( String id ) {
-        this.id = id;
-    }
-    
-    /**
-     * Gets the unique id of the dockable.
-     * @return the unique id
-     */
-    public String getId() {
-        return id;
-    }
-    
-    /**
-     * Sets the unique id of the working-area the dockable was on.
-     * @param area the id or <code>null</code>
-     */
-    public void setArea( String area ) {
-        this.area = area;
-    }
-    
-    /**
-     * Gets the unique id of the working-area the dockable was on.
-     * @return the id of an area or <code>null</code>
-     */
-    public String getArea() {
-        return area;
-    }
+  /**
+   * the layout of the {@link MultipleCDockable}
+   */
+  private MultipleCDockableLayout layout;
+
+  /**
+   * the unique id of the dockable
+   */
+  private String id;
+  /**
+   * the area on which the dockable was, might be <code>null</code>
+   */
+  private String area;
+
+  /**
+   * Gets the layout of the {@link MultipleCDockable} that is associated with
+   * the {@link CommonDockable} for which this layout was created.
+   *
+   * @return the layout
+   */
+  public MultipleCDockableLayout getLayout() {
+    return layout;
+  }
+
+  /**
+   * Sets the description of the layout of a {@link MultipleCDockable}. The
+   * described dockable is connected with the {@link CommonDockable} for
+   * which this layout was created.
+   *
+   * @param layout the layout
+   */
+  public void setLayout(MultipleCDockableLayout layout) {
+    this.layout = layout;
+  }
+
+  /**
+   * Gets the unique id of the dockable.
+   *
+   * @return the unique id
+   */
+  public String getId() {
+    return id;
+  }
+
+  /**
+   * Sets the unique id of the dockable.
+   *
+   * @param id the unique id
+   */
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  /**
+   * Gets the unique id of the working-area the dockable was on.
+   *
+   * @return the id of an area or <code>null</code>
+   */
+  public String getArea() {
+    return area;
+  }
+
+  /**
+   * Sets the unique id of the working-area the dockable was on.
+   *
+   * @param area the id or <code>null</code>
+   */
+  public void setArea(String area) {
+    this.area = area;
+  }
 }

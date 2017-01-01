@@ -25,28 +25,29 @@
  */
 package bibliothek.gui.dock.common.menu;
 
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-
 import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.facile.menu.FrontendSettingsMenuPiece;
 
+import javax.swing.*;
+
 /**
  * A piece of a menu that allows the user to store and load the layout
  * of a set of {@link Dockable}s and {@link DockStation}s.
+ *
  * @author Benjamin Sigg
  * @see FrontendSettingsMenuPiece
  */
 public class CLayoutChoiceMenuPiece extends FrontendSettingsMenuPiece {
-    /**
-     * Creates a new menu.
-     * @param control the control whose layout might change
-     * @param loadAsSubmenu whether the list of layouts should be added as a
-     * {@link JMenu menu} or only as a list of {@link JMenuItem items}.
-     */
-    public CLayoutChoiceMenuPiece( CControl control, boolean loadAsSubmenu ) {
-        super( control.intern(), loadAsSubmenu );
-    }
+  /**
+   * Creates a new menu.
+   *
+   * @param control       the control whose layout might change
+   * @param loadAsSubmenu whether the list of layouts should be added as a
+   *                      {@link JMenu menu} or only as a list of {@link JMenuItem items}.
+   */
+  public CLayoutChoiceMenuPiece(CControl control, boolean loadAsSubmenu) {
+    super(control.intern(), loadAsSubmenu);
+  }
 }

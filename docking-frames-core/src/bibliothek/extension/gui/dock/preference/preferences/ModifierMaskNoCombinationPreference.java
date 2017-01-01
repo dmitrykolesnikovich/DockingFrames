@@ -34,20 +34,23 @@ import bibliothek.util.Path;
 /**
  * Preference for the mask that prevents combinations when moving
  * a {@link Dockable}.
+ *
  * @author Benjamin Sigg
  * @see DockRelocatorMode#NO_COMBINATION_MASK
  */
-public class ModifierMaskNoCombinationPreference extends DockPropertyPreference<ModifierMask>{
-	/**
-	 * Creates a new preference
-	 * @param properties to read and write the value of this preference
-	 */
-	public ModifierMaskNoCombinationPreference( DockProperties properties ){
-		super( properties, DockRelocatorMode.NO_COMBINATION_MASK, Path.TYPE_MODIFIER_MASK_PATH, new Path( "dock.DockRelocatorMode.NO_COMBINATION_MASK" ) );
-		
-		setLabelId( "preference.shortcuts.no_combination_mask.label" );
-		setDescriptionId( "preference.shortcuts.no_combination_mask.description" );
-		
-		setDefaultValue( DockRelocatorMode.NO_COMBINATION_MASK.getDefault( null ) );
-	}
+public class ModifierMaskNoCombinationPreference extends DockPropertyPreference<ModifierMask> {
+  /**
+   * Creates a new preference
+   *
+   * @param properties to read and write the value of this preference
+   */
+  public ModifierMaskNoCombinationPreference(DockProperties properties) {
+    super(properties, DockRelocatorMode.NO_COMBINATION_MASK, Path.TYPE_MODIFIER_MASK_PATH,
+          new Path("dock.DockRelocatorMode.NO_COMBINATION_MASK"));
+
+    setLabelId("preference.shortcuts.no_combination_mask.label");
+    setDescriptionId("preference.shortcuts.no_combination_mask.description");
+
+    setDefaultValue(DockRelocatorMode.NO_COMBINATION_MASK.getDefault(null));
+  }
 }

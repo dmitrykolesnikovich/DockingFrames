@@ -29,24 +29,26 @@ import bibliothek.util.Filter;
 
 /**
  * This filter uses regular expressions to filter a {@link String}.
+ *
  * @author Benjamin Sigg
  * @see String#matches(String)
  */
-public class RegexFilter implements Filter<String>{
-	private String regex;
-	
-	/**
-	 * Creates a new filter.
-	 * @param regex the regular expression which filters the {@link String}s
-	 */
-	public RegexFilter( String regex ){
-		if( regex == null ){
-			throw new IllegalArgumentException( "regex must not be null" );
-		}
-		this.regex = regex;
-	}
-	
-	public boolean includes( String item ){
-		return item.matches( regex );
-	}
+public class RegexFilter implements Filter<String> {
+  private String regex;
+
+  /**
+   * Creates a new filter.
+   *
+   * @param regex the regular expression which filters the {@link String}s
+   */
+  public RegexFilter(String regex) {
+    if (regex == null) {
+      throw new IllegalArgumentException("regex must not be null");
+    }
+    this.regex = regex;
+  }
+
+  public boolean includes(String item) {
+    return item.matches(regex);
+  }
 }

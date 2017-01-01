@@ -25,26 +25,25 @@
  */
 package bibliothek.gui.dock.util.render;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.Map;
 
 /**
  * Default set of rendering hints, will read the property "awt.font.desktophints" and set them on the
  * {@link Graphics}.
+ *
  * @author Benjamin Sigg
  */
 public class DefaultDockRenderingHints implements DockRenderingHints {
-	private Map<?, ?> desktopHints;
+  private Map<?, ?> desktopHints;
 
-	public void setupGraphics( Graphics g ) {
-		if( desktopHints == null ) {
-			Toolkit tk = Toolkit.getDefaultToolkit();
-			desktopHints = (Map<?,?>) (tk.getDesktopProperty( "awt.font.desktophints" ));
-		}
-		if( desktopHints != null ) {
-			((Graphics2D) g).addRenderingHints( desktopHints );
-		}
-	}
+  public void setupGraphics(Graphics g) {
+    if (desktopHints == null) {
+      Toolkit tk = Toolkit.getDefaultToolkit();
+      desktopHints = (Map<?, ?>)(tk.getDesktopProperty("awt.font.desktophints"));
+    }
+    if (desktopHints != null) {
+      ((Graphics2D)g).addRenderingHints(desktopHints);
+    }
+  }
 }

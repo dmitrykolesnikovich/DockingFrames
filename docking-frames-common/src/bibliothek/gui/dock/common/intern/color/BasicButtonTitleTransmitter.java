@@ -25,71 +25,63 @@
  */
 package bibliothek.gui.dock.common.intern.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.themes.basic.BasicButtonDockTitle;
 import bibliothek.gui.dock.util.color.ColorManager;
 import bibliothek.util.Colors;
 
+import java.awt.*;
+
 /**
  * A transmitter to {@link BasicButtonDockTitle}.
+ *
  * @author Benjamin Sigg
  */
 public class BasicButtonTitleTransmitter extends MinimizedButtonColorTransmitter {
-	private static final String KEYS[] = {
-		"title.flap.active",
-		"title.flap.active.text",
-		"title.flap.inactive",
-		"title.flap.inactive.text",
-		"title.flap.selected",
-		"title.flap.selected.text" };
-	
-	public BasicButtonTitleTransmitter( ColorManager manager ){
-		super( manager, KEYS );
-	}
+  private static final String KEYS[] =
+    {"title.flap.active", "title.flap.active.text", "title.flap.inactive", "title.flap.inactive.text", "title.flap.selected",
+      "title.flap.selected.text"};
 
-	@Override
-	protected Color convert( Color source, String key ) {
-		if( isFocused( key ))
-			return convertFocused( source, key );
-		
-		if( isSelected( key ))
-			return convertSelected( source, key );
-		
-		if( key.contains( "text" ))
-			return Colors.diffMirror( source, 0.9 );
-		
-		return source;
-	}
+  public BasicButtonTitleTransmitter(ColorManager manager) {
+    super(manager, KEYS);
+  }
 
-	@Override
-	protected Color convertFocused( Color source, String key ) {
-		if(  key.contains( "text" ) )
-			return Colors.diffMirror( source, 1.0 );
-		
-		return source;
-	}
+  @Override
+  protected Color convert(Color source, String key) {
+    if (isFocused(key)) return convertFocused(source, key);
 
-	@Override
-	protected Color convertSelected( Color source, String key ) {
-		if(  key.contains( "text" ) )
-			return Colors.diffMirror( source, 1.0 );
-		
-		return source;
-	}
-	
-	@Override
-	protected boolean isFocused(String id) {
-		return id.contains( "active" ) && !id.contains( "inactive" );
-	}
+    if (isSelected(key)) return convertSelected(source, key);
 
-	@Override
-	protected boolean isForeground(String id) {
-		return id.contains( "text" );
-	}
-	
-	@Override
-	protected boolean isSelected(String id) {
-		return id.contains( "selected" );
-	}
+    if (key.contains("text")) return Colors.diffMirror(source, 0.9);
+
+    return source;
+  }
+
+  @Override
+  protected Color convertFocused(Color source, String key) {
+    if (key.contains("text")) return Colors.diffMirror(source, 1.0);
+
+    return source;
+  }
+
+  @Override
+  protected Color convertSelected(Color source, String key) {
+    if (key.contains("text")) return Colors.diffMirror(source, 1.0);
+
+    return source;
+  }
+
+  @Override
+  protected boolean isFocused(String id) {
+    return id.contains("active") && !id.contains("inactive");
+  }
+
+  @Override
+  protected boolean isForeground(String id) {
+    return id.contains("text");
+  }
+
+  @Override
+  protected boolean isSelected(String id) {
+    return id.contains("selected");
+  }
 }

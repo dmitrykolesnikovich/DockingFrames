@@ -28,28 +28,28 @@ package bibliothek.gui.dock.station.stack.tab;
 import bibliothek.gui.dock.station.stack.tab.layouting.Size;
 
 /**
- * The default implementation of {@link MenuLineLayoutStrategy} provides a generic 
+ * The default implementation of {@link MenuLineLayoutStrategy} provides a generic
  * setting that should work for most cases.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
-public class DefaultMenuLineLayoutStrategy implements MenuLineLayoutStrategy{
-	public double getScore( MenuLineLayoutPossibility possibility, Size menuSize, Size infoSize, Size tabSize ){
-		double result = 0;
-		if( menuSize == null ){
-			result += 1;
-		}
-		else{
-			result += menuSize.getScore();
-		}
-		
-		if( infoSize != null ){
-			result += 10*infoSize.getScore();
-		}
-		
-		if( tabSize != null ){
-			result += 4*tabSize.getScore();
-		}
-		return result / 15.0; 
-	}
+public class DefaultMenuLineLayoutStrategy implements MenuLineLayoutStrategy {
+  public double getScore(MenuLineLayoutPossibility possibility, Size menuSize, Size infoSize, Size tabSize) {
+    double result = 0;
+    if (menuSize == null) {
+      result += 1;
+    }
+    else {
+      result += menuSize.getScore();
+    }
+
+    if (infoSize != null) {
+      result += 10 * infoSize.getScore();
+    }
+
+    if (tabSize != null) {
+      result += 4 * tabSize.getScore();
+    }
+    return result / 15.0;
+  }
 }

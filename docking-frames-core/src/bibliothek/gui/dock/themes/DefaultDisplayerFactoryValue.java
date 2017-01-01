@@ -36,29 +36,32 @@ import bibliothek.gui.dock.themes.basic.BasicDisplayerFactory;
 /**
  * A wrapper for a {@link DisplayerFactory}. Every call to the Interface is forwarded to a delegate. If no delegate is set,
  * a default <code>DisplayerFactory</code> provided by the {@link DockTheme} is used.
+ *
  * @author Benjamin Sigg
  */
 public class DefaultDisplayerFactoryValue extends StationThemeItemValue<DisplayerFactory> implements DisplayerFactoryValue {
-	/**
-	 * Creates a new object.
-	 * @param id the identifier used for retrieving a resource of {@link ThemeManager}
-	 * @param station the owner of this object, not <code>null</code>
-	 */
-	public DefaultDisplayerFactoryValue( String id, DockStation station ){
-		super( id, KIND_DISPLAYER_FACTORY, ThemeManager.DISPLAYER_FACTORY_TYPE, station );
-	}
-	
-	/**
-	 * Creates a new {@link DockableDisplayer} and answers to <code>request</code>. This method does always create
-	 * a new {@link DockableDisplayer}.
-	 * @param request the request to answer
-	 */
-	public void request( DisplayerRequest request ){
-		DisplayerFactory factory = get();
-		if( factory == null ){
-    		factory = new BasicDisplayerFactory();
-    	}
-    	
-		factory.request( request );
+  /**
+   * Creates a new object.
+   *
+   * @param id      the identifier used for retrieving a resource of {@link ThemeManager}
+   * @param station the owner of this object, not <code>null</code>
+   */
+  public DefaultDisplayerFactoryValue(String id, DockStation station) {
+    super(id, KIND_DISPLAYER_FACTORY, ThemeManager.DISPLAYER_FACTORY_TYPE, station);
+  }
+
+  /**
+   * Creates a new {@link DockableDisplayer} and answers to <code>request</code>. This method does always create
+   * a new {@link DockableDisplayer}.
+   *
+   * @param request the request to answer
+   */
+  public void request(DisplayerRequest request) {
+    DisplayerFactory factory = get();
+    if (factory == null) {
+      factory = new BasicDisplayerFactory();
     }
+
+    factory.request(request);
+  }
 }

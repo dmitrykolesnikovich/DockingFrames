@@ -31,15 +31,16 @@ import bibliothek.gui.dock.common.mode.ExtendedMode;
 /**
  * This listener is added to an {@link ExtendedModeEnablement} and informs if the
  * availability-state of a mode in respect to a dockable changes.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public interface ExtendedModeEnablementListener {
-	/**
-	 * Called if the state changed.
-	 * @param dockable the element which is affected
-	 * @param mode the mode which is affected
-	 * @param available the new availability state
-	 */
-	public void availabilityChanged( Dockable dockable, ExtendedMode mode, boolean available );
+  /**
+   * Called if the state changed.
+   *
+   * @param dockable  the element which is affected
+   * @param mode      the mode which is affected
+   * @param available the new availability state
+   */
+  public void availabilityChanged(Dockable dockable, ExtendedMode mode, boolean available);
 }

@@ -29,12 +29,14 @@ import bibliothek.gui.dock.event.ControllerSetupListener;
 
 /**
  * A collection of {@link ControllerSetupListener}s.
+ *
  * @author Benjamin Sigg
  */
 public interface ControllerSetupCollection {
-    /**
-     * Adds a new listener to the collection.
-     * @param listener the listener, not <code>null</code>
-     */
-    public void add( ControllerSetupListener listener );
+  /**
+   * Adds a new listener to the collection.
+   *
+   * @param listener the listener, not <code>null</code>
+   */
+  public void add(ControllerSetupListener listener);
 }

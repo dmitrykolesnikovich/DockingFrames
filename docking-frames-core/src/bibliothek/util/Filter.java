@@ -27,14 +27,16 @@ package bibliothek.util;
 
 /**
  * A filter is used to split up a set of items to a set of included and a set of excluded items.
- * @author Benjamin Sigg
+ *
  * @param <T> the kind of items this filter handles
+ * @author Benjamin Sigg
  */
 public interface Filter<T> {
-	/**
-	 * Tells whether the item <code>item</code> should be included or not.
-	 * @param item the item to include, depending on the user of this filter the item may or may not be <code>null</code>
-	 * @return <code>true</code> if <code>item</code> is included, <code>false</code> if <code>item</code> is excluded
-	 */
-	public boolean includes( T item );
+  /**
+   * Tells whether the item <code>item</code> should be included or not.
+   *
+   * @param item the item to include, depending on the user of this filter the item may or may not be <code>null</code>
+   * @return <code>true</code> if <code>item</code> is included, <code>false</code> if <code>item</code> is excluded
+   */
+  public boolean includes(T item);
 }

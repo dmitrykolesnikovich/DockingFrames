@@ -34,20 +34,22 @@ import bibliothek.gui.dock.util.DockProperties;
 
 /**
  * The way tabs are painted in the {@link EclipseTheme}
+ *
  * @author Benjamin Sigg
  */
-public class EclipseTabChoice extends DefaultChoice<TabPainter>{
-	/**
-	 * Creates a new choice.
-	 * @param properties default settings
-	 */
-	public EclipseTabChoice( DockProperties properties ){
-		super( properties.getController() );
-		
-		setDefaultChoice( "round" );
-		
-		addLinked( "title", "preference.theme.eclipse.tab.choice.title", DockTitleTab.FACTORY );
-		addLinked( "rect", "preference.theme.eclipse.tab.choice.rect", RectGradientPainter.FACTORY );
-		addLinked( "round", "preference.theme.eclipse.tab.choice.round", ArchGradientPainter.FACTORY );
-	}
+public class EclipseTabChoice extends DefaultChoice<TabPainter> {
+  /**
+   * Creates a new choice.
+   *
+   * @param properties default settings
+   */
+  public EclipseTabChoice(DockProperties properties) {
+    super(properties.getController());
+
+    setDefaultChoice("round");
+
+    addLinked("title", "preference.theme.eclipse.tab.choice.title", DockTitleTab.FACTORY);
+    addLinked("rect", "preference.theme.eclipse.tab.choice.rect", RectGradientPainter.FACTORY);
+    addLinked("round", "preference.theme.eclipse.tab.choice.round", ArchGradientPainter.FACTORY);
+  }
 }

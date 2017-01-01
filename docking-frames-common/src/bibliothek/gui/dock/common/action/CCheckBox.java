@@ -25,46 +25,47 @@
  */
 package bibliothek.gui.dock.common.action;
 
-import javax.swing.Icon;
-import javax.swing.JCheckBox;
-
 import bibliothek.gui.dock.common.action.core.CommonSimpleCheckAction;
 import bibliothek.gui.dock.common.intern.action.CSelectableAction;
 
+import javax.swing.*;
+
 /**
  * An action which behaves like a {@link JCheckBox}.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public abstract class CCheckBox extends CSelectableAction<CommonSimpleCheckAction> {
-    /**
-     * Creates a new checkbox
-     */
-    public CCheckBox() {
-        super( null );
-        init( new CommonSimpleCheckAction( this ));
+  /**
+   * Creates a new checkbox
+   */
+  public CCheckBox() {
+    super(null);
+    init(new CommonSimpleCheckAction(this));
+  }
+
+  /**
+   * Creates a new checkbox using <code>action</code> as internal representation.
+   *
+   * @param action the internal representation, can be <code>null</code> in which case
+   *               a subclass should call {@link #init(CommonSimpleCheckAction)}
+   */
+  protected CCheckBox(CommonSimpleCheckAction action) {
+    super(null);
+    if (action != null) {
+      init(action);
     }
-    
-    /**
-     * Creates a new checkbox using <code>action</code> as internal representation.
-     * @param action the internal representation, can be <code>null</code> in which case
-     * a subclass should call {@link #init(CommonSimpleCheckAction)}
-     */
-    protected CCheckBox( CommonSimpleCheckAction action ){
-    	super( null );
-    	if( action != null ){
-    		init( action );
-    	}
-    }
-    
-    /**
-     * Creates a new checkbox.
-     * @param text the text of this checkbox
-     * @param icon the icon of this checkbox
-     */
-    public CCheckBox( String text, Icon icon ){
-        this();
-        setText( text );
-        setIcon( icon );
-    }
+  }
+
+  /**
+   * Creates a new checkbox.
+   *
+   * @param text the text of this checkbox
+   * @param icon the icon of this checkbox
+   */
+  public CCheckBox(String text, Icon icon) {
+    this();
+    setText(text);
+    setIcon(icon);
+  }
 }

@@ -30,15 +30,17 @@ import bibliothek.gui.dock.FlapDockStation;
 
 /**
  * A listener that is added to a {@link FlapLayoutManager}.
+ *
  * @author Benjamin Sigg
  */
 public interface FlapLayoutManagerListener {
-	/**
-	 * This method is called by <code>manager</code> if the {@link FlapLayoutManagerListener#holdSwitchableChanged(FlapLayoutManager, FlapDockStation, Dockable)}
-	 * method returns a new value.
-	 * @param manager the source of the event
-	 * @param station the station for which the value changed, <code>null</code> if the station is not specified
-	 * @param dockable the element for which the value changed, <code>null</code> indicates that the property changed for an unknown number of dockables
-	 */
-	public void holdSwitchableChanged( FlapLayoutManager manager, FlapDockStation station, Dockable dockable );
+  /**
+   * This method is called by <code>manager</code> if the {@link FlapLayoutManagerListener#holdSwitchableChanged(FlapLayoutManager, FlapDockStation, Dockable)}
+   * method returns a new value.
+   *
+   * @param manager  the source of the event
+   * @param station  the station for which the value changed, <code>null</code> if the station is not specified
+   * @param dockable the element for which the value changed, <code>null</code> indicates that the property changed for an unknown number of dockables
+   */
+  public void holdSwitchableChanged(FlapLayoutManager manager, FlapDockStation station, Dockable dockable);
 }

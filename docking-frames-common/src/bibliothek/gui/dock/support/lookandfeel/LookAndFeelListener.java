@@ -25,49 +25,54 @@
  */
 package bibliothek.gui.dock.support.lookandfeel;
 
-import javax.swing.LookAndFeel;
-
 import bibliothek.gui.dock.support.lookandfeel.LookAndFeelList.Info;
+
+import javax.swing.*;
 
 /**
  * A listener which observes a {@link LookAndFeelList} and gets informed whenever
  * the contents of the list change.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public interface LookAndFeelListener {
-    /**
-     * Called when the current {@link LookAndFeel} was exchanged.
-     * @param list the source of the event
-     * @param lookAndFeel the new current LookAndFeel
-     */
-    public void lookAndFeelChanged( LookAndFeelList list, Info lookAndFeel );
-    
-    /**
-     * Called when a selectable {@link LookAndFeel} was added to <code>list</code>.
-     * @param list the source of the event
-     * @param lookAndFeel the new LookAndFeel
-     */
-    public void lookAndFeelAdded( LookAndFeelList list, Info lookAndFeel );
-    
-    /**
-     * Called when a selectable {@link LookAndFeel} was removed from <code>list</code>.
-     * @param list the source of the event
-     * @param lookAndFeel the removed LookAndFeel
-     */
-    public void lookAndFeelRemoved( LookAndFeelList list, Info lookAndFeel );
-    
-    /**
-     * Called when the default- {@link LookAndFeel} was exchanged.
-     * @param list the source of the event
-     * @param lookAndFeel the new LookAndFeel
-     */
-    public void defaultLookAndFeelChanged( LookAndFeelList list, Info lookAndFeel );
-    
-    /**
-     * Called when the system-{@link LookAndFeel} was exchanged.
-     * @param list the source of the event
-     * @param lookAndFeel the new LookAndFeel
-     */
-    public void systemLookAndFeelChanged( LookAndFeelList list, Info lookAndFeel );
+  /**
+   * Called when the current {@link LookAndFeel} was exchanged.
+   *
+   * @param list        the source of the event
+   * @param lookAndFeel the new current LookAndFeel
+   */
+  public void lookAndFeelChanged(LookAndFeelList list, Info lookAndFeel);
+
+  /**
+   * Called when a selectable {@link LookAndFeel} was added to <code>list</code>.
+   *
+   * @param list        the source of the event
+   * @param lookAndFeel the new LookAndFeel
+   */
+  public void lookAndFeelAdded(LookAndFeelList list, Info lookAndFeel);
+
+  /**
+   * Called when a selectable {@link LookAndFeel} was removed from <code>list</code>.
+   *
+   * @param list        the source of the event
+   * @param lookAndFeel the removed LookAndFeel
+   */
+  public void lookAndFeelRemoved(LookAndFeelList list, Info lookAndFeel);
+
+  /**
+   * Called when the default- {@link LookAndFeel} was exchanged.
+   *
+   * @param list        the source of the event
+   * @param lookAndFeel the new LookAndFeel
+   */
+  public void defaultLookAndFeelChanged(LookAndFeelList list, Info lookAndFeel);
+
+  /**
+   * Called when the system-{@link LookAndFeel} was exchanged.
+   *
+   * @param list        the source of the event
+   * @param lookAndFeel the new LookAndFeel
+   */
+  public void systemLookAndFeelChanged(LookAndFeelList list, Info lookAndFeel);
 }

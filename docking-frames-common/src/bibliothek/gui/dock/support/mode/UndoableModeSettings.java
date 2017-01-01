@@ -28,16 +28,18 @@ package bibliothek.gui.dock.support.mode;
 /**
  * This class is used by a {@link ModeManager} during a read operation to create
  * entries even if it not entirely sure whether the entry will ever be used.
+ *
  * @author Benjamin Sigg
  */
 public interface UndoableModeSettings {
-	/**
-	 * Called during a read operation if {@link ModeManager#createEntryDuringRead(String)}
-	 * did already return <code>false</code> for <code>key</code>.
-	 * @param key the key of some element that might be important later
-	 * @return <code>true</code> if an entry for <code>key</code> should be created
-	 * temporarily
-	 * @see ModeManager#readSettings(ModeSettings, UndoableModeSettings)
-	 */
-	public boolean createTemporaryDuringRead( String key );
+  /**
+   * Called during a read operation if {@link ModeManager#createEntryDuringRead(String)}
+   * did already return <code>false</code> for <code>key</code>.
+   *
+   * @param key the key of some element that might be important later
+   * @return <code>true</code> if an entry for <code>key</code> should be created
+   * temporarily
+   * @see ModeManager#readSettings(ModeSettings, UndoableModeSettings)
+   */
+  public boolean createTemporaryDuringRead(String key);
 }

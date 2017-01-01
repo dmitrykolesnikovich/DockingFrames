@@ -35,18 +35,19 @@ import bibliothek.gui.dock.themes.basic.action.DockActionImportanceOrder;
 /**
  * This {@link DockActionImportanceOrder} searches for the annotation {@link DockActionImportance} which may
  * be added to a {@link CAction} or to a {@link DockAction}.
+ *
  * @author Benjamin Sigg
  */
-public class CActionImportanceOrder extends DefaultDockActionImportanceOrder{
-	@Override
-	protected double getImportance( DockAction action ){
-		if( action instanceof CommonDockAction ){
-			CAction caction = ((CommonDockAction)action).getAction();
-			DockActionImportance importance = caction.getClass().getAnnotation( DockActionImportance.class );
-			if( importance != null ){
-				return importance.value();
-			}
-		}
-		return super.getImportance( action );
-	}
+public class CActionImportanceOrder extends DefaultDockActionImportanceOrder {
+  @Override
+  protected double getImportance(DockAction action) {
+    if (action instanceof CommonDockAction) {
+      CAction caction = ((CommonDockAction)action).getAction();
+      DockActionImportance importance = caction.getClass().getAnnotation(DockActionImportance.class);
+      if (importance != null) {
+        return importance.value();
+      }
+    }
+    return super.getImportance(action);
+  }
 }

@@ -34,24 +34,30 @@ import bibliothek.gui.dock.facile.mode.LocationModeManager;
 /**
  * This most simple {@link CGroupBehavior} just set the mode of the one
  * {@link Dockable} whose mode should change anyway.
+ *
  * @author Benjamin Sigg
  */
-public class TopMostGroupBehavior implements CGroupBehavior{
-	public CGroupMovement prepare( LocationModeManager<? extends LocationMode> manager, Dockable dockable, ExtendedMode target ){
-		return new SingleGroupMovement( dockable, target );
-	}
-	
-	public Dockable getGroupElement( LocationModeManager<? extends LocationMode> manager, Dockable dockable, ExtendedMode mode ){
-		return dockable;
-	}
-	
-	public Dockable getReplaceElement( LocationModeManager<? extends LocationMode> manager, Dockable old, Dockable dockable, ExtendedMode mode ){
-		if( dockable == old )
-			return null;
-		return old;
-	}
-	
-	public boolean shouldForwardActions( LocationModeManager<? extends LocationMode> manager, DockStation station, Dockable dockable, ExtendedMode mode ){
-		return false;
-	}
+public class TopMostGroupBehavior implements CGroupBehavior {
+  public CGroupMovement prepare(LocationModeManager<? extends LocationMode> manager, Dockable dockable, ExtendedMode target) {
+    return new SingleGroupMovement(dockable, target);
+  }
+
+  public Dockable getGroupElement(LocationModeManager<? extends LocationMode> manager, Dockable dockable, ExtendedMode mode) {
+    return dockable;
+  }
+
+  public Dockable getReplaceElement(LocationModeManager<? extends LocationMode> manager,
+                                    Dockable old,
+                                    Dockable dockable,
+                                    ExtendedMode mode) {
+    if (dockable == old) return null;
+    return old;
+  }
+
+  public boolean shouldForwardActions(LocationModeManager<? extends LocationMode> manager,
+                                      DockStation station,
+                                      Dockable dockable,
+                                      ExtendedMode mode) {
+    return false;
+  }
 }

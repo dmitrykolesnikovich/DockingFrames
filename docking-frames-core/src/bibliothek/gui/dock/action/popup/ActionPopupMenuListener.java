@@ -28,12 +28,14 @@ package bibliothek.gui.dock.action.popup;
 /**
  * A listener that is added to a {@link ActionPopupMenu} and is called
  * if the menu is closed.
+ *
  * @author Benjamin Sigg
  */
 public interface ActionPopupMenuListener {
-	/**
-	 * Called by <code>menu</code> once it is closed.
-	 * @param menu the menu that closed
-	 */
-	public void closed( ActionPopupMenu menu );
+  /**
+   * Called by <code>menu</code> once it is closed.
+   *
+   * @param menu the menu that closed
+   */
+  public void closed(ActionPopupMenu menu);
 }

@@ -29,16 +29,18 @@
  */
 package bibliothek.gui.dock.station.toolbar.layout;
 
-import java.awt.Container;
+import java.awt.*;
 
 /**
  * An observer that is added to a {@link ToolbarGridLayoutManager}.
+ *
  * @author Benjamin Sigg
  */
 public interface ToolbarGridLayoutManagerListener {
-	/**
-	 * This method is called after the layout of <code>container</code> was validated.
-	 * @param container the source of the event
-	 */
-	public void didLayout( Container container );
+  /**
+   * This method is called after the layout of <code>container</code> was validated.
+   *
+   * @param container the source of the event
+   */
+  public void didLayout(Container container);
 }

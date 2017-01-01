@@ -29,66 +29,66 @@ import bibliothek.gui.dock.perspective.PerspectiveDockable;
 import bibliothek.gui.dock.perspective.PerspectiveStation;
 
 /**
- * An abstract implementation of {@link CDockablePerspective} providing some general methods. 
+ * An abstract implementation of {@link CDockablePerspective} providing some general methods.
+ *
  * @author Benjamin Sigg
- * 
  */
-public abstract class AbstractCDockablePerspective implements CDockablePerspective{
-	private CStationPerspective workingArea;
-	
-	private LocationHistory history = new LocationHistory();
-	
-	public CStationPerspective getParent(){
-		PerspectiveDockable dockable = intern().asDockable();
-		
-		while( dockable != null ){
-			PerspectiveStation parent = dockable.getParent();
-			if( parent == null ){
-				return null;
-			}
-			if( parent instanceof CommonElementPerspective ){
-				CElementPerspective cparent = ((CommonElementPerspective)parent).getElement();
-				CStationPerspective station = cparent.asStation();
-				if( station != null ){
-					return station;
-				}
-			}
-			dockable = parent.asDockable();
-		}
-		
-		return null;
-	}
-	
-	public void setWorkingArea( CStationPerspective workingArea ){
-		this.workingArea = workingArea;
-	}
-	
-	public CStationPerspective getWorkingArea(){
-		return workingArea;
-	}
-	
-	public LocationHistory getLocationHistory(){
-		return history;
-	}
+public abstract class AbstractCDockablePerspective implements CDockablePerspective {
+  private CStationPerspective workingArea;
 
-	/**
-	 * Removes this dockable from its parent (if there is a parent). This method
-	 * tries to call {@link CPerspective#storeLocation(CDockablePerspective)} which will
-	 * allow the dockable to store its last location, leave a placeholder, and make the
-	 * perspective remember that there is an invisible dockable.  
-	 */
-	public void remove(){
-		CStationPerspective parentStation = getParent();
-		if( parentStation != null ){
-			CPerspective perspective = parentStation.getPerspective();
-			if( perspective != null ){
-				perspective.storeLocation( this );
-			}
-		}
-		
-		PerspectiveStation parent = intern().asDockable().getParent();
-		if( parent != null ){
-			parent.remove( intern().asDockable() );
-		}
-	}
+  private LocationHistory history = new LocationHistory();
+
+  public CStationPerspective getParent() {
+    PerspectiveDockable dockable = intern().asDockable();
+
+    while (dockable != null) {
+      PerspectiveStation parent = dockable.getParent();
+      if (parent == null) {
+        return null;
+      }
+      if (parent instanceof CommonElementPerspective) {
+        CElementPerspective cparent = ((CommonElementPerspective)parent).getElement();
+        CStationPerspective station = cparent.asStation();
+        if (station != null) {
+          return station;
+        }
+      }
+      dockable = parent.asDockable();
+    }
+
+    return null;
+  }
+
+  public CStationPerspective getWorkingArea() {
+    return workingArea;
+  }
+
+  public void setWorkingArea(CStationPerspective workingArea) {
+    this.workingArea = workingArea;
+  }
+
+  public LocationHistory getLocationHistory() {
+    return history;
+  }
+
+  /**
+   * Removes this dockable from its parent (if there is a parent). This method
+   * tries to call {@link CPerspective#storeLocation(CDockablePerspective)} which will
+   * allow the dockable to store its last location, leave a placeholder, and make the
+   * perspective remember that there is an invisible dockable.
+   */
+  public void remove() {
+    CStationPerspective parentStation = getParent();
+    if (parentStation != null) {
+      CPerspective perspective = parentStation.getPerspective();
+      if (perspective != null) {
+        perspective.storeLocation(this);
+      }
+    }
+
+    PerspectiveStation parent = intern().asDockable().getParent();
+    if (parent != null) {
+      parent.remove(intern().asDockable());
+    }
+  }
 }

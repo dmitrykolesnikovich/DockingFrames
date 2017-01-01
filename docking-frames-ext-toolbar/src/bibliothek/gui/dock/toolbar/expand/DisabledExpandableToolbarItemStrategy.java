@@ -36,41 +36,42 @@ import bibliothek.gui.dock.ExpandableToolbarItemStrategy;
 /**
  * This implementation of {@link ExpandableToolbarItemStrategy} does not do anything, it just disables
  * any feature related to expandable items.
+ *
  * @author Benjamin Sigg
  */
-public class DisabledExpandableToolbarItemStrategy implements ExpandableToolbarItemStrategy{
-	@Override
-	public void install( DockController controller ){
-		// ignore
-	}
+public class DisabledExpandableToolbarItemStrategy implements ExpandableToolbarItemStrategy {
+  @Override
+  public void install(DockController controller) {
+    // ignore
+  }
 
-	@Override
-	public void uninstall( DockController controller ){
-		// ignore		
-	}
+  @Override
+  public void uninstall(DockController controller) {
+    // ignore
+  }
 
-	@Override
-	public boolean isEnabled( Dockable item, ExpandedState state ){
-		return false;
-	}
+  @Override
+  public boolean isEnabled(Dockable item, ExpandedState state) {
+    return false;
+  }
 
-	@Override
-	public ExpandedState getState( Dockable item ){
-		return null;
-	}
+  @Override
+  public ExpandedState getState(Dockable item) {
+    return null;
+  }
 
-	@Override
-	public void setState( Dockable item, ExpandedState state ){
-		// ignore		
-	}
+  @Override
+  public void setState(Dockable item, ExpandedState state) {
+    // ignore
+  }
 
-	@Override
-	public void addExpandedListener( ExpandableToolbarItemStrategyListener listener ){
-		// ignore
-	}
+  @Override
+  public void addExpandedListener(ExpandableToolbarItemStrategyListener listener) {
+    // ignore
+  }
 
-	@Override
-	public void removeExpandedListener( ExpandableToolbarItemStrategyListener listener ){
-		// ignore
-	}
+  @Override
+  public void removeExpandedListener(ExpandableToolbarItemStrategyListener listener) {
+    // ignore
+  }
 }

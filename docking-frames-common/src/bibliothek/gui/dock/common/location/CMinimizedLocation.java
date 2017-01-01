@@ -31,63 +31,76 @@ import bibliothek.gui.dock.common.mode.ExtendedMode;
 
 /**
  * A location aiming at minimized elements.
+ *
  * @author Benjamin Sigg
  */
-public class CMinimizedLocation extends CFlapLocation{
-	/** the location describing where the "minimized-area" is */
-	private CBaseLocation parent;
-	/** telling which side this location occupies */
-	private Side side;
-	
-	/**
-	 * Creates a new location.
-	 * @param parent the location describing where the "minimized-areas" are
-	 * @param side the side this location is aiming at.
-	 */
-	public CMinimizedLocation( CBaseLocation parent, Side side ){
-		super( parent );
-		
-		if( side == null )
-			throw new NullPointerException( "side is null" );
-		
-		this.parent = parent;
-		this.side = side;
-	}
-	
-	/**
-	 * Gets the side of the {@link CContentArea} where this minimized-location
-	 * points to.
-	 * @return the side
-	 */
-	public Side getSide(){
-		return side;
-	}
-	
-	@Override
-	public ExtendedMode findMode(){
-		return ExtendedMode.MINIMIZED;
-	}
-	
-	@Override
-	public String findRoot(){
-		CContentArea center = parent.getContentArea();
-		String id;
-		if( center == null )
-			id = CControl.CONTENT_AREA_STATIONS_ID;
-		else
-			id = center.getUniqueId();
-		
-		switch( side ){
-			case NORTH: return CContentArea.getNorthIdentifier( id );
-			case SOUTH: return CContentArea.getSouthIdentifier( id );
-			case EAST: return CContentArea.getEastIdentifier( id );
-			case WEST: return CContentArea.getWestIdentifier( id );
-			default: return null;
-		}
-	}
-	
-	@Override
-	public String toString() {
-	    return String.valueOf( parent ) + " [minimized " + side + "]";
-	}
+public class CMinimizedLocation extends CFlapLocation {
+  /**
+   * the location describing where the "minimized-area" is
+   */
+  private CBaseLocation parent;
+  /**
+   * telling which side this location occupies
+   */
+  private Side side;
+
+  /**
+   * Creates a new location.
+   *
+   * @param parent the location describing where the "minimized-areas" are
+   * @param side   the side this location is aiming at.
+   */
+  public CMinimizedLocation(CBaseLocation parent, Side side) {
+    super(parent);
+
+    if (side == null) throw new NullPointerException("side is null");
+
+    this.parent = parent;
+    this.side = side;
+  }
+
+  /**
+   * Gets the side of the {@link CContentArea} where this minimized-location
+   * points to.
+   *
+   * @return the side
+   */
+  public Side getSide() {
+    return side;
+  }
+
+  @Override
+  public ExtendedMode findMode() {
+    return ExtendedMode.MINIMIZED;
+  }
+
+  @Override
+  public String findRoot() {
+    CContentArea center = parent.getContentArea();
+    String id;
+    if (center == null) {
+      id = CControl.CONTENT_AREA_STATIONS_ID;
+    }
+    else {
+      id = center.getUniqueId();
+    }
+
+    switch (side) {
+      case NORTH:
+        return CContentArea.getNorthIdentifier(id);
+      case SOUTH:
+        return CContentArea.getSouthIdentifier(id);
+      case EAST:
+        return CContentArea.getEastIdentifier(id);
+      case WEST:
+        return CContentArea.getWestIdentifier(id);
+      default:
+        return null;
+    }
+  }
+
+  @Override
+  public String toString() {
+    return String.valueOf(parent) + " [minimized " + side + "]";
+  }
 }

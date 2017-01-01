@@ -25,22 +25,23 @@
  */
 package bibliothek.gui.dock.station.screen.window;
 
-import java.awt.Component;
-
-import javax.swing.JComponent;
-
 import bibliothek.gui.dock.station.screen.ScreenDockWindow;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * A factory creating new {@link ScreenDockWindowBorder}s.
+ *
  * @author Benjamin Sigg
  */
 public interface ScreenDockWindowBorderFactory {
-	/**
-	 * Creates a new border.
-	 * @param window the window which is going to show the border
-	 * @param owner the parent {@link Component} of the border
-	 * @return the new border, must not be <code>null</code>
-	 */
-	public ScreenDockWindowBorder create( ScreenDockWindow window, JComponent owner );
+  /**
+   * Creates a new border.
+   *
+   * @param window the window which is going to show the border
+   * @param owner  the parent {@link Component} of the border
+   * @return the new border, must not be <code>null</code>
+   */
+  public ScreenDockWindowBorder create(ScreenDockWindow window, JComponent owner);
 }

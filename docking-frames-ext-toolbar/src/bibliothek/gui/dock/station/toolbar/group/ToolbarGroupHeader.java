@@ -32,31 +32,34 @@ package bibliothek.gui.dock.station.toolbar.group;
 import bibliothek.gui.Orientation;
 import bibliothek.gui.dock.ToolbarGroupDockStation;
 
-import java.awt.Component;
+import java.awt.*;
 
 /**
  * Represents a single {@link Component} which can be shown at the top or
  * left end of a {@link ToolbarGroupDockStation}.<br>
  * {@link ToolbarGroupHeader}s are created by {@link ToolbarGroupHeaderFactory}s.
+ *
  * @author Benjamin Sigg
  */
 public interface ToolbarGroupHeader {
-	/**
-	 * The actual component represented by this object. The result of
-	 * this method must never change.
-	 * @return the component, must not be <code>null</code> and must not change
-	 */
-	public Component getComponent();
-	
-	/**
-	 * Called before the {@link #getComponent() component} is shown, and every time when
-	 * the orientation of the {@link ToolbarGroupDockStation} changes.
-	 * @param orientation the orientation of the station, which is orthogonal to how the component is shown, not <code>null</code>
-	 */
-	public void setOrientation( Orientation orientation );
-	
-	/**
-	 * Called if this header is no longer required
-	 */
-	public void destroy();
+  /**
+   * The actual component represented by this object. The result of
+   * this method must never change.
+   *
+   * @return the component, must not be <code>null</code> and must not change
+   */
+  public Component getComponent();
+
+  /**
+   * Called before the {@link #getComponent() component} is shown, and every time when
+   * the orientation of the {@link ToolbarGroupDockStation} changes.
+   *
+   * @param orientation the orientation of the station, which is orthogonal to how the component is shown, not <code>null</code>
+   */
+  public void setOrientation(Orientation orientation);
+
+  /**
+   * Called if this header is no longer required
+   */
+  public void destroy();
 }

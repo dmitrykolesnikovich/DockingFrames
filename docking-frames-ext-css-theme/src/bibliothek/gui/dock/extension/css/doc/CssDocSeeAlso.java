@@ -34,14 +34,16 @@ import java.lang.annotation.Target;
  * Added to a class, this annotation tells the {@link DocGenerator} that a class supports more
  * css-properties, defined in other classes. The other properties will be treated as if they would have
  * been defined within the annotated class.
+ *
  * @author Benjamin Sigg
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CssDocSeeAlso {
-	/**
-	 * A list of all the other classes to look at.
-	 * @return the other classes
-	 */
-	public Class<?>[] value();
+  /**
+   * A list of all the other classes to look at.
+   *
+   * @return the other classes
+   */
+  public Class<?>[] value();
 }

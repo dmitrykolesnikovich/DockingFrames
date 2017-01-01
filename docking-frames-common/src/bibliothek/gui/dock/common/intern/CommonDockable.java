@@ -36,38 +36,43 @@ import bibliothek.gui.dock.common.intern.station.CommonDockStationFactory;
 
 /**
  * A {@link Dockable} which is a wrapper for a {@link CDockable}.
+ *
  * @author Benjamin Sigg
  */
-public interface CommonDockable extends Dockable, CommonElement{
-	/**
-	 * Gets the model of this dockable.
-	 * @return the model
-	 */
-	public CDockable getDockable();
-	
-	/**
-	 * Gets the model of this dockable as station.
-	 * @return the model, may be <code>null</code>
-	 */
-	public CStation<?> getStation();
-	
-	/**
-	 * Gets a set of {@link DockActionSource}s which are to be displayed
-	 * on this {@link CommonDockable}. Note that every call to this
-	 * method should return the same array of sources. Callers should not
-	 * modify the result.
-	 * @return the action sources, can be an empty array
-	 */
-	public DockActionSource[] getSources();
-	
-	/**
-	 * Gets the identifier of the {@link DockFactory} which can store and load
-	 * this dockable. {@link CommonDockable}s which show a {@link SingleCDockable}
-	 * should return {@link CommonSingleDockableFactory#BACKUP_FACTORY_ID} and
-	 * the others should return the id of {@link MultipleCDockable#getFactory()}.<br>
-	 * If the subclass implements {@link CommonDockStation}, then {@link CommonDockStationFactory#FACTORY_ID}
-	 * should be returned.
-	 * @return the name of the factory
-	 */
-	public String getFactoryID();
+public interface CommonDockable extends Dockable, CommonElement {
+  /**
+   * Gets the model of this dockable.
+   *
+   * @return the model
+   */
+  public CDockable getDockable();
+
+  /**
+   * Gets the model of this dockable as station.
+   *
+   * @return the model, may be <code>null</code>
+   */
+  public CStation<?> getStation();
+
+  /**
+   * Gets a set of {@link DockActionSource}s which are to be displayed
+   * on this {@link CommonDockable}. Note that every call to this
+   * method should return the same array of sources. Callers should not
+   * modify the result.
+   *
+   * @return the action sources, can be an empty array
+   */
+  public DockActionSource[] getSources();
+
+  /**
+   * Gets the identifier of the {@link DockFactory} which can store and load
+   * this dockable. {@link CommonDockable}s which show a {@link SingleCDockable}
+   * should return {@link CommonSingleDockableFactory#BACKUP_FACTORY_ID} and
+   * the others should return the id of {@link MultipleCDockable#getFactory()}.<br>
+   * If the subclass implements {@link CommonDockStation}, then {@link CommonDockStationFactory#FACTORY_ID}
+   * should be returned.
+   *
+   * @return the name of the factory
+   */
+  public String getFactoryID();
 }

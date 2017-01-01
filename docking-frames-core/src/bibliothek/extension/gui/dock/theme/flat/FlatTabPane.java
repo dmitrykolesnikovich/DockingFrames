@@ -26,86 +26,89 @@
 
 package bibliothek.extension.gui.dock.theme.flat;
 
-import java.awt.Rectangle;
-
-import javax.swing.JTabbedPane;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.station.stack.CombinedStackDockComponent;
 import bibliothek.gui.dock.station.stack.StackDockComponentParent;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * A panel that works like a {@link JTabbedPane}, but the buttons to
  * change between the children are smaller and "flatter" than the
  * buttons of the <code>JTabbedPane</code>.
+ *
  * @author Benjamin Sigg
  */
-public class FlatTabPane extends CombinedStackDockComponent<FlatTab, FlatMenu, FlatInfoComponent>{
-    /** the station which uses this component */
-    private StackDockComponentParent station;
-    
-    /**
-     * Creates a new {@link FlatTabPane}
-     * @param parent the station which uses this component
-     */
-    public FlatTabPane( StackDockComponentParent parent ){
-        this.station = parent;
-        setInfoComponent( new FlatInfoComponent( this ) );
+public class FlatTabPane extends CombinedStackDockComponent<FlatTab, FlatMenu, FlatInfoComponent> {
+  /**
+   * the station which uses this component
+   */
+  private StackDockComponentParent station;
+
+  /**
+   * Creates a new {@link FlatTabPane}
+   *
+   * @param parent the station which uses this component
+   */
+  public FlatTabPane(StackDockComponentParent parent) {
+    this.station = parent;
+    setInfoComponent(new FlatInfoComponent(this));
+  }
+
+  @Override
+  protected FlatTab newTab(Dockable dockable) {
+    return new FlatTab(this, dockable);
+  }
+
+  @Override
+  protected void tabRemoved(FlatTab tab) {
+    tab.setController(null);
+  }
+
+  @Override
+  public FlatMenu newMenu() {
+    FlatMenu menu = new FlatMenu(this);
+    menu.setController(getController());
+    return menu;
+  }
+
+  @Override
+  protected void menuRemoved(FlatMenu menu) {
+    menu.setController(null);
+  }
+
+  @Override
+  public void setController(DockController controller) {
+    super.setController(controller);
+    for (FlatTab tab : getTabsList()) {
+      tab.setController(controller);
     }
-    
-    @Override
-	protected FlatTab newTab( Dockable dockable ){
-		return new FlatTab( this, dockable );
-	}
-	
-    @Override
-    protected void tabRemoved( FlatTab tab ){
-    	tab.setController( null );
+    for (FlatMenu menu : getMenuList()) {
+      menu.setController(controller);
     }
-    
-    @Override
-    public FlatMenu newMenu(){
-    	FlatMenu menu = new FlatMenu( this );
-    	menu.setController( getController() );
-    	return menu;
+  }
+
+  @Override
+  public void setSelectedBounds(Rectangle bounds) {
+    super.setSelectedBounds(bounds);
+    for (FlatTab tab : getTabsList()) {
+      tab.updateForeground();
+      tab.updateFonts();
     }
-    
-    @Override
-    protected void menuRemoved( FlatMenu menu ){
-	    menu.setController( null );	
-    }
-    
-	@Override
-    public void setController( DockController controller ){
-		super.setController( controller );
-		for( FlatTab tab : getTabsList() ){
-			tab.setController( controller );
-		}
-		for( FlatMenu menu : getMenuList() ){
-			menu.setController( controller );
-		}
-	}
-	
-	@Override
-	public void setSelectedBounds( Rectangle bounds ){
-		super.setSelectedBounds( bounds );
-	    for( FlatTab tab : getTabsList() ){
-            tab.updateForeground();
-            tab.updateFonts();
-        }
-	}
-	
-	public boolean hasBorder() {
-	    return false;
-	}
-	
-	public boolean isSingleTabComponent(){
-		return false;
-	}
-	
-	public DockStation getStation(){
-		return station.getStackDockParent();
-	}
+  }
+
+  public boolean hasBorder() {
+    return false;
+  }
+
+  public boolean isSingleTabComponent() {
+    return false;
+  }
+
+  public DockStation getStation() {
+    return station.getStackDockParent();
+  }
 }

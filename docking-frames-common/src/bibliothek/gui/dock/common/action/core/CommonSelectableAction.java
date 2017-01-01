@@ -34,9 +34,10 @@ import bibliothek.util.FrameworkOnly;
  * A combination of {@link SharingSelectableDockAction} and {@link CommonDockAction}, does not add
  * any new methods or fields.<br>
  * This is the interface a {@link DockAction} must implement if used by {@link CSelectableAction}.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public interface CommonSelectableAction extends CommonDropDownItem, SharingSelectableDockAction{
+public interface CommonSelectableAction extends CommonDropDownItem, SharingSelectableDockAction {
 
 }

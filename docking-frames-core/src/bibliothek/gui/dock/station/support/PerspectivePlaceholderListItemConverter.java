@@ -29,22 +29,22 @@ import bibliothek.gui.dock.perspective.PerspectiveDockable;
 import bibliothek.gui.dock.perspective.PerspectiveStation;
 
 /**
- * 
- * @author Benjamin Sigg
  * @param <D> the kind of item this converter is used for
+ * @author Benjamin Sigg
  */
-public class PerspectivePlaceholderListItemConverter<D extends PlaceholderListItem<PerspectiveDockable>> extends PlaceholderListItemAdapter<PerspectiveDockable, D> {
-	@Override
-	public ConvertedPlaceholderListItem convert( int index, D dockable ){
-		if( dockable.asDockable() != null ){
-			ConvertedPlaceholderListItem item = new ConvertedPlaceholderListItem();
-			item.setPlaceholder( dockable.asDockable().getPlaceholder() );
-			PerspectiveStation station = dockable.asDockable().asStation();
-			if( station != null ){
-				item.setPlaceholderMap( station.getPlaceholders() );
-			}
-			return item;
-		}
-		return null;
-	}
+public class PerspectivePlaceholderListItemConverter<D extends PlaceholderListItem<PerspectiveDockable>>
+  extends PlaceholderListItemAdapter<PerspectiveDockable, D> {
+  @Override
+  public ConvertedPlaceholderListItem convert(int index, D dockable) {
+    if (dockable.asDockable() != null) {
+      ConvertedPlaceholderListItem item = new ConvertedPlaceholderListItem();
+      item.setPlaceholder(dockable.asDockable().getPlaceholder());
+      PerspectiveStation station = dockable.asDockable().asStation();
+      if (station != null) {
+        item.setPlaceholderMap(station.getPlaceholders());
+      }
+      return item;
+    }
+    return null;
+  }
 }

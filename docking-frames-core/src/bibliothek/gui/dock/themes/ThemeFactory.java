@@ -31,20 +31,23 @@ import bibliothek.gui.DockTheme;
 
 /**
  * A factory creating new themes.
+ *
  * @author Benjamin Sigg
  */
 public interface ThemeFactory {
-    /**
-     * Creates a new theme.
-     * @param controller the controller in whose realm the theme will be used
-     * @return the new theme
-     */
-    public DockTheme create( DockController controller );
-    
-    /**
-     * Gets meta information about this factory.
-     * @param controller the controller in whose realm the meta information will be displayed
-     * @return the new meta information
-     */
-    public ThemeMeta createMeta( DockController controller );
+  /**
+   * Creates a new theme.
+   *
+   * @param controller the controller in whose realm the theme will be used
+   * @return the new theme
+   */
+  public DockTheme create(DockController controller);
+
+  /**
+   * Gets meta information about this factory.
+   *
+   * @param controller the controller in whose realm the meta information will be displayed
+   * @return the new meta information
+   */
+  public ThemeMeta createMeta(DockController controller);
 }

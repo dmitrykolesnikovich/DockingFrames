@@ -25,44 +25,47 @@
  */
 package bibliothek.gui.dock.util;
 
-import java.awt.Window;
+import java.awt.*;
 
 /**
  * A window provider where the window can be set directly.
+ *
  * @author Benjamin Sigg
  */
 public class DirectWindowProvider extends AbstractWindowProvider {
-    private Window window;
-    
-    /**
-     * Creates a new window provider.
-     */
-    public DirectWindowProvider(){
-        // ignore
+  private Window window;
+
+  /**
+   * Creates a new window provider.
+   */
+  public DirectWindowProvider() {
+    // ignore
+  }
+
+  /**
+   * Creates a new window provider.
+   *
+   * @param window the window which should be provided by this provider,
+   *               can be <code>null</code>
+   */
+  public DirectWindowProvider(Window window) {
+    setWindow(window);
+  }
+
+  /**
+   * Sets the window which will be provided by this provider.
+   *
+   * @param window the new window, can be <code>null</code>
+   */
+  public void setWindow(Window window) {
+    if (this.window != window) {
+      this.window = window;
+      fireWindowChanged(window);
     }
-    
-    /**
-     * Creates a new window provider.
-     * @param window the window which should be provided by this provider,
-     * can be <code>null</code>
-     */
-    public DirectWindowProvider( Window window ){
-        setWindow( window );
-    }
-    
-    /**
-     * Sets the window which will be provided by this provider.
-     * @param window the new window, can be <code>null</code>
-     */
-    public void setWindow( Window window ) {
-        if( this.window != window ){
-            this.window = window;
-            fireWindowChanged( window );
-        }
-    }
-    
-    public Window searchWindow() {
-        return window;
-    }
+  }
+
+  public Window searchWindow() {
+    return window;
+  }
 
 }

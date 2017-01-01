@@ -32,26 +32,30 @@ import bibliothek.gui.dock.StackDockStation;
 /**
  * This factory creates {@link TabConfiguration}s, which can be used to fine tune the look
  * of various tabs.<br>
- * Please note that only a subset of tabs actually supports this configuration, some 
+ * Please note that only a subset of tabs actually supports this configuration, some
  * {@link DockTheme}s will simply ignore this factory.
+ *
+ * @author Benjamin Sigg
  * @see TabConfiguration
  * @see StackDockStation#TAB_CONFIGURATIONS
- * @author Benjamin Sigg
  */
 public interface TabConfigurations {
-	/** the default configuration, which does nothing but create new {@link TabConfiguration}s */
-	public static final TabConfigurations DEFAULT = new TabConfigurations(){
-		public TabConfiguration getConfiguration( Dockable dockable ){
-			return new TabConfiguration();
-		}
-	};
-	
-	/**
-	 * Gets the configuration for a tab that represents {@link Dockable}. This method may
-	 * create a new {@link TabConfiguration} every time it is called, or reuse the same configuration
-	 * multiple times.
-	 * @param dockable the element whose tab will be shown
-	 * @return the configuration, not <code>null</code>
-	 */
-	public TabConfiguration getConfiguration( Dockable dockable );
+  /**
+   * the default configuration, which does nothing but create new {@link TabConfiguration}s
+   */
+  public static final TabConfigurations DEFAULT = new TabConfigurations() {
+    public TabConfiguration getConfiguration(Dockable dockable) {
+      return new TabConfiguration();
+    }
+  };
+
+  /**
+   * Gets the configuration for a tab that represents {@link Dockable}. This method may
+   * create a new {@link TabConfiguration} every time it is called, or reuse the same configuration
+   * multiple times.
+   *
+   * @param dockable the element whose tab will be shown
+   * @return the configuration, not <code>null</code>
+   */
+  public TabConfiguration getConfiguration(Dockable dockable);
 }

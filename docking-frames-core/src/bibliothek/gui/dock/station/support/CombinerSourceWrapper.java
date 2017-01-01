@@ -25,70 +25,74 @@
  */
 package bibliothek.gui.dock.station.support;
 
-import java.awt.Dimension;
-import java.awt.Point;
-
 import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.station.DockableDisplayer;
 
+import java.awt.*;
+
 /**
  * A wrapper around a {@link CombinerSource}, can be used to easily override
- * methods of some source. 
+ * methods of some source.
+ *
  * @author Benjamin Sigg
  */
-public class CombinerSourceWrapper implements CombinerSource{
-	/** the wrapped source */
-	private CombinerSource delegate;
-	
-	/**
-	 * Creates a new wrapper.
-	 * @param delegate the source to hide
-	 */
-	public CombinerSourceWrapper( CombinerSource delegate) {
-		if( delegate == null ){
-			throw new IllegalArgumentException( "delegate must not be null" );
-		}
-		this.delegate = delegate;
-	}
-	
-	/**
-	 * Gets the source which is hidden by this wrapper.
-	 * @return the source, not <code>null</code>
-	 */
-	public CombinerSource getDelegate(){
-		return delegate;
-	}
-	
-	public Point getMousePosition(){
-		return delegate.getMousePosition();
-	}
-	
-	public Dockable getNew(){
-		return delegate.getNew();
-	}
-	
-	public DockableDisplayer getOldDisplayer(){
-		return delegate.getOldDisplayer();
-	}
+public class CombinerSourceWrapper implements CombinerSource {
+  /**
+   * the wrapped source
+   */
+  private CombinerSource delegate;
 
-	public Dockable getOld(){
-		return delegate.getOld();
-	}
+  /**
+   * Creates a new wrapper.
+   *
+   * @param delegate the source to hide
+   */
+  public CombinerSourceWrapper(CombinerSource delegate) {
+    if (delegate == null) {
+      throw new IllegalArgumentException("delegate must not be null");
+    }
+    this.delegate = delegate;
+  }
 
-	public DockStation getParent(){
-		return delegate.getParent();
-	}
+  /**
+   * Gets the source which is hidden by this wrapper.
+   *
+   * @return the source, not <code>null</code>
+   */
+  public CombinerSource getDelegate() {
+    return delegate;
+  }
 
-	public PlaceholderMap getPlaceholders(){
-		return delegate.getPlaceholders();
-	}
+  public Point getMousePosition() {
+    return delegate.getMousePosition();
+  }
 
-	public Dimension getSize(){
-		return delegate.getSize();
-	}
+  public Dockable getNew() {
+    return delegate.getNew();
+  }
 
-	public boolean isMouseOverTitle(){
-		return delegate.isMouseOverTitle();
-	}
+  public DockableDisplayer getOldDisplayer() {
+    return delegate.getOldDisplayer();
+  }
+
+  public Dockable getOld() {
+    return delegate.getOld();
+  }
+
+  public DockStation getParent() {
+    return delegate.getParent();
+  }
+
+  public PlaceholderMap getPlaceholders() {
+    return delegate.getPlaceholders();
+  }
+
+  public Dimension getSize() {
+    return delegate.getSize();
+  }
+
+  public boolean isMouseOverTitle() {
+    return delegate.isMouseOverTitle();
+  }
 }

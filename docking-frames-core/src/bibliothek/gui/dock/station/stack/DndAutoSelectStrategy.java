@@ -31,36 +31,38 @@ import bibliothek.gui.dock.StackDockStation;
 /**
  * This strategy is used by a {@link StackDockStation} to automatically change the selected
  * {@link Dockable} if the mouse hovers over a tab during a drag and drop operation.
- * @see StackDockStation#DND_AUTO_SELECT_STRATEGY
+ *
  * @author Benjamin Sigg
+ * @see StackDockStation#DND_AUTO_SELECT_STRATEGY
  */
 public interface DndAutoSelectStrategy {
-	/**
-	 * The default implementation just focuses the {@link Dockable} under the mouse.
-	 */
-	public static final DndAutoSelectStrategy DEFAULT = new DndAutoSelectStrategy(){
-		public void handleRequest( DndAutoSelectStrategyRequest request ){
-			request.toFront();	
-		}
-	};
-	
-	/**
-	 * Does not perform any actions.
-	 */
-	public static final DndAutoSelectStrategy IGNORE = new DndAutoSelectStrategy(){
-		public void handleRequest( DndAutoSelectStrategyRequest request ){
-			// ignore	
-		}
-	};
+  /**
+   * The default implementation just focuses the {@link Dockable} under the mouse.
+   */
+  public static final DndAutoSelectStrategy DEFAULT = new DndAutoSelectStrategy() {
+    public void handleRequest(DndAutoSelectStrategyRequest request) {
+      request.toFront();
+    }
+  };
 
-	/**
-	 * Called whenever the framework detects a hovering mouse over a tab during a drag and drop operation.<br>
-	 * Please do note:
-	 * <ul>
-	 * 	<li>The same request may be sent multiple times in fast succession</li>
-	 *  <li>The framework does not generate any kind of event if the user releases the mouse</li>
-	 * </ul>
-	 * @param request information about the currently selected dockable
-	 */
-	public void handleRequest( DndAutoSelectStrategyRequest request );
+  /**
+   * Does not perform any actions.
+   */
+  public static final DndAutoSelectStrategy IGNORE = new DndAutoSelectStrategy() {
+    public void handleRequest(DndAutoSelectStrategyRequest request) {
+      // ignore
+    }
+  };
+
+  /**
+   * Called whenever the framework detects a hovering mouse over a tab during a drag and drop operation.<br>
+   * Please do note:
+   * <ul>
+   * <li>The same request may be sent multiple times in fast succession</li>
+   * <li>The framework does not generate any kind of event if the user releases the mouse</li>
+   * </ul>
+   *
+   * @param request information about the currently selected dockable
+   */
+  public void handleRequest(DndAutoSelectStrategyRequest request);
 }

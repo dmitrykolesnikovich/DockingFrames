@@ -25,31 +25,35 @@
  */
 package bibliothek.util.filter;
 
+import bibliothek.util.Filter;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import bibliothek.util.Filter;
-
 /**
  * This filter keeps a set of items, an item is included if it is contained in that set.
- * @author Benjamin Sigg
+ *
  * @param <T> the kind of item this filter handles
+ * @author Benjamin Sigg
  */
-public class PresetFilter<T> implements Filter<T>{
-	/** the items to include */
-	private Set<T> items = new HashSet<T>();
-	
-	/**
-	 * Creates a new filter
-	 * @param items all the items to include
-	 */
-	public PresetFilter( T... items ){
-		for( T item : items ){
-			this.items.add( item );
-		}
-	}
-	
-	public boolean includes( T item ){
-		return items.contains( item );
-	}
+public class PresetFilter<T> implements Filter<T> {
+  /**
+   * the items to include
+   */
+  private Set<T> items = new HashSet<T>();
+
+  /**
+   * Creates a new filter
+   *
+   * @param items all the items to include
+   */
+  public PresetFilter(T... items) {
+    for (T item : items) {
+      this.items.add(item);
+    }
+  }
+
+  public boolean includes(T item) {
+    return items.contains(item);
+  }
 }

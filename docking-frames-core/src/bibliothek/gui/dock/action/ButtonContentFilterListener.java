@@ -30,17 +30,19 @@ import bibliothek.gui.Dockable;
 /**
  * This listener can be added to a {@link ButtonContentFilter} and will be informed if the filter changes
  * its behavior.
+ *
  * @author Benjamin Sigg
  */
 public interface ButtonContentFilterListener {
-	/**
-	 * Informs this listener that the result of {@link ButtonContentFilter#showText(Dockable, DockAction)}
-	 * changed.
-	 * @param filter the source of the event
-	 * @param dockable the dockable related to <code>action</code> or <code>null</code> to indicate
-	 * that all occurences of <code>action</code> are affected
-	 * @param action the action whose state changed or <code>null</code> as a wildcard telling that all
-	 * actions that are connected to <code>dockable</code> are affected
-	 */
-	public void showTextChanged( ButtonContentFilter filter, Dockable dockable, DockAction action );
+  /**
+   * Informs this listener that the result of {@link ButtonContentFilter#showText(Dockable, DockAction)}
+   * changed.
+   *
+   * @param filter   the source of the event
+   * @param dockable the dockable related to <code>action</code> or <code>null</code> to indicate
+   *                 that all occurences of <code>action</code> are affected
+   * @param action   the action whose state changed or <code>null</code> as a wildcard telling that all
+   *                 actions that are connected to <code>dockable</code> are affected
+   */
+  public void showTextChanged(ButtonContentFilter filter, Dockable dockable, DockAction action);
 }

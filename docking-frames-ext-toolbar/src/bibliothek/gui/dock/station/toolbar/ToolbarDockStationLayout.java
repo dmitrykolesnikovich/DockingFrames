@@ -36,45 +36,47 @@ import bibliothek.gui.dock.toolbar.expand.ExpandedState;
 
 /**
  * Describes the layout of a {@link ToolbarDockStation}.
- * 
+ *
  * @author Benjamin Sigg
  */
 public class ToolbarDockStationLayout {
-	/** the encoded layout of the {@link ToolbarDockStation} */
-	private final PlaceholderMap placeholders;
+  /**
+   * the encoded layout of the {@link ToolbarDockStation}
+   */
+  private final PlaceholderMap placeholders;
 
-	/** whether the children are big or small */
-	private final ExpandedState state;
+  /**
+   * whether the children are big or small
+   */
+  private final ExpandedState state;
 
-	/**
-	 * Creates a new layout object.
-	 * 
-	 * @param placeholders
-	 *            the encoded layout of the {@link ToolbarDockStation}, not
-	 *            <code>null</code>
-	 * @param state
-	 *            whether the children are big or small
-	 */
-	public ToolbarDockStationLayout( PlaceholderMap placeholders, ExpandedState state ){
-		this.placeholders = placeholders;
-		this.state = state;
-	}
+  /**
+   * Creates a new layout object.
+   *
+   * @param placeholders the encoded layout of the {@link ToolbarDockStation}, not
+   *                     <code>null</code>
+   * @param state        whether the children are big or small
+   */
+  public ToolbarDockStationLayout(PlaceholderMap placeholders, ExpandedState state) {
+    this.placeholders = placeholders;
+    this.state = state;
+  }
 
-	/**
-	 * Gets the encoded layout.
-	 * 
-	 * @return the encoded layout, not <code>null</code>
-	 */
-	public PlaceholderMap getPlaceholders(){
-		return placeholders;
-	}
+  /**
+   * Gets the encoded layout.
+   *
+   * @return the encoded layout, not <code>null</code>
+   */
+  public PlaceholderMap getPlaceholders() {
+    return placeholders;
+  }
 
-	/**
-	 * Tells whether the children are big or small.
-	 * 
-	 * @return the size of the children
-	 */
-	public ExpandedState getState(){
-		return state;
-	}
+  /**
+   * Tells whether the children are big or small.
+   *
+   * @return the size of the children
+   */
+  public ExpandedState getState() {
+    return state;
+  }
 }

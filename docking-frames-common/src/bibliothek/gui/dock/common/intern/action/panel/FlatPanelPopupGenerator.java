@@ -26,8 +26,6 @@
 
 package bibliothek.gui.dock.common.intern.action.panel;
 
-import javax.swing.JComponent;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.action.view.ActionViewConverter;
 import bibliothek.gui.dock.action.view.ViewGenerator;
@@ -36,15 +34,18 @@ import bibliothek.gui.dock.common.action.CPanelPopup.PanelPopup;
 import bibliothek.gui.dock.themes.basic.action.BasicTitleViewItem;
 import bibliothek.gui.dock.themes.basic.action.buttons.BasicMiniButton;
 
+import javax.swing.*;
+
 /**
  * Basic handler for creating a button for a {@link CPanelPopup}.
+ *
  * @author Benjamin Sigg
  */
-public class FlatPanelPopupGenerator implements ViewGenerator<PanelPopup, BasicTitleViewItem<JComponent>>{
-	public BasicTitleViewItem<JComponent> create( ActionViewConverter converter, PanelPopup action, Dockable dockable ){
-		BasicPanelPopupHandler handler = new BasicPanelPopupHandler( action, dockable );
-		BasicMiniButton button = new BasicMiniButton( handler, handler );
-		handler.setModel( button.getModel() );
-		return handler;
-	}
+public class FlatPanelPopupGenerator implements ViewGenerator<PanelPopup, BasicTitleViewItem<JComponent>> {
+  public BasicTitleViewItem<JComponent> create(ActionViewConverter converter, PanelPopup action, Dockable dockable) {
+    BasicPanelPopupHandler handler = new BasicPanelPopupHandler(action, dockable);
+    BasicMiniButton button = new BasicMiniButton(handler, handler);
+    handler.setModel(button.getModel());
+    return handler;
+  }
 }

@@ -27,43 +27,48 @@ package bibliothek.util.xml;
 
 /**
  * An attribute is an element in a XML-file that has a name and perhaps a value.
+ *
  * @author Benjamin Sigg
  */
-public class XAttribute extends XContainer{
-    /** the name of this attribute */
-    private String name;
+public class XAttribute extends XContainer {
+  /**
+   * the name of this attribute
+   */
+  private String name;
 
-    /**
-     * Creates a new attribute.
-     * @param name the name of the attribute
-     */
-    public XAttribute( String name ){
-        setName( name );
-    }
-    
-    @Override
-    public XAttribute copy() {
-    	XAttribute copy = new XAttribute( name );
-    	copy.copy( this );
-    	return copy;
-    }
-    
-    /**
-     * Sets the name of this attribute.
-     * @param name the new name
-     */
-    public void setName( String name ) {
-        if( name == null )
-            throw new IllegalArgumentException( "name must not be null" );
-        
-        this.name = name;
-    }
-    
-    /**
-     * Gets the name of this attribute.
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
+  /**
+   * Creates a new attribute.
+   *
+   * @param name the name of the attribute
+   */
+  public XAttribute(String name) {
+    setName(name);
+  }
+
+  @Override
+  public XAttribute copy() {
+    XAttribute copy = new XAttribute(name);
+    copy.copy(this);
+    return copy;
+  }
+
+  /**
+   * Gets the name of this attribute.
+   *
+   * @return the name
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * Sets the name of this attribute.
+   *
+   * @param name the new name
+   */
+  public void setName(String name) {
+    if (name == null) throw new IllegalArgumentException("name must not be null");
+
+    this.name = name;
+  }
 }

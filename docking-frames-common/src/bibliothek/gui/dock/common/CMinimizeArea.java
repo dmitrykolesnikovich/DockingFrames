@@ -25,11 +25,6 @@
  */
 package bibliothek.gui.dock.common;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-
-import javax.swing.JPanel;
-
 import bibliothek.gui.dock.FlapDockStation;
 import bibliothek.gui.dock.action.DockActionSource;
 import bibliothek.gui.dock.common.event.ResizeRequestListener;
@@ -47,144 +42,154 @@ import bibliothek.gui.dock.common.perspective.CStationPerspective;
 import bibliothek.gui.dock.title.DockTitleVersion;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
- * An area where {@link CDockable}s can be stored in their minimized state. This class is a subclass of {@link JPanel} and 
+ * An area where {@link CDockable}s can be stored in their minimized state. This class is a subclass of {@link JPanel} and
  * can be added anywhere in any frame or dialog. This {@link JPanel} uses a {@link BorderLayout} and clients may add
  * additional {@link Component}s to it, the {@link Component}s the size and location of the opening window will always
  * depend on this {@link JPanel}.
+ *
  * @author Benjamin Sigg
  */
-public class CMinimizeArea extends JPanel implements CStation<CFlapDockStation>{
-	/** The result of {@link #getTypeId()} */
-	public static final Path TYPE_ID = new Path( "dock", "CMinimizeArea" );
-	
-    private CommonDockStation<FlapDockStation,CFlapDockStation> station;
-    private ResizeRequestListener request;
-    private CControlAccess access;
-    private String uniqueId;
-    private CMinimizedModeArea area;
-    
-    /**
-     * Creates a new minimize area.
-     * @param control the control for which this area will be used
-     * @param uniqueId the unique uniqueId of this area
-     */
-    public CMinimizeArea( CControl control, String uniqueId ){
-    	init( control, uniqueId );
-    }
-    
-    /**
-     * Default constructor doing nothing, subclasses must call {@link #init(CControl, String)}
-     * after calling this method
-     */
-    protected CMinimizeArea(){
-    	// nothing
-    }
-    
-    /**
-     * Initializes the new area, should be called only once by subclasses
-     * @param control the control for which this area will be used
-     * @param uniqueId the unique uniqueId of this area
-     */
-    protected void init( CControl control, String uniqueId ){
-        this.uniqueId = uniqueId;
-        
-        setLayout( new BorderLayout() );
-        
-        station = control.getFactory().createFlapDockStation( this, new CommonStationDelegate<CFlapDockStation>(){
-			public boolean isTitleDisplayed( DockTitleVersion title ){
-				return true;
-			}
-			
-			public CStation<CFlapDockStation> getStation(){
-				return CMinimizeArea.this;
-			}
-			
-			public DockActionSource[] getSources(){
-				return new DockActionSource[]{};
-			}
-			
-			public CDockable getDockable(){
-				return null;
-			}
-		});
-        
-        request = new FlapResizeRequestHandler( station.getDockStation() );
-        
-        add( getStation().getComponent(), BorderLayout.CENTER );
-        
-        setDirection( null );
-        
-        area = new CFlapDockStationHandle( this );
-    }
-    
-    public void setControlAccess( CControlAccess access ) {
-        if( this.access != null ){
-            this.access.getOwner().removeResizeRequestListener( request );
-            this.access.getLocationManager().getMinimizedMode().remove( area.getUniqueId() );
-        }
-        
-        this.access = access;
-        
-        if( this.access != null ){
-            this.access.getOwner().addResizeRequestListener( request );
-            this.access.getLocationManager().getMinimizedMode().add( area );
-        }
-    }
+public class CMinimizeArea extends JPanel implements CStation<CFlapDockStation> {
+  /**
+   * The result of {@link #getTypeId()}
+   */
+  public static final Path TYPE_ID = new Path("dock", "CMinimizeArea");
 
-    /**
-     * Gets the unique uniqueId of this area.
-     * @return the unique uniqueId
-     */
-    public String getUniqueId() {
-        return uniqueId;
-    }
+  private CommonDockStation<FlapDockStation, CFlapDockStation> station;
+  private ResizeRequestListener request;
+  private CControlAccess access;
+  private String uniqueId;
+  private CMinimizedModeArea area;
 
-	public Path getTypeId(){
-		return TYPE_ID;
-	}
-	
-    public CFlapDockStation getStation(){
-        return station.asDockStation();
-    }
-    
-    public CStationPerspective createPerspective(){
-    	return new CMinimizePerspective( getUniqueId(), getTypeId() );
-    }
-    
-    public CLocation getStationLocation() {
-        return new CMinimizeAreaLocation( this );
-    }
-    
-    public CLocation getDropLocation(){
-    	if( access == null ){
-    		return null;
-    	}
-    	return access.getLocationManager().getDropLocation( this );
-    }
-    
-    public boolean isWorkingArea() {
-        return false;
-    }
-    
-    public CDockable asDockable() {
+  /**
+   * Creates a new minimize area.
+   *
+   * @param control  the control for which this area will be used
+   * @param uniqueId the unique uniqueId of this area
+   */
+  public CMinimizeArea(CControl control, String uniqueId) {
+    init(control, uniqueId);
+  }
+
+  /**
+   * Default constructor doing nothing, subclasses must call {@link #init(CControl, String)}
+   * after calling this method
+   */
+  protected CMinimizeArea() {
+    // nothing
+  }
+
+  /**
+   * Initializes the new area, should be called only once by subclasses
+   *
+   * @param control  the control for which this area will be used
+   * @param uniqueId the unique uniqueId of this area
+   */
+  protected void init(CControl control, String uniqueId) {
+    this.uniqueId = uniqueId;
+
+    setLayout(new BorderLayout());
+
+    station = control.getFactory().createFlapDockStation(this, new CommonStationDelegate<CFlapDockStation>() {
+      public boolean isTitleDisplayed(DockTitleVersion title) {
+        return true;
+      }
+
+      public CStation<CFlapDockStation> getStation() {
+        return CMinimizeArea.this;
+      }
+
+      public DockActionSource[] getSources() {
+        return new DockActionSource[]{};
+      }
+
+      public CDockable getDockable() {
         return null;
+      }
+    });
+
+    request = new FlapResizeRequestHandler(station.getDockStation());
+
+    add(getStation().getComponent(), BorderLayout.CENTER);
+
+    setDirection(null);
+
+    area = new CFlapDockStationHandle(this);
+  }
+
+  public void setControlAccess(CControlAccess access) {
+    if (this.access != null) {
+      this.access.getOwner().removeResizeRequestListener(request);
+      this.access.getLocationManager().getMinimizedMode().remove(area.getUniqueId());
     }
-    
-    /**
-     * Sets the direction into which the tab opens.
-     * @param direction the direction or <code>null</code> to let the system
-     * decide automatically
-     */
-    public void setDirection( FlapDockStation.Direction direction ){
-    	FlapDockStation station = getStation();
-    	
-        if( direction == null ){
-            station.setAutoDirection( true );
-        }
-        else{
-            station.setAutoDirection( false );
-            station.setDirection( direction );
-        }
+
+    this.access = access;
+
+    if (this.access != null) {
+      this.access.getOwner().addResizeRequestListener(request);
+      this.access.getLocationManager().getMinimizedMode().add(area);
     }
+  }
+
+  /**
+   * Gets the unique uniqueId of this area.
+   *
+   * @return the unique uniqueId
+   */
+  public String getUniqueId() {
+    return uniqueId;
+  }
+
+  public Path getTypeId() {
+    return TYPE_ID;
+  }
+
+  public CFlapDockStation getStation() {
+    return station.asDockStation();
+  }
+
+  public CStationPerspective createPerspective() {
+    return new CMinimizePerspective(getUniqueId(), getTypeId());
+  }
+
+  public CLocation getStationLocation() {
+    return new CMinimizeAreaLocation(this);
+  }
+
+  public CLocation getDropLocation() {
+    if (access == null) {
+      return null;
+    }
+    return access.getLocationManager().getDropLocation(this);
+  }
+
+  public boolean isWorkingArea() {
+    return false;
+  }
+
+  public CDockable asDockable() {
+    return null;
+  }
+
+  /**
+   * Sets the direction into which the tab opens.
+   *
+   * @param direction the direction or <code>null</code> to let the system
+   *                  decide automatically
+   */
+  public void setDirection(FlapDockStation.Direction direction) {
+    FlapDockStation station = getStation();
+
+    if (direction == null) {
+      station.setAutoDirection(true);
+    }
+    else {
+      station.setAutoDirection(false);
+      station.setDirection(direction);
+    }
+  }
 }

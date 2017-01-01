@@ -25,16 +25,21 @@
  */
 package bibliothek.gui.dock.dockable;
 
-import javax.swing.Icon;
+import javax.swing.*;
 
 /**
  * Tells whether the <code>null</code> {@link Icon} should be replaced by the default icon or not.
+ *
  * @author Benjamin Sigg
  */
 public enum IconHandling {
-	/** The <code>null</code> {@link Icon} is kept, i.e. it is possible not to show an icon */
-	KEEP_NULL_ICON,
-	
-	/** The <code>null</code> {@link Icon} always gets replaced by the default icon (if present) */
-	REPLACE_NULL_ICON
+  /**
+   * The <code>null</code> {@link Icon} is kept, i.e. it is possible not to show an icon
+   */
+  KEEP_NULL_ICON,
+
+  /**
+   * The <code>null</code> {@link Icon} always gets replaced by the default icon (if present)
+   */
+  REPLACE_NULL_ICON
 }

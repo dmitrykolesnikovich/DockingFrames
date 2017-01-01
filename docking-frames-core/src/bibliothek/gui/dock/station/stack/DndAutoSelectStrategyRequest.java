@@ -25,43 +25,48 @@
  */
 package bibliothek.gui.dock.station.stack;
 
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.StackDockStation;
 
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+
 /**
  * Request forwarded to a {@link DndAutoSelectStrategy} if a potential drop event was detected.
+ *
  * @author Benjamin Sigg
  */
 public interface DndAutoSelectStrategyRequest {
-	/**
-	 * Gets the station which detected the event.
-	 * @return the source of the event, never <code>null</code>
-	 */
-	public StackDockStation getStation();
-	
-	/**
-	 * Gets the {@link Dockable} over whose tab the mouse currently hovers.
-	 * @return the tab beneath the mouse, never <code>null</code>
-	 */
-	public Dockable getDockable();
-	
-    /**
-     * Returns the data flavors for this transfer.
-     * @return the data flavors for this transfer
-     */
-	public DataFlavor[] getDataFlavors();
+  /**
+   * Gets the station which detected the event.
+   *
+   * @return the source of the event, never <code>null</code>
+   */
+  public StackDockStation getStation();
 
-    /**
-     * Returns the <code>Transferable</code> associated with this transfer.
-     * @return the <code>Transferable</code> associated with this transfer
-     */
-	public Transferable getTransferable();
-	
-	/**
-	 * Selects the {@link Dockable} beneath the mouse, moves it to the front and tries to focus it.
-	 */
-	public void toFront();
+  /**
+   * Gets the {@link Dockable} over whose tab the mouse currently hovers.
+   *
+   * @return the tab beneath the mouse, never <code>null</code>
+   */
+  public Dockable getDockable();
+
+  /**
+   * Returns the data flavors for this transfer.
+   *
+   * @return the data flavors for this transfer
+   */
+  public DataFlavor[] getDataFlavors();
+
+  /**
+   * Returns the <code>Transferable</code> associated with this transfer.
+   *
+   * @return the <code>Transferable</code> associated with this transfer
+   */
+  public Transferable getTransferable();
+
+  /**
+   * Selects the {@link Dockable} beneath the mouse, moves it to the front and tries to focus it.
+   */
+  public void toFront();
 }

@@ -25,40 +25,42 @@
  */
 package bibliothek.paint.view.action;
 
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-
-import javax.swing.KeyStroke;
-
 import bibliothek.gui.dock.common.action.CButton;
 import bibliothek.paint.util.Resources;
 import bibliothek.paint.view.Page;
 
+import javax.swing.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+
 /**
  * A button that enlarges a {@link Page} when clicked.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public class ZoomIn extends CButton {
-	/** the page whose zoom-factor will be changed */
-	private Page page;
-	
-	/**
-	 * Creates a new button
-	 * @param page the page whose zoom-factor will be changed
-	 */
-	public ZoomIn( Page page ){
-		this.page = page;
-		setText( "Zoom in" );
-		setIcon( Resources.getIcon( "zoom.in" ) );
-		setAccelerator( KeyStroke.getKeyStroke( KeyEvent.VK_ADD, InputEvent.CTRL_MASK ) );
-	}
-	
-	@Override
-	protected void action(){
-		double zoom = 2*page.getZoom();
-		if( zoom <= 32.0 ){
-			page.setZoom( zoom );
-		}
-	}
+  /**
+   * the page whose zoom-factor will be changed
+   */
+  private Page page;
+
+  /**
+   * Creates a new button
+   *
+   * @param page the page whose zoom-factor will be changed
+   */
+  public ZoomIn(Page page) {
+    this.page = page;
+    setText("Zoom in");
+    setIcon(Resources.getIcon("zoom.in"));
+    setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ADD, InputEvent.CTRL_MASK));
+  }
+
+  @Override
+  protected void action() {
+    double zoom = 2 * page.getZoom();
+    if (zoom <= 32.0) {
+      page.setZoom(zoom);
+    }
+  }
 }

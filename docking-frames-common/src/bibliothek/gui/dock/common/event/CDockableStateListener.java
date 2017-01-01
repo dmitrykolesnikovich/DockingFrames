@@ -32,29 +32,32 @@ import bibliothek.gui.dock.common.mode.ExtendedMode;
 /**
  * A listener added to a {@link CDockable}, this listener will get informed
  * about state changes of {@link CDockable}.
+ *
  * @author Benjamin Sigg
  * @see CDockablePropertyListener
  * @see CDockableLocationListener
  */
 public interface CDockableStateListener {
-    /**
-     * Called when the {@link CDockable#isVisible() visibility}-property
-     * changed. Please read the notes of {@link CDockable#isVisible()} to
-     * learn more about the exact meaning of visibility in the context of a 
-     * {@link CDockable}.<br>
-     * Clients interested to know whether the user can see the {@link Dockable} or not should use
-     * a {@link CDockableLocationListener}.
-     * @param dockable the source of the event
-     * @see CDockable#isVisible()
-     * @see CDockable#isShowing()
-     */
-    public void visibilityChanged( CDockable dockable );
-    
-    /**
-     * Called if the {@link CDockable#getExtendedMode() extended mode} of <code>dockable</code>
-     * changed.
-     * @param dockable the element whose mode changed
-     * @param mode the new mode
-     */
-    public void extendedModeChanged( CDockable dockable, ExtendedMode mode );
+  /**
+   * Called when the {@link CDockable#isVisible() visibility}-property
+   * changed. Please read the notes of {@link CDockable#isVisible()} to
+   * learn more about the exact meaning of visibility in the context of a
+   * {@link CDockable}.<br>
+   * Clients interested to know whether the user can see the {@link Dockable} or not should use
+   * a {@link CDockableLocationListener}.
+   *
+   * @param dockable the source of the event
+   * @see CDockable#isVisible()
+   * @see CDockable#isShowing()
+   */
+  public void visibilityChanged(CDockable dockable);
+
+  /**
+   * Called if the {@link CDockable#getExtendedMode() extended mode} of <code>dockable</code>
+   * changed.
+   *
+   * @param dockable the element whose mode changed
+   * @param mode     the new mode
+   */
+  public void extendedModeChanged(CDockable dockable, ExtendedMode mode);
 }

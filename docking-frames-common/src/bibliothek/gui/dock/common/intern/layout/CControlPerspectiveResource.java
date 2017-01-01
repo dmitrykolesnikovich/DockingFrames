@@ -25,10 +25,6 @@
  */
 package bibliothek.gui.dock.common.intern.layout;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import bibliothek.gui.DockFrontend;
 import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.common.intern.CDockFrontend;
@@ -39,69 +35,81 @@ import bibliothek.gui.dock.support.util.ApplicationResource;
 import bibliothek.util.Version;
 import bibliothek.util.xml.XElement;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 /**
  * An {@link ApplicationResource} that emulates reading and writing layouts
  * like {@link CControl} would do, but creates {@link CPerspective}s instead
  * of actual layouts.
+ *
  * @author Benjamin Sigg
  */
-public class CControlPerspectiveResource implements ApplicationResource{
-	/** Used to create perspectives when necessary */
-	private CControlPerspective control;
-	
-	/** All the content that was read from the {@link CDockFrontend} */
-	private SettingsBlop settings = new SettingsBlop();
-	
-	/**
-	 * Creates a new resource.
-	 * @param control the control which creates the {@link CPerspective}s
-	 */
-	public CControlPerspectiveResource( CControlPerspective control ){
-		if( control == null ){
-			throw new IllegalArgumentException( "control must not be null" );
-		}
-		this.control = control;
-	}
-	
-	/**
-	 * Gets the settings that were read by this resource.
-	 * @return the settings that were read
-	 */
-	public SettingsBlop getSettings(){
-		return settings;
-	}
-	
-	/**
-	 * Sets the settings which should be written by this resource.
-	 * @param settings the settings to write
-	 */
-	public void setSettings( SettingsBlop settings ){
-		this.settings = settings;
-	}
-	
-	private DockFrontend getFrontend(){
-		return control.getControl().intern();
-	}
-	
-    public void write( DataOutputStream out ) throws IOException {
-        Version.write( out, Version.VERSION_1_0_4 );
-        getFrontend().writeBlop( settings, out );
+public class CControlPerspectiveResource implements ApplicationResource {
+  /**
+   * Used to create perspectives when necessary
+   */
+  private CControlPerspective control;
+
+  /**
+   * All the content that was read from the {@link CDockFrontend}
+   */
+  private SettingsBlop settings = new SettingsBlop();
+
+  /**
+   * Creates a new resource.
+   *
+   * @param control the control which creates the {@link CPerspective}s
+   */
+  public CControlPerspectiveResource(CControlPerspective control) {
+    if (control == null) {
+      throw new IllegalArgumentException("control must not be null");
     }
-    
-    public void read( DataInputStream in ) throws IOException {
-        Version version = Version.read( in );
-        if( Version.VERSION_1_1_1.compareTo( version ) > 0 ){
-        	throw new IOException( "The perspective API cannot read files which were written before version 1.1.1" );
-        }
-        version.checkCurrent();
-        settings = getFrontend().readBlop( in );
+    this.control = control;
+  }
+
+  /**
+   * Gets the settings that were read by this resource.
+   *
+   * @return the settings that were read
+   */
+  public SettingsBlop getSettings() {
+    return settings;
+  }
+
+  /**
+   * Sets the settings which should be written by this resource.
+   *
+   * @param settings the settings to write
+   */
+  public void setSettings(SettingsBlop settings) {
+    this.settings = settings;
+  }
+
+  private DockFrontend getFrontend() {
+    return control.getControl().intern();
+  }
+
+  public void write(DataOutputStream out) throws IOException {
+    Version.write(out, Version.VERSION_1_0_4);
+    getFrontend().writeBlop(settings, out);
+  }
+
+  public void read(DataInputStream in) throws IOException {
+    Version version = Version.read(in);
+    if (Version.VERSION_1_1_1.compareTo(version) > 0) {
+      throw new IOException("The perspective API cannot read files which were written before version 1.1.1");
     }
-    
-    public void writeXML( XElement element ) {
-        getFrontend().writeBlopXML( settings, element.addElement( "frontend" ) );
-    }
-    
-    public void readXML( XElement element ) {
-        settings = getFrontend().readBlopXML( element.getElement( "frontend" ) );
-    }    
+    version.checkCurrent();
+    settings = getFrontend().readBlop(in);
+  }
+
+  public void writeXML(XElement element) {
+    getFrontend().writeBlopXML(settings, element.addElement("frontend"));
+  }
+
+  public void readXML(XElement element) {
+    settings = getFrontend().readBlopXML(element.getElement("frontend"));
+  }
 }

@@ -33,36 +33,36 @@ import bibliothek.gui.Dockable;
  * An abstract implementation of {@link DockStationListener}.
  * All methods of this class are empty. The class can be used instead of
  * {@link DockStationListener} if only a few methods have to be implemented.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public abstract class DockStationAdapter implements DockStationListener {
 
-    public void dockableAdding( DockStation station, Dockable dockable ) {
-        // do nothing
-    }
+  public void dockableAdding(DockStation station, Dockable dockable) {
+    // do nothing
+  }
 
-    public void dockableRemoving( DockStation station, Dockable dockable ) {
-        // do nothing
-    }
+  public void dockableRemoving(DockStation station, Dockable dockable) {
+    // do nothing
+  }
 
-    public void dockableAdded( DockStation station, Dockable dockable ) {
-        // do nothing
-    }
+  public void dockableAdded(DockStation station, Dockable dockable) {
+    // do nothing
+  }
 
-    public void dockableRemoved( DockStation station, Dockable dockable ) {
-        // do nothing
-    }
-    
-    public void dockableShowingChanged( DockStation station, Dockable dockable, boolean visible ) {
-        // do nothing
-    }
-    
-    public void dockableSelected( DockStation station, Dockable oldSelection, Dockable newSelection ) {
-        // do nothing
-    }
-    
-    public void dockablesRepositioned( DockStation station, Dockable[] dockables ){
-    	// do nothing
-    }
+  public void dockableRemoved(DockStation station, Dockable dockable) {
+    // do nothing
+  }
+
+  public void dockableShowingChanged(DockStation station, Dockable dockable, boolean visible) {
+    // do nothing
+  }
+
+  public void dockableSelected(DockStation station, Dockable oldSelection, Dockable newSelection) {
+    // do nothing
+  }
+
+  public void dockablesRepositioned(DockStation station, Dockable[] dockables) {
+    // do nothing
+  }
 }

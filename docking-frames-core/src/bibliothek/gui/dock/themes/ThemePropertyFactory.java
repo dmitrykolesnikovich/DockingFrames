@@ -26,77 +26,82 @@
 
 package bibliothek.gui.dock.themes;
 
+import bibliothek.gui.DockController;
+import bibliothek.gui.DockTheme;
+
 import java.lang.reflect.Constructor;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import bibliothek.gui.DockController;
-import bibliothek.gui.DockTheme;
-
 /**
- * A factory using the {@link ThemeProperties} of a {@link DockTheme} to 
+ * A factory using the {@link ThemeProperties} of a {@link DockTheme} to
  * create instances of that <code>DockTheme</code>.
+ *
  * @param <T> the type of theme created by this factory
  * @author Benjamin Sigg
  */
 public class ThemePropertyFactory<T extends DockTheme> implements ThemeFactory {
-	/** Default constructor of the theme */
-	private Constructor<T> constructor;
-	/** Information about the theme */
-	private ThemeProperties properties;
+  /**
+   * Default constructor of the theme
+   */
+  private Constructor<T> constructor;
+  /**
+   * Information about the theme
+   */
+  private ThemeProperties properties;
 
-	/**
-	 * Creates a new factory.
-	 * @param theme the class of a theme, must have the {@link ThemeProperties} annotation.
-	 */
-	public ThemePropertyFactory( Class<T> theme ){
-		if( theme == null )
-			throw new IllegalArgumentException( "Theme must not be null" );
+  /**
+   * Creates a new factory.
+   *
+   * @param theme the class of a theme, must have the {@link ThemeProperties} annotation.
+   */
+  public ThemePropertyFactory(Class<T> theme) {
+    if (theme == null) throw new IllegalArgumentException("Theme must not be null");
 
-		properties = theme.getAnnotation( ThemeProperties.class );
-		if( properties == null )
-			throw new IllegalArgumentException( "Theme misses annotation ThemeProperties" );
+    properties = theme.getAnnotation(ThemeProperties.class);
+    if (properties == null) throw new IllegalArgumentException("Theme misses annotation ThemeProperties");
 
-		try {
-			constructor = theme.getConstructor( new Class[0] );
-		}
-		catch( NoSuchMethodException e ) {
-			throw new IllegalArgumentException( "Missing default constructor", e );
-		}
-	}
+    try {
+      constructor = theme.getConstructor(new Class[0]);
+    }
+    catch (NoSuchMethodException e) {
+      throw new IllegalArgumentException("Missing default constructor", e);
+    }
+  }
 
-	public T create( DockController controller ){
-		try {
-			return constructor.newInstance( new Object[0] );
-		}
-		catch( Exception e ) {
-			System.err.println( "Can't create theme due an unknown reason" );
-			e.printStackTrace();
-			return null;
-		}
-	}
+  public T create(DockController controller) {
+    try {
+      return constructor.newInstance(new Object[0]);
+    }
+    catch (Exception e) {
+      System.err.println("Can't create theme due an unknown reason");
+      e.printStackTrace();
+      return null;
+    }
+  }
 
-	public ThemeMeta createMeta( DockController controller ){
-		return new DefaultThemeMeta( this, controller, properties.nameBundle(), properties.descriptionBundle(), getAuthors(), getWebpages() );
-	}
+  public ThemeMeta createMeta(DockController controller) {
+    return new DefaultThemeMeta(this, controller, properties.nameBundle(), properties.descriptionBundle(), getAuthors(), getWebpages());
+  }
 
-	public String[] getAuthors(){
-		return properties.authors();
-	}
+  public String[] getAuthors() {
+    return properties.authors();
+  }
 
-	public URI[] getWebpages(){
-		try {
-			String[] urls = properties.webpages();
-			URI[] result = new URI[urls.length];
-			for( int i = 0; i < result.length; i++ )
-				result[i] = new URI( urls[i] );
+  public URI[] getWebpages() {
+    try {
+      String[] urls = properties.webpages();
+      URI[] result = new URI[urls.length];
+      for (int i = 0; i < result.length; i++) {
+        result[i] = new URI(urls[i]);
+      }
 
-			return result;
-		}
-		catch( URISyntaxException ex ) {
-			System.err.print( "Can't create urls due an unknown reason" );
-			ex.printStackTrace();
-			return null;
-		}
-	}
+      return result;
+    }
+    catch (URISyntaxException ex) {
+      System.err.print("Can't create urls due an unknown reason");
+      ex.printStackTrace();
+      return null;
+    }
+  }
 }

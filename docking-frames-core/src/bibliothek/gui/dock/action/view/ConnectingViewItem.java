@@ -33,95 +33,106 @@ import bibliothek.gui.dock.event.DockHierarchyEvent;
 import bibliothek.gui.dock.event.DockHierarchyListener;
 
 /**
- * A connecting view item is a wrapper around another {@link ViewItem}. This 
+ * A connecting view item is a wrapper around another {@link ViewItem}. This
  * item registers when a {@link DockController} is available and needed. It
  * does this by observing a {@link Dockable}.
- * @author Benjamin Sigg
  *
  * @param <A> the kind of item this represents
+ * @author Benjamin Sigg
  */
-public abstract class ConnectingViewItem<A> implements ViewItem<A>{
-    /** the item that does most of the work */
-    private ViewItem<A> delegate;
-    /** the observed {@link DockElement} */
-    private Dockable dockable;
-    
-    /** the currently available controller */
-    private DockController controller;
-    
-    /** the current bind state */
-    private boolean bound = false;
-    
-    /** a listener added to {@link #dockable} */
-    private DockHierarchyListener listener = new DockHierarchyListener(){
-        public void controllerChanged( DockHierarchyEvent event ) {
-            check();
-        }
-        public void hierarchyChanged( DockHierarchyEvent event ) {
-            // ignore
-        }
-    };
-    
-    /**
-     * Creates a new item.
-     * @param dockable the element to observe for a {@link DockController}.
-     * @param delegate the delegate that carries out most of the work
-     */
-    public ConnectingViewItem( Dockable dockable, ViewItem<A> delegate ){
-        if( dockable == null )
-            throw new IllegalArgumentException( "dockable must not be null" );
-        if( delegate == null )
-            throw new IllegalArgumentException( "delegate must not be null" );
-            
-        this.dockable = dockable;
-        this.delegate = delegate;
+public abstract class ConnectingViewItem<A> implements ViewItem<A> {
+  /**
+   * the item that does most of the work
+   */
+  private ViewItem<A> delegate;
+  /**
+   * the observed {@link DockElement}
+   */
+  private Dockable dockable;
+
+  /**
+   * the currently available controller
+   */
+  private DockController controller;
+
+  /**
+   * the current bind state
+   */
+  private boolean bound = false;
+
+  /**
+   * a listener added to {@link #dockable}
+   */
+  private DockHierarchyListener listener = new DockHierarchyListener() {
+    public void controllerChanged(DockHierarchyEvent event) {
+      check();
     }
 
-    /**
-     * Checks the current {@link DockController} and may replace the controller
-     * when a new one is available.
-     */
-    public void check(){
-        DockController current = bound ? dockable.getController() : null;
-        if( current != controller ){
-            changed( controller, current );
-            controller = current;
-        }
+    public void hierarchyChanged(DockHierarchyEvent event) {
+      // ignore
     }
-    
-    /**
-     * Called when the {@link DockController} changed.
-     * @param oldController the old controller, can be <code>null</code>
-     * @param newController the new controller, can be <code>null</code>
-     */
-    protected abstract void changed( DockController oldController, DockController newController );
-    
-    public void bind(){
-        if( !bound ){
-            // if we would live in a perfect world, this check wouldn't be necessary
-            bound = true;
-            dockable.addDockHierarchyListener( listener );
-            check();
-        }
-        
-        delegate.bind();
+  };
+
+  /**
+   * Creates a new item.
+   *
+   * @param dockable the element to observe for a {@link DockController}.
+   * @param delegate the delegate that carries out most of the work
+   */
+  public ConnectingViewItem(Dockable dockable, ViewItem<A> delegate) {
+    if (dockable == null) throw new IllegalArgumentException("dockable must not be null");
+    if (delegate == null) throw new IllegalArgumentException("delegate must not be null");
+
+    this.dockable = dockable;
+    this.delegate = delegate;
+  }
+
+  /**
+   * Checks the current {@link DockController} and may replace the controller
+   * when a new one is available.
+   */
+  public void check() {
+    DockController current = bound ? dockable.getController() : null;
+    if (current != controller) {
+      changed(controller, current);
+      controller = current;
+    }
+  }
+
+  /**
+   * Called when the {@link DockController} changed.
+   *
+   * @param oldController the old controller, can be <code>null</code>
+   * @param newController the new controller, can be <code>null</code>
+   */
+  protected abstract void changed(DockController oldController, DockController newController);
+
+  public void bind() {
+    if (!bound) {
+      // if we would live in a perfect world, this check wouldn't be necessary
+      bound = true;
+      dockable.addDockHierarchyListener(listener);
+      check();
     }
 
-    public DockAction getAction() {
-        return delegate.getAction();
+    delegate.bind();
+  }
+
+  public DockAction getAction() {
+    return delegate.getAction();
+  }
+
+  public A getItem() {
+    return delegate.getItem();
+  }
+
+  public void unbind() {
+    if (bound) {
+      bound = false;
+      dockable.removeDockHierarchyListener(listener);
+      check();
     }
 
-    public A getItem() {
-        return delegate.getItem();
-    }
-
-    public void unbind() {
-        if( bound ){
-            bound = false;
-            dockable.removeDockHierarchyListener( listener );
-            check();
-        }
-        
-        delegate.unbind();
-    }
+    delegate.unbind();
+  }
 }

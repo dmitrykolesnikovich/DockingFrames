@@ -25,27 +25,28 @@
  */
 package bibliothek.gui.dock.extension.css.property;
 
-import bibliothek.gui.dock.extension.css.CssType;
 import bibliothek.gui.dock.extension.css.CssDeclarationValue;
+import bibliothek.gui.dock.extension.css.CssType;
 import bibliothek.gui.dock.extension.css.transition.CssTransition;
 import bibliothek.gui.dock.extension.css.transition.TransitionalCssProperty;
 import bibliothek.gui.dock.extension.css.transition.types.LinearCssTransition;
 
 /**
  * A type creating new {@link CssTransition}s.
+ *
  * @author Benjamin Sigg
  */
-public class CssTransitionType implements CssType<CssTransition<?>>{
-	@Override
-	public CssTransition<?> convert( CssDeclarationValue value ){
-		if( "linear".equals( value.getSingleValue() )){
-			return new LinearCssTransition<Object>();
-		}
-		return null;
-	}
-	
-	@Override
-	public TransitionalCssProperty<CssTransition<?>> createTransition(){
-		return null;
-	}
+public class CssTransitionType implements CssType<CssTransition<?>> {
+  @Override
+  public CssTransition<?> convert(CssDeclarationValue value) {
+    if ("linear".equals(value.getSingleValue())) {
+      return new LinearCssTransition<Object>();
+    }
+    return null;
+  }
+
+  @Override
+  public TransitionalCssProperty<CssTransition<?>> createTransition() {
+    return null;
+  }
 }

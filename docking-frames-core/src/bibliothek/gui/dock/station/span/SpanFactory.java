@@ -32,14 +32,16 @@ import bibliothek.gui.dock.themes.ThemeManager;
 /**
  * A {@link SpanFactory} creates new {@link Span}s.<br>
  * The current {@link SpanFactory} can be configured using the {@link ThemeManager} or using
- * {@link DockTheme#SPAN_FACTORY}. 
+ * {@link DockTheme#SPAN_FACTORY}.
+ *
  * @author Benjamin Sigg
  */
 public interface SpanFactory {
-	/**
-	 * Creates a new {@link Span}.
-	 * @param callback allows interaction between {@link Span} and {@link DockStation}.
-	 * @return the new {@link Span}, not <code>null</code>
-	 */
-	public Span create( SpanCallback callback );
+  /**
+   * Creates a new {@link Span}.
+   *
+   * @param callback allows interaction between {@link Span} and {@link DockStation}.
+   * @return the new {@link Span}, not <code>null</code>
+   */
+  public Span create(SpanCallback callback);
 }

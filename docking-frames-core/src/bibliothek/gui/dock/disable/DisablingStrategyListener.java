@@ -30,12 +30,14 @@ import bibliothek.gui.dock.DockElement;
 /**
  * This listener can be added to an {@link DisablingStrategy} and will receive events if
  * the state of some items changes.
+ *
  * @author Benjamin Sigg
  */
 public interface DisablingStrategyListener {
-	/**
-	 * Called if the disabled state either of <code>item</code>, or of one or many of its sub-items changed.
-	 * @param item the item whose state changed
-	 */
-	public void changed( DockElement item );
+  /**
+   * Called if the disabled state either of <code>item</code>, or of one or many of its sub-items changed.
+   *
+   * @param item the item whose state changed
+   */
+  public void changed(DockElement item);
 }

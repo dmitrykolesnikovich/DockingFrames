@@ -30,25 +30,29 @@ import bibliothek.gui.dock.DockFactory;
 
 /**
  * Representation of a {@link DockElement}
+ *
  * @author Benjamin Sigg
  */
 public interface PerspectiveElement {
-	/**
-	 * Gets the identifier of the {@link DockFactory} that will be able to
-	 * understand the layout information this element generates. 
-	 * @return the factories identifier
-	 */
-	public String getFactoryID();
-	
-	/**
-	 * Returns the representation of <code>this</code> as {@link PerspectiveStation}
-	 * @return either <code>this</code>, a representation of <code>this</code> or <code>null</code>
-	 */
-	public PerspectiveStation asStation();
-	
-	/**
-	 * Returns the representation of <code>this</code> as {@link PerspectiveDockable}.
-	 * @return either <code>this</code>, a representation of <code>this</code> or <code>null</code>
-	 */
-	public PerspectiveDockable asDockable();
+  /**
+   * Gets the identifier of the {@link DockFactory} that will be able to
+   * understand the layout information this element generates.
+   *
+   * @return the factories identifier
+   */
+  public String getFactoryID();
+
+  /**
+   * Returns the representation of <code>this</code> as {@link PerspectiveStation}
+   *
+   * @return either <code>this</code>, a representation of <code>this</code> or <code>null</code>
+   */
+  public PerspectiveStation asStation();
+
+  /**
+   * Returns the representation of <code>this</code> as {@link PerspectiveDockable}.
+   *
+   * @return either <code>this</code>, a representation of <code>this</code> or <code>null</code>
+   */
+  public PerspectiveDockable asDockable();
 }

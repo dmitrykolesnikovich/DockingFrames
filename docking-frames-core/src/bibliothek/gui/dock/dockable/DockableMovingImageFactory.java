@@ -32,25 +32,27 @@ import bibliothek.gui.dock.title.DockTitle;
 /**
  * A factory for {@link MovingImage}s. This factory is used to show an image
  * that is somehow related to a {@link Dockable} which is dragged.
- *  
+ *
  * @author Benjamin Sigg
  */
 public interface DockableMovingImageFactory {
-    /**
-     * Gets an image which will be shown underneath the cursor. Assumes that the 
-     * user clicked on the title <code>snatched</code>.
-     * @param controller The controller which will be responsible for the title
-     * @param snatched The title which is grabbed by the user
-     * @return the image under the cursor, can be <code>null</code>
-     */
-    public MovingImage create( DockController controller, DockTitle snatched );
+  /**
+   * Gets an image which will be shown underneath the cursor. Assumes that the
+   * user clicked on the title <code>snatched</code>.
+   *
+   * @param controller The controller which will be responsible for the title
+   * @param snatched   The title which is grabbed by the user
+   * @return the image under the cursor, can be <code>null</code>
+   */
+  public MovingImage create(DockController controller, DockTitle snatched);
 
-    /**
-     * Gets an image which will be shown underneath the cursor. Assumes
-     * that the user clicked on <code>dockable</code>.
-     * @param controller The controller which will be responsible for the title
-     * @param dockable The Dockable which is snatched
-     * @return  the image under the cursor, can be <code>null</code>
-     */
-    public MovingImage create( DockController controller, Dockable dockable );
+  /**
+   * Gets an image which will be shown underneath the cursor. Assumes
+   * that the user clicked on <code>dockable</code>.
+   *
+   * @param controller The controller which will be responsible for the title
+   * @param dockable   The Dockable which is snatched
+   * @return the image under the cursor, can be <code>null</code>
+   */
+  public MovingImage create(DockController controller, Dockable dockable);
 }

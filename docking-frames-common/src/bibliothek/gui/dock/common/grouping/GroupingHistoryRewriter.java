@@ -38,40 +38,46 @@ import bibliothek.gui.dock.support.mode.HistoryRewriter;
  * created.<br>
  * Clients should not have any need to create instances of this class, because any {@link CControl} will already have
  * a {@link GroupingHistoryRewriter} pre-installed.
+ *
  * @author Benjamin Sigg
  */
-public class GroupingHistoryRewriter implements HistoryRewriter<Location, CLocationMode>{
-	/** the {@link CControl} in whose realm this rewriter works */
-	private CControl control;
-	/** Rewriter that will validate the locations. */
-	private HistoryRewriter<Location, CLocationMode> validation;
-	
-	/**
-	 * Creates a new {@link GroupingHistoryRewriter}.
-	 * @param control the {@link CControl} in whose realm this history rewriter works
-	 * @param validation a rewriter that will be used to validate the location of dockables
-	 */
-	public GroupingHistoryRewriter( CControl control, HistoryRewriter<Location, CLocationMode> validation ){
-		this.control = control;
-		this.validation = validation;
-	}
-	
-	public Location rewrite( Dockable dockable, CLocationMode mode, Location history ) {
-		if( history != null && history.isApplicationDefined() ){
-			return validation.rewrite( dockable, mode, history );
-		}
-		
-		CGroupingBehavior groupingBehavior = control.getProperty( CControl.GROUPING_BEHAVIOR );
-		DockableGrouping grouping = groupingBehavior.getGrouping( dockable );
-		
-		if( grouping == null ){
-			return validation.rewrite( dockable, mode, history );
-		}
-		
-		Location result = history;
-		result = grouping.getStoredLocation( dockable, mode, result );
-		result = validation.rewrite( dockable, mode, result );
-		result = grouping.getValidatedLocation( dockable, mode, result );
-		return result;
-	}
+public class GroupingHistoryRewriter implements HistoryRewriter<Location, CLocationMode> {
+  /**
+   * the {@link CControl} in whose realm this rewriter works
+   */
+  private CControl control;
+  /**
+   * Rewriter that will validate the locations.
+   */
+  private HistoryRewriter<Location, CLocationMode> validation;
+
+  /**
+   * Creates a new {@link GroupingHistoryRewriter}.
+   *
+   * @param control    the {@link CControl} in whose realm this history rewriter works
+   * @param validation a rewriter that will be used to validate the location of dockables
+   */
+  public GroupingHistoryRewriter(CControl control, HistoryRewriter<Location, CLocationMode> validation) {
+    this.control = control;
+    this.validation = validation;
+  }
+
+  public Location rewrite(Dockable dockable, CLocationMode mode, Location history) {
+    if (history != null && history.isApplicationDefined()) {
+      return validation.rewrite(dockable, mode, history);
+    }
+
+    CGroupingBehavior groupingBehavior = control.getProperty(CControl.GROUPING_BEHAVIOR);
+    DockableGrouping grouping = groupingBehavior.getGrouping(dockable);
+
+    if (grouping == null) {
+      return validation.rewrite(dockable, mode, history);
+    }
+
+    Location result = history;
+    result = grouping.getStoredLocation(dockable, mode, result);
+    result = validation.rewrite(dockable, mode, result);
+    result = grouping.getValidatedLocation(dockable, mode, result);
+    return result;
+  }
 }

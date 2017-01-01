@@ -31,20 +31,22 @@ import bibliothek.gui.dock.common.action.CAction;
 
 /**
  * A {@link SimpleSelectableAction} that also implements {@link CommonDockAction}.
+ *
  * @author Benjamin Sigg
  */
-public class CommonSimpleCheckAction extends SimpleSelectableAction.Check implements CommonSelectableAction{
-	private CAction action;
-	
-	/**
-	 * Creates a new action.
-	 * @param action the {@link CAction} that wraps around this {@link DockAction}
-	 */
-	public CommonSimpleCheckAction( CAction action ){
-		this.action = action;
-	}
-	
-	public CAction getAction(){
-		return action;
-	}
+public class CommonSimpleCheckAction extends SimpleSelectableAction.Check implements CommonSelectableAction {
+  private CAction action;
+
+  /**
+   * Creates a new action.
+   *
+   * @param action the {@link CAction} that wraps around this {@link DockAction}
+   */
+  public CommonSimpleCheckAction(CAction action) {
+    this.action = action;
+  }
+
+  public CAction getAction() {
+    return action;
+  }
 }

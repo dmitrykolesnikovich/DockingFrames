@@ -31,24 +31,25 @@ import bibliothek.gui.dock.extension.css.CssPropertyContainerListener;
 
 /**
  * This simple {@link CssPropertyContainer} that does not have sub-properties.
+ *
  * @author Benjamin Sigg
  */
-public abstract class SimpleCssPropertyContainer implements CssPropertyContainer{
-	@Override
-	public void addPropertyContainerListener( CssPropertyContainerListener listener ){
-		// ignore
-	}
-	
-	public void removePropertyContainerListener( CssPropertyContainerListener listener ){
-		// ignore
-	}
-	
-	@Override
-	public CssProperty<?> getProperty( String key ){
-		return null;
-	}
-	
-	public String[] getPropertyKeys(){
-		return new String[]{};
-	}
+public abstract class SimpleCssPropertyContainer implements CssPropertyContainer {
+  @Override
+  public void addPropertyContainerListener(CssPropertyContainerListener listener) {
+    // ignore
+  }
+
+  public void removePropertyContainerListener(CssPropertyContainerListener listener) {
+    // ignore
+  }
+
+  @Override
+  public CssProperty<?> getProperty(String key) {
+    return null;
+  }
+
+  public String[] getPropertyKeys() {
+    return new String[]{};
+  }
 }

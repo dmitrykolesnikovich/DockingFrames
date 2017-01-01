@@ -32,15 +32,19 @@ import bibliothek.util.Path;
 
 /**
  * A {@link DockBorder} which is put around a {@link Dockable} on a {@link StackDockComponent}.
+ *
  * @author Benjamin Sigg
  */
-public interface StackDockComponentContentBorder extends StackDockComponentBorder{
-	/** The type of this {@link UIValue} */
-	public static final Path KIND = StackDockComponentBorder.KIND.append( "content" );
-	
-	/**
-	 * Gets the dockable which is associated with this border.
-	 * @return the dockable
-	 */
-	public Dockable getDockable();
+public interface StackDockComponentContentBorder extends StackDockComponentBorder {
+  /**
+   * The type of this {@link UIValue}
+   */
+  public static final Path KIND = StackDockComponentBorder.KIND.append("content");
+
+  /**
+   * Gets the dockable which is associated with this border.
+   *
+   * @return the dockable
+   */
+  public Dockable getDockable();
 }

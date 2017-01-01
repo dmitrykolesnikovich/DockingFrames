@@ -27,23 +27,24 @@ package bibliothek.util.xml;
 
 /**
  * An exception thrown by the elements in the xml-package.
+ *
  * @author Benjamin Sigg
  */
 public class XException extends RuntimeException {
 
-    public XException() {
-        super();
-    }
+  public XException() {
+    super();
+  }
 
-    public XException( String message, Throwable cause ) {
-        super( message, cause );
-    }
+  public XException(String message, Throwable cause) {
+    super(message, cause);
+  }
 
-    public XException( String message ) {
-        super( message );
-    }
+  public XException(String message) {
+    super(message);
+  }
 
-    public XException( Throwable cause ) {
-        super( cause );
-    }
+  public XException(Throwable cause) {
+    super(cause);
+  }
 }

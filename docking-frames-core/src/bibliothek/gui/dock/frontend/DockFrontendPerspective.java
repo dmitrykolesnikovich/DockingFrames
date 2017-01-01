@@ -40,43 +40,48 @@ import bibliothek.gui.dock.perspective.PredefinedPerspective;
  * This interface is only a wrapper around {@link Perspective} and offers some shortcuts to implement
  * tasks more easily, clients could also access the {@link Perspective} directly and completely
  * ignore this object.
+ *
  * @author Benjamin Sigg
  */
 public interface DockFrontendPerspective {
-	/**
-	 * Gets the internal representation of this layout.
-	 * @return the internal representation
-	 */
-	public PredefinedPerspective getPerspective();
-	
-	/**
-	 * Gets a {@link PropertyTransformer} which is used to read and write
-	 * {@link DockableProperty}s.
-	 * @return the transformer
-	 */
-	public PropertyTransformer getPropertyTransformer();
-	
-	/**
-	 * Allows access to the root {@link DockStation} named <code>root</code>.
-	 * @param root the name of the station
-	 * @return the root station or <code>null</code> if not found
-	 */
-	public PerspectiveStation getRoot( String root );
-	
-	/**
-	 * Applies the current layout to the {@link DockFrontend} which created this perspective.<br>
-	 * Please note that implementations may restrict what information is applied, specifically:
-	 * <ul>
-	 * 	<li>It may not be possible to add/remove root-stations through this method.</li>
-	 *  <li>Invisible elements may not be touched</li>
-	 * </ul>
-	 */
-	public void apply();
-	
-	/**
-	 * Stores this perspective in the {@link DockFrontend} using <code>name</code> as key. The same restrictions
-	 * as found in {@link #apply()} may apply to this method.
-	 * @param name the name of this layout
-	 */
-	public void store(String name);
+  /**
+   * Gets the internal representation of this layout.
+   *
+   * @return the internal representation
+   */
+  public PredefinedPerspective getPerspective();
+
+  /**
+   * Gets a {@link PropertyTransformer} which is used to read and write
+   * {@link DockableProperty}s.
+   *
+   * @return the transformer
+   */
+  public PropertyTransformer getPropertyTransformer();
+
+  /**
+   * Allows access to the root {@link DockStation} named <code>root</code>.
+   *
+   * @param root the name of the station
+   * @return the root station or <code>null</code> if not found
+   */
+  public PerspectiveStation getRoot(String root);
+
+  /**
+   * Applies the current layout to the {@link DockFrontend} which created this perspective.<br>
+   * Please note that implementations may restrict what information is applied, specifically:
+   * <ul>
+   * <li>It may not be possible to add/remove root-stations through this method.</li>
+   * <li>Invisible elements may not be touched</li>
+   * </ul>
+   */
+  public void apply();
+
+  /**
+   * Stores this perspective in the {@link DockFrontend} using <code>name</code> as key. The same restrictions
+   * as found in {@link #apply()} may apply to this method.
+   *
+   * @param name the name of this layout
+   */
+  public void store(String name);
 }

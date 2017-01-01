@@ -32,22 +32,23 @@ import bibliothek.gui.dock.control.SingleParentRemover;
 
 /**
  * A {@link SingleParentRemover} not removing any {@link CStation}s.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public class CSingleParentRemover extends SingleParentRemover {
-    private CControl control;
-    
-    /**
-     * Creates a new remover
-     * @param control the control for which this remover will be used
-     */
-    public CSingleParentRemover( CControl control ){
-        this.control = control;
-    }
-    
-    @Override
-    protected boolean shouldTest( DockStation station ) {
-        return control.getStation( station ) == null;
-    }
+  private CControl control;
+
+  /**
+   * Creates a new remover
+   *
+   * @param control the control for which this remover will be used
+   */
+  public CSingleParentRemover(CControl control) {
+    this.control = control;
+  }
+
+  @Override
+  protected boolean shouldTest(DockStation station) {
+    return control.getStation(station) == null;
+  }
 }

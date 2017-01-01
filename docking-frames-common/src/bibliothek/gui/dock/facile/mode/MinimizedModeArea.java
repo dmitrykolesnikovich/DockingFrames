@@ -27,9 +27,9 @@ package bibliothek.gui.dock.facile.mode;
 
 /**
  * Interface describing a station that is connected with a {@link MinimizedMode}.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
-public interface MinimizedModeArea extends StationModeArea{
+public interface MinimizedModeArea extends StationModeArea {
 
 }

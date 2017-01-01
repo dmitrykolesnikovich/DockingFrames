@@ -28,19 +28,22 @@ package bibliothek.gui.dock.common;
 /**
  * This specialized {@link MultipleCDockableFactory} does not create new {@link MultipleCDockable}s
  * at all. This is the factory that is used for {@link MultipleCDockable}s whose {@link MultipleCDockable#getFactory()}
- * returns <code>null</code>. 
+ * returns <code>null</code>.
+ *
  * @author Benjamin Sigg
  */
-public class NullMultipleCDockableFactory extends EmptyMultipleCDockableFactory<MultipleCDockable>{
-	/** the only instance of this factory */
-	public static final NullMultipleCDockableFactory NULL = new NullMultipleCDockableFactory();
-	
-	private NullMultipleCDockableFactory(){
-		// ignore
-	}
-	
-	@Override
-	public MultipleCDockable createDockable(){
-		return null;
-	}
+public class NullMultipleCDockableFactory extends EmptyMultipleCDockableFactory<MultipleCDockable> {
+  /**
+   * the only instance of this factory
+   */
+  public static final NullMultipleCDockableFactory NULL = new NullMultipleCDockableFactory();
+
+  private NullMultipleCDockableFactory() {
+    // ignore
+  }
+
+  @Override
+  public MultipleCDockable createDockable() {
+    return null;
+  }
 }

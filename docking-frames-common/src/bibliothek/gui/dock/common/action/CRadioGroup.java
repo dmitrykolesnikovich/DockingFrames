@@ -30,44 +30,48 @@ import java.util.Set;
 
 /**
  * A group of {@link CRadioButton}s, only one button of the group is selected.
+ *
  * @author Benjamin Sigg
  */
 public class CRadioGroup {
-    /** the buttons in this group */
-    private Set<CRadioButton> buttons = new HashSet<CRadioButton>();
-    
-    /**
-     * Adds a new button to the group
-     * @param button the new button
-     */
-    public void add( CRadioButton button ){
-        if( button == null )
-            throw new NullPointerException( "button must not be null" );
-        buttons.add( button );
-        button.setGroup( this );
-        selected( button );
+  /**
+   * the buttons in this group
+   */
+  private Set<CRadioButton> buttons = new HashSet<CRadioButton>();
+
+  /**
+   * Adds a new button to the group
+   *
+   * @param button the new button
+   */
+  public void add(CRadioButton button) {
+    if (button == null) throw new NullPointerException("button must not be null");
+    buttons.add(button);
+    button.setGroup(this);
+    selected(button);
+  }
+
+  /**
+   * Removes a button from this group
+   *
+   * @param button the button to remove
+   */
+  public void remove(CRadioButton button) {
+    if (buttons.remove(button)) {
+      button.setGroup(null);
     }
-    
-    /**
-     * Removes a button from this group
-     * @param button the button to remove
-     */
-    public void remove( CRadioButton button ){
-        if( buttons.remove( button )){
-            button.setGroup( null );
-        }
+  }
+
+  /**
+   * Invoked by a {@link CRadioButton} which got selected.
+   *
+   * @param button the newly selected button
+   */
+  void selected(CRadioButton button) {
+    if (button.isSelected()) {
+      for (CRadioButton b : buttons) {
+        if (b != button && b.isSelected()) b.setSelected(false);
+      }
     }
-    
-    /**
-     * Invoked by a {@link CRadioButton} which got selected.
-     * @param button the newly selected button
-     */
-    void selected( CRadioButton button ){
-        if( button.isSelected() ){
-            for( CRadioButton b : buttons ){
-                if( b != button && b.isSelected() )
-                    b.setSelected( false );
-            }
-        }
-    }
+  }
 }

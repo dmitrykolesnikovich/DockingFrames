@@ -34,89 +34,94 @@ import bibliothek.util.Path;
 
 /**
  * A class that represents a {@link SingleCDockable}.
+ *
  * @author Benjamin Sigg
  */
 public class SingleCDockablePerspective extends AbstractCDockablePerspective {
-	private CommonElementPerspective intern;
-	
-	private String uniqueId;
-	
-	/**
-	 * Creates a new representation of a {@link SingleCDockable}.
-	 * @param uniqueId the unique identifier of this dockable, not <code>null</code>
-	 */
-	public SingleCDockablePerspective( String uniqueId ){
-		if( uniqueId == null ){
-			throw new IllegalArgumentException( "uniqueId must not be null" );
-		}
-		this.uniqueId = uniqueId;
-	}
-	
-	/**
-	 * Called the first time {@link #intern()} is called, this method creates
-	 * the intern representation of this {@link SingleCDockablePerspective}.
-	 * @return the internal representation of <code>this</code>
-	 */
-	protected CommonElementPerspective create(){
-		return new Intern();
-	}
-	
-	public CommonElementPerspective intern(){
-		if( intern == null ){
-			intern = create();
-		}
-		return intern;
-	}
-	
-	/**
-	 * Gets the unique identifier that is associated with this element.
-	 * @return the unique identifier
-	 */
-	public String getUniqueId(){
-		return uniqueId;
-	}
+  private CommonElementPerspective intern;
 
-	public CDockablePerspective asDockable(){
-		return this;
-	}
-	
-	public CStationPerspective asStation(){
-		return null;
-	}
-	
-	/**
-	 * The type of object that is created by the default implementation of {@link SingleCDockablePerspective#create()}
-	 * @author Benjamin Sigg
-	 */
-	protected class Intern implements PerspectiveDockable, CommonElementPerspective{
-		private PerspectiveStation parent;
-		
-		public CElementPerspective getElement(){
-			return SingleCDockablePerspective.this;
-		}
-		
-		public String getFactoryID(){
-			return CommonSingleDockableFactory.BACKUP_FACTORY_ID;
-		}
-		
-		public PerspectiveStation asStation(){
-			return null;
-		}
-		
-		public PerspectiveDockable asDockable(){
-			return this;
-		}
-		
-		public void setParent( PerspectiveStation parent ){
-			this.parent = parent;	
-		}
-		
-		public Path getPlaceholder(){
-			return CPlaceholderStrategy.getSingleDockablePlaceholder( uniqueId );
-		}
-		
-		public PerspectiveStation getParent(){
-			return parent;
-		}
-	}
+  private String uniqueId;
+
+  /**
+   * Creates a new representation of a {@link SingleCDockable}.
+   *
+   * @param uniqueId the unique identifier of this dockable, not <code>null</code>
+   */
+  public SingleCDockablePerspective(String uniqueId) {
+    if (uniqueId == null) {
+      throw new IllegalArgumentException("uniqueId must not be null");
+    }
+    this.uniqueId = uniqueId;
+  }
+
+  /**
+   * Called the first time {@link #intern()} is called, this method creates
+   * the intern representation of this {@link SingleCDockablePerspective}.
+   *
+   * @return the internal representation of <code>this</code>
+   */
+  protected CommonElementPerspective create() {
+    return new Intern();
+  }
+
+  public CommonElementPerspective intern() {
+    if (intern == null) {
+      intern = create();
+    }
+    return intern;
+  }
+
+  /**
+   * Gets the unique identifier that is associated with this element.
+   *
+   * @return the unique identifier
+   */
+  public String getUniqueId() {
+    return uniqueId;
+  }
+
+  public CDockablePerspective asDockable() {
+    return this;
+  }
+
+  public CStationPerspective asStation() {
+    return null;
+  }
+
+  /**
+   * The type of object that is created by the default implementation of {@link SingleCDockablePerspective#create()}
+   *
+   * @author Benjamin Sigg
+   */
+  protected class Intern implements PerspectiveDockable, CommonElementPerspective {
+    private PerspectiveStation parent;
+
+    public CElementPerspective getElement() {
+      return SingleCDockablePerspective.this;
+    }
+
+    public String getFactoryID() {
+      return CommonSingleDockableFactory.BACKUP_FACTORY_ID;
+    }
+
+    public PerspectiveStation asStation() {
+      return null;
+    }
+
+    public PerspectiveDockable asDockable() {
+      return this;
+    }
+
+    public Path getPlaceholder() {
+      return CPlaceholderStrategy.getSingleDockablePlaceholder(uniqueId);
+    }
+
+    public PerspectiveStation getParent() {
+      return parent;
+    }
+
+    public void setParent(PerspectiveStation parent) {
+      this.parent = parent;
+    }
+  }
 }

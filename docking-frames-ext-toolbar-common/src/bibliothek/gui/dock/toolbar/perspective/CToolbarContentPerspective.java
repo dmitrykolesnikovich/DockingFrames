@@ -36,74 +36,80 @@ import bibliothek.gui.dock.toolbar.CToolbarArea;
 import bibliothek.gui.dock.toolbar.CToolbarContentArea;
 
 /**
- * Represents a {@link CToolbarContentArea} as perspective. 
+ * Represents a {@link CToolbarContentArea} as perspective.
+ *
  * @author Benjamin Sigg
  */
-public class CToolbarContentPerspective extends CContentPerspective{
-	/**
-	 * Wraps around <code>perspective</code> and represents the {@link CToolbarContentArea}
-	 * with unique identifier <code>id</code>.
-	 * @param perspective the source of all {@link CStationPerspective}s
-	 * @param id the unique identifier of the {@link CToolbarContentArea}
-	 * @throws IllegalStateException if one of the required {@link CStationPerspective}s is 
-	 * already set up and has the wrong type.
-	 */
-	public CToolbarContentPerspective( CPerspective perspective, String id ){
-		super( perspective, id );
-		
-		String north = CToolbarContentArea.getNorthToolbarIdentifier( id );
-		String south = CToolbarContentArea.getSouthToolbarIdentifier( id );
-		String east = CToolbarContentArea.getEastToolbarIdentifier( id );
-		String west = CToolbarContentArea.getWestToolbarIdentifier( id );
-		
-		ensureType( north, CToolbarAreaPerspective.class );
-		ensureType( south, CToolbarAreaPerspective.class );
-		ensureType( east, CToolbarAreaPerspective.class );
-		ensureType( west, CToolbarAreaPerspective.class );
-		
-		if( perspective.getStation( north ) == null ){
-			perspective.addStation( new CToolbarAreaPerspective( north ) );
-		}
-		if( perspective.getStation( south ) == null ){
-			perspective.addStation( new CToolbarAreaPerspective( south ) );
-		}
-		if( perspective.getStation( east ) == null ){
-			perspective.addStation( new CToolbarAreaPerspective( east ) );
-		}
-		if( perspective.getStation( west ) == null ){
-			perspective.addStation( new CToolbarAreaPerspective( west ) );
-		}
-	}
+public class CToolbarContentPerspective extends CContentPerspective {
+  /**
+   * Wraps around <code>perspective</code> and represents the {@link CToolbarContentArea}
+   * with unique identifier <code>id</code>.
+   *
+   * @param perspective the source of all {@link CStationPerspective}s
+   * @param id          the unique identifier of the {@link CToolbarContentArea}
+   * @throws IllegalStateException if one of the required {@link CStationPerspective}s is
+   *                               already set up and has the wrong type.
+   */
+  public CToolbarContentPerspective(CPerspective perspective, String id) {
+    super(perspective, id);
 
-	/**
-	 * Gets a perspective of the north {@link CToolbarArea}.
-	 * @return the area, not <code>null</code>
-	 */
-	public CToolbarAreaPerspective getNorthToolbar(){
-		return (CToolbarAreaPerspective)getPerspective().getStation( CToolbarContentArea.getNorthToolbarIdentifier( getId() ) );
-	}
-	
-	/**
-	 * Gets a perspective of the south {@link CToolbarArea}.
-	 * @return the area, not <code>null</code>
-	 */
-	public CToolbarAreaPerspective getSouthToolbar(){
-		return (CToolbarAreaPerspective)getPerspective().getStation( CToolbarContentArea.getSouthToolbarIdentifier( getId() ) );
-	}
-	
-	/**
-	 * Gets a perspective of the east {@link CToolbarArea}.
-	 * @return the area, not <code>null</code>
-	 */
-	public CToolbarAreaPerspective getEastToolbar(){
-		return (CToolbarAreaPerspective)getPerspective().getStation( CToolbarContentArea.getEastToolbarIdentifier( getId() ) );
-	}
+    String north = CToolbarContentArea.getNorthToolbarIdentifier(id);
+    String south = CToolbarContentArea.getSouthToolbarIdentifier(id);
+    String east = CToolbarContentArea.getEastToolbarIdentifier(id);
+    String west = CToolbarContentArea.getWestToolbarIdentifier(id);
 
-	/**
-	 * Gets a perspective of the west {@link CToolbarArea}.
-	 * @return the area, not <code>null</code>
-	 */
-	public CToolbarAreaPerspective getWestToolbar(){
-		return (CToolbarAreaPerspective)getPerspective().getStation( CToolbarContentArea.getWestToolbarIdentifier( getId() ) );
-	}
+    ensureType(north, CToolbarAreaPerspective.class);
+    ensureType(south, CToolbarAreaPerspective.class);
+    ensureType(east, CToolbarAreaPerspective.class);
+    ensureType(west, CToolbarAreaPerspective.class);
+
+    if (perspective.getStation(north) == null) {
+      perspective.addStation(new CToolbarAreaPerspective(north));
+    }
+    if (perspective.getStation(south) == null) {
+      perspective.addStation(new CToolbarAreaPerspective(south));
+    }
+    if (perspective.getStation(east) == null) {
+      perspective.addStation(new CToolbarAreaPerspective(east));
+    }
+    if (perspective.getStation(west) == null) {
+      perspective.addStation(new CToolbarAreaPerspective(west));
+    }
+  }
+
+  /**
+   * Gets a perspective of the north {@link CToolbarArea}.
+   *
+   * @return the area, not <code>null</code>
+   */
+  public CToolbarAreaPerspective getNorthToolbar() {
+    return (CToolbarAreaPerspective)getPerspective().getStation(CToolbarContentArea.getNorthToolbarIdentifier(getId()));
+  }
+
+  /**
+   * Gets a perspective of the south {@link CToolbarArea}.
+   *
+   * @return the area, not <code>null</code>
+   */
+  public CToolbarAreaPerspective getSouthToolbar() {
+    return (CToolbarAreaPerspective)getPerspective().getStation(CToolbarContentArea.getSouthToolbarIdentifier(getId()));
+  }
+
+  /**
+   * Gets a perspective of the east {@link CToolbarArea}.
+   *
+   * @return the area, not <code>null</code>
+   */
+  public CToolbarAreaPerspective getEastToolbar() {
+    return (CToolbarAreaPerspective)getPerspective().getStation(CToolbarContentArea.getEastToolbarIdentifier(getId()));
+  }
+
+  /**
+   * Gets a perspective of the west {@link CToolbarArea}.
+   *
+   * @return the area, not <code>null</code>
+   */
+  public CToolbarAreaPerspective getWestToolbar() {
+    return (CToolbarAreaPerspective)getPerspective().getStation(CToolbarContentArea.getWestToolbarIdentifier(getId()));
+  }
 }

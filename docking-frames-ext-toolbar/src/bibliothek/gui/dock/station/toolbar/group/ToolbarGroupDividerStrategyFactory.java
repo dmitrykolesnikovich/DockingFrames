@@ -33,13 +33,15 @@ import bibliothek.gui.dock.ToolbarGroupDockStation;
 
 /**
  * A factory creating new {@link ToolbarGroupDividerStrategy}s.
+ *
  * @author Benjamin Sigg
  */
 public interface ToolbarGroupDividerStrategyFactory {
-	/**
-	 * Creates a new strategy for <code>station</code>.
-	 * @param station the station requesting a strategy
-	 * @return the new strategy, can be <code>null</code>
-	 */
-	public ToolbarGroupDividerStrategy create( ToolbarGroupDockStation station );
+  /**
+   * Creates a new strategy for <code>station</code>.
+   *
+   * @param station the station requesting a strategy
+   * @return the new strategy, can be <code>null</code>
+   */
+  public ToolbarGroupDividerStrategy create(ToolbarGroupDockStation station);
 }

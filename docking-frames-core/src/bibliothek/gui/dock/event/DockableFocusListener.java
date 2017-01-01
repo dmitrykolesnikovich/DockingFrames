@@ -32,12 +32,14 @@ import bibliothek.gui.Dockable;
 /**
  * A listener added to a {@link DockController}, this listener gets informed
  * when the focused {@link Dockable} is exchanged.
+ *
  * @author Benjamin Sigg
  */
 public interface DockableFocusListener {
-    /**
-     * Invoked when <code>dockable</code> has gained the focus. 
-     * @param event an event that contains the new owner of the focus
-     */
-    public void dockableFocused( DockableFocusEvent event );
+  /**
+   * Invoked when <code>dockable</code> has gained the focus.
+   *
+   * @param event an event that contains the new owner of the focus
+   */
+  public void dockableFocused(DockableFocusEvent event);
 }

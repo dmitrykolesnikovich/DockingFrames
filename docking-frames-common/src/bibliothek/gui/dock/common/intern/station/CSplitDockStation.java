@@ -38,82 +38,83 @@ import bibliothek.util.FrameworkOnly;
 
 /**
  * An implementation of {@link SplitDockStation} that also satisfies the {@link CommonDockStation} interface.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public class CSplitDockStation extends SplitDockStation implements CommonDockStation<SplitDockStation,CSplitDockStation>, CommonDockable{
-	private CommonStationDelegate<CSplitDockStation> delegate;
+public class CSplitDockStation extends SplitDockStation implements CommonDockStation<SplitDockStation, CSplitDockStation>, CommonDockable {
+  private CommonStationDelegate<CSplitDockStation> delegate;
 
-	public CSplitDockStation( CommonStationDelegate<CSplitDockStation> delegate ){
-		this.delegate = delegate;
+  public CSplitDockStation(CommonStationDelegate<CSplitDockStation> delegate) {
+    this.delegate = delegate;
 
-		getDockable().addCDockablePropertyListener( new CDockableAdapter(){
-			@Override
-			public void titleShownChanged( CDockable dockable ) {
-				fireTitleExchanged();
-			}
-		});
-	}
-	
-	@Override
-	public String getFactoryID(){
-		return CommonDockStationFactory.FACTORY_ID;
-	}
-	
-	public String getConverterID(){
-		return super.getFactoryID();
-	}
-	
-	public CDockable getDockable() {
-		return delegate.getDockable();
-	}
+    getDockable().addCDockablePropertyListener(new CDockableAdapter() {
+      @Override
+      public void titleShownChanged(CDockable dockable) {
+        fireTitleExchanged();
+      }
+    });
+  }
 
-	public CStation<CSplitDockStation> getStation(){
-		return delegate.getStation();
-	}
-	
-	public SplitDockStation getDockStation(){
-		return this;
-	}
-	
-	@Override
-	public CSplitDockStation asDockStation(){
-		return this;
-	}
-	
-	@Override
-	public CommonDockable asDockable(){
-		return this;
-	}
+  @Override
+  public String getFactoryID() {
+    return CommonDockStationFactory.FACTORY_ID;
+  }
 
-	@Override
-	protected ListeningDockAction createFullScreenAction() {
-		return null;
-	}
-	
-	@Override
-	public void setNextFullScreen(){
-		setFullScreen( null );
-	}
+  public String getConverterID() {
+    return super.getFactoryID();
+  }
 
-	@Override
-	public void setFrontDockable( Dockable dockable ) {
-		if( !isFullScreen() ){
-			super.setFrontDockable( dockable );
-		}
-	}
+  public CDockable getDockable() {
+    return delegate.getDockable();
+  }
 
-	public DockActionSource[] getSources(){
-		return delegate.getSources();
-	}
+  public CStation<CSplitDockStation> getStation() {
+    return delegate.getStation();
+  }
 
-	@Override
-	public void requestDockTitle( DockTitleRequest request ){
-		if( delegate.isTitleDisplayed( request.getVersion() )){
-			super.requestDockTitle( request );
-		}
-		else{
-			request.answer( null );
-		}
-	}
+  public SplitDockStation getDockStation() {
+    return this;
+  }
+
+  @Override
+  public CSplitDockStation asDockStation() {
+    return this;
+  }
+
+  @Override
+  public CommonDockable asDockable() {
+    return this;
+  }
+
+  @Override
+  protected ListeningDockAction createFullScreenAction() {
+    return null;
+  }
+
+  @Override
+  public void setNextFullScreen() {
+    setFullScreen(null);
+  }
+
+  @Override
+  public void setFrontDockable(Dockable dockable) {
+    if (!isFullScreen()) {
+      super.setFrontDockable(dockable);
+    }
+  }
+
+  public DockActionSource[] getSources() {
+    return delegate.getSources();
+  }
+
+  @Override
+  public void requestDockTitle(DockTitleRequest request) {
+    if (delegate.isTitleDisplayed(request.getVersion())) {
+      super.requestDockTitle(request);
+    }
+    else {
+      request.answer(null);
+    }
+  }
 }

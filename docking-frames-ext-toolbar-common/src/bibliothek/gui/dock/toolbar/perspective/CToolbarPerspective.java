@@ -37,103 +37,116 @@ import bibliothek.gui.dock.station.toolbar.ToolbarDockPerspective;
 
 /**
  * A wrapper around a {@link ToolbarDockPerspective}, represents a single toolbar.
+ *
  * @author Benjamin Sigg
  */
 public class CToolbarPerspective {
-	/** the internal representation of a toolbar */
-	private ToolbarDockPerspective delegate;
-	
-	/**
-	 * Creates a new perspective wrapping around <code>delegate</code>.
-	 * @param delegate the internal representation, not <code>null</code>
-	 */
-	public CToolbarPerspective( ToolbarDockPerspective delegate ){
-		if( delegate == null ){
-			throw new IllegalArgumentException( "delegate must not be null" );
-		}
-		this.delegate = delegate;
-	}
-	
-	/**
-	 * Allows access to the internal representation of this perspective.
-	 * @return the internal representation, not <code>null</code>
-	 */
-	public ToolbarDockPerspective getDelegate(){
-		return delegate;
-	}
-	
-	/**
-	 * Gets the number of children of this toolbar.
-	 * @return the total number of children
-	 */
-	public int getItemCount(){
-		return delegate.getDockableCount();
-	}
-	
-	/**
-	 * Gets the item at location <code>index</code>.
-	 * @param index the location of the item
-	 * @return the item or <code>null</code> if the item has the wrong type, the item
-	 * usually is of type {@link SingleCDockablePerspective}
-	 */
-	public CDockablePerspective getItem( int index ){
-		PerspectiveDockable item = delegate.getDockable( index );
-		if( item instanceof CommonElementPerspective ){
-			return ((CommonElementPerspective)item).getElement().asDockable();
-		}
-		else{
-			return null;
-		}
-	}
-	
-	/**
-	 * Creates and adds a new {@link SingleCDockablePerspective} at the end of this toolbar.
-	 * @param id the unique identifier of the item
-	 */
-	public void add( String id ){
-		add( new SingleCDockablePerspective( id ));
-	}
-	
-	/**
-	 * Creates and adds a new {@link SingleCDockablePerspective} at location <code>index</code>
-	 * in this toolbar.
-	 * @param index the location of the new item
-	 * @param id the unique identifier of the item
-	 */
-	public void add( int index, String id ){
-		add( index, new SingleCDockablePerspective( id ));
-	}
-	
-	/**
-	 * Adds <code>item</code> at the end of this toolbar.
-	 * @param item the item to add, not <code>null</code>
-	 */
-	public void add( CDockablePerspective item ){
-		delegate.add( item.intern().asDockable() );
-	}
-	
-	/**
-	 * Inserts <code>item</code> at location <code>index</code> in this toolbar. 
-	 * @param index the location of the new item
-	 * @param item the new item
-	 */
-	public void add( int index, CDockablePerspective item ){
-		delegate.add( index, item.intern().asDockable() );
-	}
-	
-	/**
-	 * Removes the <code>index</code>'th child of this toolbar.
-	 * @param index the location of the item to remove
-	 */
-	public void remove( int index ){
-		delegate.remove( index );
-	}
-	
-	/**
-	 * Removes <code>item</code> from this toolbar
-	 * @param item the item to remove
-	 */
-	public void remove( CDockablePerspective item ){
-		delegate.remove( item.intern().asDockable() );
-	}
+  /**
+   * the internal representation of a toolbar
+   */
+  private ToolbarDockPerspective delegate;
+
+  /**
+   * Creates a new perspective wrapping around <code>delegate</code>.
+   *
+   * @param delegate the internal representation, not <code>null</code>
+   */
+  public CToolbarPerspective(ToolbarDockPerspective delegate) {
+    if (delegate == null) {
+      throw new IllegalArgumentException("delegate must not be null");
+    }
+    this.delegate = delegate;
+  }
+
+  /**
+   * Allows access to the internal representation of this perspective.
+   *
+   * @return the internal representation, not <code>null</code>
+   */
+  public ToolbarDockPerspective getDelegate() {
+    return delegate;
+  }
+
+  /**
+   * Gets the number of children of this toolbar.
+   *
+   * @return the total number of children
+   */
+  public int getItemCount() {
+    return delegate.getDockableCount();
+  }
+
+  /**
+   * Gets the item at location <code>index</code>.
+   *
+   * @param index the location of the item
+   * @return the item or <code>null</code> if the item has the wrong type, the item
+   * usually is of type {@link SingleCDockablePerspective}
+   */
+  public CDockablePerspective getItem(int index) {
+    PerspectiveDockable item = delegate.getDockable(index);
+    if (item instanceof CommonElementPerspective) {
+      return ((CommonElementPerspective)item).getElement().asDockable();
+    }
+    else {
+      return null;
+    }
+  }
+
+  /**
+   * Creates and adds a new {@link SingleCDockablePerspective} at the end of this toolbar.
+   *
+   * @param id the unique identifier of the item
+   */
+  public void add(String id) {
+    add(new SingleCDockablePerspective(id));
+  }
+
+  /**
+   * Creates and adds a new {@link SingleCDockablePerspective} at location <code>index</code>
+   * in this toolbar.
+   *
+   * @param index the location of the new item
+   * @param id    the unique identifier of the item
+   */
+  public void add(int index, String id) {
+    add(index, new SingleCDockablePerspective(id));
+  }
+
+  /**
+   * Adds <code>item</code> at the end of this toolbar.
+   *
+   * @param item the item to add, not <code>null</code>
+   */
+  public void add(CDockablePerspective item) {
+    delegate.add(item.intern().asDockable());
+  }
+
+  /**
+   * Inserts <code>item</code> at location <code>index</code> in this toolbar.
+   *
+   * @param index the location of the new item
+   * @param item  the new item
+   */
+  public void add(int index, CDockablePerspective item) {
+    delegate.add(index, item.intern().asDockable());
+  }
+
+  /**
+   * Removes the <code>index</code>'th child of this toolbar.
+   *
+   * @param index the location of the item to remove
+   */
+  public void remove(int index) {
+    delegate.remove(index);
+  }
+
+  /**
+   * Removes <code>item</code> from this toolbar
+   *
+   * @param item the item to remove
+   */
+  public void remove(CDockablePerspective item) {
+    delegate.remove(item.intern().asDockable());
+  }
 }

@@ -25,28 +25,30 @@
  */
 package bibliothek.gui.dock.common.preference;
 
-import javax.swing.KeyStroke;
-
 import bibliothek.extension.gui.dock.preference.preferences.DockPropertyPreference;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.util.DockProperties;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+
 /**
  * Preference to set the keystroke that maximizes a {@link Dockable}.
+ *
  * @author Benjamin Sigg
  * @see CControl#KEY_GOTO_MAXIMIZED
  */
-public class KeyStrokeMaximizePreference extends DockPropertyPreference<KeyStroke>{
-	/**
-	 * Creates a new preference
-	 * @param properties the properties to access
-	 */
-	public KeyStrokeMaximizePreference( DockProperties properties ){
-		super( properties, CControl.KEY_GOTO_MAXIMIZED, Path.TYPE_KEYSTROKE_PATH, new Path( "dock.common.control.maximize" ) );
-		
-		setLabelId( "preference.shortcut.maximize.label" );
-		setDescriptionId( "preference.shortcut.maximize.description" );
-	}
+public class KeyStrokeMaximizePreference extends DockPropertyPreference<KeyStroke> {
+  /**
+   * Creates a new preference
+   *
+   * @param properties the properties to access
+   */
+  public KeyStrokeMaximizePreference(DockProperties properties) {
+    super(properties, CControl.KEY_GOTO_MAXIMIZED, Path.TYPE_KEYSTROKE_PATH, new Path("dock.common.control.maximize"));
+
+    setLabelId("preference.shortcut.maximize.label");
+    setDescriptionId("preference.shortcut.maximize.description");
+  }
 }

@@ -28,67 +28,75 @@ package bibliothek.gui.dock.extension.css.doc;
 
 /**
  * Represents a {@link CssDocText}.
+ *
  * @author Benjamin Sigg
  */
 public class DocText {
-	/** the root of the documentation */
-	private DocRoot root;
-	
-	/** the actual description */
-	private CssDocText description;
+  /**
+   * the root of the documentation
+   */
+  private DocRoot root;
 
-	/**
-	 * Creates a new text. 
-	 * @param root the root of the documentation
-	 * @param description the actual description
-	 */
-	public DocText( DocRoot root, CssDocText description ){
-		this.root = root;
-		this.description = description;
-	}
-	
-	/**
-	 * Gets {@link #getText()}, but replaces a result of <code>null</code> with <code>""</code>.
-	 * @return the text, or an empty string
-	 */
-	public String getTextOrEmpty(){
-		String text = getText();
-		if( text == null ){
-			return "";
-		}
-		return text;
-	}
+  /**
+   * the actual description
+   */
+  private CssDocText description;
 
-	/**
-	 * Gets the text that is actually described by this {@link DocText}. 
-	 * @return the actual text
-	 */
-	public String getText(){
-		String format;
-		
-		if( !description.id().isEmpty() ){
-			format = root.getString( description.id() );
-		}
-		else{
-			format = description.format();
-		}
-		
-		String text;
-		
-		if( format == null || format.isEmpty() ){
-			text = description.text();
-			if( text.isEmpty() ){
-				text = null;
-			}
-		}
-		else{
-			text = String.format( format, (Object[])description.arguments() );
-		}
-		return text;
-	}
-	
-	@Override
-	public String toString(){
-		return getText();
-	}
+  /**
+   * Creates a new text.
+   *
+   * @param root        the root of the documentation
+   * @param description the actual description
+   */
+  public DocText(DocRoot root, CssDocText description) {
+    this.root = root;
+    this.description = description;
+  }
+
+  /**
+   * Gets {@link #getText()}, but replaces a result of <code>null</code> with <code>""</code>.
+   *
+   * @return the text, or an empty string
+   */
+  public String getTextOrEmpty() {
+    String text = getText();
+    if (text == null) {
+      return "";
+    }
+    return text;
+  }
+
+  /**
+   * Gets the text that is actually described by this {@link DocText}.
+   *
+   * @return the actual text
+   */
+  public String getText() {
+    String format;
+
+    if (!description.id().isEmpty()) {
+      format = root.getString(description.id());
+    }
+    else {
+      format = description.format();
+    }
+
+    String text;
+
+    if (format == null || format.isEmpty()) {
+      text = description.text();
+      if (text.isEmpty()) {
+        text = null;
+      }
+    }
+    else {
+      text = String.format(format, (Object[])description.arguments());
+    }
+    return text;
+  }
+
+  @Override
+  public String toString() {
+    return getText();
+  }
 }

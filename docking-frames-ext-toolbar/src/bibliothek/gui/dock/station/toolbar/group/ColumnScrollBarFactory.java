@@ -33,14 +33,16 @@ package bibliothek.gui.dock.station.toolbar.group;
 import bibliothek.gui.dock.ToolbarGroupDockStation;
 
 /**
- * A factory creating new {@link ColumnScrollBar}s. 
+ * A factory creating new {@link ColumnScrollBar}s.
+ *
  * @author Benjamin Sigg
  */
 public interface ColumnScrollBarFactory {
-	/**
-	 * Creates a new scrollbar which will be shown on <code>station</code>.
-	 * @param station the station which is going to show the scrollbar
-	 * @return the new scrollbar, must not be <code>null</code>
-	 */
-	public ColumnScrollBar create( ToolbarGroupDockStation station );
+  /**
+   * Creates a new scrollbar which will be shown on <code>station</code>.
+   *
+   * @param station the station which is going to show the scrollbar
+   * @return the new scrollbar, must not be <code>null</code>
+   */
+  public ColumnScrollBar create(ToolbarGroupDockStation station);
 }

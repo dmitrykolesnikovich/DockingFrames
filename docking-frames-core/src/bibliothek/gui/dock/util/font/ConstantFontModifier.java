@@ -25,26 +25,27 @@
  */
 package bibliothek.gui.dock.util.font;
 
-import java.awt.Font;
+import java.awt.*;
 
 /**
  * This {@link FontModifier} always returns the same {@link Font}
+ *
  * @author Benjamin Sigg
  */
-public class ConstantFontModifier implements FontModifier{
-    private Font font;
-    
-    /**
-     * Creates a new modifier.
-     * @param font the font which is to be returned by this modifier
-     */
-    public ConstantFontModifier( Font font ){
-        if( font == null )
-            throw new IllegalArgumentException( "font must not be null" );
-        this.font = font;
-    }
-    
-    public Font modify( Font font ) {
-        return this.font;
-    }
+public class ConstantFontModifier implements FontModifier {
+  private Font font;
+
+  /**
+   * Creates a new modifier.
+   *
+   * @param font the font which is to be returned by this modifier
+   */
+  public ConstantFontModifier(Font font) {
+    if (font == null) throw new IllegalArgumentException("font must not be null");
+    this.font = font;
+  }
+
+  public Font modify(Font font) {
+    return this.font;
+  }
 }

@@ -29,44 +29,47 @@ import bibliothek.gui.dock.station.split.SplitDockPathProperty;
 
 /**
  * A turn in a path to an element, beginning at the "normalized-area".
+ *
  * @author Benjamin Sigg
  */
 public class TreeLocationNode extends AbstractTreeLocation {
-	/** the turn above this location */
-	private AbstractTreeLocation parent;
-	
-	/**
-	 * Creates a new node.
-	 * @param parent the turn above this location
-	 * @param size the relative size of this location
-	 * @param side the side which is occupied by this location
-	 * @param nodeId the unique identifier of the node represented by this location, can be -1
-	 * @see AbstractTreeLocation#AbstractTreeLocation(double, Side, long)
-	 */
-	public TreeLocationNode( AbstractTreeLocation parent, double size, Side side, long nodeId ){
-		super( size, side, nodeId );
-		if( parent == null )
-			throw new NullPointerException( "parent must not be null" );
-		this.parent = parent;
-	}
+  /**
+   * the turn above this location
+   */
+  private AbstractTreeLocation parent;
 
-	@Override
-	public AbstractTreeLocation getParent(){
-		return parent;
-	}
-	
-	@Override
-	protected SplitDockPathProperty findParentProperty(){
-		return parent.findProperty( null );
-	}
+  /**
+   * Creates a new node.
+   *
+   * @param parent the turn above this location
+   * @param size   the relative size of this location
+   * @param side   the side which is occupied by this location
+   * @param nodeId the unique identifier of the node represented by this location, can be -1
+   * @see AbstractTreeLocation#AbstractTreeLocation(double, Side, long)
+   */
+  public TreeLocationNode(AbstractTreeLocation parent, double size, Side side, long nodeId) {
+    super(size, side, nodeId);
+    if (parent == null) throw new NullPointerException("parent must not be null");
+    this.parent = parent;
+  }
 
-	@Override
-	public String findRoot(){
-		return parent.findRoot();
-	}
+  @Override
+  public AbstractTreeLocation getParent() {
+    return parent;
+  }
 
-	@Override
-	public String toString() {
-	    return String.valueOf( parent ) + " " + super.toString();
-	}
+  @Override
+  protected SplitDockPathProperty findParentProperty() {
+    return parent.findProperty(null);
+  }
+
+  @Override
+  public String findRoot() {
+    return parent.findRoot();
+  }
+
+  @Override
+  public String toString() {
+    return String.valueOf(parent) + " " + super.toString();
+  }
 }

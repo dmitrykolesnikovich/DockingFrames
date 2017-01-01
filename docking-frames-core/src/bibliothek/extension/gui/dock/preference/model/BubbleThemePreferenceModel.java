@@ -33,26 +33,29 @@ import bibliothek.gui.dock.util.DockProperties;
 
 /**
  * Preferences used by the {@link BubbleTheme}.
+ *
  * @author Benjamin Sigg
  */
-public class BubbleThemePreferenceModel extends DefaultPreferenceModel{
-	private BubbleColorSchemePreference colorScheme;
-	
-	/**
-	 * Creates a new model
-	 * @param properties the properties to read to or write from
-	 */
-	public BubbleThemePreferenceModel( DockProperties properties ){
-		super( properties.getController() );
-		add( colorScheme = new BubbleColorSchemePreference( properties ) );
-	}
-	
-	/**
-     * Gets access to the preference that represents the {@link ColorScheme} that is
-     * used by a {@link BubbleTheme}.
-     * @return the preference, not <code>null</code>
-     */
-	public BubbleColorSchemePreference getColorScheme(){
-		return colorScheme;
-	}
+public class BubbleThemePreferenceModel extends DefaultPreferenceModel {
+  private BubbleColorSchemePreference colorScheme;
+
+  /**
+   * Creates a new model
+   *
+   * @param properties the properties to read to or write from
+   */
+  public BubbleThemePreferenceModel(DockProperties properties) {
+    super(properties.getController());
+    add(colorScheme = new BubbleColorSchemePreference(properties));
+  }
+
+  /**
+   * Gets access to the preference that represents the {@link ColorScheme} that is
+   * used by a {@link BubbleTheme}.
+   *
+   * @return the preference, not <code>null</code>
+   */
+  public BubbleColorSchemePreference getColorScheme() {
+    return colorScheme;
+  }
 }

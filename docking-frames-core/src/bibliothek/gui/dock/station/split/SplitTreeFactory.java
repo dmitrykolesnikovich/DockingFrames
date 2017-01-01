@@ -34,64 +34,69 @@ import bibliothek.util.Path;
 /**
  * A factory used to create trees that somehow represent the layout
  * of a {@link SplitDockStation}.
- * @author Benjamin Sigg
  *
  * @param <N> the type of elements representing leafs and nodes
+ * @author Benjamin Sigg
  * @see SplitDockStation#visit(SplitTreeFactory)
  */
 public interface SplitTreeFactory<N> {
-    /**
-     * Informs about a leaf of the tree.
-     * @param dockable the element in the leaf
-     * @param id the unique identifier of this node or -1
-     * @param placeholders the placeholders associated with this node, can be empty
-     * @param placeholderMap placeholder information of a child {@link DockStation}
-     * @return the representation of the leaf or <code>null</code>
-     */
-    public N leaf( Dockable dockable, long id, Path[] placeholders, PlaceholderMap placeholderMap );
-    
-    /**
-     * Informs about a set of placeholder in the tree.
-     * @param id the unique id of this placeholder
-     * @param placeholders the placeholders 
-     * @param placeholderMap placeholder information of a child {@link DockStation}
-     * @return the representation of the placeholder or <code>null</code>
-     */
-    public N placeholder( long id, Path[] placeholders, PlaceholderMap placeholderMap );
-    
-    /**
-     * Informs about a node that is divided vertically.
-     * @param left the left child of the node, might be <code>null</code>
-     * @param right the right child of the node, might be <code>null</code>
-     * @param divider the size of the left node, a value between 0 and 1.
-     * @param id the unique identifier of this node or -1
-     * @param placeholders the placeholders associated with this node, can be empty
-     * @param placeholderMap placeholder information of a child {@link DockStation}
-     * @param visible whether this node is visible to the user or not. A node is only visible to the user
-     * if at least one of its children is visible
-     * @return the representation of this node, might be <code>null</code>
-     */
-    public N horizontal( N left, N right, double divider, long id, Path[] placeholders, PlaceholderMap placeholderMap, boolean visible );
-    
-    /**
-     * Informs about a node that is divided vertically.
-     * @param top the top child of the node, might be <code>null</code>
-     * @param bottom the bottom child of the node, might be <code>null</code>
-     * @param divider the size of the top node, a value between 0 and 1.
-     * @param id the unique identifier of this node or -1
-     * @param placeholders the placeholders associated with this node, can be empty
-     * @param placeholderMap placeholder information of a child {@link DockStation}
-     * @param visible whether this node is visible to the user or not. A node is only visible to the user
-     * if at least one of its children is visible
-     * @return the representation of this node, might be <code>null</code>
-     */
-    public N vertical( N top, N bottom, double divider, long id, Path[] placeholders, PlaceholderMap placeholderMap, boolean visible );
-    
-    /**
-     * Informs about the node that is the root.
-     * @param root the root of the tree, might be <code>null</code>
-     * @param id the unique identifier of this node or -1
-     * @return the tree itself, or <code>null</code>
-     */
-    public N root( N root, long id );
+  /**
+   * Informs about a leaf of the tree.
+   *
+   * @param dockable       the element in the leaf
+   * @param id             the unique identifier of this node or -1
+   * @param placeholders   the placeholders associated with this node, can be empty
+   * @param placeholderMap placeholder information of a child {@link DockStation}
+   * @return the representation of the leaf or <code>null</code>
+   */
+  public N leaf(Dockable dockable, long id, Path[] placeholders, PlaceholderMap placeholderMap);
+
+  /**
+   * Informs about a set of placeholder in the tree.
+   *
+   * @param id             the unique id of this placeholder
+   * @param placeholders   the placeholders
+   * @param placeholderMap placeholder information of a child {@link DockStation}
+   * @return the representation of the placeholder or <code>null</code>
+   */
+  public N placeholder(long id, Path[] placeholders, PlaceholderMap placeholderMap);
+
+  /**
+   * Informs about a node that is divided vertically.
+   *
+   * @param left           the left child of the node, might be <code>null</code>
+   * @param right          the right child of the node, might be <code>null</code>
+   * @param divider        the size of the left node, a value between 0 and 1.
+   * @param id             the unique identifier of this node or -1
+   * @param placeholders   the placeholders associated with this node, can be empty
+   * @param placeholderMap placeholder information of a child {@link DockStation}
+   * @param visible        whether this node is visible to the user or not. A node is only visible to the user
+   *                       if at least one of its children is visible
+   * @return the representation of this node, might be <code>null</code>
+   */
+  public N horizontal(N left, N right, double divider, long id, Path[] placeholders, PlaceholderMap placeholderMap, boolean visible);
+
+  /**
+   * Informs about a node that is divided vertically.
+   *
+   * @param top            the top child of the node, might be <code>null</code>
+   * @param bottom         the bottom child of the node, might be <code>null</code>
+   * @param divider        the size of the top node, a value between 0 and 1.
+   * @param id             the unique identifier of this node or -1
+   * @param placeholders   the placeholders associated with this node, can be empty
+   * @param placeholderMap placeholder information of a child {@link DockStation}
+   * @param visible        whether this node is visible to the user or not. A node is only visible to the user
+   *                       if at least one of its children is visible
+   * @return the representation of this node, might be <code>null</code>
+   */
+  public N vertical(N top, N bottom, double divider, long id, Path[] placeholders, PlaceholderMap placeholderMap, boolean visible);
+
+  /**
+   * Informs about the node that is the root.
+   *
+   * @param root the root of the tree, might be <code>null</code>
+   * @param id   the unique identifier of this node or -1
+   * @return the tree itself, or <code>null</code>
+   */
+  public N root(N root, long id);
 }

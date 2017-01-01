@@ -30,8 +30,6 @@
 
 package bibliothek.gui.dock.toolbar;
 
-import java.awt.Component;
-
 import bibliothek.gui.dock.ToolbarItem;
 import bibliothek.gui.dock.common.CStation;
 import bibliothek.gui.dock.common.SingleCDockable;
@@ -40,119 +38,128 @@ import bibliothek.gui.dock.common.intern.AbstractCDockable;
 import bibliothek.gui.dock.toolbar.expand.ExpandedState;
 import bibliothek.gui.dock.toolbar.intern.CommonToolbarItemDockable;
 
+import java.awt.*;
+
 /**
  * A {@link CToolbarItem} is an item (e.g. a button) that is shown in a toolbar.<br>
  * In reality the {@link CToolbarItem} consists of several {@link Component}s, but only one of them is shown. Which
  * one depends on the {@link ExpandedState} which is set by the toolbar itself. In order to use this feature clients
- * have to call 
+ * have to call
  * <code>CControl control = ...
  * control.putProperty( ExpandableToolbarItemStrategy.STRATEGY, new DefaultExpandableToolbarItemStrategy() );</code>
+ *
  * @author Benjamin Sigg
  */
-public class CToolbarItem extends AbstractCDockable implements SingleCDockable{
-	private String id;
-	
-	/**
-	 * Creates a new item.
-	 * @param id the unique identifier of this item, not <code>null</code>
-	 */
-	public CToolbarItem( String id ){
-		if( id == null ){
-			throw new IllegalArgumentException( "id must not be null" );
-		}
-		this.id = id;
-	}
+public class CToolbarItem extends AbstractCDockable implements SingleCDockable {
+  private String id;
 
-	/**
-	 * Sets a component which should be shown when this dockable is in state {@link ExpandedState#SHRUNK}.
-	 * @param item the item to show, can be <code>null</code>
-	 */
-	public void setItem( CAction item ){
-		setItem( item, ExpandedState.SHRUNK );
-	}
-	
-	/**
-	 * Sets a component which should be shown when this dockable is in state {@link ExpandedState#SHRUNK}.
-	 * @param item the item to show, can be <code>null</code>
-	 */
-	public void setItem( Component item ){
-		setItem( item, ExpandedState.SHRUNK );
-	}
-	
-	/**
-	 * Sets a component which should be shown when this dockable is in state <code>state</code>.
-	 * @param item the item to show, can be <code>null</code>
-	 * @param state the state when to show <code>item</code>
-	 */
-	public void setItem( Component item, ExpandedState state ){
-		intern().setComponent( item, state );
-	}
+  /**
+   * Creates a new item.
+   *
+   * @param id the unique identifier of this item, not <code>null</code>
+   */
+  public CToolbarItem(String id) {
+    if (id == null) {
+      throw new IllegalArgumentException("id must not be null");
+    }
+    this.id = id;
+  }
 
-	/**
-	 * Sets a component which should be shown when this dockable is in state <code>state</code>.
-	 * @param item the item to show, can be <code>null</code>
-	 * @param state the state when to show <code>item</code>
-	 */
-	public void setItem( CAction item, ExpandedState state ){
-		if( item == null ){
-			setItem( (ToolbarItem)null, state );
-		}
-		else{
-			intern().setAction( item.intern(), state );
-		}
-	}
-	
-	/**
-	 * Sets a component which should be shown when this dockable is in state <code>state</code>.
-	 * @param item the item to show, can be <code>null</code>
-	 * @param state the state when to show <code>item</code>
-	 */
-	public void setItem( ToolbarItem item, ExpandedState state ){
-		intern().setItem( item, state );
-	}
-	
-	@Override
-	public String getUniqueId(){
-		return id;
-	}
-	
-	@Override
-	public boolean isMinimizable(){
-		return false;
-	}
+  /**
+   * Sets a component which should be shown when this dockable is in state {@link ExpandedState#SHRUNK}.
+   *
+   * @param item the item to show, can be <code>null</code>
+   */
+  public void setItem(CAction item) {
+    setItem(item, ExpandedState.SHRUNK);
+  }
 
-	@Override
-	public boolean isMaximizable(){
-		return false;
-	}
+  /**
+   * Sets a component which should be shown when this dockable is in state {@link ExpandedState#SHRUNK}.
+   *
+   * @param item the item to show, can be <code>null</code>
+   */
+  public void setItem(Component item) {
+    setItem(item, ExpandedState.SHRUNK);
+  }
 
-	@Override
-	public boolean isExternalizable(){
-		return true;
-	}
+  /**
+   * Sets a component which should be shown when this dockable is in state <code>state</code>.
+   *
+   * @param item  the item to show, can be <code>null</code>
+   * @param state the state when to show <code>item</code>
+   */
+  public void setItem(Component item, ExpandedState state) {
+    intern().setComponent(item, state);
+  }
 
-	@Override
-	public boolean isStackable(){
-		return true;
-	}
+  /**
+   * Sets a component which should be shown when this dockable is in state <code>state</code>.
+   *
+   * @param item  the item to show, can be <code>null</code>
+   * @param state the state when to show <code>item</code>
+   */
+  public void setItem(CAction item, ExpandedState state) {
+    if (item == null) {
+      setItem((ToolbarItem)null, state);
+    }
+    else {
+      intern().setAction(item.intern(), state);
+    }
+  }
 
-	@Override
-	public boolean isCloseable(){
-		return false;
-	}
+  /**
+   * Sets a component which should be shown when this dockable is in state <code>state</code>.
+   *
+   * @param item  the item to show, can be <code>null</code>
+   * @param state the state when to show <code>item</code>
+   */
+  public void setItem(ToolbarItem item, ExpandedState state) {
+    intern().setItem(item, state);
+  }
 
-	@Override
-	public CStation<?> asStation(){
-		return null;
-	}
-	
-	@Override
-	public CommonToolbarItemDockable intern(){
-		return (CommonToolbarItemDockable)super.intern();
-	}
+  @Override
+  public String getUniqueId() {
+    return id;
+  }
 
-	@Override
-	protected CommonToolbarItemDockable createCommonDockable(){
-		return new CommonToolbarItemDockable( this );
-	}
+  @Override
+  public boolean isMinimizable() {
+    return false;
+  }
+
+  @Override
+  public boolean isMaximizable() {
+    return false;
+  }
+
+  @Override
+  public boolean isExternalizable() {
+    return true;
+  }
+
+  @Override
+  public boolean isStackable() {
+    return true;
+  }
+
+  @Override
+  public boolean isCloseable() {
+    return false;
+  }
+
+  @Override
+  public CStation<?> asStation() {
+    return null;
+  }
+
+  @Override
+  public CommonToolbarItemDockable intern() {
+    return (CommonToolbarItemDockable)super.intern();
+  }
+
+  @Override
+  protected CommonToolbarItemDockable createCommonDockable() {
+    return new CommonToolbarItemDockable(this);
+  }
 }

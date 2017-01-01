@@ -37,30 +37,33 @@ import bibliothek.gui.dock.facile.mode.LocationModeManager;
  * and that group has to be described by one {@link Dockable}. A logical choice would be that
  * all {@link Dockable}s are children of some {@link DockStation} and the {@link DockStation}
  * represents the entire group.
+ *
  * @author Benjamin Sigg
  */
 public interface CGroupMovement {
-	/**
-	 * Executes this movement. While this operation runs, focus management is disabled. The 
-	 * framework will choose a new focused {@link Dockable} once this method finished.<br>
-	 * <b>Note:</b> While the various <code>apply</code>-methods of {@link LocationModeManager}
-	 * only take one argument, more than one {@link Dockable} might be moved because of the 
-	 * internal logic of some {@link LocationMode}s. Implementations should assume that any
-	 * cached information about any {@link Dockable} is invalid once a {@link Dockable} has been
-	 * moved.
-	 * @param callback can be used by this object to freely move around any
-	 * {@link Dockable}
-	 */
-	public void apply( CGroupBehaviorCallback callback );
+  /**
+   * Executes this movement. While this operation runs, focus management is disabled. The
+   * framework will choose a new focused {@link Dockable} once this method finished.<br>
+   * <b>Note:</b> While the various <code>apply</code>-methods of {@link LocationModeManager}
+   * only take one argument, more than one {@link Dockable} might be moved because of the
+   * internal logic of some {@link LocationMode}s. Implementations should assume that any
+   * cached information about any {@link Dockable} is invalid once a {@link Dockable} has been
+   * moved.
+   *
+   * @param callback can be used by this object to freely move around any
+   *                 {@link Dockable}
+   */
+  public void apply(CGroupBehaviorCallback callback);
 
-	/**
-	 * Tells some {@link DockAcceptance}s whether a check for <code>child</code> becoming a child of 
-	 * <code>parent</code> needs to be performed. The default result of this method should be <code>true</code>. 
-	 * A value of <code>true</code> does not prevent custom {@link DockAcceptance}s from preventing the
-	 * operation.
-	 * @param parent the future parent of <code>child</code>
-	 * @param child the future child of <code>parent</code>
-	 * @return <code>true</code> if this relation can be allowed without further checks
-	 */
-	public boolean forceAccept( DockStation parent, Dockable child );
+  /**
+   * Tells some {@link DockAcceptance}s whether a check for <code>child</code> becoming a child of
+   * <code>parent</code> needs to be performed. The default result of this method should be <code>true</code>.
+   * A value of <code>true</code> does not prevent custom {@link DockAcceptance}s from preventing the
+   * operation.
+   *
+   * @param parent the future parent of <code>child</code>
+   * @param child  the future child of <code>parent</code>
+   * @return <code>true</code> if this relation can be allowed without further checks
+   */
+  public boolean forceAccept(DockStation parent, Dockable child);
 }

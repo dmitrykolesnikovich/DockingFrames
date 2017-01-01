@@ -25,8 +25,6 @@
  */
 package bibliothek.gui.dock.common.intern.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.common.ColorMap;
 import bibliothek.gui.dock.common.intern.CDockable;
@@ -35,168 +33,175 @@ import bibliothek.gui.dock.themes.color.TitleColor;
 import bibliothek.gui.dock.util.color.ColorManager;
 import bibliothek.gui.dock.util.color.DockColor;
 
+import java.awt.*;
+
 /**
  * A color transmitter for the button-title used on minimized areas.
+ *
  * @author Benjamin Sigg
  */
-public abstract class MinimizedButtonColorTransmitter extends ColorTransmitter{
-    private ColorManager manager;
-    private String[] keys;
-    
-    /**
-     * Creates a new transmitter.
-     * @param keys the keys of the colors that are handled by this transmitter
-     * @param manager the source of all colors
-     */
-    public MinimizedButtonColorTransmitter( ColorManager manager, String... keys ){
-    	super( keys );
-        this.keys = keys;
-        this.manager = manager;
-    }
-    
-    /**
-     * Changes a background color such that it can be used for <code>key</code>.
-     * @param source the original color
-     * @param key the key for which the color is needed
-     * @return the new color, can be <code>null</code>
-     */
-    protected abstract Color convert( Color source, String key );
-    
-    /**
-     * Changes a background color such that it can be used for <code>key</code>. 
-     * @param source the original color
-     * @param key the key for which the color is needed, can only be one
-     * of the focused kind
-     * @return the new color, can be <code>null</code>
-     */
-    protected abstract Color convertFocused( Color source, String key );
-    
-    /**
-     * Changes a background color such that is can be used for <code>key</code>.
-     * @param source the original color
-     * @param key the key for which the color is needed, can only
-     * be one of the selected kind
-     * @return the new color, can be <code>null</code>
-     */
-    protected abstract Color convertSelected( Color source, String key );
-    
-    /**
-     * Tells whether <code>id</code> represents a color that is used for
-     * the foreground.
-     * @param id some id
-     * @return <code>true</code> if the color is used in the foreground
-     */
-    protected abstract boolean isForeground( String id );
-    
-    /**
-     * Tells whether <code>id</code> represents a color that is used on
-     * focused titles.
-     * @param id some id
-     * @return <code>true</code> if the color is used on focused buttons
-     */
-    protected abstract boolean isFocused( String id );
-    
-    /**
-     * Tells whether <code>id</code> represents a color that is used
-     * on a selected title.
-     * @param id some id
-     * @return <code>true</code> if the color is used on a selected button
-     */
-    protected abstract boolean isSelected( String id );
-    
-    /**
-     * Gets the list of keys for which this transmitter works.
-     * @return the list of keys
-     */
-    public String[] getKeys() {
-		return keys;
-	}
-    
-    @Override
-    protected Color get( Color color, String id, DockColor observer ) {
-        CDockable dockable = getDockable( observer );
-        if( dockable != null ){
-            return get( color, id, dockable );
-        }
-        
-        return color;
+public abstract class MinimizedButtonColorTransmitter extends ColorTransmitter {
+  private ColorManager manager;
+  private String[] keys;
+
+  /**
+   * Creates a new transmitter.
+   *
+   * @param keys    the keys of the colors that are handled by this transmitter
+   * @param manager the source of all colors
+   */
+  public MinimizedButtonColorTransmitter(ColorManager manager, String... keys) {
+    super(keys);
+    this.keys = keys;
+    this.manager = manager;
+  }
+
+  /**
+   * Changes a background color such that it can be used for <code>key</code>.
+   *
+   * @param source the original color
+   * @param key    the key for which the color is needed
+   * @return the new color, can be <code>null</code>
+   */
+  protected abstract Color convert(Color source, String key);
+
+  /**
+   * Changes a background color such that it can be used for <code>key</code>.
+   *
+   * @param source the original color
+   * @param key    the key for which the color is needed, can only be one
+   *               of the focused kind
+   * @return the new color, can be <code>null</code>
+   */
+  protected abstract Color convertFocused(Color source, String key);
+
+  /**
+   * Changes a background color such that is can be used for <code>key</code>.
+   *
+   * @param source the original color
+   * @param key    the key for which the color is needed, can only
+   *               be one of the selected kind
+   * @return the new color, can be <code>null</code>
+   */
+  protected abstract Color convertSelected(Color source, String key);
+
+  /**
+   * Tells whether <code>id</code> represents a color that is used for
+   * the foreground.
+   *
+   * @param id some id
+   * @return <code>true</code> if the color is used in the foreground
+   */
+  protected abstract boolean isForeground(String id);
+
+  /**
+   * Tells whether <code>id</code> represents a color that is used on
+   * focused titles.
+   *
+   * @param id some id
+   * @return <code>true</code> if the color is used on focused buttons
+   */
+  protected abstract boolean isFocused(String id);
+
+  /**
+   * Tells whether <code>id</code> represents a color that is used
+   * on a selected title.
+   *
+   * @param id some id
+   * @return <code>true</code> if the color is used on a selected button
+   */
+  protected abstract boolean isSelected(String id);
+
+  /**
+   * Gets the list of keys for which this transmitter works.
+   *
+   * @return the list of keys
+   */
+  public String[] getKeys() {
+    return keys;
+  }
+
+  @Override
+  protected Color get(Color color, String id, DockColor observer) {
+    CDockable dockable = getDockable(observer);
+    if (dockable != null) {
+      return get(color, id, dockable);
     }
 
-    @Override
-    protected CDockable getDockable( DockColor observer ) {
-        Dockable dockable = ((TitleColor)observer).getTitle().getDockable();
-        if( dockable instanceof CommonDockable )
-            return ((CommonDockable)dockable).getDockable();
-        
-        return null;
-    }
-    
-    
-    /**
-     * Searches the color <code>id</code> for <code>dockable</code>.
-     * @param color the color to be returned if the search for <code>id</code> fails.
-     * @param id the identifier of the color to search
-     * @param dockable the element for which the color will be used
-     * @return some color
-     */
-    protected Color get( Color color, String id, CDockable dockable ){
-        Color check = null;
-        ColorMap colors = dockable.getColors();
-        
-        boolean foreground = isForeground( id );
-        boolean focused = isFocused( id );
-        boolean selected = focused || isSelected( id );
-        
-        if( foreground ){
-            if( focused ){
-                check = colors.getColor( ColorMap.COLOR_KEY_MINIMIZED_BUTTON_FOREGROUND_FOCUSED );
-            }
-            if( check == null && selected ){
-            	check = colors.getColor( ColorMap.COLOR_KEY_MINIMIZED_BUTTON_FOREGROUND_SELECTED );
-            }
-            if( check == null ){
-                check = colors.getColor( ColorMap.COLOR_KEY_MINIMIZED_BUTTON_FOREGROUND );
-            }
-        }
-        
-        if( check == null ){
-            if( focused ){
-                check = colors.getColor( ColorMap.COLOR_KEY_MINIMIZED_BUTTON_BACKGROUND_FOCUSED );
-                if( check != null )
-                    check = convertFocused( check, id );
-            }
-            if( check == null && selected ){
-            	check = colors.getColor( ColorMap.COLOR_KEY_MINIMIZED_BUTTON_BACKGROUND_SELECTED );
-            	if( check != null )
-            		check = convertSelected( check, id );
-            }
-            
-            if( check == null ){
-                check = colors.getColor( ColorMap.COLOR_KEY_MINIMIZED_BUTTON_BACKGROUND );
-                if( check != null )
-                    check = convert( check, id );
-            }
-        }
-        
-        if( check != null )
-            return check;
-        
-        return color;
-    }
-    
-    @Override
-    protected void update( CDockable dockable, String key, Color color ) {
-        boolean change = 
-        	ColorMap.COLOR_KEY_MINIMIZED_BUTTON_BACKGROUND.equals( key ) ||
-            ColorMap.COLOR_KEY_MINIMIZED_BUTTON_BACKGROUND_FOCUSED.equals( key ) ||
-            ColorMap.COLOR_KEY_MINIMIZED_BUTTON_BACKGROUND_SELECTED.equals( key ) ||
-            ColorMap.COLOR_KEY_MINIMIZED_BUTTON_FOREGROUND.equals( key ) ||
-            ColorMap.COLOR_KEY_MINIMIZED_BUTTON_FOREGROUND_FOCUSED.equals( key ) ||
-            ColorMap.COLOR_KEY_MINIMIZED_BUTTON_FOREGROUND_SELECTED.equals( key );
+    return color;
+  }
 
-        if( change ){
-            for( String check : keys )
-                set( check, get( manager.get( check ), check, dockable ), dockable );
-        }
+  @Override
+  protected CDockable getDockable(DockColor observer) {
+    Dockable dockable = ((TitleColor)observer).getTitle().getDockable();
+    if (dockable instanceof CommonDockable) return ((CommonDockable)dockable).getDockable();
+
+    return null;
+  }
+
+
+  /**
+   * Searches the color <code>id</code> for <code>dockable</code>.
+   *
+   * @param color    the color to be returned if the search for <code>id</code> fails.
+   * @param id       the identifier of the color to search
+   * @param dockable the element for which the color will be used
+   * @return some color
+   */
+  protected Color get(Color color, String id, CDockable dockable) {
+    Color check = null;
+    ColorMap colors = dockable.getColors();
+
+    boolean foreground = isForeground(id);
+    boolean focused = isFocused(id);
+    boolean selected = focused || isSelected(id);
+
+    if (foreground) {
+      if (focused) {
+        check = colors.getColor(ColorMap.COLOR_KEY_MINIMIZED_BUTTON_FOREGROUND_FOCUSED);
+      }
+      if (check == null && selected) {
+        check = colors.getColor(ColorMap.COLOR_KEY_MINIMIZED_BUTTON_FOREGROUND_SELECTED);
+      }
+      if (check == null) {
+        check = colors.getColor(ColorMap.COLOR_KEY_MINIMIZED_BUTTON_FOREGROUND);
+      }
     }
+
+    if (check == null) {
+      if (focused) {
+        check = colors.getColor(ColorMap.COLOR_KEY_MINIMIZED_BUTTON_BACKGROUND_FOCUSED);
+        if (check != null) check = convertFocused(check, id);
+      }
+      if (check == null && selected) {
+        check = colors.getColor(ColorMap.COLOR_KEY_MINIMIZED_BUTTON_BACKGROUND_SELECTED);
+        if (check != null) check = convertSelected(check, id);
+      }
+
+      if (check == null) {
+        check = colors.getColor(ColorMap.COLOR_KEY_MINIMIZED_BUTTON_BACKGROUND);
+        if (check != null) check = convert(check, id);
+      }
+    }
+
+    if (check != null) return check;
+
+    return color;
+  }
+
+  @Override
+  protected void update(CDockable dockable, String key, Color color) {
+    boolean change = ColorMap.COLOR_KEY_MINIMIZED_BUTTON_BACKGROUND.equals(key) ||
+                     ColorMap.COLOR_KEY_MINIMIZED_BUTTON_BACKGROUND_FOCUSED.equals(key) ||
+                     ColorMap.COLOR_KEY_MINIMIZED_BUTTON_BACKGROUND_SELECTED.equals(key) ||
+                     ColorMap.COLOR_KEY_MINIMIZED_BUTTON_FOREGROUND.equals(key) ||
+                     ColorMap.COLOR_KEY_MINIMIZED_BUTTON_FOREGROUND_FOCUSED.equals(key) ||
+                     ColorMap.COLOR_KEY_MINIMIZED_BUTTON_FOREGROUND_SELECTED.equals(key);
+
+    if (change) {
+      for (String check : keys) {
+        set(check, get(manager.get(check), check, dockable), dockable);
+      }
+    }
+  }
 }

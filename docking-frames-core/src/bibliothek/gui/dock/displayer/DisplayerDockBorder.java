@@ -34,15 +34,19 @@ import bibliothek.util.Path;
 /**
  * An {@link UIValue} observing the {@link BorderModifier} that is used for
  * a {@link DockableDisplayer}.
+ *
  * @author Benjamin Sigg
  */
 public interface DisplayerDockBorder extends DockBorder {
-	/** The type of this {@link UIValue} */
-	public static final Path KIND = DockBorder.KIND.append( "displayer" );
-	
-	/**
-	 * Gets the displayer for which this border is used.
-	 * @return the displayer, not <code>null</code>
-	 */
-	public DockableDisplayer getDisplayer();
+  /**
+   * The type of this {@link UIValue}
+   */
+  public static final Path KIND = DockBorder.KIND.append("displayer");
+
+  /**
+   * Gets the displayer for which this border is used.
+   *
+   * @return the displayer, not <code>null</code>
+   */
+  public DockableDisplayer getDisplayer();
 }

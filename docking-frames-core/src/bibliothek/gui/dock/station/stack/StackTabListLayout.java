@@ -30,87 +30,90 @@ import java.awt.*;
 /**
  * {@link LayoutManager} that works like {@link FlowLayout}, but the components
  * are not centered in their cell but stick to the top of the cell.
+ *
  * @author Benjamin Sigg
  * @deprecated this class is no longer used anywhere and will be removed
  */
 @Deprecated
-public class StackTabListLayout implements LayoutManager{
-    public void addLayoutComponent( String name, Component comp ) {
-        // ignore
+public class StackTabListLayout implements LayoutManager {
+  public void addLayoutComponent(String name, Component comp) {
+    // ignore
+  }
+
+  public void removeLayoutComponent(Component comp) {
+    // ignore
+  }
+
+  public Dimension minimumLayoutSize(Container target) {
+    return preferredLayoutSize(target);
+  }
+
+  public Dimension preferredLayoutSize(Container target) {
+    int width;
+
+    if (target.getParent() == null) {
+      width = Integer.MAX_VALUE;
     }
-    
-    public void removeLayoutComponent( Component comp ) {
-        // ignore
+    else {
+      width = target.getParent().getWidth();
     }
-    
-    public Dimension minimumLayoutSize( Container target ){
-        return preferredLayoutSize( target );
-    }
-    
-    public Dimension preferredLayoutSize( Container target ){
-        int width;
-        
-        if( target.getParent() == null )
-            width = Integer.MAX_VALUE;
-        else
-            width = target.getParent().getWidth();
-        
-        int maxWidth = 0;
-        int currentWidth = 0;
-        int currentHeight = 0;
-        int left = 0;
-        int height = 0;
-        
-        for( int i = 0, n = target.getComponentCount(); i<n; i++ ){
-            Dimension preferred = target.getComponent(i).getPreferredSize();
-            
-            if( left == 0 || currentWidth + preferred.width <= width ){
-                currentWidth += preferred.width;
-                currentHeight = Math.max( currentHeight, preferred.height );
-                left++;
-            }
-            else{
-                height += currentHeight;
-                maxWidth = Math.max( maxWidth, currentWidth );
-                left = 0;
-                
-                currentWidth = preferred.width;    
-                currentHeight = preferred.height;
-                left++;
-            }
-        }
-        
-        
+
+    int maxWidth = 0;
+    int currentWidth = 0;
+    int currentHeight = 0;
+    int left = 0;
+    int height = 0;
+
+    for (int i = 0, n = target.getComponentCount(); i < n; i++) {
+      Dimension preferred = target.getComponent(i).getPreferredSize();
+
+      if (left == 0 || currentWidth + preferred.width <= width) {
+        currentWidth += preferred.width;
+        currentHeight = Math.max(currentHeight, preferred.height);
+        left++;
+      }
+      else {
         height += currentHeight;
-        maxWidth = Math.max( maxWidth, currentWidth );
-    
-        return new Dimension( maxWidth, height );
+        maxWidth = Math.max(maxWidth, currentWidth);
+        left = 0;
+
+        currentWidth = preferred.width;
+        currentHeight = preferred.height;
+        left++;
+      }
     }
-    
-    public void layoutContainer( Container parent ) {
-        int maxwidth = parent.getWidth();
-        
-        int x = 0;
-        int y = 0;
-        
-        int maxRowHeight = 0;
-        int rowCount = 0;
-        
-        for( int i = 0, n = parent.getComponentCount(); i<n; i++ ){
-            Component next = parent.getComponent( i );
-            Dimension size = next.getPreferredSize();
-            
-            if( x + size.width > maxwidth && rowCount > 0 ){
-                rowCount = 0;
-                y += maxRowHeight;
-                x = 0;
-                maxRowHeight = 0;
-            }
-            
-            next.setBounds( x, y, size.width, size.height );
-            x += size.width;
-            maxRowHeight = Math.max( maxRowHeight, size.height );
-            rowCount++;
-        }
+
+
+    height += currentHeight;
+    maxWidth = Math.max(maxWidth, currentWidth);
+
+    return new Dimension(maxWidth, height);
+  }
+
+  public void layoutContainer(Container parent) {
+    int maxwidth = parent.getWidth();
+
+    int x = 0;
+    int y = 0;
+
+    int maxRowHeight = 0;
+    int rowCount = 0;
+
+    for (int i = 0, n = parent.getComponentCount(); i < n; i++) {
+      Component next = parent.getComponent(i);
+      Dimension size = next.getPreferredSize();
+
+      if (x + size.width > maxwidth && rowCount > 0) {
+        rowCount = 0;
+        y += maxRowHeight;
+        x = 0;
+        maxRowHeight = 0;
+      }
+
+      next.setBounds(x, y, size.width, size.height);
+      x += size.width;
+      maxRowHeight = Math.max(maxRowHeight, size.height);
+      rowCount++;
     }
+  }
 }

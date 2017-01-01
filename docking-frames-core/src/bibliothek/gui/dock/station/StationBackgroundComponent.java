@@ -32,15 +32,19 @@ import bibliothek.util.Path;
 
 /**
  * A {@link BackgroundComponent} representing a {@link DockStation}.
+ *
  * @author Benjamin Sigg
  */
-public interface StationBackgroundComponent extends BackgroundComponent{
-	/** The kind of {@link UIValue} this is */
-	public static final Path KIND = BackgroundComponent.KIND.append( "station" );
-	
-	/**
-	 * Gets the {@link DockStation} which is using this background.
-	 * @return the station, not <code>null</code>
-	 */
-	public DockStation getStation();
+public interface StationBackgroundComponent extends BackgroundComponent {
+  /**
+   * The kind of {@link UIValue} this is
+   */
+  public static final Path KIND = BackgroundComponent.KIND.append("station");
+
+  /**
+   * Gets the {@link DockStation} which is using this background.
+   *
+   * @return the station, not <code>null</code>
+   */
+  public DockStation getStation();
 }

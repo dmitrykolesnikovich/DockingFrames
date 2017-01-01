@@ -25,27 +25,30 @@
  */
 package bibliothek.extension.gui.dock.preference;
 
-import javax.swing.Icon;
+import javax.swing.*;
 
 /**
  * A listener that is added to a {@link PreferenceOperation} and receives events
  * if the properties of the operation changes
+ *
  * @author Benjamin Sigg
  */
 public interface PreferenceOperationViewListener {
-	/**
-	 * Called when the icon of <code>operation</code> changed.
-	 * @param operation the operation whose icon changed
-	 * @param oldIcon the old icon, may be <code>null</code>
-	 * @param newIcon the new icon, may be <code>null</code>
-	 */
-	public void iconChanged( PreferenceOperationView operation, Icon oldIcon, Icon newIcon );
-	
-	/**
-	 * Called when the description of <code>operation</code> changed.
-	 * @param operation the operation whose text changed
-	 * @param oldDescription the old text
-	 * @param newDescription the new text
-	 */
-	public void descriptionChanged( PreferenceOperationView operation, String oldDescription, String newDescription );
+  /**
+   * Called when the icon of <code>operation</code> changed.
+   *
+   * @param operation the operation whose icon changed
+   * @param oldIcon   the old icon, may be <code>null</code>
+   * @param newIcon   the new icon, may be <code>null</code>
+   */
+  public void iconChanged(PreferenceOperationView operation, Icon oldIcon, Icon newIcon);
+
+  /**
+   * Called when the description of <code>operation</code> changed.
+   *
+   * @param operation      the operation whose text changed
+   * @param oldDescription the old text
+   * @param newDescription the new text
+   */
+  public void descriptionChanged(PreferenceOperationView operation, String oldDescription, String newDescription);
 }

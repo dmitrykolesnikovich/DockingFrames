@@ -29,16 +29,18 @@ import bibliothek.gui.Dockable;
 
 /**
  * This listener is invoked when the location of one or many {@link Dockable}s changed. The listener is
- * intended to keep track of a {@link Dockable} while its hierarchy remains the same. If the hierarchy 
+ * intended to keep track of a {@link Dockable} while its hierarchy remains the same. If the hierarchy
  * changes an event is sent too, but applications should be aware that all flags but the "visibility" will
  * be ignored.
+ *
  * @author Benjamin Sigg
  */
 public interface DockableStateListener {
-	/**
-	 * Called if the location changed. Many events can be merged into one event, it may
-	 * happen that two events cancel each other out, but are still reported here.
-	 * @param event detailed information about the change
-	 */
-	public void changed( DockableStateEvent event );
+  /**
+   * Called if the location changed. Many events can be merged into one event, it may
+   * happen that two events cancel each other out, but are still reported here.
+   *
+   * @param event detailed information about the change
+   */
+  public void changed(DockableStateEvent event);
 }

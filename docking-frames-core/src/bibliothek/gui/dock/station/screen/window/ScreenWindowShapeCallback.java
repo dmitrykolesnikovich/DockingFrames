@@ -25,26 +25,29 @@
  */
 package bibliothek.gui.dock.station.screen.window;
 
-import java.awt.Shape;
-
 import bibliothek.gui.dock.station.screen.ScreenDockWindow;
+
+import java.awt.*;
 
 /**
  * This class provides information for {@link ScreenWindowShape} and offers methods to modify
  * a {@link ScreenDockWindow}.
+ *
  * @author Benjamin Sigg
  */
 public interface ScreenWindowShapeCallback {
-	/**
-	 * Gets the window which is modified by this callback.
-	 * @return the window, not <code>null</code>
-	 */
-	public ScreenDockWindow getWindow();
-		
-	/**
-	 * Sets the shape of {@link #getWindow() the window}, a value of <code>null</code> indicates
-	 * that the entire window should be visible.
-	 * @param shape the visible part of the window, or <code>null</code>
-	 */
-	public void setShape( Shape shape );
+  /**
+   * Gets the window which is modified by this callback.
+   *
+   * @return the window, not <code>null</code>
+   */
+  public ScreenDockWindow getWindow();
+
+  /**
+   * Sets the shape of {@link #getWindow() the window}, a value of <code>null</code> indicates
+   * that the entire window should be visible.
+   *
+   * @param shape the visible part of the window, or <code>null</code>
+   */
+  public void setShape(Shape shape);
 }

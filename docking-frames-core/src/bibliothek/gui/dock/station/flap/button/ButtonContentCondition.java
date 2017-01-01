@@ -30,36 +30,39 @@ import bibliothek.gui.Dockable;
 
 /**
  * This interface describes a property that is used by a {@link ButtonContent}
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public interface ButtonContentCondition {
 
-	/**
-	 * Tells whether some property is <code>true</code> or <code>false</code> depending on the properties that
-	 * are actually available.
-	 * @param dockable the dockable for which the property will be used
-	 * @param themeSuggestion whether the current {@link DockTheme} would choose this property to be <code>true</code> or <code>false</code>
-	 * @return the value of the property
-	 */
-	public abstract boolean shouldShow( Dockable dockable, boolean themeSuggestion );
+  /**
+   * Tells whether some property is <code>true</code> or <code>false</code> depending on the properties that
+   * are actually available.
+   *
+   * @param dockable        the dockable for which the property will be used
+   * @param themeSuggestion whether the current {@link DockTheme} would choose this property to be <code>true</code> or <code>false</code>
+   * @return the value of the property
+   */
+  public abstract boolean shouldShow(Dockable dockable, boolean themeSuggestion);
 
-	/**
-	 * Informs this {@link ButtonContentCondition} that <code>dockable</code> has to be monitored
-	 * for changes. 
-	 * @param dockable the element to monitor
-	 * @param content the {@link ButtonContent} which is using this condition and whose method
-	 * {@link ButtonContent#handleChange(Dockable)} should be called if this condition changes
-	 * its value for <code>dockable</code>
-	 */
-	public abstract void install( Dockable dockable, ButtonContent content );
+  /**
+   * Informs this {@link ButtonContentCondition} that <code>dockable</code> has to be monitored
+   * for changes.
+   *
+   * @param dockable the element to monitor
+   * @param content  the {@link ButtonContent} which is using this condition and whose method
+   *                 {@link ButtonContent#handleChange(Dockable)} should be called if this condition changes
+   *                 its value for <code>dockable</code>
+   */
+  public abstract void install(Dockable dockable, ButtonContent content);
 
-	/**
-	 * Informs this {@link ButtonContentCondition} that <code>dockable</code> no longer has to
-	 * be monitored
-	 * @param dockable the element that no longer has to be monitored
-	 * @param content the {@link ButtonContent} which was using this condition
-	 */
-	public abstract void uninstall( Dockable dockable, ButtonContent content );
+  /**
+   * Informs this {@link ButtonContentCondition} that <code>dockable</code> no longer has to
+   * be monitored
+   *
+   * @param dockable the element that no longer has to be monitored
+   * @param content  the {@link ButtonContent} which was using this condition
+   */
+  public abstract void uninstall(Dockable dockable, ButtonContent content);
 
 }

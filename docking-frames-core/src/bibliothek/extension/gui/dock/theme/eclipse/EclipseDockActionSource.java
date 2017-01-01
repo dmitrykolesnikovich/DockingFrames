@@ -32,42 +32,49 @@ import bibliothek.gui.dock.action.DockActionSource;
 import bibliothek.gui.dock.action.FilteredDockActionSource;
 
 /**
- * A list of {@link DockAction DockActions} filtered by the 
+ * A list of {@link DockAction DockActions} filtered by the
  * {@link EclipseThemeConnector}, using {@link EclipseThemeConnector#isTabAction(Dockable, DockAction)}.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public class EclipseDockActionSource extends FilteredDockActionSource {
-	/** the theme for which this source is used */
-	private EclipseTheme theme;
-	/** the tab associated with the {@link Dockable} */
-	private EclipseTabStateInfo tab;
-	
-	/** whether this source is used to show actions on a tab */
-	private boolean showForTab;
-	
-	/**
-	 * Creates a new source
-	 * @param theme the theme for which this source is used
-	 * @param source the source which is filtered
-	 * @param tab the tab associated with the {@link Dockable}
-	 * @param showForTab whether this source is associated with the tab (or not)
-	 */
-	public EclipseDockActionSource( EclipseTheme theme, DockActionSource source, EclipseTabStateInfo tab, boolean showForTab ){
-		super( source );
-		this.theme = theme;
-		this.tab = tab;
-		this.showForTab = showForTab;
-	}
-	
-	@Override
-	protected boolean include( DockAction action ){
-		EclipseThemeConnector connector = theme.getThemeConnector( tab.getDockable().getController() );
-		if( showForTab ){
-			return connector.shouldShowOnTab( action, tab );
-		}
-		else{
-			return connector.shouldShowOnSide( action, tab );
-		}
-	}
+  /**
+   * the theme for which this source is used
+   */
+  private EclipseTheme theme;
+  /**
+   * the tab associated with the {@link Dockable}
+   */
+  private EclipseTabStateInfo tab;
+
+  /**
+   * whether this source is used to show actions on a tab
+   */
+  private boolean showForTab;
+
+  /**
+   * Creates a new source
+   *
+   * @param theme      the theme for which this source is used
+   * @param source     the source which is filtered
+   * @param tab        the tab associated with the {@link Dockable}
+   * @param showForTab whether this source is associated with the tab (or not)
+   */
+  public EclipseDockActionSource(EclipseTheme theme, DockActionSource source, EclipseTabStateInfo tab, boolean showForTab) {
+    super(source);
+    this.theme = theme;
+    this.tab = tab;
+    this.showForTab = showForTab;
+  }
+
+  @Override
+  protected boolean include(DockAction action) {
+    EclipseThemeConnector connector = theme.getThemeConnector(tab.getDockable().getController());
+    if (showForTab) {
+      return connector.shouldShowOnTab(action, tab);
+    }
+    else {
+      return connector.shouldShowOnSide(action, tab);
+    }
+  }
 }

@@ -32,31 +32,32 @@ import bibliothek.gui.dock.station.StationDropOperation;
 
 /**
  * This merger takes two {@link StackDockStation}s and merges them into one.
+ *
  * @author Benjamin Sigg
  */
-public class StackMerger implements Merger{
-	public boolean canMerge( StationDropOperation operation, DockStation parent, DockStation child ){
-		return parent instanceof StackDockStation && child instanceof StackDockStation; 
-	}
-	
-	public void merge( StationDropOperation operation, DockStation parent, DockStation child ){
-		merge( (StackDockStation)parent, (StackDockStation)child );
-	}
-	
-	private void merge( StackDockStation parent, StackDockStation child ){
-		StackDockStation.Insert insert = parent.getInsert();
-		int index = parent.getDockableCount();
-		if( insert != null ){
-			index = insert.getTab();
-			if( insert.isRight() ){
-				index++;
-			}
-		}
-		
-		for( int i = child.getDockableCount()-1; i >= 0; i-- ){
-			Dockable dockable = child.getDockable( i );
-			child.remove( i );
-			parent.add( dockable, index );
-		}
-	}
+public class StackMerger implements Merger {
+  public boolean canMerge(StationDropOperation operation, DockStation parent, DockStation child) {
+    return parent instanceof StackDockStation && child instanceof StackDockStation;
+  }
+
+  public void merge(StationDropOperation operation, DockStation parent, DockStation child) {
+    merge((StackDockStation)parent, (StackDockStation)child);
+  }
+
+  private void merge(StackDockStation parent, StackDockStation child) {
+    StackDockStation.Insert insert = parent.getInsert();
+    int index = parent.getDockableCount();
+    if (insert != null) {
+      index = insert.getTab();
+      if (insert.isRight()) {
+        index++;
+      }
+    }
+
+    for (int i = child.getDockableCount() - 1; i >= 0; i--) {
+      Dockable dockable = child.getDockable(i);
+      child.remove(i);
+      parent.add(dockable, index);
+    }
+  }
 }

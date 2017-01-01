@@ -31,58 +31,61 @@ import bibliothek.gui.dock.layout.DockableProperty;
 import bibliothek.gui.dock.station.screen.ScreenDockProperty;
 
 /**
- * A location representing an maximized externalized element. 
+ * A location representing an maximized externalized element.
+ *
  * @author Benjamin Sigg
  */
-public class CMaximalExternalizedLocation extends CExternalizedLocation{
-	/**
-	 * Creates a new location.
-	 * @param x the x-coordinate in pixel
-	 * @param y the y-coordinate in pixel
-	 * @param width the width in pixel
-	 * @param height the height in pixel
-	 */
-	public CMaximalExternalizedLocation( int x, int y, int width, int height ) {
-		super( x, y, width, height );
-	}
-	
-	/**
-	 * Creates a new location.
-	 * @param parent the parent location, can be <code>null</code>
-	 * @param x the x-coordinate in pixel
-	 * @param y the y-coordinate in pixel
-	 * @param width the width in pixel
-	 * @param height the height in pixel
-	 */
-	public CMaximalExternalizedLocation( CLocation parent, int x, int y, int width, int height ) {
-		super( parent, x, y, width, height );
-	}
+public class CMaximalExternalizedLocation extends CExternalizedLocation {
+  /**
+   * Creates a new location.
+   *
+   * @param x      the x-coordinate in pixel
+   * @param y      the y-coordinate in pixel
+   * @param width  the width in pixel
+   * @param height the height in pixel
+   */
+  public CMaximalExternalizedLocation(int x, int y, int width, int height) {
+    super(x, y, width, height);
+  }
 
-	@Override
-	public ExtendedMode findMode(){
-		CLocation parent = getParent();
-		if( parent != null ){
-			return parent.findMode();
-		}
-		
-		return ExtendedMode.MAXIMIZED;
-	}
-	
-	@Override
-	public DockableProperty findProperty( DockableProperty successor ){
-		ScreenDockProperty screen = new ScreenDockProperty( getX(), getY(), getWidth(), getHeight(), null, true );
-		screen.setSuccessor( successor );
-		
-		CLocation parent = getParent();
-		if( parent != null ){
-			return parent.findProperty( screen );
-		}
-		
-		return screen;
-	}
-	
-	@Override
-	public String toString() {
-	    return "[maximized " + getX() + " " + getY() + " " + getWidth() + " " + getHeight() + "]";
-	}
+  /**
+   * Creates a new location.
+   *
+   * @param parent the parent location, can be <code>null</code>
+   * @param x      the x-coordinate in pixel
+   * @param y      the y-coordinate in pixel
+   * @param width  the width in pixel
+   * @param height the height in pixel
+   */
+  public CMaximalExternalizedLocation(CLocation parent, int x, int y, int width, int height) {
+    super(parent, x, y, width, height);
+  }
+
+  @Override
+  public ExtendedMode findMode() {
+    CLocation parent = getParent();
+    if (parent != null) {
+      return parent.findMode();
+    }
+
+    return ExtendedMode.MAXIMIZED;
+  }
+
+  @Override
+  public DockableProperty findProperty(DockableProperty successor) {
+    ScreenDockProperty screen = new ScreenDockProperty(getX(), getY(), getWidth(), getHeight(), null, true);
+    screen.setSuccessor(successor);
+
+    CLocation parent = getParent();
+    if (parent != null) {
+      return parent.findProperty(screen);
+    }
+
+    return screen;
+  }
+
+  @Override
+  public String toString() {
+    return "[maximized " + getX() + " " + getY() + " " + getWidth() + " " + getHeight() + "]";
+  }
 }

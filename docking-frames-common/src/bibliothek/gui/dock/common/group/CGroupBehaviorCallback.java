@@ -33,40 +33,45 @@ import bibliothek.gui.dock.facile.mode.LocationModeManager;
 
 /**
  * A set of information and methods for the {@link CGroupBehavior}.
+ *
  * @author Benjamin Sigg
  */
 public interface CGroupBehaviorCallback {
-	/**
-	 * Gets the {@link LocationModeManager} which is handling this callback.
-	 * @return the manager, not <code>null</code>
-	 */
-	public LocationModeManager<? extends LocationMode> getManager();
-	
-	/**
-	 * Sets the {@link ExtendedMode} of <code>dockable</code> using all available
-	 * history information.<br>
-	 * <b>Note</b>: {@link LocationMode}s may decide that more than one {@link Dockable} must be moved
-	 * in order to accomplish the goal, any cached location information about {@link Dockable}s should be
-	 * considered invalid once this method has been executed.
-	 * @param dockable the element whose mode is going to change 
-	 * @param mode the new mode
-	 */
-	public void setMode( Dockable dockable, ExtendedMode mode );
-	
-	/**
-	 * Gets the current location of <code>dockable</code>.
-	 * @param dockable some item whose location is requested
-	 * @return the location, may be <code>null</code>
-	 */
-	public Location getLocation( Dockable dockable );
-	
-	/**
-	 * Sets the location of <code>dockable</code>.<br>
-	 * <b>Note</b>: {@link LocationMode}s may decide that more than one {@link Dockable} must be moved
-	 * in order to accomplish the goal, any cached location information about {@link Dockable}s should be
-	 * considered invalid once this method has been executed.
-	 * @param dockable the element whose location is going to be set
-	 * @param location the new location
-	 */
-	public void setLocation( Dockable dockable, Location location );
+  /**
+   * Gets the {@link LocationModeManager} which is handling this callback.
+   *
+   * @return the manager, not <code>null</code>
+   */
+  public LocationModeManager<? extends LocationMode> getManager();
+
+  /**
+   * Sets the {@link ExtendedMode} of <code>dockable</code> using all available
+   * history information.<br>
+   * <b>Note</b>: {@link LocationMode}s may decide that more than one {@link Dockable} must be moved
+   * in order to accomplish the goal, any cached location information about {@link Dockable}s should be
+   * considered invalid once this method has been executed.
+   *
+   * @param dockable the element whose mode is going to change
+   * @param mode     the new mode
+   */
+  public void setMode(Dockable dockable, ExtendedMode mode);
+
+  /**
+   * Gets the current location of <code>dockable</code>.
+   *
+   * @param dockable some item whose location is requested
+   * @return the location, may be <code>null</code>
+   */
+  public Location getLocation(Dockable dockable);
+
+  /**
+   * Sets the location of <code>dockable</code>.<br>
+   * <b>Note</b>: {@link LocationMode}s may decide that more than one {@link Dockable} must be moved
+   * in order to accomplish the goal, any cached location information about {@link Dockable}s should be
+   * considered invalid once this method has been executed.
+   *
+   * @param dockable the element whose location is going to be set
+   * @param location the new location
+   */
+  public void setLocation(Dockable dockable, Location location);
 }

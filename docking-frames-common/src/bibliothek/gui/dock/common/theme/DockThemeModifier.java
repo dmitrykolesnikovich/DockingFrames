@@ -31,15 +31,17 @@ import bibliothek.util.ClientOnly;
 /**
  * A {@link DockThemeModifier} modifies a {@link DockTheme}. This can either
  * mean replacing some values, or using another theme at all.
+ *
  * @author Benjamin Sigg
  */
 @ClientOnly
 public interface DockThemeModifier {
-    /**
-     * Modifies <code>theme</code> and returns either the modified theme or
-     * a new instance of of another {@link DockTheme}.
-     * @param theme the theme to modify, not <code>null</code>
-     * @return the modified them, <code>theme</code> or a new object
-     */
-    public DockTheme modify( DockTheme theme );
+  /**
+   * Modifies <code>theme</code> and returns either the modified theme or
+   * a new instance of of another {@link DockTheme}.
+   *
+   * @param theme the theme to modify, not <code>null</code>
+   * @return the modified them, <code>theme</code> or a new object
+   */
+  public DockTheme modify(DockTheme theme);
 }

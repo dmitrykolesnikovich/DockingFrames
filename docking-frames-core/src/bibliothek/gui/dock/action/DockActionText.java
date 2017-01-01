@@ -31,40 +31,48 @@ import bibliothek.util.Path;
 
 /**
  * Represents a text that is used by a {@link DockAction}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class DockActionText extends TextValue{
-	/** the kind of value this {@link UIValue} is */
-	public static final Path KIND_DOCK_ACTION = KIND_TEXT.append( "action" );
+public abstract class DockActionText extends TextValue {
+  /**
+   * the kind of value this {@link UIValue} is
+   */
+  public static final Path KIND_DOCK_ACTION = KIND_TEXT.append("action");
 
-	/** the action using this icon */
-	private DockAction action;
-	
-	/**
-	 * Creates a new {@link DockActionText}.
-	 * @param id the unique identifier of the text
-	 * @param action the action using the text
-	 */
-	public DockActionText( String id, DockAction action ){
-		this( id, action, KIND_DOCK_ACTION );
-	}
-	
-	/**
-	 * Creates a new {@link DockActionText}.
-	 * @param id the unique identifier of the text
-	 * @param action the action using the text
-	 * @param kind what kind of {@link UIValue} this is
-	 */
-	public DockActionText( String id, DockAction action, Path kind ){
-		super( id, kind );
-		this.action = action;
-	}
-	
-	/**
-	 * Gets the action which is using the icon.
-	 * @return the action
-	 */
-	public DockAction getAction(){
-		return action;
-	}
+  /**
+   * the action using this icon
+   */
+  private DockAction action;
+
+  /**
+   * Creates a new {@link DockActionText}.
+   *
+   * @param id     the unique identifier of the text
+   * @param action the action using the text
+   */
+  public DockActionText(String id, DockAction action) {
+    this(id, action, KIND_DOCK_ACTION);
+  }
+
+  /**
+   * Creates a new {@link DockActionText}.
+   *
+   * @param id     the unique identifier of the text
+   * @param action the action using the text
+   * @param kind   what kind of {@link UIValue} this is
+   */
+  public DockActionText(String id, DockAction action, Path kind) {
+    super(id, kind);
+    this.action = action;
+  }
+
+  /**
+   * Gets the action which is using the icon.
+   *
+   * @return the action
+   */
+  public DockAction getAction() {
+    return action;
+  }
 }

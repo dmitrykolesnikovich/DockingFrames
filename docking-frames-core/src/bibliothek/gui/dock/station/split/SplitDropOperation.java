@@ -35,73 +35,75 @@ import bibliothek.gui.dock.station.support.CombinerTarget;
 
 /**
  * Implementation of {@link StationDropOperation}.
+ *
  * @author Benjamin Sigg
  */
-public class SplitDropOperation implements StationDropOperation{
-	private SplitDockAccess access;
-	private PutInfo putInfo;
-	private StationDropItem item;
-	private boolean move;
-	
-	/**
-	 * Creates a new operation.
-	 * @param access access to the internal functions of a {@link SplitDockStation}
-	 * @param putInfo the desired location of the dropped {@link Dockable}.
-	 * @param item detailed information about the ongoing drag and drop operation
-	 * @param move whether this operation is a move operation or not 
-	 */
-	public SplitDropOperation( SplitDockAccess access, PutInfo putInfo, StationDropItem item, boolean move ){
-		this.access = access;
-		this.putInfo = putInfo;
-		this.item = item;
-		this.move = move;
-	}
-	
-	public boolean isMove(){
-		return move;
-	}
-	
-	public void draw(){
-		access.setDropInfo( putInfo );
-	}
+public class SplitDropOperation implements StationDropOperation {
+  private SplitDockAccess access;
+  private PutInfo putInfo;
+  private StationDropItem item;
+  private boolean move;
 
-	public void destroy( StationDropOperation next ){
-		if( access.getOwner().getDropInfo() == putInfo ){
-			access.setDropInfo( null );
-			if( next == null || !(next instanceof SplitDropOperation) || next.getTarget() != getTarget() ){
-				access.unsetDropInfo();
-			}
-		}
-	}
-	
-	public DockStation getTarget(){
-		return access.getOwner();
-	}
-	
-	public Dockable getItem(){
-		return putInfo.getDockable();
-	}
-	
-	public CombinerTarget getCombination(){
-		return putInfo.getCombinerTarget();
-	}
-	
-	public DisplayerCombinerTarget getDisplayerCombination(){
-		CombinerTarget target = getCombination();
-		if( target == null ){
-			return null;
-		}
-		return target.getDisplayerCombination();
-	}
-	
-	public void execute(){
-		access.unsetDropInfo();
-		if( isMove() ){
-			access.move( putInfo, item );
-		}
-		else{
-			access.drop( null, putInfo, item );
-		}
-	}
-	
+  /**
+   * Creates a new operation.
+   *
+   * @param access  access to the internal functions of a {@link SplitDockStation}
+   * @param putInfo the desired location of the dropped {@link Dockable}.
+   * @param item    detailed information about the ongoing drag and drop operation
+   * @param move    whether this operation is a move operation or not
+   */
+  public SplitDropOperation(SplitDockAccess access, PutInfo putInfo, StationDropItem item, boolean move) {
+    this.access = access;
+    this.putInfo = putInfo;
+    this.item = item;
+    this.move = move;
+  }
+
+  public boolean isMove() {
+    return move;
+  }
+
+  public void draw() {
+    access.setDropInfo(putInfo);
+  }
+
+  public void destroy(StationDropOperation next) {
+    if (access.getOwner().getDropInfo() == putInfo) {
+      access.setDropInfo(null);
+      if (next == null || !(next instanceof SplitDropOperation) || next.getTarget() != getTarget()) {
+        access.unsetDropInfo();
+      }
+    }
+  }
+
+  public DockStation getTarget() {
+    return access.getOwner();
+  }
+
+  public Dockable getItem() {
+    return putInfo.getDockable();
+  }
+
+  public CombinerTarget getCombination() {
+    return putInfo.getCombinerTarget();
+  }
+
+  public DisplayerCombinerTarget getDisplayerCombination() {
+    CombinerTarget target = getCombination();
+    if (target == null) {
+      return null;
+    }
+    return target.getDisplayerCombination();
+  }
+
+  public void execute() {
+    access.unsetDropInfo();
+    if (isMove()) {
+      access.move(putInfo, item);
+    }
+    else {
+      access.drop(null, putInfo, item);
+    }
+  }
+
 }

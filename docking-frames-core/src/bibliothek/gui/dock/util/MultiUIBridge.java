@@ -33,111 +33,121 @@ import java.util.Map;
 /**
  * A {@link MultiUIBridge} is a collection of {@link UIBridge}s. Each bridge
  * in the collection is responsible to handle only one resource.
- * @author Benjamin Sigg
+ *
  * @param <V> the kind of resources that get handled by this bridge
  * @param <U> the kind of values that get the resources of kind <code>V</code>
+ * @author Benjamin Sigg
  */
 public class MultiUIBridge<V, U extends UIValue<V>> implements UIBridge<V, U> {
-    /** the map of registered bridges */
-    private Map<String, UIBridge<V, U>> bridges =
-        new HashMap<String, UIBridge<V, U>>();
-    
-    /**
-     * a map of {@link UIValue}s which are provided with resources by 
-     * this bridge. 
-     */
-    private Map<String, List<U>> values = new HashMap<String, List<U>>();
-    
-    /** the manager that delivers default resources when necessary */
-    private UIProperties<V, U, ?> manager;
-    
-    /**
-     * Creates a new {@link MultiUIBridge}.
-     * @param manager the manager from whom this provider will get default
-     * colors when necessary
-     */
-    public MultiUIBridge( UIProperties<V, U, ?> manager ){
-        if( manager == null )
-            throw new IllegalArgumentException( "Manager must not be null" );
-        this.manager = manager;
+  /**
+   * the map of registered bridges
+   */
+  private Map<String, UIBridge<V, U>> bridges = new HashMap<String, UIBridge<V, U>>();
+
+  /**
+   * a map of {@link UIValue}s which are provided with resources by
+   * this bridge.
+   */
+  private Map<String, List<U>> values = new HashMap<String, List<U>>();
+
+  /**
+   * the manager that delivers default resources when necessary
+   */
+  private UIProperties<V, U, ?> manager;
+
+  /**
+   * Creates a new {@link MultiUIBridge}.
+   *
+   * @param manager the manager from whom this provider will get default
+   *                colors when necessary
+   */
+  public MultiUIBridge(UIProperties<V, U, ?> manager) {
+    if (manager == null) throw new IllegalArgumentException("Manager must not be null");
+    this.manager = manager;
+  }
+
+  /**
+   * Specifies a bridge that handles all calls regarding <code>id</code>.
+   *
+   * @param id     the key of the resource <code>bridge</code> should handle
+   * @param bridge the new bridge or <code>null</code>
+   */
+  public void put(String id, UIBridge<V, U> bridge) {
+    UIBridge<V, U> old;
+    if (bridge == null) {
+      old = bridges.remove(id);
     }
-    
-    /**
-     * Specifies a bridge that handles all calls regarding <code>id</code>.
-     * @param id the key of the resource <code>bridge</code> should handle
-     * @param bridge the new bridge or <code>null</code>
-     */
-    public void put( String id, UIBridge<V, U> bridge ){
-        UIBridge<V,U> old;
-        if( bridge == null )
-            old = bridges.remove( id );
-        else
-            old = bridges.put( id, bridge );
-        
-        if( old != null || bridge != null ){
-            List<U> list = values.get( id );
-            if( list != null ){
-                if( old != null ){
-                    for( U color : list )
-                        old.remove( id, color );
-                }
-                
-                V original = manager.get( id );
-                if( bridge != null ){
-                    for( U color : list ){
-                        bridge.add( id, color );
-                        bridge.set( id, original, color );
-                    }
-                }
-                else{
-                    for( U color : list )
-                        color.set( original );
-                }
-            }
-        }
-    }
-    
-    /**
-     * Searches the bridge that handles resources with the key <code>id</code>.
-     * @param id the key of the resources
-     * @return the responsible bridge or <code>null</code>
-     */
-    public UIBridge<V,U> getBridge( String id ){
-        return bridges.get( id );
-    }
-    
-    public void add( String id, U uiValue ) {
-        UIBridge<V, U> provider = bridges.get( id );
-        if( provider != null )
-            provider.add( id, uiValue );
-        
-        List<U> list = values.get( id );
-        if( list == null ){
-            list = new LinkedList<U>();
-            values.put( id, list );
-        }
-        list.add( uiValue );
+    else {
+      old = bridges.put(id, bridge);
     }
 
-    public void remove( String id, U uiValue ) {
-        UIBridge<V, U> provider = bridges.get( id );
-        if( provider != null )
-            provider.remove( id, uiValue );
-        
-        List<U> list = values.get( id );
-        if( list != null ){
-            list.remove( uiValue );
-            if( list.isEmpty() ){
-                values.remove( id );
-            }
+    if (old != null || bridge != null) {
+      List<U> list = values.get(id);
+      if (list != null) {
+        if (old != null) {
+          for (U color : list) {
+            old.remove(id, color);
+          }
         }
-    }
 
-    public void set( String id, V value, U uiValue ) {
-        UIBridge<V, U> bridge = bridges.get( id );
-        if( bridge != null )
-            bridge.set( id, value, uiValue );
-        else
-            uiValue.set( value );
+        V original = manager.get(id);
+        if (bridge != null) {
+          for (U color : list) {
+            bridge.add(id, color);
+            bridge.set(id, original, color);
+          }
+        }
+        else {
+          for (U color : list) {
+            color.set(original);
+          }
+        }
+      }
     }
+  }
+
+  /**
+   * Searches the bridge that handles resources with the key <code>id</code>.
+   *
+   * @param id the key of the resources
+   * @return the responsible bridge or <code>null</code>
+   */
+  public UIBridge<V, U> getBridge(String id) {
+    return bridges.get(id);
+  }
+
+  public void add(String id, U uiValue) {
+    UIBridge<V, U> provider = bridges.get(id);
+    if (provider != null) provider.add(id, uiValue);
+
+    List<U> list = values.get(id);
+    if (list == null) {
+      list = new LinkedList<U>();
+      values.put(id, list);
+    }
+    list.add(uiValue);
+  }
+
+  public void remove(String id, U uiValue) {
+    UIBridge<V, U> provider = bridges.get(id);
+    if (provider != null) provider.remove(id, uiValue);
+
+    List<U> list = values.get(id);
+    if (list != null) {
+      list.remove(uiValue);
+      if (list.isEmpty()) {
+        values.remove(id);
+      }
+    }
+  }
+
+  public void set(String id, V value, U uiValue) {
+    UIBridge<V, U> bridge = bridges.get(id);
+    if (bridge != null) {
+      bridge.set(id, value, uiValue);
+    }
+    else {
+      uiValue.set(value);
+    }
+  }
 }

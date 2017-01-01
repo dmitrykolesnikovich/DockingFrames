@@ -26,42 +26,46 @@
 
 package bibliothek.gui.dock.event;
 
-import java.awt.event.KeyEvent;
-
 import bibliothek.gui.dock.DockElement;
+
+import java.awt.event.KeyEvent;
 
 /**
  * A listener added to the {@link bibliothek.gui.dock.control.KeyboardController},
  * this listener receives a notification whenever a keyevent is dispatched
  * in a {@link bibliothek.gui.dock.DockElement} below the location of this
  * listener.
+ *
  * @author Benjamin Sigg
  */
 public interface KeyboardListener extends LocatedListener {
-	/**
-	 * Called when a key has been pressed.
-	 * @param element the source of the event
-	 * @param event the description of the event
-	 * @return <code>true</code> if this listener processed the event, and
-	 * the event has not to be forwarded any further.
-	 */
-	public boolean keyPressed( DockElement element, KeyEvent event );
-	
-	/**
-	 * Called when a key has been released.
-	 * @param element the source of the event
-	 * @param event the description of the event
-	 * @return <code>true</code> if this listener processed the event, and
-	 * the event has not to be forwarded any further.
-	 */
-	public boolean keyReleased( DockElement element, KeyEvent event );
-	
-	/**
-	 * Called when a key has been types.
-	 * @param element the source of the event
-	 * @param event the description of the event
-	 * @return <code>true</code> if this listener processed the event, and
-	 * the event has not to be forwarded any further.
-	 */
-	public boolean keyTyped( DockElement element, KeyEvent event );
+  /**
+   * Called when a key has been pressed.
+   *
+   * @param element the source of the event
+   * @param event   the description of the event
+   * @return <code>true</code> if this listener processed the event, and
+   * the event has not to be forwarded any further.
+   */
+  public boolean keyPressed(DockElement element, KeyEvent event);
+
+  /**
+   * Called when a key has been released.
+   *
+   * @param element the source of the event
+   * @param event   the description of the event
+   * @return <code>true</code> if this listener processed the event, and
+   * the event has not to be forwarded any further.
+   */
+  public boolean keyReleased(DockElement element, KeyEvent event);
+
+  /**
+   * Called when a key has been types.
+   *
+   * @param element the source of the event
+   * @param event   the description of the event
+   * @return <code>true</code> if this listener processed the event, and
+   * the event has not to be forwarded any further.
+   */
+  public boolean keyTyped(DockElement element, KeyEvent event);
 }

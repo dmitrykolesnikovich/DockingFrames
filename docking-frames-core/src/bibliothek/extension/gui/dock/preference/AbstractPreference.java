@@ -31,59 +31,62 @@ import java.util.List;
 /**
  * An abstract implementation of {@link Preference} that offers support
  * for {@link PreferenceListener}s.
- * 
- * @author Benjamin Sigg
  *
  * @param <V> the kind of value this preference uses
+ * @author Benjamin Sigg
  */
-public abstract class AbstractPreference<V> implements Preference<V>{
-    /** the list of known listeners */
-    private List<PreferenceListener<V>> listeners = new ArrayList<PreferenceListener<V>>();
-    
-    public void addPreferenceListener( PreferenceListener<V> listener ) {
-        if( listener == null )
-            throw new IllegalArgumentException( "listener must not be null" );
-        listeners.add( listener );
+public abstract class AbstractPreference<V> implements Preference<V> {
+  /**
+   * the list of known listeners
+   */
+  private List<PreferenceListener<V>> listeners = new ArrayList<PreferenceListener<V>>();
+
+  public void addPreferenceListener(PreferenceListener<V> listener) {
+    if (listener == null) throw new IllegalArgumentException("listener must not be null");
+    listeners.add(listener);
+  }
+
+  public void removePreferenceListener(PreferenceListener<V> listener) {
+    listeners.remove(listener);
+  }
+
+  /**
+   * Tells whether this preference currently has listeners.
+   *
+   * @return <code>true</code> if there are any listeners
+   */
+  protected boolean hasListeners() {
+    return listeners.size() > 0;
+  }
+
+  /**
+   * Gets all the listeners of this preference.
+   *
+   * @return the list of listeners
+   */
+  @SuppressWarnings("unchecked")
+  protected PreferenceListener<V>[] listeners() {
+    return listeners.toArray(new PreferenceListener[listeners.size()]);
+  }
+
+  /**
+   * Informs all listeners that the value of this preference has changed.
+   */
+  protected void fireChanged() {
+    for (PreferenceListener<V> listener : listeners()) {
+      listener.changed(this);
     }
-    
-    public void removePreferenceListener( PreferenceListener<V> listener ) {
-        listeners.remove( listener );
-    }
-    
-    /**
-     * Tells whether this preference currently has listeners.
-     * @return <code>true</code> if there are any listeners
-     */
-    protected boolean hasListeners(){
-    	return listeners.size() > 0;
-    }
-    
-    /**
-     * Gets all the listeners of this preference.
-     * @return the list of listeners
-     */
-    @SuppressWarnings("unchecked")
-    protected PreferenceListener<V>[] listeners(){
-        return listeners.toArray( new PreferenceListener[ listeners.size() ] );
-    }
-    
-    /**
-     * Informs all listeners that the value of this preference has changed.
-     */
-    protected void fireChanged(){
-        for( PreferenceListener<V> listener : listeners() )
-            listener.changed( this );
-    }
-    
-    public boolean isEnabled( PreferenceOperation operation ) {
-        return false;
-    }
-    
-    public PreferenceOperation[] getOperations() {
-        return null;
-    }
-    
-    public void doOperation( PreferenceOperation operation ) {
-        // do nothing
-    }
+  }
+
+  public boolean isEnabled(PreferenceOperation operation) {
+    return false;
+  }
+
+  public PreferenceOperation[] getOperations() {
+    return null;
+  }
+
+  public void doOperation(PreferenceOperation operation) {
+    // do nothing
+  }
 }

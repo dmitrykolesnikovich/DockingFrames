@@ -30,24 +30,26 @@ import bibliothek.gui.dock.common.group.CGroupBehavior;
 import bibliothek.gui.dock.common.mode.ExtendedMode;
 
 /**
- * {@link CGroupingBehavior} allows clients to define how {@link Dockable}s organize themselves 
+ * {@link CGroupingBehavior} allows clients to define how {@link Dockable}s organize themselves
  * in groups. A {@link CGroupingBehavior} is able to rewrite the location of {@link Dockable}s,
- * hence every time the user changes the {@link ExtendedMode} of a {@link Dockable} the 
+ * hence every time the user changes the {@link ExtendedMode} of a {@link Dockable} the
  * grouping behavior can put the {@link Dockable} at a new location.<br>
  * There is a distinction between {@link CGroupingBehavior} and {@link CGroupBehavior}: this class
  * is all about bringing groups together, while {@link CGroupBehavior} defines how groups of
  * {@link Dockable}s move around together.
+ *
  * @author Benjamin Sigg
  */
 public interface CGroupingBehavior {
-	/**
-	 * Gets the grouping algorithm that should be used for <code>dockable</code>. This method
-	 * may be called multiple times for the same <code>dockable</code>. It should either always
-	 * return the same {@link DockableGrouping}, or it should return an object that does not
-	 * contains any state.
-	 * @param dockable the element whose grouping information is requested
-	 * @return the grouping information, or <code>null</code> if there is no special behavior
-	 * defined for <code>dockable</code>
-	 */
-	public DockableGrouping getGrouping( Dockable dockable );
+  /**
+   * Gets the grouping algorithm that should be used for <code>dockable</code>. This method
+   * may be called multiple times for the same <code>dockable</code>. It should either always
+   * return the same {@link DockableGrouping}, or it should return an object that does not
+   * contains any state.
+   *
+   * @param dockable the element whose grouping information is requested
+   * @return the grouping information, or <code>null</code> if there is no special behavior
+   * defined for <code>dockable</code>
+   */
+  public DockableGrouping getGrouping(Dockable dockable);
 }

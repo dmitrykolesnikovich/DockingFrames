@@ -36,26 +36,27 @@ import bibliothek.gui.dock.util.font.FontManager;
 /**
  * A transmitter mapping {@link FontMap#FONT_KEY_MINIMIZED_BUTTON} and
  * {@link FontMap#FONT_KEY_MINIMIZED_BUTTON_FOCUSED} to
- * {@link DockFont#ID_FLAP_BUTTON_INACTIVE} and {@link DockFont#ID_FLAP_BUTTON_ACTIVE}. 
+ * {@link DockFont#ID_FLAP_BUTTON_INACTIVE} and {@link DockFont#ID_FLAP_BUTTON_ACTIVE}.
+ *
  * @author Benjamin Sigg
  */
-public class ButtonFontTransmitter extends ListFontTransmitter{
-    /**
-     * Creates a new transmitter
-     * @param manager the source of default values
-     */
-    public ButtonFontTransmitter( FontManager manager ){
-        super( manager, 
-                new String[]{ FontMap.FONT_KEY_MINIMIZED_BUTTON_FOCUSED, FontMap.FONT_KEY_MINIMIZED_BUTTON }, 
-                new String[]{ DockFont.ID_FLAP_BUTTON_ACTIVE, DockFont.ID_FLAP_BUTTON_INACTIVE });
+public class ButtonFontTransmitter extends ListFontTransmitter {
+  /**
+   * Creates a new transmitter
+   *
+   * @param manager the source of default values
+   */
+  public ButtonFontTransmitter(FontManager manager) {
+    super(manager, new String[]{FontMap.FONT_KEY_MINIMIZED_BUTTON_FOCUSED, FontMap.FONT_KEY_MINIMIZED_BUTTON},
+          new String[]{DockFont.ID_FLAP_BUTTON_ACTIVE, DockFont.ID_FLAP_BUTTON_INACTIVE});
+  }
+
+  @Override
+  protected CDockable getDockable(DockFont observer) {
+    Dockable dockable = ((TitleFont)observer).getTitle().getDockable();
+    if (dockable instanceof CommonDockable) {
+      return ((CommonDockable)dockable).getDockable();
     }
-    
-    @Override
-    protected CDockable getDockable( DockFont observer ) {
-        Dockable dockable = ((TitleFont)observer).getTitle().getDockable();
-        if( dockable instanceof CommonDockable ){
-            return ((CommonDockable)dockable).getDockable();
-        }
-        return null;
-    }
+    return null;
+  }
 }

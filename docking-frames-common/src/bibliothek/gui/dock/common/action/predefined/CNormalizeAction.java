@@ -34,28 +34,32 @@ import bibliothek.gui.dock.station.flap.button.ButtonContentAction;
 
 /**
  * An action that {@link ExtendedMode#NORMALIZED normalizes} each {@link CDockable} to which it is added.
+ *
  * @author Benjamin Sigg
  */
-public class CNormalizeAction extends CExtendedModeAction{
-    /**
-     * Creates a new action
-     * @param control the control for which this action will be used
-     */
-    public CNormalizeAction( CControl control ){
-        init( control, ExtendedMode.NORMALIZED, CLocationModeManager.ICON_MANAGER_KEY_NORMALIZE, "normalize.in", "normalize.in.tooltip", CControl.KEY_GOTO_NORMALIZED );
-    }
-    
-    @Override
-    protected Action createAction(){
-	    return new NormalizeAction();
-    }
-    
-    /**
-     * The internal representation of this {@link CNormalizeAction}.
-     * @author Benjamin Sigg
-     */
-    @ButtonContentAction
-    private class NormalizeAction extends Action{
-    	// nothing
-    }
+public class CNormalizeAction extends CExtendedModeAction {
+  /**
+   * Creates a new action
+   *
+   * @param control the control for which this action will be used
+   */
+  public CNormalizeAction(CControl control) {
+    init(control, ExtendedMode.NORMALIZED, CLocationModeManager.ICON_MANAGER_KEY_NORMALIZE, "normalize.in", "normalize.in.tooltip",
+         CControl.KEY_GOTO_NORMALIZED);
+  }
+
+  @Override
+  protected Action createAction() {
+    return new NormalizeAction();
+  }
+
+  /**
+   * The internal representation of this {@link CNormalizeAction}.
+   *
+   * @author Benjamin Sigg
+   */
+  @ButtonContentAction
+  private class NormalizeAction extends Action {
+    // nothing
+  }
 }

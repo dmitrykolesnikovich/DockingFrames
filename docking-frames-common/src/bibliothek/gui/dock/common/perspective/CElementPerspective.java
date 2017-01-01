@@ -28,28 +28,32 @@ package bibliothek.gui.dock.common.perspective;
 
 /**
  * Represents a dockable or a station in a {@link CPerspective}.
+ *
  * @author Benjamin Sigg
  */
 public interface CElementPerspective {
-	/**
-	 * Gets the internal representation for this element.<br> 
-	 * If {@link #asDockable()} returns a non-<code>null</code> value, then <code>intern().asDockable()</code> must not
-	 * return <code>null</code> either.<br>
-	 * If {@link #asStation()} returns a non-<code>null</code> value, then <code>intern().asStation()</code> must not
-	 * return <code>null</code> either.<br>
-	 * @return the internal representation
-	 */
-	public CommonElementPerspective intern();
-	
-	/**
-	 * Gets <code>this</code> as dockable, if this is a dockable.
-	 * @return <code>this</code> or <code>null</code>
-	 */
-	public CDockablePerspective asDockable();
-	
-	/**
-	 * Gets <code>this</code> as station, if this is a station.
-	 * @return <code>this</code> or <code>null</code>
-	 */
-	public CStationPerspective asStation();
+  /**
+   * Gets the internal representation for this element.<br>
+   * If {@link #asDockable()} returns a non-<code>null</code> value, then <code>intern().asDockable()</code> must not
+   * return <code>null</code> either.<br>
+   * If {@link #asStation()} returns a non-<code>null</code> value, then <code>intern().asStation()</code> must not
+   * return <code>null</code> either.<br>
+   *
+   * @return the internal representation
+   */
+  public CommonElementPerspective intern();
+
+  /**
+   * Gets <code>this</code> as dockable, if this is a dockable.
+   *
+   * @return <code>this</code> or <code>null</code>
+   */
+  public CDockablePerspective asDockable();
+
+  /**
+   * Gets <code>this</code> as station, if this is a station.
+   *
+   * @return <code>this</code> or <code>null</code>
+   */
+  public CStationPerspective asStation();
 }

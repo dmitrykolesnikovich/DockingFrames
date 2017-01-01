@@ -29,14 +29,16 @@ import bibliothek.gui.Dockable;
 
 /**
  * A set given to various methods which are changing the {@link Mode}
- * of {@link Dockable}s. These methods have to add their modified 
+ * of {@link Dockable}s. These methods have to add their modified
  * {@link Dockable}s to the set.
+ *
  * @author Benjamin Sigg
  */
-public interface AffectedSet{
-	/**
-	 * Stores <code>dockable</code> and all its children in the set.
-	 * @param dockable the new element, <code>null</code> will be ignored
-	 */
-	public void add( Dockable dockable );
+public interface AffectedSet {
+  /**
+   * Stores <code>dockable</code> and all its children in the set.
+   *
+   * @param dockable the new element, <code>null</code> will be ignored
+   */
+  public void add(Dockable dockable);
 }

@@ -30,60 +30,69 @@ import bibliothek.gui.DockController;
 /**
  * A choice is a set of entries from which the user can choose one. Note
  * that some components assume that a <code>Choice</code> is immutable.
+ *
  * @author Benjamin Sigg
  */
 public interface Choice {
-	/**
-	 * Adds a listener to this choice. The listener is informed about changes
-	 * of the entries of this choice.
-	 * @param listener the new listener, not <code>null</code>
-	 */
-	public void addChoiceListener( ChoiceListener listener );
-	
-	/**
-	 * Removes the listener <code>listener</code> from this choice.
-	 * @param listener the listener to remove
-	 */
-	public void removeChoiceListener( ChoiceListener listener );
-	
-	/**
-	 * Informs this {@link Choice} that it is now used for displaying items for
-	 * <code>controller</code>.
-	 * @param controller the controller in whose realm this {@link Choice} is currently
-	 * used, can be <code>null</code>
-	 */
-	public void setController( DockController controller );
-	
-	/**
-	 * Gets the number of available choices.
-	 * @return the number of choices
-	 */
-	public int size();
-	
-	/**
-	 * Gets a name for the <code>index</code>'th choice.
-	 * @param index the index of the choice
-	 * @return the name of that choice, should be human readable
-	 */
-	public String getText( int index );
-	
-	/**
-	 * Gets a unique identifier for the <code>index</code>'th choice.
-	 * @param index the index of the choice
-	 * @return the unique identifier
-	 */
-	public String getId( int index );
-	
-	/**
-	 * Gets the standard choice.
-	 * @return the identifier of the standard choice, <code>null</code> is only
-	 * allowed if {@link #isNullEntryAllowed()} returns <code>true</code>
-	 */
-	public String getDefaultChoice();
-	
-	/**
-	 * Tells whether the user choose nothing.
-	 * @return whether the user can choose the <code>null</code> identifier
-	 */
-	public boolean isNullEntryAllowed();
+  /**
+   * Adds a listener to this choice. The listener is informed about changes
+   * of the entries of this choice.
+   *
+   * @param listener the new listener, not <code>null</code>
+   */
+  public void addChoiceListener(ChoiceListener listener);
+
+  /**
+   * Removes the listener <code>listener</code> from this choice.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeChoiceListener(ChoiceListener listener);
+
+  /**
+   * Informs this {@link Choice} that it is now used for displaying items for
+   * <code>controller</code>.
+   *
+   * @param controller the controller in whose realm this {@link Choice} is currently
+   *                   used, can be <code>null</code>
+   */
+  public void setController(DockController controller);
+
+  /**
+   * Gets the number of available choices.
+   *
+   * @return the number of choices
+   */
+  public int size();
+
+  /**
+   * Gets a name for the <code>index</code>'th choice.
+   *
+   * @param index the index of the choice
+   * @return the name of that choice, should be human readable
+   */
+  public String getText(int index);
+
+  /**
+   * Gets a unique identifier for the <code>index</code>'th choice.
+   *
+   * @param index the index of the choice
+   * @return the unique identifier
+   */
+  public String getId(int index);
+
+  /**
+   * Gets the standard choice.
+   *
+   * @return the identifier of the standard choice, <code>null</code> is only
+   * allowed if {@link #isNullEntryAllowed()} returns <code>true</code>
+   */
+  public String getDefaultChoice();
+
+  /**
+   * Tells whether the user choose nothing.
+   *
+   * @return whether the user can choose the <code>null</code> identifier
+   */
+  public boolean isNullEntryAllowed();
 }

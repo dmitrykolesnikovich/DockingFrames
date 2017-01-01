@@ -29,12 +29,14 @@ import bibliothek.gui.Dockable;
 
 /**
  * An algorithm that affects the mode of {@link Dockable}s.
+ *
  * @author Benjamin Sigg
  */
 public interface AffectingRunnable {
-	/**
-	 * Executes the algorithm.
-	 * @param set the set of elements that are affected by the algorithm
-	 */
-	public void run( AffectedSet set );
+  /**
+   * Executes the algorithm.
+   *
+   * @param set the set of elements that are affected by the algorithm
+   */
+  public void run(AffectedSet set);
 }

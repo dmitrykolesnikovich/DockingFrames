@@ -32,134 +32,131 @@ import bibliothek.gui.dock.facile.station.split.*;
  * where two requests collide and a satisfying solution is not possible: the
  * two affected trees are checked for their "fully locked state" and if one
  * is fully locked but not the other, then the request of the fully locked one
- * is answered. Fully locked means that each child of some node has a request. 
- * @author Benjamin Sigg
+ * is answered. Fully locked means that each child of some node has a request.
  *
+ * @author Benjamin Sigg
  */
-public class FullLockConflictResolver extends DefaultConflictResolver<RequestDimension>{
-    @Override
-    public double resolveHorizontal( ResizeNode<RequestDimension> node,
-            ResizeRequest left, double deltaLeft, ResizeRequest right,
-            double deltaRight ) {
+public class FullLockConflictResolver extends DefaultConflictResolver<RequestDimension> {
+  @Override
+  public double resolveHorizontal(ResizeNode<RequestDimension> node,
+                                  ResizeRequest left,
+                                  double deltaLeft,
+                                  ResizeRequest right,
+                                  double deltaRight) {
 
-        if( left.getFractionWidth() == 1 && right.getFractionWidth() == 1 ){
-            boolean leftLocked = checkHorizontalFullLock( node.getLeft() );
-            boolean rightLocked = checkHorizontalFullLock( node.getRight() );
+    if (left.getFractionWidth() == 1 && right.getFractionWidth() == 1) {
+      boolean leftLocked = checkHorizontalFullLock(node.getLeft());
+      boolean rightLocked = checkHorizontalFullLock(node.getRight());
 
-            if( !leftLocked && rightLocked ){
-                return deltaRight;
-            }
-            else if( leftLocked && !rightLocked ){
-                return deltaLeft;
-            }
-        }
-
-        return super.resolveHorizontal( node, left, deltaLeft, right, deltaRight );
-    }
-    @Override
-    public double resolveVertical( ResizeNode<RequestDimension> node,
-            ResizeRequest top, double deltaTop, ResizeRequest bottom,
-            double deltaBottom ) {
-        
-        if( top.getFractionWidth() == 1 && bottom.getFractionWidth() == 1 ){
-            boolean topLocked = checkVerticalFullLock( node.getLeft() );
-            boolean bottomLocked = checkVerticalFullLock( node.getRight() );
-            
-            if( !topLocked && bottomLocked ){
-                return deltaBottom;
-            }
-            else if( topLocked && !bottomLocked ){
-                return deltaTop;
-            }
-        }
-
-        return super.resolveVertical( node, top, deltaTop, bottom, deltaBottom );
+      if (!leftLocked && rightLocked) {
+        return deltaRight;
+      }
+      else if (leftLocked && !rightLocked) {
+        return deltaLeft;
+      }
     }
 
-    /**
-     * Checks whether <code>element</code> is fully locked in its horizontal dimension.
-     * Fully locked means that: <br>
-     * <ul>
-     *  <li>if <code>element</code> is a node: its children have both requests
-     *  for a change in width and its children are also
-     *  {@link #checkHorizontalFullLock(ResizeElement) fully locked}</li>
-     *  <li>if <code>element</code> is a leaf: it has a resize request for the width</li>
-     *  <li>in any other case: <code>true</code></li>
-     * </ul> 
-     * @param element the element to check
-     * @return <code>true</code> if the horizontal dimension has very high
-     * priority for this node, <code>false</code> otherwise
-     */
-    protected boolean checkHorizontalFullLock( ResizeElement<RequestDimension> element ){
-        if( element instanceof ResizeNode<?> ){
-            ResizeNode<RequestDimension> node = (ResizeNode<RequestDimension>)element;
+    return super.resolveHorizontal(node, left, deltaLeft, right, deltaRight);
+  }
 
-            ResizeRequest leftRequest = node.getLeft().getRequest();
-            ResizeRequest rightRequest = node.getRight().getRequest();
+  @Override
+  public double resolveVertical(ResizeNode<RequestDimension> node,
+                                ResizeRequest top,
+                                double deltaTop,
+                                ResizeRequest bottom,
+                                double deltaBottom) {
 
-            if( leftRequest == null || leftRequest.getFractionWidth() == -1 )
-                return false;
+    if (top.getFractionWidth() == 1 && bottom.getFractionWidth() == 1) {
+      boolean topLocked = checkVerticalFullLock(node.getLeft());
+      boolean bottomLocked = checkVerticalFullLock(node.getRight());
 
-            if( rightRequest == null || rightRequest.getFractionWidth() == -1 )
-                return false;
-
-            if( !checkHorizontalFullLock( node.getLeft()))
-                return false;
-
-            if( !checkHorizontalFullLock( node.getRight()))
-                return false;
-        }
-        else if( element instanceof ResizeLeaf<?> ){
-            ResizeLeaf<RequestDimension> leaf = (ResizeLeaf<RequestDimension>)element;
-            ResizeRequest request = leaf.getRequest();
-            if( request == null || request.getFractionWidth() == -1 )
-                return false;
-        }
-
-        return true;
+      if (!topLocked && bottomLocked) {
+        return deltaBottom;
+      }
+      else if (topLocked && !bottomLocked) {
+        return deltaTop;
+      }
     }
-    
 
-    /**
-     * Checks whether <code>element</code> is fully locked in its vertical dimension.
-     * Fully locked means that: <br>
-     * <ul>
-     *  <li>if <code>element</code> is a node: its children have both requests
-     *  for a change in height and its children are also
-     *  {@link #checkHorizontalFullLock(ResizeElement) fully locked}</li>
-     *  <li>if <code>element</code> is a leaf: it has a resize request for the height</li>
-     *  <li>in any other case: <code>true</code></li>
-     * </ul> 
-     * @param element the element to check
-     * @return <code>true</code> if the vertical dimension has very high
-     * priority for this node, <code>false</code> otherwise
-     */
-    protected boolean checkVerticalFullLock( ResizeElement<RequestDimension> element ){
-        if( element instanceof ResizeNode<?> ){
-            ResizeNode<RequestDimension> node = (ResizeNode<RequestDimension>)element;
+    return super.resolveVertical(node, top, deltaTop, bottom, deltaBottom);
+  }
 
-            ResizeRequest leftRequest = node.getLeft().getRequest();
-            ResizeRequest rightRequest = node.getRight().getRequest();
+  /**
+   * Checks whether <code>element</code> is fully locked in its horizontal dimension.
+   * Fully locked means that: <br>
+   * <ul>
+   * <li>if <code>element</code> is a node: its children have both requests
+   * for a change in width and its children are also
+   * {@link #checkHorizontalFullLock(ResizeElement) fully locked}</li>
+   * <li>if <code>element</code> is a leaf: it has a resize request for the width</li>
+   * <li>in any other case: <code>true</code></li>
+   * </ul>
+   *
+   * @param element the element to check
+   * @return <code>true</code> if the horizontal dimension has very high
+   * priority for this node, <code>false</code> otherwise
+   */
+  protected boolean checkHorizontalFullLock(ResizeElement<RequestDimension> element) {
+    if (element instanceof ResizeNode<?>) {
+      ResizeNode<RequestDimension> node = (ResizeNode<RequestDimension>)element;
 
-            if( leftRequest == null || leftRequest.getFractionHeight() == -1 )
-                return false;
+      ResizeRequest leftRequest = node.getLeft().getRequest();
+      ResizeRequest rightRequest = node.getRight().getRequest();
 
-            if( rightRequest == null || rightRequest.getFractionHeight() == -1 )
-                return false;
+      if (leftRequest == null || leftRequest.getFractionWidth() == -1) return false;
 
-            if( !checkVerticalFullLock( node.getLeft()))
-                return false;
+      if (rightRequest == null || rightRequest.getFractionWidth() == -1) return false;
 
-            if( !checkVerticalFullLock( node.getRight()))
-                return false;
-        }
-        else if( element instanceof ResizeLeaf<?> ){
-            ResizeLeaf<RequestDimension> leaf = (ResizeLeaf<RequestDimension>)element;
-            ResizeRequest request = leaf.getRequest();
-            if( request == null || request.getFractionHeight() == -1 )
-                return false;
-        }
+      if (!checkHorizontalFullLock(node.getLeft())) return false;
 
-        return true;
+      if (!checkHorizontalFullLock(node.getRight())) return false;
     }
+    else if (element instanceof ResizeLeaf<?>) {
+      ResizeLeaf<RequestDimension> leaf = (ResizeLeaf<RequestDimension>)element;
+      ResizeRequest request = leaf.getRequest();
+      if (request == null || request.getFractionWidth() == -1) return false;
+    }
+
+    return true;
+  }
+
+
+  /**
+   * Checks whether <code>element</code> is fully locked in its vertical dimension.
+   * Fully locked means that: <br>
+   * <ul>
+   * <li>if <code>element</code> is a node: its children have both requests
+   * for a change in height and its children are also
+   * {@link #checkHorizontalFullLock(ResizeElement) fully locked}</li>
+   * <li>if <code>element</code> is a leaf: it has a resize request for the height</li>
+   * <li>in any other case: <code>true</code></li>
+   * </ul>
+   *
+   * @param element the element to check
+   * @return <code>true</code> if the vertical dimension has very high
+   * priority for this node, <code>false</code> otherwise
+   */
+  protected boolean checkVerticalFullLock(ResizeElement<RequestDimension> element) {
+    if (element instanceof ResizeNode<?>) {
+      ResizeNode<RequestDimension> node = (ResizeNode<RequestDimension>)element;
+
+      ResizeRequest leftRequest = node.getLeft().getRequest();
+      ResizeRequest rightRequest = node.getRight().getRequest();
+
+      if (leftRequest == null || leftRequest.getFractionHeight() == -1) return false;
+
+      if (rightRequest == null || rightRequest.getFractionHeight() == -1) return false;
+
+      if (!checkVerticalFullLock(node.getLeft())) return false;
+
+      if (!checkVerticalFullLock(node.getRight())) return false;
+    }
+    else if (element instanceof ResizeLeaf<?>) {
+      ResizeLeaf<RequestDimension> leaf = (ResizeLeaf<RequestDimension>)element;
+      ResizeRequest request = leaf.getRequest();
+      if (request == null || request.getFractionHeight() == -1) return false;
+    }
+
+    return true;
+  }
 }

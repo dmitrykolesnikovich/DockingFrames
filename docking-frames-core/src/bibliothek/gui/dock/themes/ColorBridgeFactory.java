@@ -30,13 +30,15 @@ import bibliothek.gui.dock.util.color.ColorManager;
 
 /**
  * A factory that creates new {@link ColorBridge}s.
+ *
  * @author Benjamin Sigg
  */
 public interface ColorBridgeFactory {
-    /**
-     * Creates a new bridge for <code>manager</code>.
-     * @param manager the manager which will use the bridge
-     * @return the new bridge
-     */
-    public ColorBridge create( ColorManager manager );
+  /**
+   * Creates a new bridge for <code>manager</code>.
+   *
+   * @param manager the manager which will use the bridge
+   * @return the new bridge
+   */
+  public ColorBridge create(ColorManager manager);
 }

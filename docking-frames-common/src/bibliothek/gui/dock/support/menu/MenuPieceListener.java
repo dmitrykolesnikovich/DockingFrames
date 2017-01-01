@@ -25,27 +25,30 @@
  */
 package bibliothek.gui.dock.support.menu;
 
-import java.awt.Component;
+import java.awt.*;
 
 /**
  * This listener is added to a {@link MenuPiece} and gets informed when the content of the
  * piece changes.
+ *
  * @author Benjamin Sigg
  */
 public interface MenuPieceListener {
-	/**
-     * Called if some items have been added to <code>piece</code>.
-     * @param piece a {@link MenuPiece} whose content changed
-     * @param index the index of the item, measured relatively to all items of <code>owner</code>
-     * @param items the new items
-     */
-    public abstract void insert( MenuPiece piece, int index, Component... items );
-    
-    /**
-     * Called if some items have been removed from <code>piece</code>
-     * @param piece the {@link MenuPiece} whose content changed
-     * @param index the index of the item, measured relatively to all items of <code>owner</code>
-     * @param length the number of items to remove
-     */
-    public abstract void remove( MenuPiece piece, int index, int length );
+  /**
+   * Called if some items have been added to <code>piece</code>.
+   *
+   * @param piece a {@link MenuPiece} whose content changed
+   * @param index the index of the item, measured relatively to all items of <code>owner</code>
+   * @param items the new items
+   */
+  public abstract void insert(MenuPiece piece, int index, Component... items);
+
+  /**
+   * Called if some items have been removed from <code>piece</code>
+   *
+   * @param piece  the {@link MenuPiece} whose content changed
+   * @param index  the index of the item, measured relatively to all items of <code>owner</code>
+   * @param length the number of items to remove
+   */
+  public abstract void remove(MenuPiece piece, int index, int length);
 }

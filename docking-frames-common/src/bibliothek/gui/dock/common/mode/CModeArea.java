@@ -33,33 +33,36 @@ import bibliothek.gui.dock.facile.mode.ModeArea;
 
 /**
  * Describes a {@link ModeArea} that can work with {@link CLocation}s.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
-public interface CModeArea extends ModeArea{
-	/**
-	 * Assuming <code>dockable</code> is a child of this area, returns
-	 * the location of <code>dockable</code>.
-	 * @param dockable some child
-	 * @return the location, <code>null</code> if not found
-	 */
-	public CLocation getCLocation( Dockable dockable );
-	
-	/**
-	 * Assuming <code>dockable</code> would be at location <code>location</code>
-	 * if it would be a child of this station, returns the {@link CLocation} that
-	 * matches <code>location</code>.
-	 * @param dockable some element which may or may not be a child of this station
-	 * @param location the location <code>dockable</code> would have if it would
-	 * be a child of this station
-	 * @return the location, <code>null</code> if not found
-	 */
-	public CLocation getCLocation( Dockable dockable, Location location );
-	
-	/**
-	 * Tells whether children of this area have to respect the settings for
-	 * {@link CWorkingArea}s.
-	 * @return whether the settings are to be respected
-	 */
-	public boolean respectWorkingAreas();
+public interface CModeArea extends ModeArea {
+  /**
+   * Assuming <code>dockable</code> is a child of this area, returns
+   * the location of <code>dockable</code>.
+   *
+   * @param dockable some child
+   * @return the location, <code>null</code> if not found
+   */
+  public CLocation getCLocation(Dockable dockable);
+
+  /**
+   * Assuming <code>dockable</code> would be at location <code>location</code>
+   * if it would be a child of this station, returns the {@link CLocation} that
+   * matches <code>location</code>.
+   *
+   * @param dockable some element which may or may not be a child of this station
+   * @param location the location <code>dockable</code> would have if it would
+   *                 be a child of this station
+   * @return the location, <code>null</code> if not found
+   */
+  public CLocation getCLocation(Dockable dockable, Location location);
+
+  /**
+   * Tells whether children of this area have to respect the settings for
+   * {@link CWorkingArea}s.
+   *
+   * @return whether the settings are to be respected
+   */
+  public boolean respectWorkingAreas();
 }

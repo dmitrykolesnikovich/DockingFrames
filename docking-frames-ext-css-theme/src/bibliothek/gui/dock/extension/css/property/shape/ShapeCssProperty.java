@@ -32,16 +32,17 @@ import bibliothek.gui.dock.extension.css.property.AbstractContainerCssProperty;
 
 /**
  * Allows access to a {@link CssShape}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class ShapeCssProperty extends AbstractContainerCssProperty<CssShape>{
-	@Override
-	public CssType<CssShape> getType( CssScheme scheme ){
-		return scheme.getConverter( CssShape.class );
-	}
-	
-	@Override
-	public void setScheme( CssScheme scheme, CssPropertyKey key ){
-		// ignore
-	}
+public abstract class ShapeCssProperty extends AbstractContainerCssProperty<CssShape> {
+  @Override
+  public CssType<CssShape> getType(CssScheme scheme) {
+    return scheme.getConverter(CssShape.class);
+  }
+
+  @Override
+  public void setScheme(CssScheme scheme, CssPropertyKey key) {
+    // ignore
+  }
 }

@@ -31,15 +31,16 @@ import bibliothek.gui.dock.common.intern.CommonDockable;
 
 /**
  * Default implementation of {@link CGroupingBehavior}, just returns {@link CDockable#getGrouping()}.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultCGroupingBehavior implements CGroupingBehavior{
-	public DockableGrouping getGrouping( Dockable dockable ) {
-		if( dockable instanceof CommonDockable ){
-			return ((CommonDockable)dockable).getDockable().getGrouping();
-		}
-		else{
-			return null;
-		}
-	}
+public class DefaultCGroupingBehavior implements CGroupingBehavior {
+  public DockableGrouping getGrouping(Dockable dockable) {
+    if (dockable instanceof CommonDockable) {
+      return ((CommonDockable)dockable).getDockable().getGrouping();
+    }
+    else {
+      return null;
+    }
+  }
 }

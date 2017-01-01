@@ -34,20 +34,21 @@ import bibliothek.gui.dock.title.TitleMovingImage;
 
 /**
  * A factory that creates images using the {@link ReducedBubbleTitleFactory}.
+ *
  * @author Benjamin Sigg
  */
 public class BubbleMovingImageFactory implements DockableMovingImageFactory {
-    private ReducedBubbleTitleFactory reduced;
-    
-    public BubbleMovingImageFactory(){
-        reduced = new ReducedBubbleTitleFactory();
-    }
-    
-    public MovingImage create( DockController controller, DockTitle snatched ) {
-        return new TitleMovingImage( snatched.getDockable(), reduced.createTitle( snatched.getDockable() ));
-    }
+  private ReducedBubbleTitleFactory reduced;
 
-    public MovingImage create( DockController controller, Dockable dockable ) {
-        return new TitleMovingImage( dockable, reduced.createTitle( dockable ));
-    }
+  public BubbleMovingImageFactory() {
+    reduced = new ReducedBubbleTitleFactory();
+  }
+
+  public MovingImage create(DockController controller, DockTitle snatched) {
+    return new TitleMovingImage(snatched.getDockable(), reduced.createTitle(snatched.getDockable()));
+  }
+
+  public MovingImage create(DockController controller, Dockable dockable) {
+    return new TitleMovingImage(dockable, reduced.createTitle(dockable));
+  }
 }

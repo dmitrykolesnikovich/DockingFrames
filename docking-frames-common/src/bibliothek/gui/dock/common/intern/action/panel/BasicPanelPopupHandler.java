@@ -35,46 +35,50 @@ import bibliothek.gui.dock.themes.basic.action.BasicHandler;
 
 /**
  * A handler for a {@link CPanelPopup} which is shown in a title as button.
+ *
  * @author Benjamin Sigg
  */
-public class BasicPanelPopupHandler extends BasicHandler<CPanelPopup.PanelPopup>{
-	
-	/** a listener to the model of this handler */
-	private BasicButtonModelListener listener = new BasicButtonModelAdapter(){
-		@Override
-		public void mousePressed( BasicButtonModel model, boolean mousePressed ){
-			if( mousePressed ){
-				getAction().onMousePressed( getDockable(), getItem(), getModel().getOrientation() );
-			}
-		}
-	};
-	
-	/**
-	 * Creates a new handler.
-	 * @param action the action for which this handler is used
-	 * @param dockable the element for which the action is used
-	 */
-	public BasicPanelPopupHandler( PanelPopup action, Dockable dockable ){
-		super( action, dockable );
-	}
-	
-	@Override
-	public void triggered(){
-		if( getModel().isMousePressed() )
-			getAction().onMouseReleased( getDockable(), getItem(), getModel().getOrientation() );
-		else
-			getAction().onTrigger( getDockable(), getItem(), getModel().getOrientation() );
-	}
-	
-	@Override
-	public void setModel( BasicButtonModel model ){
-		BasicButtonModel old = getModel();
-		if( old != null )
-			old.removeListener( listener );
-		
-		super.setModel( model );
-		
-		if( model != null )
-			model.addListener( listener );
-	}
+public class BasicPanelPopupHandler extends BasicHandler<CPanelPopup.PanelPopup> {
+
+  /**
+   * a listener to the model of this handler
+   */
+  private BasicButtonModelListener listener = new BasicButtonModelAdapter() {
+    @Override
+    public void mousePressed(BasicButtonModel model, boolean mousePressed) {
+      if (mousePressed) {
+        getAction().onMousePressed(getDockable(), getItem(), getModel().getOrientation());
+      }
+    }
+  };
+
+  /**
+   * Creates a new handler.
+   *
+   * @param action   the action for which this handler is used
+   * @param dockable the element for which the action is used
+   */
+  public BasicPanelPopupHandler(PanelPopup action, Dockable dockable) {
+    super(action, dockable);
+  }
+
+  @Override
+  public void triggered() {
+    if (getModel().isMousePressed()) {
+      getAction().onMouseReleased(getDockable(), getItem(), getModel().getOrientation());
+    }
+    else {
+      getAction().onTrigger(getDockable(), getItem(), getModel().getOrientation());
+    }
+  }
+
+  @Override
+  public void setModel(BasicButtonModel model) {
+    BasicButtonModel old = getModel();
+    if (old != null) old.removeListener(listener);
+
+    super.setModel(model);
+
+    if (model != null) model.addListener(listener);
+  }
 }

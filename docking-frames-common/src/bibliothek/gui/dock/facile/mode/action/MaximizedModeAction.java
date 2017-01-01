@@ -34,15 +34,17 @@ import bibliothek.gui.dock.support.mode.Mode;
 /**
  * An action used to change the {@link Mode} of a {@link Dockable} to
  * the {@link MaximizedMode}.
+ *
  * @author Benjamin Sigg
  */
-public class MaximizedModeAction extends LocationModeAction{
-	/**
-	 * Creates a new action.
-	 * @param controller the controller in whose realm this action is used
-	 * @param mode the mode which is applied
-	 */
-	public MaximizedModeAction( DockController controller, MaximizedMode<?> mode ){
-		super( controller, mode, MaximizedMode.ICON_IDENTIFIER, "maximize.in", "maximize.in.tooltip", CControl.KEY_GOTO_MAXIMIZED );
-	}
+public class MaximizedModeAction extends LocationModeAction {
+  /**
+   * Creates a new action.
+   *
+   * @param controller the controller in whose realm this action is used
+   * @param mode       the mode which is applied
+   */
+  public MaximizedModeAction(DockController controller, MaximizedMode<?> mode) {
+    super(controller, mode, MaximizedMode.ICON_IDENTIFIER, "maximize.in", "maximize.in.tooltip", CControl.KEY_GOTO_MAXIMIZED);
+  }
 }

@@ -25,70 +25,75 @@
  */
 package bibliothek.gui.dock.control.relocator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import bibliothek.gui.DockStation;
 import bibliothek.gui.dock.station.StationDropOperation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A set of {@link Merger}s.
+ *
  * @author Benjamin Sigg
  */
-public class MultiMerger implements Merger{
-	private List<Merger> mergers = new ArrayList<Merger>();
-	
-	/**
-	 * Adds a new algorithm to this merger.
-	 * @param merger the new algorithm, not <code>null</code>
-	 */
-	public void add( Merger merger ){
-		if( merger == null ){
-			throw new IllegalArgumentException( "merger must not be null" );
-		}
-		mergers.add( merger );
-	}
-	
-	/**
-	 * Removes <code>merger</code> from this {@link MultiMerger}.
-	 * @param merger the item to remove
-	 */
-	public void remove( Merger merger ){
-		mergers.remove( merger );
-	}
-	
-	/**
-	 * Gets the total number of mergers in this set of mergers.
-	 * @return the size
-	 */
-	public int size(){
-		return mergers.size();
-	}
-	
-	/**
-	 * Gets the <code>index</code>'th merger in this list of mergers.
-	 * @param index the location
-	 * @return the merger, not <code>null</code>
-	 */
-	public Merger get( int index ){
-		return mergers.get( index );
-	}
-	
-	public boolean canMerge( StationDropOperation operation, DockStation parent, DockStation child ){
-		for( Merger merger : mergers ){
-			if( merger.canMerge( operation, parent, child )){
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public void merge( StationDropOperation operation, DockStation parent, DockStation child ){
-		for( Merger merger : mergers ){
-			if( merger.canMerge( operation, parent, child )){
-				merger.merge( operation, parent, child );
-				return;
-			}
-		}
-	}
+public class MultiMerger implements Merger {
+  private List<Merger> mergers = new ArrayList<Merger>();
+
+  /**
+   * Adds a new algorithm to this merger.
+   *
+   * @param merger the new algorithm, not <code>null</code>
+   */
+  public void add(Merger merger) {
+    if (merger == null) {
+      throw new IllegalArgumentException("merger must not be null");
+    }
+    mergers.add(merger);
+  }
+
+  /**
+   * Removes <code>merger</code> from this {@link MultiMerger}.
+   *
+   * @param merger the item to remove
+   */
+  public void remove(Merger merger) {
+    mergers.remove(merger);
+  }
+
+  /**
+   * Gets the total number of mergers in this set of mergers.
+   *
+   * @return the size
+   */
+  public int size() {
+    return mergers.size();
+  }
+
+  /**
+   * Gets the <code>index</code>'th merger in this list of mergers.
+   *
+   * @param index the location
+   * @return the merger, not <code>null</code>
+   */
+  public Merger get(int index) {
+    return mergers.get(index);
+  }
+
+  public boolean canMerge(StationDropOperation operation, DockStation parent, DockStation child) {
+    for (Merger merger : mergers) {
+      if (merger.canMerge(operation, parent, child)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public void merge(StationDropOperation operation, DockStation parent, DockStation child) {
+    for (Merger merger : mergers) {
+      if (merger.canMerge(operation, parent, child)) {
+        merger.merge(operation, parent, child);
+        return;
+      }
+    }
+  }
 }

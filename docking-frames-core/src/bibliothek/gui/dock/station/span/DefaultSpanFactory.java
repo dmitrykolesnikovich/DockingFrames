@@ -31,47 +31,49 @@ import java.util.Map;
 /**
  * The {@link DefaultSpanFactory} creates a most simple {@link Span} which does not
  * use any kind of animation.
+ *
  * @author Benjamin Sigg
  */
 public class DefaultSpanFactory implements SpanFactory {
-	public Span create( SpanCallback callback ){
-		return new DefaultSpan( callback );
-	}
+  public Span create(SpanCallback callback) {
+    return new DefaultSpan(callback);
+  }
 
-	/**
-	 * This most simple {@link Span} does not use any kind of animation
-	 * @author Benjamin Sigg
-	 */
-	private static class DefaultSpan implements Span{
-		private SpanCallback callback;
-		private Map<SpanMode, Integer> sizes = new HashMap<SpanMode, Integer>( 2 );
-		private int size = 0;
-		
-		public DefaultSpan( SpanCallback callback ){
-			this.callback = callback;
-		}
-		
-		public void mutate( SpanMode mode ){
-			set( mode );
-		}
+  /**
+   * This most simple {@link Span} does not use any kind of animation
+   *
+   * @author Benjamin Sigg
+   */
+  private static class DefaultSpan implements Span {
+    private SpanCallback callback;
+    private Map<SpanMode, Integer> sizes = new HashMap<SpanMode, Integer>(2);
+    private int size = 0;
 
-		public void set( SpanMode mode ){
-			Integer next = sizes.get( mode );
-			if( next == null ){
-				this.size = mode.getSize();
-			}
-			else{
-				this.size = next.intValue();
-			}
-			callback.resized();
-		}
+    public DefaultSpan(SpanCallback callback) {
+      this.callback = callback;
+    }
 
-		public void configureSize( SpanMode mode, int size ){
-			sizes.put( mode, size );
-		}
+    public void mutate(SpanMode mode) {
+      set(mode);
+    }
 
-		public int getSize(){
-			return size;
-		}
-	}
+    public void set(SpanMode mode) {
+      Integer next = sizes.get(mode);
+      if (next == null) {
+        this.size = mode.getSize();
+      }
+      else {
+        this.size = next.intValue();
+      }
+      callback.resized();
+    }
+
+    public void configureSize(SpanMode mode, int size) {
+      sizes.put(mode, size);
+    }
+
+    public int getSize() {
+      return size;
+    }
+  }
 }

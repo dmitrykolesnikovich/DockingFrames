@@ -33,26 +33,29 @@ package bibliothek.gui.dock.station.toolbar.group;
 /**
  * This observer can be added to a {@link ToolbarColumn} and receives events if the content
  * of the column changes.
- * @author Benjamin Sigg
+ *
  * @param <D> the the dockable class itself
  * @param <P> the wrapper class used to describe dockables
+ * @author Benjamin Sigg
  */
-public interface ToolbarColumnListener<D,P> {
-	/**
-	 * Called if an item was added to <code>column</code> at index <code>index</code>.
-	 * @param column the source of the event
-	 * @param item the item that was added
-	 * @param dockable the dockable that was added
-	 * @param index the index of the item that was added
-	 */
-	public void inserted( ToolbarColumn<D,P> column, P item, D dockable, int index );
-	
-	/**
-	 * Called if an item was removed from <code>column</code>.
-	 * @param column the source of the event
-	 * @param item the item that was removed
-	 * @param dockable the dockable that was removed
-	 * @param index the index of the item that was removed
-	 */
-	public void removed( ToolbarColumn<D,P> column, P item, D dockable, int index );
+public interface ToolbarColumnListener<D, P> {
+  /**
+   * Called if an item was added to <code>column</code> at index <code>index</code>.
+   *
+   * @param column   the source of the event
+   * @param item     the item that was added
+   * @param dockable the dockable that was added
+   * @param index    the index of the item that was added
+   */
+  public void inserted(ToolbarColumn<D, P> column, P item, D dockable, int index);
+
+  /**
+   * Called if an item was removed from <code>column</code>.
+   *
+   * @param column   the source of the event
+   * @param item     the item that was removed
+   * @param dockable the dockable that was removed
+   * @param index    the index of the item that was removed
+   */
+  public void removed(ToolbarColumn<D, P> column, P item, D dockable, int index);
 }

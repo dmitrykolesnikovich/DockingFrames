@@ -25,45 +25,48 @@
  */
 package bibliothek.gui.dock.event;
 
-import java.awt.Component;
-import java.util.List;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.dock.control.ComponentHierarchyObserver;
+
+import java.awt.*;
+import java.util.List;
 
 /**
  * An event telling that {@link Component}s have been added or removed from
  * a {@link ComponentHierarchyObserver}.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public class ComponentHierarchyObserverEvent {
-    private DockController source;
-    private List<Component> components;
-    
-    /**
-     * Creates a new event
-     * @param source the source of the event
-     * @param components the components that have been added or removed
-     */
-    public ComponentHierarchyObserverEvent( DockController source, List<Component> components ){
-        this.source = source;
-        this.components = components;
-    }
-    
-    /**
-     * Gets the source of the event.
-     * @return the source
-     */
-    public DockController getSource() {
-        return source;
-    }
-    
-    /**
-     * Gets a list that contains all the components that were added or removed.
-     * @return the new or lost components
-     */
-    public List<Component> getComponents() {
-        return components;
-    }
+  private DockController source;
+  private List<Component> components;
+
+  /**
+   * Creates a new event
+   *
+   * @param source     the source of the event
+   * @param components the components that have been added or removed
+   */
+  public ComponentHierarchyObserverEvent(DockController source, List<Component> components) {
+    this.source = source;
+    this.components = components;
+  }
+
+  /**
+   * Gets the source of the event.
+   *
+   * @return the source
+   */
+  public DockController getSource() {
+    return source;
+  }
+
+  /**
+   * Gets a list that contains all the components that were added or removed.
+   *
+   * @return the new or lost components
+   */
+  public List<Component> getComponents() {
+    return components;
+  }
 }

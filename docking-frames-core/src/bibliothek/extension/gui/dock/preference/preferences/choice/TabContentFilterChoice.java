@@ -32,24 +32,28 @@ import bibliothek.gui.dock.util.DockProperties;
 
 /**
  * A set of choices of {@link TabContentFilter}s.
+ *
  * @author Benjamin Sigg
  */
 public class TabContentFilterChoice extends DefaultChoice<TabContentFilter> {
-	/**
-	 * Creates a new choice
-	 * @param properties default settings
-	 */
-	public TabContentFilterChoice( DockProperties properties ){
-		super( properties.getController() );
-		
-		addLinked( "all", "preference.layout.tabcontentfilter.all", null );
-		addLinked( "icon", "preference.layout.tabcontentfilter.icon", new DefaultTabContentFilter( Behavior.ICON_ONLY ) );
-		addLinked( "title", "preference.layout.tabcontentfilter.title", new DefaultTabContentFilter( Behavior.TEXT_ONLY ) );
-		addLinked( "iconOrTitle", "preference.layout.tabcontentfilter.iconOrTitle", new DefaultTabContentFilter( Behavior.ALL, Behavior.TEXT_ONLY ) );
-		addLinked( "titleOrIcon", "preference.layout.tabcontentfilter.titleOrIcon", new DefaultTabContentFilter( Behavior.ALL, Behavior.ICON_ONLY ) );
-		
-		if( getDefaultChoice() == null ){
-			setDefaultChoice( "all" );
-		}
-	}
+  /**
+   * Creates a new choice
+   *
+   * @param properties default settings
+   */
+  public TabContentFilterChoice(DockProperties properties) {
+    super(properties.getController());
+
+    addLinked("all", "preference.layout.tabcontentfilter.all", null);
+    addLinked("icon", "preference.layout.tabcontentfilter.icon", new DefaultTabContentFilter(Behavior.ICON_ONLY));
+    addLinked("title", "preference.layout.tabcontentfilter.title", new DefaultTabContentFilter(Behavior.TEXT_ONLY));
+    addLinked("iconOrTitle", "preference.layout.tabcontentfilter.iconOrTitle",
+              new DefaultTabContentFilter(Behavior.ALL, Behavior.TEXT_ONLY));
+    addLinked("titleOrIcon", "preference.layout.tabcontentfilter.titleOrIcon",
+              new DefaultTabContentFilter(Behavior.ALL, Behavior.ICON_ONLY));
+
+    if (getDefaultChoice() == null) {
+      setDefaultChoice("all");
+    }
+  }
 }

@@ -30,29 +30,33 @@ import bibliothek.gui.dock.common.action.CPanelPopup;
 /**
  * A {@link PanelPopupWindow} is a wrapper around the element (window, dialog,
  * menu...) which shows the content of a {@link CPanelPopup}.
+ *
  * @author Benjamin Sigg
  */
 public interface PanelPopupWindow {
-	/**
-	 * Makes this window invisible
-	 */
-	public void close();
-	
-	/**
-	 * Tells whether this window is visible or not.
-	 * @return <code>true</code> if visible
-	 */
-	public boolean isOpen();
-	
-	/**
-	 * Adds a listener to this window.
-	 * @param listener the new listener
-	 */
-	public void addListener( PanelPopupWindowListener listener );
-	
-	/**
-	 * Removes a listener from this window.
-	 * @param listener the listener
-	 */
-	public void removeListener( PanelPopupWindowListener listener );
+  /**
+   * Makes this window invisible
+   */
+  public void close();
+
+  /**
+   * Tells whether this window is visible or not.
+   *
+   * @return <code>true</code> if visible
+   */
+  public boolean isOpen();
+
+  /**
+   * Adds a listener to this window.
+   *
+   * @param listener the new listener
+   */
+  public void addListener(PanelPopupWindowListener listener);
+
+  /**
+   * Removes a listener from this window.
+   *
+   * @param listener the listener
+   */
+  public void removeListener(PanelPopupWindowListener listener);
 }

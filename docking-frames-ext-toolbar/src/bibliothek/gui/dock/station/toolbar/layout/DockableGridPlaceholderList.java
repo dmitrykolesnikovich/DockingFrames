@@ -43,42 +43,41 @@ import bibliothek.util.Path;
  * responsibility to keep the list clean. A good wrapper is
  * {@link PlaceholderToolbarGrid}, which adds several convenient methods and
  * ensures that the list of lists always is cleaned up correctly.
- * 
+ *
+ * @param <P> the kind of object that represents a {@link Dockable}
  * @author Benjamin Sigg
- * @param <P>
- *            the kind of object that represents a {@link Dockable}
  */
 public class DockableGridPlaceholderList<P extends PlaceholderListItem<Dockable>> extends GridPlaceholderList<Dockable, DockStation, P> {
-	@Override
-	protected DockStation itemToStation( Dockable dockable ){
-		return dockable.asDockStation();
-	}
+  @Override
+  protected DockStation itemToStation(Dockable dockable) {
+    return dockable.asDockStation();
+  }
 
-	@Override
-	protected Dockable[] getItemChildren( DockStation station ){
-		final Dockable[] result = new Dockable[station.getDockableCount()];
-		for( int i = 0; i < result.length; i++ ) {
-			result[i] = station.getDockable( i );
-		}
-		return result;
-	}
+  @Override
+  protected Dockable[] getItemChildren(DockStation station) {
+    final Dockable[] result = new Dockable[station.getDockableCount()];
+    for (int i = 0; i < result.length; i++) {
+      result[i] = station.getDockable(i);
+    }
+    return result;
+  }
 
-	@Override
-	protected Path getItemPlaceholder( Dockable dockable ){
-		final PlaceholderStrategy strategy = getStrategy();
-		if( strategy == null ) {
-			return null;
-		}
-		return strategy.getPlaceholderFor( dockable );
-	}
+  @Override
+  protected Path getItemPlaceholder(Dockable dockable) {
+    final PlaceholderStrategy strategy = getStrategy();
+    if (strategy == null) {
+      return null;
+    }
+    return strategy.getPlaceholderFor(dockable);
+  }
 
-	@Override
-	protected PlaceholderMap getItemPlaceholders( DockStation station ){
-		return station.getPlaceholders();
-	}
+  @Override
+  protected PlaceholderMap getItemPlaceholders(DockStation station) {
+    return station.getPlaceholders();
+  }
 
-	@Override
-	protected void setItemPlaceholders( DockStation station, PlaceholderMap map ){
-		station.setPlaceholders( map );
-	}
+  @Override
+  protected void setItemPlaceholders(DockStation station, PlaceholderMap map) {
+    station.setPlaceholders(map);
+  }
 }

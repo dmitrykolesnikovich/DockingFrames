@@ -31,58 +31,66 @@ import bibliothek.gui.dock.station.support.PlaceholderMap;
 
 /**
  * An abstract representation of a {@link DockStation} in a {@link Perspective}.
+ *
  * @author Benjamin Sigg
  */
-public interface PerspectiveStation extends PerspectiveElement{
-	/**
-	 * Gets the number of children this station has.
-	 * @return the number of children
-	 */
-	public int getDockableCount();
-	
-	/**
-	 * Gets the index'th child of this station.
-	 * @param index the index of a child
-	 * @return the child, not <code>null</code>
-	 */
-	public PerspectiveDockable getDockable( int index );
-	
-    /**
-     * Gets precise information about the location of a child of this station.
-     * @param child a child of this station, this child's location is asked
-     * @param target an optional hint telling for which dockable the location information
-     * will be used, can be <code>null</code>. This hint can be used to find a placeholder
-     * that should be part of the result.
-     * @return the location
-     */
-    public DockableProperty getDockableProperty( PerspectiveDockable child, PerspectiveDockable target );
-	
-	/**
-	 * Converts the contents of this station into a map of placeholders.
-	 * @return a map of placeholders describing the contents of this station
-	 */
-	public PlaceholderMap getPlaceholders();
-	
-	/**
-	 * Informs this station of the content that it should show
-	 * @param placeholders a map that was earlier created by {@link #getPlaceholders()}
-	 */
-	public void setPlaceholders( PlaceholderMap placeholders );
-	
-	/**
-	 * Removes a child of this station, can leave behind a placeholder.
-	 * @param dockable the element to remove
-	 * @return <code>true</code> if <code>dockable</code> was removed, <code>false</code> otherwise
-	 */
-	public boolean remove( PerspectiveDockable dockable );
-	
-	/**
-	 * Replaces <code>oldDockable</code> by <code>newDockable</code>. This method should behave the same way
-	 * is if <code>oldDockable</code> was removed and <code>newDockable</code> added at the same location.
-	 * @param oldDockable some child of this station
-	 * @param newDockable the replacement for <code>oldDockable</code>
-	 * @throws IllegalArgumentException if <code>oldDockable</code> is not a child of this station or if
-	 * <code>newDockable</code> cannot be added as child to this station
-	 */
-	public void replace( PerspectiveDockable oldDockable, PerspectiveDockable newDockable );
+public interface PerspectiveStation extends PerspectiveElement {
+  /**
+   * Gets the number of children this station has.
+   *
+   * @return the number of children
+   */
+  public int getDockableCount();
+
+  /**
+   * Gets the index'th child of this station.
+   *
+   * @param index the index of a child
+   * @return the child, not <code>null</code>
+   */
+  public PerspectiveDockable getDockable(int index);
+
+  /**
+   * Gets precise information about the location of a child of this station.
+   *
+   * @param child  a child of this station, this child's location is asked
+   * @param target an optional hint telling for which dockable the location information
+   *               will be used, can be <code>null</code>. This hint can be used to find a placeholder
+   *               that should be part of the result.
+   * @return the location
+   */
+  public DockableProperty getDockableProperty(PerspectiveDockable child, PerspectiveDockable target);
+
+  /**
+   * Converts the contents of this station into a map of placeholders.
+   *
+   * @return a map of placeholders describing the contents of this station
+   */
+  public PlaceholderMap getPlaceholders();
+
+  /**
+   * Informs this station of the content that it should show
+   *
+   * @param placeholders a map that was earlier created by {@link #getPlaceholders()}
+   */
+  public void setPlaceholders(PlaceholderMap placeholders);
+
+  /**
+   * Removes a child of this station, can leave behind a placeholder.
+   *
+   * @param dockable the element to remove
+   * @return <code>true</code> if <code>dockable</code> was removed, <code>false</code> otherwise
+   */
+  public boolean remove(PerspectiveDockable dockable);
+
+  /**
+   * Replaces <code>oldDockable</code> by <code>newDockable</code>. This method should behave the same way
+   * is if <code>oldDockable</code> was removed and <code>newDockable</code> added at the same location.
+   *
+   * @param oldDockable some child of this station
+   * @param newDockable the replacement for <code>oldDockable</code>
+   * @throws IllegalArgumentException if <code>oldDockable</code> is not a child of this station or if
+   *                                  <code>newDockable</code> cannot be added as child to this station
+   */
+  public void replace(PerspectiveDockable oldDockable, PerspectiveDockable newDockable);
 }

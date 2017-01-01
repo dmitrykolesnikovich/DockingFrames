@@ -32,15 +32,19 @@ import bibliothek.util.Path;
 
 /**
  * A {@link DockBorder} that represents a {@link ScreenDockWindow}.
+ *
  * @author Benjamin Sigg
  */
-public interface ScreenDockWindowDockBorder extends DockBorder{
-	/** the type of this {@link UIValue} */
-	public static final Path KIND = DockBorder.KIND.append( "screenWindow" );
-	
-	/**
-	 * Gets the window which is represented by this border.
-	 * @return the window, not <code>null</code>
-	 */
-	public ScreenDockWindow getWindow();
+public interface ScreenDockWindowDockBorder extends DockBorder {
+  /**
+   * the type of this {@link UIValue}
+   */
+  public static final Path KIND = DockBorder.KIND.append("screenWindow");
+
+  /**
+   * Gets the window which is represented by this border.
+   *
+   * @return the window, not <code>null</code>
+   */
+  public ScreenDockWindow getWindow();
 }

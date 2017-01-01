@@ -31,12 +31,14 @@ import bibliothek.gui.dock.control.ControllerSetupCollection;
 /**
  * A listener added to a {@link ControllerSetupCollection}, this listener
  * is informed when a {@link DockController} has finished setting up its objects.
+ *
  * @author Benjamin Sigg
  */
 public interface ControllerSetupListener {
-    /**
-     * Called when <code>controller</code> is set up.
-     * @param controller the controller that was set up
-     */
-    public void done( DockController controller );
+  /**
+   * Called when <code>controller</code> is set up.
+   *
+   * @param controller the controller that was set up
+   */
+  public void done(DockController controller);
 }

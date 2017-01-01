@@ -31,55 +31,53 @@ import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.common.CLocation;
 import bibliothek.gui.dock.common.action.predefined.CMinimizeAction;
 import bibliothek.gui.dock.common.intern.CDockable;
-import bibliothek.gui.dock.common.perspective.mode.LocationModePerspective;
 import bibliothek.gui.dock.common.perspective.mode.CMinimizedModePerspective;
+import bibliothek.gui.dock.common.perspective.mode.LocationModePerspective;
 import bibliothek.gui.dock.facile.mode.Location;
 import bibliothek.gui.dock.facile.mode.MinimizedMode;
 
 /**
  * Manages areas that show only a title of a minimized dockable.
+ *
  * @author Benjamin Sigg
  */
 public class CMinimizedMode extends MinimizedMode<CMinimizedModeArea> implements CLocationMode {
-	/**
-	 * Creates a new mode
-	 * @param control the owner of this mode
-	 */
-	public CMinimizedMode( CControl control ){
-		setActionProvider( new KeyedLocationModeActionProvider(
-				CDockable.ACTION_KEY_MINIMIZE,
-				new CMinimizeAction( control )) );
-	}
-	
-	public CLocation getCLocation( Dockable dockable ){
-		CMinimizedModeArea area = get( dockable );
-		if( area == null )
-			return null;
-			
-		return area.getCLocation( dockable );
-	}
-	
-	public CLocation getCLocation( Dockable dockable, Location location ){
-		CMinimizedModeArea area = get( location.getRoot() );
-		if( area == null )
-			return null;
-			
-		return area.getCLocation( dockable, location );
-	}
-	
-	public boolean isBasicMode(){
-		return true;
-	}
-	
-	public boolean respectWorkingAreas( DockStation station ){
-		CModeArea area = get( station );
-		if( area == null ){
-			return true;
-		}
-		return area.respectWorkingAreas();
-	}
-	
-	public LocationModePerspective createPerspective(){
-		return new CMinimizedModePerspective();
-	}
+  /**
+   * Creates a new mode
+   *
+   * @param control the owner of this mode
+   */
+  public CMinimizedMode(CControl control) {
+    setActionProvider(new KeyedLocationModeActionProvider(CDockable.ACTION_KEY_MINIMIZE, new CMinimizeAction(control)));
+  }
+
+  public CLocation getCLocation(Dockable dockable) {
+    CMinimizedModeArea area = get(dockable);
+    if (area == null) return null;
+
+    return area.getCLocation(dockable);
+  }
+
+  public CLocation getCLocation(Dockable dockable, Location location) {
+    CMinimizedModeArea area = get(location.getRoot());
+    if (area == null) return null;
+
+    return area.getCLocation(dockable, location);
+  }
+
+  public boolean isBasicMode() {
+    return true;
+  }
+
+  public boolean respectWorkingAreas(DockStation station) {
+    CModeArea area = get(station);
+    if (area == null) {
+      return true;
+    }
+    return area.respectWorkingAreas();
+  }
+
+  public LocationModePerspective createPerspective() {
+    return new CMinimizedModePerspective();
+  }
 }

@@ -36,39 +36,43 @@ import bibliothek.gui.dock.perspective.PerspectiveStation;
  * elements (stations and dockables) should be written into a stream. Elements
  * can be filtered by this Ignore, and will not reappear if the situation is
  * read again.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public interface DockSituationIgnore {
-    /**
-     * Tells whether to ignore this element when saving. If an element is ignored, no 
-     * factory is needed for it.
-     * @param element the element which might not be saved
-     * @return <code>true</code> if the element should not be saved
-     */
-    public boolean ignoreElement( DockElement element );
-    
-    /**
-     * Tells whether to ignore this element when saving. If an element is ignored, no 
-     * factory is needed for it.
-     * @param element the element which might not be saved
-     * @return <code>true</code> if the element should not be saved
-     */
-    public boolean ignoreElement( PerspectiveElement element );
-    
-    /**
-     * Tells whether to ignore the children of the station when saving or not. If the children
-     * are ignored, no factories are needed for them.
-     * @param station the station whose children might be ignored
-     * @return <code>true</code> if the station is saved as having no children
-     */
-    public boolean ignoreChildren( DockStation station );
-    
-    /**
-     * Tells whether to ignore the children of the station when saving or not. If the children
-     * are ignored, no factories are needed for them.
-     * @param station the station whose children might be ignored
-     * @return <code>true</code> if the station is saved as having no children
-     */
-    public boolean ignoreChildren( PerspectiveStation station );
+  /**
+   * Tells whether to ignore this element when saving. If an element is ignored, no
+   * factory is needed for it.
+   *
+   * @param element the element which might not be saved
+   * @return <code>true</code> if the element should not be saved
+   */
+  public boolean ignoreElement(DockElement element);
+
+  /**
+   * Tells whether to ignore this element when saving. If an element is ignored, no
+   * factory is needed for it.
+   *
+   * @param element the element which might not be saved
+   * @return <code>true</code> if the element should not be saved
+   */
+  public boolean ignoreElement(PerspectiveElement element);
+
+  /**
+   * Tells whether to ignore the children of the station when saving or not. If the children
+   * are ignored, no factories are needed for them.
+   *
+   * @param station the station whose children might be ignored
+   * @return <code>true</code> if the station is saved as having no children
+   */
+  public boolean ignoreChildren(DockStation station);
+
+  /**
+   * Tells whether to ignore the children of the station when saving or not. If the children
+   * are ignored, no factories are needed for them.
+   *
+   * @param station the station whose children might be ignored
+   * @return <code>true</code> if the station is saved as having no children
+   */
+  public boolean ignoreChildren(PerspectiveStation station);
 }

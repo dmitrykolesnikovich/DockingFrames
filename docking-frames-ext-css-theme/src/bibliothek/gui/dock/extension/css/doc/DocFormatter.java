@@ -28,13 +28,15 @@ package bibliothek.gui.dock.extension.css.doc;
 
 /**
  * Responsible for formatting the output of the {@link DocGenerator}.
+ *
  * @author Benjamin Sigg
  */
 public interface DocFormatter {
-	/**
-	 * Allows this {@link DocFormatter} to print out or convert the contents
-	 * of <code>root</code>.
-	 * @param root the root of the documentation
-	 */
-	public void format( DocRoot root );
+  /**
+   * Allows this {@link DocFormatter} to print out or convert the contents
+   * of <code>root</code>.
+   *
+   * @param root the root of the documentation
+   */
+  public void format(DocRoot root);
 }

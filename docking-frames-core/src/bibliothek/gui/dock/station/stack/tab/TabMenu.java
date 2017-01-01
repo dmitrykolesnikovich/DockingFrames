@@ -30,37 +30,43 @@ import bibliothek.gui.Dockable;
 /**
  * A {@link TabMenu} is a list of one or several {@link Dockable}s, the user
  * can open the menu and select one of them.
+ *
  * @author Benjamin Sigg
  */
-public interface TabMenu extends TabPaneComponent{
-	/**
-	 * Gets all the {@link Dockable}s that are shown in this menu.
-	 * @return the list of elements in this menu
-	 */
-	public Dockable[] getDockables();
-	
-	/**
-	 * Gets the index'th {@link Dockable} of this menu.
-	 * @param index the index of an item
-	 * @return the item
-	 */
-	public Dockable getDockable( int index );
-	
-	/**
-	 * Gets the number of {@link Dockable}s shown on this menu.
-	 * @return the number of items
-	 */
-	public int getDockableCount();
-	
-	/**
-	 * Adds a new listener to this menu.
-	 * @param listener the new listener, not <code>null</code>
-	 */
-	public void addTabMenuListener( TabMenuListener listener );
-	
-	/**
-	 * Removes <code>listener</code> from this menu.
-	 * @param listener the listener to remove
-	 */
-	public void removeTabMenuListener( TabMenuListener listener );
+public interface TabMenu extends TabPaneComponent {
+  /**
+   * Gets all the {@link Dockable}s that are shown in this menu.
+   *
+   * @return the list of elements in this menu
+   */
+  public Dockable[] getDockables();
+
+  /**
+   * Gets the index'th {@link Dockable} of this menu.
+   *
+   * @param index the index of an item
+   * @return the item
+   */
+  public Dockable getDockable(int index);
+
+  /**
+   * Gets the number of {@link Dockable}s shown on this menu.
+   *
+   * @return the number of items
+   */
+  public int getDockableCount();
+
+  /**
+   * Adds a new listener to this menu.
+   *
+   * @param listener the new listener, not <code>null</code>
+   */
+  public void addTabMenuListener(TabMenuListener listener);
+
+  /**
+   * Removes <code>listener</code> from this menu.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeTabMenuListener(TabMenuListener listener);
 }

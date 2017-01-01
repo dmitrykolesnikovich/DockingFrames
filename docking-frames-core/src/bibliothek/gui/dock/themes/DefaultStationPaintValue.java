@@ -26,80 +26,85 @@
 
 package bibliothek.gui.dock.themes;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
-
 import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.station.StationPaint;
 import bibliothek.gui.dock.util.UIValue;
 
+import java.awt.*;
+
 /**
  * A wrapper for a {@link StationPaint}. The wrapper can either use a delegate or installs itself as {@link UIValue}
  * on the current {@link ThemeManager}.
+ *
  * @author Benjamin Sigg
  */
 public class DefaultStationPaintValue extends StationThemeItemValue<StationPaint> implements StationPaintValue {
-	    
-    /**
-     * Creates a new wrapper.
-     * @param id a unique identifier used on {@link ThemeManager} to get the current {@link StationPaint}
-     * @param station the station that is painted by this wrapper
-     */
-    public DefaultStationPaintValue( String id, DockStation station ){
-    	super( id, KIND_STATION_PAINT, ThemeManager.STATION_PAINT_TYPE, station );
-    }
-    
-    /**
-     * Calls {@link StationPaint#drawDivider(Graphics, DockStation, Rectangle)}
-     * @param g the graphics context
-     * @param bounds the boundaries of the divider
-     */
-    public void drawDivider( Graphics g, Rectangle bounds ) {
-    	StationPaint paint = get();
-    	if( paint != null ){
-    		paint.drawDivider( g, getStation(), bounds );
-    	}
-    }
 
-    /**
-     * Paints some markings when a {@link Dockable} is added to a {@link DockStation}.
-     * @param g the graphics context used for painting
-     * @param stationBounds the area on the station which will be affected by the insertion
-     * @param dockableBounds the bounds that the new child will have
-     */
-    public void drawInsertion( Graphics g, Rectangle stationBounds, Rectangle dockableBounds ) {
-    	StationPaint paint = get();
-    	if( paint != null ){
-    		paint.drawInsertion( g, getStation(), stationBounds, dockableBounds );
-    	}
+  /**
+   * Creates a new wrapper.
+   *
+   * @param id      a unique identifier used on {@link ThemeManager} to get the current {@link StationPaint}
+   * @param station the station that is painted by this wrapper
+   */
+  public DefaultStationPaintValue(String id, DockStation station) {
+    super(id, KIND_STATION_PAINT, ThemeManager.STATION_PAINT_TYPE, station);
+  }
+
+  /**
+   * Calls {@link StationPaint#drawDivider(Graphics, DockStation, Rectangle)}
+   *
+   * @param g      the graphics context
+   * @param bounds the boundaries of the divider
+   */
+  public void drawDivider(Graphics g, Rectangle bounds) {
+    StationPaint paint = get();
+    if (paint != null) {
+      paint.drawDivider(g, getStation(), bounds);
     }
-    
-    /**
-     * Paints a single line from x1/y1 to x2/y2.
-     * @param g the graphics context used for painting
-     * @param x1 the x-coordinate of the first end of the line
-     * @param y1 the y-coordinate of the first end of the line
-     * @param x2 the x-coordinate of the second end of the line
-     * @param y2 the y-coordinate of the second end of the line
-     */
-    public void drawInsertionLine( Graphics g, int x1, int y1, int x2, int y2 ) {
-    	StationPaint paint = get();
-    	if( paint != null ){
-    		paint.drawInsertionLine( g, getStation(), x1, y1, x2, y2 );
-    	}
+  }
+
+  /**
+   * Paints some markings when a {@link Dockable} is added to a {@link DockStation}.
+   *
+   * @param g              the graphics context used for painting
+   * @param stationBounds  the area on the station which will be affected by the insertion
+   * @param dockableBounds the bounds that the new child will have
+   */
+  public void drawInsertion(Graphics g, Rectangle stationBounds, Rectangle dockableBounds) {
+    StationPaint paint = get();
+    if (paint != null) {
+      paint.drawInsertion(g, getStation(), stationBounds, dockableBounds);
     }
-    
-    /**
-     * Paints some markings when a {@link Dockable} is removed from a {@link DockStation}.
-     * @param g the graphics context used for painting
-     * @param stationBounds the area on the station which will be affected by the removal
-     * @param dockableBounds the bounds that the old child currently has
-     */
-    public void drawRemoval( Graphics g, Rectangle stationBounds, Rectangle dockableBounds ){
-    	StationPaint paint = get();
-    	if( paint != null ){
-    		paint.drawRemoval( g, getStation(), stationBounds, dockableBounds );
-    	}
+  }
+
+  /**
+   * Paints a single line from x1/y1 to x2/y2.
+   *
+   * @param g  the graphics context used for painting
+   * @param x1 the x-coordinate of the first end of the line
+   * @param y1 the y-coordinate of the first end of the line
+   * @param x2 the x-coordinate of the second end of the line
+   * @param y2 the y-coordinate of the second end of the line
+   */
+  public void drawInsertionLine(Graphics g, int x1, int y1, int x2, int y2) {
+    StationPaint paint = get();
+    if (paint != null) {
+      paint.drawInsertionLine(g, getStation(), x1, y1, x2, y2);
     }
+  }
+
+  /**
+   * Paints some markings when a {@link Dockable} is removed from a {@link DockStation}.
+   *
+   * @param g              the graphics context used for painting
+   * @param stationBounds  the area on the station which will be affected by the removal
+   * @param dockableBounds the bounds that the old child currently has
+   */
+  public void drawRemoval(Graphics g, Rectangle stationBounds, Rectangle dockableBounds) {
+    StationPaint paint = get();
+    if (paint != null) {
+      paint.drawRemoval(g, getStation(), stationBounds, dockableBounds);
+    }
+  }
 }

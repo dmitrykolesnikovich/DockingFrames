@@ -27,50 +27,57 @@ package bibliothek.gui.dock.extension.css.transition;
 
 /**
  * A single element of a {@link TransitionalCssRuleChain}, represents one {@link TransitionalCssRuleContent}.
+ *
  * @author Benjamin Sigg
  */
 public interface RuleChainLink {
-	/**
-	 * Gets the rule which is represented by this link.
-	 * @return the rule of this link, can be <code>null</code> if this link is no longer in use
-	 */
-	public TransitionalCssRuleContent getRule();
-	
-	/**
-	 * Gets the link that is previously in the chain.
-	 * @return the parent link, can be <code>null</code> if this link is the head or if this link
-	 * is no longer in use.
-	 */
-	public RuleChainLink getPrevious();
-	
-	/**
-	 * Gets the link that follows in the chain.
-	 * @return the next link, can be <code>null</code> if this link is the tail or if this link
-	 * is no longer in use.
-	 */
-	public RuleChainLink getNext();
-	
-	/**
-	 * Gets the chain to which this link belongs.
-	 * @return the chain of this link, never <code>null</code> even if this link is no longer used
-	 */
-	public TransitionalCssRuleChain getChain();
-	
-	/**
-	 * Removes this link from the chain. The link cannot be added to chain again.
-	 */
-	public void remove();
-	
-	/**
-	 * Adds a listener to this link, the listener is informed if this item changes the position
-	 * within the chain.
-	 * @param listener the new listener, not <code>null</code>
-	 */
-	public void addListener( RuleChainLinkListener listener );
-	
-	/**
-	 * Removes <code>listener</code> from this link.
-	 * @param listener the listener to remove
-	 */
-	public void removeListener( RuleChainLinkListener listener );
+  /**
+   * Gets the rule which is represented by this link.
+   *
+   * @return the rule of this link, can be <code>null</code> if this link is no longer in use
+   */
+  public TransitionalCssRuleContent getRule();
+
+  /**
+   * Gets the link that is previously in the chain.
+   *
+   * @return the parent link, can be <code>null</code> if this link is the head or if this link
+   * is no longer in use.
+   */
+  public RuleChainLink getPrevious();
+
+  /**
+   * Gets the link that follows in the chain.
+   *
+   * @return the next link, can be <code>null</code> if this link is the tail or if this link
+   * is no longer in use.
+   */
+  public RuleChainLink getNext();
+
+  /**
+   * Gets the chain to which this link belongs.
+   *
+   * @return the chain of this link, never <code>null</code> even if this link is no longer used
+   */
+  public TransitionalCssRuleChain getChain();
+
+  /**
+   * Removes this link from the chain. The link cannot be added to chain again.
+   */
+  public void remove();
+
+  /**
+   * Adds a listener to this link, the listener is informed if this item changes the position
+   * within the chain.
+   *
+   * @param listener the new listener, not <code>null</code>
+   */
+  public void addListener(RuleChainLinkListener listener);
+
+  /**
+   * Removes <code>listener</code> from this link.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeListener(RuleChainLinkListener listener);
 }

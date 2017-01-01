@@ -29,25 +29,28 @@ package bibliothek.gui.dock.extension.css.transition.scheduler;
  * The {@link CssScheduler} is responsible for repeatedly invoking animation
  * code. The {@link CssScheduler} may perform optimizations, like coalescing calls.<br>
  * Usually a scheduler should call the animations in the EDT (EventDispatcherThread).
+ *
  * @author Benjamin Sigg
  */
 public interface CssScheduler {
-	/**
-	 * Calls {@link CssSchedulable#step(CssScheduler, int)} with some reasonable
-	 * delay, usually around 20 milliseconds.
-	 * @param job the animation to call
-	 * @see #step(CssSchedulable, int)
-	 */
-	public void step( CssSchedulable job );
-	
-	/**
-	 * Calls {@link CssSchedulable#step(CssScheduler, int)} with a delay of about
-	 * <code>delay</code> milliseconds. If more than one call to <code>job</code> is pending,
-	 * then this scheduler may ignore this method call. If this method is called during an
-	 * execution of {@link CssSchedulable#step(CssScheduler, int)}, then the
-	 * next call to <code>step</code> should tell the amount of milliseconds that passed.
-	 * @param job the animation to call
-	 * @param delay the delay until <code>job</code> is executed
-	 */
-	public void step( CssSchedulable job, int delay );
+  /**
+   * Calls {@link CssSchedulable#step(CssScheduler, int)} with some reasonable
+   * delay, usually around 20 milliseconds.
+   *
+   * @param job the animation to call
+   * @see #step(CssSchedulable, int)
+   */
+  public void step(CssSchedulable job);
+
+  /**
+   * Calls {@link CssSchedulable#step(CssScheduler, int)} with a delay of about
+   * <code>delay</code> milliseconds. If more than one call to <code>job</code> is pending,
+   * then this scheduler may ignore this method call. If this method is called during an
+   * execution of {@link CssSchedulable#step(CssScheduler, int)}, then the
+   * next call to <code>step</code> should tell the amount of milliseconds that passed.
+   *
+   * @param job   the animation to call
+   * @param delay the delay until <code>job</code> is executed
+   */
+  public void step(CssSchedulable job, int delay);
 }

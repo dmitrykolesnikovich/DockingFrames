@@ -25,93 +25,97 @@
  */
 package bibliothek.extension.gui.dock.preference.editor;
 
-import java.awt.Component;
-
-import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
 import bibliothek.extension.gui.dock.preference.PreferenceEditor;
 import bibliothek.extension.gui.dock.preference.PreferenceEditorCallback;
 import bibliothek.extension.gui.dock.preference.PreferenceEditorFactory;
 import bibliothek.extension.gui.dock.preference.PreferenceOperation;
 
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.*;
+
 /**
  * An editor used to edit {@link String}s. This editor just shows a {@link JTextField}.
+ *
  * @author Benjamin Sigg
  */
-public class StringEditor extends JTextField implements PreferenceEditor<String>{
-    /** a factory creating {@link StringEditor}s */
-    public static final PreferenceEditorFactory<String> FACTORY = new PreferenceEditorFactory<String>(){
-        public PreferenceEditor<String> create() {
-            return new StringEditor();
-        }
-    };
-    
-    private PreferenceEditorCallback<String> callback;
-    
-    private boolean onUpdate = false;
-    
-    /**
-     * Creates a new editor.
-     */
-    public StringEditor(){
-        getDocument().addDocumentListener( new DocumentListener(){
-            public void changedUpdate( DocumentEvent e ) {
-                update( true );
-            }
-            public void insertUpdate( DocumentEvent e ) {
-                update( true );
-            }
-            public void removeUpdate( DocumentEvent e ) {
-                update( true );
-            }
-        });
+public class StringEditor extends JTextField implements PreferenceEditor<String> {
+  /**
+   * a factory creating {@link StringEditor}s
+   */
+  public static final PreferenceEditorFactory<String> FACTORY = new PreferenceEditorFactory<String>() {
+    public PreferenceEditor<String> create() {
+      return new StringEditor();
     }
-    
-    private void update( final boolean transmit ){
-        try{
-            onUpdate = true;
-            if( callback != null ){
-                callback.setOperation( PreferenceOperation.DELETE, getText().length() > 0 );
-                if( transmit ){
-                    callback.set( getText() );
-                }
-            }
-        }
-        finally{
-            onUpdate = false;
-        }
-    }
-    
-    public void doOperation( PreferenceOperation operation ) {
-        if( operation == PreferenceOperation.DELETE ){
-            setText( "" );
-        }
-    }
+  };
 
-    public Component getComponent() {
-        return this;
-    }
+  private PreferenceEditorCallback<String> callback;
 
-    public String getValue() {
-        return getText();
-    }
+  private boolean onUpdate = false;
 
-    public void setCallback( PreferenceEditorCallback<String> callback ) {
-        this.callback = callback;
-        update( false );
-    }
+  /**
+   * Creates a new editor.
+   */
+  public StringEditor() {
+    getDocument().addDocumentListener(new DocumentListener() {
+      public void changedUpdate(DocumentEvent e) {
+        update(true);
+      }
 
-    public void setValue( String value ) {
-        if( !onUpdate ){
-            setText( value == null ? "" : value );
-            update( false );
+      public void insertUpdate(DocumentEvent e) {
+        update(true);
+      }
+
+      public void removeUpdate(DocumentEvent e) {
+        update(true);
+      }
+    });
+  }
+
+  private void update(final boolean transmit) {
+    try {
+      onUpdate = true;
+      if (callback != null) {
+        callback.setOperation(PreferenceOperation.DELETE, getText().length() > 0);
+        if (transmit) {
+          callback.set(getText());
         }
+      }
     }
+    finally {
+      onUpdate = false;
+    }
+  }
 
-    public void setValueInfo( Object information ) {
-        // ignore
+  public void doOperation(PreferenceOperation operation) {
+    if (operation == PreferenceOperation.DELETE) {
+      setText("");
     }
+  }
+
+  public Component getComponent() {
+    return this;
+  }
+
+  public String getValue() {
+    return getText();
+  }
+
+  public void setValue(String value) {
+    if (!onUpdate) {
+      setText(value == null ? "" : value);
+      update(false);
+    }
+  }
+
+  public void setCallback(PreferenceEditorCallback<String> callback) {
+    this.callback = callback;
+    update(false);
+  }
+
+  public void setValueInfo(Object information) {
+    // ignore
+  }
 
 }

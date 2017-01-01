@@ -31,27 +31,30 @@ import bibliothek.gui.dock.title.DockTitleRequest;
 
 /**
  * A {@link DockTitleFactory} which created instances of {@link BasicDockTitle}
- * and of {@link BasicStationTitle}. 
+ * and of {@link BasicStationTitle}.
+ *
  * @author Benjamin Sigg
  */
 public class BasicDockTitleFactory implements DockTitleFactory {
-    /** An instance of this factory which can be used an any place */
-    public static final DockTitleFactory FACTORY = new BasicDockTitleFactory();
-    
-    public void install( DockTitleRequest request ){
-	    // ignore	
+  /**
+   * An instance of this factory which can be used an any place
+   */
+  public static final DockTitleFactory FACTORY = new BasicDockTitleFactory();
+
+  public void install(DockTitleRequest request) {
+    // ignore
+  }
+
+  public void uninstall(DockTitleRequest request) {
+    // ignore
+  }
+
+  public void request(DockTitleRequest request) {
+    if (request.getTarget().asDockStation() == null) {
+      request.answer(new BasicDockTitle(request.getTarget(), request.getVersion()));
     }
-    
-    public void uninstall( DockTitleRequest request ){
-	    // ignore	
+    else {
+      request.answer(new BasicStationTitle(request.getTarget(), request.getVersion()));
     }
-    
-    public void request( DockTitleRequest request ){
-    	if( request.getTarget().asDockStation() == null ){
-    		request.answer( new BasicDockTitle( request.getTarget(), request.getVersion() ) );
-    	}
-    	else{
-    		request.answer( new BasicStationTitle( request.getTarget(), request.getVersion() ) );
-    	}
-    }
+  }
 }

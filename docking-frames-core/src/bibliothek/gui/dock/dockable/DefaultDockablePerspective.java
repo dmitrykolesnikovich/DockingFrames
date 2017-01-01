@@ -34,32 +34,33 @@ import bibliothek.util.Path;
 
 /**
  * Implementation of a {@link PerspectiveElement} that represents a {@link DefaultDockable}.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultDockablePerspective implements PerspectiveDockable{
-	private PerspectiveStation parent;
-	
-	public void setParent( PerspectiveStation parent ){
-		this.parent = parent;	
-	}
-	
-	public PerspectiveStation getParent(){
-		return parent;
-	}
+public class DefaultDockablePerspective implements PerspectiveDockable {
+  private PerspectiveStation parent;
 
-	public Path getPlaceholder(){
-		return null;
-	}
+  public PerspectiveStation getParent() {
+    return parent;
+  }
 
-	public PerspectiveDockable asDockable(){
-		return this;
-	}
+  public void setParent(PerspectiveStation parent) {
+    this.parent = parent;
+  }
 
-	public PerspectiveStation asStation(){
-		return null;
-	}
+  public Path getPlaceholder() {
+    return null;
+  }
 
-	public String getFactoryID(){
-		return DefaultDockableFactory.ID;
-	}
+  public PerspectiveDockable asDockable() {
+    return this;
+  }
+
+  public PerspectiveStation asStation() {
+    return null;
+  }
+
+  public String getFactoryID() {
+    return DefaultDockableFactory.ID;
+  }
 }

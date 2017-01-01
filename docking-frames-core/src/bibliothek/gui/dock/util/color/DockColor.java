@@ -25,17 +25,18 @@
  */
 package bibliothek.gui.dock.util.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.util.UIValue;
 import bibliothek.util.Path;
 
+import java.awt.*;
+
 /**
  * A wrapper around a {@link Color} object.
+ *
  * @author Benjamin Sigg
  */
-public interface DockColor extends UIValue<Color>{
-    public static final Path KIND_DOCK_COLOR = new Path( "DockColor" );
-    
-    // no new methods
+public interface DockColor extends UIValue<Color> {
+  public static final Path KIND_DOCK_COLOR = new Path("DockColor");
+
+  // no new methods
 }

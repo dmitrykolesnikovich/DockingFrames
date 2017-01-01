@@ -31,24 +31,26 @@ import bibliothek.gui.dock.station.screen.ScreenDockWindow;
  * The {@link ScreenWindowShape} is used by {@link ScreenDockWindow} to define which parts
  * of the window are visible and which parts are transparent. The {@link ScreenWindowShape} of any
  * window can be configured in {@link WindowConfiguration}.
+ *
  * @author Benjamin Sigg
  */
 public interface ScreenWindowShape {
-	/**
-	 * Informs this shape about the {@link ScreenDockWindow} that can be configured by <code>this</code>. The methods
-	 * of <code>callback</code> should be called by the EDT.<br>
-	 * To set the shape this class can call {@link ScreenWindowShapeCallback#setShape(java.awt.Shape)} at any time.
-	 * @param callback the window, or <code>null</code>
-	 */
-	public void setCallback( ScreenWindowShapeCallback callback );
-	
-	/**
-	 * Called by the {@link ScreenDockWindow} if its size has changed, can lead to a call to {@link ScreenWindowShapeCallback#setShape(java.awt.Shape)}
-	 */
-	public void onResize();
+  /**
+   * Informs this shape about the {@link ScreenDockWindow} that can be configured by <code>this</code>. The methods
+   * of <code>callback</code> should be called by the EDT.<br>
+   * To set the shape this class can call {@link ScreenWindowShapeCallback#setShape(java.awt.Shape)} at any time.
+   *
+   * @param callback the window, or <code>null</code>
+   */
+  public void setCallback(ScreenWindowShapeCallback callback);
 
-	/**
-	 * Called by the {@link ScreenDockWindow} if it was made visible, can lead to a call to {@link ScreenWindowShapeCallback#setShape(java.awt.Shape)}
-	 */
-	public void onShown();
+  /**
+   * Called by the {@link ScreenDockWindow} if its size has changed, can lead to a call to {@link ScreenWindowShapeCallback#setShape(java.awt.Shape)}
+   */
+  public void onResize();
+
+  /**
+   * Called by the {@link ScreenDockWindow} if it was made visible, can lead to a call to {@link ScreenWindowShapeCallback#setShape(java.awt.Shape)}
+   */
+  public void onShown();
 }

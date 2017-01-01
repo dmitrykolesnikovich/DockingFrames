@@ -29,18 +29,19 @@ import bibliothek.gui.DockStation;
 
 /**
  * A callback informing a {@link DockStation} about an ongoing drag and drop operation.
+ *
  * @author Benjamin Sigg
  */
 public interface StationDragOperation {
-	/**
-	 * Called if the drag and drop operation has been canceled. This {@link StationDragOperation}
-	 * implicitly is invalid after a call to this method.
-	 */
-	public void canceled();
-	
-	/**
-	 * Called if the drag and drop operation successfully finished. This {@link StationDragOperation}
-	 * implicitly is invalid after a call to this method.
-	 */
-	public void succeeded();
+  /**
+   * Called if the drag and drop operation has been canceled. This {@link StationDragOperation}
+   * implicitly is invalid after a call to this method.
+   */
+  public void canceled();
+
+  /**
+   * Called if the drag and drop operation successfully finished. This {@link StationDragOperation}
+   * implicitly is invalid after a call to this method.
+   */
+  public void succeeded();
 }

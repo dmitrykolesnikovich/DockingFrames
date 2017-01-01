@@ -32,14 +32,16 @@ import bibliothek.gui.dock.ScreenDockStation;
  * This filter can be added to the {@link ScreenDockStation}, it allows to filter {@link Dockable}s which
  * are not allowed to go into fullscreen mode. These {@link Dockable}s will not react on a double click nor
  * will have the fullscreen action.
+ *
  * @author Benjamin Sigg
  */
 public interface ScreenDockFullscreenFilter {
-	/**
-	 * Tells whether <code>dockable</code> can be in fullscreen mode. All filters have to agree
-	 * in order to allow fullscreen mode.
-	 * @param dockable the element to check
-	 * @return whether fullscreen mode should be enabled
-	 */
-	public boolean isFullscreenEnabled( Dockable dockable );
+  /**
+   * Tells whether <code>dockable</code> can be in fullscreen mode. All filters have to agree
+   * in order to allow fullscreen mode.
+   *
+   * @param dockable the element to check
+   * @return whether fullscreen mode should be enabled
+   */
+  public boolean isFullscreenEnabled(Dockable dockable);
 }

@@ -25,8 +25,6 @@
  */
 package bibliothek.extension.gui.dock.theme.flat;
 
-import javax.swing.border.Border;
-
 import bibliothek.extension.gui.dock.theme.FlatTheme;
 import bibliothek.gui.DockController;
 import bibliothek.gui.DockStation;
@@ -37,41 +35,44 @@ import bibliothek.gui.dock.themes.basic.BasicDockableDisplayerDecorator;
 import bibliothek.gui.dock.themes.basic.TabDecorator;
 import bibliothek.gui.dock.title.DockTitle;
 
+import javax.swing.border.Border;
+
 /**
  * A {@link DockableDisplayer} that uses a {@link FlatBorder}.
+ *
  * @author Benjamin Sigg
  */
 public class FlatDockableDisplayer extends BasicDockableDisplayer {
-    private FlatBorder border;
-    
-    public FlatDockableDisplayer( DockStation station, Dockable dockable, DockTitle title, Location location ){
-        super( station, dockable, title, location );
-        border = new FlatBorder( this );
-        
-        setDefaultBorderHint( true );
-        setRespectBorderHint( true );
-        setSingleTabShowInnerBorder( false );
-        setSingleTabShowOuterBorder( true );
-    }
-    
-    @Override
-    public void setController( DockController controller ) {
-        super.setController( controller );
-        border.connect( controller );
-    }
-    
-    @Override
-    protected Border getDefaultBorder() {
-        return border;
-    }
-    
-    @Override
-    protected BasicDockableDisplayerDecorator createTabDecorator() {
-    	return new TabDecorator( getStation(), FlatTheme.ACTION_DISTRIBUTOR );
-    }
-    
-    @Override
-    protected BasicDockableDisplayerDecorator createStackedDecorator(){
-    	return createStackedDecorator( FlatTheme.ACTION_DISTRIBUTOR );
-    }
+  private FlatBorder border;
+
+  public FlatDockableDisplayer(DockStation station, Dockable dockable, DockTitle title, Location location) {
+    super(station, dockable, title, location);
+    border = new FlatBorder(this);
+
+    setDefaultBorderHint(true);
+    setRespectBorderHint(true);
+    setSingleTabShowInnerBorder(false);
+    setSingleTabShowOuterBorder(true);
+  }
+
+  @Override
+  public void setController(DockController controller) {
+    super.setController(controller);
+    border.connect(controller);
+  }
+
+  @Override
+  protected Border getDefaultBorder() {
+    return border;
+  }
+
+  @Override
+  protected BasicDockableDisplayerDecorator createTabDecorator() {
+    return new TabDecorator(getStation(), FlatTheme.ACTION_DISTRIBUTOR);
+  }
+
+  @Override
+  protected BasicDockableDisplayerDecorator createStackedDecorator() {
+    return createStackedDecorator(FlatTheme.ACTION_DISTRIBUTOR);
+  }
 }

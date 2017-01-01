@@ -31,34 +31,36 @@ import bibliothek.gui.dock.station.support.PlaceholderMap;
 /**
  * The {@link DefaultAsideAnswer} is just a container for properties but does not modify them
  * in any way.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultAsideAnswer implements AsideAnswer{
-	private boolean canceled;
-	private DockableProperty location;
-	private PlaceholderMap layout;
-	
-	/**
-	 * Creates a new answer.
-	 * @param canceled whether the request was canceled
-	 * @param location the location of the new item
-	 * @param layout the layout of the non-existing station
-	 */
-	public DefaultAsideAnswer( boolean canceled, DockableProperty location, PlaceholderMap layout ){
-		this.canceled = canceled;
-		this.location = location;
-		this.layout = layout;
-	}
-	
-	public boolean isCanceled(){
-		return canceled;
-	}
-	
-	public DockableProperty getLocation(){
-		return location;
-	}
-	
-	public PlaceholderMap getLayout(){
-		return layout;
-	}
+public class DefaultAsideAnswer implements AsideAnswer {
+  private boolean canceled;
+  private DockableProperty location;
+  private PlaceholderMap layout;
+
+  /**
+   * Creates a new answer.
+   *
+   * @param canceled whether the request was canceled
+   * @param location the location of the new item
+   * @param layout   the layout of the non-existing station
+   */
+  public DefaultAsideAnswer(boolean canceled, DockableProperty location, PlaceholderMap layout) {
+    this.canceled = canceled;
+    this.location = location;
+    this.layout = layout;
+  }
+
+  public boolean isCanceled() {
+    return canceled;
+  }
+
+  public DockableProperty getLocation() {
+    return location;
+  }
+
+  public PlaceholderMap getLayout() {
+    return layout;
+  }
 }

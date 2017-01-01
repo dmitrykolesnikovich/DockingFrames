@@ -32,73 +32,75 @@ import bibliothek.gui.dock.layout.DockableProperty;
 import bibliothek.gui.dock.station.flap.FlapDockProperty;
 
 /**
- * A location which represents the index on a {@link FlapDockStation}. 
+ * A location which represents the index on a {@link FlapDockStation}.
+ *
  * @author Benjamin Sigg
  */
-public class CFlapIndexLocation extends AbstractStackholdingLocation{
-    private int index;
-    private CFlapLocation parent;
-    
-    /**
-     * Creates a new location
-     * @param parent the {@link FlapDockStation} to which this location
-     * belongs
-     * @param index the exact position of this location
-     */
-    public CFlapIndexLocation( CFlapLocation parent, int index ){
-        if( parent == null )
-            throw new NullPointerException( "parent must not be null" );
-        
-        this.parent = parent;
-        this.index = index;
-    }
-    
-    @Override
-    public CFlapLocation getParent(){
-    	return parent;
-    }
-    
-    /**
-     * Gets the exact location of this location on its parent.
-     * @return the exact location
-     */
-    public int getIndex() {
-        return index;
-    }
-    
-	/**
-	 * @deprecated see {@link CLocation#aside()} for an explanation.
-	 */
-	@Deprecated
-    @Override
-    public CLocation aside() {
-    	return stack( 1 );
+public class CFlapIndexLocation extends AbstractStackholdingLocation {
+  private int index;
+  private CFlapLocation parent;
+
+  /**
+   * Creates a new location
+   *
+   * @param parent the {@link FlapDockStation} to which this location
+   *               belongs
+   * @param index  the exact position of this location
+   */
+  public CFlapIndexLocation(CFlapLocation parent, int index) {
+    if (parent == null) throw new NullPointerException("parent must not be null");
+
+    this.parent = parent;
+    this.index = index;
+  }
+
+  @Override
+  public CFlapLocation getParent() {
+    return parent;
+  }
+
+  /**
+   * Gets the exact location of this location on its parent.
+   *
+   * @return the exact location
+   */
+  public int getIndex() {
+    return index;
+  }
+
+  /**
+   * @deprecated see {@link CLocation#aside()} for an explanation.
+   */
+  @Deprecated
+  @Override
+  public CLocation aside() {
+    return stack(1);
+  }
+
+  @Override
+  public ExtendedMode findMode() {
+    return ExtendedMode.MINIMIZED;
+  }
+
+  @Override
+  public DockableProperty findProperty(DockableProperty successor) {
+    FlapDockProperty property = new FlapDockProperty(index);
+    property.setSuccessor(successor);
+
+    if (parent != null) {
+      return parent.findProperty(property);
     }
 
-    @Override
-    public ExtendedMode findMode() {
-        return ExtendedMode.MINIMIZED;
-    }
+    return property;
+  }
 
-    @Override
-    public DockableProperty findProperty( DockableProperty successor ) {
-        FlapDockProperty property = new FlapDockProperty( index );
-        property.setSuccessor( successor );
-        
-        if( parent != null ){
-        	return parent.findProperty( property );
-        }
-        
-        return property;
-    }
+  @Override
+  public String findRoot() {
+    return parent.findRoot();
+  }
 
-    @Override
-    public String findRoot() {
-        return parent.findRoot();
-    }
-    
-    @Override
-    public String toString() {
-        return String.valueOf( parent ) + " [index " + index + "]"; 
-    }
+  @Override
+  public String toString() {
+    return String.valueOf(parent) + " [index " + index + "]";
+  }
 }

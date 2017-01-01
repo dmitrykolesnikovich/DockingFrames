@@ -25,14 +25,12 @@
  */
 package bibliothek.gui.dock.station.split;
 
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Graphics;
+import bibliothek.gui.dock.SplitDockStation;
+
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
-import bibliothek.gui.dock.SplitDockStation;
 
 /**
  * The {@link SplitDividerStrategy} is responsible for resizing the children of a {@link SplitDockStation}. How exactly
@@ -49,34 +47,38 @@ import bibliothek.gui.dock.SplitDockStation;
  * A strategy may offer additional services like changing the {@link Cursor}, or a strategy
  * may not do anything at all.<br>
  * Implementations should (but are not enforced to) respect some properties:
- * <ul> 
- * 	<li>{@link SplitDockStation#isResizingEnabled()}: whether the user is allowed to resize the children.</li>
- * 	<li>{@link SplitDockStation#isContinousDisplay()}: whether resizing should happen immediately.</li>
+ * <ul>
+ * <li>{@link SplitDockStation#isResizingEnabled()}: whether the user is allowed to resize the children.</li>
+ * <li>{@link SplitDockStation#isContinousDisplay()}: whether resizing should happen immediately.</li>
  * </ul>
  * <br>
  * Clients usually do not need to implement this interface, and the framework offers only one default
- * implementation. The interface will however remain, ready for clients with unforseen needs. 
+ * implementation. The interface will however remain, ready for clients with unforseen needs.
+ *
  * @author Benjamin Sigg
  */
 public interface SplitDividerStrategy {
-	/**
-	 * Informs this strategy that <code>station</code> is going to use it and that <code>container</code> must
-	 * be monitored in order to receive {@link MouseEvent}s.
-	 * @param station the station whose children are resized by this strategy
-	 * @param container the component to monitor
-	 */
-	public void install( SplitDockStation station, Component container );
+  /**
+   * Informs this strategy that <code>station</code> is going to use it and that <code>container</code> must
+   * be monitored in order to receive {@link MouseEvent}s.
+   *
+   * @param station   the station whose children are resized by this strategy
+   * @param container the component to monitor
+   */
+  public void install(SplitDockStation station, Component container);
 
-	/**
-	 * Informs this strategy that it will no longer be used by <code>station</code>.
-	 * @param station the station that is no longer using <code>this</code>
-	 */
-	public void uninstall( SplitDockStation station );
-	
-	/**
-	 * Allows this strategy to paint onto the {@link SplitDockStation}.
-	 * @param station the station which is painted
-	 * @param g the graphics context to use
-	 */
-	public void paint( SplitDockStation station, Graphics g );
+  /**
+   * Informs this strategy that it will no longer be used by <code>station</code>.
+   *
+   * @param station the station that is no longer using <code>this</code>
+   */
+  public void uninstall(SplitDockStation station);
+
+  /**
+   * Allows this strategy to paint onto the {@link SplitDockStation}.
+   *
+   * @param station the station which is painted
+   * @param g       the graphics context to use
+   */
+  public void paint(SplitDockStation station, Graphics g);
 }

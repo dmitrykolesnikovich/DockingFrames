@@ -27,12 +27,14 @@ package bibliothek.gui.dock.common.action.panel;
 
 /**
  * A listener to a {@link PanelPopupWindow}.
+ *
  * @author Benjamin Sigg
  */
 public interface PanelPopupWindowListener {
-	/**
-	 * Called after <code>window</code> has been made invisible.
-	 * @param window the source of the event
-	 */
-	public void closed( PanelPopupWindow window );
+  /**
+   * Called after <code>window</code> has been made invisible.
+   *
+   * @param window the source of the event
+   */
+  public void closed(PanelPopupWindow window);
 }

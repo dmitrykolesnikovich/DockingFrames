@@ -30,58 +30,70 @@ import bibliothek.gui.dock.common.SingleCDockable;
 /**
  * An intermediate representation of the layout of a {@link CommonDockable} that
  * is connected with a {@link SingleCDockable}.
+ *
  * @author Benjamin Sigg
  */
 public class CommonSingleDockableLayout {
-	/** the unique identifier of the dockable */
-	private String id;
-	
-	/** whether {@link #setArea(String)} was ever called */
-	private boolean areaSet;
-	
-	/** the working-area with which the dockable is associated */
-	private String area;
-	
-	/**
-	 * Sets the unique identifier of the dockable.
-	 * @param id the unique identifier
-	 */
-	public void setId( String id ){
-		this.id = id;
-	}
-	
-	/**
-	 * Gets the unique identifier of the dockable
-	 * @return the unique identifier
-	 */
-	public String getId(){
-		return id;
-	}
-	
-	/**
-	 * Tells whether {@link #setArea(String)} was ever called. This method returns
-	 * <code>false</code> if this layout represents a layout that was created with
-	 * a version of the framework that was before 1.1.0.
-	 * @return whether {@link #setArea(String)} was ever called
-	 */
-	public boolean isAreaSet(){
-		return areaSet;
-	}
-	
-	/**
-	 * Sets the working-area of the dockable.
-	 * @param area the working-area, can be <code>null</code>
-	 */
-	public void setArea( String area ){
-		areaSet = true;
-		this.area = area;
-	}
-	
-	/**
-	 * Gets the working-area of the dockable.
-	 * @return the working-area, can be <code>null</code>
-	 */
-	public String getArea(){
-		return area;
-	}
+  /**
+   * the unique identifier of the dockable
+   */
+  private String id;
+
+  /**
+   * whether {@link #setArea(String)} was ever called
+   */
+  private boolean areaSet;
+
+  /**
+   * the working-area with which the dockable is associated
+   */
+  private String area;
+
+  /**
+   * Gets the unique identifier of the dockable
+   *
+   * @return the unique identifier
+   */
+  public String getId() {
+    return id;
+  }
+
+  /**
+   * Sets the unique identifier of the dockable.
+   *
+   * @param id the unique identifier
+   */
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  /**
+   * Tells whether {@link #setArea(String)} was ever called. This method returns
+   * <code>false</code> if this layout represents a layout that was created with
+   * a version of the framework that was before 1.1.0.
+   *
+   * @return whether {@link #setArea(String)} was ever called
+   */
+  public boolean isAreaSet() {
+    return areaSet;
+  }
+
+  /**
+   * Gets the working-area of the dockable.
+   *
+   * @return the working-area, can be <code>null</code>
+   */
+  public String getArea() {
+    return area;
+  }
+
+  /**
+   * Sets the working-area of the dockable.
+   *
+   * @param area the working-area, can be <code>null</code>
+   */
+  public void setArea(String area) {
+    areaSet = true;
+    this.area = area;
+  }
 }

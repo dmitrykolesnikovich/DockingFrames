@@ -31,25 +31,28 @@ import bibliothek.gui.dock.perspective.PerspectiveElement;
 
 /**
  * An object that works together with a {@link DockFactory}, this object
- * decides on its own whether it wants to store information about a 
+ * decides on its own whether it wants to store information about a
  * {@link DockElement} or not.
- * @author Benjamin Sigg
+ *
  * @param <L> the kind of object this factory uses as intermediate format
+ * @author Benjamin Sigg
  */
-public interface AdjacentDockFactory <L> extends DockConverter<DockElement, PerspectiveElement, L>{
-    /**
-     * Tells whether this factory is interested in storing information for
-     * <code>element</code>.
-     * @param element the element which might be stored by this factory
-     * @return <code>true</code> if the factory wants to store <code>element</code>
-     */
-    public boolean interested( DockElement element );
-    
-    /**
-     * Tells whether this factory is interested in storing information for
-     * <code>element</code>.
-     * @param element the element which might be stored by this factory
-     * @return <code>true</code> if the factory wants to store <code>element</code>
-     */
-    public boolean interested( PerspectiveElement element );    
+public interface AdjacentDockFactory<L> extends DockConverter<DockElement, PerspectiveElement, L> {
+  /**
+   * Tells whether this factory is interested in storing information for
+   * <code>element</code>.
+   *
+   * @param element the element which might be stored by this factory
+   * @return <code>true</code> if the factory wants to store <code>element</code>
+   */
+  public boolean interested(DockElement element);
+
+  /**
+   * Tells whether this factory is interested in storing information for
+   * <code>element</code>.
+   *
+   * @param element the element which might be stored by this factory
+   * @return <code>true</code> if the factory wants to store <code>element</code>
+   */
+  public boolean interested(PerspectiveElement element);
 }

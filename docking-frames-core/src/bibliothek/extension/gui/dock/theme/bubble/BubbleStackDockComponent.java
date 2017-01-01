@@ -34,75 +34,80 @@ import bibliothek.gui.dock.station.stack.CombinedStackDockComponent;
 import bibliothek.gui.dock.station.stack.StackDockComponentParent;
 
 /**
- * A {@link bibliothek.gui.dock.station.stack.StackDockComponent StackDockComponent} 
+ * A {@link bibliothek.gui.dock.station.stack.StackDockComponent StackDockComponent}
  * used by a {@link BubbleTheme}. This component can animate its tabs.
+ *
  * @author Benjamin Sigg
  */
 public class BubbleStackDockComponent extends CombinedStackDockComponent<BubbleTab, BubbleTabMenu, BubbleInfoComponent> {
 
-	/** the station for which this component is used */
-	private StackDockComponentParent station;
-	
-	/**
-	 * Creates a new component.
-	 * @param parent the station on which this component is used
-	 */
-	public BubbleStackDockComponent( StackDockComponentParent parent ){
-		this.station = parent;
-		setInfoComponent( new BubbleInfoComponent( this ) );
-	}
-	
-	/**
-	 * Gets the station on which this component is used.
-	 * @return the parent of this component
-	 */
-	public DockStation getStation(){
-		return station.getStackDockParent();
-	}
-	
-	@Override
-	protected BubbleTab newTab( Dockable dockable ){
-		BubbleTab tab = new BubbleTab( this, dockable );
-		addStackDockComponentListener( tab );
-		return tab;
-	}
-	
-	@Override
-	protected void tabRemoved( BubbleTab tab ){
-		removeStackDockComponentListener( tab );
-		tab.setController( null );
-        tab.stopAnimation();
-	}
-	
-	@Override
-	public BubbleTabMenu newMenu(){
-		BubbleTabMenu menu = new BubbleTabMenu( this );
-		menu.setController( getController() );
-		return menu;
-	}
-	
-	@Override
-	protected void menuRemoved( BubbleTabMenu menu ){
-		menu.setController( null );
-	}
-	
-	@Override
-	public void setController( DockController controller ){
-		super.setController( controller );
-		
-		for( BubbleTab tab : getTabsList() ){
-			tab.setController( controller );
-		}
-		for( BubbleTabMenu menu : getMenuList() ){
-			menu.setController( controller );
-		}
-	}
+  /**
+   * the station for which this component is used
+   */
+  private StackDockComponentParent station;
 
-	public boolean hasBorder() {
-	    return true;
-	}
-	
-	public boolean isSingleTabComponent(){
-		return false;
-	}
+  /**
+   * Creates a new component.
+   *
+   * @param parent the station on which this component is used
+   */
+  public BubbleStackDockComponent(StackDockComponentParent parent) {
+    this.station = parent;
+    setInfoComponent(new BubbleInfoComponent(this));
+  }
+
+  /**
+   * Gets the station on which this component is used.
+   *
+   * @return the parent of this component
+   */
+  public DockStation getStation() {
+    return station.getStackDockParent();
+  }
+
+  @Override
+  protected BubbleTab newTab(Dockable dockable) {
+    BubbleTab tab = new BubbleTab(this, dockable);
+    addStackDockComponentListener(tab);
+    return tab;
+  }
+
+  @Override
+  protected void tabRemoved(BubbleTab tab) {
+    removeStackDockComponentListener(tab);
+    tab.setController(null);
+    tab.stopAnimation();
+  }
+
+  @Override
+  public BubbleTabMenu newMenu() {
+    BubbleTabMenu menu = new BubbleTabMenu(this);
+    menu.setController(getController());
+    return menu;
+  }
+
+  @Override
+  protected void menuRemoved(BubbleTabMenu menu) {
+    menu.setController(null);
+  }
+
+  @Override
+  public void setController(DockController controller) {
+    super.setController(controller);
+
+    for (BubbleTab tab : getTabsList()) {
+      tab.setController(controller);
+    }
+    for (BubbleTabMenu menu : getMenuList()) {
+      menu.setController(controller);
+    }
+  }
+
+  public boolean hasBorder() {
+    return true;
+  }
+
+  public boolean isSingleTabComponent() {
+    return false;
+  }
 }

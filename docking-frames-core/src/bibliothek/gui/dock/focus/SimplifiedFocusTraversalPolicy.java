@@ -25,56 +25,61 @@
  */
 package bibliothek.gui.dock.focus;
 
-import java.awt.Component;
-import java.awt.Container;
+import java.awt.*;
 
 /**
  * An interface which mimics the behavior of {@link java.awt.FocusTraversalPolicy}
  * but implementing classes are not required to respect any other
- * {@link Container#isFocusCycleRoot() focus cycle roots}, 
- * {@link Container#isFocusTraversalPolicyProvider() policy providers} or 
+ * {@link Container#isFocusCycleRoot() focus cycle roots},
+ * {@link Container#isFocusTraversalPolicyProvider() policy providers} or
  * visibility, focusability, displayability nor the enabled state. This
  * {@link SimplifiedFocusTraversalPolicy} will be put into a {@link DockFocusTraversalPolicy}
  * which will handle all these issues.
+ *
  * @author Benjamin Sigg
  */
 public interface SimplifiedFocusTraversalPolicy {
-    /**
-     * Gets the {@link Component} which should be focused next.
-     * @param container the root or provider of this policy
-     * @param component the currently focused component
-     * @return the next component or <code>null</code>
-     */
-    public abstract Component getAfter( Container container, Component component );
+  /**
+   * Gets the {@link Component} which should be focused next.
+   *
+   * @param container the root or provider of this policy
+   * @param component the currently focused component
+   * @return the next component or <code>null</code>
+   */
+  public abstract Component getAfter(Container container, Component component);
 
-    /**
-     * Gets the {@link Component} which should be focused when stepping through
-     * the circle backwards.
-     * @param container the root or provider of this policy
-     * @param component the currently focused component
-     * @return the previous component or <code>null</code>
-     */
-    public abstract Component getBefore( Container container, Component component );
+  /**
+   * Gets the {@link Component} which should be focused when stepping through
+   * the circle backwards.
+   *
+   * @param container the root or provider of this policy
+   * @param component the currently focused component
+   * @return the previous component or <code>null</code>
+   */
+  public abstract Component getBefore(Container container, Component component);
 
-    /**
-     * Gets the {@link Component} which should be focused when entering the circle.
-     * @param container the root or provider of this policy
-     * @return the next component or <code>null</code>
-     */
-    public abstract Component getFirst( Container container );
+  /**
+   * Gets the {@link Component} which should be focused when entering the circle.
+   *
+   * @param container the root or provider of this policy
+   * @return the next component or <code>null</code>
+   */
+  public abstract Component getFirst(Container container);
 
-    /**
-     * Gets the {@link Component} which should be focused when entering the
-     * circle backwards.
-     * @param container the root or provider of this policy
-     * @return the next component or <code>null</code>
-     */
-    public abstract Component getLast( Container container );
+  /**
+   * Gets the {@link Component} which should be focused when entering the
+   * circle backwards.
+   *
+   * @param container the root or provider of this policy
+   * @return the next component or <code>null</code>
+   */
+  public abstract Component getLast(Container container);
 
-    /**
-     * Gets the {@link Component} which should be focused per default.
-     * @param container the root or provider of this policy
-     * @return the default component or <code>null</code>
-     */
-    public abstract Component getDefault( Container container );
+  /**
+   * Gets the {@link Component} which should be focused per default.
+   *
+   * @param container the root or provider of this policy
+   * @return the default component or <code>null</code>
+   */
+  public abstract Component getDefault(Container container);
 }

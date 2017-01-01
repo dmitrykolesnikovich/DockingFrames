@@ -26,48 +26,52 @@
 
 package bibliothek.gui.dock.themes.basic.action.dropdown;
 
-import javax.swing.JComponent;
-
 import bibliothek.gui.dock.action.DockAction;
 import bibliothek.gui.dock.action.dropdown.DropDownView;
 import bibliothek.gui.dock.themes.basic.action.menu.MenuViewItem;
 
+import javax.swing.*;
+
 /**
  * An item that is shown in the menu of a drop-down-button and can be
- * selected by the button. Normally a {@link DropDownViewItem} is a 
+ * selected by the button. Normally a {@link DropDownViewItem} is a
  * wrapper for some {@link DockAction}, although there may exist
  * exceptions.
+ *
  * @author Benjamin Sigg
  */
-public interface DropDownViewItem extends MenuViewItem<JComponent> {	
-	/**
-	 * Invoked if the item is triggered from outside. The item should
-	 * call the method of its action that causes the action to execute
-	 * its natural code (for example: a checkbox may change its selected-state).
-	 */
-	public void triggered();
-	
-	/**
-	 * Sends the current settings of this item to the view. The values
-	 * can be changed as long as the view is registered.
-	 * @param view the view, might be <code>null</code>
-	 */
-	public void setView( DropDownView view );
-	
-	/**
-	 * Tells whether this item can be selected by the button. Only selectable
-	 * items can be shown directly on the button. Some items, like a separator,
-	 * should return <code>false</code>.
-	 * @return whether the item can be selected
-	 */
-	public boolean isSelectable();
-	
-	/**
-	 * Tells whether the item can be triggered if it is on the button or
-	 * in the menu.
-	 * @param selected if <code>true</code>, then this item is currently shown
-	 * directly on the main button, otherwise it is in the drop-down menu.
-	 * @return <code>true</code> if the item can be triggered
-	 */
-	public boolean isTriggerable( boolean selected );
+public interface DropDownViewItem extends MenuViewItem<JComponent> {
+  /**
+   * Invoked if the item is triggered from outside. The item should
+   * call the method of its action that causes the action to execute
+   * its natural code (for example: a checkbox may change its selected-state).
+   */
+  public void triggered();
+
+  /**
+   * Sends the current settings of this item to the view. The values
+   * can be changed as long as the view is registered.
+   *
+   * @param view the view, might be <code>null</code>
+   */
+  public void setView(DropDownView view);
+
+  /**
+   * Tells whether this item can be selected by the button. Only selectable
+   * items can be shown directly on the button. Some items, like a separator,
+   * should return <code>false</code>.
+   *
+   * @return whether the item can be selected
+   */
+  public boolean isSelectable();
+
+  /**
+   * Tells whether the item can be triggered if it is on the button or
+   * in the menu.
+   *
+   * @param selected if <code>true</code>, then this item is currently shown
+   *                 directly on the main button, otherwise it is in the drop-down menu.
+   * @return <code>true</code> if the item can be triggered
+   */
+  public boolean isTriggerable(boolean selected);
 }

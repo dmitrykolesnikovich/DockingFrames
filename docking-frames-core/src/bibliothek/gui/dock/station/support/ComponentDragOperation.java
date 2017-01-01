@@ -25,55 +25,58 @@
  */
 package bibliothek.gui.dock.station.support;
 
-import java.awt.Component;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.station.StationDragOperation;
+
+import java.awt.*;
 
 /**
  * This implementation of {@link StationDragOperation} will call
  * {@link Component#repaint()} on creation and when either the
  * operation succeeds or was canceled.
+ *
  * @author Benjamin Sigg
  */
-public abstract class ComponentDragOperation implements StationDragOperation{
-	private Dockable dockable;
-	private Component component;
-	
-	/**
-	 * Creates a new operation
-	 * @param dockable the item that is removed
-	 * @param component the component that needs to be repainted
-	 */
-	public ComponentDragOperation( Dockable dockable, Component component ){
-		this.dockable = dockable;
-		this.component = component;
-		component.repaint();
-	}
-	
-	public void canceled(){
-		dockable = null;
-		component.repaint();
-		destroy();
-	}
-	
-	public void succeeded(){
-		dockable = null;
-		component.repaint();
-		destroy();
-	}
-	
-	/**
-	 * Gets the dockable that is moved around or <code>null</code> if this
-	 * operation is no longer required
-	 * @return the item that is dragged or <code>null</code>
-	 */
-	public Dockable getDockable(){
-		return dockable;
-	}
-	
-	/**
-	 * Called once this operation is no longer required
-	 */
-	protected abstract void destroy();
+public abstract class ComponentDragOperation implements StationDragOperation {
+  private Dockable dockable;
+  private Component component;
+
+  /**
+   * Creates a new operation
+   *
+   * @param dockable  the item that is removed
+   * @param component the component that needs to be repainted
+   */
+  public ComponentDragOperation(Dockable dockable, Component component) {
+    this.dockable = dockable;
+    this.component = component;
+    component.repaint();
+  }
+
+  public void canceled() {
+    dockable = null;
+    component.repaint();
+    destroy();
+  }
+
+  public void succeeded() {
+    dockable = null;
+    component.repaint();
+    destroy();
+  }
+
+  /**
+   * Gets the dockable that is moved around or <code>null</code> if this
+   * operation is no longer required
+   *
+   * @return the item that is dragged or <code>null</code>
+   */
+  public Dockable getDockable() {
+    return dockable;
+  }
+
+  /**
+   * Called once this operation is no longer required
+   */
+  protected abstract void destroy();
 }

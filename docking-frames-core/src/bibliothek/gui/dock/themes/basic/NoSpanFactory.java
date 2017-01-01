@@ -25,42 +25,39 @@
  */
 package bibliothek.gui.dock.themes.basic;
 
-import bibliothek.gui.dock.station.span.Span;
-import bibliothek.gui.dock.station.span.SpanCallback;
-import bibliothek.gui.dock.station.span.SpanFactory;
-import bibliothek.gui.dock.station.span.SpanMode;
-import bibliothek.gui.dock.station.span.SpanUsage;
+import bibliothek.gui.dock.station.span.*;
 
 /**
  * This factory creates {@link Span}s that always have a size of <code>0</code>.
+ *
  * @author Benjamin Sigg
  */
-public class NoSpanFactory implements SpanFactory{
-	public Span create( final SpanCallback callback ){
-		return new Span(){
-			private int size = 0;
-			
-			public void set( SpanMode mode ){
-				// ignore	
-			}
-			
-			public void mutate( SpanMode mode ){
-				// ignore
-			}
-			
-			public int getSize(){
-				if( callback.getUsage() == SpanUsage.HIDING ){
-					return 5;
-				}
-				return size;
-			}
-			
-			public void configureSize( SpanMode mode, int size ){
-				if( mode == SpanMode.OFF ){
-					this.size = size;
-					callback.resized();
-				}
-			}
-		};
-	}
+public class NoSpanFactory implements SpanFactory {
+  public Span create(final SpanCallback callback) {
+    return new Span() {
+      private int size = 0;
+
+      public void set(SpanMode mode) {
+        // ignore
+      }
+
+      public void mutate(SpanMode mode) {
+        // ignore
+      }
+
+      public int getSize() {
+        if (callback.getUsage() == SpanUsage.HIDING) {
+          return 5;
+        }
+        return size;
+      }
+
+      public void configureSize(SpanMode mode, int size) {
+        if (mode == SpanMode.OFF) {
+          this.size = size;
+          callback.resized();
+        }
+      }
+    };
+  }
 }

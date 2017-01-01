@@ -33,20 +33,22 @@ import bibliothek.gui.Dockable;
  * tell the parent how to display its child, for example whether they should
  * paint a border around the child or not.<br>
  * There is no obligation for a parent to respect any hint.
+ *
  * @author Benjamin Sigg
  */
 public interface DockableDisplayerHints {
-	/**
-	 * Gets the {@link DockStation} which is currently responsible for showing a
-	 * {@link Dockable}.
-	 */
-	public DockStation getStation();
-	
-    /**
-     * Tells whether to paint a border or not.
-     * @param border <code>true</code> if the border should be painted,
-     * <code>false</code> if not, <code>null</code> if the default setting
-     * should be used
-     */
-    public void setShowBorderHint( Boolean border );
+  /**
+   * Gets the {@link DockStation} which is currently responsible for showing a
+   * {@link Dockable}.
+   */
+  public DockStation getStation();
+
+  /**
+   * Tells whether to paint a border or not.
+   *
+   * @param border <code>true</code> if the border should be painted,
+   *               <code>false</code> if not, <code>null</code> if the default setting
+   *               should be used
+   */
+  public void setShowBorderHint(Boolean border);
 }

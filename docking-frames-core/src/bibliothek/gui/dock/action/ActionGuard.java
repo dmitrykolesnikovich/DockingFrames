@@ -34,28 +34,31 @@ import bibliothek.gui.Dockable;
  * to a {@link DockController}, and whenever the {@link DockActionSource actions}
  * of a {@link Dockable} have to be determined, all known ActionGuards are
  * asked, if they may add some additional {@link DockActionSource actions}.
+ *
  * @author Benjamin Sigg
  * @see DockController#addActionGuard(ActionGuard)
  * @see DockController#removeActionGuard(ActionGuard)
  * @see DockController#listOffers(Dockable)
  */
 public interface ActionGuard {
-    /**
-     * Tests the given {@link Dockable} and tells whether this
-     * ActionGuard is interested in it and wants to add some additional
-     * {@link #getSource(Dockable) actions} to it, or if this guard
-     * is not made for the <code>dockable</code>.
-     * @param dockable The {@link Dockable} to test
-     * @return <code>true</code> if the {@link #getSource(Dockable)}-method
-     * should be invoked, <code>false</code> otherwise
-     */
-    public boolean react( Dockable dockable );
-    
-    /**
-     * Gets a list of actions for the {@link Dockable}
-     * @param dockable The {@link Dockable} for which {@link #react(Dockable)}
-     * is <code>true</code>
-     * @return The actions which shall be used together with the <code>dockable</code>.
-     */
-    public DockActionSource getSource( Dockable dockable );
+  /**
+   * Tests the given {@link Dockable} and tells whether this
+   * ActionGuard is interested in it and wants to add some additional
+   * {@link #getSource(Dockable) actions} to it, or if this guard
+   * is not made for the <code>dockable</code>.
+   *
+   * @param dockable The {@link Dockable} to test
+   * @return <code>true</code> if the {@link #getSource(Dockable)}-method
+   * should be invoked, <code>false</code> otherwise
+   */
+  public boolean react(Dockable dockable);
+
+  /**
+   * Gets a list of actions for the {@link Dockable}
+   *
+   * @param dockable The {@link Dockable} for which {@link #react(Dockable)}
+   *                 is <code>true</code>
+   * @return The actions which shall be used together with the <code>dockable</code>.
+   */
+  public DockActionSource getSource(Dockable dockable);
 }

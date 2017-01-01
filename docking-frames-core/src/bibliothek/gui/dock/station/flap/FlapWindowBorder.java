@@ -32,22 +32,26 @@ import bibliothek.util.Path;
 
 /**
  * A {@link DockBorder} that represents a {@link FlapWindow}.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
-public interface FlapWindowBorder extends DockBorder{
-	/** the type of this {@link UIValue} */
-	public static final Path KIND = DockBorder.KIND.append( "flapWindow" );
-	
-	/**
-	 * Gets the window which is represented by this border.
-	 * @return the window, not <code>null</code>
-	 */
-	public FlapWindow getWindow();
-	
-	/**
-	 * Gets the station for which this border is used.
-	 * @return the station
-	 */
-	public FlapDockStation getStation();
+public interface FlapWindowBorder extends DockBorder {
+  /**
+   * the type of this {@link UIValue}
+   */
+  public static final Path KIND = DockBorder.KIND.append("flapWindow");
+
+  /**
+   * Gets the window which is represented by this border.
+   *
+   * @return the window, not <code>null</code>
+   */
+  public FlapWindow getWindow();
+
+  /**
+   * Gets the station for which this border is used.
+   *
+   * @return the station
+   */
+  public FlapDockStation getStation();
 }

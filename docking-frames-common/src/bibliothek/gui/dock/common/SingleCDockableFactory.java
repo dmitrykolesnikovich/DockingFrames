@@ -30,14 +30,16 @@ package bibliothek.gui.dock.common;
  * A backup factory is used by a {@link CControl} to create {@link SingleCDockable}s
  * if a dockable is missing in the cache, but needed because some layout is loaded
  * from a file.
+ *
  * @author Benjamin Sigg
  */
 public interface SingleCDockableFactory {
-    /**
-     * Creates a backup of a {@link SingleCDockable}.
-     * @param id the unique id that the result must have
-     * @return the backup dockable or <code>null</code> if no dockable can
-     * be created
-     */
-    public SingleCDockable createBackup( String id );
+  /**
+   * Creates a backup of a {@link SingleCDockable}.
+   *
+   * @param id the unique id that the result must have
+   * @return the backup dockable or <code>null</code> if no dockable can
+   * be created
+   */
+  public SingleCDockable createBackup(String id);
 }

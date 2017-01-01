@@ -28,14 +28,16 @@ package bibliothek.gui.dock.util;
 
 /**
  * A listener that is added to a {@link BackgroundAlgorithm}, the listener gets informed
- * if properties of the algorithm changed. 
+ * if properties of the algorithm changed.
+ *
  * @author Benjamin Sigg
  */
 public interface BackgroundAlgorithmListener {
-	/**
-	 * Called when the transparency of <code>algorithm</code> changed to <code>transparency</code>.
-	 * @param algorithm the algorithm whose transparency changed
-	 * @param transparency the new property
-	 */
-	public void transparencyChanged( BackgroundAlgorithm algorithm, Transparency transparency );
+  /**
+   * Called when the transparency of <code>algorithm</code> changed to <code>transparency</code>.
+   *
+   * @param algorithm    the algorithm whose transparency changed
+   * @param transparency the new property
+   */
+  public void transparencyChanged(BackgroundAlgorithm algorithm, Transparency transparency);
 }

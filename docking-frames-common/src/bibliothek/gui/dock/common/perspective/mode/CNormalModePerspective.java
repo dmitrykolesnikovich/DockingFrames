@@ -30,10 +30,11 @@ import bibliothek.gui.dock.common.mode.ExtendedMode;
 
 /**
  * Represents a {@link CNormalMode}.
+ *
  * @author Benjamin Sigg
  */
-public class CNormalModePerspective extends AbstractModePerspective<CModeAreaPerspective>{
-	public ExtendedMode getIdentifier(){
-		return ExtendedMode.NORMALIZED;
-	}
+public class CNormalModePerspective extends AbstractModePerspective<CModeAreaPerspective> {
+  public ExtendedMode getIdentifier() {
+    return ExtendedMode.NORMALIZED;
+  }
 }

@@ -25,10 +25,6 @@
  */
 package bibliothek.gui.dock.station.split;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.SplitDockStation;
 import bibliothek.gui.dock.layout.AbstractDockableProperty;
@@ -36,37 +32,42 @@ import bibliothek.gui.dock.layout.DockableProperty;
 import bibliothek.util.ClientOnly;
 import bibliothek.util.xml.XElement;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 /**
- * This {@link DockableProperty} points to the currently maximized child of a {@link SplitDockStation}. 
+ * This {@link DockableProperty} points to the currently maximized child of a {@link SplitDockStation}.
  * {@link SplitDockStation} itself will never create this property, it exists only for clients to easily
  * drop a maximized {@link Dockable}.
+ *
  * @author Benjamin Sigg
  */
 @ClientOnly
 public class SplitDockFullScreenProperty extends AbstractDockableProperty {
-	public DockableProperty copy(){
-		SplitDockFullScreenProperty property = new SplitDockFullScreenProperty();
-		copy( property );
-		return property;
-	}
+  public DockableProperty copy() {
+    SplitDockFullScreenProperty property = new SplitDockFullScreenProperty();
+    copy(property);
+    return property;
+  }
 
-	public String getFactoryID(){
-		return SplitDockFullScreenPropertyFactory.ID;
-	}
+  public String getFactoryID() {
+    return SplitDockFullScreenPropertyFactory.ID;
+  }
 
-	public void load( DataInputStream in ) throws IOException{
-		// ignore
-	}
+  public void load(DataInputStream in) throws IOException {
+    // ignore
+  }
 
-	public void load( XElement element ){
-		// ignore		
-	}
+  public void load(XElement element) {
+    // ignore
+  }
 
-	public void store( DataOutputStream out ) throws IOException{
-		// ignore
-	}
+  public void store(DataOutputStream out) throws IOException {
+    // ignore
+  }
 
-	public void store( XElement element ){
-		// ignore
-	}
+  public void store(XElement element) {
+    // ignore
+  }
 }

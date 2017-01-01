@@ -29,13 +29,15 @@ import bibliothek.gui.dock.facile.mode.LocationModeManager;
 
 /**
  * This factory creates new {@link ExtendedModeEnablement}s.
+ *
  * @author Benjamin Sigg
  */
 public interface ExtendedModeEnablementFactory {
-	/**
-	 * Creates a new enablement.
-	 * @param manager the manager for which the enablement will be used
-	 * @return the new enablement
-	 */
-	public ExtendedModeEnablement create( LocationModeManager<?> manager );
+  /**
+   * Creates a new enablement.
+   *
+   * @param manager the manager for which the enablement will be used
+   * @return the new enablement
+   */
+  public ExtendedModeEnablement create(LocationModeManager<?> manager);
 }

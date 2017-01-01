@@ -25,11 +25,6 @@
  */
 package bibliothek.gui.dock.station.split;
 
-import java.awt.Dimension;
-import java.awt.Point;
-
-import javax.swing.SwingUtilities;
-
 import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.SplitDockStation;
@@ -37,83 +32,96 @@ import bibliothek.gui.dock.station.DockableDisplayer;
 import bibliothek.gui.dock.station.support.CombinerSource;
 import bibliothek.gui.dock.station.support.PlaceholderMap;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * A {@link CombinerSource} that is created by a {@link SplitDockStation}.
+ *
  * @author Benjamin Sigg
  */
-public class SplitDockCombinerSource implements CombinerSource{
-	/** information about the current position of the mouse and its effects */
-	private PutInfo info;
-	/** the existing child */
-	private Dockable old;
-	/** the creator of this source */
-	private SplitDockStation station;
-	/** position of the mouse in relation to {@link #station} */
-	private Point mouse;
-	
-	/**
-	 * Creates a new object
-	 * @param info information about the current position of the mouse and of
-	 * what is under the mouse
-	 * @param station the creator of this source
-	 * @param mouseOnStation position of the mouse in relation to <code>station</code>
-	 * @throws IllegalArgumentException if the target not of <code>info</code> is not a {@link Leaf}
-	 */
-	public SplitDockCombinerSource( PutInfo info, SplitDockStation station, Point mouseOnStation ){
-		if( !(info.getNode() instanceof Leaf) ){
-			throw new IllegalArgumentException( "info is not available for a combination" );
-		}
-		
-		this.info = info;
-		this.station = station;
-		this.mouse = mouseOnStation;
-		old = getLeaf().getDockable();
-		if( old == null ){
-			throw new IllegalArgumentException( "old Dockable is null" );
-		}
-	}
-	
-	public Point getMousePosition(){
-		if( this.mouse == null ){
-			return null;
-		}
-		Point mouse = new Point( this.mouse );
-		return SwingUtilities.convertPoint( station.getComponent(), mouse, getOld().getComponent() );
-	}
-	
-	private Leaf getLeaf(){
-		return (Leaf)info.getNode();
-	}
+public class SplitDockCombinerSource implements CombinerSource {
+  /**
+   * information about the current position of the mouse and its effects
+   */
+  private PutInfo info;
+  /**
+   * the existing child
+   */
+  private Dockable old;
+  /**
+   * the creator of this source
+   */
+  private SplitDockStation station;
+  /**
+   * position of the mouse in relation to {@link #station}
+   */
+  private Point mouse;
 
-	public Dockable getNew(){
-		return info.getDockable();
-	}
+  /**
+   * Creates a new object
+   *
+   * @param info           information about the current position of the mouse and of
+   *                       what is under the mouse
+   * @param station        the creator of this source
+   * @param mouseOnStation position of the mouse in relation to <code>station</code>
+   * @throws IllegalArgumentException if the target not of <code>info</code> is not a {@link Leaf}
+   */
+  public SplitDockCombinerSource(PutInfo info, SplitDockStation station, Point mouseOnStation) {
+    if (!(info.getNode() instanceof Leaf)) {
+      throw new IllegalArgumentException("info is not available for a combination");
+    }
 
-	public Dockable getOld(){
-		return old;
-	}
-	
-	public DockableDisplayer getOldDisplayer(){
-		SplitNode node = info.getNode();
-		if( node instanceof Leaf ){
-			return ((Leaf)node).getDisplayer();
-		}
-		return null;
-	}
+    this.info = info;
+    this.station = station;
+    this.mouse = mouseOnStation;
+    old = getLeaf().getDockable();
+    if (old == null) {
+      throw new IllegalArgumentException("old Dockable is null");
+    }
+  }
 
-	public DockStation getParent(){
-		return station;
-	}
+  public Point getMousePosition() {
+    if (this.mouse == null) {
+      return null;
+    }
+    Point mouse = new Point(this.mouse);
+    return SwingUtilities.convertPoint(station.getComponent(), mouse, getOld().getComponent());
+  }
 
-	public PlaceholderMap getPlaceholders(){
-		return getLeaf().getPlaceholderMap();
-	}
+  private Leaf getLeaf() {
+    return (Leaf)info.getNode();
+  }
 
-	public Dimension getSize(){
-		return getOld().getComponent().getSize();
-	}
+  public Dockable getNew() {
+    return info.getDockable();
+  }
 
-	public boolean isMouseOverTitle(){
-		return info.getPut() == PutInfo.Put.TITLE;
-	}
+  public Dockable getOld() {
+    return old;
+  }
+
+  public DockableDisplayer getOldDisplayer() {
+    SplitNode node = info.getNode();
+    if (node instanceof Leaf) {
+      return ((Leaf)node).getDisplayer();
+    }
+    return null;
+  }
+
+  public DockStation getParent() {
+    return station;
+  }
+
+  public PlaceholderMap getPlaceholders() {
+    return getLeaf().getPlaceholderMap();
+  }
+
+  public Dimension getSize() {
+    return getOld().getComponent().getSize();
+  }
+
+  public boolean isMouseOverTitle() {
+    return info.getPut() == PutInfo.Put.TITLE;
+  }
 }

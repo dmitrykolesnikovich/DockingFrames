@@ -33,21 +33,26 @@ import bibliothek.util.Path;
 
 /**
  * Represents a {@link BorderModifier} that is used by a component that shows a {@link DockAction}.
+ *
  * @author Benjamin Sigg
  */
-public interface ActionDockBorder extends DockBorder{
-	/** the kind of {@link UIValue} this is */
-	public static final Path KIND = DockBorder.KIND.append( "action" );
-	
-	/**
-	 * Gets the action which is represented by this border.
-	 * @return the action
-	 */
-	public DockAction getAction();
-	
-	/**
-	 * Gets the element which owns the action.
-	 * @return the owner of the action
-	 */
-	public Dockable getDockable();
+public interface ActionDockBorder extends DockBorder {
+  /**
+   * the kind of {@link UIValue} this is
+   */
+  public static final Path KIND = DockBorder.KIND.append("action");
+
+  /**
+   * Gets the action which is represented by this border.
+   *
+   * @return the action
+   */
+  public DockAction getAction();
+
+  /**
+   * Gets the element which owns the action.
+   *
+   * @return the owner of the action
+   */
+  public Dockable getDockable();
 }

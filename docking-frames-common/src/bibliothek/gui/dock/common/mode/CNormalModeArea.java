@@ -32,18 +32,21 @@ import bibliothek.gui.dock.facile.mode.NormalModeArea;
 
 /**
  * A combination of {@link NormalModeArea} and {@link CModeArea}.
+ *
  * @author Benjamin Sigg
  */
 public interface CNormalModeArea extends NormalModeArea, CModeArea {
-	/**
-	 * Gets a location representing this area.
-	 * @return some location, used for {@link Dockable}s which have no valid location
-	 */
-	public CLocation getBaseLocation();
-	
-	/**
-	 * Tells whether this area represents a {@link CStation#isWorkingArea()}
-	 * @return <code>true</code> if an area
-	 */
-	public boolean isWorkingArea();
+  /**
+   * Gets a location representing this area.
+   *
+   * @return some location, used for {@link Dockable}s which have no valid location
+   */
+  public CLocation getBaseLocation();
+
+  /**
+   * Tells whether this area represents a {@link CStation#isWorkingArea()}
+   *
+   * @return <code>true</code> if an area
+   */
+  public boolean isWorkingArea();
 }

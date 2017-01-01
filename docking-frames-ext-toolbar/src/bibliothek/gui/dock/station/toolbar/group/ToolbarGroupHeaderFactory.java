@@ -33,14 +33,16 @@ import bibliothek.gui.dock.ToolbarGroupDockStation;
 
 /**
  * Factory for creating new {@link ToolbarGroupHeader}s.
+ *
  * @author Benjamin Sigg
  */
 public interface ToolbarGroupHeaderFactory {
-	/**
-	 * Asks this factory to create a new header. A result of <code>null</code> is
-	 * valid and indicates that no header should be shown.
-	 * @param station the station which is going to show the component
-	 * @return the new component, can be <code>null</code>
-	 */
-	public ToolbarGroupHeader create( ToolbarGroupDockStation station );
+  /**
+   * Asks this factory to create a new header. A result of <code>null</code> is
+   * valid and indicates that no header should be shown.
+   *
+   * @param station the station which is going to show the component
+   * @return the new component, can be <code>null</code>
+   */
+  public ToolbarGroupHeader create(ToolbarGroupDockStation station);
 }

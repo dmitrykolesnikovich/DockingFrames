@@ -37,12 +37,13 @@ import bibliothek.gui.dock.toolbar.location.ToolbarMode;
 
 /**
  * Represents a {@link CToolbarMode}.
+ *
  * @author Benjamin Sigg
  */
-public class CToolbarModePerspective extends AbstractModePerspective<CModeAreaPerspective>{
-	@Override
-	public ExtendedMode getIdentifier(){
-		return ToolbarMode.TOOLBAR;
-	}
-	
+public class CToolbarModePerspective extends AbstractModePerspective<CModeAreaPerspective> {
+  @Override
+  public ExtendedMode getIdentifier() {
+    return ToolbarMode.TOOLBAR;
+  }
+
 }

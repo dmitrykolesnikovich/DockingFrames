@@ -37,92 +37,95 @@ import bibliothek.gui.dock.toolbar.location.CToolbarMode;
 import bibliothek.gui.dock.util.PropertyValue;
 
 /**
- * Using the {@link ToolbarStrategy} this {@link ExtendedModeEnablement} makes sure that 
+ * Using the {@link ToolbarStrategy} this {@link ExtendedModeEnablement} makes sure that
  * any item that is part of a toolbar does not have any available modes other than the
  * {@link CToolbarMode}.
+ *
  * @author Benjamin Sigg
  */
-public class ToolbarExtendedModeEnablement implements ExtendedModeEnablement{
-	/**
-	 * A factory creating new {@link ToolbarExtendedModeEnablement}s.
-	 */
-	public static final ExtendedModeEnablementFactory FACTORY = new ExtendedModeEnablementFactory(){
-		@Override
-		public ExtendedModeEnablement create( LocationModeManager<?> manager ){
-			return new ToolbarExtendedModeEnablement( manager.getController() );
-		}
-	};
-	
-	/** the current {@link ToolbarStrategy} */
-	private PropertyValue<ToolbarStrategy> strategy = new PropertyValue<ToolbarStrategy>( ToolbarStrategy.STRATEGY ){
-		@Override
-		protected void valueChanged( ToolbarStrategy oldValue, ToolbarStrategy newValue ){
-			// ignore
-		}
-	};
-	
-	public ToolbarExtendedModeEnablement( DockController controller ){
-		strategy.setProperties( controller );
-	}
-	
-	@Override
-	public Hidden isHidden( Dockable dockable, ExtendedMode mode ){
-		ToolbarStrategy strategy = this.strategy.getValue();
-		if( strategy == null ){
-			return Hidden.UNCERTAIN;
-		}
-		if( strategy.isToolbarGroupPart( dockable ) || strategy.isToolbarPart( dockable )){
-			if( CToolbarMode.TOOLBAR.equals( mode )){
-				return Hidden.WEAK_VISIBLE;
-			}
-			else{
-				return Hidden.WEAK_HIDDEN;
-			}
-		}
-		else{
-			return Hidden.UNCERTAIN;
-		}
-	}
-	
-	@Override
-	public Availability isAvailable( Dockable dockable, ExtendedMode mode ){
-		ToolbarStrategy strategy = this.strategy.getValue();
-		if( strategy == null ){
-			return Availability.UNCERTAIN;
-		}
-		if( strategy.isToolbarGroupPart( dockable ) || strategy.isToolbarPart( dockable )){
-			if( CToolbarMode.TOOLBAR.equals( mode )){
-				return Availability.STRONG_AVAILABLE;
-			}
-			else if( ExtendedMode.EXTERNALIZED.equals( mode )){
-				return Availability.WEAK_AVAILABLE;
-			}
-			else{
-				return Availability.WEAK_FORBIDDEN;
-			}
-		}
-		else{
-			if( CToolbarMode.TOOLBAR.equals( mode )){
-				return Availability.WEAK_FORBIDDEN;
-			}
-			else{
-				return Availability.UNCERTAIN;
-			}
-		}
-	}
+public class ToolbarExtendedModeEnablement implements ExtendedModeEnablement {
+  /**
+   * A factory creating new {@link ToolbarExtendedModeEnablement}s.
+   */
+  public static final ExtendedModeEnablementFactory FACTORY = new ExtendedModeEnablementFactory() {
+    @Override
+    public ExtendedModeEnablement create(LocationModeManager<?> manager) {
+      return new ToolbarExtendedModeEnablement(manager.getController());
+    }
+  };
 
-	@Override
-	public void addListener( ExtendedModeEnablementListener listener ){
-		// ignore
-	}
+  /**
+   * the current {@link ToolbarStrategy}
+   */
+  private PropertyValue<ToolbarStrategy> strategy = new PropertyValue<ToolbarStrategy>(ToolbarStrategy.STRATEGY) {
+    @Override
+    protected void valueChanged(ToolbarStrategy oldValue, ToolbarStrategy newValue) {
+      // ignore
+    }
+  };
 
-	@Override
-	public void removeListener( ExtendedModeEnablementListener listener ){
-		// ignore
-	}
+  public ToolbarExtendedModeEnablement(DockController controller) {
+    strategy.setProperties(controller);
+  }
 
-	@Override
-	public void destroy(){
-		strategy.setProperties( (DockController)null );
-	}
+  @Override
+  public Hidden isHidden(Dockable dockable, ExtendedMode mode) {
+    ToolbarStrategy strategy = this.strategy.getValue();
+    if (strategy == null) {
+      return Hidden.UNCERTAIN;
+    }
+    if (strategy.isToolbarGroupPart(dockable) || strategy.isToolbarPart(dockable)) {
+      if (CToolbarMode.TOOLBAR.equals(mode)) {
+        return Hidden.WEAK_VISIBLE;
+      }
+      else {
+        return Hidden.WEAK_HIDDEN;
+      }
+    }
+    else {
+      return Hidden.UNCERTAIN;
+    }
+  }
+
+  @Override
+  public Availability isAvailable(Dockable dockable, ExtendedMode mode) {
+    ToolbarStrategy strategy = this.strategy.getValue();
+    if (strategy == null) {
+      return Availability.UNCERTAIN;
+    }
+    if (strategy.isToolbarGroupPart(dockable) || strategy.isToolbarPart(dockable)) {
+      if (CToolbarMode.TOOLBAR.equals(mode)) {
+        return Availability.STRONG_AVAILABLE;
+      }
+      else if (ExtendedMode.EXTERNALIZED.equals(mode)) {
+        return Availability.WEAK_AVAILABLE;
+      }
+      else {
+        return Availability.WEAK_FORBIDDEN;
+      }
+    }
+    else {
+      if (CToolbarMode.TOOLBAR.equals(mode)) {
+        return Availability.WEAK_FORBIDDEN;
+      }
+      else {
+        return Availability.UNCERTAIN;
+      }
+    }
+  }
+
+  @Override
+  public void addListener(ExtendedModeEnablementListener listener) {
+    // ignore
+  }
+
+  @Override
+  public void removeListener(ExtendedModeEnablementListener listener) {
+    // ignore
+  }
+
+  @Override
+  public void destroy() {
+    strategy.setProperties((DockController)null);
+  }
 }

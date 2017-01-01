@@ -29,60 +29,69 @@ import bibliothek.gui.dock.FlapDockStation.Direction;
 
 /**
  * A {@link FlapDockStationLayout} that stores data which was read from an older format.
+ *
  * @author Benjamin Sigg
  */
 public class RetroFlapDockStationLayout extends FlapDockStationLayout {
-    /** the order of the children */
-    private int[] children;
-    
-    /** which children are holding */
-    private boolean[] holds;
-    
-    /** the size of the window */
-    private int[] sizes;
-    
-    /**
-     * Creates a new layout
-     * @param children the ids of the children of the station
-     * @param holds the holding state of the children
-     * @param sizes the sizes of the window
-     * @param autoDirection whether the direction of the window is chosen
-     * automatically
-     * @param direction the direction into which the window opens
-     */
-    public RetroFlapDockStationLayout(
-            int[] children, boolean[] holds, int[] sizes,
-            boolean autoDirection, Direction direction ) {
-        
-    	super( autoDirection, direction, null );
-    	
-        this.children = children;
-        this.holds = holds;
-        this.sizes = sizes;
-    }
-    
+  /**
+   * the order of the children
+   */
+  private int[] children;
 
-    /**
-     * Gets the order of the children.
-     * @return the children
-     */
-    public int[] getChildren() {
-        return children;
-    }
-    
-    /**
-     * Tells the holding state of the children.
-     * @return the states
-     */
-    public boolean[] getHolds() {
-        return holds;
-    }
-    
-    /**
-     * Gets the sizes of the window
-     * @return the size in pixel
-     */
-    public int[] getSizes() {
-        return sizes;
-    }
+  /**
+   * which children are holding
+   */
+  private boolean[] holds;
+
+  /**
+   * the size of the window
+   */
+  private int[] sizes;
+
+  /**
+   * Creates a new layout
+   *
+   * @param children      the ids of the children of the station
+   * @param holds         the holding state of the children
+   * @param sizes         the sizes of the window
+   * @param autoDirection whether the direction of the window is chosen
+   *                      automatically
+   * @param direction     the direction into which the window opens
+   */
+  public RetroFlapDockStationLayout(int[] children, boolean[] holds, int[] sizes, boolean autoDirection, Direction direction) {
+
+    super(autoDirection, direction, null);
+
+    this.children = children;
+    this.holds = holds;
+    this.sizes = sizes;
+  }
+
+
+  /**
+   * Gets the order of the children.
+   *
+   * @return the children
+   */
+  public int[] getChildren() {
+    return children;
+  }
+
+  /**
+   * Tells the holding state of the children.
+   *
+   * @return the states
+   */
+  public boolean[] getHolds() {
+    return holds;
+  }
+
+  /**
+   * Gets the sizes of the window
+   *
+   * @return the size in pixel
+   */
+  public int[] getSizes() {
+    return sizes;
+  }
 }

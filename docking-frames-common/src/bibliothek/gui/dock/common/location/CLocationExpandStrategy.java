@@ -31,17 +31,19 @@ import bibliothek.gui.dock.layout.DockableProperty;
 /**
  * This strategy tells a {@link CLocation} how to represents a
  * {@link DockableProperty}.
+ *
  * @author Benjamin Sigg
  */
 public interface CLocationExpandStrategy {
-	/**
-	 * Expands <code>location</code> by creating a new location that represents
-	 * <code>property</code>.
-	 * @param location the location to expand, not <code>null</code>
-	 * @param property the property to expand, not <code>null</code>, the 
-	 * {@link DockableProperty#getSuccessor() successor} can be ignored by this method.
-	 * @return the expanded location, can be <code>null</code> to indicate that
-	 * <code>property</code> could not be understood
-	 */
-	public CLocation expand( CLocation location, DockableProperty property );
+  /**
+   * Expands <code>location</code> by creating a new location that represents
+   * <code>property</code>.
+   *
+   * @param location the location to expand, not <code>null</code>
+   * @param property the property to expand, not <code>null</code>, the
+   *                 {@link DockableProperty#getSuccessor() successor} can be ignored by this method.
+   * @return the expanded location, can be <code>null</code> to indicate that
+   * <code>property</code> could not be understood
+   */
+  public CLocation expand(CLocation location, DockableProperty property);
 }

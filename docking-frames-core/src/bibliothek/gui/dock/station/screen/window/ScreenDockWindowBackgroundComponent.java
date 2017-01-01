@@ -32,17 +32,19 @@ import bibliothek.util.Path;
 
 /**
  * This {@link UIValue} represents a {@link ScreenDockWindow}.
+ *
  * @author Benjamin Sigg
  */
-public interface ScreenDockWindowBackgroundComponent extends StationBackgroundComponent{
-	/**
-	 * The type of this {@link UIValue}
-	 */
-	public static final Path KIND = StationBackgroundComponent.KIND.append( "screenWindow" );
-	
-	/**
-	 * Gets the window which is represented by this component.
-	 * @return the window, not <code>null</code>
-	 */
-	public ScreenDockWindow getWindow();
+public interface ScreenDockWindowBackgroundComponent extends StationBackgroundComponent {
+  /**
+   * The type of this {@link UIValue}
+   */
+  public static final Path KIND = StationBackgroundComponent.KIND.append("screenWindow");
+
+  /**
+   * Gets the window which is represented by this component.
+   *
+   * @return the window, not <code>null</code>
+   */
+  public ScreenDockWindow getWindow();
 }

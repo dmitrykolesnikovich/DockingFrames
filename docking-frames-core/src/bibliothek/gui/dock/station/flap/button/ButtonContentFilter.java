@@ -31,17 +31,19 @@ import bibliothek.gui.dock.action.DockAction;
 import bibliothek.gui.dock.title.DockTitle;
 
 /**
- * The {@link ButtonContentFilter} tells {@link DockTitle}s (and other components) that paint their content 
+ * The {@link ButtonContentFilter} tells {@link DockTitle}s (and other components) that paint their content
  * on the basis of a {@link ButtonContent} which actions to paint.
- * @see FlapDockStation#BUTTON_CONTENT_FILTER
+ *
  * @author Benjamin Sigg
+ * @see FlapDockStation#BUTTON_CONTENT_FILTER
  */
 public interface ButtonContentFilter {
-	/**
-	 * Tells whether <code>action</code> is an important {@link DockAction} and should if the client told the
-	 * component to filter actions.
-	 * @param action the action to filter
-	 * @return <code>true</code> if <code>action</code> should be visible
-	 */
-	public boolean isButtonAction( DockAction action );
+  /**
+   * Tells whether <code>action</code> is an important {@link DockAction} and should if the client told the
+   * component to filter actions.
+   *
+   * @param action the action to filter
+   * @return <code>true</code> if <code>action</code> should be visible
+   */
+  public boolean isButtonAction(DockAction action);
 }

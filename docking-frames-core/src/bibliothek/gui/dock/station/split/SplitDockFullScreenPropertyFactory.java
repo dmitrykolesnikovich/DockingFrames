@@ -30,22 +30,27 @@ import bibliothek.gui.dock.layout.DockablePropertyFactory;
 
 /**
  * This factory creates new instances of {@link SplitDockFullScreenProperty}s.
+ *
  * @author Benjamin Sigg
  */
-public class SplitDockFullScreenPropertyFactory implements DockablePropertyFactory{
-    /** The id that is used for this factory */
-    public static final String ID = "SplitDockFullScreenPropertyFactory";
-    
-    /** An instance of the factory that can be used at any location */
-    public static final SplitDockFullScreenPropertyFactory FACTORY = new SplitDockFullScreenPropertyFactory();
-    
-	
-	public DockableProperty createProperty(){
-		return new SplitDockFullScreenProperty();
-	}
+public class SplitDockFullScreenPropertyFactory implements DockablePropertyFactory {
+  /**
+   * The id that is used for this factory
+   */
+  public static final String ID = "SplitDockFullScreenPropertyFactory";
 
-	public String getID(){
-		return ID;
-	}
+  /**
+   * An instance of the factory that can be used at any location
+   */
+  public static final SplitDockFullScreenPropertyFactory FACTORY = new SplitDockFullScreenPropertyFactory();
+
+
+  public DockableProperty createProperty() {
+    return new SplitDockFullScreenProperty();
+  }
+
+  public String getID() {
+    return ID;
+  }
 
 }

@@ -25,9 +25,6 @@
  */
 package bibliothek.extension.gui.dock.theme.eclipse.displayer;
 
-import javax.swing.BorderFactory;
-import javax.swing.border.Border;
-
 import bibliothek.extension.gui.dock.theme.EclipseTheme;
 import bibliothek.extension.gui.dock.theme.eclipse.EclipseThemeConnector.TitleBar;
 import bibliothek.gui.DockController;
@@ -39,67 +36,72 @@ import bibliothek.gui.dock.themes.basic.BasicDockableDisplayer;
 import bibliothek.gui.dock.themes.basic.BasicDockableDisplayerDecorator;
 import bibliothek.gui.dock.title.DockTitle;
 
+import javax.swing.*;
+import javax.swing.border.Border;
+
 /**
- * The {@link EclipseDockableDisplayer} is used to present {@link Dockable}s with the {@link TitleBar#ECLIPSE} 
+ * The {@link EclipseDockableDisplayer} is used to present {@link Dockable}s with the {@link TitleBar#ECLIPSE}
  * look. This class also supports showing a {@link DockTitle}.
+ *
  * @author Benjamin Sigg
  */
-public class EclipseDockableDisplayer extends BasicDockableDisplayer{
-	private TitleBarObserver observer;
-	
-	/**
-	 * Creates a new {@link DockableDisplayer}.
-	 * @param theme the theme which creates this displayer, not <code>null</code>
-	 * @param station the parent of this displayer, not <code>null</code>
-	 * @param dockable the element shown on this displayer, may be <code>null</code>
-	 * @param title the title that is shown on this displayer, usually <code>null</code>
-	 */
-	public EclipseDockableDisplayer( EclipseTheme theme, DockStation station, Dockable dockable, DockTitle title ){
-		super( station, false );
-		
-		observer = new TitleBarObserver( station, dockable, TitleBar.ECLIPSE ){
-			@Override
-			protected void invalidated(){
-				for( DockableDisplayerListener listener : listeners() ){
-					listener.discard( EclipseDockableDisplayer.this );
-				}
-			}
-		};
-		
-		init( station, dockable, title, Location.TOP );
-		
-        setDefaultBorderHint( false );
-        setRespectBorderHint( true );
-        setSingleTabShowInnerBorder( false );
-        setSingleTabShowOuterBorder( false );
-        
-        updateDecorator( true );
-	}
-	
-	@Override
-	protected Border getDefaultBorder(){
-		return BorderFactory.createEmptyBorder();
-	}
-	
-	@Override
-	public void setDockable( Dockable dockable ){
-		super.setDockable( dockable );
-		observer.setDockable( dockable );
-	}
-	
-	@Override
-	public void setController( DockController controller ){
-		super.setController( controller );
-		observer.setController( controller );
-	}
-	
-	@Override
-	protected BasicDockableDisplayerDecorator createMinimalDecorator(){
-		return createTabDecorator();
-	}
-	
-	@Override
-	protected BasicDockableDisplayerDecorator createStackedDecorator(){
-		return createTabDecorator();
-	}
+public class EclipseDockableDisplayer extends BasicDockableDisplayer {
+  private TitleBarObserver observer;
+
+  /**
+   * Creates a new {@link DockableDisplayer}.
+   *
+   * @param theme    the theme which creates this displayer, not <code>null</code>
+   * @param station  the parent of this displayer, not <code>null</code>
+   * @param dockable the element shown on this displayer, may be <code>null</code>
+   * @param title    the title that is shown on this displayer, usually <code>null</code>
+   */
+  public EclipseDockableDisplayer(EclipseTheme theme, DockStation station, Dockable dockable, DockTitle title) {
+    super(station, false);
+
+    observer = new TitleBarObserver(station, dockable, TitleBar.ECLIPSE) {
+      @Override
+      protected void invalidated() {
+        for (DockableDisplayerListener listener : listeners()) {
+          listener.discard(EclipseDockableDisplayer.this);
+        }
+      }
+    };
+
+    init(station, dockable, title, Location.TOP);
+
+    setDefaultBorderHint(false);
+    setRespectBorderHint(true);
+    setSingleTabShowInnerBorder(false);
+    setSingleTabShowOuterBorder(false);
+
+    updateDecorator(true);
+  }
+
+  @Override
+  protected Border getDefaultBorder() {
+    return BorderFactory.createEmptyBorder();
+  }
+
+  @Override
+  public void setDockable(Dockable dockable) {
+    super.setDockable(dockable);
+    observer.setDockable(dockable);
+  }
+
+  @Override
+  public void setController(DockController controller) {
+    super.setController(controller);
+    observer.setController(controller);
+  }
+
+  @Override
+  protected BasicDockableDisplayerDecorator createMinimalDecorator() {
+    return createTabDecorator();
+  }
+
+  @Override
+  protected BasicDockableDisplayerDecorator createStackedDecorator() {
+    return createTabDecorator();
+  }
 }

@@ -31,32 +31,36 @@ import bibliothek.util.Filter;
 
 /**
  * This interface tells the order in which the {@link Dockable}s got the focus.
+ *
  * @author Benjamin Sigg
  */
 public interface FocusHistory {
-	/**
-	 * Gets an array containing all known {@link Dockable}s which may have had the focus. The first element in the array
-	 * did not have the focus for the longest time, while the last element in the array is the element that
-	 * may have the focus right now.<br>
-	 * The result may contain {@link Dockable}s that were never focused, these items will always be at the beginning of
-	 * the array.
-	 * @return a copy of the history
-	 */
-	public Dockable[] getHistory();
-	
-	/**
-	 * Searches the one {@link Dockable} that had the focus lately, and that is a child of one
-	 * of <code>parent</code>.
-	 * @param parents the stations whose child is searched
-	 * @return a {@link Dockable} that had the focus and which is a child of one of the parents, or
-	 * <code>null</code> if no such {@link Dockable} can be found
-	 */
-	public Dockable getNewestOn( DockStation... parents );
-	
-	/**
-	 * Traverses the {@link #getHistory() history} in reverse and returns the first {@link Dockable} matching <code>filter</code>.
-	 * @param filter the filter to apply, not <code>null</code>
-	 * @return the newest {@link Dockable} having focus and matching <code>filter</code>, or <code>null</code>
-	 */
-	public Dockable getFirst( Filter<Dockable> filter );
+  /**
+   * Gets an array containing all known {@link Dockable}s which may have had the focus. The first element in the array
+   * did not have the focus for the longest time, while the last element in the array is the element that
+   * may have the focus right now.<br>
+   * The result may contain {@link Dockable}s that were never focused, these items will always be at the beginning of
+   * the array.
+   *
+   * @return a copy of the history
+   */
+  public Dockable[] getHistory();
+
+  /**
+   * Searches the one {@link Dockable} that had the focus lately, and that is a child of one
+   * of <code>parent</code>.
+   *
+   * @param parents the stations whose child is searched
+   * @return a {@link Dockable} that had the focus and which is a child of one of the parents, or
+   * <code>null</code> if no such {@link Dockable} can be found
+   */
+  public Dockable getNewestOn(DockStation... parents);
+
+  /**
+   * Traverses the {@link #getHistory() history} in reverse and returns the first {@link Dockable} matching <code>filter</code>.
+   *
+   * @param filter the filter to apply, not <code>null</code>
+   * @return the newest {@link Dockable} having focus and matching <code>filter</code>, or <code>null</code>
+   */
+  public Dockable getFirst(Filter<Dockable> filter);
 }

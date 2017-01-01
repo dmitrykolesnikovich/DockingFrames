@@ -35,24 +35,27 @@ import bibliothek.gui.Dockable;
 /**
  * A listener that is added to a {@link ToolbarColumnModel}, is informed
  * if columns are added or removed from the model.
- * @author Benjamin Sigg
+ *
  * @param <D> the dockable class itself
  * @param <P> the wrapper class used to describe a {@link Dockable}
+ * @author Benjamin Sigg
  */
-public interface ToolbarColumnModelListener<D,P> {
-	/**
-	 * Called if a column was added to <code>model</code>.
-	 * @param model the source of the event
-	 * @param column the column that was added
-	 * @param index the index of the new column
-	 */
-	public void inserted( ToolbarColumnModel<D,P> model, ToolbarColumn<D,P> column, int index );
-	
-	/**
-	 * Called if a column was removed from <code>model</code>.
-	 * @param model the source of the event
-	 * @param column the column that was removed
-	 * @param index the index of the removed column
-	 */
-	public void removed( ToolbarColumnModel<D,P> model, ToolbarColumn<D,P> column, int index );
+public interface ToolbarColumnModelListener<D, P> {
+  /**
+   * Called if a column was added to <code>model</code>.
+   *
+   * @param model  the source of the event
+   * @param column the column that was added
+   * @param index  the index of the new column
+   */
+  public void inserted(ToolbarColumnModel<D, P> model, ToolbarColumn<D, P> column, int index);
+
+  /**
+   * Called if a column was removed from <code>model</code>.
+   *
+   * @param model  the source of the event
+   * @param column the column that was removed
+   * @param index  the index of the removed column
+   */
+  public void removed(ToolbarColumnModel<D, P> model, ToolbarColumn<D, P> column, int index);
 }

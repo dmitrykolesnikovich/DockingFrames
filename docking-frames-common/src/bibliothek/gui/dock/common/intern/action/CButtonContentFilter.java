@@ -35,51 +35,52 @@ import bibliothek.gui.dock.common.action.core.CommonDockAction;
 
 /**
  * This {@link ButtonContentFilter} searches for {@link CDecorateableAction}s and decides
- * whether their text is shown 
+ * whether their text is shown
+ *
  * @author Benjamin Sigg
  */
-public class CButtonContentFilter extends AbstractButtonContentFilter{
-	/**
-	 * This listener is added to all known {@link CDecorateableAction}s, events will be
-	 * forwarded to the {@link ButtonContentFilterListener}s.
-	 */
-	private CDecorateableActionListener listener = new CDecorateableActionListener(){
-		public void showTextOnButtonsChanged( CDecorateableAction<? extends DockAction> action ){
-			fire( null, action.intern() );
-		}
-	};
-	
-	public boolean showText( Dockable dockable, DockAction action ){
-		CDecorateableAction<?> caction = get( action );
-		if( caction == null ){
-			return false;
-		}
-		return caction.isShowTextOnButtons();
-	}
+public class CButtonContentFilter extends AbstractButtonContentFilter {
+  /**
+   * This listener is added to all known {@link CDecorateableAction}s, events will be
+   * forwarded to the {@link ButtonContentFilterListener}s.
+   */
+  private CDecorateableActionListener listener = new CDecorateableActionListener() {
+    public void showTextOnButtonsChanged(CDecorateableAction<? extends DockAction> action) {
+      fire(null, action.intern());
+    }
+  };
 
-	@Override
-	protected void installed( DockAction action ){
-		CDecorateableAction<?> caction = get( action );
-		if( caction != null ){
-			caction.addDecorateableActionListener( listener );
-		}
-	}
-	
-	@Override
-	protected void uninstalled( DockAction action ){
-		CDecorateableAction<?> caction = get( action );
-		if( caction != null ){
-			caction.removeDecorateableActionListener( listener );
-		}
-	}
-	
-	private CDecorateableAction<?> get( DockAction action ){
-		if( action instanceof CommonDockAction ){
-			CAction caction = ((CommonDockAction)action).getAction();
-			if( caction instanceof CDecorateableAction<?> ){
-				return (CDecorateableAction<?>)caction;
-			}
-		}
-		return null;
-	}
+  public boolean showText(Dockable dockable, DockAction action) {
+    CDecorateableAction<?> caction = get(action);
+    if (caction == null) {
+      return false;
+    }
+    return caction.isShowTextOnButtons();
+  }
+
+  @Override
+  protected void installed(DockAction action) {
+    CDecorateableAction<?> caction = get(action);
+    if (caction != null) {
+      caction.addDecorateableActionListener(listener);
+    }
+  }
+
+  @Override
+  protected void uninstalled(DockAction action) {
+    CDecorateableAction<?> caction = get(action);
+    if (caction != null) {
+      caction.removeDecorateableActionListener(listener);
+    }
+  }
+
+  private CDecorateableAction<?> get(DockAction action) {
+    if (action instanceof CommonDockAction) {
+      CAction caction = ((CommonDockAction)action).getAction();
+      if (caction instanceof CDecorateableAction<?>) {
+        return (CDecorateableAction<?>)caction;
+      }
+    }
+    return null;
+  }
 }

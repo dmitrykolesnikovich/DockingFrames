@@ -32,16 +32,17 @@ import bibliothek.gui.dock.extension.css.CssType;
 
 /**
  * A property for reading {@link Integer}s.
+ *
  * @author Benjamin Sigg
  */
-public abstract class IntegerCssProperty extends SimpleCssPropertyContainer implements CssProperty<Integer>{
-	@Override
-	public CssType<Integer> getType( CssScheme scheme ){
-		return scheme.getConverter( Integer.class );
-	}
+public abstract class IntegerCssProperty extends SimpleCssPropertyContainer implements CssProperty<Integer> {
+  @Override
+  public CssType<Integer> getType(CssScheme scheme) {
+    return scheme.getConverter(Integer.class);
+  }
 
-	@Override
-	public void setScheme( CssScheme scheme, CssPropertyKey key ){
-		// ignore
-	}
+  @Override
+  public void setScheme(CssScheme scheme, CssPropertyKey key) {
+    // ignore
+  }
 }

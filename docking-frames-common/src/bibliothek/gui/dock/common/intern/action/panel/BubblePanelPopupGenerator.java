@@ -25,8 +25,6 @@
  */
 package bibliothek.gui.dock.common.intern.action.panel;
 
-import javax.swing.JComponent;
-
 import bibliothek.extension.gui.dock.theme.bubble.RoundButton;
 import bibliothek.extension.gui.dock.theme.bubble.RoundButtonViewItem;
 import bibliothek.gui.Dockable;
@@ -36,16 +34,19 @@ import bibliothek.gui.dock.common.action.CPanelPopup;
 import bibliothek.gui.dock.common.action.CPanelPopup.PanelPopup;
 import bibliothek.gui.dock.themes.basic.action.BasicTitleViewItem;
 
+import javax.swing.*;
+
 /**
  * Basic handler for creating a button for a {@link CPanelPopup}.
+ *
  * @author Benjamin Sigg
  */
-public class BubblePanelPopupGenerator implements ViewGenerator<PanelPopup, BasicTitleViewItem<JComponent>>{
-	public BasicTitleViewItem<JComponent> create( ActionViewConverter converter, PanelPopup action, Dockable dockable ){
-		BasicPanelPopupHandler handler = new BasicPanelPopupHandler( action, dockable );
-		RoundButton button = new RoundButton( handler, handler, dockable, action );
-		handler.setModel( button.getModel() );
-		
-		return new RoundButtonViewItem( dockable, handler, button );
-	}
+public class BubblePanelPopupGenerator implements ViewGenerator<PanelPopup, BasicTitleViewItem<JComponent>> {
+  public BasicTitleViewItem<JComponent> create(ActionViewConverter converter, PanelPopup action, Dockable dockable) {
+    BasicPanelPopupHandler handler = new BasicPanelPopupHandler(action, dockable);
+    RoundButton button = new RoundButton(handler, handler, dockable, action);
+    handler.setModel(button.getModel());
+
+    return new RoundButtonViewItem(dockable, handler, button);
+  }
 }

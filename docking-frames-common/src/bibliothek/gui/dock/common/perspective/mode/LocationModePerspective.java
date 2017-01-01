@@ -36,46 +36,53 @@ import bibliothek.gui.dock.support.mode.ModeSetting;
 
 /**
  * Represents a {@link CLocationMode} in a perspective.
+ *
  * @author Benjamin Sigg
  */
 public interface LocationModePerspective {
-	/**
-	 * Informs this mode of what perspective is going to use it.
-	 * @param perspective the perspective that uses this mode
-	 */
-	public void setPerspective( CPerspective perspective );
-	
-	/**
-	 * Gets the unique identifier for this mode.
-	 * @return the unique identifier, not <code>null</code>
-	 */
-	public ExtendedMode getIdentifier();
-	
-	/**
-	 * Checks whether <code>dockable</code> currently is in <code>this</code> mode.
-	 * @param dockable the element whose mode is searched
-	 * @return <code>true</code> if this mode describes the situation of <code>dockable</code>
-	 */
-	public boolean isCurrentMode( PerspectiveDockable dockable );
-	
-	/**
-	 * Checks whether the dockable at location <code>root</code>/<code>location</code>
-	 * should be in the mode represented by <code>this</code>.
-	 * @param root the unique identifer of the root {@link DockStation}
-	 * @param location the location on the root station
-	 * @return whether a dockable in this mode can have the described location 
-	 */
-	public boolean isCurrentMode( String root, DockableProperty location );
-	
-	/**
-	 * Reads settings belonging to this mode from <code>setting</code>.
-	 * @param setting some settings
-	 */
-	public void readSetting( ModeSetting<Location> setting );
-	
-	/**
-	 * Writes settings that belong to this mode to <code>setting</code>.
-	 * @param setting the settings to write
-	 */
-	public void writeSetting( ModeSetting<Location> setting );
+  /**
+   * Informs this mode of what perspective is going to use it.
+   *
+   * @param perspective the perspective that uses this mode
+   */
+  public void setPerspective(CPerspective perspective);
+
+  /**
+   * Gets the unique identifier for this mode.
+   *
+   * @return the unique identifier, not <code>null</code>
+   */
+  public ExtendedMode getIdentifier();
+
+  /**
+   * Checks whether <code>dockable</code> currently is in <code>this</code> mode.
+   *
+   * @param dockable the element whose mode is searched
+   * @return <code>true</code> if this mode describes the situation of <code>dockable</code>
+   */
+  public boolean isCurrentMode(PerspectiveDockable dockable);
+
+  /**
+   * Checks whether the dockable at location <code>root</code>/<code>location</code>
+   * should be in the mode represented by <code>this</code>.
+   *
+   * @param root     the unique identifer of the root {@link DockStation}
+   * @param location the location on the root station
+   * @return whether a dockable in this mode can have the described location
+   */
+  public boolean isCurrentMode(String root, DockableProperty location);
+
+  /**
+   * Reads settings belonging to this mode from <code>setting</code>.
+   *
+   * @param setting some settings
+   */
+  public void readSetting(ModeSetting<Location> setting);
+
+  /**
+   * Writes settings that belong to this mode to <code>setting</code>.
+   *
+   * @param setting the settings to write
+   */
+  public void writeSetting(ModeSetting<Location> setting);
 }

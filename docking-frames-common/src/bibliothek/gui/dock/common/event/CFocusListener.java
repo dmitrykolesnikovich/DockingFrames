@@ -31,6 +31,7 @@ import bibliothek.gui.dock.common.intern.CDockable;
 /**
  * A {@link CFocusListener} gets informed when a {@link CDockable} gains or
  * looses the focus, or is selected or deselected by its parent.
+ *
  * @author Benjamin Sigg
  * @see CDockable#addFocusListener(CFocusListener)
  * @see CDockable#removeFocusListener(CFocusListener)
@@ -38,15 +39,17 @@ import bibliothek.gui.dock.common.intern.CDockable;
  * @see CControl#removeFocusListener(CFocusListener)
  */
 public interface CFocusListener {
-    /**
-     * Called when <code>dockable</code> gains the focus.
-     * @param dockable the element which just gained the focus
-     */
-    public void focusGained( CDockable dockable );
-    
-    /**
-     * Called when <code>dockable</code> lost its focus.
-     * @param dockable the element which just lost the focus
-     */
-    public void focusLost( CDockable dockable );
+  /**
+   * Called when <code>dockable</code> gains the focus.
+   *
+   * @param dockable the element which just gained the focus
+   */
+  public void focusGained(CDockable dockable);
+
+  /**
+   * Called when <code>dockable</code> lost its focus.
+   *
+   * @param dockable the element which just lost the focus
+   */
+  public void focusLost(CDockable dockable);
 }

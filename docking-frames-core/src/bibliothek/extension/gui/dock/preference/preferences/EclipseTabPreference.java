@@ -33,17 +33,19 @@ import bibliothek.util.Path;
 
 /**
  * Determines the way tabs are painted in the {@link EclipseTheme}.
+ *
  * @author Benjamin Sigg
  */
-public class EclipseTabPreference extends ChoiceDockPropertyPreference<TabPainter>{
-	/**
-	 * Creates a new preference
-	 * @param properties the properties to read from or to write to
-	 */
-	public EclipseTabPreference( DockProperties properties ){
-		super( properties, EclipseTheme.TAB_PAINTER, new Path( "dock.theme.eclipse.tab" ), new EclipseTabChoice( properties ) );
-		
-		setLabelId( "preference.theme.eclipse.tab.label" );
-		setDescriptionId( "preference.theme.eclipse.tab.description" );
-	}
+public class EclipseTabPreference extends ChoiceDockPropertyPreference<TabPainter> {
+  /**
+   * Creates a new preference
+   *
+   * @param properties the properties to read from or to write to
+   */
+  public EclipseTabPreference(DockProperties properties) {
+    super(properties, EclipseTheme.TAB_PAINTER, new Path("dock.theme.eclipse.tab"), new EclipseTabChoice(properties));
+
+    setLabelId("preference.theme.eclipse.tab.label");
+    setDescriptionId("preference.theme.eclipse.tab.description");
+  }
 }

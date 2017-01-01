@@ -25,48 +25,50 @@
  */
 package bibliothek.gui.dock.themes.basic.action;
 
+import bibliothek.gui.dock.action.DockAction;
+
 import java.util.Arrays;
 import java.util.Comparator;
-
-import bibliothek.gui.dock.action.DockAction;
 
 /**
  * This class orders {@link DockAction}s depending on the annotation {@link DockActionImportance}. It
  * can be subclassed in order to override the default behavior.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultDockActionImportanceOrder implements DockActionImportanceOrder{
-	public void order( DockAction[] actions ){
-		Arrays.sort( actions, new Comparator<DockAction>(){
-			public int compare( DockAction a, DockAction b ){
-				double impA = getImportance( a );
-				double impB = getImportance( b );
-				if( impA > impB ){
-					return -1;
-				}
-				else if( impA < impB ){
-					return 1;
-				}
-				else{
-					return 0;
-				}
-			}
-		});
-	}
+public class DefaultDockActionImportanceOrder implements DockActionImportanceOrder {
+  public void order(DockAction[] actions) {
+    Arrays.sort(actions, new Comparator<DockAction>() {
+      public int compare(DockAction a, DockAction b) {
+        double impA = getImportance(a);
+        double impB = getImportance(b);
+        if (impA > impB) {
+          return -1;
+        }
+        else if (impA < impB) {
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      }
+    });
+  }
 
-	/**
-	 * Tells how important <code>action</code> is. The default implementation just searches for
-	 * a {@link DockActionImportance}, but subclasses may change the behavior.
-	 * @param action the action whose importance is searched
-	 * @return the importance, the default value is 1.0
-	 */
-	protected double getImportance( DockAction action ){
-		DockActionImportance importance = action.getClass().getAnnotation( DockActionImportance.class );
-		if( importance == null ){
-			return 1.0f;
-		}
-		else{
-			return importance.value();
-		}
-	}
+  /**
+   * Tells how important <code>action</code> is. The default implementation just searches for
+   * a {@link DockActionImportance}, but subclasses may change the behavior.
+   *
+   * @param action the action whose importance is searched
+   * @return the importance, the default value is 1.0
+   */
+  protected double getImportance(DockAction action) {
+    DockActionImportance importance = action.getClass().getAnnotation(DockActionImportance.class);
+    if (importance == null) {
+      return 1.0f;
+    }
+    else {
+      return importance.value();
+    }
+  }
 }

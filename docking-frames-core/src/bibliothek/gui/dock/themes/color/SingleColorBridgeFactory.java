@@ -32,24 +32,24 @@ import bibliothek.gui.dock.util.color.ColorManager;
 /**
  * A {@link ColorBridgeFactory} that always returns the same instance
  * of {@link ColorBridge}.
+ *
  * @author Benjamin Sigg
-
  */
-public class SingleColorBridgeFactory implements ColorBridgeFactory{
-    private ColorBridge bridge;
-    
-    /**
-     * Creates a new factory.
-     * @param bridge the provider which will be returned at {@link #create(ColorManager)}
-     */
-    public SingleColorBridgeFactory( ColorBridge bridge ){
-        if( bridge == null )
-            throw new IllegalArgumentException( "bridge must not be null" );
-        
-        this.bridge = bridge;
-    }
-    
-    public ColorBridge create( ColorManager manager ) {
-        return bridge;
-    }
+public class SingleColorBridgeFactory implements ColorBridgeFactory {
+  private ColorBridge bridge;
+
+  /**
+   * Creates a new factory.
+   *
+   * @param bridge the provider which will be returned at {@link #create(ColorManager)}
+   */
+  public SingleColorBridgeFactory(ColorBridge bridge) {
+    if (bridge == null) throw new IllegalArgumentException("bridge must not be null");
+
+    this.bridge = bridge;
+  }
+
+  public ColorBridge create(ColorManager manager) {
+    return bridge;
+  }
 }

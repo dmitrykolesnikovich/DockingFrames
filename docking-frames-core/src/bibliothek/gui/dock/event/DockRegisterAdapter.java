@@ -31,42 +31,43 @@ import bibliothek.gui.Dockable;
 
 /**
  * A {@link DockRegisterListener} that contains only empty methods.
+ *
  * @author Benjamin Sigg
  */
-public class DockRegisterAdapter implements DockRegisterListener{
-	public void registerStalled( DockController controller ){
-		// do nothing
-	}
-	
-	public void registerUnstalled( DockController controller ){
-		// do nothing	
-	}
-	
-    public void dockStationRegistered( DockController controller, DockStation station ) {
-        // do nothing
-    }
+public class DockRegisterAdapter implements DockRegisterListener {
+  public void registerStalled(DockController controller) {
+    // do nothing
+  }
 
-    public void dockStationRegistering( DockController controller, DockStation station ) {
-        // do nothing
-    }
+  public void registerUnstalled(DockController controller) {
+    // do nothing
+  }
 
-    public void dockStationUnregistered( DockController controller, DockStation station ) {
-        // do nothing
-    }
+  public void dockStationRegistered(DockController controller, DockStation station) {
+    // do nothing
+  }
 
-    public void dockableCycledRegister( DockController controller, Dockable dockable ) {
-        // do nothing
-    }
+  public void dockStationRegistering(DockController controller, DockStation station) {
+    // do nothing
+  }
 
-    public void dockableRegistered( DockController controller, Dockable dockable ) {
-        // do nothing
-    }
+  public void dockStationUnregistered(DockController controller, DockStation station) {
+    // do nothing
+  }
 
-    public void dockableRegistering( DockController controller, Dockable dockable ) {
-        // do nothing
-    }
+  public void dockableCycledRegister(DockController controller, Dockable dockable) {
+    // do nothing
+  }
 
-    public void dockableUnregistered( DockController controller, Dockable dockable ) {
-        // do nothing
-    }
+  public void dockableRegistered(DockController controller, Dockable dockable) {
+    // do nothing
+  }
+
+  public void dockableRegistering(DockController controller, Dockable dockable) {
+    // do nothing
+  }
+
+  public void dockableUnregistered(DockController controller, Dockable dockable) {
+    // do nothing
+  }
 }

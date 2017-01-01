@@ -31,28 +31,31 @@ import bibliothek.util.Path;
 
 /**
  * An icon that is used for a {@link DockStation}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class DockStationIcon extends DockIcon{
-	public static final Path KIND_DOCK_STATION = KIND_ICON.append( "dockStation" );
-	
-	private DockStation station;
-	
-	/**
-	 * Creates the icon.
-	 * @param id the unique identifier of the icon
-	 * @param station the station for which the icon is used
-	 */
-	public DockStationIcon( String id, DockStation station ){
-		super( id, KIND_DOCK_STATION );
-		this.station = station;
-	}
-	
-	/**
-	 * Gets the station for which the icon is used
-	 * @return the station
-	 */
-	public DockStation getStation(){
-		return station;
-	}
+public abstract class DockStationIcon extends DockIcon {
+  public static final Path KIND_DOCK_STATION = KIND_ICON.append("dockStation");
+
+  private DockStation station;
+
+  /**
+   * Creates the icon.
+   *
+   * @param id      the unique identifier of the icon
+   * @param station the station for which the icon is used
+   */
+  public DockStationIcon(String id, DockStation station) {
+    super(id, KIND_DOCK_STATION);
+    this.station = station;
+  }
+
+  /**
+   * Gets the station for which the icon is used
+   *
+   * @return the station
+   */
+  public DockStation getStation() {
+    return station;
+  }
 }

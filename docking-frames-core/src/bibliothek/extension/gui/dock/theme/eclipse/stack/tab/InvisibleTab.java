@@ -32,14 +32,16 @@ import bibliothek.gui.DockController;
  * An invisible tab is "shown" on an {@link InvisibleTabPane}, it is used
  * to mimic some of the behavior a {@link TabComponent} would force
  * on an {@link EclipseTabPane}.
+ *
  * @author Benjamin Sigg
  */
 public interface InvisibleTab {
-	/**
-	 * Sets the controller in whose realm this tab works, if there is no
-	 * controller set then this tab must be in a state ready to be collected
-	 * by the garbage collector.
-	 * @param controller the realm
-	 */
-	public void setController( DockController controller );
+  /**
+   * Sets the controller in whose realm this tab works, if there is no
+   * controller set then this tab must be in a state ready to be collected
+   * by the garbage collector.
+   *
+   * @param controller the realm
+   */
+  public void setController(DockController controller);
 }

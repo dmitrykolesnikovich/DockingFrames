@@ -25,9 +25,6 @@
  */
 package bibliothek.gui.dock.support.mode;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 import bibliothek.gui.DockStation;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.action.AbstractDockActionSource;
@@ -38,141 +35,158 @@ import bibliothek.gui.dock.event.DockActionSourceListener;
 import bibliothek.gui.dock.event.DockStationAdapter;
 import bibliothek.gui.dock.event.DockStationListener;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
- * A {@link ModeForwardingActionSource} is attached to a {@link DockStation} and 
+ * A {@link ModeForwardingActionSource} is attached to a {@link DockStation} and
  * shows actions belonging to the selected {@link Dockable}. Only actions that
- * were approved by the {@link ModeManager} are actually shown. 
+ * were approved by the {@link ModeManager} are actually shown.
+ *
  * @author Benjamin Sigg
  */
-public class ModeForwardingActionSource<H> extends AbstractDockActionSource{
-	/** the station for which actions are to be shown */
-	private DockStation station;
-	/** the manager that creates the actions */
-	private ModeManager<H,? extends Mode<H>> manager; 
-	
-	/** the current actions, can be <code>null</code> */
-	private DockActionSource delegate;
-	
-	/** this listener is added to {@link #delegate} */
-	private DockActionSourceListener delegateListener = new DockActionSourceListener(){
-		public void actionsRemoved( DockActionSource source, int firstIndex, int lastIndex ){
-			fireRemoved( firstIndex, lastIndex );
-		}
-		
-		public void actionsAdded( DockActionSource source, int firstIndex, int lastIndex ){
-			fireAdded( firstIndex, lastIndex );
-		}
-	};
-	
-	/** this listener is added to {@link #station} */
-	private DockStationListener stationListener = new DockStationAdapter(){
-		@Override
-		public void dockableAdded( DockStation station, Dockable dockable ){
-			rebuild();
-		}
-		
-		@Override
-		public void dockableRemoved( DockStation station, Dockable dockable ){
-			rebuild();
-		}
-		
-		@Override
-		public void dockableSelected( DockStation station, Dockable oldSelection, Dockable newSelection ){
-			rebuild();
-		}
-	};
-	
-	/**
-	 * Creates a new action source
-	 * @param station the station for which the actions are used
-	 * @param manager the manager that has to be observed
-	 */
-	public ModeForwardingActionSource( DockStation station, ModeManager<H, ? extends Mode<H>> manager ){
-		this.station = station;
-		this.manager = manager;
-		
-		rebuild();
-	}
-	
-	@Override
-	public void addDockActionSourceListener( DockActionSourceListener listener ){
-		boolean empty = listeners.isEmpty();
-		super.addDockActionSourceListener( listener );
-		if( empty ){
-			if( delegate != null ){
-				delegate.addDockActionSourceListener( delegateListener );
-			}
-			station.addDockStationListener( stationListener );
-		}
-	}
-	
-	@Override
-	public void removeDockActionSourceListener( DockActionSourceListener listener ){
-		super.removeDockActionSourceListener( listener );
-		if( listeners.isEmpty() ){
-			if( delegate != null ){
-				delegate.removeDockActionSourceListener( delegateListener );
-			}
-			station.removeDockStationListener( stationListener );
-		}
-	}
-	
-	public DockAction getDockAction( int index ){
-		return delegate.getDockAction( index );
-	}
+public class ModeForwardingActionSource<H> extends AbstractDockActionSource {
+  /**
+   * the station for which actions are to be shown
+   */
+  private DockStation station;
+  /**
+   * the manager that creates the actions
+   */
+  private ModeManager<H, ? extends Mode<H>> manager;
 
-	public int getDockActionCount(){
-		if( delegate == null ){
-			return 0;
-		}
-		return delegate.getDockActionCount();
-	}
+  /**
+   * the current actions, can be <code>null</code>
+   */
+  private DockActionSource delegate;
 
-	public LocationHint getLocationHint(){
-		return new LocationHint( LocationHint.ACTION_GUARD, LocationHint.RIGHT );
-	}
+  /**
+   * this listener is added to {@link #delegate}
+   */
+  private DockActionSourceListener delegateListener = new DockActionSourceListener() {
+    public void actionsRemoved(DockActionSource source, int firstIndex, int lastIndex) {
+      fireRemoved(firstIndex, lastIndex);
+    }
 
-	public Iterator<DockAction> iterator(){
-		if( delegate == null ){
-			return new Iterator<DockAction>(){
-				public boolean hasNext(){
-					return false;
-				}
-				public DockAction next(){
-					throw new NoSuchElementException();
-				}
-				public void remove(){
-					throw new UnsupportedOperationException();
-				}
-			};
-		}
-		else{
-			return delegate.iterator();
-		}
-	}
+    public void actionsAdded(DockActionSource source, int firstIndex, int lastIndex) {
+      fireAdded(firstIndex, lastIndex);
+    }
+  };
 
-	private void rebuild(){
-		if( delegate != null ){
-			if( !listeners.isEmpty() ){
-				delegate.removeDockActionSourceListener( delegateListener );
-			}
-			int size = getDockActionCount();
-			delegate = null;
-			if( size > 0 ){
-				fireRemoved( 0, size-1 );
-			}
-		}
-		
-		delegate = manager.getSharedActions( station );
-		
-		if( delegate != null ){
-			if( !listeners.isEmpty() ){
-				delegate.addDockActionSourceListener( delegateListener );
-			}
-			int size = getDockActionCount();
-			if( size > 0 ){
-				fireAdded( 0, size-1 );
-			}
-		}
-	}
+  /**
+   * this listener is added to {@link #station}
+   */
+  private DockStationListener stationListener = new DockStationAdapter() {
+    @Override
+    public void dockableAdded(DockStation station, Dockable dockable) {
+      rebuild();
+    }
+
+    @Override
+    public void dockableRemoved(DockStation station, Dockable dockable) {
+      rebuild();
+    }
+
+    @Override
+    public void dockableSelected(DockStation station, Dockable oldSelection, Dockable newSelection) {
+      rebuild();
+    }
+  };
+
+  /**
+   * Creates a new action source
+   *
+   * @param station the station for which the actions are used
+   * @param manager the manager that has to be observed
+   */
+  public ModeForwardingActionSource(DockStation station, ModeManager<H, ? extends Mode<H>> manager) {
+    this.station = station;
+    this.manager = manager;
+
+    rebuild();
+  }
+
+  @Override
+  public void addDockActionSourceListener(DockActionSourceListener listener) {
+    boolean empty = listeners.isEmpty();
+    super.addDockActionSourceListener(listener);
+    if (empty) {
+      if (delegate != null) {
+        delegate.addDockActionSourceListener(delegateListener);
+      }
+      station.addDockStationListener(stationListener);
+    }
+  }
+
+  @Override
+  public void removeDockActionSourceListener(DockActionSourceListener listener) {
+    super.removeDockActionSourceListener(listener);
+    if (listeners.isEmpty()) {
+      if (delegate != null) {
+        delegate.removeDockActionSourceListener(delegateListener);
+      }
+      station.removeDockStationListener(stationListener);
+    }
+  }
+
+  public DockAction getDockAction(int index) {
+    return delegate.getDockAction(index);
+  }
+
+  public int getDockActionCount() {
+    if (delegate == null) {
+      return 0;
+    }
+    return delegate.getDockActionCount();
+  }
+
+  public LocationHint getLocationHint() {
+    return new LocationHint(LocationHint.ACTION_GUARD, LocationHint.RIGHT);
+  }
+
+  public Iterator<DockAction> iterator() {
+    if (delegate == null) {
+      return new Iterator<DockAction>() {
+        public boolean hasNext() {
+          return false;
+        }
+
+        public DockAction next() {
+          throw new NoSuchElementException();
+        }
+
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+    else {
+      return delegate.iterator();
+    }
+  }
+
+  private void rebuild() {
+    if (delegate != null) {
+      if (!listeners.isEmpty()) {
+        delegate.removeDockActionSourceListener(delegateListener);
+      }
+      int size = getDockActionCount();
+      delegate = null;
+      if (size > 0) {
+        fireRemoved(0, size - 1);
+      }
+    }
+
+    delegate = manager.getSharedActions(station);
+
+    if (delegate != null) {
+      if (!listeners.isEmpty()) {
+        delegate.addDockActionSourceListener(delegateListener);
+      }
+      int size = getDockActionCount();
+      if (size > 0) {
+        fireAdded(0, size - 1);
+      }
+    }
+  }
 }

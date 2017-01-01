@@ -25,23 +25,20 @@
  */
 package bibliothek.gui.dock.station.stack.action;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 import bibliothek.gui.dock.action.DockAction;
 import bibliothek.gui.dock.station.stack.CombinedTab;
+
+import java.lang.annotation.*;
 
 /**
  * A {@link DockAction} marked with this annotation will be shown on a {@link CombinedTab} assuming that
  * {@link DefaultDockActionDistributor} is installed.
+ *
  * @author Benjamin Sigg
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
 public @interface TabDockAction {
-	
+
 }

@@ -27,12 +27,14 @@ package bibliothek.gui.dock.extension.css;
 
 /**
  * This observer is added to a {@link CssRule}.
+ *
  * @author Benjamin Sigg
  */
 public interface CssRuleListener {
-	/**
-	 * Called if {@link CssRule#getSelector()} changed.
-	 * @param source the source of the event
-	 */
-	public void selectorChanged( CssRule source );
+  /**
+   * Called if {@link CssRule#getSelector()} changed.
+   *
+   * @param source the source of the event
+   */
+  public void selectorChanged(CssRule source);
 }

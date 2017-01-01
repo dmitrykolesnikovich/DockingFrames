@@ -34,65 +34,67 @@ import bibliothek.gui.dock.station.split.SplitDockFullScreenProperty;
  * A location representing the maximized state. If no root-station is set,
  * then the location of a maximized element depends on its location before
  * maximization.
+ *
  * @author Benjamin Sigg
  */
 public class CMaximizedLocation extends AbstractStackholdingLocation {
-	private String root;
-	
-	/**
-	 * Creates a new location
-	 */
-	public CMaximizedLocation(){
-		// ignore
-	}
-	
-	/**
-	 * Creates a new location.
-	 * @param root the station which represents the maximize area, can be <code>null</code>
-	 */
-	public CMaximizedLocation( String root ){
-		this.root = root;
-	}
-	
-	@Override
-	public CLocation getParent(){
-		return null;
-	}
-	
-	@Override
-	public ExtendedMode findMode(){
-		return ExtendedMode.MAXIMIZED;
-	}
+  private String root;
 
-	@Override
-	public DockableProperty findProperty( DockableProperty successor ){
-		SplitDockFullScreenProperty property = new SplitDockFullScreenProperty();
-		property.setSuccessor( successor );
-		
-		CLocation parent = getParent();
-		if( parent != null ){
-			return parent.findProperty( property );
-		}
-		
-		return property;
-	}
-	
-	@Override
-	public String findRoot(){
-		return root;
-	}
-	
-	@Override
-    public String toString() {
-        return "[maximized]";
+  /**
+   * Creates a new location
+   */
+  public CMaximizedLocation() {
+    // ignore
+  }
+
+  /**
+   * Creates a new location.
+   *
+   * @param root the station which represents the maximize area, can be <code>null</code>
+   */
+  public CMaximizedLocation(String root) {
+    this.root = root;
+  }
+
+  @Override
+  public CLocation getParent() {
+    return null;
+  }
+
+  @Override
+  public ExtendedMode findMode() {
+    return ExtendedMode.MAXIMIZED;
+  }
+
+  @Override
+  public DockableProperty findProperty(DockableProperty successor) {
+    SplitDockFullScreenProperty property = new SplitDockFullScreenProperty();
+    property.setSuccessor(successor);
+
+    CLocation parent = getParent();
+    if (parent != null) {
+      return parent.findProperty(property);
     }
 
-	/**
-	 * @deprecated see {@link CLocation#aside()} for an explanation.
-	 */
-	@Deprecated
-	@Override
-	public CLocation aside(){
-		return stack( 1 );
-	}
+    return property;
+  }
+
+  @Override
+  public String findRoot() {
+    return root;
+  }
+
+  @Override
+  public String toString() {
+    return "[maximized]";
+  }
+
+  /**
+   * @deprecated see {@link CLocation#aside()} for an explanation.
+   */
+  @Deprecated
+  @Override
+  public CLocation aside() {
+    return stack(1);
+  }
 }

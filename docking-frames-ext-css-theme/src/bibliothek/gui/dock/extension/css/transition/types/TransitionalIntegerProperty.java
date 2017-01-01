@@ -30,53 +30,54 @@ import bibliothek.gui.dock.extension.css.transition.TransitionalCssPropertyCallb
 
 /**
  * Animated property blending one {@link Integer} into another {@link Integer}.
+ *
  * @author Benjamin Sigg
  */
-public class TransitionalIntegerProperty implements TransitionalCssProperty<Integer>{
-	private int source = 0;
-	private int target = 0;
-	private double transition;
-	private TransitionalCssPropertyCallback<Integer> callback;
-	
-	@Override
-	public void setCallback( TransitionalCssPropertyCallback<Integer> callback ){
-		this.callback = callback;
-	}
+public class TransitionalIntegerProperty implements TransitionalCssProperty<Integer> {
+  private int source = 0;
+  private int target = 0;
+  private double transition;
+  private TransitionalCssPropertyCallback<Integer> callback;
 
-	@Override
-	public void setSource( Integer source ){
-		if( source == null ){
-			this.source = 0;
-		}
-		else{
-			this.source = source;
-		}
-		update();
-	}
+  @Override
+  public void setCallback(TransitionalCssPropertyCallback<Integer> callback) {
+    this.callback = callback;
+  }
 
-	@Override
-	public void setTarget( Integer target ){
-		if( target == null ){
-			this.target = 0;
-		}
-		else{
-			this.target = target;
-		}
-		update();
-	}
+  @Override
+  public void setSource(Integer source) {
+    if (source == null) {
+      this.source = 0;
+    }
+    else {
+      this.source = source;
+    }
+    update();
+  }
 
-	@Override
-	public void setTransition( double transition ){
-		this.transition = transition;
-		update();
-	}
+  @Override
+  public void setTarget(Integer target) {
+    if (target == null) {
+      this.target = 0;
+    }
+    else {
+      this.target = target;
+    }
+    update();
+  }
 
-	@Override
-	public void step( int delay ){
-		update();
-	}
+  @Override
+  public void setTransition(double transition) {
+    this.transition = transition;
+    update();
+  }
 
-	private void update(){
-		callback.set( (int)( source * (1-transition) + target * transition ) );
-	}
+  @Override
+  public void step(int delay) {
+    update();
+  }
+
+  private void update() {
+    callback.set((int)(source * (1 - transition) + target * transition));
+  }
 }

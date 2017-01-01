@@ -33,30 +33,31 @@ import bibliothek.gui.dock.util.font.GenericFontModifier.Modify;
 
 /**
  * Converts a String into a {@link Modify}.
+ *
  * @author Benjamin Sigg
  */
-public class FontModifyType implements CssType<Modify>{
-	@Override
-	public Modify convert( CssDeclarationValue value ){
-		String text = value.getSingleValue().toLowerCase();
-		
-		if( "on".equals( text ) || "true".equals( text )){
-			return Modify.ON;
-		}
-		if( "off".equals( text ) || "false".equals( text )){
-			return Modify.OFF;
-		}
-		if( "ignore".equals( text )){
-			return Modify.IGNORE;
-		}
-		if( "reverse".equals( text )){
-			return Modify.REVERSE;
-		}
-		return null;
-	}
+public class FontModifyType implements CssType<Modify> {
+  @Override
+  public Modify convert(CssDeclarationValue value) {
+    String text = value.getSingleValue().toLowerCase();
 
-	@Override
-	public TransitionalCssProperty<Modify> createTransition(){
-		return new MiddleTransitionalCssProperty<Modify>();
-	}	
+    if ("on".equals(text) || "true".equals(text)) {
+      return Modify.ON;
+    }
+    if ("off".equals(text) || "false".equals(text)) {
+      return Modify.OFF;
+    }
+    if ("ignore".equals(text)) {
+      return Modify.IGNORE;
+    }
+    if ("reverse".equals(text)) {
+      return Modify.REVERSE;
+    }
+    return null;
+  }
+
+  @Override
+  public TransitionalCssProperty<Modify> createTransition() {
+    return new MiddleTransitionalCssProperty<Modify>();
+  }
 }

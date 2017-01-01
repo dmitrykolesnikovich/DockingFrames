@@ -34,39 +34,40 @@ import bibliothek.gui.dock.common.action.core.CommonDockAction;
 /**
  * An action which is never visible, can be used as placeholder
  * or in cases where an action would normally be required and <code>null</code>
- * would be replaced by a default action. 
+ * would be replaced by a default action.
+ *
  * @author Benjamin Sigg
  */
 public class CBlank extends CAction {
-    /**
-     * A public instance of {@link CBlank}.
-     */
-    public static final CBlank BLANK = new CBlank();
-    
-    /**
-     * Creates a new blank action
-     */
-    protected CBlank(){
-        init( new CommonDockAction(){
-            public void bind( Dockable dockable ) {
-                // ignore
-            }
+  /**
+   * A public instance of {@link CBlank}.
+   */
+  public static final CBlank BLANK = new CBlank();
 
-            public <V> V createView( ViewTarget<V> target, ActionViewConverter converter, Dockable dockable ) {
-                return null;
-            }
+  /**
+   * Creates a new blank action
+   */
+  protected CBlank() {
+    init(new CommonDockAction() {
+      public void bind(Dockable dockable) {
+        // ignore
+      }
 
-            public boolean trigger( Dockable dockable ) {
-                return false;
-            }
+      public <V> V createView(ViewTarget<V> target, ActionViewConverter converter, Dockable dockable) {
+        return null;
+      }
 
-            public void unbind( Dockable dockable ) {
-                // ignore
-            }
-            
-            public CAction getAction(){
-            	return CBlank.this;
-            }
-        });
-    }
+      public boolean trigger(Dockable dockable) {
+        return false;
+      }
+
+      public void unbind(Dockable dockable) {
+        // ignore
+      }
+
+      public CAction getAction() {
+        return CBlank.this;
+      }
+    });
+  }
 }

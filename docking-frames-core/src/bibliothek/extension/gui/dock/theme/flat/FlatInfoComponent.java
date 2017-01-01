@@ -37,15 +37,16 @@ import bibliothek.gui.dock.station.stack.action.DockActionDistributorSource;
 /**
  * This component shows a number of {@link DockAction}s and is used by the {@link BubbleStackDockComponent}
  * to be shown alongside the tabs.
+ *
  * @author Benjamin Sigg
  */
-public class FlatInfoComponent extends DockActionCombinedInfoComponent{
-	public FlatInfoComponent( FlatTabPane pane ){
-		super( pane );
-	}
+public class FlatInfoComponent extends DockActionCombinedInfoComponent {
+  public FlatInfoComponent(FlatTabPane pane) {
+    super(pane);
+  }
 
-	@Override
-	protected DockActionSource createActionSource( Dockable dockable ){
-		return new DockActionDistributorSource( Target.INFO_COMPONENT, FlatTheme.ACTION_DISTRIBUTOR, dockable );
-	}
+  @Override
+  protected DockActionSource createActionSource(Dockable dockable) {
+    return new DockActionDistributorSource(Target.INFO_COMPONENT, FlatTheme.ACTION_DISTRIBUTOR, dockable);
+  }
 }

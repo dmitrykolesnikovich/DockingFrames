@@ -30,47 +30,46 @@
 
 package bibliothek.gui.dock.station.toolbar.layer;
 
-import java.awt.Component;
-import java.awt.Point;
-
-import javax.swing.SwingUtilities;
-
 import bibliothek.gui.Orientation;
 import bibliothek.gui.dock.ToolbarContainerDockStation;
 import bibliothek.gui.dock.station.layer.DefaultDropLayer;
 import bibliothek.gui.dock.station.layer.DockStationDropLayer;
 import bibliothek.gui.dock.station.layer.LayerPriority;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * A {@link DockStationDropLayer} describing the region around a {@link ToolbarContainerDockStation}.
+ *
  * @author Benjamin Sigg
  */
 public class ToolbarContainerDropLayer extends DefaultDropLayer {
-	private ToolbarContainerDockStation station;
-	
-	public ToolbarContainerDropLayer( ToolbarContainerDockStation station ){
-		super( station );
-		this.station = station;
-		setPriority( LayerPriority.OUTSIDE_LOW );
-	}
-	
-	@Override
-	public Component getComponent(){
-		return station.getComponent();
-	}
-	
-	@Override
-	public boolean contains( int x, int y ){
-		Component component = getComponent();
-		Point point = new Point( x, y );
-		SwingUtilities.convertPointFromScreen( point, component );
-		int side = station.getSideSnapSize();
-		
-		if( station.getOrientation() == Orientation.HORIZONTAL ){
-			return point.y >= -side && point.y <= component.getHeight() + side && point.x >= -side && point.x <= component.getWidth() + side;
-		}
-		else{
-			return point.x >= -side && point.x <= component.getWidth() + side && point.y >= -side && point.y <= component.getHeight() + side;
-		}
-	}
+  private ToolbarContainerDockStation station;
+
+  public ToolbarContainerDropLayer(ToolbarContainerDockStation station) {
+    super(station);
+    this.station = station;
+    setPriority(LayerPriority.OUTSIDE_LOW);
+  }
+
+  @Override
+  public Component getComponent() {
+    return station.getComponent();
+  }
+
+  @Override
+  public boolean contains(int x, int y) {
+    Component component = getComponent();
+    Point point = new Point(x, y);
+    SwingUtilities.convertPointFromScreen(point, component);
+    int side = station.getSideSnapSize();
+
+    if (station.getOrientation() == Orientation.HORIZONTAL) {
+      return point.y >= -side && point.y <= component.getHeight() + side && point.x >= -side && point.x <= component.getWidth() + side;
+    }
+    else {
+      return point.x >= -side && point.x <= component.getWidth() + side && point.y >= -side && point.y <= component.getHeight() + side;
+    }
+  }
 }

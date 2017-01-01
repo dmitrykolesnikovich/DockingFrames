@@ -29,37 +29,39 @@ import bibliothek.gui.dock.common.CGridArea;
 
 /**
  * A location that represents a {@link CGridArea}.
+ *
  * @author Benjamin Sigg
  */
-public class CGridAreaLocation extends CSplitLocation{
-    private CGridArea area;
-    
-    /**
-     * Creates the new location
-     * @param area the grid area which is represented by this location
-     */
-    public CGridAreaLocation( CGridArea area ){
-        if( area == null )
-            throw new NullPointerException( "area must not be null" );
-        
-        this.area = area;
-    }
-    
-    /**
-     * Gets the area which is represented by this location.
-     * @return the area, not <code>null</code>
-     */
-    public CGridArea getArea(){
-		return area;
-	}
+public class CGridAreaLocation extends CSplitLocation {
+  private CGridArea area;
 
-    @Override
-    public String findRoot() {
-        return area.getUniqueId();
-    }
-    
-    @Override
-    public String toString() {
-        return "[" + findRoot() + "]";
-    }
+  /**
+   * Creates the new location
+   *
+   * @param area the grid area which is represented by this location
+   */
+  public CGridAreaLocation(CGridArea area) {
+    if (area == null) throw new NullPointerException("area must not be null");
+
+    this.area = area;
+  }
+
+  /**
+   * Gets the area which is represented by this location.
+   *
+   * @return the area, not <code>null</code>
+   */
+  public CGridArea getArea() {
+    return area;
+  }
+
+  @Override
+  public String findRoot() {
+    return area.getUniqueId();
+  }
+
+  @Override
+  public String toString() {
+    return "[" + findRoot() + "]";
+  }
 }

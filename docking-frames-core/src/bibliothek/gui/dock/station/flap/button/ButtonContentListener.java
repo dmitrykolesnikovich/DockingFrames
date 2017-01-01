@@ -30,14 +30,16 @@ import bibliothek.gui.Dockable;
 /**
  * A listener that is added to a {@link ButtonContent} to receive events when the
  * content changes.
+ *
  * @author Benjamin Sigg
  */
 public interface ButtonContentListener {
-	/**
-	 * Called if any property of <code>dockable</code> changed such that a property 
-	 * of <code>content</code> may have changed.
-	 * @param content the content which may now have a different behavior
-	 * @param dockable the element which caused the event
-	 */
-	public void changed( ButtonContent content, Dockable dockable );
+  /**
+   * Called if any property of <code>dockable</code> changed such that a property
+   * of <code>content</code> may have changed.
+   *
+   * @param content  the content which may now have a different behavior
+   * @param dockable the element which caused the event
+   */
+  public void changed(ButtonContent content, Dockable dockable);
 }

@@ -25,16 +25,17 @@
  */
 package bibliothek.gui.dock.util.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.util.UIBridge;
+
+import java.awt.*;
 
 /**
  * A <code>ColorBridge</code> is a layer between a {@link ColorManager} and
  * a {@link DockColor}. A bridge can exchange the color that is used for
  * some <code>DockColor</code>.
+ *
  * @author Benjamin Sigg
  */
 public interface ColorBridge extends UIBridge<Color, DockColor> {
-    // no new methods
+  // no new methods
 }

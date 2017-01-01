@@ -38,102 +38,107 @@ import bibliothek.gui.dock.util.DockUtilities;
 /**
  * A connection between a {@link FlapDockStation} and the
  * {@link MinimizedModeArea} interface.
+ *
  * @author Benjamin Sigg
  */
-public class FlapDockStationHandle implements MinimizedModeArea{
-	/** unique id of this handle */
-	private String id;
-	
-	/** the station handled by this area */
-	private FlapDockStation station;
+public class FlapDockStationHandle implements MinimizedModeArea {
+  /**
+   * unique id of this handle
+   */
+  private String id;
 
-	/**
-	 * Creates a new handle.
-	 * @param id unique id of this handle
-	 * @param station the station managed by this handle
-	 */
-	public FlapDockStationHandle( String id, FlapDockStation station ){
-		if( id == null )
-			throw new IllegalArgumentException( "id must not be null" );
-		if( station == null )
-			throw new IllegalArgumentException( "station must not be null" );
-		
-		this.id = id;
-		this.station = station;
-	}
-	
-	public boolean autoDefaultArea() {
-		return true;
-	}
-	
-	public boolean isLocationRoot(){
-		return true;
-	}
-	
-	public void addModeAreaListener( ModeAreaListener listener ){
-		// ignore
-	}
-	
-	public void removeModeAreaListener( ModeAreaListener listener ){
-		// ignore	
-	}
-	
-	public void setController( DockController controller ){
-		// ignore	
-	}
-	
-	public void setMode( LocationMode mode ){
-		// ignore	
-	}
-	
-	/**
-	 * Gets the station which is managed by this handle.
-	 * @return the station
-	 */
-	public FlapDockStation getStation(){
-		return station;
-	}
-	
-	public DockableProperty getLocation( Dockable child ){
-		return DockUtilities.getPropertyChain( station, child );
-	}
+  /**
+   * the station handled by this area
+   */
+  private FlapDockStation station;
 
-	public String getUniqueId(){
-		return id;
-	}
+  /**
+   * Creates a new handle.
+   *
+   * @param id      unique id of this handle
+   * @param station the station managed by this handle
+   */
+  public FlapDockStationHandle(String id, FlapDockStation station) {
+    if (id == null) throw new IllegalArgumentException("id must not be null");
+    if (station == null) throw new IllegalArgumentException("station must not be null");
 
-	public boolean isChild( Dockable dockable ){
-		return dockable.getDockParent() == station;
-	}
-	
-	public boolean respectWorkingAreas(){
-		return false;
-	}
+    this.id = id;
+    this.station = station;
+  }
 
-	public boolean setLocation( Dockable dockable, DockableProperty location, AffectedSet set ){
-		set.add( dockable );
-		
-		if( isChild( dockable )){
-			if( location != null ){
-				station.move( dockable, location );
-			}
-			return true;
-		}
-		else{
-			boolean acceptable = DockUtilities.acceptable( getStation(), dockable );
-			if( !acceptable ){
-				return false;
-			}
-			
-			if( location != null ){
-				if( !station.drop( dockable, location )){
-					location = null;
-				}
-			}
-			if( location == null ){
-				station.drop( dockable );
-			}
-			return true;
-		}
-	}
+  public boolean autoDefaultArea() {
+    return true;
+  }
+
+  public boolean isLocationRoot() {
+    return true;
+  }
+
+  public void addModeAreaListener(ModeAreaListener listener) {
+    // ignore
+  }
+
+  public void removeModeAreaListener(ModeAreaListener listener) {
+    // ignore
+  }
+
+  public void setController(DockController controller) {
+    // ignore
+  }
+
+  public void setMode(LocationMode mode) {
+    // ignore
+  }
+
+  /**
+   * Gets the station which is managed by this handle.
+   *
+   * @return the station
+   */
+  public FlapDockStation getStation() {
+    return station;
+  }
+
+  public DockableProperty getLocation(Dockable child) {
+    return DockUtilities.getPropertyChain(station, child);
+  }
+
+  public String getUniqueId() {
+    return id;
+  }
+
+  public boolean isChild(Dockable dockable) {
+    return dockable.getDockParent() == station;
+  }
+
+  public boolean respectWorkingAreas() {
+    return false;
+  }
+
+  public boolean setLocation(Dockable dockable, DockableProperty location, AffectedSet set) {
+    set.add(dockable);
+
+    if (isChild(dockable)) {
+      if (location != null) {
+        station.move(dockable, location);
+      }
+      return true;
+    }
+    else {
+      boolean acceptable = DockUtilities.acceptable(getStation(), dockable);
+      if (!acceptable) {
+        return false;
+      }
+
+      if (location != null) {
+        if (!station.drop(dockable, location)) {
+          location = null;
+        }
+      }
+      if (location == null) {
+        station.drop(dockable);
+      }
+      return true;
+    }
+  }
 }

@@ -25,26 +25,28 @@
  */
 package bibliothek.gui.dock.common.preference;
 
-import javax.swing.KeyStroke;
-
 import bibliothek.extension.gui.dock.preference.preferences.DockPropertyPreference;
 import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.util.DockProperties;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+
 /**
  * {@link KeyStroke} that will cancel the currently running drag and drop operation.
+ *
  * @author Benjamin Sigg
  */
-public class KeyStrokeCancelOperation extends DockPropertyPreference<KeyStroke>{
-    /**
-     * Creates a new preference
-     * @param properties the properties to access
-     */
-    public KeyStrokeCancelOperation( DockProperties properties ){
-        super( properties, CControl.KEY_CANCEL_OPERATION, Path.TYPE_KEYSTROKE_PATH, new Path( "dock.common.control.cancel" ) );
-        
-        setLabelId( "preference.shortcut.cancel.label" );
-        setDescriptionId( "preference.shortcut.cancel.description" );
-    }
+public class KeyStrokeCancelOperation extends DockPropertyPreference<KeyStroke> {
+  /**
+   * Creates a new preference
+   *
+   * @param properties the properties to access
+   */
+  public KeyStrokeCancelOperation(DockProperties properties) {
+    super(properties, CControl.KEY_CANCEL_OPERATION, Path.TYPE_KEYSTROKE_PATH, new Path("dock.common.control.cancel"));
+
+    setLabelId("preference.shortcut.cancel.label");
+    setDescriptionId("preference.shortcut.cancel.description");
+  }
 }

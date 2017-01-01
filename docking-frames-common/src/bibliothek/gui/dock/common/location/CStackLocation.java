@@ -32,83 +32,92 @@ import bibliothek.gui.dock.station.stack.StackDockProperty;
 
 /**
  * A location describing an element in a stack (also known as tabbed-pane).
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
-public class CStackLocation extends AbstractStackholdingLocation{
-	/** the index of the tab of this location */
-	private int index;
-	/** location of the stack */
-	private CLocation parent;
-	
-	/**
-	 * Creates a new location
-	 * @param parent the location of the stack
-	 */
-	public CStackLocation( CLocation parent ){
-		this( parent, Integer.MAX_VALUE );
-	}
-	
-	/**
-	 * Creates a new location
-	 * @param parent the location of the stack onto which this location builds
-	 * @param index the location of the tab represented by this location
-	 */
-	public CStackLocation( CLocation parent, int index ){
-		if( parent == null )
-			throw new IllegalArgumentException( "Parent must not be null" );
-		
-		this.parent = parent;
-		this.index = index;
-	}
-	
-	/**
-	 * Gets the parent location of this {@link CStackLocation}.
-	 * @return the parent location, not <code>null</code>
-	 */
-	public CLocation getParent(){
-		return parent;
-	}
-	
-	/**
-	 * Gets the index to which this location points on a stack.
-	 * @return the index, may be {@link Integer#MAX_VALUE}
-	 */
-	public int getIndex(){
-		return index;
-	}
-	
-	@Override
-	public String findRoot(){
-		return parent.findRoot();
-	}
-	
-	@Override
-	public ExtendedMode findMode(){
-		return parent.findMode();
-	}
-	
-	@Override
-	public DockableProperty findProperty( DockableProperty successor ){
-		StackDockProperty stack = new StackDockProperty( index );
-		stack.setSuccessor( successor );
-		return parent.findProperty( stack );
-	}
-	
-	/**
-	 * @deprecated see {@link CLocation#aside()} for an explanation.
-	 */
-	@Deprecated
-	@Override
-	public CLocation aside() {
-	    if( index == Integer.MAX_VALUE )
-	        return this;
-	    else
-	        return new CStackLocation( parent, index+1 );
-	}
-	
-	@Override
-	public String toString() {
-	    return String.valueOf( parent ) + " [stack " + index + "]";
-	}
+public class CStackLocation extends AbstractStackholdingLocation {
+  /**
+   * the index of the tab of this location
+   */
+  private int index;
+  /**
+   * location of the stack
+   */
+  private CLocation parent;
+
+  /**
+   * Creates a new location
+   *
+   * @param parent the location of the stack
+   */
+  public CStackLocation(CLocation parent) {
+    this(parent, Integer.MAX_VALUE);
+  }
+
+  /**
+   * Creates a new location
+   *
+   * @param parent the location of the stack onto which this location builds
+   * @param index  the location of the tab represented by this location
+   */
+  public CStackLocation(CLocation parent, int index) {
+    if (parent == null) throw new IllegalArgumentException("Parent must not be null");
+
+    this.parent = parent;
+    this.index = index;
+  }
+
+  /**
+   * Gets the parent location of this {@link CStackLocation}.
+   *
+   * @return the parent location, not <code>null</code>
+   */
+  public CLocation getParent() {
+    return parent;
+  }
+
+  /**
+   * Gets the index to which this location points on a stack.
+   *
+   * @return the index, may be {@link Integer#MAX_VALUE}
+   */
+  public int getIndex() {
+    return index;
+  }
+
+  @Override
+  public String findRoot() {
+    return parent.findRoot();
+  }
+
+  @Override
+  public ExtendedMode findMode() {
+    return parent.findMode();
+  }
+
+  @Override
+  public DockableProperty findProperty(DockableProperty successor) {
+    StackDockProperty stack = new StackDockProperty(index);
+    stack.setSuccessor(successor);
+    return parent.findProperty(stack);
+  }
+
+  /**
+   * @deprecated see {@link CLocation#aside()} for an explanation.
+   */
+  @Deprecated
+  @Override
+  public CLocation aside() {
+    if (index == Integer.MAX_VALUE) {
+      return this;
+    }
+    else {
+      return new CStackLocation(parent, index + 1);
+    }
+  }
+
+  @Override
+  public String toString() {
+    return String.valueOf(parent) + " [stack " + index + "]";
+  }
 }

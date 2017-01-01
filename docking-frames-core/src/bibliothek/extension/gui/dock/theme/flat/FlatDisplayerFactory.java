@@ -42,51 +42,57 @@ import bibliothek.gui.dock.title.DockTitle;
  * A factory for instances of {@link DockableDisplayer}. This
  * factory either sets the border of its created displayers
  * to none or to a {@link FlatBorder}.
+ *
  * @author Benjamin Sigg
  */
-public class FlatDisplayerFactory implements DisplayerFactory{
-    /** Whether the created displayers should have a border */
-    private boolean border;
-    
-    /**
-     * Creates a new factory
-     * @param border Whether the displayers should have a border or not
-     */
-    public FlatDisplayerFactory( boolean border ){
-        this.border = border;
-    }
-    
-    public void request( DisplayerRequest request ){
-    	Dockable dockable = request.getTarget();
-    	DockStation station = request.getParent();
-    	DockTitle title = request.getTitle();
-    	
-        Location location;
-        
-        if( dockable.asDockStation() != null )
-            location = DockableDisplayer.Location.LEFT;
-        else
-            location = DockableDisplayer.Location.TOP;
+public class FlatDisplayerFactory implements DisplayerFactory {
+  /**
+   * Whether the created displayers should have a border
+   */
+  private boolean border;
 
-        if( border ){
-            FlatDockableDisplayer displayer = new FlatDockableDisplayer( station, dockable, title, location );
-            displayer.setStacked( station instanceof StackDockStation );
-            request.answer( displayer );
-            return;
-        }
-        
-        BasicDockableDisplayer displayer = new BasicDockableDisplayer( station, dockable, title, location ){
-        	@Override
-        	protected BasicDockableDisplayerDecorator createStackedDecorator(){
-	        	return createStackedDecorator( FlatTheme.ACTION_DISTRIBUTOR );
-        	}
-        };
-        displayer.setRespectBorderHint( false );
-        displayer.setDefaultBorderHint( false );
-        displayer.setSingleTabShowInnerBorder( false );
-        displayer.setSingleTabShowOuterBorder( false );
-        displayer.setStacked( station instanceof StackDockStation );
-        
-        request.answer( displayer );
+  /**
+   * Creates a new factory
+   *
+   * @param border Whether the displayers should have a border or not
+   */
+  public FlatDisplayerFactory(boolean border) {
+    this.border = border;
+  }
+
+  public void request(DisplayerRequest request) {
+    Dockable dockable = request.getTarget();
+    DockStation station = request.getParent();
+    DockTitle title = request.getTitle();
+
+    Location location;
+
+    if (dockable.asDockStation() != null) {
+      location = DockableDisplayer.Location.LEFT;
     }
+    else {
+      location = DockableDisplayer.Location.TOP;
+    }
+
+    if (border) {
+      FlatDockableDisplayer displayer = new FlatDockableDisplayer(station, dockable, title, location);
+      displayer.setStacked(station instanceof StackDockStation);
+      request.answer(displayer);
+      return;
+    }
+
+    BasicDockableDisplayer displayer = new BasicDockableDisplayer(station, dockable, title, location) {
+      @Override
+      protected BasicDockableDisplayerDecorator createStackedDecorator() {
+        return createStackedDecorator(FlatTheme.ACTION_DISTRIBUTOR);
+      }
+    };
+    displayer.setRespectBorderHint(false);
+    displayer.setDefaultBorderHint(false);
+    displayer.setSingleTabShowInnerBorder(false);
+    displayer.setSingleTabShowOuterBorder(false);
+    displayer.setStacked(station instanceof StackDockStation);
+
+    request.answer(displayer);
+  }
 }

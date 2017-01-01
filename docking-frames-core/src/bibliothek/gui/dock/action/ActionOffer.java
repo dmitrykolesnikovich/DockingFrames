@@ -36,37 +36,44 @@ import bibliothek.gui.Dockable;
  * {@link DockController#listOffers(Dockable)} to create the list of actions. This method in return will call
  * {@link #getSource(Dockable, DockActionSource, DockActionSource[], DockActionSource, DockActionSource[])} on the first
  * {@link ActionOffer} which is {@link #interested(Dockable)} in the {@link Dockable}.
+ *
  * @author Benjamin Sigg
  * @see DockController#addActionOffer(ActionOffer)
  * @see DockController#removeActionOffer(ActionOffer)
  */
 public interface ActionOffer {
-    /**
-     * Tells whether this <code>ActionOffer</code> wants to collect the 
-     * actions for the <code>dockable</code>, or if this ActionOffer
-     * is not interested in the {@link Dockable}.
-     * @param dockable The {@link Dockable} to test
-     * @return <code>true</code> if this ActionOffer should tell which
-     * {@link DockAction actions} will be associated with the <code>dockable</code>,
-     * <code>false</code> otherwise. 
-     */
-    public boolean interested( Dockable dockable );
-    
-    /**
-     * Generates one {@link DockActionSource source} of {@link DockAction actions}
-     * for the given {@link Dockable}. The ActionOffer is free how to use the
-     * actions that are created by other parts of the system, but it is a good
-     * idea to use all of them. Note that each argument, and each element in
-     * an array, can be <code>null</code>.
-     * @param dockable The {@link Dockable} for which the the {@link DockActionSource source}
-     * has to be created. An invocation of {@link #interested(Dockable) interested}
-     * should return <code>true</code>, otherwise the behavior of this method
-     * is not specified.
-     * @param source the DockActionSource derived from dockable
-     * @param guards a list of DockActionSources derived from {@link ActionGuard ActionGuards} 
-     * @param parent the DockActionSource derived from the parent of <code>dockable</code>
-     * @param parents a list of DockActionSources derived from all parents of <code>dockable</code>
-     * @return The source that was created.
-     */
-    public DockActionSource getSource( Dockable dockable, DockActionSource source, DockActionSource[] guards, DockActionSource parent, DockActionSource[] parents );
+  /**
+   * Tells whether this <code>ActionOffer</code> wants to collect the
+   * actions for the <code>dockable</code>, or if this ActionOffer
+   * is not interested in the {@link Dockable}.
+   *
+   * @param dockable The {@link Dockable} to test
+   * @return <code>true</code> if this ActionOffer should tell which
+   * {@link DockAction actions} will be associated with the <code>dockable</code>,
+   * <code>false</code> otherwise.
+   */
+  public boolean interested(Dockable dockable);
+
+  /**
+   * Generates one {@link DockActionSource source} of {@link DockAction actions}
+   * for the given {@link Dockable}. The ActionOffer is free how to use the
+   * actions that are created by other parts of the system, but it is a good
+   * idea to use all of them. Note that each argument, and each element in
+   * an array, can be <code>null</code>.
+   *
+   * @param dockable The {@link Dockable} for which the the {@link DockActionSource source}
+   *                 has to be created. An invocation of {@link #interested(Dockable) interested}
+   *                 should return <code>true</code>, otherwise the behavior of this method
+   *                 is not specified.
+   * @param source   the DockActionSource derived from dockable
+   * @param guards   a list of DockActionSources derived from {@link ActionGuard ActionGuards}
+   * @param parent   the DockActionSource derived from the parent of <code>dockable</code>
+   * @param parents  a list of DockActionSources derived from all parents of <code>dockable</code>
+   * @return The source that was created.
+   */
+  public DockActionSource getSource(Dockable dockable,
+                                    DockActionSource source,
+                                    DockActionSource[] guards,
+                                    DockActionSource parent,
+                                    DockActionSource[] parents);
 }

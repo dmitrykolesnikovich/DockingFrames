@@ -32,35 +32,37 @@ import bibliothek.util.FrameworkOnly;
 
 /**
  * If the current mode is {@link ExtendedMode#MAXIMIZED}, then this strategy asks
- * the {@link CLocationModeManager} for the last mode a {@link Dockable} was in and 
+ * the {@link CLocationModeManager} for the last mode a {@link Dockable} was in and
  * selects this mode. Otherwise {@link ExtendedMode#MAXIMIZED} is selected.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public class PreviousModeDoubleClickStrategy implements DoubleClickLocationStrategy{
-	/** the manager to ask for the previous mode */
-	private CLocationModeManager manager;
-	
-	/**
-	 * Creates a new strategy
-	 * @param manager the manager to ask for the previous mode, not <code>null</code>
-	 */
-	public PreviousModeDoubleClickStrategy( CLocationModeManager manager ){
-		this.manager = manager;
-	}
-	
-	public ExtendedMode handleDoubleClick( Dockable dockable, ExtendedMode current, ExtendedModeEnablement enablement ){
-		if( current != ExtendedMode.MAXIMIZED ){
-			return ExtendedMode.MAXIMIZED;
-		}
-		else{
-			CLocationMode mode = manager.getPreviousMode( dockable );
-			if( mode == null )
-				return ExtendedMode.NORMALIZED;
-			ExtendedMode next = mode.getExtendedMode();
-			if( !enablement.isAvailable( dockable, next ).isAvailable() )
-				return ExtendedMode.NORMALIZED;
-			return next;
-		}
-	}
+public class PreviousModeDoubleClickStrategy implements DoubleClickLocationStrategy {
+  /**
+   * the manager to ask for the previous mode
+   */
+  private CLocationModeManager manager;
+
+  /**
+   * Creates a new strategy
+   *
+   * @param manager the manager to ask for the previous mode, not <code>null</code>
+   */
+  public PreviousModeDoubleClickStrategy(CLocationModeManager manager) {
+    this.manager = manager;
+  }
+
+  public ExtendedMode handleDoubleClick(Dockable dockable, ExtendedMode current, ExtendedModeEnablement enablement) {
+    if (current != ExtendedMode.MAXIMIZED) {
+      return ExtendedMode.MAXIMIZED;
+    }
+    else {
+      CLocationMode mode = manager.getPreviousMode(dockable);
+      if (mode == null) return ExtendedMode.NORMALIZED;
+      ExtendedMode next = mode.getExtendedMode();
+      if (!enablement.isAvailable(dockable, next).isAvailable()) return ExtendedMode.NORMALIZED;
+      return next;
+    }
+  }
 }

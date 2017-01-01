@@ -25,24 +25,22 @@
  */
 package bibliothek.gui.dock.station;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 import bibliothek.gui.DockStation;
+
+import java.lang.annotation.*;
 
 /**
  * Any method marked with this annotation is forbidden to modify the layout of a {@link DockStation}.
+ *
  * @author Benjamin Sigg
  */
 @Documented
-@Retention( RetentionPolicy.RUNTIME )
-@Target( ElementType.TYPE )
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
 @Inherited
 public @interface LayoutLocked {
-	/** whether the layout is locked by this class. Overrides any value set by any superclass.*/
-	public boolean locked() default true;
+  /**
+   * whether the layout is locked by this class. Overrides any value set by any superclass.
+   */
+  public boolean locked() default true;
 }

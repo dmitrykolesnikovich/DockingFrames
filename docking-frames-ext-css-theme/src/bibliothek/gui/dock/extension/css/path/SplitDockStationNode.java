@@ -35,80 +35,86 @@ import bibliothek.gui.dock.extension.css.doc.CssDocPathNode;
 import bibliothek.gui.dock.extension.css.doc.CssDocText;
 
 /**
- * This node describes the child of a {@link SplitDockStation}. 
+ * This node describes the child of a {@link SplitDockStation}.
+ *
  * @author Benjamin Sigg
  */
-@CssDocPathNode(
-		name=@CssDocKey(key=SplitDockStationNode.NAME),
-		description=@CssDocText(text="Relation between a SplitDockStation and its child(ren)"),
-		pseudoClasses={
-			@CssDocKey(key="selected", description=@CssDocText(text="Applied if the child is selected"))})
-public class SplitDockStationNode extends AbstractCssNode{
-	/** the name of this node */
-	public static final String NAME = "split-child";
-	
-	/** the station to observe */
-	private SplitDockStation station;
-	
-	/** the dockable whose location has to be monitored */
-	private Dockable dockable;
-	
-	private DockStationListener stationListener = new DockStationAdapter(){
-		@Override
-		public void dockablesRepositioned( DockStation station, Dockable[] dockables ){
-			for( Dockable item : dockables ){
-				if( item == dockable ){
-					fireNodeChanged();
-					break;
-				}
-			}
-		}
-		@Override
-		public void dockableSelected( DockStation station, Dockable oldSelection, Dockable newSelection ){
-			if( oldSelection == dockable || newSelection == dockable ){
-				fireNodeChanged();
-			}
-		}
-	};
-	
-	/**
-	 * Creates a new node
-	 * @param station the station to observe
-	 * @param dockable the child which is represented by this node
-	 */
-	public SplitDockStationNode( SplitDockStation station, Dockable dockable ){
-		if( station == null ){
-			throw new IllegalArgumentException( "station must not be null" );
-		}
-		if( dockable == null ){
-			throw new IllegalArgumentException( "dockable must not be null" );
-		}
-		this.station = station;
-		this.dockable = dockable;
-	}
-	
-	@Override
-	public String getName(){
-		return NAME;
-	}
-	
-	@Override
-	public boolean hasPseudoClass( String className ){
-		if( "selected".equals( className )){
-			return station.getFrontDockable() == dockable;
-		}
-		return false;
-	}
-	
-	@Override
-	protected void bind(){
-		station.addDockStationListener( stationListener );
-		
-	}
-	
-	@Override
-	protected void unbind(){
-		station.removeDockStationListener( stationListener );
-	}
+@CssDocPathNode(name = @CssDocKey(key = SplitDockStationNode.NAME), description = @CssDocText(text = "Relation between a SplitDockStation and its child(ren)"), pseudoClasses = {
+  @CssDocKey(key = "selected", description = @CssDocText(text = "Applied if the child is selected"))})
+public class SplitDockStationNode extends AbstractCssNode {
+  /**
+   * the name of this node
+   */
+  public static final String NAME = "split-child";
+
+  /**
+   * the station to observe
+   */
+  private SplitDockStation station;
+
+  /**
+   * the dockable whose location has to be monitored
+   */
+  private Dockable dockable;
+
+  private DockStationListener stationListener = new DockStationAdapter() {
+    @Override
+    public void dockablesRepositioned(DockStation station, Dockable[] dockables) {
+      for (Dockable item : dockables) {
+        if (item == dockable) {
+          fireNodeChanged();
+          break;
+        }
+      }
+    }
+
+    @Override
+    public void dockableSelected(DockStation station, Dockable oldSelection, Dockable newSelection) {
+      if (oldSelection == dockable || newSelection == dockable) {
+        fireNodeChanged();
+      }
+    }
+  };
+
+  /**
+   * Creates a new node
+   *
+   * @param station  the station to observe
+   * @param dockable the child which is represented by this node
+   */
+  public SplitDockStationNode(SplitDockStation station, Dockable dockable) {
+    if (station == null) {
+      throw new IllegalArgumentException("station must not be null");
+    }
+    if (dockable == null) {
+      throw new IllegalArgumentException("dockable must not be null");
+    }
+    this.station = station;
+    this.dockable = dockable;
+  }
+
+  @Override
+  public String getName() {
+    return NAME;
+  }
+
+  @Override
+  public boolean hasPseudoClass(String className) {
+    if ("selected".equals(className)) {
+      return station.getFrontDockable() == dockable;
+    }
+    return false;
+  }
+
+  @Override
+  protected void bind() {
+    station.addDockStationListener(stationListener);
+
+  }
+
+  @Override
+  protected void unbind() {
+    station.removeDockStationListener(stationListener);
+  }
 
 }

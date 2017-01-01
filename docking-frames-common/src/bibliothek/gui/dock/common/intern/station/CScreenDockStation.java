@@ -33,51 +33,53 @@ import bibliothek.gui.dock.util.WindowProvider;
 
 /**
  * A {@link ScreenDockStation} that also implements {@link CommonDockStation}.
+ *
  * @author Benjamin Sigg
  */
-public class CScreenDockStation extends ScreenDockStation implements CommonDockStation<ScreenDockStation,CScreenDockStation>{
-	private CommonStationDelegate<CScreenDockStation> delegate;
-	
-	/**
-	 * Creates a new station.
-	 * @param owner the window that is the owner of the windows of this station
-	 * @param delegate additional methods required for this station
-	 */
-	public CScreenDockStation( WindowProvider owner, CommonStationDelegate<CScreenDockStation> delegate ){
-		super( owner );
-		this.delegate = delegate;
-		setExpandOnDoubleClick( false );
-	}
-	
-	@Override
-	public String getFactoryID(){
-		return CommonDockStationFactory.FACTORY_ID;
-	}
-	
-	public String getConverterID(){
-		return super.getFactoryID();
-	}
+public class CScreenDockStation extends ScreenDockStation implements CommonDockStation<ScreenDockStation, CScreenDockStation> {
+  private CommonStationDelegate<CScreenDockStation> delegate;
 
-	@Override
-	protected ListeningDockAction createFullscreenAction(){
-		return null;
-	}
+  /**
+   * Creates a new station.
+   *
+   * @param owner    the window that is the owner of the windows of this station
+   * @param delegate additional methods required for this station
+   */
+  public CScreenDockStation(WindowProvider owner, CommonStationDelegate<CScreenDockStation> delegate) {
+    super(owner);
+    this.delegate = delegate;
+    setExpandOnDoubleClick(false);
+  }
 
-	public ScreenDockStation getDockStation(){
-		return this;
-	}
-	
-	@Override
-	public CScreenDockStation asDockStation(){
-		return this;
-	}
+  @Override
+  public String getFactoryID() {
+    return CommonDockStationFactory.FACTORY_ID;
+  }
 
-	@Override
-	public CommonDockable asDockable(){
-		return null;
-	}
-	
-	public CStation<CScreenDockStation> getStation(){
-		return delegate.getStation();
-	}
+  public String getConverterID() {
+    return super.getFactoryID();
+  }
+
+  @Override
+  protected ListeningDockAction createFullscreenAction() {
+    return null;
+  }
+
+  public ScreenDockStation getDockStation() {
+    return this;
+  }
+
+  @Override
+  public CScreenDockStation asDockStation() {
+    return this;
+  }
+
+  @Override
+  public CommonDockable asDockable() {
+    return null;
+  }
+
+  public CStation<CScreenDockStation> getStation() {
+    return delegate.getStation();
+  }
 }

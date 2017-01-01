@@ -33,45 +33,52 @@ import bibliothek.util.FrameworkOnly;
 /**
  * A {@link SharingDropDownDockAction} is a {@link DropDownAction} whose properties are shared by
  * all {@link Dockable}s and whose properties can be set by the client.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public interface SharingDropDownDockAction extends SharingStandardDockAction, DropDownAction{
-	/**
-	 * Adds an action to the menu.
-	 * @param action the action to add
-	 */
-	public void add( DockAction action );
-	
-	/**
-	 * Inserts an action into the menu.
-	 * @param index the location of the action
-	 * @param action the new action
-	 */
-	public void insert( int index, DockAction action );
-	
-	/**
-	 * Inserts a list of actions into the menu.
-	 * @param index the location of the first action
-	 * @param action the actions to add
-	 */
-	public void insert( int index, DockAction... action );
-	
-	/**
-	 * Removes an action from the menu.
-	 * @param index the location of the action
-	 */
-	public void remove( int index );
-	
-	/**
-	 * Gets the number of actions shown in the menu.
-	 * @return the number of actions
-	 */
-	public int size();
-	
-	/**
-	 * Removes <code>action</code> from the menu.
-	 * @param action the action to remove
-	 */
-	public void remove( DockAction action );
+public interface SharingDropDownDockAction extends SharingStandardDockAction, DropDownAction {
+  /**
+   * Adds an action to the menu.
+   *
+   * @param action the action to add
+   */
+  public void add(DockAction action);
+
+  /**
+   * Inserts an action into the menu.
+   *
+   * @param index  the location of the action
+   * @param action the new action
+   */
+  public void insert(int index, DockAction action);
+
+  /**
+   * Inserts a list of actions into the menu.
+   *
+   * @param index  the location of the first action
+   * @param action the actions to add
+   */
+  public void insert(int index, DockAction... action);
+
+  /**
+   * Removes an action from the menu.
+   *
+   * @param index the location of the action
+   */
+  public void remove(int index);
+
+  /**
+   * Gets the number of actions shown in the menu.
+   *
+   * @return the number of actions
+   */
+  public int size();
+
+  /**
+   * Removes <code>action</code> from the menu.
+   *
+   * @param action the action to remove
+   */
+  public void remove(DockAction action);
 }

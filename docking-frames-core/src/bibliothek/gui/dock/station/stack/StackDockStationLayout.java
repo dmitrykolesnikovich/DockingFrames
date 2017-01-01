@@ -32,39 +32,47 @@ import bibliothek.gui.dock.station.support.PlaceholderMap;
 /**
  * A layout of a {@link StackDockStation}, stores the order of all {@link Dockable}s
  * on the station.
+ *
  * @author Benjamin Sigg
  */
 public class StackDockStationLayout {
-    /** the name of the selected child */
-    private int selected;
-    
-    /** all the items of this layout */
-    private PlaceholderMap placeholders;
-    
-    /**
-     * Creates a new layout.
-     * @param selected the name of the selected child
-     * @param placeholders all the items of this layout
-     */
-    public StackDockStationLayout( int selected, PlaceholderMap placeholders ){
-        this.selected = selected;
-        this.placeholders = placeholders;
-    }
+  /**
+   * the name of the selected child
+   */
+  private int selected;
 
-    
-    /**
-     * Gets the name of the selected child.
-     * @return the selected child
-     */
-    public int getSelected() {
-        return selected;
-    }
-    
-    /**
-     * Gets all the items of this layout, including the encoded {@link Dockable}s.
-     * @return the placeholders
-     */
-    public PlaceholderMap getPlaceholders(){
-		return placeholders;
-	}
+  /**
+   * all the items of this layout
+   */
+  private PlaceholderMap placeholders;
+
+  /**
+   * Creates a new layout.
+   *
+   * @param selected     the name of the selected child
+   * @param placeholders all the items of this layout
+   */
+  public StackDockStationLayout(int selected, PlaceholderMap placeholders) {
+    this.selected = selected;
+    this.placeholders = placeholders;
+  }
+
+
+  /**
+   * Gets the name of the selected child.
+   *
+   * @return the selected child
+   */
+  public int getSelected() {
+    return selected;
+  }
+
+  /**
+   * Gets all the items of this layout, including the encoded {@link Dockable}s.
+   *
+   * @return the placeholders
+   */
+  public PlaceholderMap getPlaceholders() {
+    return placeholders;
+  }
 }

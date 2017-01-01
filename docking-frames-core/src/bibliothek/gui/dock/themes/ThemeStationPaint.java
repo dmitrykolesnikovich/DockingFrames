@@ -25,46 +25,47 @@
  */
 package bibliothek.gui.dock.themes;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.DockStation;
 import bibliothek.gui.DockTheme;
 import bibliothek.gui.dock.station.StationPaint;
 
+import java.awt.*;
+
 /**
  * A {@link StationPaint} which forwards its calls to the current {@link DockTheme}.
+ *
  * @author Benjamin Sigg
  */
-public class ThemeStationPaint implements StationPaint{
-	private DockController controller;
-	
-	/**
-	 * Creates a new paint.
-	 * @param controller the controller whose theme should be accessed
-	 */
-	public ThemeStationPaint( DockController controller ){
-		this.controller = controller;
-	}
+public class ThemeStationPaint implements StationPaint {
+  private DockController controller;
 
-	private StationPaint get( DockStation station ){
-		return controller.getTheme().getPaint( station );
-	}
-	
-	public void drawDivider( Graphics g, DockStation station, Rectangle bounds ){
-		get( station ).drawDivider( g, station, bounds );
-	}
+  /**
+   * Creates a new paint.
+   *
+   * @param controller the controller whose theme should be accessed
+   */
+  public ThemeStationPaint(DockController controller) {
+    this.controller = controller;
+  }
 
-	public void drawInsertion( Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds ){
-		get( station ).drawInsertion( g, station, stationBounds, dockableBounds );
-	}
+  private StationPaint get(DockStation station) {
+    return controller.getTheme().getPaint(station);
+  }
 
-	public void drawInsertionLine( Graphics g, DockStation station, int x1, int y1, int x2, int y2 ){
-		get( station ).drawInsertionLine( g, station, x1, y1, x2, y2 );
-	}
-	
-	public void drawRemoval( Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds ){
-		get( station ).drawRemoval( g, station, stationBounds, dockableBounds );
-	}
+  public void drawDivider(Graphics g, DockStation station, Rectangle bounds) {
+    get(station).drawDivider(g, station, bounds);
+  }
+
+  public void drawInsertion(Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds) {
+    get(station).drawInsertion(g, station, stationBounds, dockableBounds);
+  }
+
+  public void drawInsertionLine(Graphics g, DockStation station, int x1, int y1, int x2, int y2) {
+    get(station).drawInsertionLine(g, station, x1, y1, x2, y2);
+  }
+
+  public void drawRemoval(Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds) {
+    get(station).drawRemoval(g, station, stationBounds, dockableBounds);
+  }
 }

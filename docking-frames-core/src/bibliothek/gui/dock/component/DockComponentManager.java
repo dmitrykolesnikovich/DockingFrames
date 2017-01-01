@@ -30,40 +30,46 @@ import bibliothek.util.Filter;
 
 /**
  * Collects and manages the {@link DockComponentRoot}s of one {@link DockController}.
+ *
  * @author Benjamin Sigg
  */
 public interface DockComponentManager {
-	/**
-	 * Sets the default configuration which is to be used if no other configuration is found.
-	 * @param configuration the default configuration, may be <code>null</code>
-	 */
-	public void setDefaultConfiguration( DockComponentConfiguration configuration );
-	
-	/**
-	 * Adds a new configuration, the configuration is only applied if <code>filter</code> includes a {@link DockComponentRoot}, and
-	 * if no other configuration was applied
-	 * @param filter the condition telling where to apply the configuration, not <code>null</code>
-	 * @param configuration the new configuration, not <code>null</code>
-	 */
-	public void addConfiguration( Filter<DockComponentRoot> filter, DockComponentConfiguration configuration );
-	
-	/**
-	 * Removes <code>configuration</code> from the list of configurations. If <code>configuration</code> was added more than once,
-	 * then only the first occurrence will be removed.
-	 * @param configuration the configuration that should no longer be applied
-	 */
-	public void removeConfiguration( DockComponentConfiguration configuration );
-	
-	/**
-	 * Adds <code>root</code> to the list of known {@link DockComponentRoot}s, informs all listeners and applies a configuration
-	 * to <code>root</code>.
-	 * @param root the new root, not <code>null</code>
-	 */
-	public void register( DockComponentRoot root );
-	
-	/**
-	 * Removes <code>root</code> from the list of known {@link DockComponentRoot}s.
-	 * @param root the root to remove
-	 */
-	public void unregister( DockComponentRoot root );
+  /**
+   * Sets the default configuration which is to be used if no other configuration is found.
+   *
+   * @param configuration the default configuration, may be <code>null</code>
+   */
+  public void setDefaultConfiguration(DockComponentConfiguration configuration);
+
+  /**
+   * Adds a new configuration, the configuration is only applied if <code>filter</code> includes a {@link DockComponentRoot}, and
+   * if no other configuration was applied
+   *
+   * @param filter        the condition telling where to apply the configuration, not <code>null</code>
+   * @param configuration the new configuration, not <code>null</code>
+   */
+  public void addConfiguration(Filter<DockComponentRoot> filter, DockComponentConfiguration configuration);
+
+  /**
+   * Removes <code>configuration</code> from the list of configurations. If <code>configuration</code> was added more than once,
+   * then only the first occurrence will be removed.
+   *
+   * @param configuration the configuration that should no longer be applied
+   */
+  public void removeConfiguration(DockComponentConfiguration configuration);
+
+  /**
+   * Adds <code>root</code> to the list of known {@link DockComponentRoot}s, informs all listeners and applies a configuration
+   * to <code>root</code>.
+   *
+   * @param root the new root, not <code>null</code>
+   */
+  public void register(DockComponentRoot root);
+
+  /**
+   * Removes <code>root</code> from the list of known {@link DockComponentRoot}s.
+   *
+   * @param root the root to remove
+   */
+  public void unregister(DockComponentRoot root);
 }

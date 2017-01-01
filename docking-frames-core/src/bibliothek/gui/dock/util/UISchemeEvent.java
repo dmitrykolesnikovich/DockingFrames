@@ -25,41 +25,45 @@
  */
 package bibliothek.gui.dock.util;
 
+import bibliothek.util.Path;
+
 import java.util.Collection;
 import java.util.Set;
 
-import bibliothek.util.Path;
-
 /**
  * An event fired by an {@link UIScheme} after some content changed.
+ *
  * @author Benjamin Sigg
  */
 public interface UISchemeEvent<V, U extends UIValue<V>, B extends UIBridge<V, U>> {
-	/**
-	 * Gets the scheme which fired this event.
-	 * @return the source of the event
-	 */
-	public UIScheme<V,U,B> getScheme();
-	
-	/**
-	 * Checks which resources have changed, assuming that <code>names</code> are the
-	 * only identifiers that are used.
-	 * @param names a set of identifiers to check, <code>null</code> indicates that every possible identifier
-	 * must be included in the search
-	 * @return the identifiers of resources that have actually been changed, should be a subset of <code>names</code>. A
-	 * value of <code>null</code> indicates that either all resources changed, or that this method cannot exactly
-	 * tell what effect the event had 
-	 */
-	public Collection<String> changedResources( Set<String> names );
-	
-	/**
-	 * Checks which bridges have changed, assuming that <code>names</code> are the
-	 * only identifiers that are used.
-	 * @param names a set of identifiers to check, <code>null</code> indicates that every possible identifier
-	 * must be included in the search
-	 * @return the identifiers of bridges that have actually been changed, should be a subset of <code>names</code>. A
-	 * value of <code>null</code> indicates that either all bridges changed, or that this method cannot exactly
-	 * tell what effect the event had 
-	 */
-	public Collection<Path> changedBridges( Set<Path> names );
+  /**
+   * Gets the scheme which fired this event.
+   *
+   * @return the source of the event
+   */
+  public UIScheme<V, U, B> getScheme();
+
+  /**
+   * Checks which resources have changed, assuming that <code>names</code> are the
+   * only identifiers that are used.
+   *
+   * @param names a set of identifiers to check, <code>null</code> indicates that every possible identifier
+   *              must be included in the search
+   * @return the identifiers of resources that have actually been changed, should be a subset of <code>names</code>. A
+   * value of <code>null</code> indicates that either all resources changed, or that this method cannot exactly
+   * tell what effect the event had
+   */
+  public Collection<String> changedResources(Set<String> names);
+
+  /**
+   * Checks which bridges have changed, assuming that <code>names</code> are the
+   * only identifiers that are used.
+   *
+   * @param names a set of identifiers to check, <code>null</code> indicates that every possible identifier
+   *              must be included in the search
+   * @return the identifiers of bridges that have actually been changed, should be a subset of <code>names</code>. A
+   * value of <code>null</code> indicates that either all bridges changed, or that this method cannot exactly
+   * tell what effect the event had
+   */
+  public Collection<Path> changedBridges(Set<Path> names);
 }

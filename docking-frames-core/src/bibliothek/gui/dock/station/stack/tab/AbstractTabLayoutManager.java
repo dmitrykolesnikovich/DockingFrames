@@ -32,56 +32,62 @@ import java.util.ListIterator;
 /**
  * This layout manager creates a common interface to store information for each
  * {@link TabPane} individually.
- * @author Benjamin Sigg
+ *
  * @param <I> how information about {@link TabPane}s gets represented
+ * @author Benjamin Sigg
  */
-public abstract class AbstractTabLayoutManager<I extends AbstractTabLayoutManagerPane> implements TabLayoutManager{
-	/** informations about {@link TabPane}s */
-	private List<I> infos = new ArrayList<I>();
-	
-	public void install( TabPane pane ){
-		I info = createInfoFor( pane );
-		pane.addTabPaneListener( info );
-		infos.add( info );
-	}
+public abstract class AbstractTabLayoutManager<I extends AbstractTabLayoutManagerPane> implements TabLayoutManager {
+  /**
+   * informations about {@link TabPane}s
+   */
+  private List<I> infos = new ArrayList<I>();
 
-	public void uninstall( TabPane pane ){
-		ListIterator<I> iterator = infos.listIterator();
-		while( iterator.hasNext() ){
-			I next = iterator.next();
-			if( next.getPane() == pane ){
-				iterator.remove();
-				pane.removeTabPaneListener( next );
-				destroy( next );
-			}
-		}
-	}
-	
-	/**
-	 * Creates a new bag for information about <code>pane</code>.
-	 * @param pane some panel
-	 * @return the information for <code>pane</code>
-	 */
-	protected abstract I createInfoFor( TabPane pane );
-	
-	/**
-	 * Called when the information <code>info</code> is no longer
-	 * required.
-	 * @param info the information bag to delete
-	 */
-	protected abstract void destroy( I info );
-	
-	/**
-	 * Gets all the information that is stored for <code>pane</code>.
-	 * @param pane some panel
-	 * @return information about <code>pane</code> or <code>null</code>
-	 */
-	public I getInfo( TabPane pane ){
-		for( I check : infos ){
-			if( check.getPane() == pane ){
-				return check;
-			}
-		}
-		return null;
-	} 
+  public void install(TabPane pane) {
+    I info = createInfoFor(pane);
+    pane.addTabPaneListener(info);
+    infos.add(info);
+  }
+
+  public void uninstall(TabPane pane) {
+    ListIterator<I> iterator = infos.listIterator();
+    while (iterator.hasNext()) {
+      I next = iterator.next();
+      if (next.getPane() == pane) {
+        iterator.remove();
+        pane.removeTabPaneListener(next);
+        destroy(next);
+      }
+    }
+  }
+
+  /**
+   * Creates a new bag for information about <code>pane</code>.
+   *
+   * @param pane some panel
+   * @return the information for <code>pane</code>
+   */
+  protected abstract I createInfoFor(TabPane pane);
+
+  /**
+   * Called when the information <code>info</code> is no longer
+   * required.
+   *
+   * @param info the information bag to delete
+   */
+  protected abstract void destroy(I info);
+
+  /**
+   * Gets all the information that is stored for <code>pane</code>.
+   *
+   * @param pane some panel
+   * @return information about <code>pane</code> or <code>null</code>
+   */
+  public I getInfo(TabPane pane) {
+    for (I check : infos) {
+      if (check.getPane() == pane) {
+        return check;
+      }
+    }
+    return null;
+  }
 }

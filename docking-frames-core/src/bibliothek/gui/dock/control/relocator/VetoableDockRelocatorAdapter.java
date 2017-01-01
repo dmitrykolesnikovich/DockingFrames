@@ -28,38 +28,39 @@ package bibliothek.gui.dock.control.relocator;
 /**
  * An adapter class to {@link VetoableDockRelocatorListener}, can be used to implement {@link VetoableDockRelocatorListener}
  * without the need to implement all methods.
+ *
  * @author Benjamin Sigg
  */
-public abstract class VetoableDockRelocatorAdapter implements VetoableDockRelocatorListener{
-	public void canceled( DockRelocatorEvent event ){
-		// nothing
-	}
-	
-	public void dragged( DockRelocatorEvent event ){
-		// nothing
-	}	
-	
-	public void dragging( DockRelocatorEvent event ){
-		// nothing
-	}
+public abstract class VetoableDockRelocatorAdapter implements VetoableDockRelocatorListener {
+  public void canceled(DockRelocatorEvent event) {
+    // nothing
+  }
 
-	public void searched( DockRelocatorEvent event ){
-		// noting
-	}
-	
-	public void dropped( DockRelocatorEvent event ){
-		// nothing	
-	}
+  public void dragged(DockRelocatorEvent event) {
+    // nothing
+  }
 
-	public void dropping( DockRelocatorEvent event ){
-		// nothing
-	}
+  public void dragging(DockRelocatorEvent event) {
+    // nothing
+  }
 
-	public void grabbed( DockRelocatorEvent event ){
-		// nothing
-	}
+  public void searched(DockRelocatorEvent event) {
+    // noting
+  }
 
-	public void grabbing( DockRelocatorEvent event ){
-		// nothing
-	}
+  public void dropped(DockRelocatorEvent event) {
+    // nothing
+  }
+
+  public void dropping(DockRelocatorEvent event) {
+    // nothing
+  }
+
+  public void grabbed(DockRelocatorEvent event) {
+    // nothing
+  }
+
+  public void grabbing(DockRelocatorEvent event) {
+    // nothing
+  }
 }

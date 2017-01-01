@@ -26,62 +26,65 @@
 
 package bibliothek.gui.dock.themes.basic.action.dropdown;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JMenuItem;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.action.ButtonDockAction;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * A connection between a {@link ButtonDockAction} and a drop-down-button.
+ *
  * @author Benjamin Sigg
  */
 public class ButtonDropDownHandler extends AbstractDropDownHandler<ButtonDockAction> {
-	/** a listener to the menuitem of this handler */
-	private Listener listener = new Listener();
-	
-	/**
-	 * Creates a new handler.
-	 * @param action the action to observe
-	 * @param dockable the Dockable for which the action is shown
-	 * @param item the item that represents the action, can be <code>null</code>
-	 */
-	public ButtonDropDownHandler( ButtonDockAction action, Dockable dockable, JMenuItem item ){
-		super( action, dockable, item );
-	}
+  /**
+   * a listener to the menuitem of this handler
+   */
+  private Listener listener = new Listener();
 
-	public void triggered(){
-		action.action( dockable );
-	}
-	
-	@Override
-	public void bind(){
-		super.bind();
-		if( item != null ){
-			item.addActionListener( listener );
-		}
-	}
-	
-	@Override
-	public void unbind(){
-		if( item != null ){
-			item.removeActionListener( listener );
-		}
-		super.unbind();
-	}
-	
-	/**
-	 * A listener added to the menuitem. The listener calls
-	 * {@link ButtonDropDownHandler#triggered()} whenever the menuitem
-	 * is clicked.
-	 * @author Benjamin Sigg
-	 */
-	private class Listener implements ActionListener{
-		public void actionPerformed( ActionEvent e ){
-			if( action.isDropDownTriggerable( dockable, false ))
-				triggered();
-		}
-	}
+  /**
+   * Creates a new handler.
+   *
+   * @param action   the action to observe
+   * @param dockable the Dockable for which the action is shown
+   * @param item     the item that represents the action, can be <code>null</code>
+   */
+  public ButtonDropDownHandler(ButtonDockAction action, Dockable dockable, JMenuItem item) {
+    super(action, dockable, item);
+  }
+
+  public void triggered() {
+    action.action(dockable);
+  }
+
+  @Override
+  public void bind() {
+    super.bind();
+    if (item != null) {
+      item.addActionListener(listener);
+    }
+  }
+
+  @Override
+  public void unbind() {
+    if (item != null) {
+      item.removeActionListener(listener);
+    }
+    super.unbind();
+  }
+
+  /**
+   * A listener added to the menuitem. The listener calls
+   * {@link ButtonDropDownHandler#triggered()} whenever the menuitem
+   * is clicked.
+   *
+   * @author Benjamin Sigg
+   */
+  private class Listener implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      if (action.isDropDownTriggerable(dockable, false)) triggered();
+    }
+  }
 }

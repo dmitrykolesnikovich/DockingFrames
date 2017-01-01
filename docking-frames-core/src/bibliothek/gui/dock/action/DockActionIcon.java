@@ -25,48 +25,56 @@
  */
 package bibliothek.gui.dock.action;
 
-import javax.swing.Icon;
-
 import bibliothek.gui.dock.util.UIValue;
 import bibliothek.gui.dock.util.icon.DockIcon;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+
 /**
  * This {@link DockIcon} is used to get {@link Icon}s for a {@link DockAction}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class DockActionIcon extends DockIcon{
-	/** the kind of value this {@link UIValue} is */
-	public static final Path KIND_DOCK_ACTION = KIND_ICON.append( "action" );
+public abstract class DockActionIcon extends DockIcon {
+  /**
+   * the kind of value this {@link UIValue} is
+   */
+  public static final Path KIND_DOCK_ACTION = KIND_ICON.append("action");
 
-	/** the action using this icon */
-	private DockAction action;
-	
-	/**
-	 * Creates a new {@link DockActionIcon}.
-	 * @param id the unique identifier of the icon
-	 * @param action the action using the icon
-	 */
-	public DockActionIcon( String id, DockAction action ){
-		this( id, action, KIND_DOCK_ACTION );
-	}
-	
-	/**
-	 * Creates a new {@link DockActionIcon}.
-	 * @param id the unique identifier of the icon
-	 * @param action the action using the icon
-	 * @param kind what kind of {@link UIValue} this is
-	 */
-	public DockActionIcon( String id, DockAction action, Path kind ){
-		super( id, kind );
-		this.action = action;
-	}
-	
-	/**
-	 * Gets the action which is using the icon.
-	 * @return the action
-	 */
-	public DockAction getAction(){
-		return action;
-	}
+  /**
+   * the action using this icon
+   */
+  private DockAction action;
+
+  /**
+   * Creates a new {@link DockActionIcon}.
+   *
+   * @param id     the unique identifier of the icon
+   * @param action the action using the icon
+   */
+  public DockActionIcon(String id, DockAction action) {
+    this(id, action, KIND_DOCK_ACTION);
+  }
+
+  /**
+   * Creates a new {@link DockActionIcon}.
+   *
+   * @param id     the unique identifier of the icon
+   * @param action the action using the icon
+   * @param kind   what kind of {@link UIValue} this is
+   */
+  public DockActionIcon(String id, DockAction action, Path kind) {
+    super(id, kind);
+    this.action = action;
+  }
+
+  /**
+   * Gets the action which is using the icon.
+   *
+   * @return the action
+   */
+  public DockAction getAction() {
+    return action;
+  }
 }

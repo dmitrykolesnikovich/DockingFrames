@@ -32,22 +32,25 @@ import bibliothek.gui.dock.support.mode.Mode;
  * A listener added to a {@link LocationMode}. The listener gets informed
  * if the {@link Mode#apply(bibliothek.gui.Dockable, Object, bibliothek.gui.dock.support.mode.AffectedSet) apply}
  * method is called.
+ *
  * @author Benjamin Sigg
  */
 public interface LocationModeListener {
-	/**
-	 * Called by a {@link LocationMode} right before the 
-	 * {@link Mode#apply(bibliothek.gui.Dockable, Object, bibliothek.gui.dock.support.mode.AffectedSet) apply}
-	 * method starts.
-	 * @param event detailed information about the event
-	 */
-	public void applyStarting( LocationModeEvent event );
+  /**
+   * Called by a {@link LocationMode} right before the
+   * {@link Mode#apply(bibliothek.gui.Dockable, Object, bibliothek.gui.dock.support.mode.AffectedSet) apply}
+   * method starts.
+   *
+   * @param event detailed information about the event
+   */
+  public void applyStarting(LocationModeEvent event);
 
-	/**
-	 * Called by a {@link LocationMode} after the 
-	 * {@link Mode#apply(bibliothek.gui.Dockable, Object, bibliothek.gui.dock.support.mode.AffectedSet) apply}
-	 * method has done its work.
-	 * @param event detailed information about the event
-	 */
-	public void applyDone( LocationModeEvent event );
+  /**
+   * Called by a {@link LocationMode} after the
+   * {@link Mode#apply(bibliothek.gui.Dockable, Object, bibliothek.gui.dock.support.mode.AffectedSet) apply}
+   * method has done its work.
+   *
+   * @param event detailed information about the event
+   */
+  public void applyDone(LocationModeEvent event);
 }

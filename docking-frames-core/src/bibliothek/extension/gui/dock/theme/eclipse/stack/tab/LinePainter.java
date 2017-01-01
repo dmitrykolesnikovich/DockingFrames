@@ -25,10 +25,6 @@
  */
 package bibliothek.extension.gui.dock.theme.eclipse.stack.tab;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-
 import bibliothek.extension.gui.dock.theme.eclipse.stack.EclipseTab;
 import bibliothek.extension.gui.dock.theme.eclipse.stack.EclipseTabPane;
 import bibliothek.gui.DockController;
@@ -38,84 +34,85 @@ import bibliothek.gui.dock.util.color.ColorCodes;
 import bibliothek.gui.dock.util.color.ColorManager;
 import bibliothek.gui.dock.util.color.DockColor;
 
+import java.awt.*;
+
 /**
  * Paints the background of the tab by just painting a single line.
+ *
  * @author Benjamin Sigg
  */
-@ColorCodes( "stack.border" )
+@ColorCodes("stack.border")
 public class LinePainter implements TabPanePainter {
-	private AbstractDockColor color = new AbstractDockColor( "stack.border", DockColor.KIND_DOCK_COLOR, Color.BLACK ){
-		@Override
-		protected void changed( Color oldColor, Color newColor ) {
-			pane.repaint();
-		}        
-	};
+  private EclipseTabPane pane;
+  private AbstractDockColor color = new AbstractDockColor("stack.border", DockColor.KIND_DOCK_COLOR, Color.BLACK) {
+    @Override
+    protected void changed(Color oldColor, Color newColor) {
+      pane.repaint();
+    }
+  };
 
-	private EclipseTabPane pane;
+  /**
+   * Creates a new painter.
+   *
+   * @param pane the component for which this painter will work
+   */
+  public LinePainter(EclipseTabPane pane) {
+    this.pane = pane;
+  }
 
-	/**
-	 * Creates a new painter.
-	 * @param pane the component for which this painter will work
-	 */
-	public LinePainter( EclipseTabPane pane ){
-		this.pane = pane;
-	}
+  public void setController(DockController controller) {
+    ColorManager colors = controller == null ? null : controller.getColors();
+    color.setManager(colors);
+  }
 
-	public void setController( DockController controller ) {
-		ColorManager colors = controller == null ? null : controller.getColors();
-		color.setManager( colors );
-	}
-	
-	public void paintBackground( Graphics g ){
-		// ignore
-	}
+  public void paintBackground(Graphics g) {
+    // ignore
+  }
 
-	public void paintForeground( Graphics g ){
-		Dockable selection = pane.getSelectedDockable();
-		if( selection == null )
-			return;
+  public void paintForeground(Graphics g) {
+    Dockable selection = pane.getSelectedDockable();
+    if (selection == null) return;
 
-		EclipseTab tab = pane.getTab( selection );
-		if( tab == null || !tab.isPaneVisible() ) 
-			return;
+    EclipseTab tab = pane.getTab(selection);
+    if (tab == null || !tab.isPaneVisible()) return;
 
-		Rectangle bounds = tab.getBounds();
-		Rectangle available = pane.getAvailableArea();
+    Rectangle bounds = tab.getBounds();
+    Rectangle available = pane.getAvailableArea();
 
-		g.setColor( color.value() );
+    g.setColor(color.value());
 
-		switch( pane.getDockTabPlacement() ){
-			case TOP_OF_DOCKABLE:
-				paintHorizontal( g, available, bounds, bounds.y + bounds.height-1 );
-				break;
-			case BOTTOM_OF_DOCKABLE:
-				paintHorizontal( g, available, bounds, bounds.y );
-				break;
-			case LEFT_OF_DOCKABLE:
-				paintVertical( g, available, bounds, bounds.x + bounds.width-1 );
-				break;
-			case RIGHT_OF_DOCKABLE:
-				paintVertical( g, available, bounds, bounds.x );
-				break;
-		}
-	}
-	
-	private void paintHorizontal( Graphics g, Rectangle available, Rectangle bounds, int y ){
-		if( available.x < bounds.x-1 ){
-			g.drawLine( available.x, y, bounds.x-1, y );
-		}
+    switch (pane.getDockTabPlacement()) {
+      case TOP_OF_DOCKABLE:
+        paintHorizontal(g, available, bounds, bounds.y + bounds.height - 1);
+        break;
+      case BOTTOM_OF_DOCKABLE:
+        paintHorizontal(g, available, bounds, bounds.y);
+        break;
+      case LEFT_OF_DOCKABLE:
+        paintVertical(g, available, bounds, bounds.x + bounds.width - 1);
+        break;
+      case RIGHT_OF_DOCKABLE:
+        paintVertical(g, available, bounds, bounds.x);
+        break;
+    }
+  }
 
-		if( available.x + available.width > bounds.x + bounds.width ){
-			g.drawLine( available.x + available.width, y, bounds.x + bounds.width, y );
-		}
-	}
-	
-	private void paintVertical( Graphics g, Rectangle available, Rectangle bounds, int x ){
-		if( available.y < bounds.y-1 ){
-			g.drawLine( x, available.y, x, bounds.y-1 );
-		}
-		if( available.y + available.height > bounds.y + bounds.height ){
-			g.drawLine( x, available.y + available.height, x, bounds.y + bounds.height );
-		}
-	}
+  private void paintHorizontal(Graphics g, Rectangle available, Rectangle bounds, int y) {
+    if (available.x < bounds.x - 1) {
+      g.drawLine(available.x, y, bounds.x - 1, y);
+    }
+
+    if (available.x + available.width > bounds.x + bounds.width) {
+      g.drawLine(available.x + available.width, y, bounds.x + bounds.width, y);
+    }
+  }
+
+  private void paintVertical(Graphics g, Rectangle available, Rectangle bounds, int x) {
+    if (available.y < bounds.y - 1) {
+      g.drawLine(x, available.y, x, bounds.y - 1);
+    }
+    if (available.y + available.height > bounds.y + bounds.height) {
+      g.drawLine(x, available.y + available.height, x, bounds.y + bounds.height);
+    }
+  }
 }

@@ -31,15 +31,19 @@ import bibliothek.util.Path;
 
 /**
  * A {@link BackgroundComponent} representing a child component of a {@link TabPane}.
+ *
  * @author Benjamin Sigg
  */
-public interface TabPaneChildBackgroundComponent extends TabPaneBackgroundComponent{
-	/** the type of this {@link UIValue} */
-	public static final Path KIND = TabPaneBackgroundComponent.KIND.append( "child" );
-	
-	/**
-	 * Gets the component which is represented by this {@link UIValue}.
-	 * @return the component
-	 */
-	public TabPaneComponent getChild();
+public interface TabPaneChildBackgroundComponent extends TabPaneBackgroundComponent {
+  /**
+   * the type of this {@link UIValue}
+   */
+  public static final Path KIND = TabPaneBackgroundComponent.KIND.append("child");
+
+  /**
+   * Gets the component which is represented by this {@link UIValue}.
+   *
+   * @return the component
+   */
+  public TabPaneComponent getChild();
 }

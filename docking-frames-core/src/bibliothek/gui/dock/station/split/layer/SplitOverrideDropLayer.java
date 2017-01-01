@@ -25,44 +25,45 @@
  */
 package bibliothek.gui.dock.station.split.layer;
 
-import java.awt.Point;
-
-import javax.swing.SwingUtilities;
-
 import bibliothek.gui.dock.SplitDockStation;
 import bibliothek.gui.dock.station.layer.DefaultDropLayer;
 import bibliothek.gui.dock.station.layer.LayerPriority;
 import bibliothek.gui.dock.station.split.Root;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Represents the {@link LayerPriority#OVERRIDE_GUESS override} area of
- * a {@link SplitDockStation} as defined by {@link Root#isInOverrideZone(int, int)}. 
+ * a {@link SplitDockStation} as defined by {@link Root#isInOverrideZone(int, int)}.
+ *
  * @author Benjamin Sigg
  */
-public class SplitOverrideDropLayer extends DefaultDropLayer{
-	private SplitDockStation station;
-	
-	/**
-	 * Creates a new layer.
-	 * @param station the station which owns this level
-	 */
-	public SplitOverrideDropLayer( SplitDockStation station ){
-		super( station );
-		this.station = station;
-		setPriority( LayerPriority.OVERRIDE_GUESS );
-	}
-	
-	@Override
-	public boolean contains( int x, int y ){
-		if( station.isFullScreen() ){
-			return false;
-		}
-		
-		if( super.contains( x, y )){
-			Point point = new Point( x, y );
-			SwingUtilities.convertPointFromScreen( point, getComponent() );
-			return station.getRoot().isInOverrideZone( point.x, point.y );
-		}
-		return false;
-	}
+public class SplitOverrideDropLayer extends DefaultDropLayer {
+  private SplitDockStation station;
+
+  /**
+   * Creates a new layer.
+   *
+   * @param station the station which owns this level
+   */
+  public SplitOverrideDropLayer(SplitDockStation station) {
+    super(station);
+    this.station = station;
+    setPriority(LayerPriority.OVERRIDE_GUESS);
+  }
+
+  @Override
+  public boolean contains(int x, int y) {
+    if (station.isFullScreen()) {
+      return false;
+    }
+
+    if (super.contains(x, y)) {
+      Point point = new Point(x, y);
+      SwingUtilities.convertPointFromScreen(point, getComponent());
+      return station.getRoot().isInOverrideZone(point.x, point.y);
+    }
+    return false;
+  }
 }

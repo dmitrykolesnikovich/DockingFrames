@@ -32,30 +32,37 @@ import bibliothek.util.Path;
 
 /**
  * A text that is used by a {@link PreferenceEditor}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class EditorText extends TextValue{
-	/** what kind of {@link UIValue} this is */
-	public static final Path KIND_EDITOR = KIND_TEXT.append( "editor" );
-	
-	/** the editor using the text */
-	private PreferenceEditor<?> editor;
-	
-	/**
-	 * Creates a new text.
-	 * @param id a unique identifier for this text
-	 * @param editor the editor using this text
-	 */
-	public EditorText( String id, PreferenceEditor<?> editor ){
-		super( id, KIND_EDITOR );
-		this.editor = editor;
-	}
-	
-	/**
-	 * Gets the editor which is used by this text.
-	 * @return the editor
-	 */
-	public PreferenceEditor<?> getEditor(){
-		return editor;
-	}
+public abstract class EditorText extends TextValue {
+  /**
+   * what kind of {@link UIValue} this is
+   */
+  public static final Path KIND_EDITOR = KIND_TEXT.append("editor");
+
+  /**
+   * the editor using the text
+   */
+  private PreferenceEditor<?> editor;
+
+  /**
+   * Creates a new text.
+   *
+   * @param id     a unique identifier for this text
+   * @param editor the editor using this text
+   */
+  public EditorText(String id, PreferenceEditor<?> editor) {
+    super(id, KIND_EDITOR);
+    this.editor = editor;
+  }
+
+  /**
+   * Gets the editor which is used by this text.
+   *
+   * @return the editor
+   */
+  public PreferenceEditor<?> getEditor() {
+    return editor;
+  }
 }

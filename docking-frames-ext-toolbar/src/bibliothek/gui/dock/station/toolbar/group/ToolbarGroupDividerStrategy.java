@@ -29,63 +29,66 @@
  */
 package bibliothek.gui.dock.station.toolbar.group;
 
-import java.awt.Component;
-import java.awt.Graphics;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.station.StationChildHandle;
 import bibliothek.gui.dock.station.toolbar.layout.ToolbarGridLayoutManager;
+
+import java.awt.*;
 
 /**
  * A {@link ToolbarGroupDividerStrategy} is responsible for painting dividers between
  * {@link Dockable}s. It can reserve some empty space between {@link Dockable}s to have enough
  * space for painting.
+ *
  * @author Benjamin Sigg
  */
 public interface ToolbarGroupDividerStrategy {
-	/**
-	 * Represents the strategy that does not exist.
-	 */
-	public static final ToolbarGroupDividerStrategy NULL = new ToolbarGroupDividerStrategy(){
-		@Override
-		public int getLine( int column, int index ){
-			return 0;
-		}
-		
-		@Override
-		public int getColumn( int index ){
-			return 0;
-		}
-		
-		@Override
-		public void paint( Component parent, Graphics g, ToolbarGridLayoutManager<StationChildHandle> layoutManager ){
-			// nothing
-		}
-	};
-	
-	/**
-	 * Gets the empty space left of column <code>index</code>. If there are <code>n</code>
-	 * columns, then <code>index=n</code> will return the empty space on the right side of the
-	 * last column.
-	 * @param index the index of a column
-	 * @return the empty space left of it
-	 */
-	public int getColumn( int index );
-	
-	/**
-	 * Gets the size of the gap top of the cell <code>index</code> of <code>column</code>. If there
-	 * are <code>n</code> cells, then <code>index=n</code> will return the size of the bottom most gap.
-	 * @param column the column in which to search
-	 * @param index the index of the cell
-	 * @return the size of the gap
-	 */
-	public int getLine( int column, int index );
+  /**
+   * Represents the strategy that does not exist.
+   */
+  public static final ToolbarGroupDividerStrategy NULL = new ToolbarGroupDividerStrategy() {
+    @Override
+    public int getLine(int column, int index) {
+      return 0;
+    }
 
-	/**
-	 * Allows this strategy to paint on the container that shows the {@link Dockable}s.
-	 * @param parent the parent container
-	 * @param g the graphics context to use
-	 * @param layoutManager detailed information about the children to paint
-	 */
-	public void paint( Component parent, Graphics g, ToolbarGridLayoutManager<StationChildHandle> layoutManager );
+    @Override
+    public int getColumn(int index) {
+      return 0;
+    }
+
+    @Override
+    public void paint(Component parent, Graphics g, ToolbarGridLayoutManager<StationChildHandle> layoutManager) {
+      // nothing
+    }
+  };
+
+  /**
+   * Gets the empty space left of column <code>index</code>. If there are <code>n</code>
+   * columns, then <code>index=n</code> will return the empty space on the right side of the
+   * last column.
+   *
+   * @param index the index of a column
+   * @return the empty space left of it
+   */
+  public int getColumn(int index);
+
+  /**
+   * Gets the size of the gap top of the cell <code>index</code> of <code>column</code>. If there
+   * are <code>n</code> cells, then <code>index=n</code> will return the size of the bottom most gap.
+   *
+   * @param column the column in which to search
+   * @param index  the index of the cell
+   * @return the size of the gap
+   */
+  public int getLine(int column, int index);
+
+  /**
+   * Allows this strategy to paint on the container that shows the {@link Dockable}s.
+   *
+   * @param parent        the parent container
+   * @param g             the graphics context to use
+   * @param layoutManager detailed information about the children to paint
+   */
+  public void paint(Component parent, Graphics g, ToolbarGridLayoutManager<StationChildHandle> layoutManager);
 }

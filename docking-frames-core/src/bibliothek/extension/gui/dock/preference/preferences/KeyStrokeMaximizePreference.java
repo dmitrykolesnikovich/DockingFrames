@@ -25,31 +25,32 @@
  */
 package bibliothek.extension.gui.dock.preference.preferences;
 
-import java.awt.event.KeyEvent;
-
-import javax.swing.KeyStroke;
-
 import bibliothek.gui.dock.SplitDockStation;
 import bibliothek.gui.dock.util.DockProperties;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+import java.awt.event.KeyEvent;
+
 /**
  * Preference for the shortcut used by the {@link SplitDockStation} to
  * maximize its children.
+ *
  * @author Benjamin Sigg
  * @see SplitDockStation#MAXIMIZE_ACCELERATOR
  */
-public class KeyStrokeMaximizePreference extends DockPropertyPreference<KeyStroke>{
-	/**
-	 * Creates a new preference
-	 * @param properties to read and write the value of this preference
-	 */
-	public KeyStrokeMaximizePreference( DockProperties properties ){
-		super( properties, SplitDockStation.MAXIMIZE_ACCELERATOR, Path.TYPE_KEYSTROKE_PATH, new Path( "dock.station.split.MAXIMIZE_ACCELERATOR" ));
-		
-		setLabelId( "preference.shortcuts.maximize_accelerator.label" );
-		setDescriptionId( "preference.shortcuts.maximize_accelerator.description" );
-		
-		setDefaultValue( KeyStroke.getKeyStroke( KeyEvent.VK_M, KeyEvent.CTRL_DOWN_MASK ) );
-	}
+public class KeyStrokeMaximizePreference extends DockPropertyPreference<KeyStroke> {
+  /**
+   * Creates a new preference
+   *
+   * @param properties to read and write the value of this preference
+   */
+  public KeyStrokeMaximizePreference(DockProperties properties) {
+    super(properties, SplitDockStation.MAXIMIZE_ACCELERATOR, Path.TYPE_KEYSTROKE_PATH, new Path("dock.station.split.MAXIMIZE_ACCELERATOR"));
+
+    setLabelId("preference.shortcuts.maximize_accelerator.label");
+    setDescriptionId("preference.shortcuts.maximize_accelerator.description");
+
+    setDefaultValue(KeyStroke.getKeyStroke(KeyEvent.VK_M, KeyEvent.CTRL_DOWN_MASK));
+  }
 }

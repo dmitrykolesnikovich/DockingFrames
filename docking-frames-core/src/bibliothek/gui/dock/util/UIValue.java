@@ -28,13 +28,15 @@ package bibliothek.gui.dock.util;
 /**
  * An {@link UIValue} is a wrapper around a resource that can be modified
  * by an {@link UIBridge} or the {@link UIProperties}.
- * @author Benjamin Sigg
+ *
  * @param <V> the type of resource that is wrapped into <code>this</code>.
+ * @author Benjamin Sigg
  */
 public interface UIValue<V> {
-    /**
-     * Called when the underlying resource of this {@link UIValue} changes.
-     * @param value the new value
-     */
-    public void set( V value );
+  /**
+   * Called when the underlying resource of this {@link UIValue} changes.
+   *
+   * @param value the new value
+   */
+  public void set(V value);
 }

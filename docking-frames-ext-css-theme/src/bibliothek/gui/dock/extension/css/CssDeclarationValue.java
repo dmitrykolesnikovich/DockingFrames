@@ -32,95 +32,104 @@ import java.util.List;
  * Used to call the method {@link CssType#convert(String)}, this class represents a simple {@link String}
  * as it can be found in the "value" part of a css-declaration. At the same time this class offers some
  * methods to split that string into multiple parts.
+ *
  * @author Benjamin Sigg
  */
 public class CssDeclarationValue {
-	/** the actual value found in the declaration */
-	private String value;
-	
-	/** cache for the parts */
-	private String[] parts;
-	
-	/**
-	 * Creates a new argument
-	 * @param value the actual value found in the declaration
-	 */
-	public CssDeclarationValue( String value ){
-		this.value = value;
-	}
-	
-	/**
-	 * Gets the unmodified, original value.
-	 * @return the unmodified value
-	 */
-	public String getValue(){
-		return value;
-	}
-	
-	/**
-	 * Assuming that the value has only one part, gets that one part (or the first part if the assumption was incorrect).
-	 * @return the first part of the value
-	 */
-	public String getSingleValue(){
-		String[] values = getValues();
-		return values[0];
-	}
-	
-	/**
-	 * Gets all the parts of this value, parts are split when finding a comma.
-	 * @return all the parts
-	 */
-	public String[] getValues(){
-		if( parts != null ){
-			return parts;
-		}
-		
-		List<String> items = new ArrayList<String>();
-		StringBuilder item = new StringBuilder();
-		
-		boolean inString = false;
-		boolean escape = false;
-		boolean pending = true;
-		
-		for( int i = 0, n = value.length(); i<n; i++ ){
-			pending = false;
-			char c = value.charAt( i );
-			
-			if( escape ){
-				item.append( c );
-				escape = false;
-			}
-			else if( c == '\\'){
-				escape = true;
-			}
-			else if( c == '"' ){
-				inString = !inString;
-			}
-			else if( c == ',' ){
-				if( inString ){
-					item.append( c );
-				}
-				else{
-					items.add( item.toString().trim() );
-					item.setLength( 0 );
-					pending = true;
-				}
-			}
-			else{
-				item.append( c );
-			}
-		}
-		
-		if( pending || item.length() > 0 ){
-			items.add( item.toString().trim() );
-		}
-		
-		parts = items.toArray( new String[ items.size() ] );
-		return parts;
-	}
-	
-	@Override
-	public String toString(){
-		return getValue();
-	}
+  /**
+   * the actual value found in the declaration
+   */
+  private String value;
+
+  /**
+   * cache for the parts
+   */
+  private String[] parts;
+
+  /**
+   * Creates a new argument
+   *
+   * @param value the actual value found in the declaration
+   */
+  public CssDeclarationValue(String value) {
+    this.value = value;
+  }
+
+  /**
+   * Gets the unmodified, original value.
+   *
+   * @return the unmodified value
+   */
+  public String getValue() {
+    return value;
+  }
+
+  /**
+   * Assuming that the value has only one part, gets that one part (or the first part if the assumption was incorrect).
+   *
+   * @return the first part of the value
+   */
+  public String getSingleValue() {
+    String[] values = getValues();
+    return values[0];
+  }
+
+  /**
+   * Gets all the parts of this value, parts are split when finding a comma.
+   *
+   * @return all the parts
+   */
+  public String[] getValues() {
+    if (parts != null) {
+      return parts;
+    }
+
+    List<String> items = new ArrayList<String>();
+    StringBuilder item = new StringBuilder();
+
+    boolean inString = false;
+    boolean escape = false;
+    boolean pending = true;
+
+    for (int i = 0, n = value.length(); i < n; i++) {
+      pending = false;
+      char c = value.charAt(i);
+
+      if (escape) {
+        item.append(c);
+        escape = false;
+      }
+      else if (c == '\\') {
+        escape = true;
+      }
+      else if (c == '"') {
+        inString = !inString;
+      }
+      else if (c == ',') {
+        if (inString) {
+          item.append(c);
+        }
+        else {
+          items.add(item.toString().trim());
+          item.setLength(0);
+          pending = true;
+        }
+      }
+      else {
+        item.append(c);
+      }
+    }
+
+    if (pending || item.length() > 0) {
+      items.add(item.toString().trim());
+    }
+
+    parts = items.toArray(new String[items.size()]);
+    return parts;
+  }
+
+  @Override
+  public String toString() {
+    return getValue();
+  }
 }

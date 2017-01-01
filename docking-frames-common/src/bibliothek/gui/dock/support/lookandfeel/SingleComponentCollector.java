@@ -25,7 +25,7 @@
  */
 package bibliothek.gui.dock.support.lookandfeel;
 
-import java.awt.Component;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -33,20 +33,20 @@ import java.util.List;
 /**
  * A simple implementation of {@link ComponentCollector} that just returns
  * always the same {@link Component}.
+ *
  * @author Benjamin Sigg
  */
-public class SingleComponentCollector implements ComponentCollector{
-	private Component component;
-	
-	public SingleComponentCollector( Component component ){
-		if( component == null )
-			throw new IllegalArgumentException( "component must not be null" );
-		this.component = component;
-	}
-	
-	public Collection<Component> listComponents(){
-		List<Component> list = new ArrayList<Component>();
-		list.add( component );
-		return list;
-	}
+public class SingleComponentCollector implements ComponentCollector {
+  private Component component;
+
+  public SingleComponentCollector(Component component) {
+    if (component == null) throw new IllegalArgumentException("component must not be null");
+    this.component = component;
+  }
+
+  public Collection<Component> listComponents() {
+    List<Component> list = new ArrayList<Component>();
+    list.add(component);
+    return list;
+  }
 }

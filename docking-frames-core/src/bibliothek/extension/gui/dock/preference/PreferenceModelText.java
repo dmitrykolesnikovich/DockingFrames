@@ -31,30 +31,37 @@ import bibliothek.util.Path;
 
 /**
  * A text that is used by a {@link PreferenceModel}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class PreferenceModelText extends TextValue{
-	/** what kind of {@link UIValue} this is */
-	public static final Path KIND_PREFERENCE_MODEL = KIND_TEXT.append( "preference_model" );
-	
-	/** the model using this text */
-	private PreferenceModel model;
+public abstract class PreferenceModelText extends TextValue {
+  /**
+   * what kind of {@link UIValue} this is
+   */
+  public static final Path KIND_PREFERENCE_MODEL = KIND_TEXT.append("preference_model");
 
-	/**
-	 * Creates a new text.
-	 * @param id the unique identifier of this {@link UIValue}
-	 * @param model the model that is using this text
-	 */
-	public PreferenceModelText( String id, PreferenceModel model ){
-		super( id, KIND_PREFERENCE_MODEL );
-		this.model = model;
-	}
-	
-	/**
-	 * Gets the model which is using this text.
-	 * @return the model
-	 */
-	public PreferenceModel getModel(){
-		return model;
-	}
+  /**
+   * the model using this text
+   */
+  private PreferenceModel model;
+
+  /**
+   * Creates a new text.
+   *
+   * @param id    the unique identifier of this {@link UIValue}
+   * @param model the model that is using this text
+   */
+  public PreferenceModelText(String id, PreferenceModel model) {
+    super(id, KIND_PREFERENCE_MODEL);
+    this.model = model;
+  }
+
+  /**
+   * Gets the model which is using this text.
+   *
+   * @return the model
+   */
+  public PreferenceModel getModel() {
+    return model;
+  }
 }

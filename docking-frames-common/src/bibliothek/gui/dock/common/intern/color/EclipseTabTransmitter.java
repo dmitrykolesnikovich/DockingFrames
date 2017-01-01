@@ -25,136 +25,104 @@
  */
 package bibliothek.gui.dock.common.intern.color;
 
-import java.awt.Color;
-
 import bibliothek.extension.gui.dock.theme.EclipseTheme;
 import bibliothek.gui.dock.themes.ColorBridgeFactory;
 import bibliothek.gui.dock.themes.color.TabColor;
 import bibliothek.gui.dock.util.color.ColorManager;
 import bibliothek.util.Colors;
 
+import java.awt.*;
+
 /**
  * A {@link ColorTransmitter} that connects {@link TabColor}s with the
  * {@link EclipseTheme}.
+ *
  * @author Benjamin Sigg
  */
 public class EclipseTabTransmitter extends TabColorTransmitter {
-    /**
-     * A factory that creates {@link EclipseTabTransmitter}s.
-     */
-    public static final ColorBridgeFactory FACTORY =
-        new ColorBridgeFactory(){
-        public EclipseTabTransmitter create( ColorManager manager ){
-            return new EclipseTabTransmitter( manager );
-        }
-    };
-
-    private static final String KEYS[] = new String[]{
-        "stack.tab.border", 
-        "stack.tab.border.selected", 
-        "stack.tab.border.selected.focused", 
-        "stack.tab.border.selected.focuslost",
-
-        "stack.tab.top",
-        "stack.tab.top.selected",
-        "stack.tab.top.selected.focused",
-        "stack.tab.top.selected.focuslost",
-
-        "stack.tab.bottom",
-        "stack.tab.bottom.selected",
-        "stack.tab.bottom.selected.focused",
-        "stack.tab.bottom.selected.focuslost",
-
-        "stack.tab.text",
-        "stack.tab.text.selected",
-        "stack.tab.text.selected.focused", 
-        "stack.tab.text.selected.focuslost"
-    };
-
-    public EclipseTabTransmitter( ColorManager manager ){
-        super( manager, KEYS );
+  /**
+   * A factory that creates {@link EclipseTabTransmitter}s.
+   */
+  public static final ColorBridgeFactory FACTORY = new ColorBridgeFactory() {
+    public EclipseTabTransmitter create(ColorManager manager) {
+      return new EclipseTabTransmitter(manager);
     }
+  };
 
-    @Override
-    protected boolean isFocused( String id ) {
-        return id.contains( "focused" ) || id.contains( "focuslost" );
-    }
+  private static final String KEYS[] = new String[]{"stack.tab.border", "stack.tab.border.selected", "stack.tab.border.selected.focused",
+    "stack.tab.border.selected.focuslost",
 
-    @Override
-    protected boolean isSelected( String id ) {
-        return id.contains( "selected" );
-    }
+    "stack.tab.top", "stack.tab.top.selected", "stack.tab.top.selected.focused", "stack.tab.top.selected.focuslost",
 
-    @Override
-    protected boolean isForeground( String id ) {
-        return id.contains( "text" );
-    }
+    "stack.tab.bottom", "stack.tab.bottom.selected", "stack.tab.bottom.selected.focused", "stack.tab.bottom.selected.focuslost",
 
-    @Override
-    protected Color convert( Color source, String key ) {
-        if( isSelected( key ))
-            return convertSelected( source, key );
+    "stack.tab.text", "stack.tab.text.selected", "stack.tab.text.selected.focused", "stack.tab.text.selected.focuslost"};
 
-        if( isFocused( key ))
-            return convertFocused( source, key );
+  public EclipseTabTransmitter(ColorManager manager) {
+    super(manager, KEYS);
+  }
 
-        if( "stack.tab.border".equals( key ))
-            return source;
+  @Override
+  protected boolean isFocused(String id) {
+    return id.contains("focused") || id.contains("focuslost");
+  }
 
-        if(  "stack.tab.top".equals( key ))
-            return Colors.undiffMirror( source, 0.5 );
+  @Override
+  protected boolean isSelected(String id) {
+    return id.contains("selected");
+  }
 
-        if( "stack.tab.bottom".equals( key ))
-            return source;
+  @Override
+  protected boolean isForeground(String id) {
+    return id.contains("text");
+  }
 
-        if( "stack.tab.text".equals( key ))
-            return Colors.diffMirror( source, 1.0 );
+  @Override
+  protected Color convert(Color source, String key) {
+    if (isSelected(key)) return convertSelected(source, key);
 
-        return null;
-    }
+    if (isFocused(key)) return convertFocused(source, key);
 
-    @Override
-    protected Color convertSelected( Color source, String key ) {
-        if( isFocused( key ))
-            return convertFocused( source, key );
+    if ("stack.tab.border".equals(key)) return source;
 
-        if( "stack.tab.border.selected".equals( key ))
-            return source;
+    if ("stack.tab.top".equals(key)) return Colors.undiffMirror(source, 0.5);
 
-        if(  "stack.tab.top.selected".equals( key ))
-            return Colors.undiffMirror( source, 0.5 );
+    if ("stack.tab.bottom".equals(key)) return source;
 
-        if( "stack.tab.bottom.selected".equals( key ))
-            return source;
+    if ("stack.tab.text".equals(key)) return Colors.diffMirror(source, 1.0);
 
-        if( "stack.tab.text.selected".equals( key ))
-            return Colors.diffMirror( source, 1.0 );
+    return null;
+  }
 
-        return null;
-    }
+  @Override
+  protected Color convertSelected(Color source, String key) {
+    if (isFocused(key)) return convertFocused(source, key);
 
-    @Override
-    protected Color convertFocused( Color source, String key ) {
-        if( "stack.tab.border.selected.focused".equals( key ))
-            return source;
-        if( "stack.tab.border.selected.focuslost".equals( key ))
-            return source;
+    if ("stack.tab.border.selected".equals(key)) return source;
 
-        if( "stack.tab.top.selected.focused".equals( key ))
-            return Colors.undiffMirror( source, 0.5 );
-        if( "stack.tab.top.selected.focuslost".equals( key ))
-            return Colors.undiffMirror( source, 0.5 );
+    if ("stack.tab.top.selected".equals(key)) return Colors.undiffMirror(source, 0.5);
 
-        if( "stack.tab.bottom.selected.focused".equals( key ))
-            return source;
-        if( "stack.tab.bottom.selected.focuslost".equals( key ))
-            return source;
+    if ("stack.tab.bottom.selected".equals(key)) return source;
 
-        if( "stack.tab.text.selected.focused".equals( key ))
-            return Colors.diffMirror( source, 1.0 ); 
-        if( "stack.tab.text.selected.focuslost".equals( key ))
-            return Colors.diffMirror( source, 1.0 );
+    if ("stack.tab.text.selected".equals(key)) return Colors.diffMirror(source, 1.0);
 
-        return null;
-    }
+    return null;
+  }
+
+  @Override
+  protected Color convertFocused(Color source, String key) {
+    if ("stack.tab.border.selected.focused".equals(key)) return source;
+    if ("stack.tab.border.selected.focuslost".equals(key)) return source;
+
+    if ("stack.tab.top.selected.focused".equals(key)) return Colors.undiffMirror(source, 0.5);
+    if ("stack.tab.top.selected.focuslost".equals(key)) return Colors.undiffMirror(source, 0.5);
+
+    if ("stack.tab.bottom.selected.focused".equals(key)) return source;
+    if ("stack.tab.bottom.selected.focuslost".equals(key)) return source;
+
+    if ("stack.tab.text.selected.focused".equals(key)) return Colors.diffMirror(source, 1.0);
+    if ("stack.tab.text.selected.focuslost".equals(key)) return Colors.diffMirror(source, 1.0);
+
+    return null;
+  }
 }

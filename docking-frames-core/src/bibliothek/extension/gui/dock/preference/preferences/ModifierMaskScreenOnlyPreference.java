@@ -35,20 +35,22 @@ import bibliothek.util.Path;
 /**
  * Preference for the mask that forces a {@link Dockable} onto the {@link ScreenDockStation}
  * when moving.
+ *
  * @author Benjamin Sigg
  * @see DockRelocatorMode#SCREEN_MASK
  */
-public class ModifierMaskScreenOnlyPreference extends DockPropertyPreference<ModifierMask>{
-	/**
-	 * Creates a new preference
-	 * @param properties to read and write the value of this preference
-	 */
-	public ModifierMaskScreenOnlyPreference( DockProperties properties ){
-		super( properties, DockRelocatorMode.SCREEN_MASK, Path.TYPE_MODIFIER_MASK_PATH, new Path( "dock.DockRelocatorMode.SCREEN_MASK" ) );
+public class ModifierMaskScreenOnlyPreference extends DockPropertyPreference<ModifierMask> {
+  /**
+   * Creates a new preference
+   *
+   * @param properties to read and write the value of this preference
+   */
+  public ModifierMaskScreenOnlyPreference(DockProperties properties) {
+    super(properties, DockRelocatorMode.SCREEN_MASK, Path.TYPE_MODIFIER_MASK_PATH, new Path("dock.DockRelocatorMode.SCREEN_MASK"));
 
-		setLabelId( "preference.shortcuts.screen_only.label" );
-		setDescriptionId( "preference.shortcuts.screen_only.description" );
-		
-		setDefaultValue( DockRelocatorMode.SCREEN_MASK.getDefault( null ) );
-	}
+    setLabelId("preference.shortcuts.screen_only.label");
+    setDescriptionId("preference.shortcuts.screen_only.description");
+
+    setDefaultValue(DockRelocatorMode.SCREEN_MASK.getDefault(null));
+  }
 }

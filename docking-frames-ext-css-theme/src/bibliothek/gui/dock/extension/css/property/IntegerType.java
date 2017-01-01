@@ -25,29 +25,30 @@
  */
 package bibliothek.gui.dock.extension.css.property;
 
-import bibliothek.gui.dock.extension.css.CssType;
 import bibliothek.gui.dock.extension.css.CssDeclarationValue;
+import bibliothek.gui.dock.extension.css.CssType;
 import bibliothek.gui.dock.extension.css.transition.TransitionalCssProperty;
 import bibliothek.gui.dock.extension.css.transition.types.TransitionalIntegerProperty;
 
 /**
  * Converter for reading {@link String}s and creating {@link Integer}s.
+ *
  * @author Benjamin Sigg
  */
-public class IntegerType implements CssType<Integer>{
-	@Override
-	public Integer convert( CssDeclarationValue value ){
-		try{
-			return Integer.valueOf( value.getSingleValue() );
-		}
-		catch( NumberFormatException ex ){
-			ex.printStackTrace();
-			return null;
-		}
-	}
+public class IntegerType implements CssType<Integer> {
+  @Override
+  public Integer convert(CssDeclarationValue value) {
+    try {
+      return Integer.valueOf(value.getSingleValue());
+    }
+    catch (NumberFormatException ex) {
+      ex.printStackTrace();
+      return null;
+    }
+  }
 
-	@Override
-	public TransitionalCssProperty<Integer> createTransition(){
-		return new TransitionalIntegerProperty();
-	}
+  @Override
+  public TransitionalCssProperty<Integer> createTransition() {
+    return new TransitionalIntegerProperty();
+  }
 }

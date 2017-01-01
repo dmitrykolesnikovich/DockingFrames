@@ -25,98 +25,100 @@
  */
 package bibliothek.gui.dock.control.focus;
 
-import java.awt.Component;
-import java.awt.KeyboardFocusManager;
-
 import bibliothek.gui.dock.DockElementRepresentative;
 import bibliothek.gui.dock.event.FocusVetoListener.FocusVeto;
 
+import java.awt.*;
+
 /**
- * Ensures that a specific {@link Component} is focused by calling 
+ * Ensures that a specific {@link Component} is focused by calling
  * {@link Component#requestFocus()} multiple times.
+ *
  * @author Benjamin Sigg
  */
-public class RepeatingFocusRequest implements FocusRequest{
-	private int delay;
-	private int attempts;
-	private DockElementRepresentative source;
-	private Component component;
-	private boolean hardRequest;
-	
-	/**
-	 * Creates a new request
-	 * @param source the element that gets focused, not <code>null</code>
-	 * @param component the {@link Component} that actually gains the focus, not <code>null</code>
-	 * @param hardRequest whether this request should be executed even if the application is invisible
-	 */
-	public RepeatingFocusRequest( DockElementRepresentative source, Component component, boolean hardRequest ){
-		this( source, component, 10, 20, hardRequest );
-	}
-	
-	/**
-	 * Creates a new request
-	 * @param source the element that gets focused, can be <code>null</code>
-	 * @param component the {@link Component} that actually gains the focus, not <code>null</code>
-	 * @param delay how long to wait until requesting the focus, at least 1
-	 * @param attempts how often to try and gain the focus, at least 1
-	 * @param hardRequest whether this request should be executed even if the application is invisible
-	 */
-	public RepeatingFocusRequest( DockElementRepresentative source, Component component, int delay, int attempts, boolean hardRequest ){
-		if( component == null ){
-			throw new IllegalArgumentException( "component must not be null" );
-		}
-		if( delay < 1 ){
-			throw new IllegalArgumentException( "delay must be >= 1: " + delay );
-		}
-		if( attempts < 1 ){
-			throw new IllegalArgumentException( "attempts must be >= 1: " + attempts );
-		}
-		
-		this.source = source;
-		this.component = component;
-		this.delay = delay;
-		this.attempts = attempts;
-		this.hardRequest = hardRequest;
-	}
-	
-	public boolean validate( FocusController controller ){
-		return true;
-	}
-	
-	public int getDelay(){
-		return delay;
-	}
-	
-	public DockElementRepresentative getSource(){
-		return source;
-	}
-	
-	public Component getComponent(){
-		return component;
-	}
-	
-	public boolean acceptable( Component component ){
-		return this.component == component;
-	}
-	
-	public boolean isHardRequest(){
-		return hardRequest;
-	}
-	
-	public void veto( FocusVeto veto ){
-		// ignore
-	}
-	
-	public FocusRequest grant( Component component ){
-		attempts--;
-		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-        if( manager.getPermanentFocusOwner() != component ){
-            manager.clearGlobalFocusOwner();
-            component.requestFocus();
-        }
-        if( attempts > 0 ){
-        	return this;
-        }
-        return null;
-	}
+public class RepeatingFocusRequest implements FocusRequest {
+  private int delay;
+  private int attempts;
+  private DockElementRepresentative source;
+  private Component component;
+  private boolean hardRequest;
+
+  /**
+   * Creates a new request
+   *
+   * @param source      the element that gets focused, not <code>null</code>
+   * @param component   the {@link Component} that actually gains the focus, not <code>null</code>
+   * @param hardRequest whether this request should be executed even if the application is invisible
+   */
+  public RepeatingFocusRequest(DockElementRepresentative source, Component component, boolean hardRequest) {
+    this(source, component, 10, 20, hardRequest);
+  }
+
+  /**
+   * Creates a new request
+   *
+   * @param source      the element that gets focused, can be <code>null</code>
+   * @param component   the {@link Component} that actually gains the focus, not <code>null</code>
+   * @param delay       how long to wait until requesting the focus, at least 1
+   * @param attempts    how often to try and gain the focus, at least 1
+   * @param hardRequest whether this request should be executed even if the application is invisible
+   */
+  public RepeatingFocusRequest(DockElementRepresentative source, Component component, int delay, int attempts, boolean hardRequest) {
+    if (component == null) {
+      throw new IllegalArgumentException("component must not be null");
+    }
+    if (delay < 1) {
+      throw new IllegalArgumentException("delay must be >= 1: " + delay);
+    }
+    if (attempts < 1) {
+      throw new IllegalArgumentException("attempts must be >= 1: " + attempts);
+    }
+
+    this.source = source;
+    this.component = component;
+    this.delay = delay;
+    this.attempts = attempts;
+    this.hardRequest = hardRequest;
+  }
+
+  public boolean validate(FocusController controller) {
+    return true;
+  }
+
+  public int getDelay() {
+    return delay;
+  }
+
+  public DockElementRepresentative getSource() {
+    return source;
+  }
+
+  public Component getComponent() {
+    return component;
+  }
+
+  public boolean acceptable(Component component) {
+    return this.component == component;
+  }
+
+  public boolean isHardRequest() {
+    return hardRequest;
+  }
+
+  public void veto(FocusVeto veto) {
+    // ignore
+  }
+
+  public FocusRequest grant(Component component) {
+    attempts--;
+    KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+    if (manager.getPermanentFocusOwner() != component) {
+      manager.clearGlobalFocusOwner();
+      component.requestFocus();
+    }
+    if (attempts > 0) {
+      return this;
+    }
+    return null;
+  }
 }

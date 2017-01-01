@@ -25,58 +25,60 @@
  */
 package bibliothek.gui.dock.common.theme.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.util.color.ColorBridge;
 import bibliothek.gui.dock.util.color.DockColor;
 import bibliothek.util.FrameworkOnly;
 
+import java.awt.*;
+
 /**
  * This {@link ColorBridge} uses a delegate and applies a set of {@link CColorBridge}s.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public class ExtendedColorBridge implements ColorBridge{
-	private ColorBridge bridge;
-	private CColorBridge[] extensions;
-	
-	/**
-	 * Creates a new bridge.
-	 * @param bridge the delegate
-	 * @param extensions the extensions that are asked first
-	 */
-	public ExtendedColorBridge( ColorBridge bridge, CColorBridge[] extensions ){
-		this.bridge = bridge;
-		this.extensions = extensions;
-	}
-	
-	public void add( String id, DockColor uiValue ){
-		for( CColorBridge bridge : extensions ){
-			if( bridge.matches( id )){
-				bridge.add( id, uiValue );
-				return;
-			}
-		}
-		bridge.add( id, uiValue );
-	}
+public class ExtendedColorBridge implements ColorBridge {
+  private ColorBridge bridge;
+  private CColorBridge[] extensions;
 
-	public void remove( String id, DockColor uiValue ){
-		for( CColorBridge bridge : extensions ){
-			if( bridge.matches( id )){
-				bridge.remove( id, uiValue );
-				return;
-			}
-		}
-		bridge.remove( id, uiValue );	
-	}
+  /**
+   * Creates a new bridge.
+   *
+   * @param bridge     the delegate
+   * @param extensions the extensions that are asked first
+   */
+  public ExtendedColorBridge(ColorBridge bridge, CColorBridge[] extensions) {
+    this.bridge = bridge;
+    this.extensions = extensions;
+  }
 
-	public void set( String id, Color value, DockColor uiValue ){
-		for( CColorBridge bridge : extensions ){
-			if( bridge.matches( id )){
-				bridge.set( id, value, uiValue );
-				return;
-			}
-		}
-		bridge.set( id, value, uiValue );	
-	}
+  public void add(String id, DockColor uiValue) {
+    for (CColorBridge bridge : extensions) {
+      if (bridge.matches(id)) {
+        bridge.add(id, uiValue);
+        return;
+      }
+    }
+    bridge.add(id, uiValue);
+  }
+
+  public void remove(String id, DockColor uiValue) {
+    for (CColorBridge bridge : extensions) {
+      if (bridge.matches(id)) {
+        bridge.remove(id, uiValue);
+        return;
+      }
+    }
+    bridge.remove(id, uiValue);
+  }
+
+  public void set(String id, Color value, DockColor uiValue) {
+    for (CColorBridge bridge : extensions) {
+      if (bridge.matches(id)) {
+        bridge.set(id, value, uiValue);
+        return;
+      }
+    }
+    bridge.set(id, value, uiValue);
+  }
 }

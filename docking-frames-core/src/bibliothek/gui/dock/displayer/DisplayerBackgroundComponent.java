@@ -32,15 +32,19 @@ import bibliothek.util.Path;
 
 /**
  * A {@link BackgroundComponent} represents a {@link DockableDisplayer}.
+ *
  * @author Benjamin Sigg
  */
-public interface DisplayerBackgroundComponent extends BackgroundComponent{
-	/** the kind of {@link UIValue} this is */
-	public static final Path KIND = BackgroundComponent.KIND.append( "displayer" );
-	
-	/**
-	 * Gets the displayer which is represented by this component.
-	 * @return the displayer, not <code>null</code>
-	 */
-	public DockableDisplayer getDisplayer();
+public interface DisplayerBackgroundComponent extends BackgroundComponent {
+  /**
+   * the kind of {@link UIValue} this is
+   */
+  public static final Path KIND = BackgroundComponent.KIND.append("displayer");
+
+  /**
+   * Gets the displayer which is represented by this component.
+   *
+   * @return the displayer, not <code>null</code>
+   */
+  public DockableDisplayer getDisplayer();
 }

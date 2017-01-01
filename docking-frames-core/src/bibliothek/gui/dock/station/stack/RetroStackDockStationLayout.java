@@ -31,29 +31,34 @@ import bibliothek.gui.dock.StackDockStation;
 /**
  * Information about the layout of a {@link StackDockStation} read from an old format.
  * This class only remains for backwards compatibility and should not be used by clients.
+ *
  * @author Benjamin Sigg
  */
 public class RetroStackDockStationLayout extends StackDockStationLayout {
-    /** the order of the children */
-    private int[] children;
-    
-    /**
-     * Creates a new layout
-     * @param selected the name of the item that is selected
-     * @param children the order of the children. The entries of the array
-     * are the identifiers that a {@link DockFactory} gets in its method
-     * {@link DockFactory#getLayout(bibliothek.gui.dock.DockElement, java.util.Map)}
-     */
-    public RetroStackDockStationLayout( int selected, int[] children ){
-    	super( selected, null );
-    	this.children = children;
-    }
-    
-    /**
-     * Gets the order of the children.
-     * @return the order
-     */
-    public int[] getChildren() {
-        return children;
-    }
+  /**
+   * the order of the children
+   */
+  private int[] children;
+
+  /**
+   * Creates a new layout
+   *
+   * @param selected the name of the item that is selected
+   * @param children the order of the children. The entries of the array
+   *                 are the identifiers that a {@link DockFactory} gets in its method
+   *                 {@link DockFactory#getLayout(bibliothek.gui.dock.DockElement, java.util.Map)}
+   */
+  public RetroStackDockStationLayout(int selected, int[] children) {
+    super(selected, null);
+    this.children = children;
+  }
+
+  /**
+   * Gets the order of the children.
+   *
+   * @return the order
+   */
+  public int[] getChildren() {
+    return children;
+  }
 }

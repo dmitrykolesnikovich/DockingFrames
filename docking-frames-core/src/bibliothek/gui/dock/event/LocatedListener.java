@@ -29,15 +29,16 @@ package bibliothek.gui.dock.event;
 import bibliothek.gui.dock.DockElement;
 
 /**
- * A located listener receives events only if they belong to a 
- * specific {@link DockElement} or a child of that element. 
- * @author Benjamin Sigg
+ * A located listener receives events only if they belong to a
+ * specific {@link DockElement} or a child of that element.
  *
+ * @author Benjamin Sigg
  */
 public interface LocatedListener {
-    /**
-     * Gets the location of this observer in the tree.
-     * @return the location, <code>null</code> for an imaginary root.
-     */
-    public DockElement getTreeLocation();
+  /**
+   * Gets the location of this observer in the tree.
+   *
+   * @return the location, <code>null</code> for an imaginary root.
+   */
+  public DockElement getTreeLocation();
 }

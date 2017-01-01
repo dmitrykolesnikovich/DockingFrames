@@ -26,102 +26,102 @@
 package bibliothek.test;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 /**
  * A node in the {@link InspectionGraph}, represents one {@link Inspect}.
+ *
  * @author Benjamin Sigg
  */
 public class InspectionNode {
-	private InspectionNode[] children;
-	
-	private Inspect inspect;
-	private int inspectId;
-	private InspectionGraph graph;
-	
-	private List<InspectionNodeListener> listeners = new ArrayList<InspectionNodeListener>();
-	
-	public InspectionNode( InspectionGraph graph, Inspect inspect, int inspectId ){
-		this.graph = graph;
-		this.inspect = inspect;
-		this.inspectId = inspectId;
-	}
-	
-	public Inspect getInspect(){
-		return inspect;
-	}
-	
-	public void addListener( InspectionNodeListener listener ){
-		listeners.add( listener );
-	}
-	
-	public void removeListener( InspectionNodeListener listener ){
-		listeners.remove( listener );
-	}
-	
-	protected InspectionNodeListener[] listeners(){
-		return listeners.toArray( new InspectionNodeListener[ listeners.size() ] );
-	}
-	
-	public InspectionNode[] getChildren(){
-		if( children == null ){
-			Object[] next = inspect.getChildren();
-			children = new InspectionNode[ next.length ];
-			for( int i = 0; i < next.length; i++ ){
-				children[i] = graph.getNode( next[i] );
-			}
-		}
-		return children;
-	}
-	
-	public void update(){
-		Inspect[] current = null;
-		if( children != null ){
-			current = new Inspect[children.length];
-		
-			for( int i = 0; i < current.length; i++ ){
-				current[i] = children[i].inspect;
-			}
-		}
-		
-		if( inspect.update() ){
-			if( children != null ){
-				InspectionNode[] old = children;
-				children = nodes();
-				for( InspectionNodeListener listener : listeners() ){
-					listener.updated( old, children );
-				}
-			}
-			else{
-				for( InspectionNodeListener listener : listeners() ){
-					listener.updated();
-				}
-			}
-		}
-	}
-	
-	private InspectionNode[] nodes(){
-		Object[] next = inspect.getChildren();
-		List<Inspect> inspects = new ArrayList<Inspect>();
-		if( next != null ){
-			for( Object inspectable : next ){
-				if( inspectable != null ){
-					inspects.add( graph.getInspect( graph.getInspectable( inspectable ) ) );
-				}
-			}
-		}
-		
-		InspectionNode[] nodes = new InspectionNode[ inspects.size() ];
-		for( int i = 0; i < nodes.length; i++ ){
-			nodes[i] = graph.getNode( inspects.get( i ) );
-		}
-		
-		return nodes;
-	}
-	
-	@Override
-	public String toString(){
-		return inspect.getName() + " (" + inspectId + "): " + graph.toString( inspect.getValue() );
-	}
+  private InspectionNode[] children;
+
+  private Inspect inspect;
+  private int inspectId;
+  private InspectionGraph graph;
+
+  private List<InspectionNodeListener> listeners = new ArrayList<InspectionNodeListener>();
+
+  public InspectionNode(InspectionGraph graph, Inspect inspect, int inspectId) {
+    this.graph = graph;
+    this.inspect = inspect;
+    this.inspectId = inspectId;
+  }
+
+  public Inspect getInspect() {
+    return inspect;
+  }
+
+  public void addListener(InspectionNodeListener listener) {
+    listeners.add(listener);
+  }
+
+  public void removeListener(InspectionNodeListener listener) {
+    listeners.remove(listener);
+  }
+
+  protected InspectionNodeListener[] listeners() {
+    return listeners.toArray(new InspectionNodeListener[listeners.size()]);
+  }
+
+  public InspectionNode[] getChildren() {
+    if (children == null) {
+      Object[] next = inspect.getChildren();
+      children = new InspectionNode[next.length];
+      for (int i = 0; i < next.length; i++) {
+        children[i] = graph.getNode(next[i]);
+      }
+    }
+    return children;
+  }
+
+  public void update() {
+    Inspect[] current = null;
+    if (children != null) {
+      current = new Inspect[children.length];
+
+      for (int i = 0; i < current.length; i++) {
+        current[i] = children[i].inspect;
+      }
+    }
+
+    if (inspect.update()) {
+      if (children != null) {
+        InspectionNode[] old = children;
+        children = nodes();
+        for (InspectionNodeListener listener : listeners()) {
+          listener.updated(old, children);
+        }
+      }
+      else {
+        for (InspectionNodeListener listener : listeners()) {
+          listener.updated();
+        }
+      }
+    }
+  }
+
+  private InspectionNode[] nodes() {
+    Object[] next = inspect.getChildren();
+    List<Inspect> inspects = new ArrayList<Inspect>();
+    if (next != null) {
+      for (Object inspectable : next) {
+        if (inspectable != null) {
+          inspects.add(graph.getInspect(graph.getInspectable(inspectable)));
+        }
+      }
+    }
+
+    InspectionNode[] nodes = new InspectionNode[inspects.size()];
+    for (int i = 0; i < nodes.length; i++) {
+      nodes[i] = graph.getNode(inspects.get(i));
+    }
+
+    return nodes;
+  }
+
+  @Override
+  public String toString() {
+    return inspect.getName() + " (" + inspectId + "): " + graph.toString(inspect.getValue());
+  }
 }

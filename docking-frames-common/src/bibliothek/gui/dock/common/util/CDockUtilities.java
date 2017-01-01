@@ -36,59 +36,62 @@ import bibliothek.gui.dock.util.DockUtilities;
 
 /**
  * A set of utility methods useful in the Common project
+ *
  * @author Benjamin Sigg
  * @see DockUtilities
  */
-public class CDockUtilities extends DockUtilities{
-	/**
-	 * Starting with <code>station</code>, and traversing the tree upwards, searches
-	 * the first {@link CStation} which is a {@link CStation#isWorkingArea() working area}. 
-	 * @param station the station on which to start the search
-	 * @return the first working area (closest to <code>station</code>)
-	 */
-	public static CStation<?> getFirstWorkingArea( CStation<?> station ){
-		DockStation parent = station.getStation();
-		while( parent != null ){
-			if( parent instanceof CommonDockStation<?, ?> ){
-				CStation<?> cstation = ((CommonDockStation<?, ?>)parent).getStation();
-				if( cstation.isWorkingArea() ){
-					return cstation;
-				}
-			}
-			Dockable child = parent.asDockable();
-			parent = child == null ? null : child.getDockParent();
-		}
-		return null;
-	}
-	
-	/**
-	 * Searches a {@link CDockable} in the tree starting with <code>element</code>. This method
-	 * first travels along the {@link DockStation#getFrontDockable() selected} dockables before 
-	 * searching the entire tree.
-	 * @param element root of the tree
-	 * @return the first {@link CDockable} that is found in <code>element</code>
-	 */
-	public static CDockable getFirstDockable( DockElement element ){
-		Dockable dockable = element.asDockable();
-		if( dockable instanceof CommonDockable ){
-			return ((CommonDockable)dockable).getDockable();
-		}
-		
-		DockStation station = element.asDockStation();
-		if( station != null ){
-			CDockable result = null;
-			dockable = station.getFrontDockable();
-			if( dockable != null ){
-				result = getFirstDockable( dockable );
-			}
-			for( int i = 0, n = station.getDockableCount(); i<n && result == null; i++ ){
-				Dockable next = station.getDockable( i );
-				if( next != dockable ){
-					result = getFirstDockable( next );
-				}
-			}
-			return result;
-		}
-		return null;
-	}
+public class CDockUtilities extends DockUtilities {
+  /**
+   * Starting with <code>station</code>, and traversing the tree upwards, searches
+   * the first {@link CStation} which is a {@link CStation#isWorkingArea() working area}.
+   *
+   * @param station the station on which to start the search
+   * @return the first working area (closest to <code>station</code>)
+   */
+  public static CStation<?> getFirstWorkingArea(CStation<?> station) {
+    DockStation parent = station.getStation();
+    while (parent != null) {
+      if (parent instanceof CommonDockStation<?, ?>) {
+        CStation<?> cstation = ((CommonDockStation<?, ?>)parent).getStation();
+        if (cstation.isWorkingArea()) {
+          return cstation;
+        }
+      }
+      Dockable child = parent.asDockable();
+      parent = child == null ? null : child.getDockParent();
+    }
+    return null;
+  }
+
+  /**
+   * Searches a {@link CDockable} in the tree starting with <code>element</code>. This method
+   * first travels along the {@link DockStation#getFrontDockable() selected} dockables before
+   * searching the entire tree.
+   *
+   * @param element root of the tree
+   * @return the first {@link CDockable} that is found in <code>element</code>
+   */
+  public static CDockable getFirstDockable(DockElement element) {
+    Dockable dockable = element.asDockable();
+    if (dockable instanceof CommonDockable) {
+      return ((CommonDockable)dockable).getDockable();
+    }
+
+    DockStation station = element.asDockStation();
+    if (station != null) {
+      CDockable result = null;
+      dockable = station.getFrontDockable();
+      if (dockable != null) {
+        result = getFirstDockable(dockable);
+      }
+      for (int i = 0, n = station.getDockableCount(); i < n && result == null; i++) {
+        Dockable next = station.getDockable(i);
+        if (next != dockable) {
+          result = getFirstDockable(next);
+        }
+      }
+      return result;
+    }
+    return null;
+  }
 }

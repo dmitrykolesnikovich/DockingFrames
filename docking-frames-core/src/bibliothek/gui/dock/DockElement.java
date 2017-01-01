@@ -35,35 +35,40 @@ import bibliothek.gui.dock.component.DockComponentRoot;
 /**
  * An element in the hierarchy of dockables and stations. Classes implementing this interface
  * must either be a {@link Dockable}, a {@link DockStation} or both of them.
+ *
  * @author Benjamin Sigg
  */
-public interface DockElement extends DockComponentRoot{
-	/**
-     * Returns <code>this</code> if <code>this</code> is an instance of 
-     * {@link Dockable}. Otherwise <code>null</code> is returned.
-     * @return <code>this</code> or <code>null</code>. Must not return <code>null</code> if {@link #asDockable()}
-     * already returns <code>null</code>.
-     */
-    public Dockable asDockable();
+public interface DockElement extends DockComponentRoot {
+  /**
+   * Returns <code>this</code> if <code>this</code> is an instance of
+   * {@link Dockable}. Otherwise <code>null</code> is returned.
+   *
+   * @return <code>this</code> or <code>null</code>. Must not return <code>null</code> if {@link #asDockable()}
+   * already returns <code>null</code>.
+   */
+  public Dockable asDockable();
 
-    /**
-     * Returns <code>this</code> if <code>this</code> is an instance of 
-     * {@link DockStation}. Otherwise <code>null</code> is returned.
-     * @return <code>this</code> or <code>null</code>. Must not return <code>null</code> if {@link #asDockable()}
-     * already returns <code>null</code>
-     */
-    public DockStation asDockStation();
-    
-    /**
-     * Gets the controller that currently is associated with this {@link DockElement}.
-     * @return the controller or <code>null</code>
-     */
-    public DockController getController();
-    
-    /**
-     * Gets the unique name of the {@link DockFactory} which can read
-     * and write elements of this type.
-     * @return the id of the factory
-     */
-    public String getFactoryID();
+  /**
+   * Returns <code>this</code> if <code>this</code> is an instance of
+   * {@link DockStation}. Otherwise <code>null</code> is returned.
+   *
+   * @return <code>this</code> or <code>null</code>. Must not return <code>null</code> if {@link #asDockable()}
+   * already returns <code>null</code>
+   */
+  public DockStation asDockStation();
+
+  /**
+   * Gets the controller that currently is associated with this {@link DockElement}.
+   *
+   * @return the controller or <code>null</code>
+   */
+  public DockController getController();
+
+  /**
+   * Gets the unique name of the {@link DockFactory} which can read
+   * and write elements of this type.
+   *
+   * @return the id of the factory
+   */
+  public String getFactoryID();
 }

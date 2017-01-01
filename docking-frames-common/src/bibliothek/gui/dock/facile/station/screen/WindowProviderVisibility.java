@@ -25,59 +25,67 @@
  */
 package bibliothek.gui.dock.facile.station.screen;
 
-import java.awt.Window;
-
 import bibliothek.gui.dock.ScreenDockStation;
 import bibliothek.gui.dock.util.WindowProvider;
 import bibliothek.gui.dock.util.WindowProviderListener;
 
+import java.awt.*;
+
 /**
  * Changes the visibility state of a {@link ScreenDockStation} according
  * to the state of an observed window.
+ *
  * @author Benjamin Sigg
  */
 public class WindowProviderVisibility {
-    /** the station whose visibility will be changed */
-    private ScreenDockStation station;
-    
-    /** the source of the window */
-    private WindowProvider provider;
-    
-    /** observes {@link #provider} in order to find the current window */
-    private WindowProviderListener providerListener = new WindowProviderListener(){
-        public void windowChanged( WindowProvider provider, Window window ) {
-            // ignore
-        }
-        
-        public void visibilityChanged( WindowProvider provider, boolean showing ){
-        	station.setShowing( showing );
-        }
-    };
-    
-    /**
-     * Creates a new {@link WindowProviderVisibility}.
-     * @param station the station whose visibility might be changed by this
-     */
-    public WindowProviderVisibility( ScreenDockStation station ){
-        if( station == null )
-            throw new IllegalArgumentException( "station must not be null" );
-        this.station = station;
+  /**
+   * the station whose visibility will be changed
+   */
+  private ScreenDockStation station;
+
+  /**
+   * the source of the window
+   */
+  private WindowProvider provider;
+
+  /**
+   * observes {@link #provider} in order to find the current window
+   */
+  private WindowProviderListener providerListener = new WindowProviderListener() {
+    public void windowChanged(WindowProvider provider, Window window) {
+      // ignore
     }
-    
-    /**
-     * Sets the window to observe
-     * @param provider the new window, can be <code>null</code>
-     */
-    public void setProvider( WindowProvider provider ){
-        if( this.provider != null ){
-            this.provider.removeWindowProviderListener( providerListener );
-        }
-        
-        this.provider = provider;
-        
-        if( this.provider != null ){
-            this.provider.addWindowProviderListener( providerListener );
-            station.setShowing( provider.isShowing() );
-        }
+
+    public void visibilityChanged(WindowProvider provider, boolean showing) {
+      station.setShowing(showing);
     }
+  };
+
+  /**
+   * Creates a new {@link WindowProviderVisibility}.
+   *
+   * @param station the station whose visibility might be changed by this
+   */
+  public WindowProviderVisibility(ScreenDockStation station) {
+    if (station == null) throw new IllegalArgumentException("station must not be null");
+    this.station = station;
+  }
+
+  /**
+   * Sets the window to observe
+   *
+   * @param provider the new window, can be <code>null</code>
+   */
+  public void setProvider(WindowProvider provider) {
+    if (this.provider != null) {
+      this.provider.removeWindowProviderListener(providerListener);
+    }
+
+    this.provider = provider;
+
+    if (this.provider != null) {
+      this.provider.addWindowProviderListener(providerListener);
+      station.setShowing(provider.isShowing());
+    }
+  }
 }

@@ -26,10 +26,6 @@
 
 package bibliothek.extension.gui.dock.theme.flat;
 
-import javax.swing.BorderFactory;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EtchedBorder;
-
 import bibliothek.extension.gui.dock.theme.FlatTheme;
 import bibliothek.extension.gui.dock.util.MouseOverListener;
 import bibliothek.gui.Dockable;
@@ -38,78 +34,86 @@ import bibliothek.gui.dock.themes.ThemeManager;
 import bibliothek.gui.dock.themes.basic.BasicButtonDockTitle;
 import bibliothek.gui.dock.title.DockTitleVersion;
 
+import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+
 /**
  * This title is used by the {@link FlatTheme} to replace the
  * default-DockTitle of the {@link FlapDockStation}.
+ *
  * @author Benjamin Sigg
  */
 public class FlatButtonTitle extends BasicButtonDockTitle {
-    /** 
-     * Current state of the mouse, is <code>true</code> when the
-     * mouse is over this title.
-     */
-    private MouseOverListener mouseover;
-    
-    /**
-     * Constructs a new title
-     * @param dockable the owner of the title
-     * @param origin the version which was used to create this title
-     */
-    public FlatButtonTitle( Dockable dockable, DockTitleVersion origin ) {
-    	super( dockable, origin );
-    	
-    	mouseover = new MouseOverListener( getComponent() ){
-    	    @Override
-    	    protected void changed() {
-    	        changeBorder();
-    	    }
-    	};
-    	
+  /**
+   * Current state of the mouse, is <code>true</code> when the
+   * mouse is over this title.
+   */
+  private MouseOverListener mouseover;
+
+  /**
+   * Constructs a new title
+   *
+   * @param dockable the owner of the title
+   * @param origin   the version which was used to create this title
+   */
+  public FlatButtonTitle(Dockable dockable, DockTitleVersion origin) {
+    super(dockable, origin);
+
+    mouseover = new MouseOverListener(getComponent()) {
+      @Override
+      protected void changed() {
         changeBorder();
+      }
+    };
+
+    changeBorder();
+  }
+
+  @Override
+  protected void setDisabled(boolean disabled) {
+    super.setDisabled(disabled);
+    changeBorder();
+  }
+
+  /**
+   * Tells whether the mouse is currently over this button or not.
+   *
+   * @return <code>true</code> if the mouse is over this button
+   */
+  public boolean isMouseover() {
+    return !isDisabled() && mouseover == null ? false : mouseover.isMouseOver();
+  }
+
+  /**
+   * Exchanges the border of this title according to the state of
+   * <code>selected</code> and of <code>mouseover</code>.
+   * over this title
+   */
+  @Override
+  protected void changeBorder() {
+    boolean selected = isSelected();
+    boolean mouseover = isMouseover();
+    boolean mousePressed = isMousePressed();
+
+    if (selected && mousePressed) {
+      setBorder(ThemeManager.BORDER_MODIFIER + ".title.button.flat.selected.pressed",
+                BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
     }
-    
-    @Override
-    protected void setDisabled( boolean disabled ){
-    	super.setDisabled( disabled );
-    	changeBorder();
+    else if (selected && mouseover) {
+      setBorder(ThemeManager.BORDER_MODIFIER + ".title.button.flat.selected.hover", BorderFactory.createBevelBorder(BevelBorder.LOWERED));
     }
-    
-    /**
-     * Tells whether the mouse is currently over this button or not.
-     * @return <code>true</code> if the mouse is over this button
-     */
-    public boolean isMouseover() {
-		return !isDisabled() && mouseover == null ? false : mouseover.isMouseOver();
-	}
-    
-    /**
-     * Exchanges the border of this title according to the state of
-     * <code>selected</code> and of <code>mouseover</code>.
-     * over this title
-     */
-    @Override
-    protected void changeBorder(){
-    	boolean selected = isSelected();
-    	boolean mouseover = isMouseover();
-    	boolean mousePressed = isMousePressed();
-    	
-    	if( selected && mousePressed ){
-    		setBorder( ThemeManager.BORDER_MODIFIER + ".title.button.flat.selected.pressed", BorderFactory.createEtchedBorder( EtchedBorder.LOWERED ));	
-    	}
-    	else if( selected && mouseover ){
-    		setBorder( ThemeManager.BORDER_MODIFIER + ".title.button.flat.selected.hover", BorderFactory.createBevelBorder( BevelBorder.LOWERED ));
-    	}
-    	else if( selected ){
-    		setBorder( ThemeManager.BORDER_MODIFIER + ".title.button.flat.selected", BorderFactory.createBevelBorder( BevelBorder.LOWERED ));
-    	}
-    	else if( mousePressed ){
-    		setBorder( ThemeManager.BORDER_MODIFIER + ".title.button.flat.pressed", BorderFactory.createBevelBorder( BevelBorder.LOWERED ));
-    	}
-    	else if( mouseover ){
-    		setBorder( ThemeManager.BORDER_MODIFIER + ".title.button.flat.hover", BorderFactory.createEtchedBorder( EtchedBorder.LOWERED ));
-    	}
-    	else{
-    		setBorder( ThemeManager.BORDER_MODIFIER + ".title.button.flat", FlatLineBorder.INSTANCE );
-    	}
+    else if (selected) {
+      setBorder(ThemeManager.BORDER_MODIFIER + ".title.button.flat.selected", BorderFactory.createBevelBorder(BevelBorder.LOWERED));
     }
+    else if (mousePressed) {
+      setBorder(ThemeManager.BORDER_MODIFIER + ".title.button.flat.pressed", BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+    }
+    else if (mouseover) {
+      setBorder(ThemeManager.BORDER_MODIFIER + ".title.button.flat.hover", BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+    }
+    else {
+      setBorder(ThemeManager.BORDER_MODIFIER + ".title.button.flat", FlatLineBorder.INSTANCE);
+    }
+  }
 }

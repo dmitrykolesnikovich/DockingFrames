@@ -28,7 +28,8 @@ package bibliothek.gui.dock.event;
 import bibliothek.gui.DockController;
 
 /**
- * A collection of listeners that observe most events of a {@link DockController}. 
+ * A collection of listeners that observe most events of a {@link DockController}.
+ *
  * @author Benjamin Sigg
  * @deprecated clients should use the listeners they require directly
  */

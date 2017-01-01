@@ -25,58 +25,62 @@
  */
 package bibliothek.gui.dock.util.text;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-
 import bibliothek.gui.dock.util.AbstractUIScheme;
 import bibliothek.gui.dock.util.TextManager;
 import bibliothek.gui.dock.util.UIProperties;
 import bibliothek.gui.dock.util.UIScheme;
 import bibliothek.util.Path;
 
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
 /**
  * This {@link UIScheme} is used by the {@link TextManager} to load the default set of strings from
  * one or several {@link ResourceBundle}s.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultTextScheme extends AbstractUIScheme<String, TextValue, TextBridge>{
-	/** the bundles to contact for reading a resource */
-	private ResourceBundle[] bundles;
-	
-	/**
-	 * Creates a new scheme reading content from <code>bundles</code>
-	 * @param bundles the bundles to read, must not contain a <code>null</code> value
-	 */
-	public DefaultTextScheme( ResourceBundle... bundles ){
-		for( int i = 0; i < bundles.length; i++ ){
-			if( bundles[i] == null ){
-				throw new IllegalArgumentException( "bundle '" + i + "' is null" );
-			}
-		}
-		this.bundles = bundles;
-	}
-	
-	public TextBridge getBridge( Path name, UIProperties<String, TextValue, TextBridge> properties ){
-		return null;
-	}
+public class DefaultTextScheme extends AbstractUIScheme<String, TextValue, TextBridge> {
+  /**
+   * the bundles to contact for reading a resource
+   */
+  private ResourceBundle[] bundles;
 
-	public String getResource( String name, UIProperties<String, TextValue, TextBridge> properties ){
-		for( ResourceBundle bundle : bundles ){
-			try{
-				return bundle.getString( name );
-			}
-			catch( MissingResourceException e ){
-				// ignore
-			}
-		}
-		return null;
-	}
+  /**
+   * Creates a new scheme reading content from <code>bundles</code>
+   *
+   * @param bundles the bundles to read, must not contain a <code>null</code> value
+   */
+  public DefaultTextScheme(ResourceBundle... bundles) {
+    for (int i = 0; i < bundles.length; i++) {
+      if (bundles[i] == null) {
+        throw new IllegalArgumentException("bundle '" + i + "' is null");
+      }
+    }
+    this.bundles = bundles;
+  }
 
-	public void install( UIProperties<String, TextValue, TextBridge> properties ){
-		// ignore
-	}
+  public TextBridge getBridge(Path name, UIProperties<String, TextValue, TextBridge> properties) {
+    return null;
+  }
 
-	public void uninstall( UIProperties<String, TextValue, TextBridge> properties ){
-		// ignore
-	}
+  public String getResource(String name, UIProperties<String, TextValue, TextBridge> properties) {
+    for (ResourceBundle bundle : bundles) {
+      try {
+        return bundle.getString(name);
+      }
+      catch (MissingResourceException e) {
+        // ignore
+      }
+    }
+    return null;
+  }
+
+  public void install(UIProperties<String, TextValue, TextBridge> properties) {
+    // ignore
+  }
+
+  public void uninstall(UIProperties<String, TextValue, TextBridge> properties) {
+    // ignore
+  }
 }

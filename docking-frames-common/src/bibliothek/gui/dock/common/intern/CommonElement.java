@@ -30,10 +30,11 @@ import bibliothek.gui.dock.common.intern.station.CommonDockStation;
 
 /**
  * Root interface for {@link CommonDockable} and for {@link CommonDockStation}.
+ *
  * @author Benjamin Sigg
  */
-public interface CommonElement extends DockElement{
-	public CommonDockable asDockable();
-	
-	public CommonDockStation<?,?> asDockStation();
+public interface CommonElement extends DockElement {
+  public CommonDockable asDockable();
+
+  public CommonDockStation<?, ?> asDockStation();
 }

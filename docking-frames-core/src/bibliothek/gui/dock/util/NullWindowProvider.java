@@ -25,26 +25,27 @@
  */
 package bibliothek.gui.dock.util;
 
-import java.awt.Window;
+import java.awt.*;
 
 /**
  * A window provider that never returns a window.
+ *
  * @author Benjamin Sigg
  */
-public class NullWindowProvider implements WindowProvider{
-    public void addWindowProviderListener( WindowProviderListener listener ) {
-        // ignore
-    }
+public class NullWindowProvider implements WindowProvider {
+  public void addWindowProviderListener(WindowProviderListener listener) {
+    // ignore
+  }
 
-    public void removeWindowProviderListener( WindowProviderListener listener ) {
-        // ignore
-    }
+  public void removeWindowProviderListener(WindowProviderListener listener) {
+    // ignore
+  }
 
-    public Window searchWindow() {
-        return null;
-    }
-    
-    public boolean isShowing(){
-    	return false;
-    }
+  public Window searchWindow() {
+    return null;
+  }
+
+  public boolean isShowing() {
+    return false;
+  }
 }

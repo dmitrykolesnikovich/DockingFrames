@@ -28,28 +28,28 @@ package glass.eclipse.theme;
 import bibliothek.extension.gui.dock.preference.preferences.choice.ChoiceExtension;
 import bibliothek.extension.gui.dock.theme.eclipse.stack.tab.TabPainter;
 
-public class EclipseTabChoiceExtension implements ChoiceExtension<TabPainter>{
-	public TabPainter getChoice( int index ){
-		return CGlassEclipseTabPainter.FACTORY;
-	}
+public class EclipseTabChoiceExtension implements ChoiceExtension<TabPainter> {
+  public TabPainter getChoice(int index) {
+    return CGlassEclipseTabPainter.FACTORY;
+  }
 
-	public String getDefaultChoice(){
-		return "glass";
-	}
+  public String getDefaultChoice() {
+    return "glass";
+  }
 
-	public String getId( int index ){
-		return "glass";
-	}
+  public String getId(int index) {
+    return "glass";
+  }
 
-	public String getText( int index ){
-		return "Glass";
-	}
-	
-	public boolean isTextKey( int index ){
-		return false;
-	}
+  public String getText(int index) {
+    return "Glass";
+  }
 
-	public int size(){
-		return 1;
-	}
+  public boolean isTextKey(int index) {
+    return false;
+  }
+
+  public int size() {
+    return 1;
+  }
 }

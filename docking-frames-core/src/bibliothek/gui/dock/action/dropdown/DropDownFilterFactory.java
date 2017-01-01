@@ -31,17 +31,19 @@ import bibliothek.gui.dock.action.DropDownAction;
 
 /**
  * A factory that creates {@link DropDownFilter}.
+ *
  * @author Benjamin Sigg
  */
 public interface DropDownFilterFactory {
-	/**
-	 * Creates a new filter. The filters <code></code>-methods will be
-	 * called by some unknown source, and the filter can then decide which
-	 * of the values to forward to the <code>view</code>.
-	 * @param action the action for which the filter will be used
-	 * @param dockable the owner of the <code>action</code>
-	 * @param view the view where the filter should write its properties into
-	 * @return the new filter
-	 */
-	public DropDownFilter createView( DropDownAction action, Dockable dockable, DropDownView view );
+  /**
+   * Creates a new filter. The filters <code></code>-methods will be
+   * called by some unknown source, and the filter can then decide which
+   * of the values to forward to the <code>view</code>.
+   *
+   * @param action   the action for which the filter will be used
+   * @param dockable the owner of the <code>action</code>
+   * @param view     the view where the filter should write its properties into
+   * @return the new filter
+   */
+  public DropDownFilter createView(DropDownAction action, Dockable dockable, DropDownView view);
 }

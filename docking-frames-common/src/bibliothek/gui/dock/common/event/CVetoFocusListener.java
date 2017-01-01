@@ -30,28 +30,31 @@ import bibliothek.gui.dock.common.intern.CDockable;
 
 /**
  * This listener is used to prevent a {@link CDockable} from loosing or gaining
- * the focus. Events may happen such that the framework is unable to prevent the 
+ * the focus. Events may happen such that the framework is unable to prevent the
  * focus from changing, e.g. if a {@link CDockable} is closed.<br>
  * Please use this listener with care, the workflow of the user may be seriously
  * hindered if the focus cannot be changed.<br>
+ *
  * @author Benjamin Sigg
  * @see CControl#addVetoFocusListener(CVetoFocusListener)
  * @see CControl#removeVetoFocusListener(CVetoFocusListener)
  */
 public interface CVetoFocusListener {
-	/**
-	 * Called before focus is transferred to <code>dockable</code>.
-	 * @param dockable the dockable that gets the focus
-	 * @return <code>true</code> if this listener approves the action,
-	 * <code>false</code> to speak out a veto
-	 */
-	public boolean willGainFocus( CDockable dockable );
-	
-	/**
-	 * Called before focus is transferred from <code>dockable</code>.
-	 * @param dockable the dockable that looses the focus
-	 * @return <code>true</code> if this listener approves the action,
-	 * <code>false</code> to speak out a veto
-	 */
-	public boolean willLoseFocus( CDockable dockable );
+  /**
+   * Called before focus is transferred to <code>dockable</code>.
+   *
+   * @param dockable the dockable that gets the focus
+   * @return <code>true</code> if this listener approves the action,
+   * <code>false</code> to speak out a veto
+   */
+  public boolean willGainFocus(CDockable dockable);
+
+  /**
+   * Called before focus is transferred from <code>dockable</code>.
+   *
+   * @param dockable the dockable that looses the focus
+   * @return <code>true</code> if this listener approves the action,
+   * <code>false</code> to speak out a veto
+   */
+  public boolean willLoseFocus(CDockable dockable);
 }

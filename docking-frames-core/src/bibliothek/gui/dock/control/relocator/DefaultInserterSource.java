@@ -30,42 +30,45 @@ import bibliothek.gui.dock.station.StationDropItem;
 import bibliothek.gui.dock.station.StationDropOperation;
 
 /**
- * Default implementation of {@link InserterSource}. 
+ * Default implementation of {@link InserterSource}.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultInserterSource implements InserterSource{
-	private DockStation parent;
-	private StationDropOperation operation;
-	private StationDropItem item;
-	
-	/**
-	 * Creates a new {@link InserterSource}.
-	 * @param parent the future parent
-	 * @param item detailed information about the dropping child
-	 */
-	public DefaultInserterSource( DockStation parent, StationDropItem item ){
-		this.parent = parent;
-		this.item = item;
-	}
-	
-	public DockStation getParent(){
-		return parent;
-	}
+public class DefaultInserterSource implements InserterSource {
+  private DockStation parent;
+  private StationDropOperation operation;
+  private StationDropItem item;
 
-	public StationDropItem getItem(){
-		return item;
-	}
+  /**
+   * Creates a new {@link InserterSource}.
+   *
+   * @param parent the future parent
+   * @param item   detailed information about the dropping child
+   */
+  public DefaultInserterSource(DockStation parent, StationDropItem item) {
+    this.parent = parent;
+    this.item = item;
+  }
 
-	/**
-	 * Sets the result of {@link #getOperation()}.
-	 * @param operation the operation that might be executed, can be <code>null</code>
-	 */
-	public void setOperation( StationDropOperation operation ){
-		this.operation = operation;
-	}
-	
-	public StationDropOperation getOperation(){
-		return operation;
-	}
-	
+  public DockStation getParent() {
+    return parent;
+  }
+
+  public StationDropItem getItem() {
+    return item;
+  }
+
+  public StationDropOperation getOperation() {
+    return operation;
+  }
+
+  /**
+   * Sets the result of {@link #getOperation()}.
+   *
+   * @param operation the operation that might be executed, can be <code>null</code>
+   */
+  public void setOperation(StationDropOperation operation) {
+    this.operation = operation;
+  }
+
 }

@@ -33,17 +33,19 @@ import bibliothek.util.Path;
 
 /**
  * Allows to set the {@link ColorScheme} of the {@link BubbleTheme}.
+ *
  * @author Benjamin Sigg
  */
-public class BubbleColorSchemePreference extends ChoiceDockPropertyPreference<ColorScheme>{
-	/**
-	 * Creates a new preference.
-	 * @param properties the properties which is read by this preference
-	 */
-	public BubbleColorSchemePreference( DockProperties properties ){
-		super( properties, BubbleTheme.BUBBLE_COLOR_SCHEME, new Path( "dock.theme.bubble.colorscheme" ), new BubbleColorSchemeChoice( properties ) );
-		
-		setLabelId( "preference.theme.bubble.color.label" );
-		setDescriptionId( "preference.theme.bubble.color.description" );
-	}
+public class BubbleColorSchemePreference extends ChoiceDockPropertyPreference<ColorScheme> {
+  /**
+   * Creates a new preference.
+   *
+   * @param properties the properties which is read by this preference
+   */
+  public BubbleColorSchemePreference(DockProperties properties) {
+    super(properties, BubbleTheme.BUBBLE_COLOR_SCHEME, new Path("dock.theme.bubble.colorscheme"), new BubbleColorSchemeChoice(properties));
+
+    setLabelId("preference.theme.bubble.color.label");
+    setDescriptionId("preference.theme.bubble.color.description");
+  }
 }

@@ -2,23 +2,23 @@
  * Bibliothek - DockingFrames
  * Library built on Java/Swing, allows the user to "drag and drop"
  * panels containing any Swing-Component the developer likes to add.
- * 
+ * <p>
  * Copyright (C) 2007 Benjamin Sigg
- * 
+ * <p>
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- *
+ * <p>
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- * 
+ * <p>
  * Benjamin Sigg
  * benjamin_sigg@gmx.ch
  * CH - Switzerland
@@ -39,40 +39,40 @@ import bibliothek.gui.dock.control.relocator.Merger;
  * {@link StackDockStation} into another <code>StackDockStation</code>.
  * @author Benjamin Sigg
  */
-public class NoStackAcceptance extends AbstractAcceptance{
-	@Override
-    public boolean accept( DockStation parent, Dockable child ) {
-        if( parent instanceof StackDockStation ){
-            if( child.asDockStation() instanceof StackDockStation ){
-            	DockController controller = parent.getController();
-            	if( controller != null ){
-            		Merger merger = controller.getRelocator().getMerger();
-            		if( merger != null ){
-            			return merger.canMerge( null, parent, child.asDockStation() );
-            		}
-            	}
-
-            	return false;
-            }
+public class NoStackAcceptance extends AbstractAcceptance {
+  @Override
+  public boolean accept(DockStation parent, Dockable child) {
+    if (parent instanceof StackDockStation) {
+      if (child.asDockStation() instanceof StackDockStation) {
+        DockController controller = parent.getController();
+        if (controller != null) {
+          Merger merger = controller.getRelocator().getMerger();
+          if (merger != null) {
+            return merger.canMerge(null, parent, child.asDockStation());
+          }
         }
-        
-        return true;
+
+        return false;
+      }
     }
 
-    @Override
-    public boolean accept( DockStation parent, Dockable child, Dockable next ) {
-        if( parent instanceof StackDockStation ){
-            return false;
-        }
-        
-        if( child instanceof StackDockStation ){
-            return false;
-        }
-        
-        if( next instanceof StackDockStation ){
-            return false;
-        }
-        
-        return true;
+    return true;
+  }
+
+  @Override
+  public boolean accept(DockStation parent, Dockable child, Dockable next) {
+    if (parent instanceof StackDockStation) {
+      return false;
     }
+
+    if (child instanceof StackDockStation) {
+      return false;
+    }
+
+    if (next instanceof StackDockStation) {
+      return false;
+    }
+
+    return true;
+  }
 }

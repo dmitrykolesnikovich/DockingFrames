@@ -33,39 +33,43 @@ import bibliothek.gui.dock.action.DockActionSource;
 
 /**
  * A {@link DockTitleEvent} used to inform a {@link DockTitle} about a set of {@link DockAction}s that should be used.
+ *
  * @author Benjamin Sigg
  */
 public class ActionsDockTitleEvent extends DockTitleEvent {
-	private DockActionSource suggestions;
+  private DockActionSource suggestions;
 
-	/**
-	 * Creates a new event.
-     * @param dockable the {@link Dockable} for which the target-title
-     * is rendered
-	 * @param suggestions the set of actions to use, can be <code>null</code>
-	 */
-	public ActionsDockTitleEvent( Dockable dockable, DockActionSource suggestions ){
-		super( dockable );
-		this.suggestions = suggestions;
-	}
-	
-	/**
-	 * Creates a new event.
-     * @param station the station on which the target-title is displayed
-     * @param dockable the {@link Dockable} for which the target-title
-     * is rendered
-	 * @param suggestions the set of actions to use, can be <code>null</code>
-	 */
-	public ActionsDockTitleEvent( DockStation station, Dockable dockable, DockActionSource suggestions ){
-		super( station, dockable );
-		this.suggestions = suggestions;
-	}
+  /**
+   * Creates a new event.
+   *
+   * @param dockable    the {@link Dockable} for which the target-title
+   *                    is rendered
+   * @param suggestions the set of actions to use, can be <code>null</code>
+   */
+  public ActionsDockTitleEvent(Dockable dockable, DockActionSource suggestions) {
+    super(dockable);
+    this.suggestions = suggestions;
+  }
 
-	/**
-	 * Gets the set of {@link DockAction}s that should be used.
-	 * @return the actions, can be <code>null</code>
-	 */
-	public DockActionSource getSuggestions(){
-		return suggestions;	
-	}
+  /**
+   * Creates a new event.
+   *
+   * @param station     the station on which the target-title is displayed
+   * @param dockable    the {@link Dockable} for which the target-title
+   *                    is rendered
+   * @param suggestions the set of actions to use, can be <code>null</code>
+   */
+  public ActionsDockTitleEvent(DockStation station, Dockable dockable, DockActionSource suggestions) {
+    super(station, dockable);
+    this.suggestions = suggestions;
+  }
+
+  /**
+   * Gets the set of {@link DockAction}s that should be used.
+   *
+   * @return the actions, can be <code>null</code>
+   */
+  public DockActionSource getSuggestions() {
+    return suggestions;
+  }
 }

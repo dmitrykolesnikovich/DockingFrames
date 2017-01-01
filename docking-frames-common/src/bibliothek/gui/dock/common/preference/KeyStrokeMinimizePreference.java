@@ -25,27 +25,29 @@
  */
 package bibliothek.gui.dock.common.preference;
 
-import javax.swing.KeyStroke;
-
 import bibliothek.extension.gui.dock.preference.preferences.DockPropertyPreference;
 import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.common.intern.CDockable;
 import bibliothek.gui.dock.util.DockProperties;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+
 /**
  * {@link KeyStroke} that will minimize a {@link CDockable}.
+ *
  * @author Benjamin Sigg
  */
-public class KeyStrokeMinimizePreference extends DockPropertyPreference<KeyStroke>{
-    /**
-     * Creates a new preference
-     * @param properties the properties to access
-     */
-    public KeyStrokeMinimizePreference( DockProperties properties ){
-        super( properties, CControl.KEY_GOTO_MINIMIZED, Path.TYPE_KEYSTROKE_PATH, new Path( "dock.common.control.minimize" ) );
-        
-        setLabelId( "preference.shortcut.minimize.label" );
-        setDescriptionId( "preference.shortcut.minimize.description" );
-    }
+public class KeyStrokeMinimizePreference extends DockPropertyPreference<KeyStroke> {
+  /**
+   * Creates a new preference
+   *
+   * @param properties the properties to access
+   */
+  public KeyStrokeMinimizePreference(DockProperties properties) {
+    super(properties, CControl.KEY_GOTO_MINIMIZED, Path.TYPE_KEYSTROKE_PATH, new Path("dock.common.control.minimize"));
+
+    setLabelId("preference.shortcut.minimize.label");
+    setDescriptionId("preference.shortcut.minimize.description");
+  }
 }

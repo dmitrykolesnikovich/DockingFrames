@@ -28,12 +28,12 @@ package bibliothek.gui.dock.common;
 /**
  * A <code>DestroyHook</code> is added to a {@link CControl}. When the {@link CControl}
  * is destroyed, then {@link #destroy()} is invoked as well.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public interface DestroyHook {
-    /**
-     * Informs this hook that the {@link CControl} has been destroyed.
-     */
-    public void destroy();
+  /**
+   * Informs this hook that the {@link CControl} has been destroyed.
+   */
+  public void destroy();
 }

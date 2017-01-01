@@ -33,33 +33,35 @@ import bibliothek.gui.dock.station.layer.LayerPriority;
 
 /**
  * Describes the area covered by the currently open {@link FlapWindow}.
+ *
  * @author Benjamin Sigg
  */
-public class WindowDropLayer extends DefaultDropLayer{
-	private FlapDockStation station;
-	
-	/**
-	 * Creates a new layer.
-	 * @param station the owner of this level
-	 */
-	public WindowDropLayer( FlapDockStation station ){
-		super( station );
-		this.station = station;
-		setPriority( LayerPriority.FLOAT_ANCHORED );
-	}
-	
-	@Override
-	public boolean contains( int x, int y ){
-		FlapWindow window = station.getFlapWindow();
-		if( window != null && window.isWindowVisible() ){
-			return window.getWindowBounds().contains( x, y );
-		}
-		return false;
-	}
-	
-	@Override
-	public DockStationDropLayer modify( DockStationDropLayer child ){
-		child.setPriority( getPriority().merge( child.getPriority() ));
-		return child;
-	}
+public class WindowDropLayer extends DefaultDropLayer {
+  private FlapDockStation station;
+
+  /**
+   * Creates a new layer.
+   *
+   * @param station the owner of this level
+   */
+  public WindowDropLayer(FlapDockStation station) {
+    super(station);
+    this.station = station;
+    setPriority(LayerPriority.FLOAT_ANCHORED);
+  }
+
+  @Override
+  public boolean contains(int x, int y) {
+    FlapWindow window = station.getFlapWindow();
+    if (window != null && window.isWindowVisible()) {
+      return window.getWindowBounds().contains(x, y);
+    }
+    return false;
+  }
+
+  @Override
+  public DockStationDropLayer modify(DockStationDropLayer child) {
+    child.setPriority(getPriority().merge(child.getPriority()));
+    return child;
+  }
 }

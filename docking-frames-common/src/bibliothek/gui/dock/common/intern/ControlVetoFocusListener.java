@@ -12,45 +12,45 @@ import bibliothek.util.FrameworkOnly;
 /**
  * This listener observes a {@link DockController} and forwards
  * all calls to a {@link CVetoFocusListener}.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public class ControlVetoFocusListener implements FocusVetoListener{
-	private CControl control;
-	private CVetoFocusListener callback;
-	
-	/**
-	 * Creates a new veto focus listener.
-	 * @param control the control in whose realm this listener operates
-	 * @param callback the callback to be called if an event is triggered
-	 */
-	public ControlVetoFocusListener( CControl control, CVetoFocusListener callback ){
-		this.control = control;
-		this.callback = callback;
-	}
+public class ControlVetoFocusListener implements FocusVetoListener {
+  private CControl control;
+  private CVetoFocusListener callback;
 
-	private FocusVeto veto( Dockable dockable ){
-		Dockable current = control.intern().getController().getFocusedDockable();
-		
-		if( current != dockable ){
-			if( current instanceof CommonDockable ){
-				if( !callback.willLoseFocus( ((CommonDockable)current).getDockable() ))
-					return FocusVeto.VETO;
-			}
+  /**
+   * Creates a new veto focus listener.
+   *
+   * @param control  the control in whose realm this listener operates
+   * @param callback the callback to be called if an event is triggered
+   */
+  public ControlVetoFocusListener(CControl control, CVetoFocusListener callback) {
+    this.control = control;
+    this.callback = callback;
+  }
 
-			if( dockable instanceof CommonDockable ){
-				if( !callback.willGainFocus( ((CommonDockable)dockable).getDockable() ))
-					return FocusVeto.VETO;
-			}
-		}
-		return FocusVeto.NONE;
-	}
-	
-	public FocusVeto vetoFocus( FocusController controller, DockTitle title ){
-		return veto( title.getDockable() );
-	}
+  private FocusVeto veto(Dockable dockable) {
+    Dockable current = control.intern().getController().getFocusedDockable();
 
-	public FocusVeto vetoFocus( FocusController controller, Dockable dockable ){
-		return veto( dockable );
-	}
+    if (current != dockable) {
+      if (current instanceof CommonDockable) {
+        if (!callback.willLoseFocus(((CommonDockable)current).getDockable())) return FocusVeto.VETO;
+      }
+
+      if (dockable instanceof CommonDockable) {
+        if (!callback.willGainFocus(((CommonDockable)dockable).getDockable())) return FocusVeto.VETO;
+      }
+    }
+    return FocusVeto.NONE;
+  }
+
+  public FocusVeto vetoFocus(FocusController controller, DockTitle title) {
+    return veto(title.getDockable());
+  }
+
+  public FocusVeto vetoFocus(FocusController controller, Dockable dockable) {
+    return veto(dockable);
+  }
 }

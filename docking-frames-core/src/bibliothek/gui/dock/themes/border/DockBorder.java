@@ -30,11 +30,14 @@ import bibliothek.gui.dock.util.UIValue;
 import bibliothek.util.Path;
 
 /**
- * An {@link UIValue} observing the {@link ThemeManager} for 
+ * An {@link UIValue} observing the {@link ThemeManager} for
  * a {@link BorderModifier}.
+ *
  * @author Benjamin Sigg
  */
-public interface DockBorder extends UIValue<BorderModifier>{
-	/** the kind of {@link UIValue} this is */
-	public static final Path KIND = new Path( "DockBorder" );
+public interface DockBorder extends UIValue<BorderModifier> {
+  /**
+   * the kind of {@link UIValue} this is
+   */
+  public static final Path KIND = new Path("DockBorder");
 }

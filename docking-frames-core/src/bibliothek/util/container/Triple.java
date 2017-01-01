@@ -31,63 +31,64 @@ package bibliothek.util.container;
 
 /**
  * An object containing three generic fields.
- * @author Benjamin Sigg
+ *
  * @param <A> type of the first field
  * @param <B> type of the second field
  * @param <C> type of the third field
+ * @author Benjamin Sigg
  */
-public class Triple<A, B, C> extends Tuple<A, B>{
-	private C c;
-	
-	public Triple(){
-        // nothing to do
-	}
-	
-	public Triple( A a, B b, C c ){
-		super( a, b );
-		this.c = c;
-	}
-	
-	public void setC( C c ){
-		this.c = c;
-	}
-	
-	public C getC(){
-		return c;
-	}
-	
-    @SuppressWarnings("unchecked")
-    @Override
-	public Triple<A, B, C> clone(){
-		return (Triple<A, B, C>)super.clone();
-	}
-	
-    @SuppressWarnings("unchecked")
-	@Override
-	public boolean equals( Object o ){
-		if (o == this) {
-			return true;
-		}
+public class Triple<A, B, C> extends Tuple<A, B> {
+  private C c;
 
-		if (o == null) {
-			return false;
-		}
+  public Triple() {
+    // nothing to do
+  }
 
-		if (o.getClass() == this.getClass()){
-			Triple s = (Triple)o;
-			return super.equals( o ) && ( (s.c == null && c == null) || (s.c != null && s.c.equals( c )));
-		}
+  public Triple(A a, B b, C c) {
+    super(a, b);
+    this.c = c;
+  }
 
-		return false;
-	}
-	
-    @Override
-	public int hashCode(){
-		return super.hashCode() ^ (c == null ? 0 : c.hashCode());
-	}
-	
-    @Override
-    public String toString(){
-		return getClass().getName() + "[a=" + getA() + ", b=" + getB() + ", c=" + c + "]";
-	}
+  public C getC() {
+    return c;
+  }
+
+  public void setC(C c) {
+    this.c = c;
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public Triple<A, B, C> clone() {
+    return (Triple<A, B, C>)super.clone();
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) {
+      return true;
+    }
+
+    if (o == null) {
+      return false;
+    }
+
+    if (o.getClass() == this.getClass()) {
+      Triple s = (Triple)o;
+      return super.equals(o) && ((s.c == null && c == null) || (s.c != null && s.c.equals(c)));
+    }
+
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode() ^ (c == null ? 0 : c.hashCode());
+  }
+
+  @Override
+  public String toString() {
+    return getClass().getName() + "[a=" + getA() + ", b=" + getB() + ", c=" + c + "]";
+  }
 }

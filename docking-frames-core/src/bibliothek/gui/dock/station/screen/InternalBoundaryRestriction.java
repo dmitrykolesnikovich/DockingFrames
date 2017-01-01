@@ -25,59 +25,59 @@
  */
 package bibliothek.gui.dock.station.screen;
 
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Rectangle;
-
-import javax.swing.JDesktopPane;
-
 import bibliothek.gui.dock.station.screen.window.InternalScreenDockWindowFactory;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * This boundary restriction is based on a {@link JDesktopPane}. It makes sure that the top border part of a
  * window is always visible.
+ *
  * @author Benjamin Sigg
  * @see InternalScreenDockWindowFactory
  */
-public class InternalBoundaryRestriction implements BoundaryRestriction{
-	private JDesktopPane desktop;
-	
-	/** the size {@link #desktop} had when calling code the last time */
-	private Dimension lastSize = null;
-	
-	public InternalBoundaryRestriction( JDesktopPane desktop ){
-		this.desktop = desktop;
-	}
-	
-	public Rectangle check( ScreenDockWindow window ){
-		return validate( window.getWindowBounds(), window.getTitleCenter() );
-	}
+public class InternalBoundaryRestriction implements BoundaryRestriction {
+  private JDesktopPane desktop;
 
-	public Rectangle check( ScreenDockWindow window, Rectangle target ){
-		return validate( target, window.getTitleCenter() );
-	}
-	
-	protected Rectangle validate( Rectangle destination, Point center ){
-		if( desktop.isVisible() ){
-			if( lastSize == null || lastSize.width == 0 || lastSize.height == 0 ){
-				lastSize = desktop.getSize();
-			}
-			else{
-				if( center == null ){
-					center = new Point( destination.width/2, destination.height/2 );
-				}
-				
-				Rectangle result = new Rectangle( destination );
-				
-				result.x = Math.max( -center.x, result.x );
-				result.x = Math.min( result.x, desktop.getWidth() - center.x );
-				
-				result.y = Math.max( -center.y, result.y );
-				result.y = Math.min( desktop.getHeight() - center.y, result.y );
-				
-				return result;
-			}
-		}
-		return null;
-	}
+  /**
+   * the size {@link #desktop} had when calling code the last time
+   */
+  private Dimension lastSize = null;
+
+  public InternalBoundaryRestriction(JDesktopPane desktop) {
+    this.desktop = desktop;
+  }
+
+  public Rectangle check(ScreenDockWindow window) {
+    return validate(window.getWindowBounds(), window.getTitleCenter());
+  }
+
+  public Rectangle check(ScreenDockWindow window, Rectangle target) {
+    return validate(target, window.getTitleCenter());
+  }
+
+  protected Rectangle validate(Rectangle destination, Point center) {
+    if (desktop.isVisible()) {
+      if (lastSize == null || lastSize.width == 0 || lastSize.height == 0) {
+        lastSize = desktop.getSize();
+      }
+      else {
+        if (center == null) {
+          center = new Point(destination.width / 2, destination.height / 2);
+        }
+
+        Rectangle result = new Rectangle(destination);
+
+        result.x = Math.max(-center.x, result.x);
+        result.x = Math.min(result.x, desktop.getWidth() - center.x);
+
+        result.y = Math.max(-center.y, result.y);
+        result.y = Math.min(desktop.getHeight() - center.y, result.y);
+
+        return result;
+      }
+    }
+    return null;
+  }
 }

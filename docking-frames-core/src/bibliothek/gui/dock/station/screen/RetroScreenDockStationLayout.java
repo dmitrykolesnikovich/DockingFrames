@@ -29,99 +29,118 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Old version of {@link ScreenDockStationLayout}, kept for backwards compatibility. Should not 
+ * Old version of {@link ScreenDockStationLayout}, kept for backwards compatibility. Should not
  * be used by clients.
+ *
  * @author Benjamin Sigg
  */
 public class RetroScreenDockStationLayout extends ScreenDockStationLayout {
-	private List<Entry> entries = new ArrayList<Entry>();
+  private List<Entry> entries = new ArrayList<Entry>();
+
+  /**
+   * Adds a new entry to this layout.
+   *
+   * @param id     the id of the entry
+   * @param x      the x coordinate
+   * @param y      the y coordinate
+   * @param width  the width
+   * @param height the height
+   */
+  public void add(int id, int x, int y, int width, int height) {
+    Entry entry = new Entry();
+    entry.id = id;
+    entry.x = x;
+    entry.y = y;
+    entry.width = width;
+    entry.height = height;
+    entries.add(entry);
+  }
+
+  /**
+   * Gets the number of entries in this layout.
+   *
+   * @return the number of entries
+   */
+  public int size() {
+    return entries.size();
+  }
+
+  /**
+   * Gets the id of the index'th entry.
+   *
+   * @param index the index of the entry
+   * @return the id
+   */
+  public int id(int index) {
+    return entries.get(index).id;
+  }
+
+  /**
+   * Gets the x coordinate of the index'th entry.
+   *
+   * @param index the index of the entry
+   * @return the coordinate
+   */
+  public int x(int index) {
+    return entries.get(index).x;
+  }
+
+  /**
+   * Gets the y coordinate of the index'th entry.
+   *
+   * @param index the index of the entry
+   * @return the coordinate
+   */
+  public int y(int index) {
+    return entries.get(index).y;
+  }
+
+  /**
+   * Gets the width of the index'th entry.
+   *
+   * @param index the index of the entry
+   * @return the width
+   */
+  public int width(int index) {
+    return entries.get(index).width;
+  }
+
+  /**
+   * Gets the height of the index'th entry.
+   *
+   * @param index the index of the entry
+   * @return the height
+   */
+  public int height(int index) {
+    return entries.get(index).height;
+  }
+
+  /**
+   * An entry of this layout
+   *
+   * @author Benjamin Sigg
+   */
+  private static class Entry {
+    /**
+     * the id of the entry
+     */
+    public int id;
 
     /**
-     * Adds a new entry to this layout.
-     * @param id the id of the entry
-     * @param x the x coordinate
-     * @param y the y coordinate
-     * @param width the width
-     * @param height the height
+     * x-coordinate
      */
-    public void add( int id, int x, int y, int width, int height ){
-        Entry entry = new Entry();
-        entry.id = id;
-        entry.x = x;
-        entry.y = y;
-        entry.width = width;
-        entry.height = height;
-        entries.add( entry );
-    }
-    
+    public int x;
     /**
-     * Gets the number of entries in this layout.
-     * @return the number of entries
+     * y-coordinate
      */
-    public int size(){
-        return entries.size();
-    }
-    
+    public int y;
     /**
-     * Gets the id of the index'th entry.
-     * @param index the index of the entry
-     * @return the id
+     * width in pixels
      */
-    public int id( int index ){
-        return entries.get( index ).id;
-    }
-
+    public int width;
     /**
-     * Gets the x coordinate of the index'th entry.
-     * @param index the index of the entry
-     * @return the coordinate
+     * height in pixels
      */
-    public int x( int index ){
-        return entries.get( index ).x;
-    }
-    
-    /**
-     * Gets the y coordinate of the index'th entry.
-     * @param index the index of the entry
-     * @return the coordinate
-     */
-    public int y( int index ){
-        return entries.get( index ).y;
-    }
-    
-    /**
-     * Gets the width of the index'th entry.
-     * @param index the index of the entry
-     * @return the width
-     */
-    public int width( int index ){
-        return entries.get( index ).width;
-    }
-    
-    /**
-     * Gets the height of the index'th entry.
-     * @param index the index of the entry
-     * @return the height
-     */
-    public int height( int index ){
-        return entries.get( index ).height;
-    }
-    
-    /**
-     * An entry of this layout
-     * @author Benjamin Sigg
-     */
-    private static class Entry{
-        /** the id of the entry */
-        public int id;
-        
-        /** x-coordinate */
-        public int x;
-        /** y-coordinate */
-        public int y;
-        /** width in pixels */
-        public int width;
-        /** height in pixels */
-        public int height;
-    }
+    public int height;
+  }
 }

@@ -25,83 +25,88 @@
  */
 package bibliothek.gui.dock.common.perspective;
 
+import bibliothek.gui.dock.common.intern.CommonMultipleDockableFactory;
+import bibliothek.gui.dock.perspective.PerspectiveElement;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import bibliothek.gui.dock.common.intern.CommonMultipleDockableFactory;
-import bibliothek.gui.dock.perspective.PerspectiveElement;
-
 /**
  * A helper class for {@link CommonMultipleDockableFactory}, used when interacting with a {@link CPerspective}.
+ *
  * @author Benjamin Sigg
  */
-public class CPerspectiveMultipleIdentifierCollection{
-	private CPerspective perspective;
+public class CPerspectiveMultipleIdentifierCollection {
+  private CPerspective perspective;
 
-	private Map<String, MultipleCDockablePerspective> ids = new HashMap<String, MultipleCDockablePerspective>();
-	
-	/**
-	 * Creates a new object
-	 * @param factoryId the unique identifier of the factory that is using this collection
-	 * @param perspective the owner of this object, not <code>null</code>
-	 */
-	public CPerspectiveMultipleIdentifierCollection( String factoryId, CPerspective perspective ){
-		this.perspective = perspective;
-		
-		Iterator<PerspectiveElement> iterator = perspective.elements();
-		while( iterator.hasNext() ){
-			PerspectiveElement element = iterator.next();
-			if( element instanceof CommonElementPerspective ){
-				CElementPerspective celement = ((CommonElementPerspective)element).getElement();
-				if( celement instanceof MultipleCDockablePerspective ){
-					MultipleCDockablePerspective dockable = (MultipleCDockablePerspective)celement;
-					if( dockable.getFactoryID().equals( factoryId ) && dockable.getUniqueId() != null ){
-						ids.put( dockable.getUniqueId(), dockable );
-					}
-				}
-			}
-		}
-	}
-	
-	/**
-	 * Gets the owner of this access object.
-	 * @return the owner
-	 */
-	public CPerspective getPerspective(){
-		return perspective;
-	}
-	
-	/**
-	 * Searches or creates a unique identifier that matches <code>element</code>.
-	 * @param element the element whose identifier is searched
-	 * @return the identifier, may be <code>null</code>
-	 */
-	public String getUniqueId( MultipleCDockablePerspective element ){
-		String id = element.getUniqueId();
-		if( id == null ){
-			String factory = element.getFactoryID();
-			int count = 0;
-	        id = count + " " + factory;
-	        while( ids.containsKey( id )){
-	            count++;
-	            id = count + " " + factory;
-	        }
-	        element.setUniqueId( id );
-		}
-		MultipleCDockablePerspective old = ids.put( id, element );
-		if( old != null && old != element ){
-			throw new IllegalStateException( "unique identifier collision, id='" + id + "', old item='" + old + "', new item='" + element + "'");
-		}
-		return id;
-	}
+  private Map<String, MultipleCDockablePerspective> ids = new HashMap<String, MultipleCDockablePerspective>();
 
-	/**
-	 * Stores the element <code>perspective</code> using the identifier <code>id</code>.
-	 * @param id the unique identifier of <code>perspective</code>
-	 * @param perspective the new perspective
-	 */
-	public void putDockable( String id, MultipleCDockablePerspective perspective ){
-		ids.put( id, perspective );
-	}
+  /**
+   * Creates a new object
+   *
+   * @param factoryId   the unique identifier of the factory that is using this collection
+   * @param perspective the owner of this object, not <code>null</code>
+   */
+  public CPerspectiveMultipleIdentifierCollection(String factoryId, CPerspective perspective) {
+    this.perspective = perspective;
+
+    Iterator<PerspectiveElement> iterator = perspective.elements();
+    while (iterator.hasNext()) {
+      PerspectiveElement element = iterator.next();
+      if (element instanceof CommonElementPerspective) {
+        CElementPerspective celement = ((CommonElementPerspective)element).getElement();
+        if (celement instanceof MultipleCDockablePerspective) {
+          MultipleCDockablePerspective dockable = (MultipleCDockablePerspective)celement;
+          if (dockable.getFactoryID().equals(factoryId) && dockable.getUniqueId() != null) {
+            ids.put(dockable.getUniqueId(), dockable);
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Gets the owner of this access object.
+   *
+   * @return the owner
+   */
+  public CPerspective getPerspective() {
+    return perspective;
+  }
+
+  /**
+   * Searches or creates a unique identifier that matches <code>element</code>.
+   *
+   * @param element the element whose identifier is searched
+   * @return the identifier, may be <code>null</code>
+   */
+  public String getUniqueId(MultipleCDockablePerspective element) {
+    String id = element.getUniqueId();
+    if (id == null) {
+      String factory = element.getFactoryID();
+      int count = 0;
+      id = count + " " + factory;
+      while (ids.containsKey(id)) {
+        count++;
+        id = count + " " + factory;
+      }
+      element.setUniqueId(id);
+    }
+    MultipleCDockablePerspective old = ids.put(id, element);
+    if (old != null && old != element) {
+      throw new IllegalStateException("unique identifier collision, id='" + id + "', old item='" + old + "', new item='" + element + "'");
+    }
+    return id;
+  }
+
+  /**
+   * Stores the element <code>perspective</code> using the identifier <code>id</code>.
+   *
+   * @param id          the unique identifier of <code>perspective</code>
+   * @param perspective the new perspective
+   */
+  public void putDockable(String id, MultipleCDockablePerspective perspective) {
+    ids.put(id, perspective);
+  }
 }

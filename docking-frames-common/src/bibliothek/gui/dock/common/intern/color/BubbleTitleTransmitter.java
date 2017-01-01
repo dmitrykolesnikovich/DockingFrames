@@ -25,88 +25,72 @@
  */
 package bibliothek.gui.dock.common.intern.color;
 
-import java.awt.Color;
-
 import bibliothek.extension.gui.dock.theme.BubbleTheme;
 import bibliothek.gui.dock.common.ColorMap;
 import bibliothek.gui.dock.util.color.ColorManager;
 import bibliothek.util.Colors;
 
+import java.awt.*;
+
 /**
  * A connection between a {@link BubbleTheme}-title and the {@link ColorMap}.
+ *
  * @author Benjamin Sigg
  */
 public class BubbleTitleTransmitter extends TitleColorTransmitter {
-    private static final String[] KEYS = { 
-        "title.background.top.active.mouse",
-        "title.background.top.active",
-        "title.background.top.inactive.mouse",
-        "title.background.top.inactive",
-        
-        "title.background.bottom.active.mouse",
-        "title.background.bottom.active",
-        "title.background.bottom.inactive.mouse",
-        "title.background.bottom.inactive",
-        
-        "title.foreground.active.mouse",
-        "title.foreground.active",
-        "title.foreground.inactive.mouse",
-        "title.foreground.inactive" };
-        
-    /**
-     * Creates a new transmitter.
-     * @param manager the source of colors
-     */
-    public BubbleTitleTransmitter( ColorManager manager ){
-        super( manager, KEYS );
-    }
+  private static final String[] KEYS =
+    {"title.background.top.active.mouse", "title.background.top.active", "title.background.top.inactive.mouse",
+      "title.background.top.inactive",
 
-    @Override
-    protected Color convert( Color source, String key ) {
-        if( isFocused( key ))
-            return convertFocused( Colors.diffMirror( source, 0.2 ), key );
-        
-        if( key.contains( "foreground" ) )
-            return Colors.diffMirror( source, 1.0 );
-        
-        if( "title.background.top.inactive".equals( key ))
-            return Colors.darker( source, 0.3 );
-        if( "title.background.bottom.inactive".equals( key ))
-            return Colors.brighter( source, 0.3 );
-        
-        if( "title.background.top.inactive.mouse".equals( key ))
-            return Colors.fuller( Colors.darker( source, 0.3 ), 0.3 );
-        if( "title.background.bottom.inactive.mouse".equals( key ))
-            return Colors.fuller( Colors.brighter( source, 0.3 ), 0.3 );
-        
-        return source;
-    }
+      "title.background.bottom.active.mouse", "title.background.bottom.active", "title.background.bottom.inactive.mouse",
+      "title.background.bottom.inactive",
 
-    @Override
-    protected Color convertFocused( Color source, String key ) {
-        if( key.contains( "foreground" ) )
-            return Colors.diffMirror( source, 1.0 );
-        
-        if( "title.background.top.active".equals( key ))
-            return Colors.darker( source, 0.3 );
-        if( "title.background.bottom.active".equals( key ))
-            return Colors.brighter( source, 0.3 );
-        
-        if( "title.background.top.active.mouse".equals( key ))
-            return Colors.fuller( Colors.darker( source, 0.3 ), 0.3 );
-        if( "title.background.bottom.active.mouse".equals( key ))
-            return Colors.fuller( Colors.brighter( source, 0.3 ), 0.3 );
-        
-        return source;
-    }
+      "title.foreground.active.mouse", "title.foreground.active", "title.foreground.inactive.mouse", "title.foreground.inactive"};
 
-    @Override
-    protected boolean isFocused( String id ) {
-        return id.contains( "active" ) && !id.contains( "inactive" );
-    }
+  /**
+   * Creates a new transmitter.
+   *
+   * @param manager the source of colors
+   */
+  public BubbleTitleTransmitter(ColorManager manager) {
+    super(manager, KEYS);
+  }
 
-    @Override
-    protected boolean isForeground( String id ) {
-        return id.contains( "foreground" );
-    }
+  @Override
+  protected Color convert(Color source, String key) {
+    if (isFocused(key)) return convertFocused(Colors.diffMirror(source, 0.2), key);
+
+    if (key.contains("foreground")) return Colors.diffMirror(source, 1.0);
+
+    if ("title.background.top.inactive".equals(key)) return Colors.darker(source, 0.3);
+    if ("title.background.bottom.inactive".equals(key)) return Colors.brighter(source, 0.3);
+
+    if ("title.background.top.inactive.mouse".equals(key)) return Colors.fuller(Colors.darker(source, 0.3), 0.3);
+    if ("title.background.bottom.inactive.mouse".equals(key)) return Colors.fuller(Colors.brighter(source, 0.3), 0.3);
+
+    return source;
+  }
+
+  @Override
+  protected Color convertFocused(Color source, String key) {
+    if (key.contains("foreground")) return Colors.diffMirror(source, 1.0);
+
+    if ("title.background.top.active".equals(key)) return Colors.darker(source, 0.3);
+    if ("title.background.bottom.active".equals(key)) return Colors.brighter(source, 0.3);
+
+    if ("title.background.top.active.mouse".equals(key)) return Colors.fuller(Colors.darker(source, 0.3), 0.3);
+    if ("title.background.bottom.active.mouse".equals(key)) return Colors.fuller(Colors.brighter(source, 0.3), 0.3);
+
+    return source;
+  }
+
+  @Override
+  protected boolean isFocused(String id) {
+    return id.contains("active") && !id.contains("inactive");
+  }
+
+  @Override
+  protected boolean isForeground(String id) {
+    return id.contains("foreground");
+  }
 }

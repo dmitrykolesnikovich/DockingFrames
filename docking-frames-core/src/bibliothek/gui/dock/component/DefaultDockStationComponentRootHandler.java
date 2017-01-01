@@ -25,36 +25,38 @@
  */
 package bibliothek.gui.dock.component;
 
-import java.awt.Component;
-
 import bibliothek.gui.dock.station.DisplayerCollection;
 import bibliothek.gui.dock.station.DockableDisplayer;
 
+import java.awt.*;
+
 /**
  * This root handler stops traversing {@link Component}s when discovering a {@link DockableDisplayer}
+ *
  * @author Benjamin Sigg
  */
-public class DefaultDockStationComponentRootHandler extends DockComponentRootHandler{
-	/**
-	 * All the known displayers.
-	 */
-	private DisplayerCollection displayers;
-	
-	/**
-	 * Creates a new handler.
-	 * @param root the components represented by <code>this</code>, not <code>null</code>
-	 * @param displayers all the {@link DockableDisplayer}s, not <code>null</code>
-	 */
-	public DefaultDockStationComponentRootHandler( DockComponentRoot root, DisplayerCollection displayers ){
-		super( root );
-		this.displayers = displayers;
-	}
-	
-	@Override
-	protected TraverseResult shouldTraverse( Component component ) {
-		if( displayers.isDisplayerComponent( component )){
-			return TraverseResult.EXCLUDE;
-		}
-		return TraverseResult.INCLUDE_CHILDREN;
-	}
+public class DefaultDockStationComponentRootHandler extends DockComponentRootHandler {
+  /**
+   * All the known displayers.
+   */
+  private DisplayerCollection displayers;
+
+  /**
+   * Creates a new handler.
+   *
+   * @param root       the components represented by <code>this</code>, not <code>null</code>
+   * @param displayers all the {@link DockableDisplayer}s, not <code>null</code>
+   */
+  public DefaultDockStationComponentRootHandler(DockComponentRoot root, DisplayerCollection displayers) {
+    super(root);
+    this.displayers = displayers;
+  }
+
+  @Override
+  protected TraverseResult shouldTraverse(Component component) {
+    if (displayers.isDisplayerComponent(component)) {
+      return TraverseResult.EXCLUDE;
+    }
+    return TraverseResult.INCLUDE_CHILDREN;
+  }
 }

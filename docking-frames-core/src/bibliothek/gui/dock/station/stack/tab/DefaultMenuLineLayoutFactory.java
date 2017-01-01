@@ -33,34 +33,35 @@ import bibliothek.gui.dock.station.stack.tab.layouting.TabsLayoutBlock;
 
 /**
  * Default implementation of {@link MenuLineLayoutFactory}.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultMenuLineLayoutFactory implements MenuLineLayoutFactory{
-	public LayoutBlock createInfo( MenuLineLayout layout, TabPane pane ){
-		LonelyTabPaneComponent infoComponent = pane.getInfoComponent();
-		if( infoComponent != null ){
-			return infoComponent.toLayoutBlock();
-		}
-		return null;
-	}
-	
-	public MenuLayoutBlock createMenu( MenuLineLayout layout, TabPane pane ){
-		MenuLayoutBlock block = new MenuLayoutBlock();
-		block.setMenu( pane.createMenu() );
-		return block;
-	}
-	
-	public TabsLayoutBlock createTabs( MenuLineLayout layout, TabPane pane ){
-		LineTabsLayoutBlock block = new LineTabsLayoutBlock();
-		block.setPane( pane );
-		return block;
-	}
-	
-	public MenuLineLayoutOrder createOrder( MenuLineLayout layout, TabPane pane ){
-		MenuLineLayoutOrder order = new MenuLineLayoutOrder( Item.TABS, Item.MENU, Item.INFO );
-		order.setConstraints( Item.TABS, 0.0f, 0.0f, 0.0f );
-		order.setConstraints( Item.MENU, 1.0f, 0.0f, 0.0f );
-		order.setConstraints( Item.INFO, 1.0f, 1.0f, 0.0f );
-		return order;
-	}
+public class DefaultMenuLineLayoutFactory implements MenuLineLayoutFactory {
+  public LayoutBlock createInfo(MenuLineLayout layout, TabPane pane) {
+    LonelyTabPaneComponent infoComponent = pane.getInfoComponent();
+    if (infoComponent != null) {
+      return infoComponent.toLayoutBlock();
+    }
+    return null;
+  }
+
+  public MenuLayoutBlock createMenu(MenuLineLayout layout, TabPane pane) {
+    MenuLayoutBlock block = new MenuLayoutBlock();
+    block.setMenu(pane.createMenu());
+    return block;
+  }
+
+  public TabsLayoutBlock createTabs(MenuLineLayout layout, TabPane pane) {
+    LineTabsLayoutBlock block = new LineTabsLayoutBlock();
+    block.setPane(pane);
+    return block;
+  }
+
+  public MenuLineLayoutOrder createOrder(MenuLineLayout layout, TabPane pane) {
+    MenuLineLayoutOrder order = new MenuLineLayoutOrder(Item.TABS, Item.MENU, Item.INFO);
+    order.setConstraints(Item.TABS, 0.0f, 0.0f, 0.0f);
+    order.setConstraints(Item.MENU, 1.0f, 0.0f, 0.0f);
+    order.setConstraints(Item.INFO, 1.0f, 1.0f, 0.0f);
+    return order;
+  }
 }

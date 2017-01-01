@@ -33,14 +33,16 @@ import java.lang.annotation.Target;
 
 /**
  * A set of {@link CssDocKey}s.
+ *
  * @author Benjamin Sigg
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 public @interface CssDocKeys {
-	/**
-	 * The keys.
-	 * @return the set of keys
-	 */
-	public CssDocKey[] value();
+  /**
+   * The keys.
+   *
+   * @return the set of keys
+   */
+  public CssDocKey[] value();
 }

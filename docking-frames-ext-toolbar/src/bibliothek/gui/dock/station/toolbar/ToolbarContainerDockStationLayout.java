@@ -35,30 +35,31 @@ import bibliothek.gui.dock.station.support.PlaceholderMap;
 
 /**
  * Describes the layout of a {@link ToolbarContainerDockStation}
- * 
+ *
  * @author Benjamin Sigg
  * @author Herve Guillaume
  */
-public class ToolbarContainerDockStationLayout{
-	/** the encoded layout of the {@link ToolbarContainerDockStation} */
-	private final PlaceholderMap placeholders;
+public class ToolbarContainerDockStationLayout {
+  /**
+   * the encoded layout of the {@link ToolbarContainerDockStation}
+   */
+  private final PlaceholderMap placeholders;
 
-	/**
-	 * Creates a new layout object
-	 * 
-	 * @param map
-	 *            the encoded layout, not <code>null</code>
-	 */
-	public ToolbarContainerDockStationLayout( PlaceholderMap map ){
-		placeholders = map;
-	}
+  /**
+   * Creates a new layout object
+   *
+   * @param map the encoded layout, not <code>null</code>
+   */
+  public ToolbarContainerDockStationLayout(PlaceholderMap map) {
+    placeholders = map;
+  }
 
-	/**
-	 * Gets the encoded layout of the {@link ToolbarContainerDockStation}.
-	 * 
-	 * @return the encoded layout, not <code>null</code>
-	 */
-	public PlaceholderMap getPlaceholders(){
-		return placeholders;
-	}
+  /**
+   * Gets the encoded layout of the {@link ToolbarContainerDockStation}.
+   *
+   * @return the encoded layout, not <code>null</code>
+   */
+  public PlaceholderMap getPlaceholders() {
+    return placeholders;
+  }
 }

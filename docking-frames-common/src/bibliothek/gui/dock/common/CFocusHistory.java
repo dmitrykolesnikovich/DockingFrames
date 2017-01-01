@@ -30,22 +30,25 @@ import bibliothek.util.Filter;
 
 /**
  * Describes which {@link CDockable} did have the focus in which order.
+ *
  * @author Benjamin Sigg
  */
 public interface CFocusHistory {
-	/**
-	 * Gets the entire history of focused {@link CDockable}s, the most recent focused dockable
-	 * is at the beginning of the array.
-	 * @return the history starting with the most recently focused {@link CDockable}
-	 */
-	public CDockable[] getHistory();
-	
-	/**
-	 * Gets the first {@link CDockable} matching <code>filter</code>. This method first searches
-	 * through {@link #getHistory() the history}, and afterwards visits all {@link CDockable}s that 
-	 * were not in the history.
-	 * @param filter the filter applied to all {@link CDockable}s
-	 * @return the first dockable matching <code>filter</code>
-	 */
-	public CDockable getFirst( Filter<CDockable> filter );
+  /**
+   * Gets the entire history of focused {@link CDockable}s, the most recent focused dockable
+   * is at the beginning of the array.
+   *
+   * @return the history starting with the most recently focused {@link CDockable}
+   */
+  public CDockable[] getHistory();
+
+  /**
+   * Gets the first {@link CDockable} matching <code>filter</code>. This method first searches
+   * through {@link #getHistory() the history}, and afterwards visits all {@link CDockable}s that
+   * were not in the history.
+   *
+   * @param filter the filter applied to all {@link CDockable}s
+   * @return the first dockable matching <code>filter</code>
+   */
+  public CDockable getFirst(Filter<CDockable> filter);
 }

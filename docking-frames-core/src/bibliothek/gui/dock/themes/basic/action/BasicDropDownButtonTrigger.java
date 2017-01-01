@@ -30,12 +30,13 @@ import bibliothek.gui.dock.action.DropDownAction;
 /**
  * A trigger used by the {@link BasicDropDownButtonModel} to remotely open the
  * drop down menu of a {@link DropDownAction}.
+ *
  * @author Benjamin Sigg
  */
-public interface BasicDropDownButtonTrigger extends BasicTrigger{
-    /**
-     * Called when the drop down menu of a {@link DropDownAction} should be
-     * opened.
-     */
-    public void popupTriggered();
+public interface BasicDropDownButtonTrigger extends BasicTrigger {
+  /**
+   * Called when the drop down menu of a {@link DropDownAction} should be
+   * opened.
+   */
+  public void popupTriggered();
 }

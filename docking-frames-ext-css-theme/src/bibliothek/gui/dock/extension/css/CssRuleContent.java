@@ -27,27 +27,31 @@ package bibliothek.gui.dock.extension.css;
 
 /**
  * A set of properties that may be associated with one or several {@link CssRule}s.
+ *
  * @author Benjamin Sigg
  */
 public interface CssRuleContent {
-	/**
-	 * Gets one of the properties of this rule.
-	 * @param type the type which the property is supposed to have 
-	 * @param property the name of the property to read
-	 * @return the property or <code>null</code> if not present
-	 * @throws IllegalArgumentException if the property cannot be understood as <code>type</code>
-	 */
-	public <T> T getProperty( CssType<T> type, CssPropertyKey property );
-	
-	/**
-	 * Adds the observer <code>listener</code> to this object.
-	 * @param listener the new observer, not <code>null</code>
-	 */
-	public void addRuleContentListener( CssRuleContentListener listener );
-	
-	/**
-	 * Removes the observer <code>listener</code> from this object.
-	 * @param listener the listener to remove
-	 */
-	public void removeRuleContentListener( CssRuleContentListener listener );
+  /**
+   * Gets one of the properties of this rule.
+   *
+   * @param type     the type which the property is supposed to have
+   * @param property the name of the property to read
+   * @return the property or <code>null</code> if not present
+   * @throws IllegalArgumentException if the property cannot be understood as <code>type</code>
+   */
+  public <T> T getProperty(CssType<T> type, CssPropertyKey property);
+
+  /**
+   * Adds the observer <code>listener</code> to this object.
+   *
+   * @param listener the new observer, not <code>null</code>
+   */
+  public void addRuleContentListener(CssRuleContentListener listener);
+
+  /**
+   * Removes the observer <code>listener</code> from this object.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeRuleContentListener(CssRuleContentListener listener);
 }

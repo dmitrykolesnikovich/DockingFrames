@@ -25,52 +25,60 @@
  */
 package bibliothek.gui.dock.themes.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.DockStation;
 import bibliothek.gui.dock.util.color.AbstractDockColor;
 import bibliothek.gui.dock.util.color.DockColor;
 import bibliothek.util.Path;
 
+import java.awt.*;
+
 /**
  * A color used for painting a {@link DockStation}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class StationColor extends AbstractDockColor{
-	/** the path describing this kind of color */
-	public static final Path KIND_STATION_COLOR = DockColor.KIND_DOCK_COLOR.append( "StationColor" );
-	
-	/** the station for which this color is used*/
-	private DockStation station;
-	
-    /**
-     * Creates a new {@link DockColor}.
-     * @param id the identifier of this color
-     * @param kind which kind of color this is
-     * @param station the station for which this color will be used
-     * @param backup a backup in case a color is missing
-     */
-    public StationColor( String id, Path kind, DockStation station, Color backup ){
-        super( id, kind, backup );
-        this.station = station;
-    }
-    
-    
-    /**
-     * Creates a new {@link DockColor}.
-     * @param id the identifier of this color
-     * @param station the station for which this color will be used
-     * @param backup a backup in case a color is missing
-     */
-    public StationColor( String id, DockStation station, Color backup ){
-        this( id, KIND_STATION_COLOR, station, backup );
-    }
-    
-    /**
-     * Gets the {@link DockStation} for which this color is used. 
-     * @return the station, not <code>null</code>
-     */
-    public DockStation getStation(){
-		return station;
-	}
+public abstract class StationColor extends AbstractDockColor {
+  /**
+   * the path describing this kind of color
+   */
+  public static final Path KIND_STATION_COLOR = DockColor.KIND_DOCK_COLOR.append("StationColor");
+
+  /**
+   * the station for which this color is used
+   */
+  private DockStation station;
+
+  /**
+   * Creates a new {@link DockColor}.
+   *
+   * @param id      the identifier of this color
+   * @param kind    which kind of color this is
+   * @param station the station for which this color will be used
+   * @param backup  a backup in case a color is missing
+   */
+  public StationColor(String id, Path kind, DockStation station, Color backup) {
+    super(id, kind, backup);
+    this.station = station;
+  }
+
+
+  /**
+   * Creates a new {@link DockColor}.
+   *
+   * @param id      the identifier of this color
+   * @param station the station for which this color will be used
+   * @param backup  a backup in case a color is missing
+   */
+  public StationColor(String id, DockStation station, Color backup) {
+    this(id, KIND_STATION_COLOR, station, backup);
+  }
+
+  /**
+   * Gets the {@link DockStation} for which this color is used.
+   *
+   * @return the station, not <code>null</code>
+   */
+  public DockStation getStation() {
+    return station;
+  }
 }

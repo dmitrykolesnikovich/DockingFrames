@@ -25,8 +25,6 @@
  */
 package glass.eclipse.theme;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.common.intern.color.EclipseTabTransmitter;
 import bibliothek.gui.dock.common.intern.color.TabColorTransmitter;
 import bibliothek.gui.dock.common.theme.color.CColorBridge;
@@ -34,160 +32,124 @@ import bibliothek.gui.dock.themes.ColorBridgeFactory;
 import bibliothek.gui.dock.util.color.ColorManager;
 import bibliothek.util.Colors;
 
+import java.awt.*;
+
 
 /**
  * A {@link ColorTransmitter} that connects {@link TabColor}s with the
  * {@link EclipseTheme}.
+ *
  * @author Benjamin Sigg
  */
-public class GlassEclipseTabTransmitter extends TabColorTransmitter implements CColorBridge{
-    /**
-     * A factory that creates {@link EclipseTabTransmitter}s.
-     */
-    public static final ColorBridgeFactory FACTORY =
-        new ColorBridgeFactory(){
-        public EclipseTabTransmitter create( ColorManager manager ){
-            return new EclipseTabTransmitter( manager );
-        }
-    };
-
-    private static final String KEYS[] = new String[]{
-        "stack.tab.border.glass", 
-        "stack.tab.border.selected.glass", 
-        "stack.tab.border.selected.focused.glass", 
-        "stack.tab.border.selected.focuslost.glass",
-
-        "stack.tab.top.glass",
-        "stack.tab.top.selected.glass",
-        "stack.tab.top.selected.focused.glass",
-        "stack.tab.top.selected.focuslost.glass",
-
-        "stack.tab.bottom.glass",
-        "stack.tab.bottom.selected.glass",
-        "stack.tab.bottom.selected.focused.glass",
-        "stack.tab.bottom.selected.focuslost.glass",
-
-        "stack.tab.text.glass",
-        "stack.tab.text.selected.glass",
-        "stack.tab.text.selected.focused.glass", 
-        "stack.tab.text.selected.focuslost.glass",
-        
-        "glass.selected.center",
-        "glass.selected.light",
-        "glass.selected.boundary",
-
-        "glass.focused.center",
-        "glass.focused.light",
-        "glass.focused.boundary"
-    };
-
-    public GlassEclipseTabTransmitter( ColorManager manager ){
-        super( manager, KEYS );
+public class GlassEclipseTabTransmitter extends TabColorTransmitter implements CColorBridge {
+  /**
+   * A factory that creates {@link EclipseTabTransmitter}s.
+   */
+  public static final ColorBridgeFactory FACTORY = new ColorBridgeFactory() {
+    public EclipseTabTransmitter create(ColorManager manager) {
+      return new EclipseTabTransmitter(manager);
     }
-    
-    public boolean matches( String id ){
-	    return id.startsWith( "glass." ) || id.endsWith( ".glass" );
-    }
+  };
 
-    @Override
-    protected boolean isFocused( String id ) {
-        return id.contains( "focused" ) || id.contains( "focuslost" );
-    }
+  private static final String KEYS[] =
+    new String[]{"stack.tab.border.glass", "stack.tab.border.selected.glass", "stack.tab.border.selected.focused.glass",
+      "stack.tab.border.selected.focuslost.glass",
 
-    @Override
-    protected boolean isSelected( String id ) {
-        return id.contains( "selected" );
-    }
+      "stack.tab.top.glass", "stack.tab.top.selected.glass", "stack.tab.top.selected.focused.glass",
+      "stack.tab.top.selected.focuslost.glass",
 
-    @Override
-    protected boolean isForeground( String id ) {
-        return id.contains( "text" );
-    }
+      "stack.tab.bottom.glass", "stack.tab.bottom.selected.glass", "stack.tab.bottom.selected.focused.glass",
+      "stack.tab.bottom.selected.focuslost.glass",
 
-    @Override
-    protected Color convert( Color source, String key ) {
-        if( isSelected( key ))
-            return convertSelected( source, key );
+      "stack.tab.text.glass", "stack.tab.text.selected.glass", "stack.tab.text.selected.focused.glass",
+      "stack.tab.text.selected.focuslost.glass",
 
-        if( isFocused( key ))
-            return convertFocused( source, key );
+      "glass.selected.center", "glass.selected.light", "glass.selected.boundary",
 
-        if( "stack.tab.border.glass".equals( key ))
-            return source;
+      "glass.focused.center", "glass.focused.light", "glass.focused.boundary"};
 
-        if(  "stack.tab.top.glass".equals( key ))
-            return Colors.undiffMirror( source, 0.5 );
+  public GlassEclipseTabTransmitter(ColorManager manager) {
+    super(manager, KEYS);
+  }
 
-        if( "stack.tab.bottom.glass".equals( key ))
-            return source;
+  public boolean matches(String id) {
+    return id.startsWith("glass.") || id.endsWith(".glass");
+  }
 
-        if( "stack.tab.text.glass".equals( key ))
-            return Colors.diffMirror( source, 1.0 );
+  @Override
+  protected boolean isFocused(String id) {
+    return id.contains("focused") || id.contains("focuslost");
+  }
 
-        return null;
-    }
+  @Override
+  protected boolean isSelected(String id) {
+    return id.contains("selected");
+  }
 
-    @Override
-    protected Color convertSelected( Color source, String key ) {
-        if( isFocused( key ))
-            return convertFocused( source, key );
+  @Override
+  protected boolean isForeground(String id) {
+    return id.contains("text");
+  }
 
-        if( "stack.tab.border.selected.glass".equals( key ))
-            return source;
+  @Override
+  protected Color convert(Color source, String key) {
+    if (isSelected(key)) return convertSelected(source, key);
 
-        if(  "stack.tab.top.selected.glass".equals( key ))
-            return Colors.undiffMirror( source, 0.5 );
+    if (isFocused(key)) return convertFocused(source, key);
 
-        if( "stack.tab.bottom.selected.glass".equals( key ))
-            return source;
+    if ("stack.tab.border.glass".equals(key)) return source;
 
-        if( "stack.tab.text.selected.glass".equals( key ))
-            return Colors.diffMirror( source, 1.0 );
+    if ("stack.tab.top.glass".equals(key)) return Colors.undiffMirror(source, 0.5);
 
-        if( "glass.selected.center".equals( key ))
-        	return Colors.brighter( source, 0.25 );
-        	
-        if( "glass.selected.light".equals( key ))
-        	return Colors.brighter( source, 0.5 );
-        	
-        if( "glass.selected.boundary".equals( key ))
-        	return Colors.darker( source, 0.25 );
+    if ("stack.tab.bottom.glass".equals(key)) return source;
 
-        
-        return null;
-    }
+    if ("stack.tab.text.glass".equals(key)) return Colors.diffMirror(source, 1.0);
 
-    @Override
-    protected Color convertFocused( Color source, String key ) {
-        if( "stack.tab.border.selected.focused.glass".equals( key ))
-            return source;
-        if( "stack.tab.border.selected.focuslost.glass".equals( key ))
-            return source;
+    return null;
+  }
 
-        if( "stack.tab.top.selected.focused.glass".equals( key ))
-            return Colors.undiffMirror( source, 0.5 );
-        if( "stack.tab.top.selected.focuslost.glass".equals( key ))
-            return Colors.undiffMirror( source, 0.5 );
+  @Override
+  protected Color convertSelected(Color source, String key) {
+    if (isFocused(key)) return convertFocused(source, key);
 
-        if( "stack.tab.bottom.selected.focused.glass".equals( key ))
-            return source;
-        if( "stack.tab.bottom.selected.focuslost.glass".equals( key ))
-            return source;
+    if ("stack.tab.border.selected.glass".equals(key)) return source;
 
-        if( "stack.tab.text.selected.focused.glass".equals( key ))
-            return Colors.diffMirror( source, 1.0 ); 
-        if( "stack.tab.text.selected.focuslost.glass".equals( key ))
-            return Colors.diffMirror( source, 1.0 );
+    if ("stack.tab.top.selected.glass".equals(key)) return Colors.undiffMirror(source, 0.5);
 
-        if( "glass.focused.center".equals( key ))
-        	return source;
-        	
-        if( "glass.focused.light".equals( key ))
-        	return Colors.brighter( source, 0.5 );
-        	
-        if( "glass.focused.boundary".equals( key ))
-        	return Colors.darker( source, 0.5 );
-        
-        return null;
-    }
+    if ("stack.tab.bottom.selected.glass".equals(key)) return source;
+
+    if ("stack.tab.text.selected.glass".equals(key)) return Colors.diffMirror(source, 1.0);
+
+    if ("glass.selected.center".equals(key)) return Colors.brighter(source, 0.25);
+
+    if ("glass.selected.light".equals(key)) return Colors.brighter(source, 0.5);
+
+    if ("glass.selected.boundary".equals(key)) return Colors.darker(source, 0.25);
+
+
+    return null;
+  }
+
+  @Override
+  protected Color convertFocused(Color source, String key) {
+    if ("stack.tab.border.selected.focused.glass".equals(key)) return source;
+    if ("stack.tab.border.selected.focuslost.glass".equals(key)) return source;
+
+    if ("stack.tab.top.selected.focused.glass".equals(key)) return Colors.undiffMirror(source, 0.5);
+    if ("stack.tab.top.selected.focuslost.glass".equals(key)) return Colors.undiffMirror(source, 0.5);
+
+    if ("stack.tab.bottom.selected.focused.glass".equals(key)) return source;
+    if ("stack.tab.bottom.selected.focuslost.glass".equals(key)) return source;
+
+    if ("stack.tab.text.selected.focused.glass".equals(key)) return Colors.diffMirror(source, 1.0);
+    if ("stack.tab.text.selected.focuslost.glass".equals(key)) return Colors.diffMirror(source, 1.0);
+
+    if ("glass.focused.center".equals(key)) return source;
+
+    if ("glass.focused.light".equals(key)) return Colors.brighter(source, 0.5);
+
+    if ("glass.focused.boundary".equals(key)) return Colors.darker(source, 0.5);
+
+    return null;
+  }
 }

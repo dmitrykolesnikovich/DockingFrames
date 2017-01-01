@@ -25,32 +25,33 @@
  */
 package bibliothek.extension.gui.dock.preference.preferences;
 
-import java.awt.event.KeyEvent;
-
-import javax.swing.KeyStroke;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.control.DockableSelector;
 import bibliothek.gui.dock.util.DockProperties;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+import java.awt.event.KeyEvent;
+
 /**
  * Preference for the shortcut that allows selecting a new {@link Dockable}
  * with the keyboard.
+ *
  * @author Benjamin Sigg
  * @see DockableSelector#INIT_SELECTION
  */
-public class KeyStrokeInitSelectorPreference extends DockPropertyPreference<KeyStroke>{
-	/**
-	 * Creates a new preference
-	 * @param properties to read and write the value of this preference
-	 */
-	public KeyStrokeInitSelectorPreference( DockProperties properties ){
-		super( properties, DockableSelector.INIT_SELECTION, Path.TYPE_KEYSTROKE_PATH, new Path( "dock.DockableSelector.INIT_SELECTION" ));
-		
-		setLabelId( "preference.shortcuts.init_selection.label" );
-		setDescriptionId( "preference.shortcuts.init_selection.description" );
-		
-		setDefaultValue( KeyStroke.getKeyStroke( KeyEvent.VK_E, KeyEvent.SHIFT_DOWN_MASK | KeyEvent.CTRL_DOWN_MASK ) );
-	}
+public class KeyStrokeInitSelectorPreference extends DockPropertyPreference<KeyStroke> {
+  /**
+   * Creates a new preference
+   *
+   * @param properties to read and write the value of this preference
+   */
+  public KeyStrokeInitSelectorPreference(DockProperties properties) {
+    super(properties, DockableSelector.INIT_SELECTION, Path.TYPE_KEYSTROKE_PATH, new Path("dock.DockableSelector.INIT_SELECTION"));
+
+    setLabelId("preference.shortcuts.init_selection.label");
+    setDescriptionId("preference.shortcuts.init_selection.description");
+
+    setDefaultValue(KeyStroke.getKeyStroke(KeyEvent.VK_E, KeyEvent.SHIFT_DOWN_MASK | KeyEvent.CTRL_DOWN_MASK));
+  }
 }

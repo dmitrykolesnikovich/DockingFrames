@@ -30,20 +30,23 @@ import bibliothek.gui.Dockable;
 
 /**
  * Interface for an owner of a {@link StackDockComponent}.
+ *
  * @author Benjamin Sigg
  */
 public interface StackDockComponentParent {
-	/**
-	 * Gets the station this parent represents.
-	 * @return the station
-	 */
-	public DockStation getStackDockParent();
-	
-	/**
-	 * Gets the index of <code>dockable</code> in the list of dockables
-	 * that are present on this parent.
-	 * @param dockable some dockable
-	 * @return its index or -1
-	 */
-	public int indexOf( Dockable dockable );
+  /**
+   * Gets the station this parent represents.
+   *
+   * @return the station
+   */
+  public DockStation getStackDockParent();
+
+  /**
+   * Gets the index of <code>dockable</code> in the list of dockables
+   * that are present on this parent.
+   *
+   * @param dockable some dockable
+   * @return its index or -1
+   */
+  public int indexOf(Dockable dockable);
 }

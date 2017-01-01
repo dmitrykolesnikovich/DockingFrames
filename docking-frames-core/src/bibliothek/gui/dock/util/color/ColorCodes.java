@@ -31,15 +31,17 @@ import java.lang.annotation.*;
  * Used to mark all classes which use some {@link DockColor}. These codes
  * are inherited by subclasses, unless subclasses override them by having
  * an annotation as well.
+ *
  * @author Benjamin Sigg
  */
-@Retention( RetentionPolicy.SOURCE )
-@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.SOURCE)
+@Target({ElementType.TYPE})
 @Documented
 public @interface ColorCodes {
-    /**
-     * The color codes which are used to query the {@link ColorManager}.
-     * @return the color keys
-     */
-    public String[] value();
+  /**
+   * The color codes which are used to query the {@link ColorManager}.
+   *
+   * @return the color keys
+   */
+  public String[] value();
 }

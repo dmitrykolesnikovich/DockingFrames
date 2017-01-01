@@ -30,10 +30,11 @@ import bibliothek.gui.DockStation;
 /**
  * Default implementation of {@link DockStationDropLayerFactory}, this implementation
  * is just calling {@link DockStation#getLayers()}
+ *
  * @author Benjamin Sigg
  */
-public class DefaultDockStationDropLayerFactory implements DockStationDropLayerFactory{
-	public DockStationDropLayer[] getLayers( DockStation station ) {
-		return station.getLayers();
-	}
+public class DefaultDockStationDropLayerFactory implements DockStationDropLayerFactory {
+  public DockStationDropLayer[] getLayers(DockStation station) {
+    return station.getLayers();
+  }
 }

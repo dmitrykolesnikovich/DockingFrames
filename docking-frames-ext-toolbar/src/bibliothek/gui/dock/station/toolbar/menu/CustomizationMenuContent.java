@@ -29,41 +29,45 @@
  */
 package bibliothek.gui.dock.station.toolbar.menu;
 
-import java.awt.Component;
-
 import bibliothek.gui.DockController;
 import bibliothek.gui.DockStation;
+
+import java.awt.*;
 
 /**
  * A {@link CustomizationMenuContent} is a part of the {@link CustomizationMenu}. A menu shows
  * exactly one {@link CustomizationMenuContent}, but the items themselves may consists of several
- * sub items. 
+ * sub items.
+ *
  * @author Benjamin Sigg
  */
 public interface CustomizationMenuContent {
-	/**
-	 * Gets a {@link Component} which represents this item. If {@link #bind()} has not yet
-	 * been called, or {@link #unbind()} has been called, then a result of <code>null</code> is valid.
-	 * @return the view or <code>null</code> if this item is not {@link #bind() bound}.
-	 */
-	public Component getView();
-	
-	/**
-	 * Informs this content about the {@link DockController} in whose realm it is used.
-	 * @param controller the controller, can be <code>null</code>
-	 */
-	public void setController( DockController controller );
-	
-	/**
-	 * Informs this item that is going to be used. This method must not be called twice in a row.
-	 * @param callback access to more detailed information about the {@link DockStation} that is
-	 * showing the menu
-	 */
-	public void bind( CustomizationMenuCallback callback );
-	
-	/**
-	 * Informs this item that it is no longer used. This method must not be called twice in a row, it
-	 * must be called after a call to {@link #bind()}.
-	 */
-	public void unbind();
+  /**
+   * Gets a {@link Component} which represents this item. If {@link #bind()} has not yet
+   * been called, or {@link #unbind()} has been called, then a result of <code>null</code> is valid.
+   *
+   * @return the view or <code>null</code> if this item is not {@link #bind() bound}.
+   */
+  public Component getView();
+
+  /**
+   * Informs this content about the {@link DockController} in whose realm it is used.
+   *
+   * @param controller the controller, can be <code>null</code>
+   */
+  public void setController(DockController controller);
+
+  /**
+   * Informs this item that is going to be used. This method must not be called twice in a row.
+   *
+   * @param callback access to more detailed information about the {@link DockStation} that is
+   *                 showing the menu
+   */
+  public void bind(CustomizationMenuCallback callback);
+
+  /**
+   * Informs this item that it is no longer used. This method must not be called twice in a row, it
+   * must be called after a call to {@link #bind()}.
+   */
+  public void unbind();
 }

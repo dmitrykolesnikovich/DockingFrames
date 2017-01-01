@@ -25,53 +25,53 @@
  */
 package bibliothek.gui.dock.station.flap.layer;
 
-import java.awt.Component;
-import java.awt.Point;
-
-import javax.swing.SwingUtilities;
-
 import bibliothek.gui.dock.FlapDockStation;
 import bibliothek.gui.dock.station.flap.FlapWindow;
 import bibliothek.gui.dock.station.layer.DefaultDropLayer;
 import bibliothek.gui.dock.station.layer.LayerPriority;
 import bibliothek.gui.dock.title.DockTitle;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Represents the "tabs" and the {@link DockTitle}s of a {@link FlapDockStation}.
+ *
  * @author Benjamin Sigg
  */
-public class FlapOverrideDropLayer extends DefaultDropLayer{
-	private FlapDockStation station;
-	
-	/**
-	 * Creates a new layer
-	 * @param station
-	 */
-	public FlapOverrideDropLayer( FlapDockStation station ){
-		super( station );
-		this.station = station;
-		setPriority( LayerPriority.OVERRIDE_PRECISE );
-	}
-	
-	@Override
-	public boolean contains( int x, int y ){
-		if( super.contains( x, y )){
-			if( station.isOverButtons( x, y ) ){
-				return true;
-			}
-			FlapWindow window = station.getFlapWindow();
-			if( window != null && window.isWindowVisible() ){
-				DockTitle title = window.getDockTitle();
-				if( title != null ){
-					Component titleComponent = title.getComponent();
-					Point point = new Point( x, y );
-	                SwingUtilities.convertPointFromScreen( point, titleComponent );
-	                if( titleComponent.contains( point )){
-	                	return true;
-	                }
-				}
-			}
-		}
-		return false;
-	}
+public class FlapOverrideDropLayer extends DefaultDropLayer {
+  private FlapDockStation station;
+
+  /**
+   * Creates a new layer
+   *
+   * @param station
+   */
+  public FlapOverrideDropLayer(FlapDockStation station) {
+    super(station);
+    this.station = station;
+    setPriority(LayerPriority.OVERRIDE_PRECISE);
+  }
+
+  @Override
+  public boolean contains(int x, int y) {
+    if (super.contains(x, y)) {
+      if (station.isOverButtons(x, y)) {
+        return true;
+      }
+      FlapWindow window = station.getFlapWindow();
+      if (window != null && window.isWindowVisible()) {
+        DockTitle title = window.getDockTitle();
+        if (title != null) {
+          Component titleComponent = title.getComponent();
+          Point point = new Point(x, y);
+          SwingUtilities.convertPointFromScreen(point, titleComponent);
+          if (titleComponent.contains(point)) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
 }

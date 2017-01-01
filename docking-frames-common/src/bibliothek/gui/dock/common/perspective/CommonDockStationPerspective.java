@@ -32,19 +32,21 @@ import bibliothek.gui.dock.perspective.PerspectiveElement;
 
 /**
  * A {@link PerspectiveElement} that represents a {@link CommonDockStation}.
+ *
  * @author Benjamin Sigg
  */
-public interface CommonDockStationPerspective extends CommonElementPerspective{
-	/**
-	 * Gets the unique identifier of the {@link DockFactory} that handles this perspective element, for
-	 * {@link CommonDockStationPerspective}s the result should be {@link CommonDockStationFactory#FACTORY_ID}.
-	 */
-	public String getFactoryID();
-	
-	/**
-	 * Gets the unique identifier of the {@link DockFactory} that is actually used to layout this perspective.
-	 * @return the identifier of the actual factory
-	 * @see CommonDockStation#getConverterID()
-	 */
-	public String getConverterID();
+public interface CommonDockStationPerspective extends CommonElementPerspective {
+  /**
+   * Gets the unique identifier of the {@link DockFactory} that handles this perspective element, for
+   * {@link CommonDockStationPerspective}s the result should be {@link CommonDockStationFactory#FACTORY_ID}.
+   */
+  public String getFactoryID();
+
+  /**
+   * Gets the unique identifier of the {@link DockFactory} that is actually used to layout this perspective.
+   *
+   * @return the identifier of the actual factory
+   * @see CommonDockStation#getConverterID()
+   */
+  public String getConverterID();
 }

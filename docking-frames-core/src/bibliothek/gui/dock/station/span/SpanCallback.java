@@ -29,36 +29,41 @@ import bibliothek.gui.DockStation;
 
 /**
  * The link between {@link Span} and {@link DockStation}.
+ *
  * @author Benjamin Sigg
  */
 public interface SpanCallback {
-	/**
-	 * Gets the {@link DockStation} that is using this {@link Span}.
-	 * @return the station, never <code>null</code>
-	 */
-	public DockStation getStation();
-	
-	/**
-	 * Tells whether the {@link Span} influences some width.
-	 * @return whether the {@link Span} is horizontal, the opposite of {@link #isVertical()}
-	 */
-	public boolean isHorizontal();
-	
-	/**
-	 * Tells whether the {@link Span} influences some height.
-	 * @return whether the {@link Span} is vertical, the opposite of {@link #isHorizontal()}
-	 */
-	public boolean isVertical();
-	
-	/**
-	 * To be called by the {@link Span} every time when its size changes. This method should be called
-	 * from the <code>EventDispatcherThread</code>.
-	 */
-	public void resized();
-	
-	/**
-	 * Tells the {@link Span} how it is used.
-	 * @return the usage
-	 */
-	public SpanUsage getUsage();
+  /**
+   * Gets the {@link DockStation} that is using this {@link Span}.
+   *
+   * @return the station, never <code>null</code>
+   */
+  public DockStation getStation();
+
+  /**
+   * Tells whether the {@link Span} influences some width.
+   *
+   * @return whether the {@link Span} is horizontal, the opposite of {@link #isVertical()}
+   */
+  public boolean isHorizontal();
+
+  /**
+   * Tells whether the {@link Span} influences some height.
+   *
+   * @return whether the {@link Span} is vertical, the opposite of {@link #isHorizontal()}
+   */
+  public boolean isVertical();
+
+  /**
+   * To be called by the {@link Span} every time when its size changes. This method should be called
+   * from the <code>EventDispatcherThread</code>.
+   */
+  public void resized();
+
+  /**
+   * Tells the {@link Span} how it is used.
+   *
+   * @return the usage
+   */
+  public SpanUsage getUsage();
 }

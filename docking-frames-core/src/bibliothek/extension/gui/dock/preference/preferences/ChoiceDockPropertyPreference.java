@@ -34,45 +34,46 @@ import bibliothek.util.Path;
 
 /**
  * A preference that offers a choice and write the value into a {@link DockProperties}.
- * @author Benjamin Sigg
  *
  * @param <V> the kind of value to store into the properties
+ * @author Benjamin Sigg
  */
-public class ChoiceDockPropertyPreference<V> extends DefaultPreference<String>{
-	private DockProperties properties;
-	private PropertyKey<V> key;
-	private DefaultChoice<V> choice;
-	
-	/**
-	 * Creates a new preference.
-	 * @param properties the properties to read and write from
-	 * @param key the key for the property that gets accessed 
-	 * @param path the unique identifier of this preference
-	 * @param choice the available choices
-	 */
-	public ChoiceDockPropertyPreference( DockProperties properties, PropertyKey<V> key, Path path, DefaultChoice<V> choice ){
-		super( Path.TYPE_STRING_CHOICE_PATH, path );
-		this.properties = properties;
-		this.choice = choice;
-		this.key = key;
-		
-		setValueInfo( choice );
-	}
-	
-	public void write() {
-		properties.setOrRemove( key, choice.identifierToValue( getValue() ), Priority.CLIENT );
-	}
-	
-	public void read() {
-		V property = properties.get( key, Priority.CLIENT );
-		if( property == null ){
-			setValue( choice.getDefaultChoice() );
-		}
-		else{
-			String value = choice.valueToIdentifier( property );
-			if( value != null || choice.isNullEntryAllowed() ){
-				setValue( value );
-			}
-		}
-	}
+public class ChoiceDockPropertyPreference<V> extends DefaultPreference<String> {
+  private DockProperties properties;
+  private PropertyKey<V> key;
+  private DefaultChoice<V> choice;
+
+  /**
+   * Creates a new preference.
+   *
+   * @param properties the properties to read and write from
+   * @param key        the key for the property that gets accessed
+   * @param path       the unique identifier of this preference
+   * @param choice     the available choices
+   */
+  public ChoiceDockPropertyPreference(DockProperties properties, PropertyKey<V> key, Path path, DefaultChoice<V> choice) {
+    super(Path.TYPE_STRING_CHOICE_PATH, path);
+    this.properties = properties;
+    this.choice = choice;
+    this.key = key;
+
+    setValueInfo(choice);
+  }
+
+  public void write() {
+    properties.setOrRemove(key, choice.identifierToValue(getValue()), Priority.CLIENT);
+  }
+
+  public void read() {
+    V property = properties.get(key, Priority.CLIENT);
+    if (property == null) {
+      setValue(choice.getDefaultChoice());
+    }
+    else {
+      String value = choice.valueToIdentifier(property);
+      if (value != null || choice.isNullEntryAllowed()) {
+        setValue(value);
+      }
+    }
+  }
 }

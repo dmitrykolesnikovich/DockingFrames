@@ -30,39 +30,37 @@
 
 package bibliothek.gui.dock.station.toolbar;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-
 import bibliothek.gui.DockStation;
 import bibliothek.gui.dock.station.StationPaint;
 import bibliothek.gui.dock.themes.basic.BasicStationPaint;
 
+import java.awt.*;
+
 /**
  * This {@link StationPaint} is used to draw content on all the toolbar-
  * {@link DockStation}s.
- * 
+ *
  * @author Benjamin Sigg
  */
-public class ToolbarStationPaint extends BasicStationPaint{
-	private Color dragColor;
+public class ToolbarStationPaint extends BasicStationPaint {
+  private Color dragColor;
 
-	public ToolbarStationPaint( Color dropColor, Color dragColor ){
-		setColor(dropColor);
-		this.dragColor = dragColor;
-	}
+  public ToolbarStationPaint(Color dropColor, Color dragColor) {
+    setColor(dropColor);
+    this.dragColor = dragColor;
+  }
 
-	@Override
-	public void drawRemoval( Graphics g, DockStation station,
-			Rectangle stationBounds, Rectangle dockableBounds ){
-		Color color = getColor();
-		if (dragColor == null) {
-			setColor(Color.GRAY);
-		} else {
-			setColor(dragColor);
-		}
-		
-		super.drawRemoval(g, station, stationBounds, dockableBounds);
-		setColor(color);
-	}
+  @Override
+  public void drawRemoval(Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds) {
+    Color color = getColor();
+    if (dragColor == null) {
+      setColor(Color.GRAY);
+    }
+    else {
+      setColor(dragColor);
+    }
+
+    super.drawRemoval(g, station, stationBounds, dockableBounds);
+    setColor(color);
+  }
 }

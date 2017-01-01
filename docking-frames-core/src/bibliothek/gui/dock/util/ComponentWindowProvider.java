@@ -25,110 +25,111 @@
  */
 package bibliothek.gui.dock.util;
 
-import java.awt.Component;
-import java.awt.Window;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.HierarchyEvent;
 import java.awt.event.HierarchyListener;
 
-import javax.swing.SwingUtilities;
-
 /**
  * A window provider which just returns the ancestor window of some {@link Component}
+ *
  * @author Benjamin Sigg
  */
-public class ComponentWindowProvider extends AbstractWindowProvider{
-    /** the child of the window to provide */
-    private Component component;
-    
-    /** the current window of {@link #component} */
-    private Window window;
-    
-    private HierarchyListener listener = new HierarchyListener(){
-        public void hierarchyChanged( HierarchyEvent e ) {
-            Window oldWindow = window;
-            window = getWindowAncestor( component );
-            if( oldWindow != window ){
-                fireWindowChanged( window );
-            }
-        }
-    };
-    
-    /**
-     * Creates a new provider
-     * @param component the component whose ancestor will be provided, <code>null</code>
-     * is valid
-     */
-    public ComponentWindowProvider( Component component ){
-        this.component = component;
+public class ComponentWindowProvider extends AbstractWindowProvider {
+  /**
+   * the child of the window to provide
+   */
+  private Component component;
+
+  /**
+   * the current window of {@link #component}
+   */
+  private Window window;
+
+  private HierarchyListener listener = new HierarchyListener() {
+    public void hierarchyChanged(HierarchyEvent e) {
+      Window oldWindow = window;
+      window = getWindowAncestor(component);
+      if (oldWindow != window) {
+        fireWindowChanged(window);
+      }
     }
-    
-    @Override
-    public void addWindowProviderListener( WindowProviderListener listener ) {
-        int previous = listeners.size();
-        super.addWindowProviderListener( listener );
-        if( previous == 0 && listeners.size() > 0 && component != null ){
-            component.addHierarchyListener( this.listener );
-            window = getWindowAncestor( component );
-        }
+  };
+
+  /**
+   * Creates a new provider
+   *
+   * @param component the component whose ancestor will be provided, <code>null</code>
+   *                  is valid
+   */
+  public ComponentWindowProvider(Component component) {
+    this.component = component;
+  }
+
+  @Override
+  public void addWindowProviderListener(WindowProviderListener listener) {
+    int previous = listeners.size();
+    super.addWindowProviderListener(listener);
+    if (previous == 0 && listeners.size() > 0 && component != null) {
+      component.addHierarchyListener(this.listener);
+      window = getWindowAncestor(component);
     }
-    
-    @Override
-    public void removeWindowProviderListener( WindowProviderListener listener ) {
-        int previous = listeners.size();
-        super.removeWindowProviderListener( listener );
-        
-        if( previous > 0 && listeners.size() == 0 && component != null ){
-            component.removeHierarchyListener( this.listener );
-        }
+  }
+
+  @Override
+  public void removeWindowProviderListener(WindowProviderListener listener) {
+    int previous = listeners.size();
+    super.removeWindowProviderListener(listener);
+
+    if (previous > 0 && listeners.size() == 0 && component != null) {
+      component.removeHierarchyListener(this.listener);
     }
-    
-    /**
-     * Gets the {@link Component} whose ancestor window is provided.
-     * @return the component or <code>null</code>
-     */
-    public Component getComponent() {
-        return component;
+  }
+
+  /**
+   * Gets the {@link Component} whose ancestor window is provided.
+   *
+   * @return the component or <code>null</code>
+   */
+  public Component getComponent() {
+    return component;
+  }
+
+  /**
+   * Sets the component whose ancestor window will be provided.
+   *
+   * @param component the component or <code>null</code>
+   */
+  public void setComponent(Component component) {
+    if (listeners.size() == 0) {
+      this.component = component;
     }
-    
-    /**
-     * Sets the component whose ancestor window will be provided.
-     * @param component the component or <code>null</code>
-     */
-    public void setComponent( Component component ) {
-        if( listeners.size() == 0 ){
-            this.component = component;
-        }
-        else{
-            if( this.component != null )
-                this.component.removeHierarchyListener( listener );
-            
-            this.component = component;
-            
-            if( this.component != null )
-                this.component.addHierarchyListener( listener );
-            
-            Window oldWindow = window;
-            window = component == null ? null : getWindowAncestor( component );
-            if( oldWindow != window ){
-                fireWindowChanged( window );
-            }
-        }
+    else {
+      if (this.component != null) this.component.removeHierarchyListener(listener);
+
+      this.component = component;
+
+      if (this.component != null) this.component.addHierarchyListener(listener);
+
+      Window oldWindow = window;
+      window = component == null ? null : getWindowAncestor(component);
+      if (oldWindow != window) {
+        fireWindowChanged(window);
+      }
     }
-    
-    public Window searchWindow() {
-        if( component == null )
-            return null;
-        
-        if( listeners.size() == 0 )
-            return getWindowAncestor( component );
-        
-        return window;
-    }
-    
-    private Window getWindowAncestor( Component component ){
-        if( component instanceof Window )
-            return (Window)component;
-        
-        return SwingUtilities.getWindowAncestor( component );
-    }
+  }
+
+  public Window searchWindow() {
+    if (component == null) return null;
+
+    if (listeners.size() == 0) return getWindowAncestor(component);
+
+    return window;
+  }
+
+  private Window getWindowAncestor(Component component) {
+    if (component instanceof Window) return (Window)component;
+
+    return SwingUtilities.getWindowAncestor(component);
+  }
 }

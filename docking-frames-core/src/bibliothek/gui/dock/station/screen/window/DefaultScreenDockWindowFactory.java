@@ -25,161 +25,179 @@
  */
 package bibliothek.gui.dock.station.screen.window;
 
-import java.awt.Dialog;
-import java.awt.Frame;
-import java.awt.Window;
-
-import javax.swing.Icon;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.ScreenDockStation;
 import bibliothek.gui.dock.station.screen.ScreenDockWindow;
 import bibliothek.gui.dock.station.screen.ScreenDockWindowFactory;
 import bibliothek.gui.dock.title.DockTitle;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * A default implementation of {@link ScreenDockWindowFactory}.
+ *
  * @author Benjamin Sigg
  */
 public class DefaultScreenDockWindowFactory implements ScreenDockWindowFactory {
-    /** The kind of window that can be produced */
-    public static enum Kind{
-        /** Represents {@link JDialog} */
-        DIALOG,
-        /** Represents {@link JFrame} */
-        FRAME
+  /**
+   * what kind of window this factory will create
+   */
+  private Kind kind = Kind.DIALOG;
+  /**
+   * whether the newly created window will be undecorated
+   */
+  private boolean undecorated = true;
+  /**
+   * whether the {@link DockTitle} is shown
+   */
+  private boolean showDockTitle = true;
+  /**
+   * icon for the title
+   */
+  private Icon titleIcon = null;
+  /**
+   * text for the title
+   */
+  private String titleText = null;
+
+  /**
+   * Gets the kind of window this factory creates.
+   *
+   * @return the kind of window
+   */
+  public Kind getKind() {
+    return kind;
+  }
+
+  /**
+   * Sets the kind of window that this factory will create
+   *
+   * @param kind the kind of window
+   */
+  public void setKind(Kind kind) {
+    if (kind == null) kind = Kind.DIALOG;
+
+    this.kind = kind;
+  }
+
+  /**
+   * Tells whether new windows will be decorated or not.
+   *
+   * @return <code>true</code> if they are not decorated
+   */
+  public boolean isUndecorated() {
+    return undecorated;
+  }
+
+  /**
+   * Sets whether the windows created by this factory should be undecorated
+   * or not.
+   *
+   * @param undecorated <code>true</code> if they should not be decorated,
+   *                    <code>false</code> otherwise
+   */
+  public void setUndecorated(boolean undecorated) {
+    this.undecorated = undecorated;
+  }
+
+  /**
+   * Tells whether the {@link DockTitle} is normally shown on the window.
+   *
+   * @return <code>true</code> if shown, <code>false</code> otherwise
+   */
+  public boolean isShowDockTitle() {
+    return showDockTitle;
+  }
+
+  /**
+   * Sets whether the {@link DockTitle} is normally shown on the window.
+   *
+   * @param showDockTitle <code>true</code> if the title is shown, <code>false</code>
+   *                      otherwise
+   */
+  public void setShowDockTitle(boolean showDockTitle) {
+    this.showDockTitle = showDockTitle;
+  }
+
+  /**
+   * Gets the icon which is used in decorated titles.
+   *
+   * @return the icon, can be <code>null</code>
+   */
+  public Icon getTitleIcon() {
+    return titleIcon;
+  }
+
+  /**
+   * Sets the icon which should be used in the decorated title.
+   *
+   * @param titleIcon the icon, <code>null</code> if the icon of the
+   *                  {@link Dockable} should be used.
+   */
+  public void setTitleIcon(Icon titleIcon) {
+    this.titleIcon = titleIcon;
+  }
+
+  /**
+   * Gets the text which is used in decorated titles.
+   *
+   * @return the text, can be <code>null</code>
+   */
+  public String getTitleText() {
+    return titleText;
+  }
+
+  /**
+   * Sets the text which is used in decorated titles.
+   *
+   * @param titleText the text, <code>null</code> if the text
+   *                  of the {@link Dockable} should be used
+   */
+  public void setTitleText(String titleText) {
+    this.titleText = titleText;
+  }
+
+  public ScreenDockWindow updateWindow(ScreenDockWindow window, WindowConfiguration configuration, ScreenDockStation station) {
+    return createWindow(station, configuration);
+  }
+
+  public ScreenDockWindow createWindow(ScreenDockStation station, WindowConfiguration configuration) {
+    AbstractScreenDockWindow window;
+
+    if (kind == Kind.FRAME) {
+      window = new ScreenDockFrame(station, configuration, undecorated);
     }
-    
-    /** what kind of window this factory will create */
-    private Kind kind = Kind.DIALOG;
-    
-    /** whether the newly created window will be undecorated */
-    private boolean undecorated = true;
-    
-    /** whether the {@link DockTitle} is shown */
-    private boolean showDockTitle = true;
-    
-    /** icon for the title */
-    private Icon titleIcon = null;
-    
-    /** text for the title */
-    private String titleText = null;
-    
+    else {
+      Window owner = station.getOwner();
+      if (owner instanceof Frame) {
+        window = new ScreenDockDialog(station, configuration, (Frame)owner, undecorated);
+      }
+      else if (owner instanceof Dialog) {
+        window = new ScreenDockDialog(station, configuration, (Dialog)owner, undecorated);
+      }
+      else {
+        window = new ScreenDockDialog(station, configuration, undecorated);
+      }
+    }
+
+    window.setShowTitle(showDockTitle);
+    window.setTitleIcon(titleIcon);
+    window.setTitleText(titleText);
+    return window;
+  }
+
+
+  /**
+   * The kind of window that can be produced
+   */
+  public static enum Kind {
     /**
-     * Sets the kind of window that this factory will create
-     * @param kind the kind of window
+     * Represents {@link JDialog}
      */
-    public void setKind( Kind kind ) {
-        if( kind == null )
-            kind = Kind.DIALOG;
-        
-        this.kind = kind;
-    }
-    
-    /**
-     * Gets the kind of window this factory creates.
-     * @return the kind of window
+    DIALOG, /**
+     * Represents {@link JFrame}
      */
-    public Kind getKind() {
-        return kind;
-    }
-    
-    /**
-     * Sets whether the windows created by this factory should be undecorated
-     * or not.
-     * @param undecorated <code>true</code> if they should not be decorated,
-     * <code>false</code> otherwise
-     */
-    public void setUndecorated( boolean undecorated ) {
-        this.undecorated = undecorated;
-    }
-    
-    /**
-     * Tells whether new windows will be decorated or not.
-     * @return <code>true</code> if they are not decorated
-     */
-    public boolean isUndecorated() {
-        return undecorated;
-    }
-    
-    /**
-     * Sets whether the {@link DockTitle} is normally shown on the window.
-     * @param showDockTitle <code>true</code> if the title is shown, <code>false</code>
-     * otherwise
-     */
-    public void setShowDockTitle( boolean showDockTitle ) {
-        this.showDockTitle = showDockTitle;
-    }
-    
-    /**
-     * Tells whether the {@link DockTitle} is normally shown on the window.
-     * @return <code>true</code> if shown, <code>false</code> otherwise
-     */
-    public boolean isShowDockTitle() {
-        return showDockTitle;
-    }
-    
-    /**
-     * Sets the icon which should be used in the decorated title.
-     * @param titleIcon the icon, <code>null</code> if the icon of the
-     * {@link Dockable} should be used.
-     */
-    public void setTitleIcon( Icon titleIcon ) {
-        this.titleIcon = titleIcon;
-    }
-    
-    /**
-     * Gets the icon which is used in decorated titles.
-     * @return the icon, can be <code>null</code>
-     */
-    public Icon getTitleIcon() {
-        return titleIcon;
-    }
-    
-    /**
-     * Sets the text which is used in decorated titles.
-     * @param titleText the text, <code>null</code> if the text
-     * of the {@link Dockable} should be used
-     */
-    public void setTitleText( String titleText ) {
-        this.titleText = titleText;
-    }
-    
-    /**
-     * Gets the text which is used in decorated titles.
-     * @return the text, can be <code>null</code>
-     */
-    public String getTitleText() {
-        return titleText;
-    }
-    
-    
-    public ScreenDockWindow updateWindow( ScreenDockWindow window, WindowConfiguration configuration, ScreenDockStation station ){
-    	return createWindow( station, configuration );
-    }
-    
-    
-    public ScreenDockWindow createWindow( ScreenDockStation station, WindowConfiguration configuration ){
-        AbstractScreenDockWindow window;
-        
-        if( kind == Kind.FRAME ){
-            window = new ScreenDockFrame( station, configuration, undecorated );
-        }
-        else{
-            Window owner = station.getOwner();
-            if( owner instanceof Frame )
-                window = new ScreenDockDialog( station, configuration, (Frame)owner, undecorated );
-            else if( owner instanceof Dialog )
-                window = new ScreenDockDialog( station, configuration, (Dialog)owner, undecorated );
-            else
-                window = new ScreenDockDialog( station, configuration, undecorated );
-        }
-        
-        window.setShowTitle( showDockTitle );
-        window.setTitleIcon( titleIcon );
-        window.setTitleText( titleText );
-        return window;
-    }
+    FRAME
+  }
 }

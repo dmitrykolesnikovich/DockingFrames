@@ -32,27 +32,31 @@ import java.lang.annotation.Target;
 
 /**
  * Describes a single key-{@link String}.
+ *
  * @author Benjamin Sigg
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 public @interface CssDocKey {
-	/**
-	 * The name of the key itself.
-	 * @return the key
-	 */
-	public String key() default "";
-	
-	/**
-	 * A description of the key.
-	 * @return a description
-	 */
-	public CssDocText description() default @CssDocText();
-	
-	/**
-	 * If present, this {@link CssDocKey} will be replaced with all the keys that are defined on the referenced
-	 * class. The {@link #description()} of this key will be ignored in such a case.
-	 * @return the referenced class
-	 */
-	public Class<?> reference() default Object.class;
+  /**
+   * The name of the key itself.
+   *
+   * @return the key
+   */
+  public String key() default "";
+
+  /**
+   * A description of the key.
+   *
+   * @return a description
+   */
+  public CssDocText description() default @CssDocText();
+
+  /**
+   * If present, this {@link CssDocKey} will be replaced with all the keys that are defined on the referenced
+   * class. The {@link #description()} of this key will be ignored in such a case.
+   *
+   * @return the referenced class
+   */
+  public Class<?> reference() default Object.class;
 }

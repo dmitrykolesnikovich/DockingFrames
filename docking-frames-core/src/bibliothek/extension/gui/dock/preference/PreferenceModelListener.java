@@ -27,31 +27,35 @@ package bibliothek.extension.gui.dock.preference;
 
 /**
  * A listener to a {@link PreferenceModel}, gets informed about changes in the model.
+ *
  * @author Benjamin Sigg
  */
 public interface PreferenceModelListener {
-    /**
-     * Called when new preferences have been added to <code>model</code>.
-     * @param model the model that changed
-     * @param beginIndex the index of the first new preference
-     * @param endIndex the index of the last new preference
-     */
-    public void preferenceAdded( PreferenceModel model, int beginIndex, int endIndex );
-    
-    /**
-     * Called when some preferences have been removed from <code>model</code>.
-     * @param model the model that changed
-     * @param beginIndex the old index of the first preference that was removed
-     * @param endIndex the old index of the last preference that was removed
-     */
-    public void preferenceRemoved( PreferenceModel model, int beginIndex, int endIndex );
-    
-    /**
-     * Called when some preferences have been changed. This includes
-     * the value of a preference, the text or description, but also the enabled {@link PreferenceOperation}s.
-     * @param model the source of the event
-     * @param beginIndex the index of the first preference that changed
-     * @param endIndex the index of the last preference that changed
-     */
-    public void preferenceChanged( PreferenceModel model, int beginIndex, int endIndex );
+  /**
+   * Called when new preferences have been added to <code>model</code>.
+   *
+   * @param model      the model that changed
+   * @param beginIndex the index of the first new preference
+   * @param endIndex   the index of the last new preference
+   */
+  public void preferenceAdded(PreferenceModel model, int beginIndex, int endIndex);
+
+  /**
+   * Called when some preferences have been removed from <code>model</code>.
+   *
+   * @param model      the model that changed
+   * @param beginIndex the old index of the first preference that was removed
+   * @param endIndex   the old index of the last preference that was removed
+   */
+  public void preferenceRemoved(PreferenceModel model, int beginIndex, int endIndex);
+
+  /**
+   * Called when some preferences have been changed. This includes
+   * the value of a preference, the text or description, but also the enabled {@link PreferenceOperation}s.
+   *
+   * @param model      the source of the event
+   * @param beginIndex the index of the first preference that changed
+   * @param endIndex   the index of the last preference that changed
+   */
+  public void preferenceChanged(PreferenceModel model, int beginIndex, int endIndex);
 }

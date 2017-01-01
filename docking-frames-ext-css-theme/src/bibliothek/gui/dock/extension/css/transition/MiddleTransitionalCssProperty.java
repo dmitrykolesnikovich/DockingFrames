@@ -28,49 +28,50 @@ package bibliothek.gui.dock.extension.css.transition;
 /**
  * A {@link TransitionalCssProperty} that performs a jump from the source to the target value in the
  * middle of the transition.
- * @author Benjamin Sigg
+ *
  * @param <T> the type of value "animated" by this "transition"
+ * @author Benjamin Sigg
  */
 public class MiddleTransitionalCssProperty<T> implements TransitionalCssProperty<T> {
-	private TransitionalCssPropertyCallback<T> callback;
-	private T source;
-	private T target;
-	private double transition;
-	
-	@Override
-	public void setCallback( TransitionalCssPropertyCallback<T> callback ){
-		this.callback = callback;
-	}
+  private TransitionalCssPropertyCallback<T> callback;
+  private T source;
+  private T target;
+  private double transition;
 
-	@Override
-	public void setSource( T source ){
-		this.source = source;
-		update();
-	}
+  @Override
+  public void setCallback(TransitionalCssPropertyCallback<T> callback) {
+    this.callback = callback;
+  }
 
-	@Override
-	public void setTarget( T target ){
-		this.target = target;
-		update();
-	}
+  @Override
+  public void setSource(T source) {
+    this.source = source;
+    update();
+  }
 
-	@Override
-	public void setTransition( double transition ){
-		this.transition = transition;
-		update();
-	}
+  @Override
+  public void setTarget(T target) {
+    this.target = target;
+    update();
+  }
 
-	@Override
-	public void step( int delay ){
-		update();
-	}
+  @Override
+  public void setTransition(double transition) {
+    this.transition = transition;
+    update();
+  }
 
-	private void update(){
-		if( transition < 0.5 ){
-			callback.set( source );
-		}
-		else{
-			callback.set( target );
-		}
-	}
+  @Override
+  public void step(int delay) {
+    update();
+  }
+
+  private void update() {
+    if (transition < 0.5) {
+      callback.set(source);
+    }
+    else {
+      callback.set(target);
+    }
+  }
 }

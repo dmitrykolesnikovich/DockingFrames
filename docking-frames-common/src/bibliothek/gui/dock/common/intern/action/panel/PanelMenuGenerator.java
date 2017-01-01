@@ -25,8 +25,6 @@
  */
 package bibliothek.gui.dock.common.intern.action.panel;
 
-import javax.swing.JComponent;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.action.view.ActionViewConverter;
 import bibliothek.gui.dock.action.view.ViewGenerator;
@@ -34,23 +32,26 @@ import bibliothek.gui.dock.common.action.CPanelPopup;
 import bibliothek.gui.dock.common.action.CPanelPopup.PanelPopup;
 import bibliothek.gui.dock.themes.basic.action.menu.MenuViewItem;
 
+import javax.swing.*;
+
 /**
  * A generator for creating menus for a {@link CPanelPopup}.
+ *
  * @author Benjamin Sigg
  */
-public class PanelMenuGenerator implements ViewGenerator<PanelPopup, MenuViewItem<JComponent>>{
+public class PanelMenuGenerator implements ViewGenerator<PanelPopup, MenuViewItem<JComponent>> {
 
-	public MenuViewItem<JComponent> create( ActionViewConverter converter, PanelPopup action, Dockable dockable ){
-		switch( action.getAction().getMenuBehavior() ){
-			case HIDE:
-				return null;
-			case DECORATED_DIALOG:
-			case UNDECORATED_DIALOG:
-				return new BasicPanelPopupMenuItemHandler( action, dockable );
-			case SUBMENU:
-				return new BasicPanelPopupMenuHandler( action, dockable );
-		}
-		
-		throw new IllegalStateException( "this should never happen" );
-	}
+  public MenuViewItem<JComponent> create(ActionViewConverter converter, PanelPopup action, Dockable dockable) {
+    switch (action.getAction().getMenuBehavior()) {
+      case HIDE:
+        return null;
+      case DECORATED_DIALOG:
+      case UNDECORATED_DIALOG:
+        return new BasicPanelPopupMenuItemHandler(action, dockable);
+      case SUBMENU:
+        return new BasicPanelPopupMenuHandler(action, dockable);
+    }
+
+    throw new IllegalStateException("this should never happen");
+  }
 }

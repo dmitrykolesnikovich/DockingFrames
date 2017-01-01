@@ -25,55 +25,61 @@
  */
 package bibliothek.gui.dock.station.screen;
 
-import java.awt.Rectangle;
-
 import bibliothek.gui.dock.station.screen.window.ScreenDockDialog;
+
+import java.awt.*;
 
 /**
  * Restricts the boundaries of a {@link ScreenDockDialog}, a restriction might be,
  * that the dialog can't be placed outside the screen.
+ *
  * @author Benjamin Sigg
  */
 public interface BoundaryRestriction {
-    /** A restriction that allows all boundaries. */
-    public BoundaryRestriction FREE = new AbstractBoundaryRestriction(){
-    	@Override
-    	protected Rectangle checkSize( ScreenDockWindow window ){
-    		return null;
-    	}
-        @Override
-        protected Rectangle checkSize( ScreenDockWindow window, Rectangle target ){
-        	return null;
-        }
-    };
-    
-    /**
-     * A restriction that will ensure that the title of a dialog cannot be moved
-     * away from the screens.
-     */
-    public BoundaryRestriction MEDIUM = new MediumBoundaryRestriction();
-    
-    /** 
-     * A restriction that will ensure that every dialog is always visible on
-     * exactly one screen.
-     */
-    public BoundaryRestriction HARD = new HardBoundaryRestriction();
-    
-    /**
-     * Calculates the bounds which <code>window</code> can have. 
-     * @param window the window whose bounds should be checked.
-     * @return the new boundaries of <code>window</code>, can be <code>null</code>
-     * to indicate that the current boundaries are valid. 
-     */
-    public Rectangle check( ScreenDockWindow window );
-    
-    /**
-     * Calculates the bounds which <code>window</code> can have.
-     * @param window the window whose future bounds should be checked.
-     * @param target the bounds <code>window</code> should have, this method
-     * should not write into <code>target</code>.
-     * @return the new boundaries, <code>null</code> to indicate that 
-     * <code>target</code> is valid. 
-     */
-    public Rectangle check( ScreenDockWindow window, Rectangle target );
+  /**
+   * A restriction that allows all boundaries.
+   */
+  public BoundaryRestriction FREE = new AbstractBoundaryRestriction() {
+    @Override
+    protected Rectangle checkSize(ScreenDockWindow window) {
+      return null;
+    }
+
+    @Override
+    protected Rectangle checkSize(ScreenDockWindow window, Rectangle target) {
+      return null;
+    }
+  };
+
+  /**
+   * A restriction that will ensure that the title of a dialog cannot be moved
+   * away from the screens.
+   */
+  public BoundaryRestriction MEDIUM = new MediumBoundaryRestriction();
+
+  /**
+   * A restriction that will ensure that every dialog is always visible on
+   * exactly one screen.
+   */
+  public BoundaryRestriction HARD = new HardBoundaryRestriction();
+
+  /**
+   * Calculates the bounds which <code>window</code> can have.
+   *
+   * @param window the window whose bounds should be checked.
+   * @return the new boundaries of <code>window</code>, can be <code>null</code>
+   * to indicate that the current boundaries are valid.
+   */
+  public Rectangle check(ScreenDockWindow window);
+
+  /**
+   * Calculates the bounds which <code>window</code> can have.
+   *
+   * @param window the window whose future bounds should be checked.
+   * @param target the bounds <code>window</code> should have, this method
+   *               should not write into <code>target</code>.
+   * @return the new boundaries, <code>null</code> to indicate that
+   * <code>target</code> is valid.
+   */
+  public Rectangle check(ScreenDockWindow window, Rectangle target);
 }

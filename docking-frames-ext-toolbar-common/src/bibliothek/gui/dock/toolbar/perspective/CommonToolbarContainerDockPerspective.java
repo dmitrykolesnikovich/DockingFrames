@@ -36,32 +36,34 @@ import bibliothek.gui.dock.station.toolbar.ToolbarContainerDockPerspective;
 
 /**
  * The type of object that is used by {@link CToolbarAreaPerspective} as intern representation.
+ *
  * @author Benjamin Sigg
  */
-public class CommonToolbarContainerDockPerspective extends ToolbarContainerDockPerspective implements CommonDockStationPerspective{
-	private CToolbarAreaPerspective perspective;
-	
-	/**
-	 * Creates the new perspective
-	 * @param perspective the common part
-	 */
-	public CommonToolbarContainerDockPerspective( CToolbarAreaPerspective perspective ){
-		this.perspective = perspective;
-	}
-	
-	@Override
-	public CElementPerspective getElement(){
-		return perspective;
-	}
-	
-	@Override
-	public String getFactoryID(){
-		return CommonDockStationFactory.FACTORY_ID;
-	}
+public class CommonToolbarContainerDockPerspective extends ToolbarContainerDockPerspective implements CommonDockStationPerspective {
+  private CToolbarAreaPerspective perspective;
 
-	@Override
-	public String getConverterID(){
-		return super.getFactoryID();
-	}
+  /**
+   * Creates the new perspective
+   *
+   * @param perspective the common part
+   */
+  public CommonToolbarContainerDockPerspective(CToolbarAreaPerspective perspective) {
+    this.perspective = perspective;
+  }
+
+  @Override
+  public CElementPerspective getElement() {
+    return perspective;
+  }
+
+  @Override
+  public String getFactoryID() {
+    return CommonDockStationFactory.FACTORY_ID;
+  }
+
+  @Override
+  public String getConverterID() {
+    return super.getFactoryID();
+  }
 
 }

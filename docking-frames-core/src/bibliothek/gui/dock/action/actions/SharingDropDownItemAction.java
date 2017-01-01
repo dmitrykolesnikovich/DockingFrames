@@ -33,52 +33,59 @@ import bibliothek.util.FrameworkOnly;
 /**
  * A {@link DropDownItemAction} whose properties are shared among all {@link Dockable}s, the
  * properties can be modified by the client.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public interface SharingDropDownItemAction extends SharingStandardDockAction, DropDownItemAction{
-    /**
-     * Sets whether this action can be selected if it is a child of a
-     * {@link DropDownAction} or not.
-     * @param dropDownSelectable <code>true</code> if this action can
-     * be selected
-     */
-    public void setDropDownSelectable( boolean dropDownSelectable );
-    
-    /**
-     * Tells whether this action can be selected.
-     * @return <code>true</code> if it can be selected
-     * @see #setDropDownSelectable(boolean)
-     */
-    public boolean isDropDownSelectable();
-    
-    /**
-     * Sets whether this action can be triggered when shown on, and selected by, a
-     * {@link DropDownAction} or not.
-     * @param dropDownTriggerableSelected <code>true</code> if this action
-     * can be triggered
-     */
-    public void setDropDownTriggerableSelected( boolean dropDownTriggerableSelected );
-    
-    /**
-     * Tells whether this action can be triggered when shown on and selected by a
-     * {@link DropDownAction} or not.
-     * @return <code>true</code> if the action can be triggered
-     */
-    public boolean isDropDownTriggerableSelected();
-    
-    /**
-     * Sets whether this action can be triggered when shown on, but not selected 
-     * by, a {@link DropDownAction} or not.
-     * @param dropDownTriggerableNotSelected <code>true</code> if this action
-     * can be triggered
-     */
-    public void setDropDownTriggerableNotSelected( boolean dropDownTriggerableNotSelected );
-    
-    /**
-     * Tells whether this action can be triggered when shown on, but not selected 
-     * by, a {@link DropDownAction} or not.
-     * @return <code>true</code> if the action can be triggered
-     */
-    public boolean isDropDownTriggerableNotSelected();
+public interface SharingDropDownItemAction extends SharingStandardDockAction, DropDownItemAction {
+  /**
+   * Tells whether this action can be selected.
+   *
+   * @return <code>true</code> if it can be selected
+   * @see #setDropDownSelectable(boolean)
+   */
+  public boolean isDropDownSelectable();
+
+  /**
+   * Sets whether this action can be selected if it is a child of a
+   * {@link DropDownAction} or not.
+   *
+   * @param dropDownSelectable <code>true</code> if this action can
+   *                           be selected
+   */
+  public void setDropDownSelectable(boolean dropDownSelectable);
+
+  /**
+   * Tells whether this action can be triggered when shown on and selected by a
+   * {@link DropDownAction} or not.
+   *
+   * @return <code>true</code> if the action can be triggered
+   */
+  public boolean isDropDownTriggerableSelected();
+
+  /**
+   * Sets whether this action can be triggered when shown on, and selected by, a
+   * {@link DropDownAction} or not.
+   *
+   * @param dropDownTriggerableSelected <code>true</code> if this action
+   *                                    can be triggered
+   */
+  public void setDropDownTriggerableSelected(boolean dropDownTriggerableSelected);
+
+  /**
+   * Tells whether this action can be triggered when shown on, but not selected
+   * by, a {@link DropDownAction} or not.
+   *
+   * @return <code>true</code> if the action can be triggered
+   */
+  public boolean isDropDownTriggerableNotSelected();
+
+  /**
+   * Sets whether this action can be triggered when shown on, but not selected
+   * by, a {@link DropDownAction} or not.
+   *
+   * @param dropDownTriggerableNotSelected <code>true</code> if this action
+   *                                       can be triggered
+   */
+  public void setDropDownTriggerableNotSelected(boolean dropDownTriggerableNotSelected);
 }

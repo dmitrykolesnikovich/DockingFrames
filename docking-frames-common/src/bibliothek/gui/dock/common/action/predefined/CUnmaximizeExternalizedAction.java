@@ -34,14 +34,17 @@ import bibliothek.gui.dock.common.mode.ExtendedMode;
 /**
  * An action which externalizes each {@link CDockable} to which is is added. This action
  * does the same as {@link CExternalizeAction}, it just has another icon and title.
+ *
  * @author Benjamin Sigg
  */
-public class CUnmaximizeExternalizedAction extends CExtendedModeAction{
-    /**
-     * Creates a new action
-     * @param control the control for which this action will be used
-     */
-    public CUnmaximizeExternalizedAction( CControl control ){
-        super( control, ExtendedMode.EXTERNALIZED, CLocationModeManager.ICON_MANAGER_KEY_UNMAXIMIZE_EXTERNALIZED, "maximize_externalized.out", "maximize_externalized.out.tooltip", CControl.KEY_GOTO_EXTERNALIZED );
-    }
+public class CUnmaximizeExternalizedAction extends CExtendedModeAction {
+  /**
+   * Creates a new action
+   *
+   * @param control the control for which this action will be used
+   */
+  public CUnmaximizeExternalizedAction(CControl control) {
+    super(control, ExtendedMode.EXTERNALIZED, CLocationModeManager.ICON_MANAGER_KEY_UNMAXIMIZE_EXTERNALIZED, "maximize_externalized.out",
+          "maximize_externalized.out.tooltip", CControl.KEY_GOTO_EXTERNALIZED);
+  }
 }

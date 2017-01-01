@@ -30,11 +30,6 @@
 
 package bibliothek.gui.dock.station.toolbar;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.Map;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.DockFactory;
 import bibliothek.gui.dock.layout.LocationEstimationMap;
@@ -43,78 +38,85 @@ import bibliothek.gui.dock.perspective.PerspectiveElement;
 import bibliothek.gui.dock.station.support.PlaceholderStrategy;
 import bibliothek.util.xml.XElement;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.Map;
+
 /**
  * A factory for reading and writing some kind of {@link Dockable} which can never be created
  * automatically, and which does not store any kind of information.
- * 
+ *
  * @author Benjamin Sigg
  */
-public abstract class DummyDockFactory<D extends Dockable> implements DockFactory<D, PerspectiveElement, Object>{
-	/** dummy object used as layout, does not contain any information */
-	private static final Object DUMMY = new Object();
+public abstract class DummyDockFactory<D extends Dockable> implements DockFactory<D, PerspectiveElement, Object> {
+  /**
+   * dummy object used as layout, does not contain any information
+   */
+  private static final Object DUMMY = new Object();
 
-	@Override
-	public Object getLayout( D element, Map<Dockable, Integer> children ){
-		return DUMMY;
-	}
+  @Override
+  public Object getLayout(D element, Map<Dockable, Integer> children) {
+    return DUMMY;
+  }
 
-	@Override
-	public Object getPerspectiveLayout( PerspectiveElement element, Map<PerspectiveDockable, Integer> children ){
-		return DUMMY;
-	}
+  @Override
+  public Object getPerspectiveLayout(PerspectiveElement element, Map<PerspectiveDockable, Integer> children) {
+    return DUMMY;
+  }
 
-	@Override
-	public void setLayout( D element, Object layout, Map<Integer, Dockable> children, PlaceholderStrategy placeholders ){
-		// nothing to do
-	}
+  @Override
+  public void setLayout(D element, Object layout, Map<Integer, Dockable> children, PlaceholderStrategy placeholders) {
+    // nothing to do
+  }
 
-	@Override
-	public void setLayout( D element, Object layout, PlaceholderStrategy placeholders ){
-		// nothing to do
-	}
+  @Override
+  public void setLayout(D element, Object layout, PlaceholderStrategy placeholders) {
+    // nothing to do
+  }
 
-	@Override
-	public void write( Object layout, DataOutputStream out ) throws IOException{
-		// nothing to do
-	}
+  @Override
+  public void write(Object layout, DataOutputStream out) throws IOException {
+    // nothing to do
+  }
 
-	@Override
-	public void write( Object layout, XElement element ){
-		// nothing to do
-	}
+  @Override
+  public void write(Object layout, XElement element) {
+    // nothing to do
+  }
 
-	@Override
-	public Object read( DataInputStream in, PlaceholderStrategy placeholders ) throws IOException{
-		return DUMMY;
-	}
+  @Override
+  public Object read(DataInputStream in, PlaceholderStrategy placeholders) throws IOException {
+    return DUMMY;
+  }
 
-	@Override
-	public Object read( XElement element, PlaceholderStrategy placeholders ){
-		return DUMMY;
-	}
+  @Override
+  public Object read(XElement element, PlaceholderStrategy placeholders) {
+    return DUMMY;
+  }
 
-	@Override
-	public void estimateLocations( Object layout, LocationEstimationMap children ){
-		// nothing to do
-	}
+  @Override
+  public void estimateLocations(Object layout, LocationEstimationMap children) {
+    // nothing to do
+  }
 
-	@Override
-	public D layout( Object layout, Map<Integer, Dockable> children, PlaceholderStrategy placeholders ){
-		return null;
-	}
+  @Override
+  public D layout(Object layout, Map<Integer, Dockable> children, PlaceholderStrategy placeholders) {
+    return null;
+  }
 
-	@Override
-	public D layout( Object layout, PlaceholderStrategy placeholders ){
-		return null;
-	}
+  @Override
+  public D layout(Object layout, PlaceholderStrategy placeholders) {
+    return null;
+  }
 
-	@Override
-	public PerspectiveElement layoutPerspective( Object layout, Map<Integer, PerspectiveDockable> children ){
-		return null;
-	}
+  @Override
+  public PerspectiveElement layoutPerspective(Object layout, Map<Integer, PerspectiveDockable> children) {
+    return null;
+  }
 
-	@Override
-	public void layoutPerspective( PerspectiveElement perspective, Object layout, Map<Integer, PerspectiveDockable> children ){
-		// nothing to do
-	}
+  @Override
+  public void layoutPerspective(PerspectiveElement perspective, Object layout, Map<Integer, PerspectiveDockable> children) {
+    // nothing to do
+  }
 }

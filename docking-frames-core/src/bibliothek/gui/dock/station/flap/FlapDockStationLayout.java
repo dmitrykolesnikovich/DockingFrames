@@ -32,52 +32,63 @@ import bibliothek.gui.dock.station.support.PlaceholderMap;
 
 /**
  * A layout describing the content of a {@link FlapDockStation}.
+ *
  * @author Benjamin Sigg
  */
 public class FlapDockStationLayout {
-    /** whether the direction of the window is chosen automatically or not */
-    private boolean autoDirection;
-    
-    /** the direction of the window */
-    private Direction direction;
-    
-    /** placeholders for all the items, contains also the encoded {@link Dockable}s. */
-    private PlaceholderMap placeholders;
+  /**
+   * whether the direction of the window is chosen automatically or not
+   */
+  private boolean autoDirection;
 
-    /**
-     * Creates a new layout
-     * @param autoDirection whether the direction of the window is chosen
-     * automatically
-     * @param direction the direction into which the window opens
-     * @param placeholders placeholders for all the items, contains also the encoded {@link Dockable}s.
-     */
-    public FlapDockStationLayout( boolean autoDirection, Direction direction, PlaceholderMap placeholders ) {
-        this.autoDirection = autoDirection;
-        this.direction = direction;
-        this.placeholders = placeholders;
-    }
-    
-    /**
-     * Gets the direction into which the window will open
-     * @return the direction
-     */
-    public Direction getDirection() {
-        return direction;
-    }
-    
-    /**
-     * Tells whether the direction is chosen automatically or not.
-     * @return <code>true</code> if the direction is chosen automatically
-     */
-    public boolean isAutoDirection() {
-        return autoDirection;
-    }
-    
-    /**
-     * Gets all the items.
-     * @return the location of all items and all placeholders
-     */
-    public PlaceholderMap getPlaceholders(){
-		return placeholders;
-	}
+  /**
+   * the direction of the window
+   */
+  private Direction direction;
+
+  /**
+   * placeholders for all the items, contains also the encoded {@link Dockable}s.
+   */
+  private PlaceholderMap placeholders;
+
+  /**
+   * Creates a new layout
+   *
+   * @param autoDirection whether the direction of the window is chosen
+   *                      automatically
+   * @param direction     the direction into which the window opens
+   * @param placeholders  placeholders for all the items, contains also the encoded {@link Dockable}s.
+   */
+  public FlapDockStationLayout(boolean autoDirection, Direction direction, PlaceholderMap placeholders) {
+    this.autoDirection = autoDirection;
+    this.direction = direction;
+    this.placeholders = placeholders;
+  }
+
+  /**
+   * Gets the direction into which the window will open
+   *
+   * @return the direction
+   */
+  public Direction getDirection() {
+    return direction;
+  }
+
+  /**
+   * Tells whether the direction is chosen automatically or not.
+   *
+   * @return <code>true</code> if the direction is chosen automatically
+   */
+  public boolean isAutoDirection() {
+    return autoDirection;
+  }
+
+  /**
+   * Gets all the items.
+   *
+   * @return the location of all items and all placeholders
+   */
+  public PlaceholderMap getPlaceholders() {
+    return placeholders;
+  }
 }

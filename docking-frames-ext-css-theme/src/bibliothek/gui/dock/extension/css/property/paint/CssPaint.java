@@ -25,36 +25,39 @@
  */
 package bibliothek.gui.dock.extension.css.property.paint;
 
-import java.awt.Component;
-import java.awt.Graphics;
-
 import bibliothek.gui.dock.extension.css.CssPropertyContainer;
 import bibliothek.gui.dock.extension.css.property.shape.CssShape;
 
+import java.awt.*;
+
 /**
  * An algorithm used to paint an area or border.
+ *
  * @author Benjamin Sigg
  */
-public interface CssPaint extends CssPropertyContainer{
-	/**
-	 * Informs this paint about the {@link Component} it will paint.
-	 * @param component the owner of this paint
-	 */
-	public void init( Component component );
-	
-	/**
-	 * Paints the area inside of <code>shape</code>.
-	 * @param g the graphics context to use
-	 * @param c the {@link Component} on which this paint is painting
-	 * @param shape the shape of the area to paint, can be <code>null</code>
-	 */
-	public void paintArea( Graphics g, Component c, CssShape shape );
-	
-	/**
-	 * Paints the border of <code>shape</code>.
-	 * @param g the graphics context to use
-	 * @param c the {@link Component} on which this paint is painting
-	 * @param shape the shape of the area whose border is painted, can be <code>null</code>
-	 */
-	public void paintBorder( Graphics g, Component c, CssShape shape );
+public interface CssPaint extends CssPropertyContainer {
+  /**
+   * Informs this paint about the {@link Component} it will paint.
+   *
+   * @param component the owner of this paint
+   */
+  public void init(Component component);
+
+  /**
+   * Paints the area inside of <code>shape</code>.
+   *
+   * @param g     the graphics context to use
+   * @param c     the {@link Component} on which this paint is painting
+   * @param shape the shape of the area to paint, can be <code>null</code>
+   */
+  public void paintArea(Graphics g, Component c, CssShape shape);
+
+  /**
+   * Paints the border of <code>shape</code>.
+   *
+   * @param g     the graphics context to use
+   * @param c     the {@link Component} on which this paint is painting
+   * @param shape the shape of the area whose border is painted, can be <code>null</code>
+   */
+  public void paintBorder(Graphics g, Component c, CssShape shape);
 }

@@ -29,14 +29,16 @@ import bibliothek.gui.dock.station.stack.tab.layouting.LayoutBlock;
 
 /**
  * A {@link LonelyTabPaneComponent} is a {@link TabPaneComponent} which can
- * be used in a layout as a single element. 
+ * be used in a layout as a single element.
+ *
  * @author Benjamin Sigg
  */
-public interface LonelyTabPaneComponent extends TabPaneComponent{
-	/**
-	 * Gets a {@link LayoutBlock} related to this component. This method
-	 * may create a new block or return always the same block.
-	 * @return the {@link LayoutBlock} related to this component
-	 */
-	public LayoutBlock toLayoutBlock();
+public interface LonelyTabPaneComponent extends TabPaneComponent {
+  /**
+   * Gets a {@link LayoutBlock} related to this component. This method
+   * may create a new block or return always the same block.
+   *
+   * @return the {@link LayoutBlock} related to this component
+   */
+  public LayoutBlock toLayoutBlock();
 }

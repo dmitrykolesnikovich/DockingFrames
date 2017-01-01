@@ -29,24 +29,26 @@ import bibliothek.util.Path;
 
 /**
  * The {@link #create()} method of this factory always returns <code>null</code>.
+ *
  * @author Benjamin Sigg
  */
-public class NullModeSettingsFactory<A> implements ModeSettingFactory<A>{
-	private Path id;
-	
-	/**
-	 * Creates a new factory.
-	 * @param id the unique id of the {@link Mode}
-	 */
-	public NullModeSettingsFactory( Path id ){
-		this.id = id;
-	}
-	
-	public Path getModeId(){
-		return id;
-	}
-	
-	public ModeSetting<A> create(){
-		return null;
-	}
+public class NullModeSettingsFactory<A> implements ModeSettingFactory<A> {
+  private Path id;
+
+  /**
+   * Creates a new factory.
+   *
+   * @param id the unique id of the {@link Mode}
+   */
+  public NullModeSettingsFactory(Path id) {
+    this.id = id;
+  }
+
+  public Path getModeId() {
+    return id;
+  }
+
+  public ModeSetting<A> create() {
+    return null;
+  }
 }

@@ -25,96 +25,96 @@
  */
 package bibliothek.sizeAndColor;
 
-import java.awt.*;
+import bibliothek.gui.dock.common.ColorMap;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.*;
-
-import bibliothek.gui.dock.common.ColorMap;
 
 /**
  * A {@link ColorButton} changes an entry of the {@link ColorMap}. It can
  * also delete an entry from the map.
+ *
  * @author Benjamin Sigg
  */
-public class ColorButton extends JPanel{
-    private ColorMap map;
-    private String key;
-    
-    private Color color = Color.RED;
-    private JCheckBox selected;
+public class ColorButton extends JPanel {
+  private ColorMap map;
+  private String key;
 
-    /**
-     * Creates a new button.
-     * @param map the map which will be changed by this button
-     * @param key the key of the entry
-     * @param color the initial value
-     */
-    public ColorButton( ColorMap map, String key, Color color ){
-        this.map = map;
-        this.color = color;
-        this.key = key;
-        
-        selected = new JCheckBox( key );
-        JButton button = new JButton( new ColorIcon() );
-        
-        setLayout( new BorderLayout() );
-        add( selected, BorderLayout.CENTER );
-        add( button, BorderLayout.EAST );
-        
-        selected.addActionListener( new ActionListener(){
-            public void actionPerformed( ActionEvent e ) {
-                transmit();
-            }
-        });
-        button.addActionListener( new ActionListener(){
-            public void actionPerformed( ActionEvent e ) {
-                changeColor();
-            }
-        });
-    }
-    
-    /**
-     * Opens a {@link JColorChooser} and lets the user change the color.
-     */
-    private void changeColor(){
-        Color color = JColorChooser.showDialog( this, key, this.color );
-        if( color != null ){
-            this.color = color;
-            repaint();
-            transmit();
-        }
-    }
-    
-    /**
-     * Transmits the current setting to the {@link ColorMap} of this button.
-     */
-    private void transmit(){
-        if( selected.isSelected() ){
-            map.setColor( key, color );
-        }
-        else{
-            map.setColor( key, null );
-        }
-    }
-    
-    /**
-     * An icon that paints a rectangle in one color.
-     * @author Benjamin Sigg
-     */
-    private class ColorIcon implements Icon{
-        public int getIconHeight() {
-            return 20;
-        }
+  private Color color = Color.RED;
+  private JCheckBox selected;
 
-        public int getIconWidth() {
-            return 20;
-        }
+  /**
+   * Creates a new button.
+   *
+   * @param map   the map which will be changed by this button
+   * @param key   the key of the entry
+   * @param color the initial value
+   */
+  public ColorButton(ColorMap map, String key, Color color) {
+    this.map = map;
+    this.color = color;
+    this.key = key;
 
-        public void paintIcon( Component c, Graphics g, int x, int y ) {
-            g.setColor( color );
-            g.fillRect( x, y, 20, 20 );
-        }
+    selected = new JCheckBox(key);
+    JButton button = new JButton(new ColorIcon());
+
+    setLayout(new BorderLayout());
+    add(selected, BorderLayout.CENTER);
+    add(button, BorderLayout.EAST);
+
+    selected.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        transmit();
+      }
+    });
+    button.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        changeColor();
+      }
+    });
+  }
+
+  /**
+   * Opens a {@link JColorChooser} and lets the user change the color.
+   */
+  private void changeColor() {
+    Color color = JColorChooser.showDialog(this, key, this.color);
+    if (color != null) {
+      this.color = color;
+      repaint();
+      transmit();
     }
+  }
+
+  /**
+   * Transmits the current setting to the {@link ColorMap} of this button.
+   */
+  private void transmit() {
+    if (selected.isSelected()) {
+      map.setColor(key, color);
+    }
+    else {
+      map.setColor(key, null);
+    }
+  }
+
+  /**
+   * An icon that paints a rectangle in one color.
+   *
+   * @author Benjamin Sigg
+   */
+  private class ColorIcon implements Icon {
+    public int getIconHeight() {
+      return 20;
+    }
+
+    public int getIconWidth() {
+      return 20;
+    }
+
+    public void paintIcon(Component c, Graphics g, int x, int y) {
+      g.setColor(color);
+      g.fillRect(x, y, 20, 20);
+    }
+  }
 }

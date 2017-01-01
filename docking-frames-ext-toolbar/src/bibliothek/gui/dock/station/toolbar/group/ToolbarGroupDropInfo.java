@@ -41,102 +41,112 @@ import bibliothek.gui.dock.station.support.CombinerTarget;
  * This class contains and computes information about a drag and drop action.
  * Especially, where the {@link Dockable} should be inserted into which
  * {@link DockStation}
- * 
+ *
+ * @param <S> the kind of station using this {@link ToolbarGroupDropInfo}
  * @author Herve Guillaume
- * @param <S>
- *            the kind of station using this {@link ToolbarGroupDropInfo}
  */
-public abstract class ToolbarGroupDropInfo implements StationDropOperation{
-	/** The {@link Dockable} which is inserted */
-	private final Dockable dragDockable;
-	/**
-	 * The {@link Dockable} which received the dockable (WARNING: this can be
-	 * different to his original dock parent!)
-	 */
-	private final ToolbarGroupDockStation stationHost;
-	
-	/** the column into which to insert the {@link #dragDockable} */
-	private int column;
-	
-	/** the row into which to insert the {@link #dragDockable} or -1 */
-	private int line;
-	
-	/** whether the operation will change the location of a {@link Dockable} */
-	private boolean effect;
+public abstract class ToolbarGroupDropInfo implements StationDropOperation {
+  /**
+   * The {@link Dockable} which is inserted
+   */
+  private final Dockable dragDockable;
+  /**
+   * The {@link Dockable} which received the dockable (WARNING: this can be
+   * different to his original dock parent!)
+   */
+  private final ToolbarGroupDockStation stationHost;
 
-	/**
-	 * Creates a new drop info.
-	 * @param dockable the item that is dropped
-	 * @param station the station onto which <code>dockable</code> is dropped
-	 * @param column the column into which <code>dockable</code> is dropped, this may be an existing
-	 * column or a new column
-	 * @param line the row in which <code>dockable</code> will appear, a value of -1 indicates that
-	 * the item will appear in a new column
-	 * @param effect whether the operation has any effect
-	 */
-	public ToolbarGroupDropInfo( Dockable dockable, ToolbarGroupDockStation station, int column, int line, boolean effect ){
-		this.dragDockable = dockable;
-		this.stationHost = station;
-		this.column = column;
-		this.line = line;
-		this.effect = effect;
-	}
+  /**
+   * the column into which to insert the {@link #dragDockable}
+   */
+  private int column;
 
-	@Override
-	public Dockable getItem(){
-		return dragDockable;
-	}
+  /**
+   * the row into which to insert the {@link #dragDockable} or -1
+   */
+  private int line;
 
-	@Override
-	public ToolbarGroupDockStation getTarget(){
-		return stationHost;
-	}
-	
-	/**
-	 * Tells whether executing this operation will results in any changes of the layout.
-	 * @return whether this operation has an effect
-	 */
-	public boolean hasEffect(){
-		return effect;
-	}
+  /**
+   * whether the operation will change the location of a {@link Dockable}
+   */
+  private boolean effect;
 
-	/**
-	 * Gets the column into which {@link #getItem() the item} is inserted.
-	 * @return the index of the column, this may be an existing column or a new column
-	 */
-	public int getColumn(){
-		return column;
-	}
-	
-	/**
-	 * Gets the line into which {@link #getItem() the item} is inserted. A value of -1 indicates
-	 * that a new column is to be created.
-	 * @return the line or -1
-	 */
-	public int getLine(){
-		return line;
-	}
-	
-	@Override
-	public CombinerTarget getCombination(){
-		// not supported by this kind of station
-		return null;
-	}
+  /**
+   * Creates a new drop info.
+   *
+   * @param dockable the item that is dropped
+   * @param station  the station onto which <code>dockable</code> is dropped
+   * @param column   the column into which <code>dockable</code> is dropped, this may be an existing
+   *                 column or a new column
+   * @param line     the row in which <code>dockable</code> will appear, a value of -1 indicates that
+   *                 the item will appear in a new column
+   * @param effect   whether the operation has any effect
+   */
+  public ToolbarGroupDropInfo(Dockable dockable, ToolbarGroupDockStation station, int column, int line, boolean effect) {
+    this.dragDockable = dockable;
+    this.stationHost = station;
+    this.column = column;
+    this.line = line;
+    this.effect = effect;
+  }
 
-	@Override
-	public DisplayerCombinerTarget getDisplayerCombination(){
-		// not supported by this kind of station
-		return null;
-	}
+  @Override
+  public Dockable getItem() {
+    return dragDockable;
+  }
 
-	@Override
-	public boolean isMove(){
-		return getItem().getDockParent() == getTarget();
-	}
+  @Override
+  public ToolbarGroupDockStation getTarget() {
+    return stationHost;
+  }
 
-	@Override
-	public String toString(){
-		return this.getClass().getSimpleName() + '@'
-				+ Integer.toHexString(hashCode());
-	}
+  /**
+   * Tells whether executing this operation will results in any changes of the layout.
+   *
+   * @return whether this operation has an effect
+   */
+  public boolean hasEffect() {
+    return effect;
+  }
+
+  /**
+   * Gets the column into which {@link #getItem() the item} is inserted.
+   *
+   * @return the index of the column, this may be an existing column or a new column
+   */
+  public int getColumn() {
+    return column;
+  }
+
+  /**
+   * Gets the line into which {@link #getItem() the item} is inserted. A value of -1 indicates
+   * that a new column is to be created.
+   *
+   * @return the line or -1
+   */
+  public int getLine() {
+    return line;
+  }
+
+  @Override
+  public CombinerTarget getCombination() {
+    // not supported by this kind of station
+    return null;
+  }
+
+  @Override
+  public DisplayerCombinerTarget getDisplayerCombination() {
+    // not supported by this kind of station
+    return null;
+  }
+
+  @Override
+  public boolean isMove() {
+    return getItem().getDockParent() == getTarget();
+  }
+
+  @Override
+  public String toString() {
+    return this.getClass().getSimpleName() + '@' + Integer.toHexString(hashCode());
+  }
 }

@@ -28,22 +28,23 @@ package bibliothek.gui.dock.event;
 /**
  * Standard implementation of {@link VetoableDockFrontendListener}, does
  * nothing in its methods.
+ *
  * @author Benjamin Sigg
  */
 public abstract class VetoableDockFrontendAdapter implements VetoableDockFrontendListener {
-    public void hidden( VetoableDockFrontendEvent event ) {
-        // nothing
-    }
+  public void hidden(VetoableDockFrontendEvent event) {
+    // nothing
+  }
 
-    public void hiding( VetoableDockFrontendEvent event ) {
-        // nothing    
-    }
-    
-    public void shown( VetoableDockFrontendEvent event ) {
-        // nothing
-    }
+  public void hiding(VetoableDockFrontendEvent event) {
+    // nothing
+  }
 
-    public void showing( VetoableDockFrontendEvent event ) {
-        // nothing
-    }
+  public void shown(VetoableDockFrontendEvent event) {
+    // nothing
+  }
+
+  public void showing(VetoableDockFrontendEvent event) {
+    // nothing
+  }
 }

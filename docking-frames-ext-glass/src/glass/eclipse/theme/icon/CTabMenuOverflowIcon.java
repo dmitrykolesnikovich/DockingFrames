@@ -25,92 +25,88 @@
  */
 package glass.eclipse.theme.icon;
 
-import java.awt.*;
-import java.awt.font.*;
-import java.awt.geom.*;
-import bibliothek.gui.dock.themes.icon.*;
-import bibliothek.gui.dock.util.font.*;
-
-
 /**
- * This icon shows an arrow and a number indicating the size of some menu. 
+ * This icon shows an arrow and a number indicating the size of some menu.
+ *
  * @author Thomas Hilbert
  */
 public class CTabMenuOverflowIcon extends TabMenuOverflowIcon {
-   int iSize;
+  int iSize;
 
-   /**
-    * Creates a new icon.
-    * @param size the number to show
-    */
-   public CTabMenuOverflowIcon (int size) {
-      super(size);
-      iSize = size;
-   }
+  /**
+   * Creates a new icon.
+   *
+   * @param size the number to show
+   */
+  public CTabMenuOverflowIcon(int size) {
+    super(size);
+    iSize = size;
+  }
 
-   @Override
-   public int getIconWidth () {
-      if (iSize < 10) {
-         return (12);
-      }
-      else if (iSize > 99) {
-         return (22);
-      }
-      else {
-         return (16);
-      }
-   }
+  public static int GetDPICorrectedFontSize(int fontSize) {
+    int iOSdpi = Toolkit.getDefaultToolkit().getScreenResolution();
 
-   @Override
-   public int getIconHeight () {
-      return 12;
-   }
+    int iAdjustedFontSize = (int)(fontSize * iOSdpi / 72.0D + 0.5D);
+    return iAdjustedFontSize;
+  }
 
-   @Override
-   public void paintIcon (Component c, Graphics g, int x, int y) {
-      Graphics2D g2d = (Graphics2D)g;
-      //      gg.setColor(Color.RED);
-      //      gg.drawRect(x, y, getIconWidth() - 1, getIconHeight() - 1);
+  @Override
+  public int getIconWidth() {
+    if (iSize < 10) {
+      return (12);
+    }
+    else if (iSize > 99) {
+      return (22);
+    }
+    else {
+      return (16);
+    }
+  }
 
-      g2d.setColor(c.getForeground());
+  @Override
+  public int getIconHeight() {
+    return 12;
+  }
 
-      drawArrow(g2d, x, y);
-      drawArrow(g2d, x + 4, y);
+  @Override
+  public void paintIcon(Component c, Graphics g, int x, int y) {
+    Graphics2D g2d = (Graphics2D)g;
+    //      gg.setColor(Color.RED);
+    //      gg.drawRect(x, y, getIconWidth() - 1, getIconHeight() - 1);
 
-      String text;
-      if (iSize > 99) {
-         text = "99+";
-      }
-      else {
-         text = String.valueOf(iSize);
-      }
+    g2d.setColor(c.getForeground());
 
-      Font font = g2d.getFont();
-      GenericFontModifier modifier = new GenericFontModifier();
-      modifier.setSizeDelta(false);
-      modifier.setSize(GetDPICorrectedFontSize(7));
-      g2d.setFont(modifier.modify(font));
+    drawArrow(g2d, x, y);
+    drawArrow(g2d, x + 4, y);
 
-      TextLayout layout = new TextLayout(text, g2d.getFont(), g2d.getFontRenderContext());
-      Rectangle2D bounds = layout.getBounds();
+    String text;
+    if (iSize > 99) {
+      text = "99+";
+    }
+    else {
+      text = String.valueOf(iSize);
+    }
 
-      layout.draw(g2d, (float)(x + getIconWidth() - bounds.getWidth() - bounds.getX()), (float)(y + getIconHeight() - bounds.getHeight() - bounds.getY()));
+    Font font = g2d.getFont();
+    GenericFontModifier modifier = new GenericFontModifier();
+    modifier.setSizeDelta(false);
+    modifier.setSize(GetDPICorrectedFontSize(7));
+    g2d.setFont(modifier.modify(font));
 
-      g2d.setFont(font);
-   }
+    TextLayout layout = new TextLayout(text, g2d.getFont(), g2d.getFontRenderContext());
+    Rectangle2D bounds = layout.getBounds();
 
-   private void drawArrow (Graphics g, int x, int y) {
-      g.drawLine(x, y, x + 1, y);
-      g.drawLine(x + 1, y + 1, x + 2, y + 1);
-      g.drawLine(x + 2, y + 2, x + 3, y + 2);
-      g.drawLine(x + 1, y + 3, x + 2, y + 3);
-      g.drawLine(x, y + 4, x + 1, y + 4);
-   }
+    layout.draw(g2d, (float)(x + getIconWidth() - bounds.getWidth() - bounds.getX()),
+                (float)(y + getIconHeight() - bounds.getHeight() - bounds.getY()));
 
-   public static int GetDPICorrectedFontSize (int fontSize) {
-      int iOSdpi = Toolkit.getDefaultToolkit().getScreenResolution();
+    g2d.setFont(font);
+  }
 
-      int iAdjustedFontSize = (int)(fontSize * iOSdpi / 72.0D + 0.5D);
-      return iAdjustedFontSize;
-   }
+  private void drawArrow(Graphics g, int x, int y) {
+    g.drawLine(x, y, x + 1, y);
+    g.drawLine(x + 1, y + 1, x + 2, y + 1);
+    g.drawLine(x + 2, y + 2, x + 3, y + 2);
+    g.drawLine(x + 1, y + 3, x + 2, y + 3);
+    g.drawLine(x, y + 4, x + 1, y + 4);
+  }
 }

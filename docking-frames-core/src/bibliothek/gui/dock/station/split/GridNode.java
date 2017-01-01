@@ -25,56 +25,64 @@
  */
 package bibliothek.gui.dock.station.split;
 
-import java.util.List;
-
 import bibliothek.gui.Dockable;
 import bibliothek.util.Path;
+
+import java.util.List;
 
 /**
  * A node of an {@link AbstractSplitDockGrid}, represents a stack of {@link Dockable}s
  * and their position.
+ *
  * @author Benjamin Sigg
  */
-public interface GridNode<D>{
-	/**
-	 * Gets the x-coordinate, relative to all the other nodes.
-	 * @return the x-coordinate
-	 */
-	public double getX();
-	
-	/**
-	 * Gets the y-coordinate, relative to all the other nodes.
-	 * @return the y-coordinate
-	 */
-	public double getY();
-	
-	/**
-	 * Gets the width, relative to all the other nodes.
-	 * @return the width
-	 */
-	public double getWidth();
-	
-	/**
-	 * Gets the height, relative to all the other nodes.
-	 * @return the height
-	 */
-	public double getHeight();
-	
-	/**
-	 * Gets an unmodifiable list containing all the {@link Dockable} of this node.
-	 * @return the list of dockables, may be empty
-	 */
-	public List<D> getDockables();
-	
-	/**
-	 * Gets the one dockable that is selected, must be part of {@link #getDockables()}.
-	 * @return the selected dockable or <code>null</code>
-	 */
-	public D getSelected();
-	
-	/**
-	 * Gets all the placeholders associated with this node.
-	 * @return the placeholders in an unmodifiable list
-	 */
-	public List<Path> getPlaceholders();
+public interface GridNode<D> {
+  /**
+   * Gets the x-coordinate, relative to all the other nodes.
+   *
+   * @return the x-coordinate
+   */
+  public double getX();
+
+  /**
+   * Gets the y-coordinate, relative to all the other nodes.
+   *
+   * @return the y-coordinate
+   */
+  public double getY();
+
+  /**
+   * Gets the width, relative to all the other nodes.
+   *
+   * @return the width
+   */
+  public double getWidth();
+
+  /**
+   * Gets the height, relative to all the other nodes.
+   *
+   * @return the height
+   */
+  public double getHeight();
+
+  /**
+   * Gets an unmodifiable list containing all the {@link Dockable} of this node.
+   *
+   * @return the list of dockables, may be empty
+   */
+  public List<D> getDockables();
+
+  /**
+   * Gets the one dockable that is selected, must be part of {@link #getDockables()}.
+   *
+   * @return the selected dockable or <code>null</code>
+   */
+  public D getSelected();
+
+  /**
+   * Gets all the placeholders associated with this node.
+   *
+   * @return the placeholders in an unmodifiable list
+   */
+  public List<Path> getPlaceholders();
 }

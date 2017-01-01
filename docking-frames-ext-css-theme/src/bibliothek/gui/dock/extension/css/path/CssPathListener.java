@@ -29,12 +29,14 @@ import bibliothek.gui.dock.extension.css.CssPath;
 
 /**
  * A listener that can be added to a {@link CssPath}.
+ *
  * @author Benjamin Sigg
  */
 public interface CssPathListener {
-	/**
-	 * Called if any property of <code>path</code> changed
-	 * @param path the path that changed
-	 */
-	public void pathChanged( CssPath path );
+  /**
+   * Called if any property of <code>path</code> changed
+   *
+   * @param path the path that changed
+   */
+  public void pathChanged(CssPath path);
 }

@@ -25,25 +25,26 @@
  */
 package bibliothek.gui.dock.util.render;
 
-import java.awt.Component;
-import java.awt.Graphics;
-
 import bibliothek.gui.dock.util.PropertyKey;
 import bibliothek.gui.dock.util.property.ConstantPropertyFactory;
+
+import java.awt.*;
 
 /**
  * Called by some {@link Component}s before painting, this interface is intended to setup application wide
  * rendering hints, like for example whether to use anti-aliasing.
+ *
  * @author Benjamin Sigg
  */
 public interface DockRenderingHints {
-	public static final PropertyKey<DockRenderingHints> RENDERING_HINTS = 
-			new PropertyKey<DockRenderingHints>( "rendering hints", 
-					new ConstantPropertyFactory<DockRenderingHints>( new DefaultDockRenderingHints() ), true );
-	
-	/**
-	 * Called before <code>g</code> is used to paint stuff.
-	 * @param g the Graphics that will be used for painting
-	 */
-	public void setupGraphics( Graphics g );
+  public static final PropertyKey<DockRenderingHints> RENDERING_HINTS =
+    new PropertyKey<DockRenderingHints>("rendering hints", new ConstantPropertyFactory<DockRenderingHints>(new DefaultDockRenderingHints()),
+                                        true);
+
+  /**
+   * Called before <code>g</code> is used to paint stuff.
+   *
+   * @param g the Graphics that will be used for painting
+   */
+  public void setupGraphics(Graphics g);
 }

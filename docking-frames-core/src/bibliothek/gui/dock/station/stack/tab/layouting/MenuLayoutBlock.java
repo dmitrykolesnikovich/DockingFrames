@@ -29,24 +29,27 @@ import bibliothek.gui.dock.station.stack.tab.TabMenu;
 
 /**
  * A wrapper around a {@link TabMenu}.
+ *
  * @author Benjamin Sigg
  */
-public class MenuLayoutBlock extends ComponentLayoutBlock<TabMenu>{
-	/**
-	 * Sets the menu for this block.
-	 * @param menu the menu, may be <code>null</code>
-	 * @see ComponentLayoutBlock#setComponent(bibliothek.gui.dock.station.stack.tab.TabPaneComponent)
-	 */
-	public void setMenu( TabMenu menu ){
-		setComponent( menu );
-	}
-	
-	/**
-	 * Gets the menu of this block.
-	 * @return the menu, may be <code>null</code>
-	 * @see #getComponent()
-	 */
-	public TabMenu getMenu(){
-		return getComponent();
-	}
+public class MenuLayoutBlock extends ComponentLayoutBlock<TabMenu> {
+  /**
+   * Gets the menu of this block.
+   *
+   * @return the menu, may be <code>null</code>
+   * @see #getComponent()
+   */
+  public TabMenu getMenu() {
+    return getComponent();
+  }
+
+  /**
+   * Sets the menu for this block.
+   *
+   * @param menu the menu, may be <code>null</code>
+   * @see ComponentLayoutBlock#setComponent(bibliothek.gui.dock.station.stack.tab.TabPaneComponent)
+   */
+  public void setMenu(TabMenu menu) {
+    setComponent(menu);
+  }
 }

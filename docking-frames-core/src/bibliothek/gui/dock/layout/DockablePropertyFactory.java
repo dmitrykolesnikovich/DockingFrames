@@ -29,18 +29,21 @@ package bibliothek.gui.dock.layout;
 
 /**
  * A factory which creates instances of {@link DockableProperty}.
+ *
  * @author Benjamin Sigg
  */
 public interface DockablePropertyFactory {
-    /**
-     * Gets the unique name of this factory.
-     * @return the id
-     */
-    public String getID();
-    
-    /**
-     * Creates a new empty {@link DockableProperty}.
-     * @return the new property
-     */
-    public DockableProperty createProperty();
+  /**
+   * Gets the unique name of this factory.
+   *
+   * @return the id
+   */
+  public String getID();
+
+  /**
+   * Creates a new empty {@link DockableProperty}.
+   *
+   * @return the new property
+   */
+  public DockableProperty createProperty();
 }

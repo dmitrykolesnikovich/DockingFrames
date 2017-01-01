@@ -30,15 +30,17 @@ import bibliothek.gui.dock.util.UIBridge;
 
 /**
  * A collection of multiple {@link UIBridge}s.
+ *
  * @author Benjamin Sigg
  */
-public class MultiFontBridge extends MultiUIBridge<FontModifier, DockFont> implements FontBridge{
-    /**
-     * Creates a new {@link MultiFontBridge}.
-     * @param manager the manager from whom this provider will get default
-     * fonts when necessary
-     */
-    public MultiFontBridge( FontManager manager ){
-        super( manager );
-    }
+public class MultiFontBridge extends MultiUIBridge<FontModifier, DockFont> implements FontBridge {
+  /**
+   * Creates a new {@link MultiFontBridge}.
+   *
+   * @param manager the manager from whom this provider will get default
+   *                fonts when necessary
+   */
+  public MultiFontBridge(FontManager manager) {
+    super(manager);
+  }
 }

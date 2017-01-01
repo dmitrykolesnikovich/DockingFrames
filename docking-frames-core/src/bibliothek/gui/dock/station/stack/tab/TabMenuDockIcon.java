@@ -31,30 +31,37 @@ import bibliothek.util.Path;
 
 /**
  * Represents the icon of a {@link TabMenu}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class TabMenuDockIcon extends DockIcon{
-	/** the kind of this {@link UIValue} */
-	public static final Path KIND_TAB_MENU = KIND_ICON.append( "tabMenu" );
-	
-	/** the menu which is represented by this {@link TabMenuDockIcon} */
-	private TabMenu menu;
-	
-	/**
-	 * Creates a new {@link DockIcon}
-	 * @param id the unique identifier of this icon
-	 * @param menu the menu which is represented by this icon
-	 */
-	public TabMenuDockIcon( String id, TabMenu menu ){
-		super( id, KIND_TAB_MENU );
-		this.menu = menu;
-	}
-	
-	/**
-	 * Gets the menu which is represented by this icon
-	 * @return the menu
-	 */
-	public TabMenu getMenu(){
-		return menu;
-	}
+public abstract class TabMenuDockIcon extends DockIcon {
+  /**
+   * the kind of this {@link UIValue}
+   */
+  public static final Path KIND_TAB_MENU = KIND_ICON.append("tabMenu");
+
+  /**
+   * the menu which is represented by this {@link TabMenuDockIcon}
+   */
+  private TabMenu menu;
+
+  /**
+   * Creates a new {@link DockIcon}
+   *
+   * @param id   the unique identifier of this icon
+   * @param menu the menu which is represented by this icon
+   */
+  public TabMenuDockIcon(String id, TabMenu menu) {
+    super(id, KIND_TAB_MENU);
+    this.menu = menu;
+  }
+
+  /**
+   * Gets the menu which is represented by this icon
+   *
+   * @return the menu
+   */
+  public TabMenu getMenu() {
+    return menu;
+  }
 }

@@ -25,17 +25,19 @@
  */
 package bibliothek.gui.dock.util.font;
 
-import java.awt.Font;
+import java.awt.*;
 
 /**
  * A font modifier changes a font, i.e. makes a font italic.
+ *
  * @author Benjamin Sigg
  */
 public interface FontModifier {
-    /**
-     * Creates or gets a font for <code>font</code>.
-     * @param font the original unmodified font
-     * @return a font that might be a modification of <code>font</code>
-     */
-    public Font modify( Font font );
+  /**
+   * Creates or gets a font for <code>font</code>.
+   *
+   * @param font the original unmodified font
+   * @return a font that might be a modification of <code>font</code>
+   */
+  public Font modify(Font font);
 }

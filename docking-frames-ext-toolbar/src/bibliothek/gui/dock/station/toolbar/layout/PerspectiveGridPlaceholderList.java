@@ -36,36 +36,37 @@ import bibliothek.util.Path;
 
 /**
  * Represents a list of lists of {@link PerspectiveDockable}s and placeholders.
+ *
  * @author Benjamin Sigg
  */
-public class PerspectiveGridPlaceholderList extends GridPlaceholderList<PerspectiveDockable, PerspectiveStation, PerspectiveDockable>{
-	@Override
-	protected PerspectiveStation itemToStation( PerspectiveDockable dockable ){
-		return dockable.asStation();
-	}
+public class PerspectiveGridPlaceholderList extends GridPlaceholderList<PerspectiveDockable, PerspectiveStation, PerspectiveDockable> {
+  @Override
+  protected PerspectiveStation itemToStation(PerspectiveDockable dockable) {
+    return dockable.asStation();
+  }
 
-	@Override
-	protected PerspectiveDockable[] getItemChildren( PerspectiveStation station ){
-		int count = station.getDockableCount();
-		PerspectiveDockable[] result = new PerspectiveDockable[ count ];
-		for( int i = 0; i < count; i++ ){
-			result[i] = station.getDockable( i );
-		}
-		return result;
-	}
+  @Override
+  protected PerspectiveDockable[] getItemChildren(PerspectiveStation station) {
+    int count = station.getDockableCount();
+    PerspectiveDockable[] result = new PerspectiveDockable[count];
+    for (int i = 0; i < count; i++) {
+      result[i] = station.getDockable(i);
+    }
+    return result;
+  }
 
-	@Override
-	protected Path getItemPlaceholder( PerspectiveDockable dockable ){
-		return dockable.getPlaceholder();
-	}
+  @Override
+  protected Path getItemPlaceholder(PerspectiveDockable dockable) {
+    return dockable.getPlaceholder();
+  }
 
-	@Override
-	protected PlaceholderMap getItemPlaceholders( PerspectiveStation station ){
-		return station.getPlaceholders();
-	}
+  @Override
+  protected PlaceholderMap getItemPlaceholders(PerspectiveStation station) {
+    return station.getPlaceholders();
+  }
 
-	@Override
-	protected void setItemPlaceholders( PerspectiveStation station, PlaceholderMap map ){
-		station.setPlaceholders( map );
-	}
+  @Override
+  protected void setItemPlaceholders(PerspectiveStation station, PlaceholderMap map) {
+    station.setPlaceholders(map);
+  }
 }

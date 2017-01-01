@@ -31,21 +31,24 @@ import bibliothek.gui.dock.title.DockTitleRequest;
 
 /**
  * A {@link DockTitleFactory factory} for the {@link BasicButtonDockTitle}
+ *
  * @author Benjamin Sigg
  */
 public class BasicButtonTitleFactory implements DockTitleFactory {
-    /** A static instance of this factory, can be used everywhere */
-    public static final BasicButtonTitleFactory FACTORY = new BasicButtonTitleFactory();
+  /**
+   * A static instance of this factory, can be used everywhere
+   */
+  public static final BasicButtonTitleFactory FACTORY = new BasicButtonTitleFactory();
 
-    public void install( DockTitleRequest request ){
-	    // ignore	
-    }
-    
-    public void request( DockTitleRequest request ){
-    	request.answer( new BasicButtonDockTitle( request.getTarget(), request.getVersion() ) );
-    }
-    
-    public void uninstall( DockTitleRequest request ){
-	    // ignore	
-    }
+  public void install(DockTitleRequest request) {
+    // ignore
+  }
+
+  public void request(DockTitleRequest request) {
+    request.answer(new BasicButtonDockTitle(request.getTarget(), request.getVersion()));
+  }
+
+  public void uninstall(DockTitleRequest request) {
+    // ignore
+  }
 }

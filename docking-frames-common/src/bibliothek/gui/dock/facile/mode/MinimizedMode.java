@@ -40,67 +40,74 @@ import bibliothek.util.Path;
 
 /**
  * Only the title of a minimized {@link Dockable} is visible.
+ *
  * @author Benjamin Sigg
  */
-public class MinimizedMode<M extends MinimizedModeArea> extends DefaultLocationMode<M>{
-	/** the unique identifier of this mode */
-	public static final Path IDENTIFIER = new Path( "dock.mode.minimized" );
-	
-    /** the key used for the {@link IconManager} to read the {@link javax.swing.Icon} for the "minimize"-action */
-    public static final String ICON_IDENTIFIER = CLocationModeManager.ICON_MANAGER_KEY_MINIMIZE;
+public class MinimizedMode<M extends MinimizedModeArea> extends DefaultLocationMode<M> {
+  /**
+   * the unique identifier of this mode
+   */
+  public static final Path IDENTIFIER = new Path("dock.mode.minimized");
 
-    /**
-     * Empty default constructor. Subclasses should call 
-     * {@link #setActionProvider(LocationModeActionProvider)} to complete
-     * initialization of this mode.
-     */
-    protected MinimizedMode(){
-    	setShouldAutoFocus( false );
-    }
-    
-	/**
-	 * Creates a new mode.
-	 * @param control the control in whose realm this mode is used
-	 */
-	public MinimizedMode( CControl control ){
-		setActionProvider( new DefaultLocationModeActionProvider( new CMinimizeAction( control ) ) );
-		setShouldAutoFocus( false );
-	}
-	
-	/**
-	 * Creates a new mode.
-	 * @param controller the owner of this mode
-	 */
-	public MinimizedMode( DockController controller ){
-		setActionProvider( new DefaultLocationModeActionProvider( new MinimizedModeAction( controller, this ) ) );
-        setShouldAutoFocus( false );
-	}
-	
-	public Path getUniqueIdentifier(){
-		return IDENTIFIER;
-	}
-	
-	public ExtendedMode getExtendedMode(){
-		return ExtendedMode.MINIMIZED;
-	}
-	
-	public boolean isDefaultMode( Dockable dockable ){
-		return false;
-	}
-	
-    public ModeSettingFactory<Location> getSettingFactory(){
-    	return new NullModeSettingsFactory<Location>( getUniqueIdentifier() );
-    }
-    
-    public void ensureNotHidden( Dockable dockable ){
-	    // ignore	
-    }
-    
-    public void writeSetting( ModeSetting<Location> setting ){
-	    // ignore	
-    }
-    
-    public void readSetting( ModeSetting<Location> setting ){
-    	// ignore
-    }
+  /**
+   * the key used for the {@link IconManager} to read the {@link javax.swing.Icon} for the "minimize"-action
+   */
+  public static final String ICON_IDENTIFIER = CLocationModeManager.ICON_MANAGER_KEY_MINIMIZE;
+
+  /**
+   * Empty default constructor. Subclasses should call
+   * {@link #setActionProvider(LocationModeActionProvider)} to complete
+   * initialization of this mode.
+   */
+  protected MinimizedMode() {
+    setShouldAutoFocus(false);
+  }
+
+  /**
+   * Creates a new mode.
+   *
+   * @param control the control in whose realm this mode is used
+   */
+  public MinimizedMode(CControl control) {
+    setActionProvider(new DefaultLocationModeActionProvider(new CMinimizeAction(control)));
+    setShouldAutoFocus(false);
+  }
+
+  /**
+   * Creates a new mode.
+   *
+   * @param controller the owner of this mode
+   */
+  public MinimizedMode(DockController controller) {
+    setActionProvider(new DefaultLocationModeActionProvider(new MinimizedModeAction(controller, this)));
+    setShouldAutoFocus(false);
+  }
+
+  public Path getUniqueIdentifier() {
+    return IDENTIFIER;
+  }
+
+  public ExtendedMode getExtendedMode() {
+    return ExtendedMode.MINIMIZED;
+  }
+
+  public boolean isDefaultMode(Dockable dockable) {
+    return false;
+  }
+
+  public ModeSettingFactory<Location> getSettingFactory() {
+    return new NullModeSettingsFactory<Location>(getUniqueIdentifier());
+  }
+
+  public void ensureNotHidden(Dockable dockable) {
+    // ignore
+  }
+
+  public void writeSetting(ModeSetting<Location> setting) {
+    // ignore
+  }
+
+  public void readSetting(ModeSetting<Location> setting) {
+    // ignore
+  }
 }

@@ -25,8 +25,7 @@
  */
 package bibliothek.gui.dock.control.focus;
 
-import java.awt.Component;
-import java.awt.Container;
+import java.awt.*;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.FocusEvent;
@@ -35,93 +34,107 @@ import java.awt.event.FocusListener;
 /**
  * A focus tracker keeps information about the last focused {@link Component}
  * of some {@link Container}.
+ *
  * @author Benjamin Sigg
  */
 public class FocusTracker {
-	/** the last component that was focused */
-	private Component lastFocused;
-	
-	/** root container */
-	private Component root;
-	
-	/** added to all {@link Component}s */
-	private FocusListener focusListener = new FocusListener(){
-		public void focusLost( FocusEvent e ){
-			
-		}
-		public void focusGained( FocusEvent e ){
-			lastFocused = e.getComponent();
-		}
-	};
-	
-	/** added to all {@link Container}s */
-	private ContainerListener containerListener = new ContainerListener(){
-		public void componentRemoved( ContainerEvent e ){
-			remove( e.getChild() );
-		}
-		
-		public void componentAdded( ContainerEvent e ){
-			add( e.getChild() );
-		}
-	};
-	
-	/**
-	 * Creates a new focus tracker.
-	 * @param root the root container whose children can be focused
-	 */
-	public FocusTracker( Component root ){
-		this.root = root;
-		add( root );
-	}
+  /**
+   * the last component that was focused
+   */
+  private Component lastFocused;
 
-	/**
-	 * Removes any listeners this {@link FocusTracker} added anywhere allowing this {@link FocusTracker}
-	 * to be collected by the garbage collector.
-	 */
-	public void destroy(){
-		remove( root );
-	}
-	
-	/**
-	 * Gets the last component that was focused
-	 * @return the last component, can be <code>null</code>, will be a child of the root container or the root
-	 * container itself
-	 */
-	public Component getLastFocused(){
-		return lastFocused;
-	}
-	
-	/**
-	 * Adds listeners to <code>component</code> and its children to track the focus.
-	 * @param component the component and its children to track
-	 */
-	protected void add( Component component ){
-		component.addFocusListener( focusListener );
-		if( component instanceof Container ){
-			Container container = (Container)component;
-			container.addContainerListener( containerListener );
-			for( int i = 0, n = container.getComponentCount(); i<n; i++ ){
-				add( container.getComponent( i ));
-			}
-		}
-	}
-	
-	/**
-	 * Removes listeners from <code>component</code> and its children.
-	 * @param component the component to remove
-	 */
-	protected void remove( Component component ){
-		if( lastFocused == component ){
-			lastFocused = null;
-		}
-		
-		component.removeFocusListener( focusListener );
-		if( component instanceof Container ){
-			Container container = (Container)component;
-			container.removeContainerListener( containerListener );
-			for( int i = 0, n = container.getComponentCount(); i<n; i++ ){
-				remove( container.getComponent( i ));
-			}
-		}
-	}
+  /**
+   * root container
+   */
+  private Component root;
+
+  /**
+   * added to all {@link Component}s
+   */
+  private FocusListener focusListener = new FocusListener() {
+    public void focusLost(FocusEvent e) {
+
+    }
+
+    public void focusGained(FocusEvent e) {
+      lastFocused = e.getComponent();
+    }
+  };
+
+  /**
+   * added to all {@link Container}s
+   */
+  private ContainerListener containerListener = new ContainerListener() {
+    public void componentRemoved(ContainerEvent e) {
+      remove(e.getChild());
+    }
+
+    public void componentAdded(ContainerEvent e) {
+      add(e.getChild());
+    }
+  };
+
+  /**
+   * Creates a new focus tracker.
+   *
+   * @param root the root container whose children can be focused
+   */
+  public FocusTracker(Component root) {
+    this.root = root;
+    add(root);
+  }
+
+  /**
+   * Removes any listeners this {@link FocusTracker} added anywhere allowing this {@link FocusTracker}
+   * to be collected by the garbage collector.
+   */
+  public void destroy() {
+    remove(root);
+  }
+
+  /**
+   * Gets the last component that was focused
+   *
+   * @return the last component, can be <code>null</code>, will be a child of the root container or the root
+   * container itself
+   */
+  public Component getLastFocused() {
+    return lastFocused;
+  }
+
+  /**
+   * Adds listeners to <code>component</code> and its children to track the focus.
+   *
+   * @param component the component and its children to track
+   */
+  protected void add(Component component) {
+    component.addFocusListener(focusListener);
+    if (component instanceof Container) {
+      Container container = (Container)component;
+      container.addContainerListener(containerListener);
+      for (int i = 0, n = container.getComponentCount(); i < n; i++) {
+        add(container.getComponent(i));
+      }
+    }
+  }
+
+  /**
+   * Removes listeners from <code>component</code> and its children.
+   *
+   * @param component the component to remove
+   */
+  protected void remove(Component component) {
+    if (lastFocused == component) {
+      lastFocused = null;
+    }
+
+    component.removeFocusListener(focusListener);
+    if (component instanceof Container) {
+      Container container = (Container)component;
+      container.removeContainerListener(containerListener);
+      for (int i = 0, n = container.getComponentCount(); i < n; i++) {
+        remove(container.getComponent(i));
+      }
+    }
+  }
 }

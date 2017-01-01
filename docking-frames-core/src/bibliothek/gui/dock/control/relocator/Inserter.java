@@ -40,29 +40,31 @@ import bibliothek.gui.dock.station.layer.DockStationDropLayer;
  * An {@link Inserter} does not have access to the internals of a {@link DockStation}, nor does any {@link DockStation}
  * know of the existence of the {@link Inserter}. Some station may however offer special methods to create
  * fitting {@link StationDropOperation}s.
- * 
+ *
  * @author Benjamin Sigg
  */
 public interface Inserter {
-	/**
-	 * This method is called if {@link DockStationDropLayer#contains(int, int)} confirmed that a point belongs
-	 * to the layer, but before {@link DockStation#prepareDrop(bibliothek.gui.dock.station.StationDropItem)} was invoked.
-	 * @param source information about the current position of the mouse, the invoked {@link DockElement}s and
-	 * other things related to a drag and drop operation.
-	 * @return a value of <code>null</code> if this {@link Inserter} is not interested in the event, a value
-	 * not <code>null</code> will override {@link DockStation#prepareDrop(bibliothek.gui.dock.station.StationDropItem)} (the
-	 * method will never be called), in this case {@link #after(InserterSource)} is not called either.
-	 */
-	public StationDropOperation before( InserterSource source );
-	
-	/**
-	 * This method is called after {@link DockStation#prepareDrop(bibliothek.gui.dock.station.StationDropItem)} was executed, the
-	 * method is called in any case independent of whether <code>prepareDrop</code> returned a {@link StationDropOperation}
-	 * or not.
-	 * @param source information about the current position of the mouse, the invoked {@link DockElement}s and
-	 * other things related to a drag and drop operation. 
-	 * @return a value of <code>null</code> if this {@link Inserter} is not interested in the event, a value
-	 * not <code>null</code> will override the result of {@link DockStation#prepareDrop(bibliothek.gui.dock.station.StationDropItem)}
-	 */
-	public StationDropOperation after( InserterSource source );
+  /**
+   * This method is called if {@link DockStationDropLayer#contains(int, int)} confirmed that a point belongs
+   * to the layer, but before {@link DockStation#prepareDrop(bibliothek.gui.dock.station.StationDropItem)} was invoked.
+   *
+   * @param source information about the current position of the mouse, the invoked {@link DockElement}s and
+   *               other things related to a drag and drop operation.
+   * @return a value of <code>null</code> if this {@link Inserter} is not interested in the event, a value
+   * not <code>null</code> will override {@link DockStation#prepareDrop(bibliothek.gui.dock.station.StationDropItem)} (the
+   * method will never be called), in this case {@link #after(InserterSource)} is not called either.
+   */
+  public StationDropOperation before(InserterSource source);
+
+  /**
+   * This method is called after {@link DockStation#prepareDrop(bibliothek.gui.dock.station.StationDropItem)} was executed, the
+   * method is called in any case independent of whether <code>prepareDrop</code> returned a {@link StationDropOperation}
+   * or not.
+   *
+   * @param source information about the current position of the mouse, the invoked {@link DockElement}s and
+   *               other things related to a drag and drop operation.
+   * @return a value of <code>null</code> if this {@link Inserter} is not interested in the event, a value
+   * not <code>null</code> will override the result of {@link DockStation#prepareDrop(bibliothek.gui.dock.station.StationDropItem)}
+   */
+  public StationDropOperation after(InserterSource source);
 }

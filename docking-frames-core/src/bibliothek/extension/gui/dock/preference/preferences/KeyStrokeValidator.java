@@ -25,61 +25,72 @@
  */
 package bibliothek.extension.gui.dock.preference.preferences;
 
-import javax.swing.KeyStroke;
-
 import bibliothek.extension.gui.dock.preference.editor.KeyStrokeEditor;
 import bibliothek.util.Path;
+
+import javax.swing.*;
 
 /**
  * Information for {@link Path#TYPE_KEYSTROKE_PATH} about how a keystroke
  * has to be chosen.
+ *
  * @author Benjamin Sigg
  */
 public interface KeyStrokeValidator {
-	/** a validator that accepts any stroke */
-	public static final KeyStrokeValidator EVERYTHING = new KeyStrokeValidator(){
-		public boolean isValid(KeyStroke keyStroke) {
-			return true;
-		}
-		public boolean isCompleteable(KeyStroke keyStroke) {
-			return false;
-		}
-	};
-	
-	/** A validator that does not allow modifier keystrokes like pressing a single 'shift' */
-	public static final KeyStrokeValidator NO_MODIFIER = new KeyStrokeValidator(){
-		public boolean isValid( KeyStroke keyStroke ){
-			return !KeyStrokeEditor.isModifierKey( keyStroke.getKeyCode() );
-		}
-		
-		public boolean isCompleteable(KeyStroke keyStroke) {
-			return true;
-		}
-	};
-	
-	/** a validator that allows only modifier keys */
-	public static final KeyStrokeValidator MODIFIER = new KeyStrokeValidator(){
-		public boolean isValid(KeyStroke keyStroke) {
-			return KeyStrokeEditor.isModifierKey( keyStroke.getKeyCode() );
-		}
-		public boolean isCompleteable(KeyStroke keyStroke) {
-			return false;
-		}
-	};
-	
-	/**
-	 * Checks whether <code>keyStroke</code> is valid.
-	 * @param keyStroke the keystroke to check
-	 * @return <code>true</code> if valid
-	 */
-	public boolean isValid( KeyStroke keyStroke );
-	
-	/**
-	 * Tells whether the invalid <code>keyStroke</code> can become valid
-	 * by adding additional keys.
-	 * @param keyStroke some invalid KeyStroke
-	 * @return <code>true</code> if the keystroke can be completed
-	 */
-	public boolean isCompleteable( KeyStroke keyStroke );
+  /**
+   * a validator that accepts any stroke
+   */
+  public static final KeyStrokeValidator EVERYTHING = new KeyStrokeValidator() {
+    public boolean isValid(KeyStroke keyStroke) {
+      return true;
+    }
+
+    public boolean isCompleteable(KeyStroke keyStroke) {
+      return false;
+    }
+  };
+
+  /**
+   * A validator that does not allow modifier keystrokes like pressing a single 'shift'
+   */
+  public static final KeyStrokeValidator NO_MODIFIER = new KeyStrokeValidator() {
+    public boolean isValid(KeyStroke keyStroke) {
+      return !KeyStrokeEditor.isModifierKey(keyStroke.getKeyCode());
+    }
+
+    public boolean isCompleteable(KeyStroke keyStroke) {
+      return true;
+    }
+  };
+
+  /**
+   * a validator that allows only modifier keys
+   */
+  public static final KeyStrokeValidator MODIFIER = new KeyStrokeValidator() {
+    public boolean isValid(KeyStroke keyStroke) {
+      return KeyStrokeEditor.isModifierKey(keyStroke.getKeyCode());
+    }
+
+    public boolean isCompleteable(KeyStroke keyStroke) {
+      return false;
+    }
+  };
+
+  /**
+   * Checks whether <code>keyStroke</code> is valid.
+   *
+   * @param keyStroke the keystroke to check
+   * @return <code>true</code> if valid
+   */
+  public boolean isValid(KeyStroke keyStroke);
+
+  /**
+   * Tells whether the invalid <code>keyStroke</code> can become valid
+   * by adding additional keys.
+   *
+   * @param keyStroke some invalid KeyStroke
+   * @return <code>true</code> if the keystroke can be completed
+   */
+  public boolean isCompleteable(KeyStroke keyStroke);
 
 }

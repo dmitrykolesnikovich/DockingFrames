@@ -30,21 +30,24 @@ import bibliothek.util.Path;
 
 /**
  * A factory creating new {@link ModeSetting}s.
- * @author Benjamin Sigg
+ *
  * @param <A> the kind of data used by the {@link LocationModeManager} to store
- * information
+ *            information
+ * @author Benjamin Sigg
  */
 public interface ModeSettingFactory<A> {
-	/**
-	 * Gets the unique identifier of the {@link Mode} which uses the {@link ModeSetting}
-	 * of this factory.
-	 * @return the unique identifier, not <code>null</code>
-	 */
-	public Path getModeId();
-	
-	/**
-	 * Creates a new, empty {@link ModeSetting}.
-	 * @return the new setting or <code>null</code> to indicate that there is nothing to store
-	 */
-	public ModeSetting<A> create();
+  /**
+   * Gets the unique identifier of the {@link Mode} which uses the {@link ModeSetting}
+   * of this factory.
+   *
+   * @return the unique identifier, not <code>null</code>
+   */
+  public Path getModeId();
+
+  /**
+   * Creates a new, empty {@link ModeSetting}.
+   *
+   * @return the new setting or <code>null</code> to indicate that there is nothing to store
+   */
+  public ModeSetting<A> create();
 }

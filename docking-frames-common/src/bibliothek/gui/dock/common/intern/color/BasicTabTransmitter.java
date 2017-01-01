@@ -25,71 +25,65 @@
  */
 package bibliothek.gui.dock.common.intern.color;
 
-import java.awt.Color;
-
 import bibliothek.gui.dock.themes.BasicTheme;
 import bibliothek.gui.dock.util.color.ColorManager;
 import bibliothek.util.Colors;
 
+import java.awt.*;
+
 /**
  * A {@link ColorTransmitter} connecting the {@link BasicTheme} with the
  * individual color requests of common-project elements.
+ *
  * @author Benjamin Sigg
  */
 public class BasicTabTransmitter extends TabColorTransmitter {
-    private static final String[] KEYS = {
-        "stack.tab.foreground",
-        "stack.tab.foreground.selected",
-        "stack.tab.foreground.focused",
-        "stack.tab.background",
-        "stack.tab.background.selected",
-        "stack.tab.background.focused"
-    };
-    
-    /**
-     * Creates a new transmitter.
-     * @param manager the source of the colors
-     */
-    public BasicTabTransmitter( ColorManager manager ){
-        super( manager, KEYS );
-    }
-    
-    @Override
-    protected Color convert( Color source, String key ) {
-        if( isForeground( key ))
-            return Colors.diffMirror( source, 1.0 );
-        
-        return source;
-    }
+  private static final String[] KEYS =
+    {"stack.tab.foreground", "stack.tab.foreground.selected", "stack.tab.foreground.focused", "stack.tab.background",
+      "stack.tab.background.selected", "stack.tab.background.focused"};
 
-    @Override
-    protected Color convertFocused( Color source, String key ) {
-        if( isForeground( key ))
-            return Colors.diffMirror( source, 1.0 );
-        
-        return source;
-    }
+  /**
+   * Creates a new transmitter.
+   *
+   * @param manager the source of the colors
+   */
+  public BasicTabTransmitter(ColorManager manager) {
+    super(manager, KEYS);
+  }
 
-    @Override
-    protected Color convertSelected( Color source, String key ) {
-        if( isForeground( key ))
-            return Colors.diffMirror( source, 1.0 );
-        
-        return source;
-    }
+  @Override
+  protected Color convert(Color source, String key) {
+    if (isForeground(key)) return Colors.diffMirror(source, 1.0);
 
-    @Override
-    protected boolean isFocused( String id ) {
-        return id.contains( "focused" );
-    }
+    return source;
+  }
 
-    @Override
-    protected boolean isForeground( String id ) {
-        return id.contains( "foreground" );
-    }
+  @Override
+  protected Color convertFocused(Color source, String key) {
+    if (isForeground(key)) return Colors.diffMirror(source, 1.0);
 
-    @Override
-    protected boolean isSelected( String id ) {
-        return id.contains( "selected" );
-    }
+    return source;
+  }
+
+  @Override
+  protected Color convertSelected(Color source, String key) {
+    if (isForeground(key)) return Colors.diffMirror(source, 1.0);
+
+    return source;
+  }
+
+  @Override
+  protected boolean isFocused(String id) {
+    return id.contains("focused");
+  }
+
+  @Override
+  protected boolean isForeground(String id) {
+    return id.contains("foreground");
+  }
+
+  @Override
+  protected boolean isSelected(String id) {
+    return id.contains("selected");
+  }
 }

@@ -37,92 +37,94 @@ import bibliothek.gui.dock.util.DockUtilities;
 
 /**
  * This {@link CGroupBehavior} assumes that all {@link Dockable}s which share a common {@link StackDockStation} as
- * parent belong to the same group. This behavior also assumes that all {@link Combiner}s will create new 
+ * parent belong to the same group. This behavior also assumes that all {@link Combiner}s will create new
  * {@link StackDockStation}s and that {@link StackDockStation}s cannot be put into each other. All these assumptions
  * hold true with the default settings of a {@link CControl}.<br>
  * This behavior does not move around entire {@link StackDockStation}s, it moves around each {@link Dockable} individually.
  * This has the benefit that {@link StackDockStation}s cannot accidentally be put into each other.
+ *
  * @author Benjamin Sigg
  */
 public class StackGroupBehavior implements CGroupBehavior {
-	public CGroupMovement prepare( LocationModeManager<? extends LocationMode> manager, Dockable dockable, ExtendedMode target ){
-		if( isGrouped( dockable, target, manager ) ) {
-			return new StackGroupMovement( (StackDockStation)dockable.getDockParent(), dockable, target );
-		}
-		else {
-			return new SingleGroupMovement( dockable, target );
-		}
-	}
+  public CGroupMovement prepare(LocationModeManager<? extends LocationMode> manager, Dockable dockable, ExtendedMode target) {
+    if (isGrouped(dockable, target, manager)) {
+      return new StackGroupMovement((StackDockStation)dockable.getDockParent(), dockable, target);
+    }
+    else {
+      return new SingleGroupMovement(dockable, target);
+    }
+  }
 
-	private boolean isGrouped( Dockable dockable, ExtendedMode target, LocationModeManager<?> manager ){
-		DockStation parent = dockable.getDockParent();
-		if( parent instanceof StackDockStation ) {
-			for( int i = 0, n = parent.getDockableCount(); i < n; i++ ) {
-				if( !manager.isModeAvailable( parent.getDockable( i ), target ) ) {
-					return false;
-				}
-			}
-			return true;
-		}
-		return false;
-	}
-	
-	public Dockable getGroupElement( LocationModeManager<? extends LocationMode> manager, Dockable dockable, ExtendedMode mode  ){
-		DockStation parent = dockable.getDockParent();
-		
-		if( parent instanceof StackDockStation ){
-			if( parent.asDockable().getDockParent() == null ){
-				// cannot move around a dockable without location
-				return dockable;
-			}
-			
-			for( int i = 0, n = parent.getDockableCount(); i<n; i++ ){
-				Dockable check = parent.getDockable( i );
-				if( check != dockable ){
-					if( !manager.isModeAvailable( check, mode ) ){
-						return dockable;
-					}
-				}
-			}
-			return (StackDockStation)parent;
-		}
-		
-		return dockable;
-	}
-	
-	public Dockable getReplaceElement( LocationModeManager<? extends LocationMode> manager, Dockable old, Dockable dockable, ExtendedMode mode ){
-		if( old == dockable )
-			return null;
-		
-		if( !DockUtilities.isAncestor( old, dockable ) )
-			return null;
-		
-		DockStation station = old.asDockStation();
-		if( station == null )
-			return old;
-		
-		if( station.getDockableCount() == 2 ){
-			if( station.getDockable( 0 ) == dockable )
-				return station.getDockable( 1 );
-			if( station.getDockable( 1 ) == dockable )
-				return station.getDockable( 0 );
-		}
-		
-		return old;
-	}
-	
-	public boolean shouldForwardActions( LocationModeManager<? extends LocationMode> manager, DockStation station, Dockable dockable, ExtendedMode mode ){
-		Dockable dockStation = station.asDockable();
-		if( dockStation != null && !manager.isModeAvailable( dockStation, mode )){
-			return false;
-		}
-		
-		for( int i = 0, n = station.getDockableCount(); i<n; i++ ){
-			Dockable child = station.getDockable( i );
-			if( !manager.isModeAvailable( child, mode ) ){
-				return false;
-			}
-		}
-		return true;
-	}
+  private boolean isGrouped(Dockable dockable, ExtendedMode target, LocationModeManager<?> manager) {
+    DockStation parent = dockable.getDockParent();
+    if (parent instanceof StackDockStation) {
+      for (int i = 0, n = parent.getDockableCount(); i < n; i++) {
+        if (!manager.isModeAvailable(parent.getDockable(i), target)) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
+  public Dockable getGroupElement(LocationModeManager<? extends LocationMode> manager, Dockable dockable, ExtendedMode mode) {
+    DockStation parent = dockable.getDockParent();
+
+    if (parent instanceof StackDockStation) {
+      if (parent.asDockable().getDockParent() == null) {
+        // cannot move around a dockable without location
+        return dockable;
+      }
+
+      for (int i = 0, n = parent.getDockableCount(); i < n; i++) {
+        Dockable check = parent.getDockable(i);
+        if (check != dockable) {
+          if (!manager.isModeAvailable(check, mode)) {
+            return dockable;
+          }
+        }
+      }
+      return (StackDockStation)parent;
+    }
+
+    return dockable;
+  }
+
+  public Dockable getReplaceElement(LocationModeManager<? extends LocationMode> manager,
+                                    Dockable old,
+                                    Dockable dockable,
+                                    ExtendedMode mode) {
+    if (old == dockable) return null;
+
+    if (!DockUtilities.isAncestor(old, dockable)) return null;
+
+    DockStation station = old.asDockStation();
+    if (station == null) return old;
+
+    if (station.getDockableCount() == 2) {
+      if (station.getDockable(0) == dockable) return station.getDockable(1);
+      if (station.getDockable(1) == dockable) return station.getDockable(0);
+    }
+
+    return old;
+  }
+
+  public boolean shouldForwardActions(LocationModeManager<? extends LocationMode> manager,
+                                      DockStation station,
+                                      Dockable dockable,
+                                      ExtendedMode mode) {
+    Dockable dockStation = station.asDockable();
+    if (dockStation != null && !manager.isModeAvailable(dockStation, mode)) {
+      return false;
+    }
+
+    for (int i = 0, n = station.getDockableCount(); i < n; i++) {
+      Dockable child = station.getDockable(i);
+      if (!manager.isModeAvailable(child, mode)) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

@@ -34,15 +34,16 @@ import bibliothek.gui.dock.station.screen.window.ScreenDockWindowClosingStrategy
 /**
  * This strategy searches for a {@link CDockable} when the user wants to close an externalized dockable. It calls
  * {@link CDockable#setExtendedMode(ExtendedMode)} with {@link ExtendedMode#NORMALIZED}.
+ *
  * @author Benjamin Sigg
  */
-public class CScreenDockStationWindowClosingStrategy implements ScreenDockWindowClosingStrategy{
-	public void closing( ScreenDockWindow window ){
-		CDockable dockable = CDockUtilities.getFirstDockable( window.getDockable() );
-		if( dockable != null ){
-			if( dockable.isNormalizeable() ){
-				dockable.setExtendedMode( ExtendedMode.NORMALIZED );
-			}
-		}
-	}
+public class CScreenDockStationWindowClosingStrategy implements ScreenDockWindowClosingStrategy {
+  public void closing(ScreenDockWindow window) {
+    CDockable dockable = CDockUtilities.getFirstDockable(window.getDockable());
+    if (dockable != null) {
+      if (dockable.isNormalizeable()) {
+        dockable.setExtendedMode(ExtendedMode.NORMALIZED);
+      }
+    }
+  }
 }

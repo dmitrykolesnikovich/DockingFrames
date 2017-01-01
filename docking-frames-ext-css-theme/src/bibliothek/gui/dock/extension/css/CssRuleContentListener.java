@@ -28,20 +28,23 @@ package bibliothek.gui.dock.extension.css;
 /**
  * This observer is added to a {@link CssRuleContent}, and is informed whenever a property
  * of the rule changes
+ *
  * @author Benjamin Sigg
  */
 public interface CssRuleContentListener {
 
-	/**
-	 * Called if {@link CssRuleContent#getProperty(String)} changed.
-	 * @param source the source of the event
-	 * @param key the name of the property that changed
-	 */
-	public void propertyChanged( CssRuleContent source, CssPropertyKey key );
-	
-	/**
-	 * Called if all {@link CssRuleContent#getProperty(CssType, String) properties} changed.
-	 * @param source the source of the event
-	 */
-	public void propertiesChanged( CssRuleContent source );
+  /**
+   * Called if {@link CssRuleContent#getProperty(String)} changed.
+   *
+   * @param source the source of the event
+   * @param key    the name of the property that changed
+   */
+  public void propertyChanged(CssRuleContent source, CssPropertyKey key);
+
+  /**
+   * Called if all {@link CssRuleContent#getProperty(CssType, String) properties} changed.
+   *
+   * @param source the source of the event
+   */
+  public void propertiesChanged(CssRuleContent source);
 }

@@ -32,32 +32,37 @@ import bibliothek.util.Filter;
 
 /**
  * A factory that creates new {@link ExternalizingCGridArea}s.
+ *
  * @author Benjamin Sigg
  */
-public class ExternalizingCGridAreaFactory implements SingleCDockableFactory{
-	/** the control in whose realm the dockables exist */
-	private CControl control;
-	
-	/** The pattern that is used to automatically generate new {@link ExternalizingCGridArea} */
-	public static final Filter<String> PATTERN = new Filter<String>(){
-		public boolean includes( String item ){
-			return item.startsWith( ExternalizingCGridArea.UNIQUE_ID_PREFIX );
-		}
-	}; 
-	
-	/**
-	 * Creates a new factory
-	 * @param control the control in whose realm the new stations are used
-	 */
-	public ExternalizingCGridAreaFactory( CControl control ){
-		if( control == null ){
-			throw new IllegalArgumentException( "control must not be null" );
-		}
-		this.control = control;
-	}
-	
-	public SingleCDockable createBackup( String id ){
-		return new ExternalizingCGridArea( control, id );
-	}
+public class ExternalizingCGridAreaFactory implements SingleCDockableFactory {
+  /**
+   * The pattern that is used to automatically generate new {@link ExternalizingCGridArea}
+   */
+  public static final Filter<String> PATTERN = new Filter<String>() {
+    public boolean includes(String item) {
+      return item.startsWith(ExternalizingCGridArea.UNIQUE_ID_PREFIX);
+    }
+  };
+  /**
+   * the control in whose realm the dockables exist
+   */
+  private CControl control;
+
+  /**
+   * Creates a new factory
+   *
+   * @param control the control in whose realm the new stations are used
+   */
+  public ExternalizingCGridAreaFactory(CControl control) {
+    if (control == null) {
+      throw new IllegalArgumentException("control must not be null");
+    }
+    this.control = control;
+  }
+
+  public SingleCDockable createBackup(String id) {
+    return new ExternalizingCGridArea(control, id);
+  }
 
 }

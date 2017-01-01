@@ -31,12 +31,17 @@ import bibliothek.gui.Dockable;
 /**
  * A description telling for what purpose a {@link Span} is used. Clients may define their own constants, but the
  * framework itself will only use the default purposes.
+ *
  * @author Benjamin Sigg
  */
 public class SpanUsage {
-	/** Marks a {@link Span} that usually has a size of <code>0</code> and is made larger for an invisible {@link DockStation} to show up */
-	public static final SpanUsage HIDING = new SpanUsage();
-	
-	/** Marks a {@link Span} that shows up when inserting a {@link Dockable} at a specific place, e.g. between two existing {@link Dockable}s */
-	public static final SpanUsage INSERTING = new SpanUsage();
+  /**
+   * Marks a {@link Span} that usually has a size of <code>0</code> and is made larger for an invisible {@link DockStation} to show up
+   */
+  public static final SpanUsage HIDING = new SpanUsage();
+
+  /**
+   * Marks a {@link Span} that shows up when inserting a {@link Dockable} at a specific place, e.g. between two existing {@link Dockable}s
+   */
+  public static final SpanUsage INSERTING = new SpanUsage();
 }

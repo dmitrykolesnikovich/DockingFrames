@@ -31,30 +31,33 @@ import java.util.List;
  * A {@link SharedExtension} is a set of extensions shared by many clients. Basically it is used for
  * optimization, as it allows to reuse objects. Clients should call {@link #bind()} before, and
  * {@link #unbind()} after using a {@link SharedExtension} object.
- * @author Benjamin Sigg
+ *
  * @param <T> the kind of object that is shared
+ * @author Benjamin Sigg
  */
-public interface SharedExtension<T> extends Iterable<T>{
-	/**
-	 * Needs to be called by clients to make sure that {@link #get()} actually returns something.
-	 */
-	public void bind();
-	
-	/**
-	 * Can be called by clients to release no longer needed resources.
-	 */
-	public void unbind();
-	
-	/**
-	 * Gets the name of the extension whose objects are shared.
-	 * @return the name, never <code>null</code>
-	 */
-	public ExtensionName<T> getName();
-	
-	/**
-	 * Gets the list of shared objects.
-	 * @return the list of objects, may be empty but never <code>null</code>, is not modifiable
-	 * @throws IllegalStateException if this {@link SharedExtension} is not {@link #bind() bound}
-	 */
-	public List<T> get();
+public interface SharedExtension<T> extends Iterable<T> {
+  /**
+   * Needs to be called by clients to make sure that {@link #get()} actually returns something.
+   */
+  public void bind();
+
+  /**
+   * Can be called by clients to release no longer needed resources.
+   */
+  public void unbind();
+
+  /**
+   * Gets the name of the extension whose objects are shared.
+   *
+   * @return the name, never <code>null</code>
+   */
+  public ExtensionName<T> getName();
+
+  /**
+   * Gets the list of shared objects.
+   *
+   * @return the list of objects, may be empty but never <code>null</code>, is not modifiable
+   * @throws IllegalStateException if this {@link SharedExtension} is not {@link #bind() bound}
+   */
+  public List<T> get();
 }

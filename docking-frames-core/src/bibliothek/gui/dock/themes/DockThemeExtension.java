@@ -33,39 +33,43 @@ import bibliothek.util.Path;
 /**
  * An extension to a {@link DockTheme}, may be used by the {@link DockTheme} to
  * override some settings.
+ *
  * @author Benjamin Sigg
  */
 public interface DockThemeExtension {
-	/**
-	 * The name of a {@link ExtensionName} creating {@link DockThemeExtension}s.
-	 */
-	public static final Path DOCK_THEME_EXTENSION = new Path( "dock.theme" );
-    
-	/**
-	 * The parameter name for the theme that is extended.
-	 */
-	public static final String THEME_PARAMETER = "theme";
-	
-	
-	/**
-	 * Called by the {@link DockTheme} before it installs itself.
-	 * @param controller the controller on which the theme is installed
-	 * @param theme the theme that is about to get installed
-	 */
-	public void install( DockController controller, DockTheme theme );
-	
-	/**
-	 * Called by the {@link DockTheme} after it installed itself.
-	 * @param controller the controller on which the theme is installed
-	 * @param theme the theme that was installed
-	 */
-	public void installed( DockController controller, DockTheme theme );
+  /**
+   * The name of a {@link ExtensionName} creating {@link DockThemeExtension}s.
+   */
+  public static final Path DOCK_THEME_EXTENSION = new Path("dock.theme");
 
-	/**
-	 * Called by the {@link DockTheme} after it was uninstalled from <code>controller</code>.
-	 * @param controller the controller which no longer uses <code>theme</code>
-	 * @param theme the theme calling using this extension
-	 */
-	public void uninstall( DockController controller, DockTheme theme);
-	
+  /**
+   * The parameter name for the theme that is extended.
+   */
+  public static final String THEME_PARAMETER = "theme";
+
+
+  /**
+   * Called by the {@link DockTheme} before it installs itself.
+   *
+   * @param controller the controller on which the theme is installed
+   * @param theme      the theme that is about to get installed
+   */
+  public void install(DockController controller, DockTheme theme);
+
+  /**
+   * Called by the {@link DockTheme} after it installed itself.
+   *
+   * @param controller the controller on which the theme is installed
+   * @param theme      the theme that was installed
+   */
+  public void installed(DockController controller, DockTheme theme);
+
+  /**
+   * Called by the {@link DockTheme} after it was uninstalled from <code>controller</code>.
+   *
+   * @param controller the controller which no longer uses <code>theme</code>
+   * @param theme      the theme calling using this extension
+   */
+  public void uninstall(DockController controller, DockTheme theme);
+
 }

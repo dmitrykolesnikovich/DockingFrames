@@ -37,37 +37,38 @@ import bibliothek.gui.dock.title.DockTitle;
 /**
  * This {@link BasicDockableDisplayer} observes the {@link EclipseThemeConnector}
  * and may discard itself if no longer valid.
+ *
  * @author Benjamin Sigg
  */
-public class EclipseBasicDockableDisplayer extends BasicDockableDisplayer{
-	private TitleBarObserver observer;
-	
-	public EclipseBasicDockableDisplayer( DockStation station, Dockable dockable, DockTitle title, Location location, TitleBar bar ){
-		super( station, dockable, title, location );
-		
-		observer = new TitleBarObserver( station, dockable, bar ){
-			@Override
-			protected void invalidated(){
-				for( DockableDisplayerListener listener : listeners() ){
-					listener.discard( EclipseBasicDockableDisplayer.this );
-				}
-			}
-		};
-	}
-	
-	@Override
-	public void setDockable( Dockable dockable ){
-		super.setDockable( dockable );
-		if( observer != null ){
-			observer.setDockable( dockable );
-		}
-	}
-	
-	@Override
-	public void setController( DockController controller ){
-		super.setController( controller );
-		if( observer != null ){
-			observer.setController( controller );
-		}
-	}
+public class EclipseBasicDockableDisplayer extends BasicDockableDisplayer {
+  private TitleBarObserver observer;
+
+  public EclipseBasicDockableDisplayer(DockStation station, Dockable dockable, DockTitle title, Location location, TitleBar bar) {
+    super(station, dockable, title, location);
+
+    observer = new TitleBarObserver(station, dockable, bar) {
+      @Override
+      protected void invalidated() {
+        for (DockableDisplayerListener listener : listeners()) {
+          listener.discard(EclipseBasicDockableDisplayer.this);
+        }
+      }
+    };
+  }
+
+  @Override
+  public void setDockable(Dockable dockable) {
+    super.setDockable(dockable);
+    if (observer != null) {
+      observer.setDockable(dockable);
+    }
+  }
+
+  @Override
+  public void setController(DockController controller) {
+    super.setController(controller);
+    if (observer != null) {
+      observer.setController(controller);
+    }
+  }
 }

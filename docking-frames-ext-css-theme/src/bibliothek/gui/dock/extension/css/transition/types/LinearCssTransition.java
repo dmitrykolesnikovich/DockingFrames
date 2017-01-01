@@ -33,22 +33,23 @@ import bibliothek.gui.dock.extension.css.transition.TransitionalCssProperty;
 
 /**
  * An transition property fading one {@link CssPaint} into another.
- * @author Benjamin Sigg
+ *
  * @param <T> the type of value this transition will handle
+ * @author Benjamin Sigg
  */
-public class LinearCssTransition<T> extends AnimatedCssTransition<T>{
-	@Override
-	protected TransitionalCssProperty<T> createProperty( CssType<T> type, CssPropertyKey key ){
-		return type.createTransition();
-	}
+public class LinearCssTransition<T> extends AnimatedCssTransition<T> {
+  @Override
+  protected TransitionalCssProperty<T> createProperty(CssType<T> type, CssPropertyKey key) {
+    return type.createTransition();
+  }
 
-	@Override
-	protected void bind(){
-		// ignore
-	}
+  @Override
+  protected void bind() {
+    // ignore
+  }
 
-	@Override
-	protected void unbind(){
-		// ignore
-	}
+  @Override
+  protected void unbind() {
+    // ignore
+  }
 }

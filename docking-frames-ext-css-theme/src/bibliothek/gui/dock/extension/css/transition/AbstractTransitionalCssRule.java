@@ -25,121 +25,134 @@
  */
 package bibliothek.gui.dock.extension.css.transition;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import bibliothek.gui.dock.extension.css.CssPropertyKey;
 import bibliothek.gui.dock.extension.css.CssRuleContentListener;
 import bibliothek.gui.dock.extension.css.CssRuleListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This {@link TransitionalCssRuleContent} offers functionality to store and listen
  * to a {@link RuleChainLink}, and offers methods to fire events to
- * {@link CssRuleListener}s. 
+ * {@link CssRuleListener}s.
+ *
  * @author Benjamin Sigg
  */
-public abstract class AbstractTransitionalCssRule implements TransitionalCssRuleContent{
-	private List<CssRuleContentListener> listeners = new ArrayList<CssRuleContentListener>();
-	
-	/** implements all the listener interfaces required by this rule */
-	private Listener listener = new Listener();
-	
-	/** the position of this rule */
-	private RuleChainLink link;
-	
-	/** the predecessor transition */
-	private TransitionalCssRuleContent previous;
-	
-	/** jobs to execute on destruction */
-	private List<Runnable> jobs = new ArrayList<Runnable>();
-	
-	@Override
-	public void inserted( RuleChainLink link ){
-		if( this.link != null ){
-			throw new IllegalStateException( "this rule is already part of a chain" );
-		}
-		if( link == null ){
-			throw new IllegalArgumentException( "link must not be null" );
-		}
-		this.link = link;		
-		link.addListener( listener );
-	}
-	
-	/**
-	 * Gets the current position of this rule in the chain.
-	 * @return the position, can be <code>null</code>
-	 */
-	public RuleChainLink getLink(){
-		return link;
-	}
-	
-	@Override
-	public void addRuleContentListener( CssRuleContentListener listener ){
-		listeners.add( listener );
-	}
+public abstract class AbstractTransitionalCssRule implements TransitionalCssRuleContent {
+  private List<CssRuleContentListener> listeners = new ArrayList<CssRuleContentListener>();
 
-	@Override
-	public void removeRuleContentListener( CssRuleContentListener listener ){
-		listeners.remove( listener );
-	}
-	
-	/**
-	 * Sets the predecessor transition.
-	 * @param previous the predecessor, may be <code>null</code>
-	 */
-	protected void setPrevious( TransitionalCssRuleContent previous ){
-		this.previous = previous;
-	}
-	
-	/**
-	 * Gets the predecessor transition.
-	 * @return the predecessor transition
-	 */
-	protected TransitionalCssRuleContent getPrevious(){
-		return previous;
-	}
-	
-	/**
-	 * Fires an event informing all {@link CssRuleContentListener}s that property <code>key</code> changed.
-	 * @param key the key of the changed property
-	 */
-	protected void fireChanged( CssPropertyKey key ){
-		for( CssRuleContentListener listener : listeners.toArray( new CssRuleContentListener[ listeners.size()] )){
-			listener.propertyChanged( this, key );
-		}
-	}
-		
-	@Override
-	public void onDestroyed( Runnable job ){
-		if( job == null ){
-			throw new IllegalArgumentException( "job must not be null" );
-		}
-		jobs.add( job );	
-	}
-	
-	private class Listener implements RuleChainLinkListener{
-		@Override
-		public void removed( RuleChainLink source ){
-			link.removeListener( this );
-			setPrevious( null );
-			for( Runnable job : jobs ){
-				job.run();
-			}
-		}
-		
-		@Override
-		public void nextChanged( RuleChainLink source, RuleChainLink oldNext, RuleChainLink newNext ){
-			// ignore
-		}
-		
-		@Override
-		public void previousChanged( RuleChainLink source, RuleChainLink oldPrevious, RuleChainLink newPrevious ){
-			if( newPrevious == null ){
-				setPrevious( null );
-			}
-			else{
-				setPrevious( newPrevious.getRule() );
-			}
-		}
-	}
+  /**
+   * implements all the listener interfaces required by this rule
+   */
+  private Listener listener = new Listener();
+
+  /**
+   * the position of this rule
+   */
+  private RuleChainLink link;
+
+  /**
+   * the predecessor transition
+   */
+  private TransitionalCssRuleContent previous;
+
+  /**
+   * jobs to execute on destruction
+   */
+  private List<Runnable> jobs = new ArrayList<Runnable>();
+
+  @Override
+  public void inserted(RuleChainLink link) {
+    if (this.link != null) {
+      throw new IllegalStateException("this rule is already part of a chain");
+    }
+    if (link == null) {
+      throw new IllegalArgumentException("link must not be null");
+    }
+    this.link = link;
+    link.addListener(listener);
+  }
+
+  /**
+   * Gets the current position of this rule in the chain.
+   *
+   * @return the position, can be <code>null</code>
+   */
+  public RuleChainLink getLink() {
+    return link;
+  }
+
+  @Override
+  public void addRuleContentListener(CssRuleContentListener listener) {
+    listeners.add(listener);
+  }
+
+  @Override
+  public void removeRuleContentListener(CssRuleContentListener listener) {
+    listeners.remove(listener);
+  }
+
+  /**
+   * Gets the predecessor transition.
+   *
+   * @return the predecessor transition
+   */
+  protected TransitionalCssRuleContent getPrevious() {
+    return previous;
+  }
+
+  /**
+   * Sets the predecessor transition.
+   *
+   * @param previous the predecessor, may be <code>null</code>
+   */
+  protected void setPrevious(TransitionalCssRuleContent previous) {
+    this.previous = previous;
+  }
+
+  /**
+   * Fires an event informing all {@link CssRuleContentListener}s that property <code>key</code> changed.
+   *
+   * @param key the key of the changed property
+   */
+  protected void fireChanged(CssPropertyKey key) {
+    for (CssRuleContentListener listener : listeners.toArray(new CssRuleContentListener[listeners.size()])) {
+      listener.propertyChanged(this, key);
+    }
+  }
+
+  @Override
+  public void onDestroyed(Runnable job) {
+    if (job == null) {
+      throw new IllegalArgumentException("job must not be null");
+    }
+    jobs.add(job);
+  }
+
+  private class Listener implements RuleChainLinkListener {
+    @Override
+    public void removed(RuleChainLink source) {
+      link.removeListener(this);
+      setPrevious(null);
+      for (Runnable job : jobs) {
+        job.run();
+      }
+    }
+
+    @Override
+    public void nextChanged(RuleChainLink source, RuleChainLink oldNext, RuleChainLink newNext) {
+      // ignore
+    }
+
+    @Override
+    public void previousChanged(RuleChainLink source, RuleChainLink oldPrevious, RuleChainLink newPrevious) {
+      if (newPrevious == null) {
+        setPrevious(null);
+      }
+      else {
+        setPrevious(newPrevious.getRule());
+      }
+    }
+  }
 }

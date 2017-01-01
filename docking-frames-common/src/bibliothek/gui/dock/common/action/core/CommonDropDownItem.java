@@ -34,9 +34,10 @@ import bibliothek.util.FrameworkOnly;
  * A combination of {@link SharingDropDownItemAction} and {@link CommonDecoratableDockAction}, this interface
  * does not add any new methods or fields.<br>
  * {@link DockAction}s used by the {@link CDropDownItem} must implement this interface.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public interface CommonDropDownItem extends SharingDropDownItemAction, CommonDecoratableDockAction{
+public interface CommonDropDownItem extends SharingDropDownItemAction, CommonDecoratableDockAction {
 
 }

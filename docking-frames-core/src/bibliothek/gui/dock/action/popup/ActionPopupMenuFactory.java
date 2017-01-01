@@ -25,29 +25,31 @@
  */
 package bibliothek.gui.dock.action.popup;
 
-import java.awt.Component;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.DockElementRepresentative;
 import bibliothek.gui.dock.action.DockActionSource;
 import bibliothek.gui.dock.action.MenuDockAction;
 import bibliothek.gui.dock.control.PopupController;
 
+import java.awt.*;
+
 /**
  * This interface is used by the {@link PopupController} to create new popup menus
  * when the user right clicks on some {@link Component}.
+ *
  * @author Benjamin Sigg
  */
 public interface ActionPopupMenuFactory {
-	/**
-	 * Creates a new menu using <code>actions</code> as content. 
-	 * @param owner the {@link Component} over which the menu is going to be seen
-	 * @param dockable the {@link Dockable} for which the menu is shown
-	 * @param actions the actions that are to be shown in the new menu
-	 * @param source the object which is responsible for showing the menu, this could be
-	 * a {@link DockElementRepresentative}, <code>dockable</code> itself, a {@link MenuDockAction},
-	 * or another unspecified object, may be <code>null</code>
-	 * @return the new popup menu or <code>null</code> if no menu should be shown for the given configuration
-	 */
-	public ActionPopupMenu createMenu( Component owner, Dockable dockable, DockActionSource actions, Object source );
+  /**
+   * Creates a new menu using <code>actions</code> as content.
+   *
+   * @param owner    the {@link Component} over which the menu is going to be seen
+   * @param dockable the {@link Dockable} for which the menu is shown
+   * @param actions  the actions that are to be shown in the new menu
+   * @param source   the object which is responsible for showing the menu, this could be
+   *                 a {@link DockElementRepresentative}, <code>dockable</code> itself, a {@link MenuDockAction},
+   *                 or another unspecified object, may be <code>null</code>
+   * @return the new popup menu or <code>null</code> if no menu should be shown for the given configuration
+   */
+  public ActionPopupMenu createMenu(Component owner, Dockable dockable, DockActionSource actions, Object source);
 }

@@ -29,13 +29,15 @@ import bibliothek.gui.dock.util.color.ColorBridge;
 
 /**
  * A {@link ColorBridge} which filters the interesting colors.
+ *
  * @author Benjamin Sigg
  */
 public interface CColorBridge extends ColorBridge {
-	/**
-	 * Tells whether this bridge should handle colors with id <code>id</code>.
-	 * @param id the id of some color
-	 * @return <code>true</code> if this bridge is interested in this color
-	 */
-	public boolean matches( String id );
+  /**
+   * Tells whether this bridge should handle colors with id <code>id</code>.
+   *
+   * @param id the id of some color
+   * @return <code>true</code> if this bridge is interested in this color
+   */
+  public boolean matches(String id);
 }

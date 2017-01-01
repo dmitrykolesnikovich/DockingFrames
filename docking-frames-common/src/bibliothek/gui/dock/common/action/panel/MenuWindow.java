@@ -25,55 +25,65 @@
  */
 package bibliothek.gui.dock.common.action.panel;
 
-import javax.swing.JPopupMenu;
+import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
 /**
  * A wrapper around a {@link JPopupMenu}.
+ *
  * @author Benjamin Sigg
  */
-public class MenuWindow extends AbstractPanelPopupWindow{
-	/** the menu of this window */
-	private JPopupMenu menu;
-	
-	/** whether the menu is closed */
-	private boolean closed = false;
-	
-	/** a listener to {@link #menu} */
-	private PopupMenuListener listener = new PopupMenuListener(){
-		public void popupMenuCanceled( PopupMenuEvent e ){
-			closing();
-		}
-		public void popupMenuWillBecomeInvisible( PopupMenuEvent e ){
-			closing();
-		}
-		public void popupMenuWillBecomeVisible( PopupMenuEvent e ){
-			// ignore
-		}
-	};
-	
-	/**
-	 * Creates the new window.
-	 * @param menu the menu that is managed by this window
-	 */
-	public MenuWindow( JPopupMenu menu ){
-		this.menu = menu;
-		menu.addPopupMenuListener( listener );
-	}
-	
-	public boolean isOpen(){
-		return !closed;
-	}
-	
-	public void close(){
-		menu.setVisible( false );
-	}
-	
-	private void closing(){
-		closed = true;
-		menu.removePopupMenuListener( listener );
-		menu.removeAll();
-		fireClosed();
-	}
+public class MenuWindow extends AbstractPanelPopupWindow {
+  /**
+   * the menu of this window
+   */
+  private JPopupMenu menu;
+
+  /**
+   * whether the menu is closed
+   */
+  private boolean closed = false;
+
+  /**
+   * a listener to {@link #menu}
+   */
+  private PopupMenuListener listener = new PopupMenuListener() {
+    public void popupMenuCanceled(PopupMenuEvent e) {
+      closing();
+    }
+
+    public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+      closing();
+    }
+
+    public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+      // ignore
+    }
+  };
+
+  /**
+   * Creates the new window.
+   *
+   * @param menu the menu that is managed by this window
+   */
+  public MenuWindow(JPopupMenu menu) {
+    this.menu = menu;
+    menu.addPopupMenuListener(listener);
+  }
+
+  public boolean isOpen() {
+    return !closed;
+  }
+
+  public void close() {
+    menu.setVisible(false);
+  }
+
+  private void closing() {
+    closed = true;
+    menu.removePopupMenuListener(listener);
+    menu.removeAll();
+    fireClosed();
+  }
 }

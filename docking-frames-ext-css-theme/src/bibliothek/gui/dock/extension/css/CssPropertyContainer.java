@@ -28,36 +28,41 @@ package bibliothek.gui.dock.extension.css;
 /**
  * A map of {@link CssProperty}s, can modify itself and needs to be monitored
  * with some {@link CssPropertyContainerListener}s.
+ *
  * @author Benjamin Sigg
  */
 public interface CssPropertyContainer {
 
-	/**
-	 * Gets a list of all the keys that can be used for {@link #getProperty(String)}.
-	 * @return the list of all currently available values
-	 */
-	public String[] getPropertyKeys();
-	
-	/**
-	 * Gets a changeable property of this container. Each property has a type, only properties
-	 * that have any meaning to this container can be set, others will be ignored (the result
-	 * of this method is <code>null</code> for them).
-	 * @param key the key of the property
-	 * @return the property or <code>null</code> if not existing
-	 */
-	public CssProperty<?> getProperty( String key );
-	
-	/**
-	 * Adds a listener to this property, will be informed if a sub-property is
-	 * added or removed.
-	 * @param listener the observer to add, not <code>null</code>
-	 */
-	public void addPropertyContainerListener( CssPropertyContainerListener listener );
-	
-	/**
-	 * Removes a listener from this property.
-	 * @param listener the listener to remove
-	 */
-	public void removePropertyContainerListener( CssPropertyContainerListener listener );
+  /**
+   * Gets a list of all the keys that can be used for {@link #getProperty(String)}.
+   *
+   * @return the list of all currently available values
+   */
+  public String[] getPropertyKeys();
+
+  /**
+   * Gets a changeable property of this container. Each property has a type, only properties
+   * that have any meaning to this container can be set, others will be ignored (the result
+   * of this method is <code>null</code> for them).
+   *
+   * @param key the key of the property
+   * @return the property or <code>null</code> if not existing
+   */
+  public CssProperty<?> getProperty(String key);
+
+  /**
+   * Adds a listener to this property, will be informed if a sub-property is
+   * added or removed.
+   *
+   * @param listener the observer to add, not <code>null</code>
+   */
+  public void addPropertyContainerListener(CssPropertyContainerListener listener);
+
+  /**
+   * Removes a listener from this property.
+   *
+   * @param listener the listener to remove
+   */
+  public void removePropertyContainerListener(CssPropertyContainerListener listener);
 
 }

@@ -34,20 +34,22 @@ import bibliothek.util.FrameworkOnly;
  * A {@link MouseFocusObserver} tracks the movement and actions of the mouse and is responsible for
  * transferring the focus by calling {@link DockController#setFocusedDockable(Dockable, java.awt.Component, boolean, boolean, boolean)}
  * at an appropriate time.
+ *
  * @author Benjamin Sigg
  */
 public interface MouseFocusObserver {
-    /**
-     * Gets the {@link DockController} whose {@link Dockable}s are tracked by this observer.
-     * @return the controller
-     */
-    public DockController getController();
-    
-    /**
-     * Stops this FocusController. This controller will remove all
-     * its listeners and become ready for the garbage collector.<br>
-     * This method should not be called by clients. 
-     */
-    @FrameworkOnly
-    public void kill();
+  /**
+   * Gets the {@link DockController} whose {@link Dockable}s are tracked by this observer.
+   *
+   * @return the controller
+   */
+  public DockController getController();
+
+  /**
+   * Stops this FocusController. This controller will remove all
+   * its listeners and become ready for the garbage collector.<br>
+   * This method should not be called by clients.
+   */
+  @FrameworkOnly
+  public void kill();
 }

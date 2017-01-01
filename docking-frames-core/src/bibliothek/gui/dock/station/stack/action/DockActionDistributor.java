@@ -36,60 +36,72 @@ import bibliothek.gui.dock.title.DockTitle;
 /**
  * Used by some {@link DockTheme}s, this interface tells how to distribute the {@link DockAction}s
  * between {@link CombinedTab tabs}, {@link DockTitle titles} and {@link CombinedInfoComponent info components}.
+ *
  * @author Benjamin Sigg
  */
 public interface DockActionDistributor {
-	/**
-	 * Represents one place where a {@link DockActionSource} can be used.
-	 * @author Benjamin Sigg
-	 */
-	public static class Target {
-		/** On a {@link CombinedTab} */
-		public static final Target TAB = new Target( "dock.tab" );
-		/** On a {@link DockTitle} */
-		public static final Target TITLE = new Target( "dock.title" );
-		/** On an {@link CombinedInfoComponent} */
-		public static final Target INFO_COMPONENT = new Target( "dock.info" );
-		
-		private String id;
-		
-		/**
-		 * Creates a new kind of target.
-		 * @param id the new kind of target
-		 */
-		public Target( String id ){
-			this.id = id;
-		}
-		
-		@Override
-		public int hashCode(){
-			return id.hashCode();
-		}
-		
-		@Override
-		public boolean equals( Object obj ){
-			if (obj == this) {
-				return true;
-			}
+  /**
+   * Creates a selection of the {@link DockAction}s that are to be shown on a <code>target</code>.
+   *
+   * @param dockable the source of the actions
+   * @param target   where the source will be used
+   * @return the actions
+   * @throws IllegalArgumentException if <code>target</code> is unknown to this distributor
+   */
+  public DockActionSource createSource(Dockable dockable, Target target);
 
-			if (obj == null) {
-				return false;
-			}
+  ;
 
-			if (obj.getClass() == this.getClass()) {
-				return ((Target) obj).id.equals(id);
-			}
+  /**
+   * Represents one place where a {@link DockActionSource} can be used.
+   *
+   * @author Benjamin Sigg
+   */
+  public static class Target {
+    /**
+     * On a {@link CombinedTab}
+     */
+    public static final Target TAB = new Target("dock.tab");
+    /**
+     * On a {@link DockTitle}
+     */
+    public static final Target TITLE = new Target("dock.title");
+    /**
+     * On an {@link CombinedInfoComponent}
+     */
+    public static final Target INFO_COMPONENT = new Target("dock.info");
 
-			return false;
-		}
-	};
+    private String id;
 
-	/**
-	 * Creates a selection of the {@link DockAction}s that are to be shown on a <code>target</code>.
-	 * @param dockable the source of the actions
-	 * @param target where the source will be used
-	 * @return the actions 
-	 * @throws IllegalArgumentException if <code>target</code> is unknown to this distributor
-	 */
-	public DockActionSource createSource( Dockable dockable, Target target );
+    /**
+     * Creates a new kind of target.
+     *
+     * @param id the new kind of target
+     */
+    public Target(String id) {
+      this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+      return id.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (obj == this) {
+        return true;
+      }
+
+      if (obj == null) {
+        return false;
+      }
+
+      if (obj.getClass() == this.getClass()) {
+        return ((Target)obj).id.equals(id);
+      }
+
+      return false;
+    }
+  }
 }

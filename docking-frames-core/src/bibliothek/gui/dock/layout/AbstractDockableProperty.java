@@ -29,74 +29,75 @@ package bibliothek.gui.dock.layout;
 /**
  * A simple implementation of {@link DockableProperty} which provides
  * only the basic features.
+ *
  * @author Benjamin Sigg
  */
 public abstract class AbstractDockableProperty implements DockableProperty {
-    /** The successor of this property */
-    private DockableProperty successor;
-    
-    public DockableProperty getSuccessor() {
-        return successor;
+  /**
+   * The successor of this property
+   */
+  private DockableProperty successor;
+
+  public DockableProperty getSuccessor() {
+    return successor;
+  }
+
+  public void setSuccessor(DockableProperty properties) {
+    this.successor = properties;
+  }
+
+  /**
+   * Copies the fields of this property to <code>copy</code>.
+   *
+   * @param copy the copy of <code>this</code>
+   */
+  protected void copy(AbstractDockableProperty copy) {
+    if (successor != null) copy.successor = successor.copy();
+  }
+
+  public boolean equalsNoSuccessor(DockableProperty property) {
+    DockableProperty successor = this.successor;
+    DockableProperty successorProperty = property.getSuccessor();
+
+    try {
+      this.successor = null;
+      property.setSuccessor(null);
+
+      return equals(property);
+    }
+    finally {
+      this.successor = successor;
+      property.setSuccessor(successorProperty);
+    }
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((successor == null) ? 0 : successor.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
     }
 
-    public void setSuccessor( DockableProperty properties ) {
-        this.successor = properties;
-    }
-    
-    /**
-     * Copies the fields of this property to <code>copy</code>.
-     * @param copy the copy of <code>this</code>
-     */
-    protected void copy( AbstractDockableProperty copy ){
-        if( successor != null )
-            copy.successor = successor.copy();
+    if (obj == null) {
+      return false;
     }
 
-    public boolean equalsNoSuccessor( DockableProperty property ){
-    	DockableProperty successor = this.successor;
-    	DockableProperty successorProperty = property.getSuccessor();
-    	
-    	try{
-    		this.successor = null;
-    		property.setSuccessor( null );
-    		
-    		return equals( property );
-    	}
-    	finally{
-    		this.successor = successor;
-    		property.setSuccessor( successorProperty );
-    	}
+    if (this.getClass() == obj.getClass()) {
+      AbstractDockableProperty other = (AbstractDockableProperty)obj;
+      if (successor == null) {
+        if (other.successor != null) return false;
+      }
+      else if (!successor.equals(other.successor)) return false;
+      return true;
     }
-    
-	@Override
-	public int hashCode(){
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((successor == null) ? 0 : successor.hashCode());
-		return result;
-	}
 
-	@Override
-	public boolean equals( Object obj ){
-		if( this == obj ) {
-			return true;
-		}
-
-		if( obj == null ) {
-			return false;
-		}
-
-		if( this.getClass() == obj.getClass() ) {
-			AbstractDockableProperty other = (AbstractDockableProperty)obj;
-			if( successor == null ){
-				if( other.successor != null )
-					return false;
-			}else if( !successor.equals( other.successor ) )
-				return false;
-			return true;
-		}
-
-		return false;
-	}
+    return false;
+  }
 }

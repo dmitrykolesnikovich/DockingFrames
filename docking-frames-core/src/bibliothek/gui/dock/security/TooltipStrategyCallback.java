@@ -25,35 +25,40 @@
  */
 package bibliothek.gui.dock.security;
 
-import javax.swing.JToolTip;
+import javax.swing.*;
 
 /**
  * A callback forwarded to a {@link TooltipStrategy}, allows the strategy to configure
  * a {@link GlassedPane}.
+ *
  * @author Benjamin Sigg
  */
 public interface TooltipStrategyCallback {
-	/**
-	 * Gets the owner of this callback.
-	 * @return the owner, never <code>null</code>
-	 */
-	public GlassedPane getGlassedPane();
-	
-	/**
-	 * Sets the tooltip that should currently be shown.
-	 * @param text the current tooltip, can be <code>null</code>
-	 */
-	public void setToolTipText( String text );
-	
-	/**
-	 * Gets the currently shown tooltip.
-	 * @return the current tooltip, can be <code>null</code> 
-	 */
-	public String getToolTipText();
-	
-	/**
-	 * Default method for creating a new {@link JToolTip}.
-	 * @return some new tooltip, never <code>null</code>
-	 */
-	public JToolTip createToolTip();
+  /**
+   * Gets the owner of this callback.
+   *
+   * @return the owner, never <code>null</code>
+   */
+  public GlassedPane getGlassedPane();
+
+  /**
+   * Gets the currently shown tooltip.
+   *
+   * @return the current tooltip, can be <code>null</code>
+   */
+  public String getToolTipText();
+
+  /**
+   * Sets the tooltip that should currently be shown.
+   *
+   * @param text the current tooltip, can be <code>null</code>
+   */
+  public void setToolTipText(String text);
+
+  /**
+   * Default method for creating a new {@link JToolTip}.
+   *
+   * @return some new tooltip, never <code>null</code>
+   */
+  public JToolTip createToolTip();
 }

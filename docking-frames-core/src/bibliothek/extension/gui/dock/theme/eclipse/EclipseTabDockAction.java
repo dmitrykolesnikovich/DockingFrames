@@ -25,38 +25,38 @@
  */
 package bibliothek.extension.gui.dock.theme.eclipse;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * Marks a {@link bibliothek.gui.dock.action.DockAction} that it should be shown
  * in the tabs when the {@link bibliothek.extension.gui.dock.theme.EclipseTheme}
- * is used. This annotation receives only attention when the 
+ * is used. This annotation receives only attention when the
  * {@link DefaultEclipseThemeConnector} is used.
+ *
  * @author Benjamin Sigg
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
 public @interface EclipseTabDockAction {
-	/**
-	 * The location of the action if the tab is neither selected nor focused.
-	 * @return behavior if the tab is not selected, not <code>null</code>
-	 */
-	public EclipseTabDockActionLocation normal() default EclipseTabDockActionLocation.TAB;
-	
-	/**
-	 * The location of the action if the tab is selected.
-	 * @return behavior if the tab is selected, not <code>null</code>
-	 */
-	public EclipseTabDockActionLocation selected() default EclipseTabDockActionLocation.TAB;
-	
-	/**
-	 * The location of the action if the tab is selected and focused.
-	 * @return behavior if the tab is selected and focused, not <code>null</code>
-	 */	
-	public EclipseTabDockActionLocation focused() default EclipseTabDockActionLocation.TAB;
+  /**
+   * The location of the action if the tab is neither selected nor focused.
+   *
+   * @return behavior if the tab is not selected, not <code>null</code>
+   */
+  public EclipseTabDockActionLocation normal() default EclipseTabDockActionLocation.TAB;
+
+  /**
+   * The location of the action if the tab is selected.
+   *
+   * @return behavior if the tab is selected, not <code>null</code>
+   */
+  public EclipseTabDockActionLocation selected() default EclipseTabDockActionLocation.TAB;
+
+  /**
+   * The location of the action if the tab is selected and focused.
+   *
+   * @return behavior if the tab is selected and focused, not <code>null</code>
+   */
+  public EclipseTabDockActionLocation focused() default EclipseTabDockActionLocation.TAB;
 }

@@ -25,92 +25,98 @@
  */
 package bibliothek.gui.dock.title;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Point;
-
-import javax.swing.JPanel;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.dockable.MovingImage;
 import bibliothek.gui.dock.title.DockTitle.Orientation;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * This {@link MovingImage} shows a {@link DockTitle}, the title
  * can be automatically exchanged.
- * @author Benjamin Sigg
  *
+ * @author Benjamin Sigg
  */
 public class UpdatingTitleMovingImage implements MovingImage {
-    /** the element which is represented by this image */
-    private Dockable dockable;
+  /**
+   * the element which is represented by this image
+   */
+  private Dockable dockable;
 
-    /** the items to show */
-    private JPanel content;
-    
-    /** the kind of title to show */
-    private DockTitleVersion version;
-    
-    /** the current title */
-    private DockTitleRequest request;
+  /**
+   * the items to show
+   */
+  private JPanel content;
 
-    /** how to show the title */
-    private Orientation orientation;
-    
-    /**
-     * Creates a new image.
-     * @param dockable the element which is represented by this image
-     * @param version the contents of this image
-     * @param orientation how to align the title
-     */
-    public UpdatingTitleMovingImage( Dockable dockable, DockTitleVersion version, Orientation orientation ){
-        if( dockable == null )
-            throw new IllegalArgumentException( "ockable must not be null" );
-        
-        if( version == null )
-            throw new IllegalArgumentException( "version must not be null" );
-        
-        this.dockable = dockable;
-        content = new JPanel( new BorderLayout() );
-        content.setOpaque( false );
-        this.version = version;
-        this.orientation = orientation;
-    }
-    
-    public Point getOffset( Point pressPoint ){
-    	return null;
-    }
-    
-    public void bind( boolean transparency ) {
-        request = new DockTitleRequest( null, dockable, version ) {
-			@Override
-			protected void answer( DockTitle previous, DockTitle title ){
-				if( previous != null ){	
-					dockable.unbind( previous );
-				}
-				content.removeAll();
-				if( title != null ){
-					title.setOrientation( orientation );
-					dockable.bind( title );
-					content.add( title.getComponent(), BorderLayout.CENTER );
-				}
-			}
-		};
-		request.install();
-		request.request();
-    }
+  /**
+   * the kind of title to show
+   */
+  private DockTitleVersion version;
 
-    public Component getComponent() {
-        return content;
-    }
+  /**
+   * the current title
+   */
+  private DockTitleRequest request;
 
-    public void unbind() {
-    	DockTitle title = request.getAnswer();
-    	if( title != null ){
-    		dockable.unbind( title );
-    		content.removeAll();
-    	}
-        request.uninstall();
-        request = null;
+  /**
+   * how to show the title
+   */
+  private Orientation orientation;
+
+  /**
+   * Creates a new image.
+   *
+   * @param dockable    the element which is represented by this image
+   * @param version     the contents of this image
+   * @param orientation how to align the title
+   */
+  public UpdatingTitleMovingImage(Dockable dockable, DockTitleVersion version, Orientation orientation) {
+    if (dockable == null) throw new IllegalArgumentException("ockable must not be null");
+
+    if (version == null) throw new IllegalArgumentException("version must not be null");
+
+    this.dockable = dockable;
+    content = new JPanel(new BorderLayout());
+    content.setOpaque(false);
+    this.version = version;
+    this.orientation = orientation;
+  }
+
+  public Point getOffset(Point pressPoint) {
+    return null;
+  }
+
+  public void bind(boolean transparency) {
+    request = new DockTitleRequest(null, dockable, version) {
+      @Override
+      protected void answer(DockTitle previous, DockTitle title) {
+        if (previous != null) {
+          dockable.unbind(previous);
+        }
+        content.removeAll();
+        if (title != null) {
+          title.setOrientation(orientation);
+          dockable.bind(title);
+          content.add(title.getComponent(), BorderLayout.CENTER);
+        }
+      }
+    };
+    request.install();
+    request.request();
+  }
+
+  public Component getComponent() {
+    return content;
+  }
+
+  public void unbind() {
+    DockTitle title = request.getAnswer();
+    if (title != null) {
+      dockable.unbind(title);
+      content.removeAll();
     }
+    request.uninstall();
+    request = null;
+  }
 }

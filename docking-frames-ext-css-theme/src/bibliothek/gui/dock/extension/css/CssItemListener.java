@@ -27,12 +27,14 @@ package bibliothek.gui.dock.extension.css;
 
 /**
  * This listener can be added to a {@link CssItem}.
+ *
  * @author Benjamin Sigg
  */
 public interface CssItemListener {
-	/**
-	 * Called if {@link CssItem#getPath()} has changed.
-	 * @param source the source of the event
-	 */
-	public void pathChanged( CssItem source );
+  /**
+   * Called if {@link CssItem#getPath()} has changed.
+   *
+   * @param source the source of the event
+   */
+  public void pathChanged(CssItem source);
 }

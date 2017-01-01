@@ -25,59 +25,67 @@
  */
 package bibliothek.gui.dock.extension.css.doc;
 
+import bibliothek.gui.dock.extension.css.CssNode;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import bibliothek.gui.dock.extension.css.CssNode;
-
 /**
  * Describes a single element of a {@link CssDocPath}. See also {@link CssNode}.
+ *
  * @author Benjamin Sigg
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface CssDocPathNode {
-	/**
-	 * The name of this node (as required for a css selector)
-	 * @return the name
-	 */
-	public CssDocKey name() default @CssDocKey();
-	
-	/**
-	 * The identifier of this node (as required for a css selector)
-	 * @return the identifier
-	 */
-	public CssDocText identifier() default @CssDocText();
-	
-	/**
-	 * All the classes of this node (as required for a css selector)
-	 * @return the classes
-	 */
-	public CssDocKey[] classes() default @CssDocKey();
-	
-	/**
-	 * All the pseudo classes of this node (as required for a css selector)
-	 * @return the pseudo classes
-	 */
-	public CssDocKey[] pseudoClasses() default @CssDocKey();
-	
-	/**
-	 * All the properties of this node (as required for a css selector)
-	 * @return the properties
-	 */
-	public CssDocKey[] properties() default @CssDocKey();
-	
-	/**
-	 * A description of this node.
-	 * @return the description
-	 */
-	public CssDocText description() default @CssDocText();
-	
-	/**
-	 * Will replace <code>this</code> with the node(s) found in the referenced class.
-	 * @return replacement of <code>this</code>
-	 */
-	public Class<?> reference() default Object.class;
+  /**
+   * The name of this node (as required for a css selector)
+   *
+   * @return the name
+   */
+  public CssDocKey name() default @CssDocKey();
+
+  /**
+   * The identifier of this node (as required for a css selector)
+   *
+   * @return the identifier
+   */
+  public CssDocText identifier() default @CssDocText();
+
+  /**
+   * All the classes of this node (as required for a css selector)
+   *
+   * @return the classes
+   */
+  public CssDocKey[] classes() default @CssDocKey();
+
+  /**
+   * All the pseudo classes of this node (as required for a css selector)
+   *
+   * @return the pseudo classes
+   */
+  public CssDocKey[] pseudoClasses() default @CssDocKey();
+
+  /**
+   * All the properties of this node (as required for a css selector)
+   *
+   * @return the properties
+   */
+  public CssDocKey[] properties() default @CssDocKey();
+
+  /**
+   * A description of this node.
+   *
+   * @return the description
+   */
+  public CssDocText description() default @CssDocText();
+
+  /**
+   * Will replace <code>this</code> with the node(s) found in the referenced class.
+   *
+   * @return replacement of <code>this</code>
+   */
+  public Class<?> reference() default Object.class;
 }

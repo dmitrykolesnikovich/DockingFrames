@@ -25,32 +25,33 @@
  */
 package bibliothek.gui.dock.common.preference;
 
-import java.awt.event.KeyEvent;
-
-import javax.swing.KeyStroke;
-
 import bibliothek.extension.gui.dock.preference.preferences.DockPropertyPreference;
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.util.DockProperties;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+import java.awt.event.KeyEvent;
+
 /**
  * Preference setting the keystroke for maximizing/unmaximizing a {@link Dockable}.
+ *
  * @author Benjamin Sigg
  * @see CControl#KEY_MAXIMIZE_CHANGE
  */
-public class KeyStrokeMaximizeChangePreference extends DockPropertyPreference<KeyStroke>{
-	/**
-	 * Creates a new preference
-	 * @param properties the properties to access
-	 */
-	public KeyStrokeMaximizeChangePreference( DockProperties properties ){
-		super( properties, CControl.KEY_MAXIMIZE_CHANGE, Path.TYPE_KEYSTROKE_PATH, new Path( "dock.common.control.maximize_change" ) );
-		
-		setLabelId( "preference.shortcut.maximize_change.label" );
-		setDescriptionId( "preference.shortcut.maximize_change.description" );
-		
-		setDefaultValue( KeyStroke.getKeyStroke( KeyEvent.VK_M, KeyEvent.CTRL_DOWN_MASK ));
-	}
+public class KeyStrokeMaximizeChangePreference extends DockPropertyPreference<KeyStroke> {
+  /**
+   * Creates a new preference
+   *
+   * @param properties the properties to access
+   */
+  public KeyStrokeMaximizeChangePreference(DockProperties properties) {
+    super(properties, CControl.KEY_MAXIMIZE_CHANGE, Path.TYPE_KEYSTROKE_PATH, new Path("dock.common.control.maximize_change"));
+
+    setLabelId("preference.shortcut.maximize_change.label");
+    setDescriptionId("preference.shortcut.maximize_change.description");
+
+    setDefaultValue(KeyStroke.getKeyStroke(KeyEvent.VK_M, KeyEvent.CTRL_DOWN_MASK));
+  }
 }

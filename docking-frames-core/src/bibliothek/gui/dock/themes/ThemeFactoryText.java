@@ -31,29 +31,34 @@ import bibliothek.util.Path;
 
 /**
  * Represents a text that is used by a {@link ThemeFactory} to present itself.
+ *
  * @author Benjamin Sigg
  */
-public abstract class ThemeFactoryText extends TextValue{
-	/** the kind of {@link UIValue} this is */
-	public static final Path KIND_THEME_FACTORY = KIND_TEXT.append( "theme_factory" );
-	
-	private ThemeFactory factory;
-	
-	/**
-	 * Creates a new {@link TextValue}.
-	 * @param id the unique identifier of the text to read
-	 * @param factory the factory which is reading the text
-	 */
-	public ThemeFactoryText( String id, ThemeFactory factory ){
-		super( id, KIND_THEME_FACTORY );
-		this.factory = factory;
-	}
-	
-	/**
-	 * Gets the factory for which text is required
-	 * @return the factory
-	 */
-	public ThemeFactory getFactory(){
-		return factory;
-	}
+public abstract class ThemeFactoryText extends TextValue {
+  /**
+   * the kind of {@link UIValue} this is
+   */
+  public static final Path KIND_THEME_FACTORY = KIND_TEXT.append("theme_factory");
+
+  private ThemeFactory factory;
+
+  /**
+   * Creates a new {@link TextValue}.
+   *
+   * @param id      the unique identifier of the text to read
+   * @param factory the factory which is reading the text
+   */
+  public ThemeFactoryText(String id, ThemeFactory factory) {
+    super(id, KIND_THEME_FACTORY);
+    this.factory = factory;
+  }
+
+  /**
+   * Gets the factory for which text is required
+   *
+   * @return the factory
+   */
+  public ThemeFactory getFactory() {
+    return factory;
+  }
 }

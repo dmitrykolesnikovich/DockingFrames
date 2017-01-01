@@ -25,45 +25,50 @@
  */
 package bibliothek.gui.dock.action.popup;
 
-import java.awt.Component;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.DockElementRepresentative;
 import bibliothek.gui.dock.action.DockAction;
 import bibliothek.gui.dock.action.MenuDockAction;
 
+import java.awt.*;
+
 /**
- * A menu that shows some {@link DockAction}s and is opened when the user 
+ * A menu that shows some {@link DockAction}s and is opened when the user
  * performs a right click onto a {@link DockElementRepresentative} or invokes
  * a {@link MenuDockAction}.
+ *
  * @author Benjamin Sigg
  */
 public interface ActionPopupMenu {
-	/**
-	 * Gets the {@link Dockable} for which this menu is shown.
-	 * @return the owner of this menu
-	 */
-	public Dockable getDockable();
-	
-	/**
-	 * Opens this menu assuming the mouse is currently over <code>owner</code>
-	 * at location <code>x/y</code>.
-	 * @param owner the {@link Component} over which the menu should appear
-	 * @param x the x coordinate of the position
-	 * @param y the y coordinate of the position
-	 */
-	public void show( Component owner, int x, int y );
-	
-	/**
-	 * Adds a listener to this menu, the listener is to be informed if
-	 * the menu closes.
-	 * @param listener the new listener
-	 */
-	public void addListener( ActionPopupMenuListener listener );
-	
-	/**
-	 * Removes a listener from this menu.
- 	 * @param listener the listener to remove
-	 */
-	public void removeListener( ActionPopupMenuListener listener );
+  /**
+   * Gets the {@link Dockable} for which this menu is shown.
+   *
+   * @return the owner of this menu
+   */
+  public Dockable getDockable();
+
+  /**
+   * Opens this menu assuming the mouse is currently over <code>owner</code>
+   * at location <code>x/y</code>.
+   *
+   * @param owner the {@link Component} over which the menu should appear
+   * @param x     the x coordinate of the position
+   * @param y     the y coordinate of the position
+   */
+  public void show(Component owner, int x, int y);
+
+  /**
+   * Adds a listener to this menu, the listener is to be informed if
+   * the menu closes.
+   *
+   * @param listener the new listener
+   */
+  public void addListener(ActionPopupMenuListener listener);
+
+  /**
+   * Removes a listener from this menu.
+   *
+   * @param listener the listener to remove
+   */
+  public void removeListener(ActionPopupMenuListener listener);
 }

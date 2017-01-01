@@ -31,15 +31,17 @@ import bibliothek.gui.Dockable;
 /**
  * A listener to an {@link EclipseThemeConnector}, can be called if a property
  * of the connector changes.
+ *
  * @author Benjamin Sigg
  */
 public interface EclipseThemeConnectorListener {
-	/**
-	 * Called if the result of {@link EclipseThemeConnector#getTitleBarKind(bibliothek.gui.DockStation, Dockable)}
-	 * has changed.
-	 * @param source the source of the event
-	 * @param dockable the affected dockable
-	 * @param title the new kind of title for <code>dockable</code>
-	 */
-	public void titleBarChanged( EclipseThemeConnector source, Dockable dockable, TitleBar title );
+  /**
+   * Called if the result of {@link EclipseThemeConnector#getTitleBarKind(bibliothek.gui.DockStation, Dockable)}
+   * has changed.
+   *
+   * @param source   the source of the event
+   * @param dockable the affected dockable
+   * @param title    the new kind of title for <code>dockable</code>
+   */
+  public void titleBarChanged(EclipseThemeConnector source, Dockable dockable, TitleBar title);
 }

@@ -25,26 +25,27 @@
  */
 package bibliothek.gui.dock.extension.css.property.font;
 
-import bibliothek.gui.dock.extension.css.CssType;
 import bibliothek.gui.dock.extension.css.CssDeclarationValue;
+import bibliothek.gui.dock.extension.css.CssType;
 import bibliothek.gui.dock.extension.css.transition.TransitionalCssProperty;
 
 /**
  * Creates new {@link CssFontModifier}, the default implementation only creates new {@link GenericCssFontModifier}s.
+ *
  * @author Benjamin Sigg
  */
-public class CssFontModifierType implements CssType<CssFontModifier>{
-	@Override
-	public CssFontModifier convert( CssDeclarationValue value ){
-		String text = value.getSingleValue();
-		if( "generic".equals( text )){
-			return new GenericCssFontModifier();
-		}
-		return null;
-	}
+public class CssFontModifierType implements CssType<CssFontModifier> {
+  @Override
+  public CssFontModifier convert(CssDeclarationValue value) {
+    String text = value.getSingleValue();
+    if ("generic".equals(text)) {
+      return new GenericCssFontModifier();
+    }
+    return null;
+  }
 
-	@Override
-	public TransitionalCssProperty<CssFontModifier> createTransition(){
-		return new TransitionalCssFontModifierProperty();
-	}
+  @Override
+  public TransitionalCssProperty<CssFontModifier> createTransition() {
+    return new TransitionalCssFontModifierProperty();
+  }
 }

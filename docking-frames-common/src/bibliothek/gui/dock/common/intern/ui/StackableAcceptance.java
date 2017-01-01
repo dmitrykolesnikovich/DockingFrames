@@ -36,31 +36,29 @@ import bibliothek.util.FrameworkOnly;
 /**
  * A {@link DockAcceptance} ensuring that the {@link CDockable#isStackable()}
  * property is respected.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
 public class StackableAcceptance implements DockAcceptance {
-    
-    public boolean accept( DockStation parent, Dockable child ) {
-        if( parent instanceof StackDockStation ){
-            if( child instanceof CommonDockable ){
-                if( !((CommonDockable)child).getDockable().isStackable() )
-                    return false;
-            }
-        }
-        
-        return true;
+
+  public boolean accept(DockStation parent, Dockable child) {
+    if (parent instanceof StackDockStation) {
+      if (child instanceof CommonDockable) {
+        if (!((CommonDockable)child).getDockable().isStackable()) return false;
+      }
     }
-    
-    public boolean accept( DockStation parent, Dockable child, Dockable next ) {
-        if( child instanceof CommonDockable ){
-            if( !((CommonDockable)child).getDockable().isStackable() )
-                return false;
-        }
-        if( next instanceof CommonDockable ){
-            if( !((CommonDockable)next).getDockable().isStackable() )
-                return false;
-        }
-        return true;
+
+    return true;
+  }
+
+  public boolean accept(DockStation parent, Dockable child, Dockable next) {
+    if (child instanceof CommonDockable) {
+      if (!((CommonDockable)child).getDockable().isStackable()) return false;
     }
+    if (next instanceof CommonDockable) {
+      if (!((CommonDockable)next).getDockable().isStackable()) return false;
+    }
+    return true;
+  }
 }

@@ -30,10 +30,11 @@ import bibliothek.gui.dock.common.mode.ExtendedMode;
 
 /**
  * Represents a {@link CExternalizedMode}.
+ *
  * @author Benjamin Sigg
  */
 public class CExternalizedModePerspective extends AbstractModePerspective<CModeAreaPerspective> {
-	public ExtendedMode getIdentifier(){
-		return ExtendedMode.EXTERNALIZED;
-	}
+  public ExtendedMode getIdentifier() {
+    return ExtendedMode.EXTERNALIZED;
+  }
 }

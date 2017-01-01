@@ -33,27 +33,28 @@ import bibliothek.gui.dock.station.layer.LayerPriority;
 /**
  * A {@link DockStationDropLayer} with priority {@link LayerPriority#OVERRIDE_PRECISE} representing the
  * tabs of a {@link StackDockStation}.
+ *
  * @author Benjamin Sigg
  */
-public class TabDropLayer extends DefaultDropLayer{
-	private StackDockStation station;
-	
-	public TabDropLayer( StackDockStation station ){
-		super( station );
-		this.station = station;
-		setPriority( LayerPriority.OVERRIDE_PRECISE );
-	}
-	
-	@Override
-	public boolean contains( int x, int y ){
-		if( super.contains( x, y ) ){
-			if( station.isOverTabs( x, y )){
-				return true;
-			}
-			if( station.isOverTitle( x, y )){
-				
-			}
-		}
-		return false;
-	}
+public class TabDropLayer extends DefaultDropLayer {
+  private StackDockStation station;
+
+  public TabDropLayer(StackDockStation station) {
+    super(station);
+    this.station = station;
+    setPriority(LayerPriority.OVERRIDE_PRECISE);
+  }
+
+  @Override
+  public boolean contains(int x, int y) {
+    if (super.contains(x, y)) {
+      if (station.isOverTabs(x, y)) {
+        return true;
+      }
+      if (station.isOverTitle(x, y)) {
+
+      }
+    }
+    return false;
+  }
 }

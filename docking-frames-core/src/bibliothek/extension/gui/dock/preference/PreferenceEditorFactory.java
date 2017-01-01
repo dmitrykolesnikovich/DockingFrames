@@ -26,15 +26,16 @@
 package bibliothek.extension.gui.dock.preference;
 
 /**
- * A factory creating new {@link PreferenceEditor}s. 
- * @author Benjamin Sigg
+ * A factory creating new {@link PreferenceEditor}s.
  *
  * @param <V> the kind of values the editors of this factory work with
+ * @author Benjamin Sigg
  */
 public interface PreferenceEditorFactory<V> {
-    /**
-     * Creates a new editor.
-     * @return the new editor
-     */
-    public PreferenceEditor<V> create();
+  /**
+   * Creates a new editor.
+   *
+   * @return the new editor
+   */
+  public PreferenceEditor<V> create();
 }

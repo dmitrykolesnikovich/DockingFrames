@@ -32,15 +32,19 @@ import bibliothek.util.Path;
 
 /**
  * A {@link BackgroundComponent} that represents a {@link Dockable}.
+ *
  * @author Benjamin Sigg
  */
-public interface DockableBackgroundComponent extends BackgroundComponent{
-	/** the kind of this {@link UIValue} */
-	public static final Path KIND = BackgroundComponent.KIND.append( "dockable" );
-	
-	/**
-	 * Gets the {@link Dockable} which is represented by this component.
-	 * @return the dockable, not <code>null</code>
-	 */
-	public Dockable getDockable();
+public interface DockableBackgroundComponent extends BackgroundComponent {
+  /**
+   * the kind of this {@link UIValue}
+   */
+  public static final Path KIND = BackgroundComponent.KIND.append("dockable");
+
+  /**
+   * Gets the {@link Dockable} which is represented by this component.
+   *
+   * @return the dockable, not <code>null</code>
+   */
+  public Dockable getDockable();
 }

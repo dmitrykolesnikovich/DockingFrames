@@ -37,21 +37,17 @@ import bibliothek.gui.dock.extension.css.theme.CssDockTitle;
 import bibliothek.gui.dock.title.AbstractMultiDockTitle;
 import bibliothek.gui.dock.util.font.FontModifier;
 
-@CssDocProperty(
-		path=@CssDocPath(referencePath=CssDockTitle.class, referenceId="self"),
-		property=@CssDocKey(key="fontmodifier"),
-		type=CssFontModifier.class,
-		description=@CssDocText(text="Modifies the font of the title, e.g. makes it italic or changes it size"))
-public class TitleFontModifierProperty extends CssFontTransitionProperty{
-	private AbstractMultiDockTitle title;
-	
-	public TitleFontModifierProperty( AbstractMultiDockTitle title, CssScheme scheme, CssItem item ){
-		super( scheme, item );
-		this.title= title;
-	}
-	
-	@Override
-	protected void setModifier( FontModifier modifier ){
-		title.setFontModifier( modifier );
-	}
+@CssDocProperty(path = @CssDocPath(referencePath = CssDockTitle.class, referenceId = "self"), property = @CssDocKey(key = "fontmodifier"), type = CssFontModifier.class, description = @CssDocText(text = "Modifies the font of the title, e.g. makes it italic or changes it size"))
+public class TitleFontModifierProperty extends CssFontTransitionProperty {
+  private AbstractMultiDockTitle title;
+
+  public TitleFontModifierProperty(AbstractMultiDockTitle title, CssScheme scheme, CssItem item) {
+    super(scheme, item);
+    this.title = title;
+  }
+
+  @Override
+  protected void setModifier(FontModifier modifier) {
+    title.setFontModifier(modifier);
+  }
 }

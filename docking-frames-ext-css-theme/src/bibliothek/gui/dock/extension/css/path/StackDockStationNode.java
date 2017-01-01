@@ -36,88 +36,93 @@ import bibliothek.gui.dock.extension.css.doc.CssDocText;
 
 /**
  * This node describes the child of a {@link StackDockStation}.
+ *
  * @author Benjamin Sigg
  */
-@CssDocPathNode(
-		name=@CssDocKey(key=StackDockStationNode.NAME),
-		description=@CssDocText(text="Relation between a StackDockStation and its child(ren)"),
-		properties={
-			@CssDocKey(key="index", description=@CssDocText(text="Location of the child on this StackDockStation"))},
-		pseudoClasses={
-			@CssDocKey(key="selected", description=@CssDocText(text="Applied if the child is selected"))})
-public class StackDockStationNode extends AbstractCssNode{
-	/** the name of this node */
-	public static final String NAME = "stack-child";
-	
-	/** the station to observe */
-	private StackDockStation station;
-	
-	/** the dockable whose location has to be monitored */
-	private Dockable dockable;
-	
-	private DockStationListener stationListener = new DockStationAdapter(){
-		@Override
-		public void dockablesRepositioned( DockStation station, Dockable[] dockables ){
-			for( Dockable item : dockables ){
-				if( item == dockable ){
-					fireNodeChanged();
-					break;
-				}
-			}
-		}
-		@Override
-		public void dockableSelected( DockStation station, Dockable oldSelection, Dockable newSelection ){
-			if( oldSelection == dockable || newSelection == dockable ){
-				fireNodeChanged();
-			}
-		}
-	};
-	
-	/**
-	 * Creates a new node
-	 * @param station the station to observe
-	 * @param dockable the child which is represented by this node
-	 */
-	public StackDockStationNode( StackDockStation station, Dockable dockable ){
-		if( station == null ){
-			throw new IllegalArgumentException( "station must not be null" );
-		}
-		if( dockable == null ){
-			throw new IllegalArgumentException( "dockable must not be null" );
-		}
-		this.station = station;
-		this.dockable = dockable;
-	}
-	
-	@Override
-	public String getName(){
-		return NAME;
-	}
-	
-	@Override
-	public String getProperty( String key ){
-		if( "index".equals( key )){
-			return String.valueOf( station.indexOf( dockable ));
-		}
-		return null;
-	}
-	
-	@Override
-	public boolean hasPseudoClass( String className ){
-		if( "selected".equals( className )){
-			return station.getFrontDockable() == dockable;
-		}
-		return false;
-	}
-	
-	@Override
-	protected void bind(){
-		station.addDockStationListener( stationListener );
-		
-	}
-	
-	@Override
-	protected void unbind(){
-		station.removeDockStationListener( stationListener );
-	}
+@CssDocPathNode(name = @CssDocKey(key = StackDockStationNode.NAME), description = @CssDocText(text = "Relation between a StackDockStation and its child(ren)"), properties = {
+  @CssDocKey(key = "index", description = @CssDocText(text = "Location of the child on this StackDockStation"))}, pseudoClasses = {
+  @CssDocKey(key = "selected", description = @CssDocText(text = "Applied if the child is selected"))})
+public class StackDockStationNode extends AbstractCssNode {
+  /**
+   * the name of this node
+   */
+  public static final String NAME = "stack-child";
+
+  /**
+   * the station to observe
+   */
+  private StackDockStation station;
+
+  /**
+   * the dockable whose location has to be monitored
+   */
+  private Dockable dockable;
+
+  private DockStationListener stationListener = new DockStationAdapter() {
+    @Override
+    public void dockablesRepositioned(DockStation station, Dockable[] dockables) {
+      for (Dockable item : dockables) {
+        if (item == dockable) {
+          fireNodeChanged();
+          break;
+        }
+      }
+    }
+
+    @Override
+    public void dockableSelected(DockStation station, Dockable oldSelection, Dockable newSelection) {
+      if (oldSelection == dockable || newSelection == dockable) {
+        fireNodeChanged();
+      }
+    }
+  };
+
+  /**
+   * Creates a new node
+   *
+   * @param station  the station to observe
+   * @param dockable the child which is represented by this node
+   */
+  public StackDockStationNode(StackDockStation station, Dockable dockable) {
+    if (station == null) {
+      throw new IllegalArgumentException("station must not be null");
+    }
+    if (dockable == null) {
+      throw new IllegalArgumentException("dockable must not be null");
+    }
+    this.station = station;
+    this.dockable = dockable;
+  }
+
+  @Override
+  public String getName() {
+    return NAME;
+  }
+
+  @Override
+  public String getProperty(String key) {
+    if ("index".equals(key)) {
+      return String.valueOf(station.indexOf(dockable));
+    }
+    return null;
+  }
+
+  @Override
+  public boolean hasPseudoClass(String className) {
+    if ("selected".equals(className)) {
+      return station.getFrontDockable() == dockable;
+    }
+    return false;
+  }
+
+  @Override
+  protected void bind() {
+    station.addDockStationListener(stationListener);
+
+  }
+
+  @Override
+  protected void unbind() {
+    station.removeDockStationListener(stationListener);
+  }
 }

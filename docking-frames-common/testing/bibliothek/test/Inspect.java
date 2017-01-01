@@ -26,36 +26,41 @@
 package bibliothek.test;
 
 /**
- * Represents some field or data that can be inspected. 
+ * Represents some field or data that can be inspected.
+ *
  * @author Benjamin Sigg
  */
 public interface Inspect {
-	/**
-	 * Gets a human readable name for this field.
-	 * @return a name
-	 */
-	public String getName();
-	
-	/**
-	 * Gets the value represented by this field. This value will be converted
-	 * into a {@link String} to be shown on the screen.
-	 * @return the value, can be <code>null</code>
-	 */
-	public Object getValue();
-	
-	/**
-	 * Gets all the children of this inspect.
-	 * @return all the children of this inspect, the result may be <code>null</code>
-	 * or contain <code>null</code> entries. It may also contain data that has
-	 * cyclic dependencies.
-	 */
-	public Object[] getChildren();
-	
-	/**
-	 * Updates the contents of this {@link Inspect}. This method may only be called by the
-	 * EDT (Event Dispatcher Thread).
-	 * @return <code>true</code> if either name, value or children changed, <code>false</code>
-	 * if nothing was updated
-	 */
-	public boolean update();
+  /**
+   * Gets a human readable name for this field.
+   *
+   * @return a name
+   */
+  public String getName();
+
+  /**
+   * Gets the value represented by this field. This value will be converted
+   * into a {@link String} to be shown on the screen.
+   *
+   * @return the value, can be <code>null</code>
+   */
+  public Object getValue();
+
+  /**
+   * Gets all the children of this inspect.
+   *
+   * @return all the children of this inspect, the result may be <code>null</code>
+   * or contain <code>null</code> entries. It may also contain data that has
+   * cyclic dependencies.
+   */
+  public Object[] getChildren();
+
+  /**
+   * Updates the contents of this {@link Inspect}. This method may only be called by the
+   * EDT (Event Dispatcher Thread).
+   *
+   * @return <code>true</code> if either name, value or children changed, <code>false</code>
+   * if nothing was updated
+   */
+  public boolean update();
 }

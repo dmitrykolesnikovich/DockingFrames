@@ -32,24 +32,28 @@ import bibliothek.util.Path;
 
 /**
  * A representation of a {@link Dockable} in a {@link Perspective}.
+ *
  * @author Benjamin Sigg
  */
-public interface PerspectiveDockable extends PerspectiveElement, PlaceholderListItem<PerspectiveDockable>{
-	/**
-	 * Gets the placeholder which is associated with this {@link Dockable}.
-	 * @return the placeholder, can be <code>null</code>
-	 */
-	public Path getPlaceholder();
+public interface PerspectiveDockable extends PerspectiveElement, PlaceholderListItem<PerspectiveDockable> {
+  /**
+   * Gets the placeholder which is associated with this {@link Dockable}.
+   *
+   * @return the placeholder, can be <code>null</code>
+   */
+  public Path getPlaceholder();
 
-	/**
-	 * Gets the parent {@link DockStation} of this {@link Dockable}.
-	 * @return the parent, may be <code>null</code>
-	 */
-	public PerspectiveStation getParent();
-	
-	/**
-	 * Sets the parent {@link DockStation} of this {@link Dockable}.
-	 * @param parent the new parent, can be <code>null</code>
-	 */
-	public void setParent( PerspectiveStation parent );
+  /**
+   * Gets the parent {@link DockStation} of this {@link Dockable}.
+   *
+   * @return the parent, may be <code>null</code>
+   */
+  public PerspectiveStation getParent();
+
+  /**
+   * Sets the parent {@link DockStation} of this {@link Dockable}.
+   *
+   * @param parent the new parent, can be <code>null</code>
+   */
+  public void setParent(PerspectiveStation parent);
 }

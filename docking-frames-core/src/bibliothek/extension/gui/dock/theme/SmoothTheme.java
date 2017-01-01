@@ -2,23 +2,23 @@
  * Bibliothek - DockingFrames
  * Library built on Java/Swing, allows the user to "drag and drop"
  * panels containing any Swing-Component the developer likes to add.
- * 
+ * <p>
  * Copyright (C) 2007 Benjamin Sigg
- * 
+ * <p>
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- *
+ * <p>
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- * 
+ * <p>
  * Benjamin Sigg
  * benjamin_sigg@gmx.ch
  * CH - Switzerland
@@ -40,30 +40,26 @@ import bibliothek.gui.dock.util.Priority;
  * @author Benjamin Sigg
  *
  */
-@ThemeProperties(
-        nameBundle="theme.smooth", 
-        descriptionBundle="theme.smooth.description",
-        authors={"Benjamin Sigg"},
-        webpages={})
+@ThemeProperties(nameBundle = "theme.smooth", descriptionBundle = "theme.smooth.description", authors = {"Benjamin Sigg"}, webpages = {})
 public class SmoothTheme extends BasicTheme {
-    /**
-     * Constructor, sets the special title-factory of this theme
-     */
-    public SmoothTheme(){
-        setTitleFactory( new SmoothDefaultTitleFactory(), Priority.DEFAULT );
-    }
-    
-    @Override
-    public void install(DockController controller) {
-    	super.install(controller);
-    	
-    	controller.getDockTitleManager().registerTheme( FlapDockStation.BUTTON_TITLE_ID, new SmoothDefaultButtonTitleFactory());
-    }
-    
-    @Override
-    public void uninstall(DockController controller) {
-    	super.uninstall(controller);
-    	
-    	controller.getDockTitleManager().clearThemeFactories();
-    }
+  /**
+   * Constructor, sets the special title-factory of this theme
+   */
+  public SmoothTheme() {
+    setTitleFactory(new SmoothDefaultTitleFactory(), Priority.DEFAULT);
+  }
+
+  @Override
+  public void install(DockController controller) {
+    super.install(controller);
+
+    controller.getDockTitleManager().registerTheme(FlapDockStation.BUTTON_TITLE_ID, new SmoothDefaultButtonTitleFactory());
+  }
+
+  @Override
+  public void uninstall(DockController controller) {
+    super.uninstall(controller);
+
+    controller.getDockTitleManager().clearThemeFactories();
+  }
 }

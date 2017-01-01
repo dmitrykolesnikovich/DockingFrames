@@ -41,45 +41,45 @@ import bibliothek.gui.dock.toolbar.perspective.CToolbarModePerspective;
 
 /**
  * This {@link CLocationMode} describes the areas that are part of a toolbar.
+ *
  * @author Benjamin Sigg
  */
-public class CToolbarMode extends ToolbarMode<CToolbarModeArea> implements CLocationMode{
-	/**
-	 * Creates a new mode
-	 * @param control the control in whose realm this mode is used
-	 */
-	public CToolbarMode( CControl control ){
-		super( control.getController() );
-	}
+public class CToolbarMode extends ToolbarMode<CToolbarModeArea> implements CLocationMode {
+  /**
+   * Creates a new mode
+   *
+   * @param control the control in whose realm this mode is used
+   */
+  public CToolbarMode(CControl control) {
+    super(control.getController());
+  }
 
-	public CLocation getCLocation( Dockable dockable ){
-		CToolbarModeArea area = get( dockable );
-		if( area == null )
-			return null;
-			
-		return area.getCLocation( dockable );
-	}
-	
-	public CLocation getCLocation( Dockable dockable, Location location ){
-		CToolbarModeArea area = get( location.getRoot() );
-		if( area == null )
-			return null;
-			
-		return area.getCLocation( dockable, location );
-	}
+  public CLocation getCLocation(Dockable dockable) {
+    CToolbarModeArea area = get(dockable);
+    if (area == null) return null;
 
-	@Override
-	public boolean isBasicMode(){
-		return true;
-	}
+    return area.getCLocation(dockable);
+  }
 
-	@Override
-	public boolean respectWorkingAreas( DockStation station ){
-		return true;
-	}
+  public CLocation getCLocation(Dockable dockable, Location location) {
+    CToolbarModeArea area = get(location.getRoot());
+    if (area == null) return null;
 
-	@Override
-	public LocationModePerspective createPerspective(){
-		return new CToolbarModePerspective();
-	}
+    return area.getCLocation(dockable, location);
+  }
+
+  @Override
+  public boolean isBasicMode() {
+    return true;
+  }
+
+  @Override
+  public boolean respectWorkingAreas(DockStation station) {
+    return true;
+  }
+
+  @Override
+  public LocationModePerspective createPerspective() {
+    return new CToolbarModePerspective();
+  }
 }

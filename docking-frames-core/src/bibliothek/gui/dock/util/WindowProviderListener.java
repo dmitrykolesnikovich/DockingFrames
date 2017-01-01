@@ -25,25 +25,28 @@
  */
 package bibliothek.gui.dock.util;
 
-import java.awt.Window;
+import java.awt.*;
 
 /**
  * A listener added to a {@link WindowProvider}. The provider should
  * inform the listener when its window changes.
+ *
  * @author Benjamin Sigg
  */
 public interface WindowProviderListener {
-    /**
-     * Called when the providers window changed.
-     * @param provider the source of the event
-     * @param window the new window, which might be <code>null</code>
-     */
-    public void windowChanged( WindowProvider provider, Window window );
-    
-    /**
-     * Called if the visibility of the window of <code>provider</code> changed.
-     * @param provider the source of the event
-     * @param showing the new visibility state
-     */
-    public void visibilityChanged( WindowProvider provider, boolean showing );
+  /**
+   * Called when the providers window changed.
+   *
+   * @param provider the source of the event
+   * @param window   the new window, which might be <code>null</code>
+   */
+  public void windowChanged(WindowProvider provider, Window window);
+
+  /**
+   * Called if the visibility of the window of <code>provider</code> changed.
+   *
+   * @param provider the source of the event
+   * @param showing  the new visibility state
+   */
+  public void visibilityChanged(WindowProvider provider, boolean showing);
 }

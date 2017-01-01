@@ -31,20 +31,22 @@ import bibliothek.util.Path;
 
 /**
  * Allows to set whether icons are shown on deselected tabs in the {@link EclipseTheme}.
+ *
  * @author Benjamin Sigg
  * @see EclipseTheme#PAINT_ICONS_WHEN_DESELECTED
  */
-public class EclipseIconPreference extends DockPropertyPreference<Boolean>{
-	/**
-	 * Creates a new preference.
-	 * @param properties the properties to access
-	 */
-	public EclipseIconPreference( DockProperties properties ){
-		super( properties, EclipseTheme.PAINT_ICONS_WHEN_DESELECTED, Path.TYPE_BOOLEAN_PATH, new Path( "dock.theme.eclipse.icons" ));
-		
-		setLabelId( "preference.theme.eclipse.icon.label" );
-		setDescriptionId( "preference.theme.eclipse.icon.description" );
-		
-		setDefaultValue( Boolean.FALSE );
-	}
+public class EclipseIconPreference extends DockPropertyPreference<Boolean> {
+  /**
+   * Creates a new preference.
+   *
+   * @param properties the properties to access
+   */
+  public EclipseIconPreference(DockProperties properties) {
+    super(properties, EclipseTheme.PAINT_ICONS_WHEN_DESELECTED, Path.TYPE_BOOLEAN_PATH, new Path("dock.theme.eclipse.icons"));
+
+    setLabelId("preference.theme.eclipse.icon.label");
+    setDescriptionId("preference.theme.eclipse.icon.description");
+
+    setDefaultValue(Boolean.FALSE);
+  }
 }

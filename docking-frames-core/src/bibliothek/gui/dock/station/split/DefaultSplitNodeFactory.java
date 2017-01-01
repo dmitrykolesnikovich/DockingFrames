@@ -27,22 +27,23 @@ package bibliothek.gui.dock.station.split;
 
 /**
  * This implementation of {@link SplitNodeFactory} creates the standard {@link SplitNode}s.
+ *
  * @author Benjamin Sigg
  */
-public class DefaultSplitNodeFactory implements SplitNodeFactory{
-	public Leaf createLeaf( SplitDockAccess access, long id ){
-		return new Leaf( access, id );
-	}
-	
-	public Node createNode( SplitDockAccess access, long id ){
-		return new Node( access, id );
-	}
-	
-	public Placeholder createPlaceholder( SplitDockAccess access, long id ){
-		return new Placeholder( access, id );
-	}
-	
-	public Root createRoot( SplitDockAccess access, long id ){
-		return new Root( access, id );
-	}
+public class DefaultSplitNodeFactory implements SplitNodeFactory {
+  public Leaf createLeaf(SplitDockAccess access, long id) {
+    return new Leaf(access, id);
+  }
+
+  public Node createNode(SplitDockAccess access, long id) {
+    return new Node(access, id);
+  }
+
+  public Placeholder createPlaceholder(SplitDockAccess access, long id) {
+    return new Placeholder(access, id);
+  }
+
+  public Root createRoot(SplitDockAccess access, long id) {
+    return new Root(access, id);
+  }
 }

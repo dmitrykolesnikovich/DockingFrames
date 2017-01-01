@@ -29,51 +29,52 @@
  */
 package bibliothek.gui.dock.wizard;
 
-import java.util.Map;
-
 import bibliothek.gui.Dockable;
 import bibliothek.gui.dock.wizard.WizardNodeMap.Column;
 import bibliothek.util.FrameworkOnly;
 
+import java.util.Map;
+
 /**
  * A column in the grid of a {@link WizardSplitDockStation}, the column offers information
  * about its current and preferred size. It also offers a list of all its cells.
+ *
  * @author Benjamin Sigg
  */
 @FrameworkOnly
-public class PersistentColumn{
-	private int size;
-	private int preferred;
-	private Column source;
-	private Map<Dockable, PersistentCell> cells;
-	
-	public PersistentColumn( int size, int preferred, Column source, Map<Dockable, PersistentCell> cells ){
-		this.size = size;
-		this.preferred = preferred;
-		if( size <= 0 ){
-			this.size = preferred;
-		}
-		this.source = source;
-		this.cells = cells;
-	}
-	
-	public Column getSource(){
-		return source;
-	}
-	
-	public void setSize( int size ){
-		this.size = size;
-	}
-	
-	public int getSize(){
-		return size;
-	}
-	
-	public int getPreferredSize(){
-		return preferred;
-	}
-	
-	public Map<Dockable, PersistentCell> getCells(){
-		return cells;
-	}
+public class PersistentColumn {
+  private int size;
+  private int preferred;
+  private Column source;
+  private Map<Dockable, PersistentCell> cells;
+
+  public PersistentColumn(int size, int preferred, Column source, Map<Dockable, PersistentCell> cells) {
+    this.size = size;
+    this.preferred = preferred;
+    if (size <= 0) {
+      this.size = preferred;
+    }
+    this.source = source;
+    this.cells = cells;
+  }
+
+  public Column getSource() {
+    return source;
+  }
+
+  public int getSize() {
+    return size;
+  }
+
+  public void setSize(int size) {
+    this.size = size;
+  }
+
+  public int getPreferredSize() {
+    return preferred;
+  }
+
+  public Map<Dockable, PersistentCell> getCells() {
+    return cells;
+  }
 }

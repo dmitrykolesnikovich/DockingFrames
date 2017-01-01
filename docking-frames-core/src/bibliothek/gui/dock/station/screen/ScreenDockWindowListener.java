@@ -27,30 +27,35 @@ package bibliothek.gui.dock.station.screen;
 
 /**
  * A listener that can be added to a {@link ScreenDockWindow}.
+ *
  * @author Benjamin
  */
 public interface ScreenDockWindowListener {
-	/**
-	 * This method is called after the {@link ScreenDockWindow#isVisible() visibility state} changed.
-	 * @param window the caller
-	 */
-	public void visibilityChanged( ScreenDockWindow window );
-	
-	/**
-	 * This method is called after the windows fullscreen-state changed.
-	 * @param window the caller
-	 */
-	public void fullscreenStateChanged( ScreenDockWindow window );
-	
-	/**
-	 * This method is called after the size and position of <code>window</code> changed.
-	 * @param window the caller
-	 */
-	public void shapeChanged( ScreenDockWindow window );
-	
-	/**
-	 * Called if the user wants to close the window (e.g. by pressing alt+F4, or clicking on the "x" button)
-	 * @param window the source of the event
-	 */
-	public void windowClosing( ScreenDockWindow window );
+  /**
+   * This method is called after the {@link ScreenDockWindow#isVisible() visibility state} changed.
+   *
+   * @param window the caller
+   */
+  public void visibilityChanged(ScreenDockWindow window);
+
+  /**
+   * This method is called after the windows fullscreen-state changed.
+   *
+   * @param window the caller
+   */
+  public void fullscreenStateChanged(ScreenDockWindow window);
+
+  /**
+   * This method is called after the size and position of <code>window</code> changed.
+   *
+   * @param window the caller
+   */
+  public void shapeChanged(ScreenDockWindow window);
+
+  /**
+   * Called if the user wants to close the window (e.g. by pressing alt+F4, or clicking on the "x" button)
+   *
+   * @param window the source of the event
+   */
+  public void windowClosing(ScreenDockWindow window);
 }

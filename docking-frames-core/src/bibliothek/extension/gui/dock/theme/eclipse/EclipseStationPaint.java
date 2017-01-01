@@ -25,67 +25,63 @@
  */
 package bibliothek.extension.gui.dock.theme.eclipse;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-
 import bibliothek.gui.DockStation;
 import bibliothek.gui.dock.SplitDockStation;
 import bibliothek.gui.dock.station.StationPaint;
 import bibliothek.gui.dock.themes.color.StationPaintColor;
 import bibliothek.gui.dock.util.color.ColorCodes;
 
+import java.awt.*;
+
 /**
  * @author Janni Kovacs
  */
-@ColorCodes({ "paint.line", "paint.divider", "paint.insertion" })
+@ColorCodes({"paint.line", "paint.divider", "paint.insertion"})
 public class EclipseStationPaint implements StationPaint {
-    private StationPaintColor color = new StationPaintColor( "", this, Color.BLACK ){
-        @Override
-        protected void changed( Color oldColor, Color newColor ) {
-            // ignore
-        }
-    };
-	
-	public void drawInsertionLine(Graphics g, DockStation station, int x1, int y1, int x2, int y2) {
-		color.setId( "paint.line" );
-		color.connect( station.getController() );
-		
-		Graphics2D g2d = (Graphics2D) g;
-		g2d.setColor( color.value() );
-		g2d.setStroke(new BasicStroke(2f));
-		g2d.drawLine(x1, y1, x2, y2);
-		
-		color.connect( null );
-	}
+  private StationPaintColor color = new StationPaintColor("", this, Color.BLACK) {
+    @Override
+    protected void changed(Color oldColor, Color newColor) {
+      // ignore
+    }
+  };
 
-	public void drawDivider(Graphics g, DockStation station, Rectangle bounds) {
-		if (station instanceof SplitDockStation && !((SplitDockStation) station).isContinousDisplay()) {
-			color.setId( "paint.divider" );
-			color.connect( station.getController() );
-			
-			g.setColor( color.value() );
-			g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
-			
-			color.connect( null );
-		}
-	}
+  public void drawInsertionLine(Graphics g, DockStation station, int x1, int y1, int x2, int y2) {
+    color.setId("paint.line");
+    color.connect(station.getController());
 
-	public void drawInsertion(Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds) {
-		color.setId( "paint.insertion" );
-		color.connect( station.getController() );
-		
-		Graphics2D g2d = (Graphics2D) g;
-		g2d.setColor( color.value() );
-		g2d.setStroke(new BasicStroke(2f));
-		g2d.drawRect(dockableBounds.x+1, dockableBounds.y+1, dockableBounds.width-2, dockableBounds.height-2 );
-		
-		color.connect( null );
-	}
-	
-	public void drawRemoval( Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds ){
-		// ignore
-	}
+    Graphics2D g2d = (Graphics2D)g;
+    g2d.setColor(color.value());
+    g2d.setStroke(new BasicStroke(2f));
+    g2d.drawLine(x1, y1, x2, y2);
+
+    color.connect(null);
+  }
+
+  public void drawDivider(Graphics g, DockStation station, Rectangle bounds) {
+    if (station instanceof SplitDockStation && !((SplitDockStation)station).isContinousDisplay()) {
+      color.setId("paint.divider");
+      color.connect(station.getController());
+
+      g.setColor(color.value());
+      g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+
+      color.connect(null);
+    }
+  }
+
+  public void drawInsertion(Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds) {
+    color.setId("paint.insertion");
+    color.connect(station.getController());
+
+    Graphics2D g2d = (Graphics2D)g;
+    g2d.setColor(color.value());
+    g2d.setStroke(new BasicStroke(2f));
+    g2d.drawRect(dockableBounds.x + 1, dockableBounds.y + 1, dockableBounds.width - 2, dockableBounds.height - 2);
+
+    color.connect(null);
+  }
+
+  public void drawRemoval(Graphics g, DockStation station, Rectangle stationBounds, Rectangle dockableBounds) {
+    // ignore
+  }
 }

@@ -25,31 +25,32 @@
  */
 package bibliothek.gui.dock.common.preference;
 
-import java.awt.event.KeyEvent;
-
-import javax.swing.KeyStroke;
-
 import bibliothek.extension.gui.dock.preference.preferences.DockPropertyPreference;
 import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.common.intern.CDockable;
 import bibliothek.gui.dock.util.DockProperties;
 import bibliothek.util.Path;
 
+import javax.swing.*;
+import java.awt.event.KeyEvent;
+
 /**
  * {@link KeyStroke} for closing a {@link CDockable}.
+ *
  * @author Benjamin Sigg
  */
-public class KeyStrokeClosePreference extends DockPropertyPreference<KeyStroke>{
-    /**
-     * Creates a new preference
-     * @param properties the properties to access
-     */
-    public KeyStrokeClosePreference( DockProperties properties ){
-        super( properties, CControl.KEY_CLOSE, Path.TYPE_KEYSTROKE_PATH, new Path( "dock.common.control.close" ) );
-        
-        setLabelId( "preference.shortcut.close.label" );
-        setDescriptionId( "preference.shortcut.close.description" );
-        
-        setDefaultValue( KeyStroke.getKeyStroke( KeyEvent.VK_F4, KeyEvent.CTRL_DOWN_MASK ));
-    }
+public class KeyStrokeClosePreference extends DockPropertyPreference<KeyStroke> {
+  /**
+   * Creates a new preference
+   *
+   * @param properties the properties to access
+   */
+  public KeyStrokeClosePreference(DockProperties properties) {
+    super(properties, CControl.KEY_CLOSE, Path.TYPE_KEYSTROKE_PATH, new Path("dock.common.control.close"));
+
+    setLabelId("preference.shortcut.close.label");
+    setDescriptionId("preference.shortcut.close.description");
+
+    setDefaultValue(KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.CTRL_DOWN_MASK));
+  }
 }

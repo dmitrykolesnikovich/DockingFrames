@@ -31,30 +31,37 @@ import bibliothek.util.Path;
 
 /**
  * A text that is used for a {@link Preference}.
+ *
  * @author Benjamin Sigg
  */
-public abstract class PreferenceText extends TextValue{
-	/** the kind of {@link UIValue} this is */
-	public static final Path KIND_PREFERENCE = TextValue.KIND_TEXT.append( "preference" );
-	
-	/** the preference for which the text is used */
-	private Preference<?> preference;
-	
-	/**
-	 * Creates a new text.
-	 * @param id the unique identifier of the text
-	 * @param preference the preference for which the text is used
-	 */
-	public PreferenceText( String id, Preference<?> preference ){
-		super( id, KIND_PREFERENCE );
-		this.preference = preference;
-	}
-	
-	/**
-	 * Gets the preference for which this text is used.
-	 * @return the text
-	 */
-	public Preference<?> getPreference(){
-		return preference;
-	}
+public abstract class PreferenceText extends TextValue {
+  /**
+   * the kind of {@link UIValue} this is
+   */
+  public static final Path KIND_PREFERENCE = TextValue.KIND_TEXT.append("preference");
+
+  /**
+   * the preference for which the text is used
+   */
+  private Preference<?> preference;
+
+  /**
+   * Creates a new text.
+   *
+   * @param id         the unique identifier of the text
+   * @param preference the preference for which the text is used
+   */
+  public PreferenceText(String id, Preference<?> preference) {
+    super(id, KIND_PREFERENCE);
+    this.preference = preference;
+  }
+
+  /**
+   * Gets the preference for which this text is used.
+   *
+   * @return the text
+   */
+  public Preference<?> getPreference() {
+    return preference;
+  }
 }
